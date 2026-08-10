@@ -13,6 +13,48 @@ public class ObjectReference
     public string name;
     public UnityEngine.Object value;
 }
+
+//普通数据类型枚举,用于在Inspector中选择要传入的数据类型
+public enum DataValueType
+{
+    Int,
+    Float,
+    String,
+    Bool
+}
+
+//可在Inspector中配置的普通数据类型引用,和ObjectReference作用类似,但传入的是基础数据而非Unity组件
+[System.Serializable]
+public class DataReference
+{
+    public string name;
+    public DataValueType valueType;
+
+    [ShowIf("valueType", DataValueType.Int)]
+    public int intValue;
+
+    [ShowIf("valueType", DataValueType.Float)]
+    public float floatValue;
+
+    [ShowIf("valueType", DataValueType.String)]
+    public string stringValue;
+
+    [ShowIf("valueType", DataValueType.Bool)]
+    public bool boolValue;
+
+    //根据valueType返回对应的值
+    public object GetValue()
+    {
+        switch (valueType)
+        {
+            case DataValueType.Int: return intValue;
+            case DataValueType.Float: return floatValue;
+            case DataValueType.String: return stringValue;
+            case DataValueType.Bool: return boolValue;
+            default: return null;
+        }
+    }
+}
 //挂载场景上面根据Type找到对应的lua脚本并初始化,并负责把变量注入到LuaTable中
 public class LuaComponet : MonoBehaviour
 {
@@ -23,6 +65,10 @@ public class LuaComponet : MonoBehaviour
     [SerializeField]
     [Tooltip("对象引用")]
     private ObjectReference[] m_objectReferences;
+
+    [SerializeField]
+    [Tooltip("普通数据引用")]
+    private DataReference[] m_dataReferences;
 
     private LuaTable m_luaTable;
 
@@ -54,12 +100,20 @@ public class LuaComponet : MonoBehaviour
     }
 
     private void InitComponent() {
-        if (m_objectReferences == null)
+        if (m_objectReferences != null)
         {
-            return;
+            foreach (var objectReference in m_objectReferences)
+            {
+                m_luaTable.Set(objectReference.name, objectReference.value);
+            }
         }
-        foreach(var objectReference in m_objectReferences) {
-            m_luaTable.Set(objectReference.name, objectReference.value);
+
+        if (m_dataReferences != null)
+        {
+            foreach (var dataReference in m_dataReferences)
+            {
+                m_luaTable.Set(dataReference.name, dataReference.GetValue());
+            }
         }
     }
     private void Start() {
