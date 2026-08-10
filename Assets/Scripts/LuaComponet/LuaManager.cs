@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using XLua;
 /// <summary>
@@ -17,6 +18,10 @@ public class LuaManager : MonoBehaviour
     private Func<string, GameObject, LuaTable> m_onInit;
     //负责运行时重新加载
     private Action<string> m_onRuntimeReload;
+    //负责运行时重新加载全部模块
+    private Action m_onRuntimeReloadAll;
+    //负责获取全部模块名
+    private Func<LuaTable> m_onGetModuleNames;
     private void Awake() {
         //设置单例
         if(_instance != null)
@@ -41,6 +46,8 @@ public class LuaManager : MonoBehaviour
         m_onInit = m_mainLuaTable.Get<Func<string, GameObject, LuaTable>>("Init");
         //注册运行时重新加载函数
         m_onRuntimeReload = m_mainLuaTable.Get<Action<string>>("runtimeReload");
+        m_onRuntimeReloadAll = m_mainLuaTable.Get<Action>("runtimeReloadAll");
+        m_onGetModuleNames = m_mainLuaTable.Get<Func<LuaTable>>("getModuleNames");
     }
 
     //获取对应类型的LuaTable
@@ -50,6 +57,26 @@ public class LuaManager : MonoBehaviour
 
 
     public void RuntimeReload(string typeName) {
+        //重载前刷新文件索引,保证运行期间新增的.lua能被require到
+        m_luaEnvironment.BuildFileIndex();
         m_onRuntimeReload?.Invoke(typeName);
+    }
+
+    public void RuntimeReloadAll() {
+        m_luaEnvironment.BuildFileIndex();
+        m_onRuntimeReloadAll?.Invoke();
+    }
+
+    //获取全部模块名,供Editor侧列出
+    public List<string> GetModuleNames() {
+        var names = new List<string>();
+        using (LuaTable table = m_onGetModuleNames())
+        {
+            for (int i = 1; i <= table.Length; i++)
+            {
+                names.Add(table.Get<int, string>(i));
+            }
+        }
+        return names;
     }
 }

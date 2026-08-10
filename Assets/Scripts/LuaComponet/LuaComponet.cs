@@ -158,9 +158,22 @@ public class LuaComponet : MonoBehaviour
         }
     }
 
+    public string TypeName => m_typeName;
+
+    //重载本模块代码并刷新本实例
     [Button("重写读取脚本")]
     public void RuntimeReload() {
         LuaManager.Instance.RuntimeReload(m_typeName);
+        RefreshInstance();
+    }
+
+    //只刷新本实例:重建函数缓存并重新注入Inspector引用,不重跑生命周期
+    //全量重载时由Editor统一调用,避免同一模块被多个实例重复重载
+    public void RefreshInstance() {
+        if (m_luaTable == null)
+        {
+            return;
+        }
         m_onFunctions.Clear();
         InitOnFunctions();
         InitComponent();

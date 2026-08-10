@@ -52,14 +52,47 @@ function Main.runtimeReload(typeName)
     _G[typeName] = nil
     require(typeName)
 
-    --把新表内容合并进旧表,保证所有已持有oldTable引用(包括各实例的元表)自动生效
+    --先清空旧表,保证源文件里已删除的函数不残留
     local newTable = _G[typeName]
+    for k in pairs(oldTable) do
+        oldTable[k] = nil
+    end
+    --把新表内容合并进旧表,保证所有已持有oldTable引用(包括各实例的元表)自动生效
     for k, v in pairs(newTable) do
         oldTable[k] = v
     end
+    --合并进来的__index指向newTable,不改回来的话下次reload改的是oldTable而实例查的是newTable
+    oldTable.__index = oldTable
 
     --把_G和package.loaded都恢复指向旧表,保证身份一致,便于下次reload
     _G[typeName] = oldTable
     package.loaded[typeName] = oldTable
+end
+
+--运行时重新加载全部模块
+function Main.runtimeReloadAll()
+    --先逐个更新已有模块,单个失败不影响其余模块
+    for typeName in pairs(m_module) do
+        local ok, err = pcall(Main.runtimeReload, typeName)
+        if not ok then
+            print("runtimeReloadAll failed: " .. tostring(typeName) .. " , " .. tostring(err))
+        end
+    end
+
+    --再重跑Include与module,让新增模块进入moduleList(已有模块身份不变)
+    package.loaded["Include"] = nil
+    package.loaded["module"] = nil
+    require("Include")
+    require("module")
+    m_module = moduleList
+end
+
+--返回模块名数组,供Editor侧列出
+function Main.getModuleNames()
+    local names = {}
+    for typeName in pairs(m_module) do
+        names[#names + 1] = typeName
+    end
+    return names
 end
 

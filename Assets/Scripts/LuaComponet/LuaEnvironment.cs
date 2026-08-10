@@ -69,7 +69,8 @@ public class LuaEnvironment
     }
 
     //递归扫描LuaRaw目录下所有.lua文件,按文件名(不含扩展名)建立索引
-    private void BuildFileIndex() {
+    //运行时热重载前需要重新调用,否则运行期间新增的.lua文件require不到
+    public void BuildFileIndex() {
         m_fileIndex = new Dictionary<string, string>();
         if (!Directory.Exists(LuaRawRoot))
         {
@@ -180,6 +181,10 @@ print('[EmmyLua] 请先取消再F5启动 EmmyLua New Debug,确认出现 Wait for
     //真机环境:从打包的LuaBundle.bytes中加载luac字节码,按文件名索引
     private const string LuaBundleName = "LuaBundle";
     private Dictionary<string, byte[]> m_luaBundle;
+
+    //真机没有源文件索引,留空实现让调用方无需区分平台
+    public void BuildFileIndex() {
+    }
 
     private byte[] CustomLoader(ref string filepath) {
         if (m_luaBundle == null)
