@@ -138,6 +138,8 @@ These are the subtle errors that look like productivity but create problems:
 
 4. **When in doubt, start with a spec.** If the task is non-trivial and there's no spec, begin with `spec-driven-development`.
 
+5. **Declare what you used.** If any skill (or part of one) informed the work, list them at the end of the reply: `Skills: skill-a, skill-b, ...`. Only list skills you actually read and applied; if none applied, write `Skills: none`.
+
 ## Lifecycle Sequence
 
 For a complete feature, the typical skill sequence is:

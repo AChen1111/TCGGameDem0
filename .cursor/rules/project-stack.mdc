@@ -1,0 +1,32 @@
+---
+description: AChenFrameWork stack, commands, and boundaries
+alwaysApply: true
+---
+
+# Project: AChenFrameWork
+
+## Tech Stack
+
+- Unity 6+，URP 17，Input System，UGUI
+- 运行时：C# 桥接 + XLua；玩法/UI 逻辑优先写在 Lua
+- C#：`Assets/Scripts/LuaComponet/`
+- Lua：`Assets/Scripts/LuaRaw/`（入口 `Main.lua`）
+- Editor 控制：`Packages/com.unity.pipeline` + `unity` CLI
+
+## Commands
+
+场景/编译/测试/截图走 `unity-pipeline` skill。本机 Clash 代理会打断 localhost，**必须**加 `--proxy-disable`：
+
+```
+unity pipeline list --proxy-disable
+unity command --proxy-disable --project-path "<repo>" <command>
+```
+
+测试：`run_tests`（Unity Test Framework）。改 C# 后先 `set_autotick` 再 `recompile`。
+
+## Boundaries
+
+- 不要提交 `Library/`、`Temp/`、`Logs/`、`Obj/`、密钥或 `.env`
+- 不要把 `com.unity.pipeline` 改回 registry 版本
+- 不要在未确认时改 `Packages/manifest.json` 或大规模目录结构
+- Unity Editor 操作必须走 Pipeline，不要手改 `.unity` YAML（除非用户明确要求）
