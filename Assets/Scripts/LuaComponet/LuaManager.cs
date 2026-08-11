@@ -50,7 +50,16 @@ public class LuaManager : PersistentMonoSingleton<LuaManager>
     public void RuntimeReload(string typeName) {
         //重载前刷新文件索引,保证运行期间新增的.lua能被require到
         m_luaEnvironment.BuildFileIndex();
-        m_onRuntimeReload?.Invoke(typeName);
+        try
+        {
+            m_onRuntimeReload?.Invoke(typeName);
+        }
+        catch (Exception e)
+        {
+            //在工程脚本里打日志,Console双击才会走OnOpenAsset,从而跳到真正的.lua
+            //若异常冒泡到Odin,LogException的调用点在工程外的DefaultMethodDrawer,双击打不开Lua
+            Debug.LogException(e);
+        }
     }
 
     public void RuntimeReloadAll() {

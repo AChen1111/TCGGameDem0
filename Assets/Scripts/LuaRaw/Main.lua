@@ -40,16 +40,15 @@ end
 
 --运行时重新加载
 function Main.runtimeReload(typeName)
-    --从全局环境_G中获取旧表(moduleList等外部引用都指向这张表)
-    local oldTable = _G[typeName]
+    --旧表身份以moduleList为准;require失败时_G会被清掉,但m_module仍持有引用
+    local oldTable = _G[typeName] or m_module[typeName]
     if oldTable == nil then
         print("runtimeReload: module not loaded: " .. tostring(typeName))
         return
     end
 
-    --清掉缓存,强制require重新执行源文件
+    --只清package.loaded以强制重执行;不要先清_G,否则require失败后模块就丢了
     package.loaded[typeName] = nil
-    _G[typeName] = nil
     require(typeName)
 
     --先清空旧表,保证源文件里已删除的函数不残留

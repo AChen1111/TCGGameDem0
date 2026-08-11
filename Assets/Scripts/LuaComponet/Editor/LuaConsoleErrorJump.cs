@@ -35,27 +35,41 @@ public static class LuaConsoleErrorJump
         return true;
     }
 
-    //双击Console日志、Unity准备打开对应资源时触发。返回true表示"已处理,不要走默认打开逻辑"
+    // Unity 6.5+ 只认 EntityId 签名;旧的 int instanceID 不会被调用。
+    // line>0 才拦截:Console 双击会带上行号,Project 窗口双击资源时 line=0。
     [OnOpenAsset(0)]
-    private static bool OnOpenAsset(int instanceID, int line) {
-        if (!Enabled)
+    private static bool OnOpenAsset(EntityId entityId, int line) {
+        if (!Enabled || line <= 0)
         {
             return false;
         }
 
         string activeLogText = GetActiveConsoleLogText();
-        if (activeLogText == null || !activeLogText.StartsWith("LuaException:"))
+        if (!TryParseLuaLocation(activeLogText, out string path, out int luaLine))
         {
             return false;
         }
 
-        Match match = s_luaErrorPattern.Match(activeLogText);
+        JumpToLuaFile(path, luaLine);
+        return true;
+    }
+
+    public static bool TryParseLuaLocation(string logText, out string path, out int line) {
+        path = null;
+        line = 0;
+        if (string.IsNullOrEmpty(logText))
+        {
+            return false;
+        }
+
+        Match match = s_luaErrorPattern.Match(logText);
         if (!match.Success)
         {
             return false;
         }
 
-        JumpToLuaFile(match.Groups[1].Value, int.Parse(match.Groups[2].Value));
+        path = match.Groups[1].Value;
+        line = int.Parse(match.Groups[2].Value);
         return true;
     }
 
