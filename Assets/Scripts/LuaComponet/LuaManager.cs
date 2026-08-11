@@ -5,10 +5,8 @@ using XLua;
 /// <summary>
 /// 负责管理把生命周期函数转发到Main.lua
 /// </summary>
-public class LuaManager : MonoBehaviour
+public class LuaManager : PersistentMonoSingleton<LuaManager>
 {
-    private static LuaManager _instance;
-    public static LuaManager Instance => _instance;
     private LuaEnvironment m_luaEnvironment;
     private LuaTable m_mainLuaTable;
     private LuaEnv m_luaEnv;
@@ -22,16 +20,7 @@ public class LuaManager : MonoBehaviour
     private Action m_onRuntimeReloadAll;
     //负责获取全部模块名
     private Func<LuaTable> m_onGetModuleNames;
-    private void Awake() {
-        //设置单例
-        if(_instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        _instance = this;
-        DontDestroyOnLoad(gameObject);
-
+    protected override void OnInit() {
         //初始化Lua环境
         m_luaEnvironment = new LuaEnvironment();
         m_luaEnvironment.Init();
@@ -48,6 +37,8 @@ public class LuaManager : MonoBehaviour
         m_onRuntimeReload = m_mainLuaTable.Get<Action<string>>("runtimeReload");
         m_onRuntimeReloadAll = m_mainLuaTable.Get<Action>("runtimeReloadAll");
         m_onGetModuleNames = m_mainLuaTable.Get<Func<LuaTable>>("getModuleNames");
+
+        
     }
 
     //获取对应类型的LuaTable
