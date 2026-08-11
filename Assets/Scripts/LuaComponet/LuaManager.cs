@@ -38,7 +38,7 @@ public class LuaManager : PersistentMonoSingleton<LuaManager>
         m_onRuntimeReloadAll = m_mainLuaTable.Get<Action>("runtimeReloadAll");
         m_onGetModuleNames = m_mainLuaTable.Get<Func<LuaTable>>("getModuleNames");
 
-        
+        IsDone = true;
     }
 
     //获取对应类型的LuaTable

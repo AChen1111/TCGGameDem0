@@ -1,11 +1,14 @@
 using UnityEngine;
 
 /// <summary>
-/// 非泛型基类,便于统一收进列表并查询 IsDone
+/// 非泛型基类,便于统一收进列表并按顺序初始化
 /// </summary>
 public abstract class MonoSingleton : MonoBehaviour
 {
     public bool IsDone { get; protected set; }
+
+    //由 SingletonManager 按 list 顺序调用,内部启动初始化;完成后置 IsDone=true
+    public abstract void BeginInit();
 }
 
 /// <summary>
@@ -41,8 +44,11 @@ public abstract class MonoSingleton<T> : MonoSingleton where T : MonoSingleton<T
         {
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    public override void BeginInit()
+    {
         OnInit();
-        IsDone = true;
     }
 
     private void OnDestroy()
@@ -54,8 +60,8 @@ public abstract class MonoSingleton<T> : MonoSingleton where T : MonoSingleton<T
         OnRelease();
     }
 
-    //子类在此写初始化逻辑,不要再定义Awake
-    protected virtual void OnInit() { }
+    //子类在此写初始化逻辑;完成时置 IsDone=true(异步则在完成回调里置)
+    protected virtual void OnInit() { IsDone = true; }
 
     protected virtual void OnRelease() { }
 }

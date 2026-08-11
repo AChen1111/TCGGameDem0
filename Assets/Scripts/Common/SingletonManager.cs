@@ -1,31 +1,24 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// 等待列表中所有单例初始化完成后,按场景名切换场景
+/// 按 list 顺序逐个初始化单例,全部完成后切换场景
 /// </summary>
 public class SingletonManager : PersistentMonoSingleton<SingletonManager>
 {
     [SerializeField] List<MonoSingleton> m_singletons;
     [SerializeField] string m_sceneName;
 
-    private bool m_bLoaded;
-
-    private void Update()
+    private IEnumerator Start()
     {
-        if (m_bLoaded)
-        {
-            return;
-        }
         for (int i = 0; i < m_singletons.Count; i++)
         {
-            if (!m_singletons[i].IsDone)
-            {
-                return;
-            }
+            MonoSingleton singleton = m_singletons[i];
+            singleton.BeginInit();
+            yield return new WaitUntil(() => singleton.IsDone);
         }
-        m_bLoaded = true;
         SceneManager.LoadScene(m_sceneName);
     }
 }
