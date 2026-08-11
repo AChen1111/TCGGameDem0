@@ -1,9 +1,17 @@
 using UnityEngine;
 
 /// <summary>
+/// 非泛型基类,便于统一收进列表并查询 IsDone
+/// </summary>
+public abstract class MonoSingleton : MonoBehaviour
+{
+    public bool IsDone { get; protected set; }
+}
+
+/// <summary>
 /// MonoBehaviour单例:换场景时随场景销毁
 /// </summary>
-public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
+public abstract class MonoSingleton<T> : MonoSingleton where T : MonoSingleton<T>
 {
     private static T s_instance;
     public static T Instance
@@ -18,9 +26,6 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
             return s_instance;
         }
     }
-
-    //是否已完成初始化
-    public bool IsDone { get; private set; }
 
     protected virtual bool Persistent => false;
 
