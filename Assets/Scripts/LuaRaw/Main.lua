@@ -3,6 +3,7 @@ Main.__index = Main
 
 --加载公共模块
 require("Include")
+require("Log")
 require("module")
 --模块列表
 local m_module = moduleList
@@ -80,8 +81,10 @@ function Main.runtimeReloadAll()
 
     --再重跑Include与module,让新增模块进入moduleList(已有模块身份不变)
     package.loaded["Include"] = nil
+    package.loaded["Log"] = nil
     package.loaded["module"] = nil
     require("Include")
+    require("Log")
     require("module")
     m_module = moduleList
 end
