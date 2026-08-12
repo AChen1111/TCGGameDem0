@@ -4,6 +4,8 @@
 
 菜单：**Window → AChen → 日志控制台**
 
+相关文档：[Lua 系统](LuaSystem.md) · [Agent Skills 审计](AgentSkills.md)
+
 ---
 
 ## 1. 快速开始
