@@ -10,6 +10,9 @@ local m_nLevelError = 2
 
 --level 3 表示traceback从调用Log.XXX的那一行开始
 local function _write(nLevel, strMessage, strCategory)
+    if not CS.ALog.Enabled then
+        return
+    end
     local strStack = debug.traceback("", 3)
     CS.ALog.LuaWrite(nLevel, strCategory or m_strDefaultCategory, tostring(strMessage), strStack)
 end

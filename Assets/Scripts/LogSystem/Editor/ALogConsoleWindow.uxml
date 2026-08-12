@@ -2,6 +2,8 @@
     <ui:VisualElement class="console-root">
         <ui:VisualElement class="console-toolbar">
             <ui:Button name="clear-button" text="Clear" class="toolbar-button" />
+            <ui:Button name="config-category-button" text="配置分类" class="toolbar-button" />
+            <ui:Toggle name="toggle-enable-in-player" text="出包启用日志" class="level-toggle" />
             <ui:TextField name="search-field" class="console-search" />
             <ui:VisualElement class="toolbar-spacer" />
             <ui:Toggle name="toggle-log" class="level-toggle" />

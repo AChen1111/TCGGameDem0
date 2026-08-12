@@ -31,9 +31,21 @@ public static class ALog
     public static IReadOnlyList<ALogEntry> Entries => s_entries;
     public static IEnumerable<string> Categories => s_categories;
 
+    /// <summary>Editor始终启用;正式包看 ALogSettings.EnableInPlayer</summary>
+    public static bool Enabled {
+        get {
+#if UNITY_EDITOR
+            return true;
+#else
+            ALogSettings settings = ALogSettings.Instance;
+            return settings == null || settings.EnableInPlayer;
+#endif
+        }
+    }
+
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void Init() {
-        if (s_hooked)
+        if (s_hooked || !Enabled)
         {
             return;
         }
@@ -42,19 +54,35 @@ public static class ALog
     }
 
     public static void Log(string message, string category = CategoryDefault) {
+        if (!Enabled)
+        {
+            return;
+        }
         Write(ALogLevel.Log, category, message, CaptureCSharpStack());
     }
 
     public static void LogWarning(string message, string category = CategoryDefault) {
+        if (!Enabled)
+        {
+            return;
+        }
         Write(ALogLevel.Warning, category, message, CaptureCSharpStack());
     }
 
     public static void LogError(string message, string category = CategoryDefault) {
+        if (!Enabled)
+        {
+            return;
+        }
         Write(ALogLevel.Error, category, message, CaptureCSharpStack());
     }
 
     /// <summary>Lua侧入口:traceback为debug.traceback的原文</summary>
     public static void LuaWrite(int level, string category, string message, string traceback) {
+        if (!Enabled)
+        {
+            return;
+        }
         var entry = NewEntry((ALogLevel)level, string.IsNullOrEmpty(category) ? CategoryLua : category, message, traceback);
         entry.Frames = ALogStackParser.ParseLua(traceback);
         Add(entry);
@@ -65,6 +93,14 @@ public static class ALog
     public static void Clear() {
         s_entries.Clear();
         OnCleared?.Invoke();
+    }
+
+    /// <summary>预注册分类(配置里的显示名),让控制台左侧在尚未打日志时也能看到勾选项</summary>
+    public static void RegisterCategory(string category) {
+        if (!string.IsNullOrEmpty(category))
+        {
+            s_categories.Add(category);
+        }
     }
 
     private static void Write(ALogLevel level, string category, string message, string stackTrace) {

@@ -29,6 +29,7 @@ public class ALogConsoleWindow : EditorWindow
     [InitializeOnLoadMethod]
     private static void HookEditorLogs() {
         ALog.Init();
+        ALogCategoryConfig.RegisterAll(ALogCategoryConfig.Load());
     }
 
     [MenuItem("Window/AChen/日志控制台")]
@@ -49,7 +50,17 @@ public class ALogConsoleWindow : EditorWindow
             ALog.Clear();
             m_dirty = true;
         };
+        rootVisualElement.Q<Button>("config-category-button").clicked += ALogCategoryConfigWindow.Open;
         rootVisualElement.Q<Button>("graph-button").clicked += () => ALogStackGraphWindow.Show(m_selected);
+
+        ALogSettings settings = ALogSettingsEditor.GetOrCreate();
+        var enableInPlayer = rootVisualElement.Q<Toggle>("toggle-enable-in-player");
+        enableInPlayer.value = settings.EnableInPlayer;
+        enableInPlayer.RegisterValueChangedCallback(evt => {
+            settings.EnableInPlayer = evt.newValue;
+            EditorUtility.SetDirty(settings);
+            AssetDatabase.SaveAssets();
+        });
 
         var search = rootVisualElement.Q<TextField>("search-field");
         search.RegisterValueChangedCallback(evt => {
