@@ -38,6 +38,8 @@ public class LuaManager : PersistentMonoSingleton<LuaManager>
         m_onRuntimeReloadAll = m_mainLuaTable.Get<Action>("runtimeReloadAll");
         m_onGetModuleNames = m_mainLuaTable.Get<Func<LuaTable>>("getModuleNames");
 
+        m_mainLuaTable.Get<Action>("OnLuaReady")?.Invoke();
+
         IsDone = true;
     }
 
@@ -65,6 +67,11 @@ public class LuaManager : PersistentMonoSingleton<LuaManager>
     public void RuntimeReloadAll() {
         m_luaEnvironment.BuildFileIndex();
         m_onRuntimeReloadAll?.Invoke();
+    }
+
+    public void DoString(string chunk)
+    {
+        m_luaEnv.DoString(chunk);
     }
 
     //获取全部模块名,供Editor侧列出

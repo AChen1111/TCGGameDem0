@@ -18,6 +18,8 @@
 | `Assets/Scripts/LuaRaw/Main.lua` | 入口：Init / 生命周期转发 / 热重载 |
 | `Assets/Scripts/LuaRaw/module.lua` | `moduleList` 注册表 |
 | `Assets/Scripts/LuaRaw/Include.lua` | 全局别名（如 `GameObject`、`Color`） |
+| `Assets/Scripts/LuaRaw/UI/Core/` | UIFrame、Layer、UIConfig |
+| `Assets/Scripts/LuaRaw/UI/Screen/` | BaseScreen / BasePanel / BaseWindow |
 
 ---
 
@@ -25,7 +27,7 @@
 
 ### require 只按文件名
 
-`Assets/Scripts/LuaRaw/UI/BaseUI.lua` → `require("BaseUI")`，**不带路径**。
+`Assets/Scripts/LuaRaw/UI/Screen/BaseScreen.lua` → `require("BaseScreen")`，**不带路径**。
 
 文件名全局唯一；重名时后扫描到的路径会覆盖，并打 Warning。
 

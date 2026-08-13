@@ -9,7 +9,7 @@ using XLua;
 /// Editor环境:以 Assets/Scripts/LuaRaw 为根目录直接加载 .lua 源码文件
 /// 真机环境:从 Resources/LuaBundle.bytes 中加载 luac 编译后的字节码
 /// 两种环境均按“文件名”索引,require时无需带文件夹路径,
-/// 例如 Assets/Scripts/LuaRaw/UI/BaseUI.lua 只需 require("BaseUI")
+/// 例如 Assets/Scripts/LuaRaw/UI/Screen/BaseScreen.lua 只需 require("BaseScreen")
 /// </summary>
 public class LuaEnvironment
 {
@@ -46,7 +46,7 @@ public class LuaEnvironment
             BuildFileIndex();
         }
 
-        //require时只需要文件名,不需要文件夹路径,例如 require("BaseUI")
+        //require时只需要文件名,不需要文件夹路径,例如 require("BaseScreen")
         string fileName = filepath;
         int lastDot = fileName.LastIndexOf('.');
         if (lastDot >= 0)
@@ -58,7 +58,7 @@ public class LuaEnvironment
         {
             //设置为真实路径,便于调试与报错定位
             filepath = fullPath;
-            return File.ReadAllBytes(fullPath);
+            return ReadLuaBytes(fullPath);
         }
         // emmy_core 等原生库走 package.cpath,不算业务脚本缺失
         if (fileName != "emmy_core")
@@ -177,6 +177,18 @@ print('[EmmyLua] 请先取消再F5启动 EmmyLua New Debug,确认出现 Wait for
         // 取最近写入的一份(通常是最新安装的插件)
         return candidates.OrderByDescending(File.GetLastWriteTimeUtc).First();
     }
+
+    static byte[] ReadLuaBytes(string fullPath)
+    {
+        byte[] bytes = File.ReadAllBytes(fullPath);
+        if (bytes.Length >= 3 && bytes[0] == 0xEF && bytes[1] == 0xBB && bytes[2] == 0xBF)
+        {
+            var sliced = new byte[bytes.Length - 3];
+            Buffer.BlockCopy(bytes, 3, sliced, 0, sliced.Length);
+            return sliced;
+        }
+        return bytes;
+    }
 #else
     //真机环境:从打包的LuaBundle.bytes中加载luac字节码,按文件名索引
     private const string LuaBundleName = "LuaBundle";
@@ -192,7 +204,7 @@ print('[EmmyLua] 请先取消再F5启动 EmmyLua New Debug,确认出现 Wait for
             LoadLuaBundle();
         }
 
-        //require时只需要文件名,不需要文件夹路径,例如 require("BaseUI")
+        //require时只需要文件名,不需要文件夹路径,例如 require("BaseScreen")
         string fileName = filepath;
         int lastDot = fileName.LastIndexOf('.');
         if (lastDot >= 0)

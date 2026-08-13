@@ -71,6 +71,7 @@ public class LuaComponet : MonoBehaviour
     private DataReference[] m_dataReferences;
 
     private LuaTable m_luaTable;
+    public LuaTable LuaTable => m_luaTable;
 
     //负责存储Lua函数
     private Dictionary<string, Action<LuaTable>> m_onFunctions = new Dictionary<string, Action<LuaTable>>();
@@ -99,7 +100,7 @@ public class LuaComponet : MonoBehaviour
         CallLuaFunction("Awake");
     }
 
-    private void InitComponent() {
+    protected virtual void InitComponent() {
         if (m_objectReferences != null)
         {
             foreach (var objectReference in m_objectReferences)

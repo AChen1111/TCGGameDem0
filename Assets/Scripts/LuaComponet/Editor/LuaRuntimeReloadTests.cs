@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Text;
 using NUnit.Framework;
@@ -35,7 +36,7 @@ public class LuaRuntimeReloadTests
                 return null;
             }
             filepath = files[0];
-            return File.ReadAllBytes(files[0]);
+            return ReadLuaBytes(files[0]);
         });
 
         try
@@ -62,5 +63,17 @@ package.loaded['ReloadProbe'] = ReloadProbe
         {
             env.Dispose();
         }
+    }
+
+    static byte[] ReadLuaBytes(string fullPath)
+    {
+        byte[] bytes = File.ReadAllBytes(fullPath);
+        if (bytes.Length >= 3 && bytes[0] == 0xEF && bytes[1] == 0xBB && bytes[2] == 0xBF)
+        {
+            var sliced = new byte[bytes.Length - 3];
+            Buffer.BlockCopy(bytes, 3, sliced, 0, sliced.Length);
+            return sliced;
+        }
+        return bytes;
     }
 }

@@ -19,6 +19,9 @@ public class SingletonManager : PersistentMonoSingleton<SingletonManager>
             singleton.BeginInit();
             yield return new WaitUntil(() => singleton.IsDone);
         }
-        SceneManager.LoadScene(m_sceneName);
+        if (!string.IsNullOrEmpty(m_sceneName))
+        {
+            SceneManager.LoadScene(m_sceneName);
+        }
     }
 }
