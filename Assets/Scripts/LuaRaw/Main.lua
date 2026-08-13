@@ -1,16 +1,20 @@
+---@class Main Lua 入口：建表、热重载、启动 UIFrame
 Main = {}
 Main.__index = Main
 
---加载公共模块
 require("Include")
 require("Log")
 require("LogCategories")
 require("module")
---模块列表
+
+---@type table<string, table>
 local m_module = moduleList
 
---根据名称初始化一个table并返回
-function Main.Init(typeName,go)
+---按类型名建 Lua 实例并挂上 gameObject
+---@param typeName string
+---@param go UnityEngine.GameObject
+---@return table|nil
+function Main.Init(typeName, go)
     local module = m_module[typeName]
     if module == nil then
         print("module not found: " .. tostring(typeName))
@@ -22,7 +26,9 @@ function Main.Init(typeName,go)
     return table
 end
 
---根据名称调用func
+---按名称调用实例方法
+---@param table table
+---@param functionName string
 function Main.CallFunction(table, functionName)
     local func = table[functionName]
     if func ~= nil then
@@ -32,7 +38,9 @@ function Main.CallFunction(table, functionName)
     end
 end
 
---生命周期转发:模块未定义对应函数时跳过
+---转发生命周期，模块未定义对应函数时跳过
+---@param table table
+---@param name string
 local function callLifecycle(table, name)
     local func = table[name]
     if func ~= nil then
@@ -40,7 +48,8 @@ local function callLifecycle(table, name)
     end
 end
 
---运行时重新加载
+---运行时重载单个模块，保持已有实例的表身份
+---@param typeName string
 function Main.runtimeReload(typeName)
     --旧表身份以moduleList为准;require失败时_G会被清掉,但m_module仍持有引用
     local oldTable = _G[typeName] or m_module[typeName]
@@ -70,7 +79,7 @@ function Main.runtimeReload(typeName)
     package.loaded[typeName] = oldTable
 end
 
---运行时重新加载全部模块
+---运行时重载全部模块，并刷新 moduleList
 function Main.runtimeReloadAll()
     --先逐个更新已有模块,单个失败不影响其余模块
     for typeName in pairs(m_module) do
@@ -92,7 +101,8 @@ function Main.runtimeReloadAll()
     m_module = moduleList
 end
 
---返回模块名数组,供Editor侧列出
+---返回已注册模块名，供 Editor 列出
+---@return string[]
 function Main.getModuleNames()
     local names = {}
     for typeName in pairs(m_module) do
@@ -101,3 +111,7 @@ function Main.getModuleNames()
     return names
 end
 
+---Lua 环境就绪后初始化 UIFrame
+function Main.OnLuaReady()
+    UIFrame.Init()
+end
