@@ -1,0 +1,32 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement class="console-root">
+        <ui:VisualElement class="console-toolbar">
+            <ui:Button name="clear-button" text="Clear" class="toolbar-button" />
+            <ui:Button name="config-category-button" text="配置分类" class="toolbar-button" />
+            <ui:Toggle name="toggle-enable-in-player" text="出包启用日志" class="level-toggle" />
+            <ui:TextField name="search-field" class="console-search" />
+            <ui:VisualElement class="toolbar-spacer" />
+            <ui:Toggle name="toggle-log" class="level-toggle" />
+            <ui:Toggle name="toggle-warning" class="level-toggle" />
+            <ui:Toggle name="toggle-error" class="level-toggle" />
+        </ui:VisualElement>
+
+        <ui:VisualElement class="console-body">
+            <ui:VisualElement class="category-panel">
+                <ui:Label text="分类" class="panel-title" />
+                <ui:ScrollView name="category-list" class="category-list" />
+            </ui:VisualElement>
+
+            <ui:VisualElement class="main-panel">
+                <ui:ListView name="entry-list" class="entry-list" />
+                <ui:VisualElement class="detail-panel">
+                    <ui:VisualElement class="detail-header">
+                        <ui:Label name="detail-title" class="detail-title" text="未选择日志" />
+                        <ui:Button name="graph-button" text="调用堆栈图" class="toolbar-button" />
+                    </ui:VisualElement>
+                    <ui:ScrollView name="detail-stack" class="detail-stack" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

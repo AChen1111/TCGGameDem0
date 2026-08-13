@@ -21,6 +21,7 @@ Task arrives
     ├── New project/feature/change? ──→ spec-driven-development
     ├── Have a spec, need tasks? ──────→ planning-and-task-breakdown
     ├── Implementing code? ────────────→ incremental-implementation
+    │   │                                 (+ always: project-coding-standards)
     │   ├── UI work? ─────────────────→ frontend-ui-engineering
     │   ├── API work? ────────────────→ api-and-interface-design
     │   ├── Need better context? ─────→ context-engineering
@@ -136,6 +137,8 @@ These are the subtle errors that look like productivity but create problems:
 3. **Multiple skills can apply.** A feature implementation might involve `idea-refine` → `spec-driven-development` → `planning-and-task-breakdown` → `incremental-implementation` → `test-driven-development` → `code-review-and-quality` → `code-simplification` → `shipping-and-launch` in sequence.
 
 4. **When in doubt, start with a spec.** If the task is non-trivial and there's no spec, begin with `spec-driven-development`.
+
+5. **Declare what you used.** If any skill (or part of one) informed the work, list them at the end of the reply: `Skills: skill-a, skill-b, ...`. Only list skills you actually read and applied; if none applied, write `Skills: none`.
 
 ## Lifecycle Sequence
 
