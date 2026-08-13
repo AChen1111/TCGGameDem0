@@ -2,7 +2,7 @@
 
 本项目用 **XLua** 做 C# ↔ Lua 桥接：玩法/UI 优先写在 Lua，C# 负责环境、生命周期转发与 Inspector 注入。
 
-相关文档：[日志系统](LogSystem.md) · [Agent Skills 审计](AgentSkills.md)
+相关文档：[UI 框架](UIFramework.md) · [日志系统](LogSystem.md) · [Agent Skills 审计](AgentSkills.md)
 
 ---
 
@@ -18,7 +18,7 @@
 | `Assets/Scripts/LuaRaw/Main.lua` | 入口：Init / 生命周期转发 / 热重载 |
 | `Assets/Scripts/LuaRaw/module.lua` | `moduleList` 注册表 |
 | `Assets/Scripts/LuaRaw/Include.lua` | 全局别名（如 `GameObject`、`Color`） |
-| `Assets/Scripts/LuaRaw/UI/Core/` | UIFrame、Layer、UIConfig |
+| `Assets/Scripts/LuaRaw/UI/Core/` | UIFrame、Layer、UIConfig（用法见 [UIFramework.md](UIFramework.md)） |
 | `Assets/Scripts/LuaRaw/UI/Screen/` | BaseScreen / BasePanel / BaseWindow |
 
 ---
