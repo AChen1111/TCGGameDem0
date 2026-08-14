@@ -72,7 +72,7 @@ moduleList["Foo"] = Foo
 3. 场景物体挂 `LuaComponet`，`Type Name` 填 `Foo`。
 
 4. Inspector 里配置：
-   - **Object References**：`name` → Lua 字段名（如 `m_btnConfirm`），拖入组件
+   - **Object References**：`name` → Lua 字段名（如 `m_btnConfirm`），拖入组件。也可在 Hierarchy / Inspector 右键 **AddToLuaComponet**，把当前物体或组件写入目标 `LuaComponet`（同名自动加 `_1`）
    - **Data References**：int/float/string/bool 注入
 
 ### 生命周期
