@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -13,6 +14,7 @@ public class ALogConsoleWindow : EditorWindow
     public const string StyleSheetPath = "Assets/Scripts/LogSystem/Editor/ALogConsoleWindow.uss";
 
     private readonly List<ALogEntry> m_filtered = new List<ALogEntry>();
+    private readonly HashSet<int> m_checkedIds = new HashSet<int>();
     private readonly HashSet<string> m_hiddenCategories = new HashSet<string>();
     private readonly bool[] m_levelVisible = { true, true, true };
 
@@ -50,8 +52,17 @@ public class ALogConsoleWindow : EditorWindow
             ALog.Clear();
             m_dirty = true;
         };
+        rootVisualElement.Q<Button>("select-all-button").clicked += () => {
+            ApplySelectAll(m_checkedIds, m_filtered);
+            m_entryList.RefreshItems();
+        };
+        rootVisualElement.Q<Button>("select-none-button").clicked += () => {
+            ApplySelectNone(m_checkedIds);
+            m_entryList.RefreshItems();
+        };
         rootVisualElement.Q<Button>("config-category-button").clicked += ALogCategoryConfigWindow.Open;
         rootVisualElement.Q<Button>("graph-button").clicked += () => ALogStackGraphWindow.Show(m_selected);
+        rootVisualElement.Q<Button>("copy-button").clicked += CopySelected;
 
         ALogSettings settings = ALogSettingsEditor.GetOrCreate();
         var enableInPlayer = rootVisualElement.Q<Toggle>("toggle-enable-in-player");
@@ -89,7 +100,7 @@ public class ALogConsoleWindow : EditorWindow
         m_entryList.selectionType = SelectionType.Single;
         m_entryList.itemsSource = m_filtered;
         m_entryList.makeItem = MakeEntryRow;
-        m_entryList.bindItem = BindEntryRow;
+        m_entryList.bindItem = BindEntryRowAt;
         m_entryList.selectionChanged += OnSelectionChanged;
 
         ALog.OnEntryAdded += OnEntryAdded;
@@ -109,6 +120,7 @@ public class ALogConsoleWindow : EditorWindow
 
     private void OnCleared() {
         m_selected = null;
+        m_checkedIds.Clear();
         m_dirty = true;
     }
 
@@ -174,9 +186,35 @@ public class ALogConsoleWindow : EditorWindow
         m_entryList.RefreshItems();
     }
 
-    private static VisualElement MakeEntryRow() {
+    private void BindEntryRowAt(VisualElement element, int index) {
+        ALogEntry entry = m_filtered[index];
+        var check = (Toggle)element[0];
+        if (check.userData == null)
+        {
+            check.RegisterValueChangedCallback(OnRowChecked);
+        }
+        check.userData = entry;
+        BindEntryRow(element, entry, m_checkedIds.Contains(entry.Id));
+    }
+
+    void OnRowChecked(ChangeEvent<bool> evt) {
+        var entry = (ALogEntry)((Toggle)evt.currentTarget).userData;
+        if (evt.newValue)
+        {
+            m_checkedIds.Add(entry.Id);
+        }
+        else
+        {
+            m_checkedIds.Remove(entry.Id);
+        }
+    }
+
+    public static VisualElement MakeEntryRow() {
         var row = new VisualElement();
         row.AddToClassList("entry-row");
+        var check = new Toggle();
+        check.AddToClassList("entry-row__check");
+        row.Add(check);
         row.Add(NewLabel("entry-row__level"));
         row.Add(NewLabel("entry-row__category"));
         row.Add(NewLabel("entry-row__message"));
@@ -184,17 +222,26 @@ public class ALogConsoleWindow : EditorWindow
         return row;
     }
 
-    private void BindEntryRow(VisualElement element, int index) {
-        ALogEntry entry = m_filtered[index];
-        var level = (Label)element[0];
+    public static void BindEntryRow(VisualElement element, ALogEntry entry, bool isChecked = false) {
+        ((Toggle)element[0]).SetValueWithoutNotify(isChecked);
+        var level = (Label)element[1];
         level.text = entry.Level == ALogLevel.Error ? "E" : entry.Level == ALogLevel.Warning ? "W" : "L";
-        level.ClearClassList();
-        level.AddToClassList("entry-row__level");
-        level.AddToClassList(entry.Level == ALogLevel.Error ? "level--error" : entry.Level == ALogLevel.Warning ? "level--warning" : "level--log");
+        level.EnableInClassList("level--error", entry.Level == ALogLevel.Error);
+        level.EnableInClassList("level--warning", entry.Level == ALogLevel.Warning);
+        level.EnableInClassList("level--log", entry.Level == ALogLevel.Log);
 
-        ((Label)element[1]).text = entry.Category;
-        ((Label)element[2]).text = FirstLine(entry.Message);
-        ((Label)element[3]).text = entry.TimeText;
+        ((Label)element[2]).text = entry.Category;
+
+        var message = (Label)element[3];
+        message.text = FirstLine(entry.Message);
+        message.EnableInClassList("level--error", entry.Level == ALogLevel.Error);
+        message.EnableInClassList("level--warning", entry.Level == ALogLevel.Warning);
+        message.EnableInClassList("level--log", entry.Level == ALogLevel.Log);
+
+        ((Label)element[4]).text = entry.TimeText;
+
+        element.EnableInClassList("entry-row--error", entry.Level == ALogLevel.Error);
+        element.EnableInClassList("entry-row--warning", entry.Level == ALogLevel.Warning);
     }
 
     private void OnSelectionChanged(IEnumerable<object> selection) {
@@ -227,6 +274,70 @@ public class ALogConsoleWindow : EditorWindow
             }
             m_detailStack.Add(row);
         }
+    }
+
+    public static string FormatCopyText(ALogEntry entry) {
+        if (entry == null)
+        {
+            return string.Empty;
+        }
+        var sb = new StringBuilder();
+        sb.Append('[').Append(entry.Category).Append("] ").Append(entry.Message);
+        if (entry.Frames == null)
+        {
+            return sb.ToString();
+        }
+        foreach (ALogFrame frame in entry.Frames)
+        {
+            sb.Append('\n').Append(frame.Signature).Append("    ").Append(frame.Location);
+        }
+        return sb.ToString();
+    }
+
+    public static string FormatCopyText(IReadOnlyList<ALogEntry> entries) {
+        if (entries == null || entries.Count == 0)
+        {
+            return string.Empty;
+        }
+        var sb = new StringBuilder();
+        for (int i = 0; i < entries.Count; i++)
+        {
+            if (i > 0)
+            {
+                sb.Append("\n\n");
+            }
+            sb.Append(FormatCopyText(entries[i]));
+        }
+        return sb.ToString();
+    }
+
+    void CopySelected() {
+        var checkedEntries = new List<ALogEntry>();
+        foreach (ALogEntry entry in ALog.Entries)
+        {
+            if (m_checkedIds.Contains(entry.Id))
+            {
+                checkedEntries.Add(entry);
+            }
+        }
+        string text = checkedEntries.Count > 0
+            ? FormatCopyText(checkedEntries)
+            : FormatCopyText(m_selected);
+        if (text.Length > 0)
+        {
+            EditorGUIUtility.systemCopyBuffer = text;
+        }
+    }
+
+    public static void ApplySelectAll(HashSet<int> ids, IReadOnlyList<ALogEntry> entries) {
+        foreach (ALogEntry entry in entries)
+        {
+            ids.Add(entry.Id);
+        }
+    }
+
+    public static void ApplySelectNone(HashSet<int> ids) {
+        ids.Clear();
     }
 
     private static Label NewLabel(string className) {
