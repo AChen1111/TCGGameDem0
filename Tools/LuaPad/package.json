@@ -1,0 +1,15 @@
+{
+  "name": "luapad",
+  "private": true,
+  "scripts": {
+    "build": "vite build",
+    "test": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2",
+    "vite": "^6.2.0"
+  },
+  "dependencies": {
+    "monaco-editor": "^0.52.2"
+  }
+}

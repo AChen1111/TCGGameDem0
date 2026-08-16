@@ -2,7 +2,7 @@
 
 本项目用 **XLua** 做 C# ↔ Lua 桥接：玩法/UI 优先写在 Lua，C# 负责环境、生命周期转发与 Inspector 注入。
 
-相关文档：[UI 框架](UIFramework.md) · [事件中心](Event.md) · [日志系统](LogSystem.md) · [Agent Skills 审计](AgentSkills.md)
+相关文档：[UI 框架](UIFramework.md) · [事件中心](Event.md) · [日志系统](LogSystem.md) · [Lua Pad](LuaPad.md) · [Agent Skills 审计](AgentSkills.md)
 
 ---
 
@@ -141,7 +141,13 @@ XLua 的 `LuaException` 双击 Console 时，会解析日志里的 `绝对路径
 
 ---
 
-## 8. 常见注意
+## 8. Lua Pad
+
+Play / Windows 真机按 **F10** 打开独立 Web 窗口，点 **运行** 把草稿 `DoString` 进当前 XLua。实现过程、架构与已知坑见 [LuaPad.md](LuaPad.md)。
+
+---
+
+## 9. 常见注意
 
 - `LuaManager` 须先于 `LuaComponet` 初始化（Script Execution Order / 单例就绪）
 - 真机务必先 Build LuaBundle，否则找不到模块

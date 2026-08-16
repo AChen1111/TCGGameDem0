@@ -93,6 +93,15 @@ ignore.conf
 # Unity Pipeline / local tooling caches (if any)
 *.pipeline.cache
 
+# Lua Pad frontend / helper build
+/Tools/LuaPad/node_modules/
+/Tools/LuaPadBrowser/bin/
+/Tools/LuaPadBrowser/obj/
+!/Tools/LuaPadBrowser/LuaPadBrowser.csproj
+Assets/Scripts/LuaRaw/LuaPadScratch.lua
+Assets/Scripts/LuaRaw/LuaPadScratch.lua.meta
+
+
 # Optional: uncomment if you do NOT commit Asset Store tools
 # /[Aa]ssets/AssetStoreTools*
 

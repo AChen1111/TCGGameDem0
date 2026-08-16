@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Lua Pad</title>
+    <style>
+      html, body {
+        margin: 0;
+        height: 100%;
+        background: #1e1e1e;
+        overflow: hidden;
+        font-family: Segoe UI, sans-serif;
+      }
+      #shell {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      #bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        background: #252526;
+        color: #ccc;
+        flex: 0 0 auto;
+      }
+      #bar h1 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+        flex: 1;
+      }
+      #bar button {
+        border: 0;
+        border-radius: 4px;
+        padding: 6px 14px;
+        font-size: 13px;
+        cursor: pointer;
+        color: #fff;
+      }
+      #run { background: #0e639c; }
+      #close { background: #3c3c3c; }
+      #app {
+        flex: 1 1 auto;
+        min-height: 0;
+      }
+      #output {
+        flex: 0 0 88px;
+        margin: 0;
+        padding: 8px 12px;
+        overflow: auto;
+        background: #111;
+        color: #c8c8c8;
+        font: 13px/1.4 Consolas, monospace;
+        white-space: pre-wrap;
+      }
+    </style>
+    <script type="module" crossorigin src="./assets/index-DXk9eokl.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CCTvOfmH.css">
+  </head>
+  <body>
+    <div id="shell">
+      <div id="bar">
+        <h1>Lua Pad</h1>
+        <button id="run" type="button">运行</button>
+        <button id="close" type="button">关闭</button>
+      </div>
+      <div id="app"></div>
+      <pre id="output">点「运行」把缓冲 DoString 进当前 XLua</pre>
+    </div>
+  </body>
+</html>
