@@ -16,7 +16,7 @@ public sealed class LuaPadBrowser : IDisposable
     readonly Action<JObject> m_onMessage;
     volatile bool m_run = true;
 
-    public bool IsLive { get; }
+    public bool IsLive { get; private set; }
     public bool HasPlacement { get; private set; }
 
     public static string BuildStartArguments(string origin, int port)
@@ -125,11 +125,35 @@ public sealed class LuaPadBrowser : IDisposable
         Send(new JObject { ["cmd"] = "eval", ["id"] = "push", ["js"] = "window.luaPadOnHost && window.luaPadOnHost(" + json + ")" });
     }
 
+    public static bool TryWriteLine(StreamWriter writer, string line)
+    {
+        try
+        {
+            writer.WriteLine(line);
+            return true;
+        }
+        catch (IOException)
+        {
+            return false;
+        }
+        catch (ObjectDisposedException)
+        {
+            return false;
+        }
+    }
+
     void Send(JObject msg)
     {
+        if (!IsLive)
+        {
+            return;
+        }
         lock (m_gate)
         {
-            m_writer.WriteLine(msg.ToString(Newtonsoft.Json.Formatting.None));
+            if (!TryWriteLine(m_writer, msg.ToString(Newtonsoft.Json.Formatting.None)))
+            {
+                IsLive = false;
+            }
         }
     }
 
@@ -144,10 +168,12 @@ public sealed class LuaPadBrowser : IDisposable
             }
             catch
             {
+                IsLive = false;
                 break;
             }
             if (line == null)
             {
+                IsLive = false;
                 break;
             }
             JObject msg;

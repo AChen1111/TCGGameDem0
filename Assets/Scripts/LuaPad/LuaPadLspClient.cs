@@ -61,6 +61,7 @@ public sealed class LuaPadLspClient : IDisposable
                 ["textDocument"] = new JObject
                 {
                     ["completion"] = new JObject { ["completionItem"] = new JObject { ["snippetSupport"] = false } },
+                    ["signatureHelp"] = new JObject(),
                     ["publishDiagnostics"] = new JObject(),
                 },
                 ["workspace"] = new JObject { ["workspaceFolders"] = true },
@@ -129,6 +130,24 @@ public sealed class LuaPadLspClient : IDisposable
             return result["items"] as JArray ?? new JArray();
         }
         return new JArray();
+    }
+
+    public JObject SignatureHelp(string filePath, int line, int character)
+    {
+        JToken result;
+        try
+        {
+            result = Request("textDocument/signatureHelp", new JObject
+            {
+                ["textDocument"] = new JObject { ["uri"] = new Uri(filePath).AbsoluteUri },
+                ["position"] = new JObject { ["line"] = line, ["character"] = character },
+            }, 2000);
+        }
+        catch
+        {
+            return new JObject();
+        }
+        return result as JObject ?? new JObject();
     }
 
     public JArray LatestDiagnostics(string filePath)

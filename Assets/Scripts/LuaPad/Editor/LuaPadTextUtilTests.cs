@@ -49,7 +49,39 @@ public class LuaPadTextUtilTests
     {
         var items = LuaPadTextUtil.KeywordItems("f");
         CollectionAssert.Contains(items.ConvertAll(i => i.Label), "function");
-        Assert.AreEqual("function", items.Find(i => i.Label == "function").Insert);
+        string insert = items.Find(i => i.Label == "function").Insert;
+        StringAssert.Contains("${1:name}", insert);
+        StringAssert.Contains("end", insert);
+    }
+
+    [Test]
+    public void KeywordItems_If_IsBlockSnippet()
+    {
+        LuaPadKeyword kw = LuaPadTextUtil.KeywordItems("if").Find(i => i.Label == "if");
+        StringAssert.Contains("${1:condition}", kw.Insert);
+        StringAssert.Contains("then", kw.Insert);
+        StringAssert.Contains("end", kw.Insert);
+        Assert.AreEqual("if condition then .. end", kw.Detail);
+    }
+
+    [Test]
+    public void KeywordItems_ControlStructures_AreBlockSnippets()
+    {
+        AssertSnippet("for", "${1:i}", "do", "end");
+        AssertSnippet("while", "${1:condition}", "do", "end");
+        AssertSnippet("repeat", "until", "${1:condition}", null);
+        AssertSnippet("function", "${1:name}", "end", null);
+    }
+
+    static void AssertSnippet(string label, string a, string b, string c)
+    {
+        LuaPadKeyword kw = LuaPadTextUtil.KeywordItems(label).Find(i => i.Label == label);
+        StringAssert.Contains(a, kw.Insert);
+        StringAssert.Contains(b, kw.Insert);
+        if (c != null)
+        {
+            StringAssert.Contains(c, kw.Insert);
+        }
     }
 
     [Test]
@@ -77,9 +109,11 @@ public class LuaPadTextUtilTests
     }
 
     [Test]
-    public void NeedsLsp_OnlyAfterDotOrColon()
+    public void NeedsLsp_AfterDotColonOrIdentPrefix()
     {
         Assert.IsTrue(LuaPadTextUtil.NeedsLsp("Log.", 4));
-        Assert.IsFalse(LuaPadTextUtil.NeedsLsp("p", 1));
+        Assert.IsTrue(LuaPadTextUtil.NeedsLsp("L", 1));
+        Assert.IsTrue(LuaPadTextUtil.NeedsLsp("Log", 3));
+        Assert.IsFalse(LuaPadTextUtil.NeedsLsp("", 0));
     }
 }

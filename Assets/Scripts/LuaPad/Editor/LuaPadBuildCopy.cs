@@ -11,13 +11,6 @@ public class LuaPadBuildCopy : IPreprocessBuildWithReport
     public void OnPreprocessBuild(BuildReport report)
     {
         CopyNow();
-        string helper = LuaPadBrowserInstaller.EnsureHelper();
-        if (!string.IsNullOrEmpty(helper) && File.Exists(helper))
-        {
-            string dest = Path.Combine(Application.dataPath, "StreamingAssets", "LuaPadBrowser.exe");
-            Directory.CreateDirectory(Path.GetDirectoryName(dest));
-            File.Copy(helper, dest, true);
-        }
     }
 
     [MenuItem("Tools/Lua/Copy LuaWorkspace to StreamingAssets")]

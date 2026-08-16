@@ -4,11 +4,18 @@ public readonly struct LuaPadKeyword
 {
     public readonly string Label;
     public readonly string Insert;
+    public readonly string Detail;
 
     public LuaPadKeyword(string label, string insert)
+        : this(label, insert, null)
+    {
+    }
+
+    public LuaPadKeyword(string label, string insert, string detail)
     {
         Label = label;
         Insert = insert;
+        Detail = detail;
     }
 }
 
@@ -23,10 +30,10 @@ public static class LuaPadTextUtil
         new LuaPadKeyword("elseif", "elseif"),
         new LuaPadKeyword("end", "end"),
         new LuaPadKeyword("false", "false"),
-        new LuaPadKeyword("for", "for"),
-        new LuaPadKeyword("function", "function"),
+        new LuaPadKeyword("for", "for ${1:i} = ${2:1}, ${3:10} do\n\t$0\nend", "for i = 1, 10 do .. end"),
+        new LuaPadKeyword("function", "function ${1:name}(${2:})\n\t$0\nend", "function name() .. end"),
         new LuaPadKeyword("goto", "goto"),
-        new LuaPadKeyword("if", "if"),
+        new LuaPadKeyword("if", "if ${1:condition} then\n\t$0\nend", "if condition then .. end"),
         new LuaPadKeyword("in", "in"),
         new LuaPadKeyword("ipairs", "ipairs()"),
         new LuaPadKeyword("local", "local"),
@@ -36,14 +43,14 @@ public static class LuaPadTextUtil
         new LuaPadKeyword("pairs", "pairs()"),
         new LuaPadKeyword("pcall", "pcall()"),
         new LuaPadKeyword("print", "print()"),
-        new LuaPadKeyword("repeat", "repeat"),
+        new LuaPadKeyword("repeat", "repeat\n\t$0\nuntil ${1:condition}", "repeat .. until condition"),
         new LuaPadKeyword("require", "require(\"\")"),
         new LuaPadKeyword("return", "return"),
         new LuaPadKeyword("then", "then"),
         new LuaPadKeyword("true", "true"),
         new LuaPadKeyword("type", "type()"),
         new LuaPadKeyword("until", "until"),
-        new LuaPadKeyword("while", "while"),
+        new LuaPadKeyword("while", "while ${1:condition} do\n\t$0\nend", "while condition do .. end"),
     };
 
     public static void LineChar(string text, int index, out int line, out int character)
@@ -157,12 +164,7 @@ public static class LuaPadTextUtil
         {
             return true;
         }
-        int i = cursor - 1;
-        while (i >= 0 && IsIdent(text[i]))
-        {
-            i--;
-        }
-        return i >= 0 && (text[i] == '.' || text[i] == ':');
+        return IsIdent(c);
     }
 
     public static bool ShouldComplete(string text, int cursor)

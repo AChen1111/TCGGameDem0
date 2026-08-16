@@ -18,6 +18,7 @@
 | `Assets/Scripts/LuaRaw/Main.lua` | 入口：Init / 生命周期转发 / 热重载 |
 | `Assets/Scripts/LuaRaw/module.lua` | `moduleList` 注册表 |
 | `Assets/Scripts/LuaRaw/Include.lua` | 全局别名（如 `GameObject`、`Color`） |
+| `Assets/Scripts/LuaRaw/EmmyApi/` | 反射生成的 C# `---@class` 桩（不进 LuaBundle） |
 | `Assets/Scripts/LuaRaw/Event/` | Event、EventIds（用法见 [Event.md](Event.md)） |
 | `Assets/Scripts/LuaRaw/UI/Core/` | UIFrame、Layer、UIConfig（用法见 [UIFramework.md](UIFramework.md)） |
 | `Assets/Scripts/LuaRaw/UI/Screen/` | BaseScreen / BasePanel / BaseWindow |
@@ -93,7 +94,7 @@ moduleList["Foo"] = Foo
 | 入口 | 作用 |
 |------|------|
 | **Tools → Lua → Lua重载窗口** | 按模块单个重载 |
-| **Tools → Lua → 重载全部Lua**（Ctrl+Shift+R） | 全部已注册模块 + 重跑 Include/Log/module |
+| **Tools → Lua → Generate EmmyLua API** | 按 xLua 反射生成 `LuaRaw/EmmyApi` 补全桩 |
 | Inspector `LuaComponet`「重写读取脚本」 | 重载本模块并刷新本实例 |
 
 行为要点：
