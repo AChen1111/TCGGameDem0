@@ -159,7 +159,10 @@ end
 
 ```lua
 self.m_uiComp:AddClick(self.m_btnClose, "OnCloseClicked")
+Event.Add(EventIds.GoldChanged, self, self.OnGoldChanged)
 ```
+
+全局事件见 [Event.md](Event.md)。`OnDestroy` 会 `Event.RemoveByTarget(self)`。
 
 不要在业务 Lua 写 `CS.xxx`。C# 类型别名放 `Include.lua`（已有 `GameObject`、`Object`、`Resources`、`LuaUiUtil`、`ALog`）。
 

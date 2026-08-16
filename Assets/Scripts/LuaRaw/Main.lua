@@ -5,6 +5,8 @@ Main.__index = Main
 require("Include")
 require("Log")
 require("LogCategories")
+require("Event")
+require("EventIds")
 require("module")
 
 ---@type table<string, table>
@@ -93,10 +95,12 @@ function Main.runtimeReloadAll()
     package.loaded["Include"] = nil
     package.loaded["Log"] = nil
     package.loaded["LogCategories"] = nil
+    package.loaded["EventIds"] = nil
     package.loaded["module"] = nil
     require("Include")
     require("Log")
     require("LogCategories")
+    require("EventIds")
     require("module")
     m_module = moduleList
 end

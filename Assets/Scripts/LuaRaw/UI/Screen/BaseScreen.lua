@@ -45,7 +45,8 @@ function BaseScreen:Close()
     UIFrame.Close(self.m_strScreenId)
 end
 
----GameObject 销毁时解绑监听
+---GameObject 销毁时解绑按钮与事件中心
 function BaseScreen:OnDestroy()
     self:RemoveListeners()
+    Event.RemoveByTarget(self)
 end
