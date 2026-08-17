@@ -1,6 +1,6 @@
 # Lua Pad
 
-系统浏览器里的 Lua 草稿控制台。Play 后按 **F10** 打开默认浏览器；点网页顶栏 **运行** 把缓冲 `DoString` 进当前 XLua。不嵌在 Game 画面里。
+系统浏览器里的 Lua 草稿控制台。Play 后按 **F10** 打开默认浏览器；点网页顶栏 **运行** 把当前游标范围内的行 `DoString` 进当前 XLua。不嵌在 Game 画面里。
 
 相关文档：[Lua 系统](LuaSystem.md)
 
@@ -10,9 +10,11 @@
 
 1. Play 后按 **F10**（再按一次视为隐藏；浏览器标签关不掉，下次 F10 会重新打开 URL）。第一次打开会下载 `emmylua_ls`，可能要等几秒。
 2. 在浏览器里输入。`p` 出 `print()`，`f` 出 `function` 块。`Log.` / `go.`（先 `---@type UnityEngine.GameObject`）走 EmmyLua。Unity API 桩由 **Tools → Lua → Generate EmmyLua API** 生成到 `LuaRaw/EmmyApi/`。
-3. 点 **运行**。`print` / `Log.*` 出现在窗口底部。点 **关闭** 会 `window.close()`（多数情况下标签仍在，不影响 Unity）。关掉浏览器标签不会把 Play 打崩。
+3. 最左侧 gutter 有两个游标：开始 **▼**、结束 **▲**（默认第 1 行到最后一行）。在 glyph / 行号栏按下并拖动最近的游标（或点中对应 glyph）；两行以上时开始与结束不重合。
+4. 点 **运行**。只执行开始行到结束行（含两端，1-based，与 Monaco 一致）。`print` / `Log.*` 出现在窗口底部。点 **关闭** 会 `window.close()`（多数情况下标签仍在，不影响 Unity）。关掉浏览器标签不会把 Play 打崩。
+5. 左侧草稿栏列出 `LuaRaw/LuaPadDrafts/` 里已有草稿，点一项加载进编辑器。顶栏填草稿名（仅 `[A-Za-z0-9_-]`，自动 `.lua`）后点 **存为草稿**。栏可收起。
 
-补全读 `Assets/Scripts/LuaRaw`（含 `EmmyApi/` 反射生成的 Unity/C# 桩，以及 `Include.lua` 别名）。`require` 按文件名，见 [LuaSystem.md](LuaSystem.md)。
+补全读 `Assets/Scripts/LuaRaw`（含 `EmmyApi/` 反射生成的 Unity/C# 桩，以及 `Include.lua` 别名）。`require` 按文件名，见 [LuaSystem.md](LuaSystem.md)。草稿 `.lua` 不进 LuaBundle，Editor 运行时扫描也会跳过，避免被当成模块 `require`。
 
 ---
 
@@ -45,7 +47,7 @@
 
 ### 4. 系统浏览器 + 本机 HTTP（当前）
 
-`Application.OpenURL` 打开 `http://127.0.0.1:<port>/`。页面用同源 `POST /rpc` 跟当前 Unity 进程说话：`changed` / `run` / `close` / `completion` / `signatureHelp`。执行仍是 `LuaPadRunner.RunInGame` → `LuaManager.DoString`，不把 DoString 放到远程服务器。
+`Application.OpenURL` 打开 `http://127.0.0.1:<port>/`。页面用同源 `POST /rpc` 跟当前 Unity 进程说话：`changed` / `run` / `close` / `completion` / `signatureHelp` / `draftsList` / `draftSave` / `draftLoad`。执行仍是 `LuaPadRunner.RunInGame` → `LuaManager.DoString`，不把 DoString 放到远程服务器。静态页只服务 `StreamingAssets/LuaPad`；草稿读写走 `/rpc`，浏览器不直写工程。
 
 Unity 的 `HttpListener` 在 netstandard 下没有可用的 WebSocket Accept，所以用请求-响应 HTTP 而不是 WS。补全 / 运行 / 诊断都随这次 POST 返回。
 
@@ -81,14 +83,15 @@ F10 → LuaPadHost
 | `Assets/Scripts/LuaPad/LuaPadCompletion.cs` | LSP / 关键字 → Monaco 补全项 |
 | `Assets/Scripts/LuaPad/LuaPadLspClient.cs` | `emmylua_ls` stdio 客户端 |
 | `Assets/Scripts/LuaPad/LuaPadRunner.cs` | 截获 `print`/`Log`，`DoString` |
-| `Assets/Scripts/LuaPad/LuaPadTextUtil.cs` | 前缀、关键字/snippet 表、`NeedsLsp` |
-| `Assets/Scripts/LuaPad/LuaPadWorkspace.cs` | Editor=`LuaRaw`；Player=`StreamingAssets/LuaWorkspace` |
+| `Assets/Scripts/LuaPad/LuaPadTextUtil.cs` | 前缀、关键字/snippet 表、`NeedsLsp`、`SliceLines` |
+| `Assets/Scripts/LuaPad/LuaPadWorkspace.cs` | Editor=`LuaRaw`；Player=`StreamingAssets/LuaWorkspace`；草稿路径与文件名校验 |
 | `Assets/Scripts/LuaPad/LuaPadMainThread.cs` | 后台线程投递到 `Update` |
 | `Tools/LuaPad/` | Monaco 源（Vite） |
 | `Assets/StreamingAssets/LuaPad/` | `npm run build` 产物 |
 | `Library/LuaPad/` | `emmylua_ls.exe`（gitignore） |
 | `Assets/Scripts/LuaRaw/.emmyrc.json` | LuaJIT；`requirePattern: ["?.lua","**/?.lua"]` |
 | `Assets/Scripts/LuaRaw/LuaPadScratch.lua` | LSP 用的草稿缓冲（不要放进 `ignoreGlobs`） |
+| `Assets/Scripts/LuaRaw/LuaPadDrafts/` | 命名草稿；gitignore `*.lua` / `*.lua.meta`，保留 `.gitkeep` |
 
 `LuaPadNative*` 是旧 overlay 坐标映射，当前不再走它。`LuaPadBrowser*` 是旧 WebView 助手，F10 路径不再启动。
 
@@ -99,10 +102,13 @@ F10 → LuaPadHost
 | `method` | 线程 | 返回 |
 |----------|------|------|
 | `changed` | 主线程 | `{ diagnostics }` |
-| `run` | 主线程 | `{ ok, output }` |
+| `run` | 主线程 | `{ ok, output }`；请求带 `text`、`startLine`、`endLine`（1-based 含两端） |
 | `close` | 主线程 | `{}`（只翻 Unity 侧可见标记） |
 | `completion` | HTTP 线程 | `{ items }`，标识符前缀或 `.` / `:` 问 LSP |
 | `signatureHelp` | HTTP 线程 | LSP `SignatureHelp` JSON |
+| `draftsList` | HTTP 线程 | `{ names }` |
+| `draftSave` | HTTP 线程 | `{ ok, name }`；`name` 仅 `[A-Za-z0-9_-]`，自动 `.lua` |
+| `draftLoad` | HTTP 线程 | `{ text }` |
 
 关浏览器标签只会拆掉那次 HTTP；`OutputStream.Write` 仍吞 `IOException`，Unity 不崩。Play 结束 `Dispose` HTTP + LSP。
 
@@ -115,9 +121,13 @@ F10 → LuaPadHost
 
 ### 运行
 
-`LuaPadRunner.RunInGame` 订阅 `Application.logMessageReceived`，执行完取 `print`/`Debug.Log` 文本随 `/rpc` 返回 `{ ok, output }`。
+`run` 用 `LuaPadTextUtil.SliceLines` 切出 `startLine`–`endLine`（1-based inclusive，以 `\n` 拼回），再 `LuaPadRunner.RunInGame`。订阅 `Application.logMessageReceived`，执行完取 `print`/`Debug.Log` 文本随 `/rpc` 返回 `{ ok, output }`。
 
 不要在 EditMode 里对 `LuaManager.BeginInit()` 做完整 `RunInGame` 初始化测试：`UIFrame.Init` 的 `DontDestroyOnLoad` 会失败。
+
+### 草稿
+
+路径集中在 `LuaPadWorkspace`（`DraftsRoot` = `LuaRaw/LuaPadDrafts`）。`SanitizeDraftName` 后 `Path.Combine`，结果必须仍在草稿目录内。`LuaBundleBuilder` 与 `LuaEnvironment.BuildFileIndex` 跳过该目录；拷到 `StreamingAssets/LuaWorkspace` 时也不带草稿。
 
 ---
 

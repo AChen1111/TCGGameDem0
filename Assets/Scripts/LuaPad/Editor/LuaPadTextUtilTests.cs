@@ -116,4 +116,13 @@ public class LuaPadTextUtilTests
         Assert.IsTrue(LuaPadTextUtil.NeedsLsp("Log", 3));
         Assert.IsFalse(LuaPadTextUtil.NeedsLsp("", 0));
     }
+
+    [Test]
+    public void SliceLines_IsOneBasedInclusive()
+    {
+        Assert.AreEqual("a", LuaPadTextUtil.SliceLines("a\nb\nc", 1, 1));
+        Assert.AreEqual("b", LuaPadTextUtil.SliceLines("a\nb\nc", 2, 2));
+        Assert.AreEqual("b\nc", LuaPadTextUtil.SliceLines("a\nb\nc", 2, 3));
+        Assert.AreEqual("a\nb\nc", LuaPadTextUtil.SliceLines("a\nb\nc", 1, 3));
+    }
 }

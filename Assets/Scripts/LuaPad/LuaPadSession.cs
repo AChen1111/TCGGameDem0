@@ -82,6 +82,18 @@ public sealed class LuaPadSession : IDisposable
         {
             return HandleSignatureHelp(msg);
         }
+        if (method == "draftsList")
+        {
+            return HandleDraftsList();
+        }
+        if (method == "draftSave")
+        {
+            return HandleDraftSave(msg);
+        }
+        if (method == "draftLoad")
+        {
+            return HandleDraftLoad(msg);
+        }
         var done = new ManualResetEventSlim(false);
         JObject result = null;
         Exception error = null;
@@ -157,9 +169,33 @@ public sealed class LuaPadSession : IDisposable
         };
     }
 
+    JObject HandleDraftsList()
+    {
+        var names = new JArray();
+        foreach (string name in LuaPadWorkspace.ListDrafts())
+        {
+            names.Add(name);
+        }
+        return new JObject { ["names"] = names };
+    }
+
+    JObject HandleDraftSave(JObject msg)
+    {
+        string name = LuaPadWorkspace.SaveDraft((string)msg["name"], (string)msg["text"] ?? string.Empty);
+        return new JObject { ["ok"] = true, ["name"] = name };
+    }
+
+    JObject HandleDraftLoad(JObject msg)
+    {
+        return new JObject { ["text"] = LuaPadWorkspace.LoadDraft((string)msg["name"]) };
+    }
+
     JObject HandleRun(JObject msg)
     {
-        string text = (string)msg["text"] ?? m_text;
+        string text = LuaPadTextUtil.SliceLines(
+            (string)msg["text"] ?? m_text,
+            (int)msg["startLine"],
+            (int)msg["endLine"]);
         LuaPadRunResult result = LuaPadRunner.RunInGame(text);
         string output = result.Success
             ? (string.IsNullOrEmpty(result.Output) ? "(无输出)" : result.Output)

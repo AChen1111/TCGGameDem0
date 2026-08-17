@@ -30,7 +30,7 @@ public static class LuaBundleBuilder
         var bundled = new List<string>();
         foreach (string file in luaFiles)
         {
-            if (file.Replace('\\', '/').Contains("/EmmyApi/"))
+            if (file.Replace('\\', '/').Contains("/EmmyApi/") || LuaPadWorkspace.SkipRuntimeScan(file))
             {
                 continue;
             }

@@ -80,6 +80,10 @@ public class LuaEnvironment
         string[] files = Directory.GetFiles(LuaRawRoot, "*.lua", SearchOption.AllDirectories);
         foreach (string file in files)
         {
+            if (LuaPadWorkspace.SkipRuntimeScan(file))
+            {
+                continue;
+            }
             string fileName = Path.GetFileNameWithoutExtension(file);
             if (m_fileIndex.ContainsKey(fileName))
             {

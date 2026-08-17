@@ -67,6 +67,7 @@ const editor = monaco.editor.create(document.getElementById("app")!, {
   fontFamily: "Cascadia Code, Consolas, Courier New, monospace",
   fontLigatures: true,
   lineNumbers: "on",
+  glyphMargin: true,
   renderLineHighlight: "line",
   scrollBeyondLastLine: false,
   padding: { top: 8, bottom: 8 },
@@ -82,9 +83,69 @@ const editor = monaco.editor.create(document.getElementById("app")!, {
 });
 
 const output = document.getElementById("output")!;
+let startLine = 1;
+let endLine = editor.getModel()!.getLineCount();
+let decos: string[] = [];
+let drag: "start" | "end" | null = null;
+
+function clampRange() {
+  const last = editor.getModel()!.getLineCount();
+  if (last < 2) {
+    startLine = 1;
+    endLine = last;
+    return;
+  }
+  if (endLine > last) endLine = last;
+  if (endLine < 2) endLine = 2;
+  if (startLine < 1) startLine = 1;
+  if (startLine > endLine - 1) startLine = endLine - 1;
+}
+
+function paintRange() {
+  clampRange();
+  decos = editor.deltaDecorations(decos, [
+    { range: new monaco.Range(startLine, 1, startLine, 1), options: { glyphMarginClassName: "lua-pad-cur-start" } },
+    { range: new monaco.Range(endLine, 1, endLine, 1), options: { glyphMarginClassName: "lua-pad-cur-end" } },
+    { range: new monaco.Range(startLine, 1, endLine, 1), options: { isWholeLine: true, className: "lua-pad-range" } },
+  ]);
+}
+
+function applyLine(line: number) {
+  if (drag === "start") startLine = Math.min(line, endLine - 1);
+  else if (drag === "end") endLine = Math.max(line, startLine + 1);
+  paintRange();
+}
+
+function isGutter(t: monaco.editor.IMouseTarget) {
+  return (
+    t.type === monaco.editor.MouseTargetType.GUTTER_GLYPH_MARGIN ||
+    t.type === monaco.editor.MouseTargetType.GUTTER_LINE_NUMBERS ||
+    t.type === monaco.editor.MouseTargetType.GUTTER_LINE_DECORATIONS
+  );
+}
+
+editor.onMouseDown((e) => {
+  if (!isGutter(e.target) || !e.target.position) return;
+  const line = e.target.position.lineNumber;
+  const el = e.target.element;
+  if (el?.closest(".lua-pad-cur-start")) drag = "start";
+  else if (el?.closest(".lua-pad-cur-end")) drag = "end";
+  else drag = Math.abs(line - startLine) <= Math.abs(line - endLine) ? "start" : "end";
+  applyLine(line);
+});
+window.addEventListener("mousemove", (ev) => {
+  if (!drag) return;
+  const t = editor.getTargetAtClientPoint(ev.clientX, ev.clientY);
+  if (t?.position) applyLine(t.position.lineNumber);
+});
+window.addEventListener("mouseup", () => {
+  drag = null;
+});
+paintRange();
+
 document.getElementById("run")!.addEventListener("click", async () => {
   try {
-    applyHost(await rpc({ method: "run", text: editor.getValue() }));
+    applyHost(await rpc({ method: "run", text: editor.getValue(), startLine, endLine }));
   } catch (e) {
     output.textContent = String(e);
     output.style.color = "#f48771";
@@ -102,6 +163,9 @@ type HostPayload = {
   id?: string;
   ok?: boolean;
   output?: string;
+  error?: string;
+  names?: string[];
+  text?: string;
   items?: SourceItem[];
   signatures?: monaco.languages.SignatureInformation[];
   activeSignature?: number;
@@ -228,7 +292,61 @@ monaco.languages.registerSignatureHelpProvider("lua", {
 });
 
 editor.onDidChangeModelContent(() => {
+  paintRange();
   rpc({ method: "changed", text: editor.getValue() })
     .then(applyHost)
     .catch(() => {});
 });
+
+const draftList = document.getElementById("draft-list")!;
+const emptyDrafts = document.getElementById("empty-drafts")!;
+const draftName = document.getElementById("draft-name") as HTMLInputElement;
+
+async function refreshDrafts() {
+  const res = await rpc({ method: "draftsList" });
+  const names = res.names ?? [];
+  draftList.replaceChildren();
+  emptyDrafts.hidden = names.length > 0;
+  for (const name of names) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.textContent = name;
+    btn.addEventListener("click", async () => {
+      const loaded = await rpc({ method: "draftLoad", name });
+      if (loaded.text == null) return;
+      editor.setValue(String(loaded.text));
+      startLine = 1;
+      endLine = editor.getModel()!.getLineCount();
+      paintRange();
+    });
+    const li = document.createElement("li");
+    li.appendChild(btn);
+    draftList.appendChild(li);
+  }
+}
+
+document.getElementById("save-draft")!.addEventListener("click", async () => {
+  const name = draftName.value.trim() || window.prompt("草稿名") || "";
+  if (!name) return;
+  try {
+    const res = await rpc({ method: "draftSave", name, text: editor.getValue() });
+    if (res.error) {
+      output.textContent = String(res.error);
+      output.style.color = "#f48771";
+      return;
+    }
+    if (res.name) draftName.value = String(res.name);
+    await refreshDrafts();
+  } catch (e) {
+    output.textContent = String(e);
+    output.style.color = "#f48771";
+  }
+});
+
+document.getElementById("toggle-drafts")!.addEventListener("click", () => {
+  const aside = document.getElementById("drafts")!;
+  const collapsed = aside.classList.toggle("collapsed");
+  document.getElementById("toggle-drafts")!.setAttribute("aria-expanded", String(!collapsed));
+});
+
+refreshDrafts().catch(() => {});

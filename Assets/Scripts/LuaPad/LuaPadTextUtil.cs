@@ -186,6 +186,12 @@ public static class LuaPadTextUtil
         return text.Substring(0, start) + label + text.Substring(cursor);
     }
 
+    public static string SliceLines(string text, int startLine, int endLine)
+    {
+        string[] lines = text.Split('\n');
+        return string.Join("\n", lines, startLine - 1, endLine - startLine + 1);
+    }
+
     static bool IsIdent(char c)
     {
         return c == '_' || (c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');

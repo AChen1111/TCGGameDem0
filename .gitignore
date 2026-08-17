@@ -100,6 +100,8 @@ ignore.conf
 !/Tools/LuaPadBrowser/LuaPadBrowser.csproj
 Assets/Scripts/LuaRaw/LuaPadScratch.lua
 Assets/Scripts/LuaRaw/LuaPadScratch.lua.meta
+Assets/Scripts/LuaRaw/LuaPadDrafts/*.lua
+Assets/Scripts/LuaRaw/LuaPadDrafts/*.lua.meta
 
 
 # Optional: uncomment if you do NOT commit Asset Store tools
