@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// 按 xLua 反射可见的 C# 类型生成 EmmyLua ---@class 桩，供 Lua Pad / emmylua_ls 补全。
@@ -176,6 +178,15 @@ public static class LuaPadEmmyApiGenerator
         Add(set, typeof(ALog));
         Add(set, typeof(LuaUiUtil));
         Add(set, typeof(LuaUiComponent));
+        Add(set, typeof(Button));
+        Add(set, typeof(Image));
+        Add(set, typeof(Toggle));
+        Add(set, typeof(Slider));
+        Add(set, typeof(ScrollRect));
+        Add(set, typeof(RawImage));
+        Add(set, typeof(TextMeshProUGUI));
+        Add(set, typeof(TMP_InputField));
+        Add(set, typeof(TMP_Dropdown));
         var list = new List<Type>(set);
         list.Sort((a, b) => string.CompareOrdinal(LuaName(a), LuaName(b)));
         return list;

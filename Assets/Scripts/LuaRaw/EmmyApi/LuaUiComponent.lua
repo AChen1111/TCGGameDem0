@@ -8,5 +8,8 @@
 ---@field ForceForeground boolean
 ---@field PanelPriority number
 ---@field AddClick fun(self: LuaUiComponent, button: UnityEngine.UI.Button, methodName: string)
+---@field CollectUiBinds fun(self: LuaUiComponent)
+---@field CopyUiBindEmmyLua fun(self: LuaUiComponent)
+---@field BuildUiBindEmmyLua fun(self: LuaUiComponent): string
 local _ = {}
 ---@alias CS.LuaUiComponent LuaUiComponent

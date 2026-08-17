@@ -32,5 +32,8 @@ public class LuaPadEmmyApiTests
         string path = Path.Combine(LuaPadEmmyApiGenerator.RelativeDir, "UnityEngine_GameObject.lua");
         Assert.IsTrue(File.Exists(path), path);
         StringAssert.Contains("SetActive", File.ReadAllText(path));
+        string buttonPath = Path.Combine(LuaPadEmmyApiGenerator.RelativeDir, "UnityEngine_UI_Button.lua");
+        Assert.IsTrue(File.Exists(buttonPath), buttonPath);
+        StringAssert.Contains("---@class UnityEngine.UI.Button", File.ReadAllText(buttonPath));
     }
 }
