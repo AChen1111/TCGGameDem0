@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -10,63 +9,46 @@ public class WindowUILayer : AUILayer<IWindowController>
     [SerializeField] private WindowParaLayer priorityParaLayer = null;
 
     public IWindowController CurrentWindow { get; private set; }
-    
+
     private Queue<WindowHistoryEntry> windowQueue;
     private Stack<WindowHistoryEntry> windowHistory;
-
-    public event Action RequestScreenBlock;
-    public event Action RequestScreenUnblock;
-
-    private bool IsScreenTransitionInProgress {
-        get { return screensTransitioning.Count != 0; }
-    }
-
-    private HashSet<IUIScreenController> screensTransitioning;
 
     public override void Initialize() {
         base.Initialize();
         registeredScreens = new Dictionary<string, IWindowController>();
         windowQueue = new Queue<WindowHistoryEntry>();
         windowHistory = new Stack<WindowHistoryEntry>();
-        screensTransitioning = new HashSet<IUIScreenController>();
     }
 
     protected override void ProcessScreenRegister(string screenId, IWindowController controller) {
         base.ProcessScreenRegister(screenId, controller);
-        controller.InTransitionFinished += OnInAnimationFinished;
-        controller.OutTransitionFinished += OnOutAnimationFinished;
         controller.CloseRequest += OnCloseRequestedByWindow;
     }
 
     protected override void ProcessScreenUnregister(string screenId, IWindowController controller) {
         base.ProcessScreenUnregister(screenId, controller);
-        controller.InTransitionFinished -= OnInAnimationFinished;
-        controller.OutTransitionFinished -= OnOutAnimationFinished;
         controller.CloseRequest -= OnCloseRequestedByWindow;
     }
 
     public override void ShowScreen(IWindowController screen) {
-        ShowScreen<IWindowProperties>(screen, null);
-    }
-
-    public override void ShowScreen<TProp>(IWindowController screen, TProp properties) {
-        IWindowProperties windowProp = properties as IWindowProperties;
-
-        if (ShouldEnqueue(screen, windowProp)) {
-            EnqueueWindow(screen, properties);
+        if (ShouldEnqueue(screen)) {
+            windowQueue.Enqueue(new WindowHistoryEntry(screen));
         }
         else {
-            DoShow(screen, windowProp);
+            DoShow(screen);
         }
     }
 
     public override void HideScreen(IWindowController screen) {
         if (screen == CurrentWindow) {
             windowHistory.Pop();
-            AddTransition(screen);
             screen.Close();
 
             CurrentWindow = null;
+
+            if (screen.IsPopup) {
+                priorityParaLayer.RefreshDarken();
+            }
 
             if (windowQueue.Count > 0) {
                 ShowNextInQueue();
@@ -83,10 +65,10 @@ public class WindowUILayer : AUILayer<IWindowController>
         }
     }
 
-    public override void HideAll(bool shouldAnimateWhenHiding = true) {
+    public override void HideAll() {
         var screens = new List<IWindowController>(registeredScreens.Values);
         for (int i = 0; i < screens.Count; i++) {
-            screens[i].Close(shouldAnimateWhenHiding);
+            screens[i].Close();
         }
         CurrentWindow = null;
         priorityParaLayer.RefreshDarken();
@@ -109,24 +91,12 @@ public class WindowUILayer : AUILayer<IWindowController>
         base.ReparentScreen(controller, screenTransform);
     }
 
-    private void EnqueueWindow<TProp>(IWindowController screen, TProp properties) where TProp : IScreenProperties {
-        windowQueue.Enqueue(new WindowHistoryEntry(screen, (IWindowProperties) properties));
-    }
-    
-    private bool ShouldEnqueue(IWindowController controller, IWindowProperties windowProp) {
+    private bool ShouldEnqueue(IWindowController controller) {
         if (CurrentWindow == null && windowQueue.Count == 0) {
             return false;
         }
 
-        if (windowProp != null && windowProp.SuppressPrefabProperties) {
-            return windowProp.WindowQueuePriority != WindowPriority.ForceForeground;
-        }
-
-        if (controller.WindowPriority != WindowPriority.ForceForeground) {
-            return true;
-        }
-
-        return false;
+        return controller.WindowPriority != WindowPriority.ForceForeground;
     }
 
     private void ShowPreviousInHistory() {
@@ -143,8 +113,8 @@ public class WindowUILayer : AUILayer<IWindowController>
         }
     }
 
-    private void DoShow(IWindowController screen, IWindowProperties properties) {
-        DoShow(new WindowHistoryEntry(screen, properties));
+    private void DoShow(IWindowController screen) {
+        DoShow(new WindowHistoryEntry(screen));
     }
 
     private void DoShow(WindowHistoryEntry windowEntry) {
@@ -164,7 +134,6 @@ public class WindowUILayer : AUILayer<IWindowController>
         }
 
         windowHistory.Push(windowEntry);
-        AddTransition(windowEntry.Screen);
 
         if (windowEntry.Screen.IsPopup) {
             priorityParaLayer.DarkenBG();
@@ -174,36 +143,8 @@ public class WindowUILayer : AUILayer<IWindowController>
 
         CurrentWindow = windowEntry.Screen;
     }
-    
-    private void OnInAnimationFinished(IUIScreenController screen) {
-        RemoveTransition(screen);
-    }
-
-    private void OnOutAnimationFinished(IUIScreenController screen) {
-        RemoveTransition(screen);
-        var window = screen as IWindowController;
-        if (window.IsPopup) {
-            priorityParaLayer.RefreshDarken();
-        }
-    }
 
     private void OnCloseRequestedByWindow(IUIScreenController screen) {
         HideScreen(screen as IWindowController);
-    }
-
-    private void AddTransition(IUIScreenController screen) {
-        screensTransitioning.Add(screen);
-        if (RequestScreenBlock != null) {
-            RequestScreenBlock();
-        }
-    }
-
-    private void RemoveTransition(IUIScreenController screen) {
-        screensTransitioning.Remove(screen);
-        if (!IsScreenTransitionInProgress) {
-            if (RequestScreenUnblock != null) {
-                RequestScreenUnblock();
-            }
-        }
     }
 }

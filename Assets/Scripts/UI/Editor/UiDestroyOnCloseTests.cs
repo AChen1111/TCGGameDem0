@@ -24,7 +24,7 @@ public class UiDestroyOnCloseTests
     public void Close_DestroyOnClose_DestroysGameObject()
     {
         var panel = CreatePanel(true);
-        panel.Close(false);
+        panel.Close();
         Assert.IsTrue(panel == null);
     }
 
@@ -32,7 +32,7 @@ public class UiDestroyOnCloseTests
     public void Hide_DestroyOnClose_DoesNotDestroy()
     {
         var panel = CreatePanel(true);
-        panel.Hide(false);
+        panel.Hide();
         Assert.IsFalse(panel == null);
         Assert.IsFalse(panel.gameObject.activeSelf);
     }
@@ -41,7 +41,7 @@ public class UiDestroyOnCloseTests
     public void WindowHide_DestroyOnClose_DoesNotDestroy()
     {
         var window = CreateWindow(true);
-        window.Hide(false);
+        window.Hide();
         Assert.IsFalse(window == null);
         Assert.IsFalse(window.gameObject.activeSelf);
     }

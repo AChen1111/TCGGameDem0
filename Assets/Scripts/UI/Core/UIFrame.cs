@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 /// <summary>
 /// UI 入口。业务通过它打开/关闭 Panel 和 Window。
@@ -10,13 +9,12 @@ public class UIFrame : MonoBehaviour
 {
     [Tooltip("取消勾选后需自行调用 Initialize")]
     [SerializeField] private bool initializeOnAwake = true;
-    
+
     private PanelUILayer panelLayer;
     private WindowUILayer windowLayer;
     private Dictionary<string, GameObject> screenPrefabs;
 
     private Canvas mainCanvas;
-    private GraphicRaycaster graphicRaycaster;
 
     /// <summary>主 Canvas。</summary>
     public Canvas MainCanvas {
@@ -36,7 +34,7 @@ public class UIFrame : MonoBehaviour
 
     private void Awake() {
         if (initializeOnAwake) {
-            Initialize();    
+            Initialize();
         }
     }
 
@@ -59,12 +57,9 @@ public class UIFrame : MonoBehaviour
             }
             else {
                 windowLayer.Initialize();
-                windowLayer.RequestScreenBlock += OnRequestScreenBlock;
-                windowLayer.RequestScreenUnblock += OnRequestScreenUnblock;
             }
         }
 
-        graphicRaycaster = MainCanvas.GetComponent<GraphicRaycaster>();
         if (screenPrefabs == null) {
             screenPrefabs = new Dictionary<string, GameObject>();
         }
@@ -113,18 +108,6 @@ public class UIFrame : MonoBehaviour
         panelLayer.ShowScreenById(screenId);
     }
 
-    /// <summary>按 Id 显示 Panel，并传入属性。</summary>
-    /// <param name="screenId">Panel Id</param>
-    /// <param name="properties">属性</param>
-    /// <typeparam name="T">属性类型</typeparam>
-    /// <seealso cref="IPanelProperties"/>
-    public void ShowPanel<T>(string screenId, T properties) where T : IPanelProperties {
-        if (!EnsureScreen(screenId)) {
-            return;
-        }
-        panelLayer.ShowScreenById<T>(screenId, properties);
-    }
-
     /// <summary>按 Id 隐藏 Panel（OnHide）。</summary>
     /// <param name="screenId">Panel Id</param>
     public void HidePanel(string screenId) {
@@ -145,24 +128,12 @@ public class UIFrame : MonoBehaviour
     public void CloseWindow(string screenId) {
         windowLayer.HideScreenById(screenId);
     }
-    
+
     /// <summary>关闭当前 Window。</summary>
     public void CloseCurrentWindow() {
         if (windowLayer.CurrentWindow != null) {
-            CloseWindow(windowLayer.CurrentWindow.ScreenId);    
+            CloseWindow(windowLayer.CurrentWindow.ScreenId);
         }
-    }
-
-    /// <summary>按 Id 打开 Window，并传入属性。</summary>
-    /// <param name="screenId">Window Id</param>
-    /// <param name="properties">属性</param>
-    /// <typeparam name="T">属性类型</typeparam>
-    /// <seealso cref="IWindowProperties"/>
-    public void OpenWindow<T>(string screenId, T properties) where T : IWindowProperties {
-        if (!EnsureScreen(screenId)) {
-            return;
-        }
-        windowLayer.ShowScreenById<T>(screenId, properties);
     }
 
     /// <summary>在 Panel / Window 层查找并打开。</summary>
@@ -249,22 +220,19 @@ public class UIFrame : MonoBehaviour
     }
 
     /// <summary>关闭全部 Window，并隐藏全部 Panel。</summary>
-    /// <param name="animate">是否播关闭动画</param>
-    public void HideAll(bool animate = true) {
-        CloseAllWindows(animate);
-        HideAllPanels(animate);
+    public void HideAll() {
+        CloseAllWindows();
+        HideAllPanels();
     }
 
     /// <summary>隐藏全部 Panel。</summary>
-    /// <param name="animate">是否播关闭动画</param>
-    public void HideAllPanels(bool animate = true) {
-        panelLayer.HideAll(animate);
+    public void HideAllPanels() {
+        panelLayer.HideAll();
     }
 
     /// <summary>关闭全部 Window。</summary>
-    /// <param name="animate">是否播关闭动画</param>
-    public void CloseAllWindows(bool animate = true) {
-        windowLayer.HideAll(animate);
+    public void CloseAllWindows() {
+        windowLayer.HideAll();
     }
 
     /// <summary>该 Id 是否已注册到 Panel 或 Window 层。</summary>
@@ -297,17 +265,5 @@ public class UIFrame : MonoBehaviour
 
         type = null;
         return false;
-    }
-
-    private void OnRequestScreenBlock() {
-        if (graphicRaycaster != null) {
-            graphicRaycaster.enabled = false;
-        }
-    }
-
-    private void OnRequestScreenUnblock() {
-        if (graphicRaycaster != null) {
-            graphicRaycaster.enabled = true;
-        }
     }
 }

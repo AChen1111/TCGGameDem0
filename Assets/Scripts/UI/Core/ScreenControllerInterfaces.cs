@@ -9,12 +9,10 @@ public interface IUIScreenController
     bool IsVisible { get; }
     bool DestroyOnClose { get; }
 
-    void Show(IScreenProperties props = null);
-    void Hide(bool animate = true);
-    void Close(bool animate = true);
+    void Show();
+    void Hide();
+    void Close();
 
-    Action<IUIScreenController> InTransitionFinished { get; set; }
-    Action<IUIScreenController> OutTransitionFinished { get; set; }
     Action<IUIScreenController> CloseRequest { get; set; }
     Action<IUIScreenController> ScreenDestroyed { get; set; }
 }

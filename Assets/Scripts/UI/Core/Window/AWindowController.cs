@@ -1,24 +1,29 @@
-/// <summary>
-/// 不需要自定义 Properties 的 Window 基类。
-/// </summary>
-public abstract class AWindowController : AWindowController<WindowProperties> { }
+using UnityEngine;
 
 /// <summary>
-/// Window 基类。不需要特殊 Properties 时直接继承无泛型版本。
+/// Window 基类。
 /// </summary>
-public abstract class AWindowController<TProps> : AUIScreenController<TProps>, IWindowController
-    where TProps : IWindowProperties
+public abstract class AWindowController : AUIScreenController, IWindowController
 {
+    [SerializeField]
+    bool hideOnForegroundLost = true;
+
+    [SerializeField]
+    WindowPriority windowPriority = WindowPriority.ForceForeground;
+
+    [SerializeField]
+    bool isPopup;
+
     public bool HideOnForegroundLost {
-        get { return Properties.HideOnForegroundLost; }
+        get { return hideOnForegroundLost; }
     }
 
     public bool IsPopup {
-        get { return Properties.IsPopup; }
+        get { return isPopup; }
     }
 
     public WindowPriority WindowPriority {
-        get { return Properties.WindowQueuePriority; }
+        get { return windowPriority; }
     }
 
     /// <summary>
@@ -26,18 +31,6 @@ public abstract class AWindowController<TProps> : AUIScreenController<TProps>, I
     /// </summary>
     public virtual void UI_Close() {
         CloseRequest(this);
-    }
-
-    protected sealed override void SetProperties(TProps props) {
-        if (props != null) {
-            if (!props.SuppressPrefabProperties) {
-                props.HideOnForegroundLost = Properties.HideOnForegroundLost;
-                props.WindowQueuePriority = Properties.WindowQueuePriority;
-                props.IsPopup = Properties.IsPopup;
-            }
-
-            Properties = props;
-        }
     }
 
     protected override void HierarchyFixOnShow() {

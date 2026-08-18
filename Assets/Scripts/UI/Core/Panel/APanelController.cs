@@ -1,24 +1,14 @@
-/// <summary>
-/// 不需要自定义 Properties 的 Panel 基类。
-/// </summary>
-public abstract class APanelController : APanelController<PanelProperties> { }
+using UnityEngine;
 
 /// <summary>
 /// Panel 基类。
 /// </summary>
-public abstract class APanelController<T> : AUIScreenController<T>, IPanelController where T : IPanelProperties {
-    public PanelPriority Priority {
-        get {
-            if (Properties != null) {
-                return Properties.Priority;
-            }
-            else {
-                return PanelPriority.None;
-            }
-        }
-    }
+public abstract class APanelController : AUIScreenController, IPanelController {
+    [SerializeField]
+    [Tooltip("按优先级挂到不同 para-layer。可在 Panel Layer 上配置")]
+    PanelPriority priority;
 
-    protected sealed override void SetProperties(T props) {
-        base.SetProperties(props);
+    public PanelPriority Priority {
+        get { return priority; }
     }
 }

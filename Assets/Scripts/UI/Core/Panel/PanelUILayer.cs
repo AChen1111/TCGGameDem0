@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 /// <summary>
 /// 管理 Panel。无历史栈，可同时显示多个，例如 HUD。
@@ -24,18 +22,14 @@ public class PanelUILayer : AUILayer<IPanelController> {
         screen.Show();
     }
 
-    public override void ShowScreen<TProps>(IPanelController screen, TProps properties) {
-        screen.Show(properties);
-    }
-
-        public override void HideScreen(IPanelController screen) {
-            if (screen.DestroyOnClose) {
-                screen.Close();
-            }
-            else {
-                screen.Hide();
-            }
+    public override void HideScreen(IPanelController screen) {
+        if (screen.DestroyOnClose) {
+            screen.Close();
         }
+        else {
+            screen.Hide();
+        }
+    }
 
     public bool IsPanelVisible(string panelId) {
         IPanelController panel;
@@ -45,13 +39,13 @@ public class PanelUILayer : AUILayer<IPanelController> {
 
         return false;
     }
-    
+
     private void ReparentToParaLayer(PanelPriority priority, Transform screenTransform) {
         Transform trans;
         if (!priorityLayers.ParaLayerLookup.TryGetValue(priority, out trans)) {
             trans = transform;
         }
-        
+
         screenTransform.SetParent(trans, false);
     }
 }

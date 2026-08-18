@@ -11,12 +11,6 @@ public abstract class AUILayer<TScreen> : MonoBehaviour where TScreen : IUIScree
     /// <param name="screen">要显示的控制器</param>
     public abstract void ShowScreen(TScreen screen);
 
-    /// <summary>显示界面并传入属性。</summary>
-    /// <param name="screen">要显示的控制器</param>
-    /// <param name="properties">属性</param>
-    /// <typeparam name="TProps">属性类型</typeparam>
-    public abstract void ShowScreen<TProps>(TScreen screen, TProps properties) where TProps : IScreenProperties;
-
     /// <summary>隐藏界面。</summary>
     /// <param name="screen">要隐藏的控制器</param>
     public abstract void HideScreen(TScreen screen);
@@ -69,20 +63,6 @@ public abstract class AUILayer<TScreen> : MonoBehaviour where TScreen : IUIScree
         }
     }
 
-    /// <summary>按 Id 查找并显示，同时传入属性。</summary>
-    /// <param name="screenId">界面 Id（默认是 Prefab 名）</param>
-    /// <param name="properties">属性</param>
-    /// <typeparam name="TProps">属性类型</typeparam>
-    public void ShowScreenById<TProps>(string screenId, TProps properties) where TProps : IScreenProperties {
-        TScreen ctl;
-        if (registeredScreens.TryGetValue(screenId, out ctl)) {
-            ShowScreen(ctl, properties);
-        }
-        else {
-            Debug.LogError("[AUILayerController] Screen ID " + screenId + " not registered!");
-        }
-    }
-
     /// <summary>按 Id 查找并隐藏。</summary>
     /// <param name="screenId">界面 Id（默认是 Prefab 名）</param>
     public void HideScreenById(string screenId) {
@@ -101,17 +81,16 @@ public abstract class AUILayer<TScreen> : MonoBehaviour where TScreen : IUIScree
     public bool IsScreenRegistered(string screenId) {
         return registeredScreens.ContainsKey(screenId);
     }
-    
+
     /// <summary>隐藏本层已注册的全部界面。</summary>
-    /// <param name="shouldAnimateWhenHiding">是否播关闭动画</param>
-    public virtual void HideAll(bool shouldAnimateWhenHiding = true) {
+    public virtual void HideAll() {
         var screens = new List<TScreen>(registeredScreens.Values);
         for (int i = 0; i < screens.Count; i++) {
             if (screens[i].DestroyOnClose) {
-                screens[i].Close(shouldAnimateWhenHiding);
+                screens[i].Close();
             }
             else {
-                screens[i].Hide(shouldAnimateWhenHiding);
+                screens[i].Hide();
             }
         }
     }
