@@ -1,8 +1,8 @@
 # Lua 系统使用说明
 
-本项目用 **XLua** 做 C# ↔ Lua 桥接：玩法/UI 优先写在 Lua，C# 负责环境、生命周期转发与 Inspector 注入。
+本项目用 **XLua** 做 C# ↔ Lua 桥接：玩法优先写在 Lua；**UI 已改用 C# deVoid UI**（[DeVoidUI.md](DeVoidUI.md)）。Lua UIFrame **已弃用**，不要再新增 Lua 界面。
 
-相关文档：[UI 框架](UIFramework.md) · [事件中心](Event.md) · [日志系统](LogSystem.md) · [Lua Pad](LuaPad.md) · [Agent Skills 审计](AgentSkills.md)
+相关文档：[deVoid UI](DeVoidUI.md) · [Lua UIFrame（已弃用）](UIFramework.md) · [事件中心](Event.md) · [日志系统](LogSystem.md) · [Lua Pad](LuaPad.md) · [Agent Skills 审计](AgentSkills.md)
 
 ---
 
@@ -20,8 +20,8 @@
 | `Assets/Scripts/LuaRaw/Include.lua` | 全局别名（如 `GameObject`、`Color`） |
 | `Assets/Scripts/LuaRaw/EmmyApi/` | 反射生成的 C# `---@class` 桩（不进 LuaBundle） |
 | `Assets/Scripts/LuaRaw/Event/` | Event、EventIds（用法见 [Event.md](Event.md)） |
-| `Assets/Scripts/LuaRaw/UI/Core/` | UIFrame、Layer、UIConfig（用法见 [UIFramework.md](UIFramework.md)） |
-| `Assets/Scripts/LuaRaw/UI/Screen/` | BaseScreen / BasePanel / BaseWindow |
+| `Assets/Scripts/LuaRaw/UI/Core/` | ~~UIFrame、Layer、UIConfig~~ **已弃用**（见 [UIFramework.md](UIFramework.md)） |
+| `Assets/Scripts/LuaRaw/UI/Screen/` | ~~BaseScreen / BasePanel / BaseWindow~~ **已弃用** |
 
 ---
 

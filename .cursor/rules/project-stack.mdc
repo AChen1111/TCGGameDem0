@@ -8,8 +8,9 @@ alwaysApply: true
 ## Tech Stack
 
 - Unity 6+，URP 17，Input System，UGUI
-- 运行时：C# 桥接 + XLua；玩法/UI 逻辑优先写在 Lua
-- C#：`Assets/Scripts/LuaComponet/`
+- 运行时：C# 桥接 + XLua；玩法优先写在 Lua；**UI 用 C# deVoid UI**（Lua UIFrame 已弃用）
+- 热更新：HybridCLR `com.code-philosophy.hybridclr`；Editor 免编译：Hot Reload `com.singularitygroup.hotreload`
+- C#：`Assets/Scripts/LuaComponet/`，UI 核心：`Assets/Plugins/deVoidUI/`
 - Lua：`Assets/Scripts/LuaRaw/`（入口 `Main.lua`）
 - Editor 控制：`Packages/com.unity.pipeline` + `unity` CLI
 

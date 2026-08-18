@@ -123,7 +123,7 @@ F10 → LuaPadHost
 
 `run` 用 `LuaPadTextUtil.SliceLines` 切出 `startLine`–`endLine`（1-based inclusive，以 `\n` 拼回），再 `LuaPadRunner.RunInGame`。订阅 `Application.logMessageReceived`，执行完取 `print`/`Debug.Log` 文本随 `/rpc` 返回 `{ ok, output }`。
 
-不要在 EditMode 里对 `LuaManager.BeginInit()` 做完整 `RunInGame` 初始化测试：`UIFrame.Init` 的 `DontDestroyOnLoad` 会失败。
+不要在 EditMode 里对 `LuaManager.BeginInit()` 做完整 `RunInGame` 初始化测试：已弃用的 Lua `UIFrame.Init` 的 `DontDestroyOnLoad` 会失败。
 
 ### 草稿
 

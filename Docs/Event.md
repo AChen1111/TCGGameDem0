@@ -4,7 +4,7 @@ Lua 全局发布/订阅。用 `target + fn` 订阅，界面销毁时按 target �
 
 `Main.lua` 已 `require("Event")` / `require("EventIds")`。`BaseScreen.OnDestroy` 会自动 `Event.RemoveByTarget(self)`，业务界面不用手写解绑。
 
-相关文档：[Lua 系统](LuaSystem.md) · [UI 框架](UIFramework.md)
+相关文档：[Lua 系统](LuaSystem.md) · [deVoid UI](DeVoidUI.md) · [Lua UIFrame（已弃用）](UIFramework.md)
 
 ---
 

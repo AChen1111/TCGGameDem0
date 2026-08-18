@@ -1,4 +1,4 @@
----@class Main Lua 入口：建表、热重载、启动 UIFrame
+---@class Main Lua 入口：建表、热重载
 Main = {}
 Main.__index = Main
 
@@ -113,9 +113,4 @@ function Main.getModuleNames()
         names[#names + 1] = typeName
     end
     return names
-end
-
----Lua 环境就绪后初始化 UIFrame
-function Main.OnLuaReady()
-    UIFrame.Init()
 end

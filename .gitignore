@@ -93,6 +93,9 @@ ignore.conf
 # Unity Pipeline / local tooling caches (if any)
 *.pipeline.cache
 
+# HybridCLR local il2cpp / generated dlls (machine-specific)
+/HybridCLRData/
+
 # Lua Pad frontend / helper build
 /Tools/LuaPad/node_modules/
 /Tools/LuaPadBrowser/bin/
@@ -102,6 +105,14 @@ Assets/Scripts/LuaRaw/LuaPadScratch.lua
 Assets/Scripts/LuaRaw/LuaPadScratch.lua.meta
 Assets/Scripts/LuaRaw/LuaPadDrafts/*.lua
 Assets/Scripts/LuaRaw/LuaPadDrafts/*.lua.meta
+
+# Local-only Master Duel study dump (do not commit)
+/Assets/Learn/MasterDuel/Fonts/*.ttf
+/Assets/Learn/MasterDuel/Fonts/*.otf
+/Assets/Learn/MasterDuel/Fonts/*.ttf.meta
+/Assets/Learn/MasterDuel/Fonts/*.otf.meta
+/Assets/Learn/MasterDuel/UI/**/*.png
+/Assets/Learn/MasterDuel/UI/**/*.png.meta
 
 
 # Optional: uncomment if you do NOT commit Asset Store tools
