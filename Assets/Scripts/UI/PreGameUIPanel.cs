@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using deVoid.UIFramework;
 
 public class PreGameUIPanel : APanelController
 {
@@ -15,6 +14,19 @@ public class PreGameUIPanel : APanelController
     [SerializeField] Button m_BtnSetting;
     // --tag_end: 自动生成--
 
+    protected override void AddListeners()
+    {
+        m_BtnPlay.onClick.AddListener(OnPlayBtnClicked);
+    }
+    protected override void RemoveListeners()
+    {
+        m_BtnPlay.onClick.RemoveListener(OnPlayBtnClicked);
+    }
+   
 
-    
+    private void OnPlayBtnClicked()
+    {
+        ALog.Log("OnPlayBtnClicked2");
+    }
+
 }

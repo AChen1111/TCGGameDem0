@@ -26,7 +26,24 @@ uiFrame.ShowPanel("HudPanel");
 uiFrame = uiSettings.CreateUIInstance();
 ```
 
-命名空间：`deVoid.UIFramework`。
+类型在全局命名空间，生成的界面脚本不需要 `using deVoid.UIFramework`。
+
+## 生命周期
+
+业务覆写这些方法（原 `OnPropertiesSet` / `WhileHiding` 已改名）：
+
+| 方法 | 何时调用 |
+|------|----------|
+| `OnOpen` | 首次 `Show`，此时 `Properties` 已就绪 |
+| `OnHide` | 暂时隐藏：`HidePanel`，或 Window 被新窗盖住 |
+| `OnClose` | Window 出栈（`CloseWindow` / `UI_Close`） |
+| `OnResume` | 曾经打开过、隐藏后再 `Show` |
+
+`AddListeners` / `RemoveListeners` 仍在 `Awake` / `OnDestroy`。
+
+界面 Prefab 上勾选 **关闭后销毁**：`CloseWindow` / 勾选后的 `HidePanel` 会在关动画结束后 `Destroy`。下次 `Open`/`Show` 会按 Id 从登记的 Prefab 再实例化。Window 被其它窗盖住时的 `Hide` **不会**销毁。
+
+用 `UISettings` 时会自动 `RegisterScreenPrefab`。手动注册要同时调 `uiFrame.RegisterScreenPrefab(id, prefab)`。
 
 ## 新建一个 Panel / Window
 
@@ -36,8 +53,9 @@ uiFrame = uiSettings.CreateUIInstance();
 2. **名称** 类名，如 `PreGamePanel`
 3. **路径** 脚本目录，如 `Assets/Scripts/UI`
 4. 子物体命名 `前缀_名字`（如 `Btn_Play`）
-5. 点 **收集UI引用**，再点 **创建UI脚本**
-6. 等编译结束后，把生成的脚本挂到同一节点，再点一次 **收集UI引用** 把字段填上
+5. 点 **收集UI引用**，再点 **创建UI脚本**（字段写在 `// --tag_start: 自动生成--` 与 `// --tag_end: 自动生成--` 之间）
+6. 再点 **创建UI脚本** 只改 tag 内字段，tag 外手写逻辑保留
+7. 等编译结束后，把生成的脚本挂到同一节点，再点一次 **收集UI引用** 把字段填上
 
 `Btn_Play` → 字段 `m_BtnPlay`。
 

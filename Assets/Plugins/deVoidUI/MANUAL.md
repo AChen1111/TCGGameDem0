@@ -20,13 +20,13 @@ Every screen is identified by an unique ***Screen Id***. This id can be any `str
 
 The first thing is deciding if you're implementing a ***Panel*** (implemented by extending an `APanelController<T>` or a ***Window*** (implemented by extending an `AWindowController<T>`). The `<T>` parameter is optional: it's a type-safe ***Properties*** class (extended from `WindowProperties` or `PanelProperties`), which are data payloads that are passed onto screens when opening. 
 
-You can reuse the same `IScreenController` across prefabs, and you can even use the same prefab multiple times, but *ScreenIds* must be unique. The implementation itself can be empty, but the most important method to know about is `OnPropertiesSet()`. This method is called as soon as the screen has had its `Properties` member set, which means it's your main entry point for filling up the screen with data.
+You can reuse the same `IScreenController` across prefabs, and you can even use the same prefab multiple times, but *ScreenIds* must be unique. The implementation itself can be empty, but the most important method to know about is `OnOpen()`. This method is called as soon as the screen has had its `Properties` member set, which means it's your main entry point for filling up the screen with data.
 
 Eg:
 ```c#
 public class PlayerWindowController : AWindowController<PlayerWindowProperties>  
 {
-	protected override void OnPropertiesSet() { // At this point, Properties is guaranteed  
+	protected override void OnOpen() { // At this point, Properties is guaranteed  
 	    UpdateData(Properties.PlayerData); 		// to have the data passed by OpenWindow()
 	}
 }
@@ -41,7 +41,7 @@ If no properties are passed to a Screen displaying method, it will use the ones 
 
 Other important methods are `AddListeners()` and `RemoveListeners()`. These are, by default, called on Awake and OnDestroy. These are the places where you can hook for events, and are useful entry points for eg: an UI that is responsive to Signals.
 
-Finally, `Close()` is a method that you can call from your UI to close itself - it is however not called when the screen is closed by something else - you can use `WhileHiding()` for cleanup operations that you might need to perform as a window closes.
+Finally, `UI_Close()` is a method that you can call from your UI to close itself - it is however not called when the screen is closed by something else - you can use `OnClose()` / `OnHide()` for cleanup.
 
 Check the `AUIScreenController` code for a list of all the virtual methods.
 

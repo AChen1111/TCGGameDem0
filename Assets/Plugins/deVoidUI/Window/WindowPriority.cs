@@ -1,10 +1,7 @@
-﻿namespace deVoid.UIFramework {
-    /// <summary>
-    /// Enum to define behaviour of Windows
-    /// upon opening, in the history and queue
-    /// </summary>
-    public enum WindowPriority {
-        ForceForeground = 0,
-        Enqueue = 1,
-    }
+/// <summary>
+/// Window 打开时相对当前窗的排队策略。
+/// </summary>
+public enum WindowPriority {
+    ForceForeground = 0,
+    Enqueue = 1,
 }

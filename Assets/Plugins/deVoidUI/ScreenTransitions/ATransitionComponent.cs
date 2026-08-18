@@ -1,17 +1,12 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 
-namespace deVoid.UIFramework {
-    /// <summary>
-    /// Screens use ATransitionComponents to animate their in and out transitions.
-    /// This can be extended to use Lerps, animations etc.
-    /// </summary>
-    public abstract class ATransitionComponent : MonoBehaviour {
-        /// <summary>
-        /// Animate the specified target transform and execute CallWhenFinished when the animation is done.
-        /// </summary>
-        /// <param name="target">Target transform.</param>
-        /// <param name="callWhenFinished">Delegate to be called when animation is finished.</param>
-        public abstract void Animate(Transform target, Action callWhenFinished);
-    }
+/// <summary>
+/// 界面开关动画。可扩展为 Lerp、Animation 等。
+/// </summary>
+public abstract class ATransitionComponent : MonoBehaviour {
+    /// <summary>播放 target 的动画，结束后调用 callWhenFinished。</summary>
+    /// <param name="target">目标 Transform</param>
+    /// <param name="callWhenFinished">动画结束回调</param>
+    public abstract void Animate(Transform target, Action callWhenFinished);
 }

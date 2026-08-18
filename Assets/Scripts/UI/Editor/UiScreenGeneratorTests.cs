@@ -1,6 +1,5 @@
 using System.IO;
 using System.Linq;
-using deVoid.UIFramework;
 using NUnit.Framework;
 using TMPro;
 using UnityEditor;
@@ -21,7 +20,12 @@ public class UiScreenGeneratorTests
         }
         if (!string.IsNullOrEmpty(m_writtenPath) && File.Exists(m_writtenPath))
         {
-            AssetDatabase.DeleteAsset(m_writtenPath);
+            File.Delete(m_writtenPath);
+            string meta = m_writtenPath + ".meta";
+            if (File.Exists(meta))
+            {
+                File.Delete(meta);
+            }
         }
     }
 
@@ -186,12 +190,13 @@ public class UiScreenGeneratorTests
 
         Assert.AreEqual(
             "using UnityEngine;\n" +
-            "using UnityEngine.UI;\n" +
-            "using deVoid.UIFramework;\n\n" +
+            "using UnityEngine.UI;\n\n" +
             "public class PreGamePanel : APanelController\n" +
             "{\n" +
+            "    // --tag_start: 自动生成--\n" +
             "    [SerializeField] Button m_Btnyy;\n" +
             "    [SerializeField] GameObject m_Gopanel;\n" +
+            "    // --tag_end: 自动生成--\n" +
             "}\n",
             gen.BuildCsSource());
     }
@@ -206,13 +211,72 @@ public class UiScreenGeneratorTests
 
         Assert.AreEqual(
             "using UnityEngine;\n" +
-            "using TMPro;\n" +
-            "using deVoid.UIFramework;\n\n" +
+            "using TMPro;\n\n" +
             "public class ShopWindow : AWindowController\n" +
             "{\n" +
+            "    // --tag_start: 自动生成--\n" +
             "    [SerializeField] TextMeshProUGUI m_Txttitle;\n" +
+            "    // --tag_end: 自动生成--\n" +
             "}\n",
             gen.BuildCsSource());
+    }
+
+    [Test]
+    public void ReplaceGeneratedFields_UpdatesOnlyTaggedRegion()
+    {
+        string source =
+            "using UnityEngine;\n" +
+            "using UnityEngine.UI;\n\n" +
+            "public class PreGamePanel : APanelController\n" +
+            "{\n" +
+            "    // --tag_start: 自动生成--\n" +
+            "    [SerializeField] Button m_BtnOld;\n" +
+            "    // --tag_end: 自动生成--\n\n" +
+            "    protected override void OnOpen()\n" +
+            "    {\n" +
+            "        KeepMe();\n" +
+            "    }\n" +
+            "}\n";
+
+        string result = UiScreenGenerator.ReplaceGeneratedFields(source, new[]
+        {
+            "[SerializeField] Button m_BtnPlay;",
+            "[SerializeField] Button m_BtnDeck;"
+        });
+
+        Assert.IsTrue(result.Contains("[SerializeField] Button m_BtnPlay;"));
+        Assert.IsTrue(result.Contains("[SerializeField] Button m_BtnDeck;"));
+        Assert.IsFalse(result.Contains("m_BtnOld"));
+        Assert.IsTrue(result.Contains("KeepMe();"));
+    }
+
+    [Test]
+    public void ReplaceGeneratedFields_InsertsTagsWhenMissing()
+    {
+        string source =
+            "using UnityEngine;\n\n" +
+            "public class PreGamePanel : APanelController\n" +
+            "{\n" +
+            "    protected override void OnOpen() { }\n" +
+            "}\n";
+
+        string result = UiScreenGenerator.ReplaceGeneratedFields(source, new[]
+        {
+            "[SerializeField] Button m_BtnPlay;"
+        });
+
+        StringAssert.Contains("// --tag_start: 自动生成--", result);
+        StringAssert.Contains("[SerializeField] Button m_BtnPlay;", result);
+        StringAssert.Contains("protected override void OnOpen() { }", result);
+    }
+
+    [Test]
+    public void EnsureUsings_AddsMissingUiAndTmp()
+    {
+        string source = "using UnityEngine;\n\npublic class A : APanelController\n{\n}\n";
+        string result = UiScreenGenerator.EnsureUsings(source, true, true);
+        StringAssert.Contains("using UnityEngine.UI;", result);
+        StringAssert.Contains("using TMPro;", result);
     }
 
     [Test]
@@ -229,6 +293,37 @@ public class UiScreenGeneratorTests
 
         Assert.IsTrue(File.Exists(m_writtenPath));
         Assert.AreEqual(gen.BuildCsSource(), File.ReadAllText(m_writtenPath));
+    }
+
+    [Test]
+    public void CreateUiScript_WhenFileExists_ReplacesOnlyTaggedFields()
+    {
+        string folder = "Assets/Scripts/UI";
+        m_writtenPath = folder + "/UiScreenGeneratorTestPanel.cs";
+        File.WriteAllText(m_writtenPath,
+            "using UnityEngine;\n" +
+            "using UnityEngine.UI;\n\n" +
+            "public class UiScreenGeneratorTestPanel : APanelController\n" +
+            "{\n" +
+            "    // --tag_start: 自动生成--\n" +
+            "    [SerializeField] Button m_BtnOld;\n" +
+            "    // --tag_end: 自动生成--\n\n" +
+            "    protected override void OnOpen()\n" +
+            "    {\n" +
+            "        KeepMe();\n" +
+            "    }\n" +
+            "}\n");
+
+        var gen = CreateGenerator();
+        CreateChild("Btn_Play").AddComponent<Button>();
+        SetAuthoring(gen, UiScreenGenerator.Kind.Panel, "UiScreenGeneratorTestPanel", folder);
+        gen.CollectUiBinds();
+        gen.CreateUiScript();
+
+        string text = File.ReadAllText(m_writtenPath);
+        StringAssert.Contains("[SerializeField] Button m_BtnPlay;", text);
+        Assert.IsFalse(text.Contains("m_BtnOld"));
+        StringAssert.Contains("KeepMe();", text);
     }
 
     private UiScreenGenerator CreateGenerator()

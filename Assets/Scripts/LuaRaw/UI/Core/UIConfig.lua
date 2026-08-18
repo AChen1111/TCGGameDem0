@@ -11,5 +11,10 @@
 ---@field screens table<string, UIScreenConfig>
 UIConfig = {
     framePrefab = "UI/UIFrame",
-    screens = {}
+    screens = {
+        PreGamePanel = {
+            prefab = "UI/PreGameUIPanel",
+            kind = "panel",
+        },
+    }
 }

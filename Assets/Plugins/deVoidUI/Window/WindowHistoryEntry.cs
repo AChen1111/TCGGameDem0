@@ -1,19 +1,17 @@
-﻿namespace deVoid.UIFramework {
-    /// <summary>
-    /// An entry for controlling window history and queue
-    /// </summary>
-    public struct WindowHistoryEntry
-    {
-        public readonly IWindowController Screen;
-        public readonly IWindowProperties Properties;
+/// <summary>
+/// Window 历史栈 / 队列中的一条记录。
+/// </summary>
+public struct WindowHistoryEntry
+{
+    public readonly IWindowController Screen;
+    public readonly IWindowProperties Properties;
 
-        public WindowHistoryEntry(IWindowController screen, IWindowProperties properties) {
-            Screen = screen;
-            Properties = properties;
-        }
+    public WindowHistoryEntry(IWindowController screen, IWindowProperties properties) {
+        Screen = screen;
+        Properties = properties;
+    }
 
-        public void Show() {
-            Screen.Show(Properties);
-        }
+    public void Show() {
+        Screen.Show(Properties);
     }
 }

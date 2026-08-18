@@ -1,59 +1,46 @@
-﻿namespace deVoid.UIFramework
+/// <summary>
+/// 不需要自定义 Properties 的 Window 基类。
+/// </summary>
+public abstract class AWindowController : AWindowController<WindowProperties> { }
+
+/// <summary>
+/// Window 基类。不需要特殊 Properties 时直接继承无泛型版本。
+/// </summary>
+public abstract class AWindowController<TProps> : AUIScreenController<TProps>, IWindowController
+    where TProps : IWindowProperties
 {
-    /// <summary>
-    /// Base implementation for Window ScreenControllers that need no special Properties
-    /// </summary>
-    public abstract class AWindowController : AWindowController<WindowProperties> { }
+    public bool HideOnForegroundLost {
+        get { return Properties.HideOnForegroundLost; }
+    }
+
+    public bool IsPopup {
+        get { return Properties.IsPopup; }
+    }
+
+    public WindowPriority WindowPriority {
+        get { return Properties.WindowQueuePriority; }
+    }
 
     /// <summary>
-    /// Base implementation for Window ScreenControllers. Its parameter is a specific type of IWindowProperties.
-    /// In case your window doesn't need special properties, inherit from AWindowScreenController, without Generic param.
-    /// <seealso cref="IWindowProperties"/>
-    /// <seealso cref="AWindowController"/>
+    /// 给 Inspector 绑按钮用的关闭入口。真正出栈清理走 OnClose。
     /// </summary>
-    public abstract class AWindowController<TProps> : AUIScreenController<TProps>, IWindowController
-        where TProps : IWindowProperties
-    {
-        public bool HideOnForegroundLost {
-            get { return Properties.HideOnForegroundLost; }
-        }
+    public virtual void UI_Close() {
+        CloseRequest(this);
+    }
 
-        public bool IsPopup {
-            get { return Properties.IsPopup; }
-        }
-
-        public WindowPriority WindowPriority {
-            get { return Properties.WindowQueuePriority; }
-        }
-
-        /// <summary>
-        /// Requests this Window to be closed, handy for rigging it directly in the Editor.
-        /// I use the UI_ prefix to group all the methods that should be rigged in the Editor so that it's
-        /// easy to find the screen-specific methods. It breaks naming convention, but does more good than harm as
-        /// the amount of methods grow.
-        /// This is *not* called every time it is closed, just upon user input - for that behaviour, see
-        /// WhileHiding();
-        /// </summary>
-        public virtual void UI_Close() {
-            CloseRequest(this);
-        }
-        
-        protected sealed override void SetProperties(TProps props) {
-            if (props != null) {
-                // If the Properties set on the prefab should not be overwritten,
-                // copy the default values to the passed in properties
-                if (!props.SuppressPrefabProperties) {
-                    props.HideOnForegroundLost = Properties.HideOnForegroundLost;
-                    props.WindowQueuePriority = Properties.WindowQueuePriority;
-                    props.IsPopup = Properties.IsPopup;
-                }
-
-                Properties = props;
+    protected sealed override void SetProperties(TProps props) {
+        if (props != null) {
+            if (!props.SuppressPrefabProperties) {
+                props.HideOnForegroundLost = Properties.HideOnForegroundLost;
+                props.WindowQueuePriority = Properties.WindowQueuePriority;
+                props.IsPopup = Properties.IsPopup;
             }
-        }
 
-        protected override void HierarchyFixOnShow() {
-            transform.SetAsLastSibling();
+            Properties = props;
         }
+    }
+
+    protected override void HierarchyFixOnShow() {
+        transform.SetAsLastSibling();
     }
 }
