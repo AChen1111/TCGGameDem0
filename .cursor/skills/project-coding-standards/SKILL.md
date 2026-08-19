@@ -62,7 +62,7 @@ LuaUiUtil.SetRaycasterEnabled(go, false)
 
 写或改代码时，按当前步骤选用 `.cursor/skills/` 里已安装的 skill，不要只凭猜测开工。
 
-先读 `.cursor/skills/using-agent-skills/SKILL.md` 做路由，再打开对应 `SKILL.md` 并按流程执行。常见对应：
+本轮若使用 `/quit`，跳过项目级 skills，直接做。否则先读 `.cursor/skills/using-agent-skills/SKILL.md` 做路由，再打开对应 `SKILL.md` 并按流程执行。常见对应：
 
 - 实现切片 → `incremental-implementation`
 - 先写测试 → `test-driven-development`

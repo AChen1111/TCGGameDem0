@@ -16,6 +16,7 @@ When a task arrives, identify the development phase and apply the corresponding 
 ```
 Task arrives
     │
+    ├── User typed /quit? ──────────────────→ skip all project skills; work immediately
     ├── Don't know what you want yet? ──────→ interview-me
     ├── Have a rough concept, need variants? → idea-refine
     ├── New project/feature/change? ──→ spec-driven-development
@@ -130,7 +131,7 @@ These are the subtle errors that look like productivity but create problems:
 
 ## Skill Rules
 
-1. **Check for an applicable skill before starting work.** Skills encode processes that prevent common mistakes.
+1. **Check for an applicable skill before starting work.** Skills encode processes that prevent common mistakes. Exception: `/quit` skips all project skills for that turn.
 
 2. **Skills are workflows, not suggestions.** Follow the steps in order. Don't skip verification steps.
 

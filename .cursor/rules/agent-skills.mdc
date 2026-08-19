@@ -3,7 +3,9 @@ description: Use agent-skills workflows from .cursor/skills
 alwaysApply: true
 ---
 
-Before non-trivial technical work:
+If the user message contains `/quit` or the `quit` skill is attached this turn: do **not** read `.cursor/skills/**`. Do the task immediately. End with `Skills: quit`.
+
+Otherwise, before non-trivial technical work:
 
 1. Route via `.cursor/skills/using-agent-skills/SKILL.md`.
 2. Read and follow the matching skill under `.cursor/skills/<name>/SKILL.md`.
