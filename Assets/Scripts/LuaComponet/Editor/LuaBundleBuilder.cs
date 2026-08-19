@@ -27,6 +27,16 @@ public static class LuaBundleBuilder
         }
 
         string[] luaFiles = Directory.GetFiles(rawRootFull, "*.lua", SearchOption.AllDirectories);
+        var bundled = new List<string>();
+        foreach (string file in luaFiles)
+        {
+            if (file.Replace('\\', '/').Contains("/EmmyApi/") || LuaPadWorkspace.SkipRuntimeScan(file))
+            {
+                continue;
+            }
+            bundled.Add(file);
+        }
+        luaFiles = bundled.ToArray();
         if (luaFiles.Length == 0)
         {
             Debug.LogWarning($"[LuaBundleBuilder] {LuaRawRoot} 下没有任何.lua文件");

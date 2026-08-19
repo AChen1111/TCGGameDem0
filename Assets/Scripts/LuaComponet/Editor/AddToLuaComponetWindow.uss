@@ -1,0 +1,26 @@
+.root {
+    flex-grow: 1;
+    padding: 8px;
+}
+
+.source-label {
+    -unity-font-style: bold;
+    margin-bottom: 6px;
+    white-space: normal;
+}
+
+.name-field {
+    margin-bottom: 8px;
+}
+
+.target-list {
+    flex-grow: 1;
+    min-height: 180px;
+    border-width: 1px;
+    border-color: rgb(35, 35, 35);
+}
+
+.add-button {
+    height: 28px;
+    margin-top: 8px;
+}

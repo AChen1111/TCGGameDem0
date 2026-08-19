@@ -1,8 +1,8 @@
 # Lua 系统使用说明
 
-本项目用 **XLua** 做 C# ↔ Lua 桥接：玩法/UI 优先写在 Lua，C# 负责环境、生命周期转发与 Inspector 注入。
+本项目用 **XLua** 做 C# ↔ Lua 桥接：玩法优先写在 Lua；**UI 已改用 C# deVoid UI**（[DeVoidUI.md](DeVoidUI.md)）。Lua UIFrame **已弃用**，不要再新增 Lua 界面。
 
-相关文档：[UI 框架](UIFramework.md) · [日志系统](LogSystem.md) · [Agent Skills 审计](AgentSkills.md)
+相关文档：[deVoid UI](DeVoidUI.md) · [Lua UIFrame（已弃用）](UIFramework.md) · [事件中心](Event.md) · [日志系统](LogSystem.md) · [Lua Pad](LuaPad.md) · [Agent Skills 审计](AgentSkills.md)
 
 ---
 
@@ -18,8 +18,10 @@
 | `Assets/Scripts/LuaRaw/Main.lua` | 入口：Init / 生命周期转发 / 热重载 |
 | `Assets/Scripts/LuaRaw/module.lua` | `moduleList` 注册表 |
 | `Assets/Scripts/LuaRaw/Include.lua` | 全局别名（如 `GameObject`、`Color`） |
-| `Assets/Scripts/LuaRaw/UI/Core/` | UIFrame、Layer、UIConfig（用法见 [UIFramework.md](UIFramework.md)） |
-| `Assets/Scripts/LuaRaw/UI/Screen/` | BaseScreen / BasePanel / BaseWindow |
+| `Assets/Scripts/LuaRaw/EmmyApi/` | 反射生成的 C# `---@class` 桩（不进 LuaBundle） |
+| `Assets/Scripts/LuaRaw/Event/` | Event、EventIds（用法见 [Event.md](Event.md)） |
+| `Assets/Scripts/LuaRaw/UI/Core/` | ~~UIFrame、Layer、UIConfig~~ **已弃用**（见 [UIFramework.md](UIFramework.md)） |
+| `Assets/Scripts/LuaRaw/UI/Screen/` | ~~BaseScreen / BasePanel / BaseWindow~~ **已弃用** |
 
 ---
 
@@ -72,7 +74,7 @@ moduleList["Foo"] = Foo
 3. 场景物体挂 `LuaComponet`，`Type Name` 填 `Foo`。
 
 4. Inspector 里配置：
-   - **Object References**：`name` → Lua 字段名（如 `m_btnConfirm`），拖入组件
+   - **Object References**：`name` → Lua 字段名（如 `m_btnConfirm`），拖入组件。也可在 Hierarchy / Inspector 右键 **AddToLuaComponet**，把当前物体或组件写入目标 `LuaComponet`（同名自动加 `_1`）
    - **Data References**：int/float/string/bool 注入
 
 ### 生命周期
@@ -92,7 +94,7 @@ moduleList["Foo"] = Foo
 | 入口 | 作用 |
 |------|------|
 | **Tools → Lua → Lua重载窗口** | 按模块单个重载 |
-| **Tools → Lua → 重载全部Lua**（Ctrl+Shift+R） | 全部已注册模块 + 重跑 Include/Log/module |
+| **Tools → Lua → Generate EmmyLua API** | 按 xLua 反射生成 `LuaRaw/EmmyApi` 补全桩 |
 | Inspector `LuaComponet`「重写读取脚本」 | 重载本模块并刷新本实例 |
 
 行为要点：
@@ -140,7 +142,13 @@ XLua 的 `LuaException` 双击 Console 时，会解析日志里的 `绝对路径
 
 ---
 
-## 8. 常见注意
+## 8. Lua Pad
+
+Play / Windows 真机按 **F10** 打开独立 Web 窗口，点 **运行** 把草稿 `DoString` 进当前 XLua。实现过程、架构与已知坑见 [LuaPad.md](LuaPad.md)。
+
+---
+
+## 9. 常见注意
 
 - `LuaManager` 须先于 `LuaComponet` 初始化（Script Execution Order / 单例就绪）
 - 真机务必先 Build LuaBundle，否则找不到模块

@@ -1,10 +1,12 @@
----@class Main Lua 入口：建表、热重载、启动 UIFrame
+---@class Main Lua 入口：建表、热重载
 Main = {}
 Main.__index = Main
 
 require("Include")
 require("Log")
 require("LogCategories")
+require("Event")
+require("EventIds")
 require("module")
 
 ---@type table<string, table>
@@ -93,10 +95,12 @@ function Main.runtimeReloadAll()
     package.loaded["Include"] = nil
     package.loaded["Log"] = nil
     package.loaded["LogCategories"] = nil
+    package.loaded["EventIds"] = nil
     package.loaded["module"] = nil
     require("Include")
     require("Log")
     require("LogCategories")
+    require("EventIds")
     require("module")
     m_module = moduleList
 end
@@ -109,9 +113,4 @@ function Main.getModuleNames()
         names[#names + 1] = typeName
     end
     return names
-end
-
----Lua 环境就绪后初始化 UIFrame
-function Main.OnLuaReady()
-    UIFrame.Init()
 end

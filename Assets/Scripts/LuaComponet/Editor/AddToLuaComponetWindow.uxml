@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement class="root">
+        <ui:Label name="source-label" class="source-label" />
+        <ui:TextField name="name-field" label="名称" class="name-field" />
+        <ui:ListView name="target-list" class="target-list" />
+        <ui:Button name="add-button" text="添加" class="add-button" />
+    </ui:VisualElement>
+</ui:UXML>

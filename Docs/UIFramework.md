@@ -1,8 +1,14 @@
-# UI 框架（UIFrame）使用说明
+# UI 框架（Lua UIFrame）— 已弃用
+
+> **已弃用（advisory，2026-08-18）**  
+> 新界面请用 C# **deVoid UI Framework**（[yankooliveira/uiframework](https://github.com/yankooliveira/uiframework) 核心），见 [DeVoidUI.md](DeVoidUI.md)。  
+> 本页只保留现有 Lua 界面的维护说明，不要再新增 Lua Panel/Window。Lua UI 代码暂不删除，待业务迁完后再移除。
+
+---
 
 Lua 侧管界面生命周期、分层、窗口栈与弹出队列；C# 只做 Prefab 实例化、字段绑定与点击转发。仿 [uiframework](https://github.com/yankooliveira/uiframework)。
 
-`Main.OnLuaReady` 会自动 `UIFrame.Init()`。业务界面在 `UIConfig.screens` 登记后，用 `ShowPanel` / `OpenWindow` 打开。
+启动时**不再**调用 `UIFrame.Init()`。存量界面若仍要用 Lua UIFrame，需自行调用；新界面走 [DeVoidUI.md](DeVoidUI.md)。
 
 相关文档：[Lua 系统](LuaSystem.md) · [日志系统](LogSystem.md)
 
@@ -159,7 +165,10 @@ end
 
 ```lua
 self.m_uiComp:AddClick(self.m_btnClose, "OnCloseClicked")
+Event.Add(EventIds.GoldChanged, self, self.OnGoldChanged)
 ```
+
+全局事件见 [Event.md](Event.md)。`OnDestroy` 会 `Event.RemoveByTarget(self)`。
 
 不要在业务 Lua 写 `CS.xxx`。C# 类型别名放 `Include.lua`（已有 `GameObject`、`Object`、`Resources`、`LuaUiUtil`、`ALog`）。
 

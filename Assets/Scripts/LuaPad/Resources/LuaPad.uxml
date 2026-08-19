@@ -1,0 +1,21 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement name="launcher" class="launcher">
+        <ui:Button name="open-button" text="Lua Pad" class="open-button" />
+    </ui:VisualElement>
+    <ui:VisualElement name="dim" class="dim">
+        <ui:VisualElement name="panel" class="panel">
+            <ui:VisualElement class="header">
+                <ui:Label text="Lua Pad" class="title" />
+                <ui:Button name="run-button" text="运行" class="run-button" />
+                <ui:Button name="close-button" text="关闭" class="close-button" />
+            </ui:VisualElement>
+            <ui:VisualElement name="editor-host" class="editor-host">
+                <ui:TextField name="code-input" multiline="true" class="code-input" />
+            </ui:VisualElement>
+            <ui:ListView name="completion-list" class="completion-list" />
+            <ui:ScrollView class="output-scroll">
+                <ui:Label name="output-label" class="output-label" text="点「运行」执行当前缓冲" />
+            </ui:ScrollView>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
