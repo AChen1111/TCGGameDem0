@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using LitMotion.Extensions;
@@ -50,60 +48,13 @@ public class PreGameUIPanel : APanelController
         m_CanvasGroup.interactable = false;
         m_heroSprite.SetActive(false);
         var seq = LSequence.Create();
-        //先播放一个渐入的效果
-        seq.Append(DoFadeAnim(0, 1, m_Duration));
-        if (m_LeftLayOut != null) seq.Append(DoMoveAnim(m_LeftLayOut, MoveDirection.Right, m_Distance, m_Duration));
-        if (m_RightLayOut != null) seq.Join(DoMoveAnim(m_RightLayOut, MoveDirection.Left, m_Distance, m_Duration));
-        if (m_UpLayOut != null) seq.Join(DoMoveAnim(m_UpLayOut, MoveDirection.Down, m_Distance, m_Duration));
-        if (m_DownLayOut != null) seq.Join(DoMoveAnim(m_DownLayOut, MoveDirection.Up, m_Distance, m_Duration));
-        seq.Append(DoFadeAnim(0, 1, m_Duration,m_heroImage));
+        seq.Append(UITween.DoFadeAnim(0, 1, m_Duration, m_CanvasGroup));
+        if (m_LeftLayOut != null) seq.Append(UITween.DoMoveAnim(m_LeftLayOut, UITween.MoveDirection.Right, m_Distance, m_Duration));
+        if (m_RightLayOut != null) seq.Join(UITween.DoMoveAnim(m_RightLayOut, UITween.MoveDirection.Left, m_Distance, m_Duration));
+        if (m_UpLayOut != null) seq.Join(UITween.DoMoveAnim(m_UpLayOut, UITween.MoveDirection.Down, m_Distance, m_Duration));
+        if (m_DownLayOut != null) seq.Join(UITween.DoMoveAnim(m_DownLayOut, UITween.MoveDirection.Up, m_Distance, m_Duration));
+        seq.Append(UITween.DoFadeAnim(0, 1, m_Duration, m_heroImage));
         await seq.Run().AddTo(this);
         m_CanvasGroup.interactable = true;
     }
-    //渐入动画
-    private MotionHandle DoFadeAnim(float from, float to, float duration)
-    {
-        m_CanvasGroup.alpha = from;
-        return LMotion.Create(from, to, duration)
-            .WithEase(Ease.OutCubic)
-            .BindToAlpha(m_CanvasGroup);
-    }
-    //Image的渐入渐出动画
-    private MotionHandle DoFadeAnim(float from, float to, float duration,Image target)
-    {
-        if(target.gameObject.activeSelf == false)
-        {
-            target.gameObject.SetActive(true);
-        }
-        target.color = new Color(target.color.r, target.color.g, target.color.b, from);
-        return LMotion.Create(from, to, duration)
-            .WithEase(Ease.OutCubic)
-            .BindToColorA(target);
-    }
-    enum MoveDirection
-    {
-        Left,
-        Right,
-        Up,
-        Down
-    }
-
-    //移动动画
-    private MotionHandle DoMoveAnim(RectTransform target, MoveDirection direction, float distance, float duration)
-    {
-        var origin = target.anchoredPosition;
-        var opposite = direction switch
-        {
-            MoveDirection.Left => Vector2.right,
-            MoveDirection.Right => Vector2.left,
-            MoveDirection.Up => Vector2.down,
-            MoveDirection.Down => Vector2.up,
-            _ => Vector2.zero
-        };
-        var from = origin + opposite * distance;
-        target.anchoredPosition = from;
-        return LMotion.Create(from, origin, duration)
-            .WithEase(Ease.OutCubic)
-            .BindToAnchoredPosition(target);
-}
 }
