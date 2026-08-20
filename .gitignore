@@ -95,6 +95,7 @@ ignore.conf
 
 # HybridCLR local il2cpp / generated dlls (machine-specific)
 /HybridCLRData/
+/Assets/StreamingAssets/HybridCLR/
 
 # Lua Pad frontend / helper build
 /Tools/LuaPad/node_modules/

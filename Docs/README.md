@@ -11,3 +11,4 @@
 | [TweenAsync.md](TweenAsync.md) | LitMotion tween、UniTask 异步（已替换 DOTween） |
 | [AgentSkills.md](AgentSkills.md) | Agent Skills 路由、五轴评审、/ship 审计与 DoD |
 | [decisions/ADR-001-csharp-ui-and-hotupdate.md](decisions/ADR-001-csharp-ui-and-hotupdate.md) | 切 C# UI + HybridCLR / Hot Reload |
+| [decisions/ADR-002-hybridclr-hotupdate-assembly.md](decisions/ADR-002-hybridclr-hotupdate-assembly.md) | 业务代码进 HotUpdate DLL |

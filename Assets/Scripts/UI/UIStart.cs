@@ -1,13 +1,14 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class UIStart : MonoBehaviour
 {
-    [SerializeField] private UISettings m_ui;
-    private UIFrame m_uiFrame;
-    void Start()
+    UIFrame m_uiFrame;
+
+    async UniTaskVoid Start()
     {
-        m_uiFrame = m_ui.CreateUIInstance();
+        UISettings ui = await AddressableLoader.Instance.LoadUISettings("PreGameSceneUI");
+        m_uiFrame = ui.CreateUIInstance();
         m_uiFrame.ShowPanel("PreGameUIPanel");
     }
-
 }

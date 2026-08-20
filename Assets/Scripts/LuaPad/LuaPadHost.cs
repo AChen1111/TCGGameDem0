@@ -9,9 +9,13 @@ public class LuaPadHost : MonoBehaviour
     public static LuaPadHost Instance { get; private set; }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    static void Boot()
+    public static void Boot()
     {
 #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+        if (Instance != null)
+        {
+            return;
+        }
         var go = new GameObject("[LuaPad]");
         DontDestroyOnLoad(go);
         go.AddComponent<LuaPadHost>();
