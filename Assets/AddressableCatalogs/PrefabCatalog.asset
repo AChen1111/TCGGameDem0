@@ -15,7 +15,7 @@ MonoBehaviour:
   m_entries:
   - assetName: PreGameUIPanel
     reference:
-      m_AssetGUID: 0fd12d59159f2d94986f91ddc6d495b0
+      m_AssetGUID: 1eac6252ac922024d84a68f7ef795aa4
       m_SubObjectName: 
       m_SubObjectType: 
       m_SubObjectGUID: 

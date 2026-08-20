@@ -9,22 +9,10 @@ public static class AddressableCatalogMenu
     [MenuItem("Assets/AddToSpriteSO", false, 2000)]
     static void AddToSpriteSO()
     {
-        AddressableCatalogSetup.EnsureCatalogs();
-        var catalog = AssetDatabase.LoadAssetAtPath<SpriteAddressableCatalog>(AddressableCatalogSetup.SpritePath);
         foreach (string path in SelectedPaths("t:Sprite"))
         {
-            Object[] assets = AssetDatabase.LoadAllAssetsAtPath(path);
-            for (int i = 0; i < assets.Length; i++)
-            {
-                if (assets[i] is Sprite sprite)
-                {
-                    string guid = AssetDatabase.AssetPathToGUID(path);
-                    AddressableCatalogSetup.MarkInDefaultGroup(path, sprite.name);
-                    catalog.EditorAdd(sprite.name, new AssetReferenceSprite(guid) { SubObjectName = sprite.name });
-                }
-            }
+            AddSprite(path);
         }
-        Save(catalog);
     }
 
     [MenuItem("Assets/AddToSpriteSO", true)]
@@ -36,16 +24,10 @@ public static class AddressableCatalogMenu
     [MenuItem("Assets/AddToPrefabSO", false, 2001)]
     static void AddToPrefabSO()
     {
-        AddressableCatalogSetup.EnsureCatalogs();
-        var catalog = AssetDatabase.LoadAssetAtPath<PrefabAddressableCatalog>(AddressableCatalogSetup.PrefabPath);
         foreach (string path in SelectedPaths("t:Prefab"))
         {
-            string name = Path.GetFileNameWithoutExtension(path);
-            string label = Path.GetFileName(Path.GetDirectoryName(path));
-            AddressableCatalogSetup.MarkInGroup(AddressableCatalogSetup.RemoteUiGroup, path, name, label);
-            catalog.EditorAdd(name, new AssetReferenceGameObject(AssetDatabase.AssetPathToGUID(path)));
+            AddPrefab(path);
         }
-        Save(catalog);
     }
 
     [MenuItem("Assets/AddToPrefabSO", true)]
@@ -57,22 +39,10 @@ public static class AddressableCatalogMenu
     [MenuItem("Assets/AddToSceneSO", false, 2002)]
     static void AddToSceneSO()
     {
-        AddressableCatalogSetup.EnsureCatalogs();
-        var catalog = AssetDatabase.LoadAssetAtPath<SceneAddressableCatalog>(AddressableCatalogSetup.ScenePath);
         foreach (string path in SelectedPaths("t:Scene"))
         {
-            string name = Path.GetFileNameWithoutExtension(path);
-            if (path == AddressableCatalogSetup.InitScenePath)
-            {
-                AddressableCatalogSetup.MarkInGroup(AddressableCatalogSetup.LocalBootGroup, path, name);
-            }
-            else
-            {
-                AddressableCatalogSetup.MarkInDefaultGroup(path, name);
-            }
-            catalog.EditorAdd(name, new AssetReferenceScene(AssetDatabase.AssetPathToGUID(path)));
+            AddScene(path);
         }
-        Save(catalog);
     }
 
     [MenuItem("Assets/AddToSceneSO", true)]
@@ -96,14 +66,63 @@ public static class AddressableCatalogMenu
         return SelectedPaths("t:UISettings").Count > 0;
     }
 
+    public static void AddSprite(string path)
+    {
+        var catalog = AssetDatabase.LoadAssetAtPath<SpriteAddressableCatalog>(AddressableCatalogSetup.SpritePath);
+        string folder = Path.GetDirectoryName(path).Replace('\\', '/');
+        AddressableCatalogSetup.MarkFolderInGroup(AddressableCatalogSetup.RemoteCardGroup, folder);
+        Object[] assets = AssetDatabase.LoadAllAssetsAtPath(path);
+        for (int i = 0; i < assets.Length; i++)
+        {
+            if (assets[i] is Sprite sprite)
+            {
+                catalog.EditorAdd(sprite.name, new AssetReferenceSprite(AssetDatabase.AssetPathToGUID(path))
+                {
+                    SubObjectName = sprite.name
+                });
+            }
+        }
+
+        AddressableCatalogSetup.SyncAddressKeys();
+        Save(catalog);
+    }
+
+    public static void AddPrefab(string path)
+    {
+        var catalog = AssetDatabase.LoadAssetAtPath<PrefabAddressableCatalog>(AddressableCatalogSetup.PrefabPath);
+        string name = Path.GetFileNameWithoutExtension(path);
+        string folder = Path.GetDirectoryName(path).Replace('\\', '/');
+        AddressableCatalogSetup.MarkFolderInGroup(AddressableCatalogSetup.UiGroupForPath(folder), folder);
+        catalog.EditorAdd(name, new AssetReferenceGameObject(AssetDatabase.AssetPathToGUID(path)));
+        AddressableCatalogSetup.SyncAddressKeys();
+        Save(catalog);
+    }
+
+    public static void AddScene(string path)
+    {
+        var catalog = AssetDatabase.LoadAssetAtPath<SceneAddressableCatalog>(AddressableCatalogSetup.ScenePath);
+        string name = Path.GetFileNameWithoutExtension(path);
+        if (path == AddressableCatalogSetup.InitScenePath)
+        {
+            AddressableCatalogSetup.MarkInGroup(AddressableCatalogSetup.LocalBootGroup, path, name);
+        }
+        else
+        {
+            AddressableCatalogSetup.MarkInDefaultGroup(path, name);
+        }
+
+        catalog.EditorAdd(name, new AssetReferenceScene(AssetDatabase.AssetPathToGUID(path)));
+        AddressableCatalogSetup.SyncAddressKeys();
+        Save(catalog);
+    }
+
     public static void AddToUISettingsCatalog(string path)
     {
-        AddressableCatalogSetup.EnsureCatalogs();
         var catalog = AssetDatabase.LoadAssetAtPath<UISettingsAddressableCatalog>(AddressableCatalogSetup.UISettingsPath);
-        string name = Path.GetFileNameWithoutExtension(path);
-        string label = Path.GetFileName(Path.GetDirectoryName(path));
-        AddressableCatalogSetup.MarkInGroup(AddressableCatalogSetup.RemoteUiGroup, path, name, label);
-        catalog.EditorAdd(name, new AssetReferenceUISettings(AssetDatabase.AssetPathToGUID(path)));
+        string folder = Path.GetDirectoryName(path).Replace('\\', '/');
+        AddressableCatalogSetup.MarkFolderInGroup(AddressableCatalogSetup.UiGroupForPath(folder), folder);
+        catalog.EditorAdd(Path.GetFileNameWithoutExtension(path), new AssetReferenceUISettings(AssetDatabase.AssetPathToGUID(path)));
+        AddressableCatalogSetup.SyncAddressKeys();
         Save(catalog);
     }
 
@@ -126,6 +145,7 @@ public static class AddressableCatalogMenu
                 paths.Add(path);
             }
         }
+
         return paths;
     }
 
@@ -136,14 +156,17 @@ public static class AddressableCatalogMenu
         {
             return main == typeof(Texture2D) || main == typeof(Sprite);
         }
+
         if (filter == "t:Prefab")
         {
             return path.EndsWith(".prefab", System.StringComparison.OrdinalIgnoreCase);
         }
+
         if (filter == "t:UISettings")
         {
             return typeof(UISettings).IsAssignableFrom(main);
         }
+
         return path.EndsWith(".unity", System.StringComparison.OrdinalIgnoreCase);
     }
 

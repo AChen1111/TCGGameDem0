@@ -1,107 +1,100 @@
+using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
-using UnityEditor.AddressableAssets.Settings.GroupSchemas;
-using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public static class AddressableCatalogSetup
 {
     public const string CatalogsFolder = "Assets/AddressableCatalogs";
+    public const string AddressKeysPath = "Assets/Scripts/Addressable/AddressKeys.cs";
     public const string SpritePath = CatalogsFolder + "/SpriteCatalog.asset";
     public const string PrefabPath = CatalogsFolder + "/PrefabCatalog.asset";
     public const string ScenePath = CatalogsFolder + "/SceneCatalog.asset";
     public const string UISettingsPath = CatalogsFolder + "/UISettingsCatalog.asset";
     public const string InitScenePath = "Assets/Scenes/Init.unity";
+    public const string BaseUiFolder = "Assets/UI/Prefab/BaseUI";
+    public const string HallFolder = "Assets/UI/Prefab/Hall";
+    public const string FontsFolder = "Assets/Learn/MasterDuel/Fonts";
+    public const string PreGameUiFolder = HallFolder + "/PreGameUI";
+    public const string PreGameUiSettingsPath = PreGameUiFolder + "/PreGameSceneUI.asset";
+    public const string PreGameUiPanelPath = PreGameUiFolder + "/PreGameUIPanel.prefab";
 
-    public const string CatalogsGroup = "Catalogs";
     public const string LocalBootGroup = "Local_Boot";
-    public const string RemoteUiGroup = "Remote_UI";
+    public const string RemoteCatalogGroup = "Remote_Catalog";
+    public const string RemoteUiHallGroup = "Remote_UI_Hall";
+    public const string RemoteUiEventGroup = "Remote_UI_Event";
+    public const string RemoteSharedGroup = "Remote_Shared";
+    public const string RemoteCardGroup = "Remote_Card";
 
-    [MenuItem("Tools/Addressable/Ensure Groups")]
-    public static void EnsureCatalogs()
+    public static string UiGroupForPath(string path)
     {
-        if (!AssetDatabase.IsValidFolder(CatalogsFolder))
+        path = path.Replace('\\', '/');
+        if (path.Contains("/Event/") || path.Contains("/LiveOps/"))
         {
-            AssetDatabase.CreateFolder("Assets", "AddressableCatalogs");
+            return RemoteUiEventGroup;
         }
 
-        CreateIfMissing<SpriteAddressableCatalog>(SpritePath);
-        CreateIfMissing<PrefabAddressableCatalog>(PrefabPath);
-        CreateIfMissing<SceneAddressableCatalog>(ScenePath);
-        CreateIfMissing<UISettingsAddressableCatalog>(UISettingsPath);
-
-        EnsureGroups();
-        AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.GetSettings(true);
-        AddressableAssetGroup catalogs = settings.FindGroup(CatalogsGroup);
-        MarkAddressable(settings, catalogs, SpritePath);
-        MarkAddressable(settings, catalogs, PrefabPath);
-        MarkAddressable(settings, catalogs, ScenePath);
-        MarkAddressable(settings, catalogs, UISettingsPath);
-        MarkInGroup(LocalBootGroup, InitScenePath, "Init");
-        AssetDatabase.SaveAssets();
-    }
-
-    public static void EnsureGroups()
-    {
-        AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.GetSettings(true);
-        EnsureGroup(settings, CatalogsGroup, BundledAssetGroupSchema.BundlePackingMode.PackTogether);
-        EnsureGroup(settings, LocalBootGroup, BundledAssetGroupSchema.BundlePackingMode.PackTogether);
-        EnsureGroup(settings, RemoteUiGroup, BundledAssetGroupSchema.BundlePackingMode.PackTogetherByLabel);
-        AssetDatabase.SaveAssets();
-    }
-
-    public static void WireLoader(AddressableLoader loader)
-    {
-        SerializedObject so = new SerializedObject(loader);
-        SetAssetRef(so, "m_spriteCatalogRef", SpritePath);
-        SetAssetRef(so, "m_prefabCatalogRef", PrefabPath);
-        SetAssetRef(so, "m_sceneCatalogRef", ScenePath);
-        SetAssetRef(so, "m_uiSettingsCatalogRef", UISettingsPath);
-        so.ApplyModifiedPropertiesWithoutUndo();
-    }
-
-    public static void WireSingletonManager(AddressableLoader loader)
-    {
-        SingletonManager manager = Object.FindFirstObjectByType<SingletonManager>();
-        SerializedObject so = new SerializedObject(manager);
-        SerializedProperty list = so.FindProperty("m_singletons");
-        for (int i = 0; i < list.arraySize; i++)
+        if (path.Contains("/Card"))
         {
-            if (list.GetArrayElementAtIndex(i).objectReferenceValue == loader)
+            return RemoteCardGroup;
+        }
+
+        if (path.Contains("/BaseUI") || path.Contains("/Fonts/") || path.Contains(FontsFolder))
+        {
+            return RemoteSharedGroup;
+        }
+
+        return RemoteUiHallGroup;
+    }
+
+    public static void MarkFolderInGroup(string groupName, string folderPath)
+    {
+        folderPath = folderPath.Replace('\\', '/').TrimEnd('/');
+        AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.GetSettings(true);
+        AddressableAssetGroup group = settings.FindGroup(groupName);
+        string[] childGuids = AssetDatabase.FindAssets("", new[] { folderPath });
+        for (int i = 0; i < childGuids.Length; i++)
+        {
+            string childPath = AssetDatabase.GUIDToAssetPath(childGuids[i]);
+            if (childPath.Replace('\\', '/') == folderPath)
             {
-                return;
+                continue;
             }
+
+            settings.RemoveAssetEntry(childGuids[i]);
         }
 
-        list.InsertArrayElementAtIndex(0);
-        list.GetArrayElementAtIndex(0).objectReferenceValue = loader;
-        so.ApplyModifiedPropertiesWithoutUndo();
+        AddressableAssetEntry entry = MarkAddressable(settings, group, folderPath, Path.GetFileName(folderPath));
+        entry.IsFolder = true;
     }
 
-    static T CreateIfMissing<T>(string path) where T : ScriptableObject
+    public static void SyncAddressKeys()
     {
-        T existing = AssetDatabase.LoadAssetAtPath<T>(path);
-        if (existing != null)
+        var sb = new StringBuilder();
+        sb.AppendLine("public static class AddressKeys");
+        sb.AppendLine("{");
+        WriteNested(sb, "Prefab", AssetDatabase.LoadAssetAtPath<PrefabAddressableCatalog>(PrefabPath));
+        WriteNested(sb, "Sprite", AssetDatabase.LoadAssetAtPath<SpriteAddressableCatalog>(SpritePath));
+        WriteNested(sb, "Scene", AssetDatabase.LoadAssetAtPath<SceneAddressableCatalog>(ScenePath));
+        WriteNested(sb, "UISettings", AssetDatabase.LoadAssetAtPath<UISettingsAddressableCatalog>(UISettingsPath));
+        sb.AppendLine("}");
+        string text = sb.ToString();
+        if (File.ReadAllText(AddressKeysPath).Replace("\r\n", "\n") == text.Replace("\r\n", "\n"))
         {
-            BindScript(existing);
-            return existing;
+            return;
         }
 
-        T asset = ScriptableObject.CreateInstance<T>();
-        AssetDatabase.CreateAsset(asset, path);
-        BindScript(asset);
-        return asset;
+        File.WriteAllText(AddressKeysPath, text);
+        AssetDatabase.ImportAsset(AddressKeysPath);
     }
 
-    static void BindScript<T>(T asset) where T : ScriptableObject
+    public static void MarkInGroup(string groupName, string path, string address)
     {
-        T temp = ScriptableObject.CreateInstance<T>();
-        MonoScript script = MonoScript.FromScriptableObject(temp);
-        Object.DestroyImmediate(temp);
-        SerializedObject so = new SerializedObject(asset);
-        so.FindProperty("m_Script").objectReferenceValue = script;
-        so.ApplyModifiedPropertiesWithoutUndo();
+        AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.GetSettings(true);
+        MarkAddressable(settings, settings.FindGroup(groupName), path, address);
     }
 
     public static void MarkInDefaultGroup(string path, string address)
@@ -110,52 +103,44 @@ public static class AddressableCatalogSetup
         MarkAddressable(settings, settings.DefaultGroup, path, address);
     }
 
-    public static void MarkInGroup(string groupName, string path, string address, string label = null)
+    public static bool IsDirectEntry(AddressableAssetGroup group, string guid)
     {
-        AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.GetSettings(true);
-        AddressableAssetGroup group = settings.FindGroup(groupName);
-        AddressableAssetEntry entry = MarkAddressable(settings, group, path, address);
-        if (!string.IsNullOrEmpty(label))
+        foreach (AddressableAssetEntry entry in group.entries)
         {
-            entry.SetLabel(label, true, true, false);
-        }
-    }
-
-    static AddressableAssetGroup EnsureGroup(
-        AddressableAssetSettings settings,
-        string name,
-        BundledAssetGroupSchema.BundlePackingMode packing)
-    {
-        AddressableAssetGroup group = settings.FindGroup(name);
-        if (group == null)
-        {
-            group = settings.CreateGroup(name, false, false, true, null, typeof(BundledAssetGroupSchema), typeof(ContentUpdateGroupSchema));
+            if (entry.guid == guid)
+            {
+                return true;
+            }
         }
 
-        BundledAssetGroupSchema bundled = group.GetSchema<BundledAssetGroupSchema>();
-        bundled.BundleMode = packing;
-        bundled.BuildPath.SetVariableByName(settings, AddressableAssetSettings.kLocalBuildPath);
-        bundled.LoadPath.SetVariableByName(settings, AddressableAssetSettings.kLocalLoadPath);
-        EditorUtility.SetDirty(bundled);
-        EditorUtility.SetDirty(group);
-        return group;
+        return false;
     }
 
-    static void MarkAddressable(AddressableAssetSettings settings, AddressableAssetGroup group, string path)
+    static void WriteNested<TRef>(StringBuilder sb, string className, AddressableCatalog<TRef> catalog)
+        where TRef : AssetReference
     {
-        MarkAddressable(settings, group, path, Path.GetFileNameWithoutExtension(path));
+        sb.AppendLine("    public static class " + className);
+        sb.AppendLine("    {");
+        var names = new List<string>();
+        List<AddressableEntry<TRef>> entries = catalog.Entries;
+        for (int i = 0; i < entries.Count; i++)
+        {
+            names.Add(entries[i].assetName);
+        }
+
+        names.Sort(System.StringComparer.Ordinal);
+        for (int i = 0; i < names.Count; i++)
+        {
+            sb.AppendLine("        public static readonly string " + names[i] + " = \"" + names[i] + "\";");
+        }
+
+        sb.AppendLine("    }");
     }
 
     static AddressableAssetEntry MarkAddressable(AddressableAssetSettings settings, AddressableAssetGroup group, string path, string address)
     {
-        string guid = AssetDatabase.AssetPathToGUID(path);
-        AddressableAssetEntry entry = settings.CreateOrMoveEntry(guid, group, false, false);
+        AddressableAssetEntry entry = settings.CreateOrMoveEntry(AssetDatabase.AssetPathToGUID(path), group, false, false);
         entry.SetAddress(address, false);
         return entry;
-    }
-
-    static void SetAssetRef(SerializedObject so, string field, string assetPath)
-    {
-        so.FindProperty(field).FindPropertyRelative("m_AssetGUID").stringValue = AssetDatabase.AssetPathToGUID(assetPath);
     }
 }

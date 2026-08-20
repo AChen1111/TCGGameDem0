@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
@@ -107,52 +108,123 @@ public class AddressableCatalogTests
     }
 
     [Test]
-    public void EnsureGroups_CreatesLocalPacking()
+    public void UiGroupForPath_RoutesFolders()
     {
-        AddressableCatalogSetup.EnsureGroups();
-        AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.GetSettings(false);
-
-        AddressableAssetGroup catalogs = settings.FindGroup(AddressableCatalogSetup.CatalogsGroup);
-        AddressableAssetGroup boot = settings.FindGroup(AddressableCatalogSetup.LocalBootGroup);
-        AddressableAssetGroup ui = settings.FindGroup(AddressableCatalogSetup.RemoteUiGroup);
-
-        Assert.IsNotNull(catalogs);
-        Assert.IsNotNull(boot);
-        Assert.IsNotNull(ui);
-        Assert.AreEqual(BundledAssetGroupSchema.BundlePackingMode.PackTogether,
-            catalogs.GetSchema<BundledAssetGroupSchema>().BundleMode);
-        Assert.AreEqual(BundledAssetGroupSchema.BundlePackingMode.PackTogether,
-            boot.GetSchema<BundledAssetGroupSchema>().BundleMode);
-        Assert.AreEqual(BundledAssetGroupSchema.BundlePackingMode.PackTogetherByLabel,
-            ui.GetSchema<BundledAssetGroupSchema>().BundleMode);
+        Assert.AreEqual(AddressableCatalogSetup.RemoteUiEventGroup,
+            AddressableCatalogSetup.UiGroupForPath("Assets/UI/Prefab/Event/LoginBonus/Foo.asset"));
+        Assert.AreEqual(AddressableCatalogSetup.RemoteCardGroup,
+            AddressableCatalogSetup.UiGroupForPath("Assets/Art/Card01/sprite.png"));
+        Assert.AreEqual(AddressableCatalogSetup.RemoteSharedGroup,
+            AddressableCatalogSetup.UiGroupForPath("Assets/UI/Prefab/BaseUI/UIFrame.prefab"));
+        Assert.AreEqual(AddressableCatalogSetup.RemoteUiHallGroup,
+            AddressableCatalogSetup.UiGroupForPath("Assets/UI/Prefab/Hall/PreGameUI/PreGameSceneUI.asset"));
     }
 
     [Test]
-    public void EnsureCatalogs_CreatesUISettingsCatalog()
+    public void Groups_ExistWithExpectedPacking()
     {
-        AddressableCatalogSetup.EnsureCatalogs();
+        AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.GetSettings(false);
+
+        AddressableAssetGroup boot = settings.FindGroup(AddressableCatalogSetup.LocalBootGroup);
+        AddressableAssetGroup catalog = settings.FindGroup(AddressableCatalogSetup.RemoteCatalogGroup);
+        AddressableAssetGroup shared = settings.FindGroup(AddressableCatalogSetup.RemoteSharedGroup);
+        AddressableAssetGroup hall = settings.FindGroup(AddressableCatalogSetup.RemoteUiHallGroup);
+        AddressableAssetGroup eventUi = settings.FindGroup(AddressableCatalogSetup.RemoteUiEventGroup);
+        AddressableAssetGroup card = settings.FindGroup(AddressableCatalogSetup.RemoteCardGroup);
+
+        Assert.IsNotNull(boot);
+        Assert.IsNotNull(catalog);
+        Assert.IsNotNull(shared);
+        Assert.IsNotNull(hall);
+        Assert.IsNotNull(eventUi);
+        Assert.IsNotNull(card);
+        Assert.AreEqual(BundledAssetGroupSchema.BundlePackingMode.PackTogether,
+            boot.GetSchema<BundledAssetGroupSchema>().BundleMode);
+        Assert.AreEqual(BundledAssetGroupSchema.BundlePackingMode.PackTogether,
+            catalog.GetSchema<BundledAssetGroupSchema>().BundleMode);
+        Assert.AreEqual(BundledAssetGroupSchema.BundlePackingMode.PackTogether,
+            shared.GetSchema<BundledAssetGroupSchema>().BundleMode);
+        Assert.AreEqual(BundledAssetGroupSchema.BundlePackingMode.PackSeparately,
+            hall.GetSchema<BundledAssetGroupSchema>().BundleMode);
+        Assert.AreEqual(AddressableAssetSettings.kLocalBuildPath, boot.GetSchema<BundledAssetGroupSchema>().BuildPath.GetName(settings));
+        Assert.AreEqual(AddressableAssetSettings.kRemoteBuildPath, catalog.GetSchema<BundledAssetGroupSchema>().BuildPath.GetName(settings));
+        Assert.AreEqual(AddressableAssetSettings.kRemoteLoadPath, hall.GetSchema<BundledAssetGroupSchema>().LoadPath.GetName(settings));
+    }
+
+    [Test]
+    public void CatalogFolder_IsRemoteFolderEntry()
+    {
         Assert.IsNotNull(AssetDatabase.LoadAssetAtPath<UISettingsAddressableCatalog>(AddressableCatalogSetup.UISettingsPath));
 
         AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.GetSettings(false);
-        string guid = AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.UISettingsPath);
-        Assert.IsNotNull(settings.FindGroup(AddressableCatalogSetup.CatalogsGroup).GetAssetEntry(guid));
+        AddressableAssetGroup catalog = settings.FindGroup(AddressableCatalogSetup.RemoteCatalogGroup);
+        AddressableAssetEntry folder = catalog.GetAssetEntry(AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.CatalogsFolder));
+        Assert.IsNotNull(folder);
+        Assert.IsTrue(folder.IsFolder);
+        Assert.IsFalse(AddressableCatalogSetup.IsDirectEntry(catalog, AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.PrefabPath)));
+        Assert.IsNull(settings.FindGroup("Catalogs"));
     }
 
     [Test]
-    public void AddToUISettingsCatalog_MarksRemoteUi()
+    public void RemoteCatalog_IsEnabled()
     {
-        const string path = "Assets/UI/Prefab/PreGameUI/PreGameSceneUI.asset";
+        AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.GetSettings(false);
+        Assert.IsTrue(settings.BuildRemoteCatalog);
+        Assert.AreEqual(AddressableAssetSettings.kRemoteBuildPath, settings.RemoteCatalogBuildPath.GetName(settings));
+        Assert.AreEqual(AddressableAssetSettings.kRemoteLoadPath, settings.RemoteCatalogLoadPath.GetName(settings));
+        string load = settings.profileSettings.GetValueByName(settings.activeProfileId, AddressableAssetSettings.kRemoteLoadPath);
+        Assert.AreNotEqual(AddressableAssetProfileSettings.undefinedEntryValue, load);
+        Assert.IsFalse(string.IsNullOrEmpty(load));
+    }
+
+    [Test]
+    public void SharedAndHallFolders_AreMarked()
+    {
+        AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.GetSettings(false);
+        AddressableAssetGroup shared = settings.FindGroup(AddressableCatalogSetup.RemoteSharedGroup);
+        AddressableAssetEntry baseUi = shared.GetAssetEntry(AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.BaseUiFolder));
+        AddressableAssetEntry fonts = shared.GetAssetEntry(AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.FontsFolder));
+        Assert.IsNotNull(baseUi);
+        Assert.IsTrue(baseUi.IsFolder);
+        Assert.IsNotNull(fonts);
+        Assert.IsTrue(fonts.IsFolder);
+
+        AddressableAssetGroup hall = settings.FindGroup(AddressableCatalogSetup.RemoteUiHallGroup);
+        AddressableAssetEntry preGame = hall.GetAssetEntry(AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.PreGameUiFolder));
+        Assert.IsNotNull(preGame);
+        Assert.IsTrue(preGame.IsFolder);
+    }
+
+    [Test]
+    public void AddToUISettingsCatalog_WritesKeyAndMarksFolder()
+    {
+        string path = AddressableCatalogSetup.PreGameUiSettingsPath;
         AddressableCatalogMenu.AddToUISettingsCatalog(path);
 
         AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.GetSettings(false);
-        string guid = AssetDatabase.AssetPathToGUID(path);
-        AddressableAssetEntry entry = settings.FindGroup(AddressableCatalogSetup.RemoteUiGroup).GetAssetEntry(guid);
-        Assert.IsNotNull(entry);
-        Assert.AreEqual("PreGameSceneUI", entry.address);
-        Assert.IsTrue(entry.labels.Contains("PreGameUI"));
+        AddressableAssetGroup hall = settings.FindGroup(AddressableCatalogSetup.RemoteUiHallGroup);
+        AddressableAssetEntry folder = hall.GetAssetEntry(AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.PreGameUiFolder));
+        Assert.IsNotNull(folder);
+        Assert.AreEqual("PreGameUI", folder.address);
+        Assert.IsFalse(AddressableCatalogSetup.IsDirectEntry(hall, AssetDatabase.AssetPathToGUID(path)));
 
         var catalog = AssetDatabase.LoadAssetAtPath<UISettingsAddressableCatalog>(AddressableCatalogSetup.UISettingsPath);
         catalog.BuildMap();
-        Assert.AreEqual(guid, catalog.Get("PreGameSceneUI").AssetGUID);
+        Assert.AreEqual(AssetDatabase.AssetPathToGUID(path), catalog.Get("PreGameSceneUI").AssetGUID);
+        Assert.AreEqual("PreGameSceneUI", AddressKeys.UISettings.PreGameSceneUI);
+        StringAssert.Contains("PreGameSceneUI", File.ReadAllText(AddressableCatalogSetup.AddressKeysPath));
+    }
+
+    [Test]
+    public void AddPrefab_WritesKeyAndPointsToHallPrefab()
+    {
+        AddressableCatalogMenu.AddPrefab(AddressableCatalogSetup.PreGameUiPanelPath);
+        var catalog = AssetDatabase.LoadAssetAtPath<PrefabAddressableCatalog>(AddressableCatalogSetup.PrefabPath);
+        catalog.BuildMap();
+        Assert.AreEqual(
+            AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.PreGameUiPanelPath),
+            catalog.Get("PreGameUIPanel").AssetGUID);
+        Assert.AreEqual("PreGameUIPanel", AddressKeys.Prefab.PreGameUIPanel);
+        StringAssert.Contains("PreGameUIPanel", File.ReadAllText(AddressableCatalogSetup.AddressKeysPath));
     }
 }

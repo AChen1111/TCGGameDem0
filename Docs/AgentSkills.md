@@ -32,8 +32,8 @@
 Always-on 规则：
 
 - `agent-skills.mdc` — 强制上述路由  
-- `project-coding-standards.mdc` — 精简代码、Lua 命名、不确定用 AskQuestion、列 Skills  
-- `project-stack.mdc` — Unity/XLua/Pipeline 边界与 `--proxy-disable`
+- `project-coding-standards.mdc` — 精简代码、新代码 C#、不确定用 AskQuestion、列 Skills  
+- `project-stack.mdc` — Unity/C#/Pipeline 边界与 `--proxy-disable`
 
 ---
 
@@ -207,12 +207,12 @@ shipping-and-launch              上线门禁
 - 不提交 `Library/` `Temp/` `Logs/` `Obj/`、密钥、`.env`  
 - 不把 `com.unity.pipeline` 改回 registry；未确认不改 `manifest.json` / 大规模目录  
 - 不手改 `.unity` YAML（除非用户明确要求）  
-- 玩法/UI 优先 Lua；C# 桥在 `LuaComponet/`，Lua 在 `LuaRaw/`  
+- 新代码一律 C#，不要新增 Lua；存量桥在 `LuaComponet/`，存量脚本在 `LuaRaw/`  
 
 编码审计额外看：
 
 - 最小正确改动；无包装噪音  
-- Lua 匈牙利命名 + `_` 私有函数  
+- 新逻辑写 C#；动存量 Lua 才用匈牙利命名 + `_` 私有函数  
 - 不确定先 AskQuestion（推荐项置顶），不猜着实现  
 
 ---

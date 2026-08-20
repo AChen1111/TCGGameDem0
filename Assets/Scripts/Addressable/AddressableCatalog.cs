@@ -67,6 +67,8 @@ public abstract class AddressableCatalog<TRef> : ScriptableObject where TRef : A
     }
 
 #if UNITY_EDITOR
+    public List<AddressableEntry<TRef>> Entries => m_entries;
+
     public void EditorSetEntries(List<AddressableEntry<TRef>> entries)
     {
         m_entries = entries;

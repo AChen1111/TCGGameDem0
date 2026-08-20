@@ -36,4 +36,4 @@ await LMotion.Create(0f, 1f, 0.25f)
     .ToUniTask(destroyCancellationToken);
 ```
 
-业务逻辑仍优先写 Lua。LitMotion / UniTask 是 struct API，不要在业务 Lua 里直接 `CS.xxx`；需要时再在 C# 包一层，别名写进 `Include.lua`。
+在 C# 里直接用。存量 Lua 若仍要 tween，不要写 `CS.xxx`，由 C# 包一层再走 `Include.lua` 别名。

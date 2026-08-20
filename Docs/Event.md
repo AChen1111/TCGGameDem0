@@ -1,6 +1,8 @@
 # 事件中心（Event）使用说明
 
-Lua 全局发布/订阅。用 `target + fn` 订阅，界面销毁时按 target 一键解绑。
+**存量 Lua** 全局发布/订阅。新 C# 不要用这套，也不要再加 `EventIds`。
+
+Lua 用 `target + fn` 订阅，界面销毁时按 target 一键解绑。
 
 `Main.lua` 已 `require("Event")` / `require("EventIds")`。`BaseScreen.OnDestroy` 会自动 `Event.RemoveByTarget(self)`，业务界面不用手写解绑。
 

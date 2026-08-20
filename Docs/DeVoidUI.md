@@ -18,11 +18,13 @@ uiFrame.OpenWindow("HomeWindow");
 uiFrame.ShowPanel("HudPanel");
 ```
 
-或用 `Create → deVoid UI → UI Settings`，把 Frame Prefab 和 Screens 配好后：
+或用 `Create → deVoid UI → UI Settings`，把 Frame Prefab 和 **同一模块目录下的** Screens 配好后：
 
 ```csharp
 uiFrame = uiSettings.CreateUIInstance();
 ```
+
+一份 Settings 不要登记全部界面：`CreateUIInstance` 会把列表里的 Screen 全部实例化，Addressable 也无法按界面拆包。大厅、活动各用一份 Settings。分包见 [Addressable.md](Addressable.md)。
 
 类型在全局命名空间，生成的界面脚本不需要 `using deVoid.UIFramework`。
 

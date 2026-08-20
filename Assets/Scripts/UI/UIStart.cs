@@ -7,8 +7,8 @@ public class UIStart : MonoBehaviour
 
     async UniTaskVoid Start()
     {
-        UISettings ui = await AddressableLoader.Instance.LoadUISettings("PreGameSceneUI");
+        UISettings ui = await AddressableLoader.Instance.LoadUISettings(AddressKeys.UISettings.PreGameSceneUI);
         m_uiFrame = ui.CreateUIInstance();
-        m_uiFrame.ShowPanel("PreGameUIPanel");
+        m_uiFrame.ShowPanel(AddressKeys.Prefab.PreGameUIPanel);
     }
 }

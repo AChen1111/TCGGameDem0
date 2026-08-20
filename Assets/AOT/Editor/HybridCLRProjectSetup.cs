@@ -92,7 +92,6 @@ public static class HybridCLRProjectSetup
 
     static void MarkInitAddressable()
     {
-        AddressableCatalogSetup.EnsureGroups();
         AddressableCatalogSetup.MarkInGroup(AddressableCatalogSetup.LocalBootGroup, InitScenePath, "Init");
     }
 

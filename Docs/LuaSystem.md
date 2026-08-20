@@ -1,6 +1,6 @@
 # Lua 系统使用说明
 
-本项目用 **XLua** 做 C# ↔ Lua 桥接：玩法优先写在 Lua；**UI 已改用 C# deVoid UI**（[DeVoidUI.md](DeVoidUI.md)）。Lua UIFrame **已弃用**，不要再新增 Lua 界面。
+本项目 **新代码一律 C#**（[ADR-003](decisions/ADR-003-csharp-only-gameplay.md)）。XLua 仅维护存量；**不要新增 Lua 模块或玩法**。UI 用 C# deVoid UI（[DeVoidUI.md](DeVoidUI.md)）。Lua UIFrame **已弃用**。
 
 相关文档：[deVoid UI](DeVoidUI.md) · [Lua UIFrame（已弃用）](UIFramework.md) · [事件中心](Event.md) · [日志系统](LogSystem.md) · [Lua Pad](LuaPad.md) · [Agent Skills 审计](AgentSkills.md)
 

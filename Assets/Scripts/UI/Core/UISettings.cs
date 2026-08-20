@@ -15,6 +15,9 @@ public class UISettings : ScriptableObject
     [Tooltip("实例化后是否自动把仍处于激活状态的界面关掉")]
     [SerializeField] private bool deactivateScreenGOs = true;
 
+    public UIFrame TemplateUIPrefab => templateUIPrefab;
+    public IReadOnlyList<GameObject> ScreensToRegister => screensToRegister;
+
     /// <summary>
     /// 实例化 UI Frame。默认同时实例化并注册配置里的界面。
     /// </summary>
