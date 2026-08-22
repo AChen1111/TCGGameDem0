@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Remote_UI_Hall
   m_GUID: 372fa8289c74b294bb967291bb9011b2
   m_SerializeEntries:
+  - m_GUID: ca1702b9e2d078e4cb8a10cf4fbbbed2
+    m_Address: Shop
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fc3ad0f45c5c2464abba97b174dc06b6
     m_Address: PreGameUI
     m_ReadOnly: 0

@@ -6,7 +6,6 @@ using UnityEngine;
 public class UiDestroyOnCloseTests
 {
     readonly List<Object> m_owned = new List<Object>();
-
     [TearDown]
     public void TearDown()
     {
