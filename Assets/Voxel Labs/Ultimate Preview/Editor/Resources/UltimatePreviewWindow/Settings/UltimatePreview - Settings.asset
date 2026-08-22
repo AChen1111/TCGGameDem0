@@ -97,7 +97,7 @@ MonoBehaviour:
     isParticlesPreviewEnable: 1
     isUIPreviewEnable: 1
     isVFXPreviewEnable: 1
-    isShowCanvas: 0
+    isShowCanvas: 1
     IsUiAlwaysFacingCamera: 1
     autoPlayParticleEffects: 1
     IsSpriteAlwaysFacingCamera: 1

@@ -15,16 +15,6 @@ public class ALogCategoryConfigTests
     }
 
     [Test]
-    public void BuildLua_MapsVariableToDisplayName() {
-        var data = new ALogCategoryConfigData();
-        data.Items.Add(new ALogCategoryItem { DisplayName = "背包", VariableName = "Inventory" });
-
-        string code = ALogCategoryConfig.BuildLua(data);
-
-        StringAssert.Contains("Inventory = \"背包\",", code);
-    }
-
-    [Test]
     public void Validate_RejectsInvalidVariableName() {
         var data = new ALogCategoryConfigData();
         data.Items.Add(new ALogCategoryItem { DisplayName = "背包", VariableName = "1Bad" });

@@ -1,7 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 按 list 顺序逐个初始化单例,全部完成后切换场景
@@ -11,17 +10,17 @@ public class SingletonManager : PersistentMonoSingleton<SingletonManager>
     [SerializeField] List<MonoSingleton> m_singletons;
     [SerializeField] string m_sceneName;
 
-    private IEnumerator Start()
+    async UniTaskVoid Start()
     {
         for (int i = 0; i < m_singletons.Count; i++)
         {
             MonoSingleton singleton = m_singletons[i];
             singleton.BeginInit();
-            yield return new WaitUntil(() => singleton.IsDone);
+            await UniTask.WaitUntil(() => singleton.IsDone);
         }
         if (!string.IsNullOrEmpty(m_sceneName))
         {
-            SceneManager.LoadScene(m_sceneName);
+            await AddressableLoader.Instance.LoadScene(m_sceneName);
         }
     }
 }

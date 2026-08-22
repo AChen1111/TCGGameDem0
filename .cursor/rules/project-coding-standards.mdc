@@ -7,7 +7,7 @@ alwaysApply: true
 
 - 代码尽量精简：最小正确改动；不加无关注释、包装或防御性噪音。
 - 边界条件：允许报错；可加可不加的边界处理一律不加。
-- 新代码一律 C#，不要新增 Lua。动到存量 Lua 时：成员 `m_类型+变量名`；私有函数以 `_` 开头；必须加 EmmyLua；禁止 `CS.xxx`（别名在 `Include.lua`）。
+- 新代码一律 C#，不要新增 Lua。XLua/Lua 在 `Unused~/`，不要移回 `Assets/`。
 - 编码时按需使用 `.cursor/skills/`：先走 `using-agent-skills` 路由，再读对应 `SKILL.md`（实现/测试/调试/Unity/提交等）。本轮若使用 `/quit`，跳过项目级 skills，直接做。
 - 不确定就问，不要猜着实现；提问用选项弹窗（`AskQuestion`），推荐项放第一个并标注「(推荐)」，不要在正文里罗列选项。
 - 每次对用户的回复末尾列出本次调用的 skills：`Skills: skill-a, skill-b, ...`

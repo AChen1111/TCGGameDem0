@@ -207,7 +207,7 @@ shipping-and-launch              上线门禁
 - 不提交 `Library/` `Temp/` `Logs/` `Obj/`、密钥、`.env`  
 - 不把 `com.unity.pipeline` 改回 registry；未确认不改 `manifest.json` / 大规模目录  
 - 不手改 `.unity` YAML（除非用户明确要求）  
-- 新代码一律 C#，不要新增 Lua；存量桥在 `LuaComponet/`，存量脚本在 `LuaRaw/`  
+- 新代码一律 C#，不要新增 Lua；XLua/Lua 已归档到 `Unused~/`  
 
 编码审计额外看：
 

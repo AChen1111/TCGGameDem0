@@ -1,7 +1,7 @@
 # ADR-003: 新代码一律 C#，不再新增 Lua
 
 ## Status
-Accepted
+Accepted（存量已按 [ADR-007](ADR-007-archive-xlua.md) 归档到 `Unused~/`）
 
 ## Date
 2026-08-20
@@ -12,7 +12,7 @@ Accepted
 ## Decision
 - 新玩法、UI、决斗、活动一律 C#，进 `HotUpdate`，靠 HybridCLR 热更。
 - 不要新增 Lua 模块、Lua 界面、Lua 玩法。
-- XLua、`LuaRaw/`、LuaPad、Lua UIFrame 仅维护存量，迁完再删。
+- XLua、`LuaRaw/`、LuaPad、Lua UIFrame 已归档到 `Unused~/`，不要移回 `Assets/`。
 
 ## Alternatives Considered
 

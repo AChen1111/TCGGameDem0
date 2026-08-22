@@ -1,6 +1,6 @@
 # 日志系统（LogSystem）使用说明
 
-分类日志 + UI Toolkit 控制台，重点适配 Lua：打日志、主动报错、点击跳转源码、调用堆栈可视化。
+分类日志 + UI Toolkit 控制台。Lua 路径已随 XLua 归档（[ADR-007](decisions/ADR-007-archive-xlua.md)），现行只走 C# `ALog`。
 
 菜单：**Window → AChen → 日志控制台**
 
@@ -60,7 +60,6 @@ ALog.LogError("错误", ALogCategories.Net);
 生成文件：
 
 - `Assets/Scripts/LogSystem/Runtime/ALogCategories.cs`
-- `Assets/Scripts/LuaRaw/LogCategories.lua`
 - 配置落盘：`Assets/Scripts/LogSystem/Editor/ALogCategoryConfig.json`
 
 示例生成结果：

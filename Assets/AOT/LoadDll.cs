@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,26 +11,25 @@ public class LoadDll : MonoBehaviour
 {
     public const string DllDir = "HybridCLR";
     public const string HotUpdateFile = "HotUpdate.dll.bytes";
-    public static readonly string[] AotDllNames =
-    {
-        "mscorlib.dll",
-        "System.dll",
-        "System.Core.dll",
-    };
+    public static string[] AotDllNames => AOTGenericReferences.PatchedAOTAssemblyList.ToArray();
 
     static readonly Dictionary<string, byte[]> s_bytes = new Dictionary<string, byte[]>();
 
     IEnumerator Start()
     {
+        DownLoadSlider bar = FindFirstObjectByType<DownLoadSlider>();
         Assembly hotUpdate;
 #if UNITY_EDITOR
         hotUpdate = System.AppDomain.CurrentDomain.GetAssemblies().First(a => a.GetName().Name == "HotUpdate");
+        Action<float> onAssets = bar.Set;
 #else
         yield return LoadFiles();
+        yield return CodeUpdate.FetchInto(s_bytes, p => bar.Set(p * 0.5f));
         LoadMetadataForAOTAssemblies();
         hotUpdate = Assembly.Load(s_bytes[HotUpdateFile]);
+        Action<float> onAssets = p => bar.Set(0.5f + p * 0.5f);
 #endif
-        hotUpdate.GetType("HotUpdateEntry").GetMethod("Boot").Invoke(null, null);
+        hotUpdate.GetType("HotUpdateEntry").GetMethod("Boot", new[] { typeof(Action<float>) }).Invoke(null, new object[] { onAssets });
         yield break;
     }
 

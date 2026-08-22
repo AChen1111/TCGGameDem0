@@ -100,17 +100,16 @@ public static class AddressableCatalogMenu
 
     public static void AddScene(string path)
     {
-        var catalog = AssetDatabase.LoadAssetAtPath<SceneAddressableCatalog>(AddressableCatalogSetup.ScenePath);
         string name = Path.GetFileNameWithoutExtension(path);
         if (path == AddressableCatalogSetup.InitScenePath)
         {
             AddressableCatalogSetup.MarkInGroup(AddressableCatalogSetup.LocalBootGroup, path, name);
-        }
-        else
-        {
-            AddressableCatalogSetup.MarkInDefaultGroup(path, name);
+            return;
         }
 
+        AddressableCatalogSetup.EnsureRemoteSceneGroup();
+        AddressableCatalogSetup.MarkInGroup(AddressableCatalogSetup.RemoteSceneGroup, path, name);
+        var catalog = AssetDatabase.LoadAssetAtPath<SceneAddressableCatalog>(AddressableCatalogSetup.ScenePath);
         catalog.EditorAdd(name, new AssetReferenceScene(AssetDatabase.AssetPathToGUID(path)));
         AddressableCatalogSetup.SyncAddressKeys();
         Save(catalog);

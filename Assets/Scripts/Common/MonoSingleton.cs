@@ -53,10 +53,12 @@ public abstract class MonoSingleton<T> : MonoSingleton where T : MonoSingleton<T
 
     private void OnDestroy()
     {
-        if (s_instance == this)
+        if (s_instance != this)
         {
-            s_instance = null;
+            return;
         }
+
+        s_instance = null;
         OnRelease();
     }
 

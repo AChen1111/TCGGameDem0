@@ -4,6 +4,7 @@ using System.Text;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
+using UnityEditor.AddressableAssets.Settings.GroupSchemas;
 using UnityEngine.AddressableAssets;
 
 public static class AddressableCatalogSetup
@@ -15,6 +16,7 @@ public static class AddressableCatalogSetup
     public const string ScenePath = CatalogsFolder + "/SceneCatalog.asset";
     public const string UISettingsPath = CatalogsFolder + "/UISettingsCatalog.asset";
     public const string InitScenePath = "Assets/Scenes/Init.unity";
+    public const string GameScenePath = "Assets/Scenes/GameScene.unity";
     public const string BaseUiFolder = "Assets/UI/Prefab/BaseUI";
     public const string HallFolder = "Assets/UI/Prefab/Hall";
     public const string FontsFolder = "Assets/Learn/MasterDuel/Fonts";
@@ -28,6 +30,7 @@ public static class AddressableCatalogSetup
     public const string RemoteUiEventGroup = "Remote_UI_Event";
     public const string RemoteSharedGroup = "Remote_Shared";
     public const string RemoteCardGroup = "Remote_Card";
+    public const string RemoteSceneGroup = "Remote_Scene";
 
     public static string UiGroupForPath(string path)
     {
@@ -97,10 +100,30 @@ public static class AddressableCatalogSetup
         MarkAddressable(settings, settings.FindGroup(groupName), path, address);
     }
 
-    public static void MarkInDefaultGroup(string path, string address)
+    public static void EnsureRemoteSceneGroup()
     {
         AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.GetSettings(true);
-        MarkAddressable(settings, settings.DefaultGroup, path, address);
+        AddressableAssetGroup group = settings.FindGroup(RemoteSceneGroup);
+        if (group == null)
+        {
+            group = settings.CreateGroup(RemoteSceneGroup, false, false, true, null,
+                typeof(BundledAssetGroupSchema), typeof(ContentUpdateGroupSchema));
+        }
+
+        BundledAssetGroupSchema schema = group.GetSchema<BundledAssetGroupSchema>();
+        schema.BuildPath.SetVariableByName(settings, AddressableAssetSettings.kRemoteBuildPath);
+        schema.LoadPath.SetVariableByName(settings, AddressableAssetSettings.kRemoteLoadPath);
+        schema.BundleMode = BundledAssetGroupSchema.BundlePackingMode.PackSeparately;
+        EditorUtility.SetDirty(schema);
+        EditorUtility.SetDirty(group);
+        EditorUtility.SetDirty(settings);
+    }
+
+    public static void EnsureSceneAddressables()
+    {
+        EnsureRemoteSceneGroup();
+        MarkInGroup(LocalBootGroup, InitScenePath, "Init");
+        AddressableCatalogMenu.AddScene(GameScenePath);
     }
 
     public static bool IsDirectEntry(AddressableAssetGroup group, string guid)

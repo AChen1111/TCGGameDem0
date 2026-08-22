@@ -12,7 +12,7 @@ alwaysApply: true
 - UI：C# deVoid UI；Lua UIFrame 已弃用
 - 热更新：HybridCLR `com.code-philosophy.hybridclr`；Editor 免编译：Hot Reload `com.singularitygroup.hotreload`
 - C#：`Assets/Scripts/`（热更程序集 `HotUpdate`），UI 核心：`Assets/Scripts/UI/Core/`
-- XLua / `Assets/Scripts/LuaRaw/`：仅维护存量，迁完再删
+- XLua / Lua 已归档到 `Unused~/`，不要移回 `Assets/`，不要新增 Lua
 - Editor 控制：`Packages/com.unity.pipeline` + `unity` CLI
 
 ## Commands

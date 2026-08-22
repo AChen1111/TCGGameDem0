@@ -1,6 +1,6 @@
 # Lua 系统使用说明
 
-本项目 **新代码一律 C#**（[ADR-003](decisions/ADR-003-csharp-only-gameplay.md)）。XLua 仅维护存量；**不要新增 Lua 模块或玩法**。UI 用 C# deVoid UI（[DeVoidUI.md](DeVoidUI.md)）。Lua UIFrame **已弃用**。
+**已归档。** XLua / Lua 源码在 `Unused~/`，不再进 Unity 导入（[ADR-007](decisions/ADR-007-archive-xlua.md)）。下文仅作历史说明。
 
 相关文档：[deVoid UI](DeVoidUI.md) · [Lua UIFrame（已弃用）](UIFramework.md) · [事件中心](Event.md) · [日志系统](LogSystem.md) · [Lua Pad](LuaPad.md) · [Agent Skills 审计](AgentSkills.md)
 

@@ -1,6 +1,6 @@
 # Lua Pad
 
-系统浏览器里的 Lua 草稿控制台。Play 后按 **F10** 打开默认浏览器；点网页顶栏 **运行** 把当前游标范围内的行 `DoString` 进当前 XLua。不嵌在 Game 画面里。
+**已归档。** 源码在 `Unused~/`（[ADR-007](decisions/ADR-007-archive-xlua.md)）。下文仅作历史说明。
 
 相关文档：[Lua 系统](LuaSystem.md)
 

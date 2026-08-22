@@ -21,13 +21,12 @@ public class ALogCategoryConfigData
 
 /// <summary>
 /// 报错分类配置:显示名(控制台/打日志用的分类字符串) + 英文变量名。
-/// 生成 ALogCategories.cs 与 LogCategories.lua 的 变量名->显示名 映射。
+/// 生成 ALogCategories.cs 的 变量名->显示名 映射。
 /// </summary>
 public static class ALogCategoryConfig
 {
     public const string ConfigPath = "Assets/Scripts/LogSystem/Editor/ALogCategoryConfig.json";
     public const string CSharpPath = "Assets/Scripts/LogSystem/Runtime/ALogCategories.cs";
-    public const string LuaPath = "Assets/Scripts/LuaRaw/LogCategories.lua";
 
     private static readonly Regex s_identifier = new Regex(@"^[A-Za-z_][A-Za-z0-9_]*$", RegexOptions.Compiled);
 
@@ -85,7 +84,6 @@ public static class ALogCategoryConfig
         }
 
         File.WriteAllText(CSharpPath, BuildCSharp(data), Encoding.UTF8);
-        File.WriteAllText(LuaPath, BuildLua(data), Encoding.UTF8);
         Save(data);
         RegisterAll(data);
         AssetDatabase.Refresh();
@@ -99,18 +97,6 @@ public static class ALogCategoryConfig
         foreach (ALogCategoryItem item in data.Items)
         {
             sb.AppendLine($"    public const string {item.VariableName} = \"{Escape(item.DisplayName)}\";");
-        }
-        sb.AppendLine("}");
-        return sb.ToString();
-    }
-
-    public static string BuildLua(ALogCategoryConfigData data) {
-        var sb = new StringBuilder();
-        sb.AppendLine("-- 由「日志控制台 > 配置分类」自动生成,请勿手改");
-        sb.AppendLine("LogCategories = {");
-        foreach (ALogCategoryItem item in data.Items)
-        {
-            sb.AppendLine($"    {item.VariableName} = \"{Escape(item.DisplayName)}\",");
         }
         sb.AppendLine("}");
         return sb.ToString();

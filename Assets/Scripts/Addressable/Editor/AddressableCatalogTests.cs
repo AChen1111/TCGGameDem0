@@ -108,6 +108,13 @@ public class AddressableCatalogTests
     }
 
     [Test]
+    public void UpdateDetector_LivesInHotUpdateAssembly()
+    {
+        Assert.AreEqual("HotUpdate", typeof(UpdateDetector).Assembly.GetName().Name);
+        Assert.IsFalse(UpdateDetector.IsComplete);
+    }
+
+    [Test]
     public void UiGroupForPath_RoutesFolders()
     {
         Assert.AreEqual(AddressableCatalogSetup.RemoteUiEventGroup,
@@ -123,6 +130,7 @@ public class AddressableCatalogTests
     [Test]
     public void Groups_ExistWithExpectedPacking()
     {
+        AddressableCatalogSetup.EnsureRemoteSceneGroup();
         AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.GetSettings(false);
 
         AddressableAssetGroup boot = settings.FindGroup(AddressableCatalogSetup.LocalBootGroup);
@@ -131,6 +139,7 @@ public class AddressableCatalogTests
         AddressableAssetGroup hall = settings.FindGroup(AddressableCatalogSetup.RemoteUiHallGroup);
         AddressableAssetGroup eventUi = settings.FindGroup(AddressableCatalogSetup.RemoteUiEventGroup);
         AddressableAssetGroup card = settings.FindGroup(AddressableCatalogSetup.RemoteCardGroup);
+        AddressableAssetGroup scene = settings.FindGroup(AddressableCatalogSetup.RemoteSceneGroup);
 
         Assert.IsNotNull(boot);
         Assert.IsNotNull(catalog);
@@ -138,6 +147,7 @@ public class AddressableCatalogTests
         Assert.IsNotNull(hall);
         Assert.IsNotNull(eventUi);
         Assert.IsNotNull(card);
+        Assert.IsNotNull(scene);
         Assert.AreEqual(BundledAssetGroupSchema.BundlePackingMode.PackTogether,
             boot.GetSchema<BundledAssetGroupSchema>().BundleMode);
         Assert.AreEqual(BundledAssetGroupSchema.BundlePackingMode.PackTogether,
@@ -146,9 +156,13 @@ public class AddressableCatalogTests
             shared.GetSchema<BundledAssetGroupSchema>().BundleMode);
         Assert.AreEqual(BundledAssetGroupSchema.BundlePackingMode.PackSeparately,
             hall.GetSchema<BundledAssetGroupSchema>().BundleMode);
+        Assert.AreEqual(BundledAssetGroupSchema.BundlePackingMode.PackSeparately,
+            scene.GetSchema<BundledAssetGroupSchema>().BundleMode);
         Assert.AreEqual(AddressableAssetSettings.kLocalBuildPath, boot.GetSchema<BundledAssetGroupSchema>().BuildPath.GetName(settings));
         Assert.AreEqual(AddressableAssetSettings.kRemoteBuildPath, catalog.GetSchema<BundledAssetGroupSchema>().BuildPath.GetName(settings));
         Assert.AreEqual(AddressableAssetSettings.kRemoteLoadPath, hall.GetSchema<BundledAssetGroupSchema>().LoadPath.GetName(settings));
+        Assert.AreEqual(AddressableAssetSettings.kRemoteBuildPath, scene.GetSchema<BundledAssetGroupSchema>().BuildPath.GetName(settings));
+        Assert.AreEqual(AddressableAssetSettings.kRemoteLoadPath, scene.GetSchema<BundledAssetGroupSchema>().LoadPath.GetName(settings));
     }
 
     [Test]
@@ -185,14 +199,14 @@ public class AddressableCatalogTests
         AddressableAssetEntry baseUi = shared.GetAssetEntry(AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.BaseUiFolder));
         AddressableAssetEntry fonts = shared.GetAssetEntry(AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.FontsFolder));
         Assert.IsNotNull(baseUi);
-        Assert.IsTrue(baseUi.IsFolder);
+        Assert.IsTrue(AssetDatabase.IsValidFolder(AssetDatabase.GUIDToAssetPath(baseUi.guid)));
         Assert.IsNotNull(fonts);
-        Assert.IsTrue(fonts.IsFolder);
+        Assert.IsTrue(AssetDatabase.IsValidFolder(AssetDatabase.GUIDToAssetPath(fonts.guid)));
 
         AddressableAssetGroup hall = settings.FindGroup(AddressableCatalogSetup.RemoteUiHallGroup);
         AddressableAssetEntry preGame = hall.GetAssetEntry(AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.PreGameUiFolder));
         Assert.IsNotNull(preGame);
-        Assert.IsTrue(preGame.IsFolder);
+        Assert.IsTrue(AssetDatabase.IsValidFolder(AssetDatabase.GUIDToAssetPath(preGame.guid)));
     }
 
     [Test]
@@ -226,5 +240,44 @@ public class AddressableCatalogTests
             catalog.Get("PreGameUIPanel").AssetGUID);
         Assert.AreEqual("PreGameUIPanel", AddressKeys.Prefab.PreGameUIPanel);
         StringAssert.Contains("PreGameUIPanel", File.ReadAllText(AddressableCatalogSetup.AddressKeysPath));
+    }
+
+    [Test]
+    public void AddScene_GameScene_WritesRemoteGroupAndKey()
+    {
+        AddressableCatalogSetup.EnsureSceneAddressables();
+
+        AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.GetSettings(false);
+        AddressableAssetGroup remoteScene = settings.FindGroup(AddressableCatalogSetup.RemoteSceneGroup);
+        AddressableAssetEntry gameScene = remoteScene.GetAssetEntry(
+            AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.GameScenePath));
+        Assert.IsNotNull(gameScene);
+        Assert.AreEqual("GameScene", gameScene.address);
+
+        AddressableAssetGroup boot = settings.FindGroup(AddressableCatalogSetup.LocalBootGroup);
+        AddressableAssetEntry init = boot.GetAssetEntry(
+            AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.InitScenePath));
+        Assert.IsNotNull(init);
+        Assert.AreEqual("Init", init.address);
+        Assert.IsFalse(AddressableCatalogSetup.IsDirectEntry(
+            remoteScene, AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.InitScenePath)));
+
+        var catalog = AssetDatabase.LoadAssetAtPath<SceneAddressableCatalog>(AddressableCatalogSetup.ScenePath);
+        catalog.BuildMap();
+        Assert.AreEqual(
+            AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.GameScenePath),
+            catalog.Get("GameScene").AssetGUID);
+        Assert.AreEqual("GameScene", AddressKeys.Scene.GameScene);
+        Assert.Throws<KeyNotFoundException>(() => catalog.Get("Init"));
+    }
+
+    [Test]
+    public void CatalogAssets_HaveImplicitAddressableEntries()
+    {
+        AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.GetSettings(false);
+        Assert.IsNotNull(settings.FindAssetEntry(
+            AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.PrefabPath), true));
+        Assert.IsNotNull(settings.FindAssetEntry(
+            AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.UISettingsPath), true));
     }
 }

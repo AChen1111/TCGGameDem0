@@ -9,6 +9,7 @@ public static class AddressKeys
     }
     public static class Scene
     {
+        public static readonly string GameScene = "GameScene";
     }
     public static class UISettings
     {

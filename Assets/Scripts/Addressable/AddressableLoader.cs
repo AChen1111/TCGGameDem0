@@ -35,10 +35,10 @@ public class AddressableLoader : PersistentMonoSingleton<AddressableLoader>
 
     async UniTaskVoid LoadCatalogsAsync()
     {
-        m_spriteCatalogHandle = m_spriteCatalogRef.LoadAssetAsync();
-        m_prefabCatalogHandle = m_prefabCatalogRef.LoadAssetAsync();
-        m_sceneCatalogHandle = m_sceneCatalogRef.LoadAssetAsync();
-        m_uiSettingsCatalogHandle = m_uiSettingsCatalogRef.LoadAssetAsync();
+        m_spriteCatalogHandle = Addressables.LoadAssetAsync<SpriteAddressableCatalog>(m_spriteCatalogRef);
+        m_prefabCatalogHandle = Addressables.LoadAssetAsync<PrefabAddressableCatalog>(m_prefabCatalogRef);
+        m_sceneCatalogHandle = Addressables.LoadAssetAsync<SceneAddressableCatalog>(m_sceneCatalogRef);
+        m_uiSettingsCatalogHandle = Addressables.LoadAssetAsync<UISettingsAddressableCatalog>(m_uiSettingsCatalogRef);
         m_spriteCatalog = await m_spriteCatalogHandle.Task;
         m_prefabCatalog = await m_prefabCatalogHandle.Task;
         m_sceneCatalog = await m_sceneCatalogHandle.Task;
@@ -72,7 +72,7 @@ public class AddressableLoader : PersistentMonoSingleton<AddressableLoader>
             return existing.Result;
         }
 
-        var handle = m_sceneCatalog.Get(assetName).LoadSceneAsync(loadMode);
+        var handle = Addressables.LoadSceneAsync(m_sceneCatalog.Get(assetName), loadMode);
         m_sceneHandles[assetName] = handle;
         return await handle.Task;
     }
@@ -137,7 +137,7 @@ public class AddressableLoader : PersistentMonoSingleton<AddressableLoader>
             return existing.Result;
         }
 
-        var handle = catalog.Get(assetName).LoadAssetAsync<TAsset>();
+        var handle = Addressables.LoadAssetAsync<TAsset>(catalog.Get(assetName));
         cache[assetName] = handle;
         return await handle.Task;
     }

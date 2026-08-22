@@ -1,6 +1,6 @@
 # 事件中心（Event）使用说明
 
-**存量 Lua** 全局发布/订阅。新 C# 不要用这套，也不要再加 `EventIds`。
+**已归档。** Lua 事件中心源码在 `Unused~/`（[ADR-007](decisions/ADR-007-archive-xlua.md)）。新 C# 不要用这套。
 
 Lua 用 `target + fn` 订阅，界面销毁时按 target 一键解绑。
 

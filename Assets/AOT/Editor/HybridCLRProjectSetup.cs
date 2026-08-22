@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.IO;
 using HybridCLR.Editor;
 using HybridCLR.Editor.Commands;
@@ -16,7 +15,6 @@ public static class HybridCLRProjectSetup
 {
     public const string HotUpdateAsmdefPath = "Assets/Scripts/HotUpdate.asmdef";
     public const string BootstrapScenePath = "Assets/Scenes/Bootstrap.unity";
-    public const string InitScenePath = "Assets/Scenes/Init.unity";
     const string StreamingDir = "Assets/StreamingAssets/" + LoadDll.DllDir;
 
     [MenuItem("Tools/HybridCLR/Configure")]
@@ -34,7 +32,7 @@ public static class HybridCLRProjectSetup
         HybridCLRSettings.Save();
 
         CreateBootstrapScene();
-        MarkInitAddressable();
+        AddressableCatalogSetup.EnsureSceneAddressables();
         InsertBootstrapInBuildSettings();
         AssetDatabase.SaveAssets();
         Debug.Log("[HybridCLR] Configure done");
@@ -44,20 +42,53 @@ public static class HybridCLRProjectSetup
     public static void InstallRuntime()
     {
         var installer = new InstallerController();
-        if (installer.HasInstalledHybridCLR())
+        bool same = installer.HasInstalledHybridCLR()
+            && !string.IsNullOrEmpty(installer.PackageVersion)
+            && installer.InstalledLibil2cppVersion == installer.PackageVersion;
+        if (same)
         {
             Debug.Log("[HybridCLR] already installed");
+            EnsureZlibHeaders();
             return;
         }
         installer.InstallDefaultHybridCLR();
+        EnsureZlibHeaders();
+    }
+
+    public static void EnsureZlibHeaders()
+    {
+        string helper = Path.Combine(SettingsUtil.LocalIl2CppDir, "libil2cpp/mono/MonoPosixHelper.cpp");
+        string zlibUnity = Path.Combine(SettingsUtil.LocalIl2CppDir, "external/zlib-unity/zlib.h");
+        if (!File.Exists(helper) || !File.Exists(zlibUnity))
+        {
+            return;
+        }
+
+        string text = File.ReadAllText(helper);
+        const string oldInc = "#include \"../external/zlib/zlib.h\"";
+        const string newInc = "#include \"../external/zlib-unity/zlib.h\"";
+        if (text.Contains(oldInc))
+        {
+            File.WriteAllText(helper, text.Replace(oldInc, newInc));
+        }
+
+        string stale = Path.Combine(SettingsUtil.LocalIl2CppDir, "external/zlib");
+        if (Directory.Exists(stale))
+        {
+            Directory.Delete(stale, true);
+        }
     }
 
     [MenuItem("Tools/HybridCLR/Copy Dlls To StreamingAssets")]
     public static void CopyDlls()
     {
-        BuildTarget target = EditorUserBuildSettings.activeBuildTarget;
-        CompileDllCommand.CompileDll(target);
+        CompileDllCommand.CompileDll(EditorUserBuildSettings.activeBuildTarget);
+        CopyCompiledDlls();
+    }
 
+    public static void CopyCompiledDlls()
+    {
+        BuildTarget target = EditorUserBuildSettings.activeBuildTarget;
         Directory.CreateDirectory(StreamingDir);
         string srcDir = Path.Combine(SettingsUtil.ProjectDir, SettingsUtil.GetHotUpdateDllsOutputDirByTarget(target));
         File.Copy(Path.Combine(srcDir, "HotUpdate.dll"), Path.Combine(StreamingDir, LoadDll.HotUpdateFile), true);
@@ -90,26 +121,42 @@ public static class HybridCLRProjectSetup
         EditorSceneManager.CloseScene(scene, true);
     }
 
-    static void MarkInitAddressable()
-    {
-        AddressableCatalogSetup.MarkInGroup(AddressableCatalogSetup.LocalBootGroup, InitScenePath, "Init");
-    }
-
     static void InsertBootstrapInBuildSettings()
     {
-        var scenes = new List<EditorBuildSettingsScene>(EditorBuildSettings.scenes);
-        scenes.RemoveAll(s => s.path == BootstrapScenePath);
-        scenes.Insert(0, new EditorBuildSettingsScene(BootstrapScenePath, true));
-        EditorBuildSettings.scenes = scenes.ToArray();
+        EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(BootstrapScenePath, true) };
     }
 }
 
 class HybridCLRCopyDllsOnBuild : IPreprocessBuildWithReport
 {
-    public int callbackOrder => 0;
+    public int callbackOrder => -100;
+    static bool s_Generating;
 
     public void OnPreprocessBuild(BuildReport report)
     {
+        HybridCLRProjectSetup.EnsureZlibHeaders();
+        if (s_Generating || EditorUserBuildSettings.buildScriptsOnly)
+        {
+            return;
+        }
+
+        string unityVersionH = $"{SettingsUtil.LocalIl2CppDir}/libil2cpp/hybridclr/generated/UnityVersion.h";
+        if (!File.Exists(unityVersionH) || !File.ReadAllText(unityVersionH).Contains("HYBRIDCLR_UNITY_VERSION"))
+        {
+            s_Generating = true;
+            try
+            {
+                PrebuildCommand.GenerateAll();
+            }
+            finally
+            {
+                s_Generating = false;
+            }
+
+            HybridCLRProjectSetup.CopyCompiledDlls();
+            return;
+        }
+
         HybridCLRProjectSetup.CopyDlls();
     }
 }

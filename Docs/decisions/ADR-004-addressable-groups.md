@@ -11,7 +11,7 @@ Accepted
 
 ## Decision
 - 本地：`Local_Boot`（Init），`PackTogether`。HybridCLR DLL 仍走 StreamingAssets。
-- 远端：`Remote_Catalog`（`PackTogether`，收 `Assets/AddressableCatalogs`）；`Remote_Shared`（`PackTogether`，收 `BaseUI` 与字体）；`Remote_UI_Hall` / `Remote_UI_Event` / `Remote_Card`（`PackSeparately`，每个模块文件夹一个 AB）。
+- 远端：`Remote_Catalog`（`PackTogether`，收 `Assets/AddressableCatalogs`）；`Remote_Shared`（`PackTogether`，收 `BaseUI` 与字体）；`Remote_UI_Hall` / `Remote_UI_Event` / `Remote_Card`（`PackSeparately`，每个模块文件夹一个 AB）；`Remote_Scene`（`PackSeparately`，业务场景，经 `SceneCatalog` + `AddressableLoader.LoadScene`）。
 - 资源名写在 HotUpdate 的 `AddressKeys` 里。`AddTo*SO` 往对应 Catalog SO 登记条目并重写该文件。
 - UI Frame、公共控件放 `Assets/UI/Prefab/BaseUI`；大厅界面放 `Assets/UI/Prefab/Hall/<模块>`；活动放 `Assets/UI/Prefab/Event/<活动>`。
 - 开启 Remote Catalog。Group 与 Catalog SO 已检入，不再用菜单重建。

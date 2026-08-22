@@ -24,9 +24,16 @@ MonoBehaviour:
   externalHotUpdateAssembliyDirs: []
   strippedAOTDllOutputRootDir: HybridCLRData/AssembliesPostIl2CppStrip
   patchAOTAssemblies:
-  - mscorlib.dll
-  - System.dll
+  - LitMotion.Extensions.dll
+  - LitMotion.dll
+  - Newtonsoft.Json.dll
   - System.Core.dll
+  - System.dll
+  - UniTask.dll
+  - Unity.Addressables.dll
+  - Unity.ResourceManager.dll
+  - UnityEngine.CoreModule.dll
+  - mscorlib.dll
   outputLinkFile: HybridCLRGenerate/link.xml
   outputAOTGenericReferenceFile: HybridCLRGenerate/AOTGenericReferences.cs
   maxGenericReferenceIteration: 10

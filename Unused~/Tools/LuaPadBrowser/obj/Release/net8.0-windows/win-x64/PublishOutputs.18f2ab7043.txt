@@ -1,0 +1,5 @@
+D:\GameWorkplace\Doing\AChenFrameWork\Library\LuaPad\browser-build\LuaPadBrowser.pdb
+D:\GameWorkplace\Doing\AChenFrameWork\Library\LuaPad\browser-build\Microsoft.Web.WebView2.Core.xml
+D:\GameWorkplace\Doing\AChenFrameWork\Library\LuaPad\browser-build\Microsoft.Web.WebView2.WinForms.xml
+D:\GameWorkplace\Doing\AChenFrameWork\Library\LuaPad\browser-build\Microsoft.Web.WebView2.Wpf.xml
+D:\GameWorkplace\Doing\AChenFrameWork\Library\LuaPad\browser-build\LuaPadBrowser.exe

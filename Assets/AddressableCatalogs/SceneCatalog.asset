@@ -12,4 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0dc5422c6d9c54d81e5b79ed4e8e60, type: 3}
   m_Name: SceneCatalog
   m_EditorClassIdentifier: Assembly-CSharp::SceneAddressableCatalog
-  m_entries: []
+  m_entries:
+  - assetName: GameScene
+    reference:
+      m_AssetGUID: 4749cc0693411f447b3b2270f088c77c
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

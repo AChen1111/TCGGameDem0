@@ -11,7 +11,7 @@ Accepted
 
 ## Decision
 - UI 改为导入 [yankooliveira/uiframework](https://github.com/yankooliveira/uiframework) 核心（不含 examples）。
-- 热更新装 HybridCLR `com.code-philosophy.hybridclr` v8.13.0。
+- 热更新装 HybridCLR `com.code-philosophy.hybridclr`（版本见 [ADR-006](ADR-006-hybridclr-6000.5.md)）。
 - Editor 热重装装 Asset Store「Hot Reload」1.13.22。
 - Lua UIFrame 标记为弃用，存量不删，新界面走 C#。
 
@@ -27,4 +27,4 @@ Accepted
 
 ## Consequences
 - 新 UI 写在 C#，可走 HybridCLR 热更与 Hot Reload。
-- Lua UI 文档与规则改为弃用；迁完前两套代码会短暂共存。
+- Lua UI 已随 XLua 归档到 `Unused~/`（[ADR-007](ADR-007-archive-xlua.md)）。

@@ -1,8 +1,7 @@
 # UI 框架（Lua UIFrame）— 已弃用
 
-> **已弃用（advisory，2026-08-18）**  
-> 新界面请用 C# **deVoid UI Framework**（[yankooliveira/uiframework](https://github.com/yankooliveira/uiframework) 核心），见 [DeVoidUI.md](DeVoidUI.md)。  
-> 本页只保留现有 Lua 界面的维护说明，不要再新增 Lua Panel/Window。Lua UI 代码暂不删除，待业务迁完后再移除。
+> **已归档（[ADR-007](decisions/ADR-007-archive-xlua.md)）**  
+> Lua UIFrame 源码在 `Unused~/`。新界面用 C# deVoid UI，见 [DeVoidUI.md](DeVoidUI.md)。
 
 ---
 

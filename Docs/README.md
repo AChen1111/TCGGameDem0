@@ -2,8 +2,8 @@
 
 | 文档 | 内容 |
 |------|------|
-| [LuaSystem.md](LuaSystem.md) | ~~玩法 Lua~~ **存量** XLua：热重载、报错跳转；不要新增 |
-| [LuaPad.md](LuaPad.md) | 独立 Web 草稿控制台：F10、Monaco、EmmyLua、实现过程 |
+| [LuaSystem.md](LuaSystem.md) | ~~XLua~~ **已归档** `Unused~/`（[ADR-007](decisions/ADR-007-archive-xlua.md)） |
+| [LuaPad.md](LuaPad.md) | ~~Lua Pad~~ **已归档** |
 | [DeVoidUI.md](DeVoidUI.md) | **现行** C# deVoid UI：Panel/Window |
 | [Addressable.md](Addressable.md) | Addressable Group / 远端分包 |
 | [UIFramework.md](UIFramework.md) | ~~Lua UIFrame~~ **已弃用**，仅供存量界面维护 |
@@ -15,3 +15,6 @@
 | [decisions/ADR-002-hybridclr-hotupdate-assembly.md](decisions/ADR-002-hybridclr-hotupdate-assembly.md) | 业务代码进 HotUpdate DLL |
 | [decisions/ADR-003-csharp-only-gameplay.md](decisions/ADR-003-csharp-only-gameplay.md) | 新代码一律 C#，不再新增 Lua |
 | [decisions/ADR-004-addressable-groups.md](decisions/ADR-004-addressable-groups.md) | Addressable 本地/远端 Group |
+| [decisions/ADR-005-local-cdn-update-detector.md](decisions/ADR-005-local-cdn-update-detector.md) | 本地 CDN 与更新检测 |
+| [decisions/ADR-006-hybridclr-6000.5.md](decisions/ADR-006-hybridclr-6000.5.md) | HybridCLR v8.14.1（Unity 6000.5） |
+| [decisions/ADR-007-archive-xlua.md](decisions/ADR-007-archive-xlua.md) | XLua / Lua 归档到 `Unused~/` |

@@ -104,7 +104,7 @@ public class ALogCategoryConfigWindow : EditorWindow
         try
         {
             ALogCategoryConfig.Generate(m_data);
-            m_status.text = $"已生成:\n{ALogCategoryConfig.CSharpPath}\n{ALogCategoryConfig.LuaPath}";
+            m_status.text = $"已生成:\n{ALogCategoryConfig.CSharpPath}";
             m_status.style.color = new Color(0.55f, 0.85f, 0.55f);
         }
         catch (System.Exception e)

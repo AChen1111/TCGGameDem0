@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using LitMotion.Extensions;
@@ -35,8 +36,14 @@ public class PreGameUIPanel : APanelController
     }
     protected override void AddListeners()
     {
-        
+        m_BtnExit.onClick.AddListener(OnExitClick);
     }
+
+    private void OnExitClick()
+    {
+        Application.Quit();
+    }
+
 
     protected override void OnOpen()
     {
