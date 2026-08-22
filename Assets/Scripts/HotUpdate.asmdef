@@ -9,7 +9,8 @@
         "Unity.ResourceManager",
         "Unity.InputSystem",
         "Unity.TextMeshPro",
-        "UnityEngine.UI"
+        "UnityEngine.UI",
+        "SuperScrollView"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

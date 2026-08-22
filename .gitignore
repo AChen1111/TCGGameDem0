@@ -123,3 +123,9 @@ Assets/Scripts/LuaRaw/LuaPadDrafts/*.lua.meta
 # Uncomment only if your team regenerates Gen on every machine:
 # /[Aa]ssets/XLua/Gen/
 # /[Aa]ssets/XLua/Gen.meta
+
+# ASP.NET Core backend build output and local state
+/Backend/**/bin/
+/Backend/**/obj/
+/Backend/src/AChen.Backend.Api/Data/*.db*
+/Backend/.env

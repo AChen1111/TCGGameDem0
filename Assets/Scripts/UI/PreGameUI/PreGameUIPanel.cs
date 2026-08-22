@@ -19,24 +19,37 @@ public class PreGameUIPanel : APanelController
     [SerializeField] Button m_BtnSetting;
     // --tag_end: 自动生成--
 
-    [SerializeField] private RectTransform m_LeftLayOut; 
-    [SerializeField] private RectTransform m_RightLayOut; 
-    [SerializeField] private RectTransform m_UpLayOut; 
-    [SerializeField] private RectTransform m_DownLayOut; 
+    [SerializeField] private RectTransform m_LeftLayOut;
+    [SerializeField] private RectTransform m_RightLayOut;
+    [SerializeField] private RectTransform m_UpLayOut;
+    [SerializeField] private RectTransform m_DownLayOut;
     [SerializeField] private CanvasGroup m_CanvasGroup;
 
     [SerializeField] private float m_Duration = 1f;
     [SerializeField] private float m_Distance = 1500f;
     [SerializeField] private GameObject m_heroSprite;
     private Image m_heroImage;
+
     protected override void Awake()
-    { 
+    {
         m_heroImage = m_heroSprite.GetComponent<Image>();
-        base.Awake();   
+        base.Awake();
     }
     protected override void AddListeners()
     {
         m_BtnExit.onClick.AddListener(OnExitClick);
+        m_BtnShop.onClick.AddListener(OnShopClick);
+    }
+
+    private void OnShopClick()
+    {
+        //todo:把这个字段写进父类
+        var uiFrame = GetComponentInParent<UIFrame>();
+        if (uiFrame != null)
+        {
+            uiFrame.OpenWindow(AddressKeys.Prefab.ShopWindows);
+            // 或者 uiFrame.ShowScreen("ShopWindows");
+        }
     }
 
     private void OnExitClick()
