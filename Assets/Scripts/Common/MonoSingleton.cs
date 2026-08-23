@@ -17,6 +17,7 @@ public abstract class MonoSingleton : MonoBehaviour
 public abstract class MonoSingleton<T> : MonoSingleton where T : MonoSingleton<T>
 {
     private static T s_instance;
+    public static bool HasInstance => s_instance != null;
     public static T Instance
     {
         get

@@ -27,3 +27,10 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: LogInSetting
+    reference:
+      m_AssetGUID: c3cd5091233e9ab4aac5a047b4674912
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

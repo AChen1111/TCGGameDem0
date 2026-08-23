@@ -108,6 +108,14 @@ public class UIFrame : MonoBehaviour
         panelLayer.ShowScreenById(screenId);
     }
 
+    public void ShowPanel<TProperties>(string screenId, TProperties properties)
+        where TProperties : IPanelProperties {
+        if (!EnsureScreen(screenId)) {
+            return;
+        }
+        panelLayer.ShowScreenById(screenId, properties);
+    }
+
     /// <summary>按 Id 隐藏 Panel（OnHide）。</summary>
     /// <param name="screenId">Panel Id</param>
     public void HidePanel(string screenId) {
@@ -121,6 +129,14 @@ public class UIFrame : MonoBehaviour
             return;
         }
         windowLayer.ShowScreenById(screenId);
+    }
+
+    public void OpenWindow<TProperties>(string screenId, TProperties properties)
+        where TProperties : IWindowProperties {
+        if (!EnsureScreen(screenId)) {
+            return;
+        }
+        windowLayer.ShowScreenById(screenId, properties);
     }
 
     /// <summary>按 Id 关闭 Window（OnClose）。</summary>
@@ -162,6 +178,10 @@ public class UIFrame : MonoBehaviour
     /// <param name="controller">控制器</param>
     /// <param name="screenTransform">不为空则改父节点到对应层</param>
     public void RegisterScreen(string screenId, IUIScreenController controller, Transform screenTransform) {
+        if (controller is AUIScreenController screenController) {
+            screenController.SetUIFrame(this);
+        }
+
         IWindowController window = controller as IWindowController;
         if (window != null) {
             windowLayer.RegisterScreen(screenId, window);

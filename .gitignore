@@ -129,4 +129,6 @@ Assets/Scripts/LuaRaw/LuaPadDrafts/*.lua.meta
 /Backend/**/obj/
 /Backend/src/AChen.Backend.Api/Data/*.db*
 /Backend/src/AChen.Backend.Api/Data/content/
+/Backend/src/AChen.Backend.Api/Data/game-config-git/
 /Backend/.env
+.playwright-cli/

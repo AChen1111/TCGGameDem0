@@ -4,12 +4,14 @@
 public struct WindowHistoryEntry
 {
     public readonly IWindowController Screen;
+    public readonly IScreenProperties Properties;
 
-    public WindowHistoryEntry(IWindowController screen) {
+    public WindowHistoryEntry(IWindowController screen, IScreenProperties properties = null) {
         Screen = screen;
+        Properties = properties;
     }
 
     public void Show() {
-        Screen.Show();
+        Screen.Show(Properties);
     }
 }

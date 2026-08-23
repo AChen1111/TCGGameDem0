@@ -37,3 +37,20 @@ public abstract class AWindowController : AUIScreenController, IWindowController
         transform.SetAsLastSibling();
     }
 }
+
+public abstract class AWindowController<TProperties> : AWindowController
+    where TProperties : IWindowProperties
+{
+    protected new TProperties Properties => (TProperties)base.Properties;
+
+    protected override void SetProperties(IScreenProperties properties)
+    {
+        if (properties is TProperties typedProperties)
+        {
+            base.SetProperties(typedProperties);
+            return;
+        }
+
+        Debug.LogError($"[AWindowController] Properties type {properties.GetType()} does not match {typeof(TProperties)}.");
+    }
+}

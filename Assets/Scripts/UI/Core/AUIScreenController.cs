@@ -15,6 +15,8 @@ public abstract class AUIScreenController : MonoBehaviour, IUIScreenController
     /// <summary>界面 Id，默认与 Prefab 名相同。</summary>
     public string ScreenId { get; set; }
 
+    protected IScreenProperties Properties { get; private set; }
+
     /// <summary>请求所属 Layer 关闭自己。</summary>
     public Action<IUIScreenController> CloseRequest { get; set; }
 
@@ -31,6 +33,12 @@ public abstract class AUIScreenController : MonoBehaviour, IUIScreenController
 
     //它所属的UIFrame
     protected UIFrame m_UIFrame;
+
+    internal void SetUIFrame(UIFrame uiFrame)
+    {
+        m_UIFrame = uiFrame;
+    }
+
     protected virtual void Awake()
     {
         AddListeners();
@@ -63,6 +71,11 @@ public abstract class AUIScreenController : MonoBehaviour, IUIScreenController
     /// <summary>首次打开。</summary>
     protected virtual void OnOpen()
     {
+    }
+
+    protected virtual void SetProperties(IScreenProperties properties)
+    {
+        Properties = properties;
     }
 
     /// <summary>暂时隐藏（例如 Window 被盖住），之后再显示会走 OnResume。</summary>
@@ -112,8 +125,13 @@ public abstract class AUIScreenController : MonoBehaviour, IUIScreenController
     }
 
     /// <summary>显示界面。首次走 OnOpen，再次走 OnResume。</summary>
-    public void Show()
+    public void Show(IScreenProperties properties = null)
     {
+        if (properties != null)
+        {
+            SetProperties(properties);
+        }
+
         HierarchyFixOnShow();
         gameObject.SetActive(true);
         IsVisible = true;

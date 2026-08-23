@@ -9,7 +9,7 @@ public interface IUIScreenController
     bool IsVisible { get; }
     bool DestroyOnClose { get; }
 
-    void Show();
+    void Show(IScreenProperties properties = null);
     void Hide();
     void Close();
 
@@ -34,3 +34,9 @@ public interface IPanelController : IUIScreenController
 {
     PanelPriority Priority { get; }
 }
+
+public interface IScreenProperties { }
+
+public interface IWindowProperties : IScreenProperties { }
+
+public interface IPanelProperties : IScreenProperties { }

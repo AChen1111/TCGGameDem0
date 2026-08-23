@@ -16,10 +16,15 @@ public class GridListController : MonoBehaviour
     protected virtual string key { get; set; }
     public int SelectedIndex => mSelectedIndex;
 
-    public async UniTask InitList<TData>(List<TData> dataList, Action<int> onSelected = null)
+    public async UniTask InitList<TData>(
+        List<TData> dataList,
+        Action<int> onSelected = null,
+        int selectedIndex = -1)
     {
         mOnSelectedCallback = onSelected;
-        mSelectedIndex = -1;
+        mSelectedIndex = selectedIndex >= 0 && dataList != null && selectedIndex < dataList.Count
+            ? selectedIndex
+            : -1;
 
         GameObject prefab = await AddressableLoader.Instance.LoadPrefab(key);
         var rowItemComp = prefab.GetComponent<IRowItem<TData>>();

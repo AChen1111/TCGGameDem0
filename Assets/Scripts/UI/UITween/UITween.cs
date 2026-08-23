@@ -54,4 +54,27 @@ static class UITween
             .WithEase(Ease.OutCubic)
             .BindToColorA(target);
     }
+
+    public static MotionHandle DoScaleAnim(float from, float to, float duration, Transform target)
+    {
+        var fromScale = Vector3.one * from;
+        target.localScale = fromScale;
+        return LMotion.Create(fromScale, Vector3.one * to, duration)
+            .WithEase(Ease.OutBack)
+            .BindToLocalScale(target);
+    }
+
+    //短促缩放反馈：放大后回到原始尺寸
+    public static MotionHandle DoPunchScale(Transform target, float scale, float duration)
+    {
+        var origin = target.localScale;
+        var seq = LSequence.Create();
+        seq.Append(LMotion.Create(origin, origin * scale, duration * 0.5f)
+            .WithEase(Ease.OutCubic)
+            .BindToLocalScale(target));
+        seq.Append(LMotion.Create(origin * scale, origin, duration * 0.5f)
+            .WithEase(Ease.OutCubic)
+            .BindToLocalScale(target));
+        return seq.Run();
+    }
 }
