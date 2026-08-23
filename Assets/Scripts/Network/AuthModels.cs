@@ -19,6 +19,35 @@ namespace AChen.Networking
         }
     }
 
+    public sealed class PlayerData
+    {
+        public Guid Id { get; }
+        public string Nickname { get; }
+        public int? AvatarId { get; }
+        public long Gold { get; }
+        public long Revision { get; }
+        public DateTimeOffset CreatedAt { get; }
+        public DateTimeOffset UpdatedAt { get; }
+
+        internal PlayerData(
+            Guid id,
+            string nickname,
+            int? avatarId,
+            long gold,
+            long revision,
+            DateTimeOffset createdAt,
+            DateTimeOffset updatedAt)
+        {
+            Id = id;
+            Nickname = nickname;
+            AvatarId = avatarId;
+            Gold = gold;
+            Revision = revision;
+            CreatedAt = createdAt;
+            UpdatedAt = updatedAt;
+        }
+    }
+
     public sealed class BackendApiException : Exception
     {
         public long StatusCode { get; }

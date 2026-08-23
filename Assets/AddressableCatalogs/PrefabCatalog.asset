@@ -34,3 +34,17 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: LogInWindow
+    reference:
+      m_AssetGUID: 9bec0272fce700648874a6c1fe3ff523
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: MessageWindow
+    reference:
+      m_AssetGUID: a64c074234af9d240aa33eaf8e67d42a
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

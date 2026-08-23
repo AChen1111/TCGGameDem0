@@ -12,3 +12,20 @@ public abstract class APanelController : AUIScreenController, IPanelController {
         get { return priority; }
     }
 }
+
+public abstract class APanelController<TProperties> : APanelController
+    where TProperties : IPanelProperties
+{
+    protected new TProperties Properties => (TProperties)base.Properties;
+
+    protected override void SetProperties(IScreenProperties properties)
+    {
+        if (properties is TProperties typedProperties)
+        {
+            base.SetProperties(typedProperties);
+            return;
+        }
+
+        Debug.LogError($"[APanelController] Properties type {properties.GetType()} does not match {typeof(TProperties)}.");
+    }
+}

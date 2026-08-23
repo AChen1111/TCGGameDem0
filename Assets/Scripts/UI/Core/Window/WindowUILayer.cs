@@ -31,11 +31,15 @@ public class WindowUILayer : AUILayer<IWindowController>
     }
 
     public override void ShowScreen(IWindowController screen) {
+        ShowScreen<IScreenProperties>(screen, null);
+    }
+
+    public override void ShowScreen<TProperties>(IWindowController screen, TProperties properties) {
         if (ShouldEnqueue(screen)) {
-            windowQueue.Enqueue(new WindowHistoryEntry(screen));
+            windowQueue.Enqueue(new WindowHistoryEntry(screen, properties));
         }
         else {
-            DoShow(screen);
+            DoShow(screen, properties);
         }
     }
 
@@ -113,8 +117,8 @@ public class WindowUILayer : AUILayer<IWindowController>
         }
     }
 
-    private void DoShow(IWindowController screen) {
-        DoShow(new WindowHistoryEntry(screen));
+    private void DoShow(IWindowController screen, IScreenProperties properties = null) {
+        DoShow(new WindowHistoryEntry(screen, properties));
     }
 
     private void DoShow(WindowHistoryEntry windowEntry) {

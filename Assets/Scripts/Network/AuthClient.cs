@@ -24,6 +24,7 @@ namespace AChen.Networking
 
         public bool IsAuthenticated => !string.IsNullOrEmpty(m_accessToken);
         public AuthUser CurrentUser { get; private set; }
+        public PlayerData CurrentPlayer { get; private set; }
 
         public AuthClient(BackendConfig config = null)
         {
@@ -59,19 +60,39 @@ namespace AChen.Networking
 
         public async UniTask<AuthUser> GetCurrentUserAsync(CancellationToken cancellationToken = default)
         {
-            EnsureAuthenticated();
-
-            try
-            {
-                CurrentUser = ToUser(await GetAsync<UserDto>("/api/auth/me", m_accessToken, cancellationToken));
-            }
-            catch (BackendApiException exception) when (exception.StatusCode == 401 && !string.IsNullOrEmpty(m_refreshToken))
-            {
-                await RefreshAsync(cancellationToken);
-                CurrentUser = ToUser(await GetAsync<UserDto>("/api/auth/me", m_accessToken, cancellationToken));
-            }
+            CurrentUser = ToUser(await SendAuthenticatedAsync<UserDto>(
+                UnityWebRequest.kHttpVerbGET,
+                "/api/auth/me",
+                null,
+                cancellationToken));
 
             return CurrentUser;
+        }
+
+        public async UniTask<PlayerData> GetPlayerAsync(CancellationToken cancellationToken = default)
+        {
+            PlayerDto response = await SendAuthenticatedAsync<PlayerDto>(
+                UnityWebRequest.kHttpVerbGET,
+                "/api/player/bootstrap",
+                null,
+                cancellationToken);
+            CurrentPlayer = ToPlayer(response);
+            return CurrentPlayer;
+        }
+
+        public async UniTask<PlayerData> UpdatePlayerProfileAsync(
+            string nickname,
+            int? avatarId,
+            long expectedRevision,
+            CancellationToken cancellationToken = default)
+        {
+            PlayerDto response = await SendAuthenticatedAsync<PlayerDto>(
+                "PATCH",
+                "/api/player/profile",
+                new UpdatePlayerProfileRequest(nickname, avatarId, expectedRevision),
+                cancellationToken);
+            CurrentPlayer = ToPlayer(response);
+            return CurrentPlayer;
         }
 
         public async UniTask RefreshAsync(CancellationToken cancellationToken = default)
@@ -125,6 +146,7 @@ namespace AChen.Networking
             m_accessToken = null;
             m_refreshToken = null;
             CurrentUser = null;
+            CurrentPlayer = null;
         }
 
         async UniTask<AuthResponseDto> PostAuthAsync(
@@ -141,15 +163,33 @@ namespace AChen.Networking
             return Deserialize<AuthResponseDto>(json);
         }
 
-        async UniTask<T> GetAsync<T>(string path, string accessToken, CancellationToken cancellationToken)
+        async UniTask<T> SendAuthenticatedAsync<T>(
+            string method,
+            string path,
+            object body,
+            CancellationToken cancellationToken)
         {
-            string json = await SendAsync(
-                UnityWebRequest.kHttpVerbGET,
-                path,
-                null,
-                accessToken,
-                cancellationToken);
-            return Deserialize<T>(json);
+            EnsureAuthenticated();
+            try
+            {
+                return Deserialize<T>(await SendAsync(
+                    method,
+                    path,
+                    body,
+                    m_accessToken,
+                    cancellationToken));
+            }
+            catch (BackendApiException exception) when (
+                exception.StatusCode == 401 && !string.IsNullOrEmpty(m_refreshToken))
+            {
+                await RefreshAsync(cancellationToken);
+                return Deserialize<T>(await SendAsync(
+                    method,
+                    path,
+                    body,
+                    m_accessToken,
+                    cancellationToken));
+            }
         }
 
         async UniTask<string> SendAsync(
@@ -246,9 +286,15 @@ namespace AChen.Networking
                 throw new BackendApiException(0, "INVALID_RESPONSE", "Backend returned an incomplete auth response.");
             }
 
+            AuthUser user = ToUser(response.User);
+            if (CurrentUser == null || CurrentUser.Id != user.Id)
+            {
+                CurrentPlayer = null;
+            }
+
             m_accessToken = response.AccessToken;
             m_refreshToken = response.RefreshToken;
-            CurrentUser = ToUser(response.User);
+            CurrentUser = user;
         }
 
         void EnsureAuthenticated()
@@ -261,6 +307,16 @@ namespace AChen.Networking
 
         static AuthUser ToUser(UserDto user) =>
             new AuthUser(user.Id, user.Username, user.Email, user.CreatedAt);
+
+        static PlayerData ToPlayer(PlayerDto player) =>
+            new PlayerData(
+                player.Id,
+                player.Nickname,
+                player.AvatarId,
+                player.Gold,
+                player.Revision,
+                player.CreatedAt,
+                player.UpdatedAt);
 
         sealed class RegisterRequest
         {
@@ -298,6 +354,20 @@ namespace AChen.Networking
             }
         }
 
+        sealed class UpdatePlayerProfileRequest
+        {
+            public string Nickname { get; }
+            public int? AvatarId { get; }
+            public long ExpectedRevision { get; }
+
+            public UpdatePlayerProfileRequest(string nickname, int? avatarId, long expectedRevision)
+            {
+                Nickname = nickname;
+                AvatarId = avatarId;
+                ExpectedRevision = expectedRevision;
+            }
+        }
+
         [Preserve]
         sealed class AuthResponseDto
         {
@@ -317,6 +387,20 @@ namespace AChen.Networking
             public string Username { get; set; }
             public string Email { get; set; }
             public DateTimeOffset CreatedAt { get; set; }
+        }
+
+        [Preserve]
+        sealed class PlayerDto
+        {
+            public PlayerDto() { }
+
+            public Guid Id { get; set; }
+            public string Nickname { get; set; }
+            public int? AvatarId { get; set; }
+            public long Gold { get; set; }
+            public long Revision { get; set; }
+            public DateTimeOffset CreatedAt { get; set; }
+            public DateTimeOffset UpdatedAt { get; set; }
         }
 
         [Preserve]

@@ -11,6 +11,9 @@ public abstract class AUILayer<TScreen> : MonoBehaviour where TScreen : IUIScree
     /// <param name="screen">要显示的控制器</param>
     public abstract void ShowScreen(TScreen screen);
 
+    public abstract void ShowScreen<TProperties>(TScreen screen, TProperties properties)
+        where TProperties : IScreenProperties;
+
     /// <summary>隐藏界面。</summary>
     /// <param name="screen">要隐藏的控制器</param>
     public abstract void HideScreen(TScreen screen);
@@ -60,6 +63,17 @@ public abstract class AUILayer<TScreen> : MonoBehaviour where TScreen : IUIScree
         }
         else {
             Debug.LogError("[AUILayerController] Screen ID " + screenId + " not registered to this layer!");
+        }
+    }
+
+    public void ShowScreenById<TProperties>(string screenId, TProperties properties)
+        where TProperties : IScreenProperties {
+        TScreen ctl;
+        if (registeredScreens.TryGetValue(screenId, out ctl)) {
+            ShowScreen(ctl, properties);
+        }
+        else {
+            Debug.LogError("[AUILayerController] Screen ID " + screenId + " not registered!");
         }
     }
 

@@ -22,6 +22,10 @@ public class PanelUILayer : AUILayer<IPanelController> {
         screen.Show();
     }
 
+    public override void ShowScreen<TProperties>(IPanelController screen, TProperties properties) {
+        screen.Show(properties);
+    }
+
     public override void HideScreen(IPanelController screen) {
         if (screen.DestroyOnClose) {
             screen.Close();
