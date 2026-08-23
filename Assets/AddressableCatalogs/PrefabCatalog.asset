@@ -16,13 +16,20 @@ MonoBehaviour:
   - assetName: PreGameUIPanel
     reference:
       m_AssetGUID: 1eac6252ac922024d84a68f7ef795aa4
-      m_SubObjectName:
-      m_SubObjectType:
-      m_SubObjectGUID:
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
       m_EditorAssetChanged: 0
   - assetName: ShopWindows
     reference:
       m_AssetGUID: 8cf2a4b2edb255f4fa71d39756c20d9a
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: CardPackRowPrefab
+    reference:
+      m_AssetGUID: 2b02550ca37f9a54fb51b78685b53804
       m_SubObjectName: 
       m_SubObjectType: 
       m_SubObjectGUID: 

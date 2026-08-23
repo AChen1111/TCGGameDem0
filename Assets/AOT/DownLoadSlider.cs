@@ -17,4 +17,9 @@ public class DownLoadSlider : MonoBehaviour
         slider.value = progress;
         text.text = Mathf.RoundToInt(progress * 100f) + "%";
     }
+
+    public void SetError(string message)
+    {
+        text.text = string.IsNullOrWhiteSpace(message) ? "内容更新失败" : message;
+    }
 }

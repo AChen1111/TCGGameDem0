@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de840955f09b2324aaa3febe7afe6ed0
+    m_Address: Hall
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fc3ad0f45c5c2464abba97b174dc06b6
     m_Address: PreGameUI
     m_ReadOnly: 0

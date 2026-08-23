@@ -29,9 +29,12 @@ public abstract class AUIScreenController : MonoBehaviour, IUIScreenController
         get { return m_destroyOnClose; }
     }
 
+    //它所属的UIFrame
+    protected UIFrame m_UIFrame;
     protected virtual void Awake()
     {
         AddListeners();
+        m_UIFrame = GetComponentInParent<UIFrame>();//获取它所属的UIFrame
     }
 
     protected virtual void OnDestroy()

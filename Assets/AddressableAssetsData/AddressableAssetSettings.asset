@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 202ac5e51660ac6458ca419c2df30c0e
   m_currentHash:
     serializedVersion: 2
-    Hash: 7349a079dbe9119246aa575c3d51e903
+    Hash: cc6085c0d65d41233736b2f4374bab3e
   m_ExtractTypeTreeData: 0
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
@@ -66,7 +66,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f7fcb88f2ebe2af48871593b5160a4ce, type: 2}
   - {fileID: 11400000, guid: 761d4f5bb887d744998f40a36d837396, type: 2}
   - {fileID: 11400000, guid: a9ff526e3b21e274b8ea8b6b3bbc9cd0, type: 2}
-  - {fileID: 11400000, guid: 7a3a91f717112544598f10d8745815d5, type: 2}
   - {fileID: 11400000, guid: db37e8ec9969cc14890a5b3f8f333c4e, type: 2}
   - {fileID: 11400000, guid: 009fb027024fe5e4798edea15314f1be, type: 2}
   - {fileID: 11400000, guid: 75b269d49ad7edc4da222dd5181ad9a3, type: 2}
@@ -80,7 +79,7 @@ MonoBehaviour:
       m_ProfileName: Default
       m_Values:
       - m_Id: 5f639782c6cba704182251aae438feaa
-        m_Value: 'http://127.0.0.1:8000/[BuildTarget]'
+        m_Value: '{AChen.ContentBaseUrl}'
       - m_Id: 73bafb69a62064648950bb50ef44776b
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
       - m_Id: a7c0710791fd8454192e38c9db810860
@@ -111,6 +110,7 @@ MonoBehaviour:
     - default
     - PreGameUI
     - UI
+    - Scene
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 88bba1e31a6b8794794d4bbe4784c6cb, type: 2}

@@ -128,4 +128,5 @@ Assets/Scripts/LuaRaw/LuaPadDrafts/*.lua.meta
 /Backend/**/bin/
 /Backend/**/obj/
 /Backend/src/AChen.Backend.Api/Data/*.db*
+/Backend/src/AChen.Backend.Api/Data/content/
 /Backend/.env
