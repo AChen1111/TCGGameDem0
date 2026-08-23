@@ -54,7 +54,12 @@ public sealed class ContentReleasePublisherWindow : EditorWindow
             }
 
             EditorGUILayout.LabelField("渠道", Channel);
-            EditorGUILayout.LabelField("平台", ContentReleasePackageBuilder.PlatformName(EditorUserBuildSettings.activeBuildTarget));
+            string platform = ContentReleasePackageBuilder.TryPlatformName(
+                EditorUserBuildSettings.activeBuildTarget,
+                out string platformName)
+                ? platformName
+                : "不支持：" + EditorUserBuildSettings.activeBuildTarget;
+            EditorGUILayout.LabelField("平台", platform);
             EditorGUILayout.LabelField("App 版本", PlayerSettings.bundleVersion);
             m_ContentVersion = EditorGUILayout.TextField("内容版本（SemVer）", m_ContentVersion);
             EditorGUILayout.LabelField("备注");
@@ -328,20 +333,20 @@ public sealed class ContentReleasePublisherWindow : EditorWindow
     [Serializable]
     sealed class ReleaseResponse
     {
-        public string id;
+        public string id = string.Empty;
     }
 
     [Serializable]
     sealed class ActiveReleaseResponse
     {
-        public string releaseId;
+        public string releaseId = string.Empty;
     }
 
     [Serializable]
     sealed class ProblemDetails
     {
-        public string detail;
-        public string code;
+        public string detail = string.Empty;
+        public string code = string.Empty;
     }
 }
 
@@ -379,6 +384,20 @@ public static class ContentReleasePackageBuilder
                 return "iOS";
             default:
                 throw new NotSupportedException("内容发布不支持 BuildTarget：" + target);
+        }
+    }
+
+    public static bool TryPlatformName(BuildTarget target, out string platform)
+    {
+        try
+        {
+            platform = PlatformName(target);
+            return true;
+        }
+        catch (NotSupportedException)
+        {
+            platform = string.Empty;
+            return false;
         }
     }
 

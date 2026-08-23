@@ -15,6 +15,7 @@
 | [decisions/ADR-002-hybridclr-hotupdate-assembly.md](decisions/ADR-002-hybridclr-hotupdate-assembly.md) | 业务代码进 HotUpdate DLL |
 | [decisions/ADR-003-csharp-only-gameplay.md](decisions/ADR-003-csharp-only-gameplay.md) | 新代码一律 C#，不再新增 Lua |
 | [decisions/ADR-004-addressable-groups.md](decisions/ADR-004-addressable-groups.md) | Addressable 本地/远端 Group |
-| [decisions/ADR-005-local-cdn-update-detector.md](decisions/ADR-005-local-cdn-update-detector.md) | 本地 CDN 与更新检测 |
+| [decisions/ADR-005-local-cdn-update-detector.md](decisions/ADR-005-local-cdn-update-detector.md) | ~~本地 Python CDN~~（已被 ADR-008 取代） |
 | [decisions/ADR-006-hybridclr-6000.5.md](decisions/ADR-006-hybridclr-6000.5.md) | HybridCLR v8.14.1（Unity 6000.5） |
 | [decisions/ADR-007-archive-xlua.md](decisions/ADR-007-archive-xlua.md) | XLua / Lua 归档到 `Unused~/` |
+| [decisions/ADR-008-backend-content-delivery.md](decisions/ADR-008-backend-content-delivery.md) | ASP.NET 内容交付、不可变 Release 与回滚 |

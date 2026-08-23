@@ -18,17 +18,15 @@ Player 构建列表只留 `Bootstrap`。`Init` 由 `HotUpdateEntry` 按地址加
 
 加载：`AddressableLoader.LoadUISettings(AddressKeys.UISettings.PreGameSceneUI)`。右键 `AddToUISettingsSO` / `AddToPrefabSO` / `AddToSpriteSO` / `AddToSceneSO` 会把所在文件夹标进对应组，并写入 `AddressKeys`（HotUpdate）。
 
-## 本地模拟热更
+## 后端内容发布与热更
 
-决策见 [ADR-005](decisions/ADR-005-local-cdn-update-detector.md)。CDN 是 `ServerData/` 上的 Python `http.server`。
+现行决策见 [ADR-008](decisions/ADR-008-backend-content-delivery.md)。`ServerData/` 只是 Unity Addressables 的构建输出，不再由 Python 直接提供服务。
 
 ```
-Tools/HotUpdate/Build Addressables
-Tools/HotUpdate/Publish Code To Local CDN
-Tools/HotUpdate/Start Local CDN
+Tools/HotUpdate/Build And Publish Release
 ```
 
-或：`python tools/serve_cdn.py`
+窗口会构建 Addressables 和 HybridCLR DLL，生成 `release-manifest.json` 与 ZIP，上传到 ASP.NET Core 后端并切换 `development` 当前版本。发布密钥优先读取 `ACHEN_CONTENT_PUBLISH_KEY`，否则只保存在窗口内存。
 
-然后跑 `Bootstrap`。代码包走 `CodeUpdate`（AOT），AB 走 `UpdateDetector`（HotUpdate）。Play Mode 要选 **Use Existing Build** 才能真正下远程包。
+Player 先由 AOT `CodeUpdate` 查询同一个 Release 的清单、校验并加载 DLL，再由 HotUpdate `UpdateDetector` 注入 `{AChen.ContentBaseUrl}` 并更新 Catalog/AB。Editor 默认直接使用本地 HotUpdate 程序集和本地 Addressables；需要验证远端链路时，在启动场景的 `LoadDll` 上启用 `useRemoteContentInEditor`。
 

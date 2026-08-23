@@ -21,7 +21,7 @@ public class LoadDll : MonoBehaviour
 
     IEnumerator Start()
     {
-        DownLoadSlider bar = FindFirstObjectByType<DownLoadSlider>();
+        DownLoadSlider bar = FindAnyObjectByType<DownLoadSlider>();
         Assembly hotUpdate;
         Action<float> onAssets;
         string addressablesBaseUrl;
