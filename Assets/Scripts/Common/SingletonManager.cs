@@ -20,7 +20,7 @@ public class SingletonManager : PersistentMonoSingleton<SingletonManager>
         }
         if (!string.IsNullOrEmpty(m_sceneName))
         {
-            await AddressableLoader.Instance.LoadScene(m_sceneName);
+            await SceneLoader.LoadScene(m_sceneName);
         }
     }
 }

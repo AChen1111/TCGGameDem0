@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -65,16 +66,56 @@ public class AddressableLoader : PersistentMonoSingleton<AddressableLoader>
         return LoadAsset(m_uiSettingsCatalog, m_uiSettingsHandles, assetName);
     }
 
-    public async UniTask<SceneInstance> LoadScene(string assetName, LoadSceneMode loadMode = LoadSceneMode.Single)
+    public async UniTask<SceneInstance> LoadScene(
+        string assetName,
+        LoadSceneMode loadMode = LoadSceneMode.Single,
+        IProgress<float> progress = null)
     {
         if (m_sceneHandles.TryGetValue(assetName, out var existing) && existing.IsValid())
         {
-            return existing.Result;
+            try
+            {
+                // 同一场景可能仍在加载中，不能直接读取尚未完成的 Result。
+                SceneInstance cachedScene = await AwaitScene(existing, progress);
+                if (cachedScene.Scene.isLoaded)
+                {
+                    return cachedScene;
+                }
+            }
+            catch
+            {
+                m_sceneHandles.Remove(assetName);
+                if (existing.IsValid())
+                {
+                    Addressables.Release(existing);
+                }
+                throw;
+            }
+
+            Addressables.Release(existing);
+            m_sceneHandles.Remove(assetName);
         }
 
         var handle = Addressables.LoadSceneAsync(m_sceneCatalog.Get(assetName), loadMode);
         m_sceneHandles[assetName] = handle;
-        return await handle.Task;
+        try
+        {
+            SceneInstance scene = await AwaitScene(handle, progress);
+            if (loadMode == LoadSceneMode.Single)
+            {
+                ReleaseUnloadedSceneHandles(assetName);
+            }
+            return scene;
+        }
+        catch
+        {
+            m_sceneHandles.Remove(assetName);
+            if (handle.IsValid())
+            {
+                Addressables.Release(handle);
+            }
+            throw;
+        }
     }
 
     public void ReleaseSprite(string assetName)
@@ -97,7 +138,11 @@ public class AddressableLoader : PersistentMonoSingleton<AddressableLoader>
 
     public async UniTask UnloadScene(string assetName)
     {
-        var handle = m_sceneHandles[assetName];
+        if (!m_sceneHandles.TryGetValue(assetName, out var handle) || !handle.IsValid())
+        {
+            return;
+        }
+
         m_sceneHandles.Remove(assetName);
         await Addressables.UnloadSceneAsync(handle).Task;
     }
@@ -129,7 +174,7 @@ public class AddressableLoader : PersistentMonoSingleton<AddressableLoader>
         AddressableCatalog<TRef> catalog,
         Dictionary<string, AsyncOperationHandle<TAsset>> cache,
         string assetName)
-        where TAsset : Object
+        where TAsset : UnityEngine.Object
         where TRef : AssetReference
     {
         if (cache.TryGetValue(assetName, out var existing) && existing.IsValid())
@@ -140,6 +185,46 @@ public class AddressableLoader : PersistentMonoSingleton<AddressableLoader>
         var handle = Addressables.LoadAssetAsync<TAsset>(catalog.Get(assetName));
         cache[assetName] = handle;
         return await handle.Task;
+    }
+
+    static async UniTask<SceneInstance> AwaitScene(
+        AsyncOperationHandle<SceneInstance> handle,
+        IProgress<float> progress)
+    {
+        while (!handle.IsDone)
+        {
+            progress?.Report(handle.PercentComplete);
+            await UniTask.Yield();
+        }
+
+        SceneInstance scene = await handle.Task;
+        progress?.Report(1f);
+        return scene;
+    }
+
+    void ReleaseUnloadedSceneHandles(string loadedAssetName)
+    {
+        var staleNames = new List<string>();
+        foreach (var pair in m_sceneHandles)
+        {
+            if (pair.Key == loadedAssetName || !pair.Value.IsValid())
+            {
+                continue;
+            }
+
+            if (!pair.Value.IsDone || pair.Value.Result.Scene.isLoaded)
+            {
+                continue;
+            }
+
+            Addressables.Release(pair.Value);
+            staleNames.Add(pair.Key);
+        }
+
+        for (int i = 0; i < staleNames.Count; i++)
+        {
+            m_sceneHandles.Remove(staleNames[i]);
+        }
     }
 
     static void ReleaseAll<T>(Dictionary<string, AsyncOperationHandle<T>> handles)
