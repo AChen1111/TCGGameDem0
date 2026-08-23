@@ -2,6 +2,7 @@ public static class AddressKeys
 {
     public static class Prefab
     {
+        public static readonly string CardPackRowPrefab = "CardPackRowPrefab";
         public static readonly string PreGameUIPanel = "PreGameUIPanel";
         public static readonly string ShopWindows = "ShopWindows";
     }
@@ -14,6 +15,6 @@ public static class AddressKeys
     }
     public static class UISettings
     {
-        public static readonly string PreGameSceneUI = "PreGameSceneUI";
+        public static readonly string UISetting = "UISetting";
     }
 }

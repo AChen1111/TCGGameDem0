@@ -15,6 +15,13 @@ MonoBehaviour:
   m_entries:
   - assetName: PreGameSceneUI
     reference:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: UISetting
+    reference:
       m_AssetGUID: ab2954645dde0894080a6dbd109755f3
       m_SubObjectName: 
       m_SubObjectType: 

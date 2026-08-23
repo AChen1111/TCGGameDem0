@@ -18,7 +18,14 @@ MonoBehaviour:
   - m_GUID: 4749cc0693411f447b3b2270f088c77c
     m_Address: GameScene
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Scene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0692a28ccb2b7d4ab3958ee54d632f1
+    m_Address: Init
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scene
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3bb9cee06e4ec4b4e8f8af1c47ad2e29, type: 2}
