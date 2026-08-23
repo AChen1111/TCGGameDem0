@@ -14,7 +14,7 @@ Group 已写在 `Assets/AddressableAssetsData`。决策见 [ADR-004](decisions/A
 | Remote_Card | Remote | PackSeparately | 卡期文件夹 |
 | Remote_Scene | Remote | PackSeparately | `GameScene` 等业务场景 |
 
-Player 构建列表只留 `Bootstrap`。`Init` 由 `HotUpdateEntry` 按地址加载（此时还没有 `AddressableLoader`）。之后场景一律 `AddressableLoader.LoadScene(AddressKeys.Scene.*)`。右键 `AddToSceneSO` 写入 `SceneCatalog` 并放进 `Remote_Scene`。
+Player 构建列表只留 `Bootstrap`。`Init` 由 `HotUpdateEntry` 按地址加载（此时还没有 `AddressableLoader`）。之后场景一律 `SceneLoader.LoadScene(AddressKeys.Scene.*)`；`SceneLoader` 内部通过 `AddressableLoader` 完成实际加载，并统一处理并发、进度和事件。右键 `AddToSceneSO` 写入 `SceneCatalog` 并放进 `Remote_Scene`。
 
 加载：`AddressableLoader.LoadUISettings(AddressKeys.UISettings.PreGameSceneUI)`。右键 `AddToUISettingsSO` / `AddToPrefabSO` / `AddToSpriteSO` / `AddToSceneSO` 会把所在文件夹标进对应组，并写入 `AddressKeys`（HotUpdate）。
 
