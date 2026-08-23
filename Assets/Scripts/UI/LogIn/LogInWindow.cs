@@ -68,8 +68,11 @@ public class LogInWindow : AWindowController
         m_BtnOK.interactable = false;
         try
         {
-            await m_AuthClient.LoginAsync(logName, logPassWord);
-            m_UIFrame.OpenWindow(AddressKeys.Prefab.MessageWindow, new MessageWindowProperties("登录成功", 2f));
+            await m_AuthClient.LoginAsync(
+                logName,
+                logPassWord,
+                this.GetCancellationTokenOnDestroy());
+            await SceneLoader.LoadScene(AddressKeys.Scene.GameScene);
         }
         catch(BackendApiException ex)
         {
@@ -80,7 +83,10 @@ public class LogInWindow : AWindowController
         }
         finally
         {
-            m_BtnOK.interactable = true;
+            if (m_BtnOK != null)
+            {
+                m_BtnOK.interactable = true;
+            }
         }
     }
 

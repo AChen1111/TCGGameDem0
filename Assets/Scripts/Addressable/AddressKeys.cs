@@ -14,6 +14,7 @@ public static class AddressKeys
     public static class Scene
     {
         public static readonly string GameScene = "GameScene";
+        public static readonly string LogIn = "LogIn";
     }
     public static class UISettings
     {

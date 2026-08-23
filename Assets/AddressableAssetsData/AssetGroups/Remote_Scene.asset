@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Remote_Scene
   m_GUID: f19d628fb9409e442a05975ba8b02752
   m_SerializeEntries:
+  - m_GUID: 1d7c2e98732465743b5a99122af7893d
+    m_Address: LogIn
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4749cc0693411f447b3b2270f088c77c
     m_Address: GameScene
     m_ReadOnly: 0
