@@ -74,13 +74,24 @@ public class LogInWindow : AWindowController
         catch(BackendApiException ex)
         {
             ALog.LogError(ex.Message);
-            m_UIFrame.OpenWindow(AddressKeys.Prefab.MessageWindow, new MessageWindowProperties(ex.Message, 2f));
+            m_UIFrame.OpenWindow(
+                AddressKeys.Prefab.MessageWindow,
+                new MessageWindowProperties(GetLoginErrorMessage(ex.Code), 2f));
         }
         finally
         {
             m_BtnOK.interactable = true;
         }
     }
+
+    private static string GetLoginErrorMessage(string code) => code switch
+    {
+        "INVALID_CREDENTIALS" => "账号或密码错误",
+        "VALIDATION_ERROR" => "账号或密码格式不正确",
+        "NETWORK_ERROR" => "无法连接服务器，请检查网络",
+        "RATE_LIMITED" => "操作过于频繁，请稍后再试",
+        _ => "登录失败，请稍后再试"
+    };
 
     protected override void RemoveListeners()
     {
