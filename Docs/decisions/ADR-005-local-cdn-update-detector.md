@@ -1,7 +1,7 @@
 # ADR-005: 本地 CDN 与更新检测
 
 ## Status
-Accepted
+Superseded by [ADR-008](ADR-008-backend-content-delivery.md)
 
 ## Date
 2026-08-20
