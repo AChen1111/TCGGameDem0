@@ -1,0 +1,70 @@
+name: Refresh branch
+
+on:
+  workflow_call:
+    inputs:
+      build-host:
+        required: true
+        type: string    
+      target-branch:
+        required: true
+        type: string
+      source-branch:
+        required: true
+        type: string
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  packageRelease:
+    name: Refresh ${{ inputs.target-branch }} branch from ${{ inputs.source-branch }} branch
+    runs-on: ${{ inputs.build-host }}
+    steps:
+      - name: Script Version
+        run: |
+          echo "::group::Script Versioning"
+          $scriptVersion = "1.0.1"
+          echo "Build Script Version: $scriptVersion"
+          echo "::endgroup::"
+        shell: pwsh   
+      - name: Validate GIT_PAT
+        env:
+          GIT_PAT: ${{ secrets.GIT_PAT }}
+        shell: pwsh
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:GIT_PAT)) {
+            Write-Error "GIT_PAT secret is empty or not set. Add a valid Personal Access Token to the repository/org secrets and re-run."
+            exit 1
+          }
+          $headers = @{
+            Authorization = "Bearer $env:GIT_PAT"
+            "User-Agent"  = "uiextensions-release-preflight"
+            Accept        = "application/vnd.github+json"
+          }
+          try {
+            $repo = Invoke-RestMethod -Uri "https://api.github.com/repos/$env:GITHUB_REPOSITORY" -Headers $headers -ErrorAction Stop
+          }
+          catch {
+            $code = if ($_.Exception.Response) { [int]$_.Exception.Response.StatusCode } else { "unknown" }
+            Write-Error "GIT_PAT was rejected by GitHub (HTTP $code). It is likely expired, revoked, or lacks access to $env:GITHUB_REPOSITORY. Regenerate the token and update the GIT_PAT secret. Details: $($_.Exception.Message)"
+            exit 1
+          }
+          if ($null -ne $repo.permissions -and -not $repo.permissions.push) {
+            Write-Error "GIT_PAT authenticated but does not have push access to $env:GITHUB_REPOSITORY. Grant 'repo' (classic PAT) or Contents: read & write (fine-grained PAT)."
+            exit 1
+          }
+          Write-Host "GIT_PAT validated: authenticated with push access to $env:GITHUB_REPOSITORY."
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.target-branch }}
+          clean: true
+          token: ${{ secrets.GIT_PAT }}
+      - name: Refresh from Source Branch
+        run: |
+          git pull origin ${{ inputs.source-branch }}
+          git commit -m "Branch ${{ inputs.target-branch }} updated with changes from ${{ inputs.source-branch }} [skip ci]"
+          git push origin ${{ inputs.target-branch }}
+          echo "Branch ${{ inputs.target-branch }} updated with changes from ${{ inputs.source-branch }}"
+        shell: pwsh
