@@ -10,6 +10,8 @@ public static class AddressKeys
     }
     public static class Sprite
     {
+        public static readonly string w_01_Down = "w_01_Down";
+        public static readonly string w_01_Sprite = "w_01_Sprite";
     }
     public static class Scene
     {
