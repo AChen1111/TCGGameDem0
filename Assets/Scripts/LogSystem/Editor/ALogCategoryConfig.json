@@ -3,6 +3,10 @@
         {
             "DisplayName": "网络",
             "VariableName": "Net"
+        },
+        {
+            "DisplayName": "事件",
+            "VariableName": "Event"
         }
     ]
 }

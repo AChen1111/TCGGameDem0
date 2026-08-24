@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using AChen.Events;
 
 namespace AChen.Networking
 {
@@ -54,6 +55,7 @@ namespace AChen.Networking
             m_serverTimeReceivedAtUtc = receivedAtUtc;
             IsStale = isStale;
             ConfigChanged?.Invoke(snapshot);
+            EventCenter.Dispatch(GameEvent.GameConfigChanged, snapshot, isStale);
         }
 
         public void MarkChecked(DateTimeOffset serverTime, DateTimeOffset receivedAtUtc)

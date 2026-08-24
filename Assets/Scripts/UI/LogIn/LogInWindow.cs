@@ -17,7 +17,6 @@ public class LogInWindow : AWindowController
     // --tag_end: 自动生成--
     [SerializeField] private CanvasGroup m_CanvasGroup;
     private BackendConfig m_BackendConfig = new();
-    private AuthClient m_AuthClient = new();
     //用于取消上一次输入反馈动画
     private MotionHandle m_nameInputMotion;
     private MotionHandle m_passwordInputMotion;
@@ -68,7 +67,7 @@ public class LogInWindow : AWindowController
         m_BtnOK.interactable = false;
         try
         {
-            await m_AuthClient.LoginAsync(
+            await PlayerSession.Instance.LoginAsync(
                 logName,
                 logPassWord,
                 this.GetCancellationTokenOnDestroy());

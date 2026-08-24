@@ -5,6 +5,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using AChen.Events;
 using UnityEngine.Scripting;
 using UnityEngine.Networking;
 
@@ -41,7 +42,7 @@ namespace AChen.Networking
                 "/api/auth/register",
                 new RegisterRequest(username, email, password),
                 cancellationToken);
-            SetSession(response);
+            SetSession(response, GameEvent.PlayerRegistered);
             return CurrentUser;
         }
 
@@ -54,7 +55,7 @@ namespace AChen.Networking
                 "/api/auth/login",
                 new LoginRequest(identifier, password),
                 cancellationToken);
-            SetSession(response);
+            SetSession(response, GameEvent.PlayerLoggedIn);
             return CurrentUser;
         }
 
@@ -76,7 +77,7 @@ namespace AChen.Networking
                 "/api/player/bootstrap",
                 null,
                 cancellationToken);
-            CurrentPlayer = ToPlayer(response);
+            SetCurrentPlayer(ToPlayer(response));
             return CurrentPlayer;
         }
 
@@ -91,7 +92,7 @@ namespace AChen.Networking
                 "/api/player/profile",
                 new UpdatePlayerProfileRequest(nickname, avatarId, expectedRevision),
                 cancellationToken);
-            CurrentPlayer = ToPlayer(response);
+            SetCurrentPlayer(ToPlayer(response));
             return CurrentPlayer;
         }
 
@@ -108,7 +109,7 @@ namespace AChen.Networking
                     "/api/auth/refresh",
                     new RefreshRequest(m_refreshToken),
                     cancellationToken);
-                SetSession(response);
+                SetSession(response, GameEvent.PlayerTokenRefreshed);
             }
             catch (BackendApiException exception) when (exception.StatusCode == 401)
             {
@@ -143,10 +144,15 @@ namespace AChen.Networking
 
         public void ClearSession()
         {
+            AuthUser previousUser = CurrentUser;
             m_accessToken = null;
             m_refreshToken = null;
             CurrentUser = null;
             CurrentPlayer = null;
+            if (previousUser != null)
+            {
+                EventCenter.Dispatch(GameEvent.PlayerLoggedOut, previousUser);
+            }
         }
 
         async UniTask<AuthResponseDto> PostAuthAsync(
@@ -277,11 +283,12 @@ namespace AChen.Networking
             return new BackendApiException(request.responseCode, "HTTP_ERROR", "Backend request failed.");
         }
 
-        void SetSession(AuthResponseDto response)
+        void SetSession(AuthResponseDto response, string eventName)
         {
             if (string.IsNullOrEmpty(response.AccessToken) ||
                 string.IsNullOrEmpty(response.RefreshToken) ||
-                response.User == null)
+                response.User == null ||
+                response.Player == null)
             {
                 throw new BackendApiException(0, "INVALID_RESPONSE", "Backend returned an incomplete auth response.");
             }
@@ -295,6 +302,14 @@ namespace AChen.Networking
             m_accessToken = response.AccessToken;
             m_refreshToken = response.RefreshToken;
             CurrentUser = user;
+            SetCurrentPlayer(ToPlayer(response.Player));
+            EventCenter.Dispatch(eventName, CurrentUser, CurrentPlayer);
+        }
+
+        void SetCurrentPlayer(PlayerData player)
+        {
+            CurrentPlayer = player;
+            EventCenter.Dispatch(GameEvent.PlayerDataChanged, player);
         }
 
         void EnsureAuthenticated()
@@ -376,6 +391,7 @@ namespace AChen.Networking
             public string AccessToken { get; set; }
             public string RefreshToken { get; set; }
             public UserDto User { get; set; }
+            public PlayerDto Player { get; set; }
         }
 
         [Preserve]
@@ -412,5 +428,43 @@ namespace AChen.Networking
             public string Code { get; set; }
             public Dictionary<string, string[]> Errors { get; set; }
         }
+    }
+
+    /// <summary>
+    /// 跨场景保留当前登录会话及服务端下发的玩家数据。
+    /// </summary>
+    public sealed class PlayerSession : PersistentMonoSingleton<PlayerSession>
+    {
+        readonly AuthClient m_authClient = new();
+
+        public bool IsAuthenticated => m_authClient.IsAuthenticated;
+        public AuthUser CurrentUser => m_authClient.CurrentUser;
+        public PlayerData CurrentPlayer => m_authClient.CurrentPlayer;
+
+        public UniTask<AuthUser> LoginAsync(
+            string identifier,
+            string password,
+            CancellationToken cancellationToken = default) =>
+            m_authClient.LoginAsync(identifier, password, cancellationToken);
+
+        public UniTask<PlayerData> RefreshPlayerAsync(
+            CancellationToken cancellationToken = default) =>
+            m_authClient.GetPlayerAsync(cancellationToken);
+
+        public UniTask<PlayerData> UpdatePlayerProfileAsync(
+            string nickname,
+            int? avatarId,
+            long expectedRevision,
+            CancellationToken cancellationToken = default) =>
+            m_authClient.UpdatePlayerProfileAsync(
+                nickname,
+                avatarId,
+                expectedRevision,
+                cancellationToken);
+
+        public UniTask LogoutAsync(CancellationToken cancellationToken = default) =>
+            m_authClient.LogoutAsync(cancellationToken);
+
+        public void ClearSession() => m_authClient.ClearSession();
     }
 }
