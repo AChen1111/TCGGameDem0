@@ -2,4 +2,5 @@
 public static class ALogCategories
 {
     public const string Net = "网络";
+    public const string Event = "事件";
 }
