@@ -12,4 +12,235 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2231fb959cc944daac35c3a4070cef, type: 3}
   m_Name: SpriteCatalog
   m_EditorClassIdentifier: Assembly-CSharp::SpriteAddressableCatalog
-  m_entries: []
+  m_entries:
+  - assetName: w_00_Sprite
+    reference:
+      m_AssetGUID: 0fe46806b7e6f4f4b9ef2623249f15e1
+      m_SubObjectName: w_00_Sprite
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_00_Down
+    reference:
+      m_AssetGUID: 7781847d2ed6bb345b2cebb23fc42ea8
+      m_SubObjectName: w_00_Down
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: c_00
+    reference:
+      m_AssetGUID: 16a30a304009ddd439f32958f199a8c8
+      m_SubObjectName: c_00
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_01_Down
+    reference:
+      m_AssetGUID: 7f4658121dfc1bc4393ea95b718f44bc
+      m_SubObjectName: w_01_Down
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_01_Sprite
+    reference:
+      m_AssetGUID: 3a7a2a92962d1b645ac8497b648d0caa
+      m_SubObjectName: w_01_Sprite
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: c_01
+    reference:
+      m_AssetGUID: dc9adff1290585746b1edb172cc8ca25
+      m_SubObjectName: c_01
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_02_Down
+    reference:
+      m_AssetGUID: 5fd1d909f7e934d4eb3bec9d278616a2
+      m_SubObjectName: w_02_Down
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_02_Sprite
+    reference:
+      m_AssetGUID: 528c97c990fd13d4cae1d3834517ae3d
+      m_SubObjectName: w_02_Sprite
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: c_02
+    reference:
+      m_AssetGUID: 6ded9e36fcc6f2346be855b0e04d0f8f
+      m_SubObjectName: c_02
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_03_Down
+    reference:
+      m_AssetGUID: 157e7405227b0d4449ca9026b7959971
+      m_SubObjectName: w_03_Down
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_03_Sprite
+    reference:
+      m_AssetGUID: 26f639d018d19a447a62296607080bd5
+      m_SubObjectName: w_03_Sprite
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: c_03
+    reference:
+      m_AssetGUID: 2e10a6760ddc6ab44a400d8d74f9289d
+      m_SubObjectName: c_03
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_04_Down
+    reference:
+      m_AssetGUID: cf37ff873f593c949a3bffe6773ac429
+      m_SubObjectName: w_04_Down
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_04_Sprite
+    reference:
+      m_AssetGUID: 60da9380ababc7f418b00107ee894e03
+      m_SubObjectName: w_04_Sprite
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: c_04
+    reference:
+      m_AssetGUID: 16e8e5ebfa2193b49a6adb0da02bdaf7
+      m_SubObjectName: c_04
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_05_Down
+    reference:
+      m_AssetGUID: aab785f3694ec844eacd79380faa0031
+      m_SubObjectName: w_05_Down
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_05_Sprite
+    reference:
+      m_AssetGUID: 9e89bffdf08be294ab6fe563d429b3f6
+      m_SubObjectName: w_05_Sprite
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: c_05
+    reference:
+      m_AssetGUID: 2f5031d638a193e4eac49eb0191f2451
+      m_SubObjectName: c_05
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_06_Down
+    reference:
+      m_AssetGUID: 5cfc9162b18451c4aa146c1446f0ecc1
+      m_SubObjectName: w_06_Down
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_06_Sprite
+    reference:
+      m_AssetGUID: 4aa6d5b2422399741a6bab6e32b5d725
+      m_SubObjectName: w_06_Sprite
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: c_06
+    reference:
+      m_AssetGUID: ba0a637cf3892334bacd5fd989ac0a06
+      m_SubObjectName: c_06
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_07_Down
+    reference:
+      m_AssetGUID: 7b884e960fd8d794e8477bfc6deaf5d4
+      m_SubObjectName: w_07_Down
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_07_Sprite
+    reference:
+      m_AssetGUID: f6858a14c874f3949a02a7c94ebec10b
+      m_SubObjectName: w_07_Sprite
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: c_07
+    reference:
+      m_AssetGUID: d370887fbfd01fe4db760e0c8c01377f
+      m_SubObjectName: c_07
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_08_Down
+    reference:
+      m_AssetGUID: 394713d14a5f0db4b9ddec48dd2bb201
+      m_SubObjectName: w_08_Down
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_08_Sprite
+    reference:
+      m_AssetGUID: 814137936f43b364eaa6752a4ab60914
+      m_SubObjectName: w_08_Sprite
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: c_08
+    reference:
+      m_AssetGUID: df3d4d8bf2244874c9ca697de60da2bd
+      m_SubObjectName: c_08
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_09_Down
+    reference:
+      m_AssetGUID: a9f2c2d053f37f64fb74270d880b50db
+      m_SubObjectName: w_09_Down
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_09_Sprite
+    reference:
+      m_AssetGUID: 810179368b8485146b68346cf611e5a7
+      m_SubObjectName: w_09_Sprite
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: c_09
+    reference:
+      m_AssetGUID: c13712578a0cfed4bb561cd6275f59a5
+      m_SubObjectName: c_09
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_10_Down
+    reference:
+      m_AssetGUID: afb61ca187252dd4bb3790bebf779d20
+      m_SubObjectName: w_10_Down
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: w_10_Sprite
+    reference:
+      m_AssetGUID: 799213602d5e0154b8c7044c3867c183
+      m_SubObjectName: w_10_Sprite
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: c_10
+    reference:
+      m_AssetGUID: a3fde281a30943f41bcfb5274ad5e7cb
+      m_SubObjectName: c_10
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
