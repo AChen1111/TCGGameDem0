@@ -15,10 +15,17 @@ MonoBehaviour:
   m_GroupName: Remote_Card
   m_GUID: e3d7b92d591d06e46bf53a5c679c86e3
   m_SerializeEntries:
-  - m_GUID: 1ad32507efe261d448a93303f7850caf
-    m_Address: 01
+  - m_GUID: 3202e95fff771e4458f474c1e9337f0e
+    m_Address: Assets/MasterDuel/CardShopItem
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - CardDeckShop
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8038889c447c4b8439b6fe36339b47b7
+    m_Address: Assets/MasterDuel/Wallpaper
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - wallpaper
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3bb9cee06e4ec4b4e8f8af1c47ad2e29, type: 2}
