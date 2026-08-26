@@ -93,6 +93,9 @@ ignore.conf
 # Unity Pipeline / local tooling caches (if any)
 *.pipeline.cache
 
+# Local Unity offline documentation
+/.doc/unity-official-6000.5.2f1/
+
 # HybridCLR local il2cpp / generated dlls (machine-specific)
 /HybridCLRData/
 /Assets/StreamingAssets/HybridCLR/

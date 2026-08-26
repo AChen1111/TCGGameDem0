@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 /// <summary>
 /// 分类日志控制台(UI Toolkit):左侧按分类过滤,中间日志列表,下方详情与堆栈。
-/// 堆栈行点击可跳转源码(Lua/C#均可),「调用堆栈图」按钮打开可视化调用链。
+/// 堆栈行点击可跳转 C# 源码,「调用堆栈图」按钮打开可视化调用链。
 /// </summary>
 public class ALogConsoleWindow : EditorWindow
 {
@@ -31,7 +31,6 @@ public class ALogConsoleWindow : EditorWindow
     [InitializeOnLoadMethod]
     private static void HookEditorLogs() {
         ALog.Init();
-        ALogCategoryConfig.RegisterAll(ALogCategoryConfig.Load());
     }
 
     [MenuItem("Window/AChen/日志控制台")]
@@ -60,7 +59,6 @@ public class ALogConsoleWindow : EditorWindow
             ApplySelectNone(m_checkedIds);
             m_entryList.RefreshItems();
         };
-        rootVisualElement.Q<Button>("config-category-button").clicked += ALogCategoryConfigWindow.Open;
         rootVisualElement.Q<Button>("graph-button").clicked += () => ALogStackGraphWindow.Show(m_selected);
         rootVisualElement.Q<Button>("copy-button").clicked += CopySelected;
 

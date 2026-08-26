@@ -65,7 +65,7 @@ public class ALogConsoleRowTests
             Message = "SocketException: reset",
             Frames = new List<ALogFrame> {
                 new ALogFrame { Signature = "Socket.Send", FilePath = null, Line = 0 },
-                new ALogFrame { Signature = "Foo.Bar", FilePath = "a.lua", Line = 12 },
+                new ALogFrame { Signature = "Foo.Bar", FilePath = "Foo.cs", Line = 12 },
             },
         };
 
@@ -73,7 +73,7 @@ public class ALogConsoleRowTests
 
         Assert.That(text, Does.Contain("[Unity_Native] SocketException: reset"));
         Assert.That(text, Does.Contain("Socket.Send    <no source>"));
-        Assert.That(text, Does.Contain("Foo.Bar    a.lua:12"));
+        Assert.That(text, Does.Contain("Foo.Bar    Foo.cs:12"));
     }
 
     [Test]
@@ -83,12 +83,12 @@ public class ALogConsoleRowTests
 
     [Test]
     public void FormatCopyText_MultipleEntries_JoinsWithBlankLine() {
-        var a = new ALogEntry { Category = "Lua", Message = "one" };
+        var a = new ALogEntry { Category = "Network", Message = "one" };
         var b = new ALogEntry { Category = "UI", Message = "two" };
 
         string text = ALogConsoleWindow.FormatCopyText(new[] { a, b });
 
-        Assert.That(text, Does.Contain("[Lua] one"));
+        Assert.That(text, Does.Contain("[Network] one"));
         Assert.That(text, Does.Contain("[UI] two"));
         Assert.That(text, Does.Contain("\n\n"));
     }
@@ -127,7 +127,7 @@ public class ALogConsoleRowTests
     static ALogEntry Entry(ALogLevel level) {
         return new ALogEntry {
             Level = level,
-            Category = "Lua",
+            Category = "Network",
             Message = "msg",
         };
     }

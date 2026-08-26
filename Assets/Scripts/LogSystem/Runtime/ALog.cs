@@ -6,20 +6,19 @@ using Debug = UnityEngine.Debug;
 
 /// <summary>
 /// 分类日志系统的运行时核心:收集日志、按分类归档、解析调用堆栈。
-/// C#侧用 ALog.Log / LogWarning / LogError,Lua侧用 Log.lua(最终走 ALog.LuaWrite)。
+/// 使用 ALog.Log / LogWarning / LogError 写入日志。
 /// Unity原生的 Debug.LogXXX 与未处理异常会被捕获并归入 Unity_Native 分类。
 /// Editor侧的控制台窗口通过 OnEntryAdded / OnCleared 订阅数据。
 /// </summary>
 public static class ALog
 {
     public const string CategoryNative = "Unity_Native";
-    public const string CategoryLua = "Lua";
     public const string CategoryDefault = "Default";
 
     private const int Capacity = 5000;
 
     private static readonly List<ALogEntry> s_entries = new List<ALogEntry>();
-    private static readonly SortedSet<string> s_categories = new SortedSet<string> { CategoryNative, CategoryLua, CategoryDefault };
+    private static readonly SortedSet<string> s_categories = new SortedSet<string> { CategoryNative, CategoryDefault };
     private static int s_nextId;
     private static bool s_hooked;
     //转发到Unity Console时防止被原生监听重复收录
@@ -77,30 +76,9 @@ public static class ALog
         Write(ALogLevel.Error, category, message, CaptureCSharpStack());
     }
 
-    /// <summary>Lua侧入口:traceback为debug.traceback的原文</summary>
-    public static void LuaWrite(int level, string category, string message, string traceback) {
-        if (!Enabled)
-        {
-            return;
-        }
-        var entry = NewEntry((ALogLevel)level, string.IsNullOrEmpty(category) ? CategoryLua : category, message, traceback);
-        entry.Frames = ALogStackParser.ParseLua(traceback);
-        Add(entry);
-        //转发到Unity Console,message里带上lua位置,保证原有的双击跳转仍然可用
-        Forward(entry.Level, $"[{entry.Category}] {message}\n{traceback}");
-    }
-
     public static void Clear() {
         s_entries.Clear();
         OnCleared?.Invoke();
-    }
-
-    /// <summary>预注册分类(配置里的显示名),让控制台左侧在尚未打日志时也能看到勾选项</summary>
-    public static void RegisterCategory(string category) {
-        if (!string.IsNullOrEmpty(category))
-        {
-            s_categories.Add(category);
-        }
     }
 
     private static void Write(ALogLevel level, string category, string message, string stackTrace) {

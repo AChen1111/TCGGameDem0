@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-/// <summary>把栈帧定位到源码:C#走Unity的OpenAsset,Lua不是Unity资源,直接调外部编辑器打开</summary>
+/// <summary>把栈帧定位到 C# 源码。</summary>
 public static class ALogSourceJump
 {
     public static void Open(ALogFrame frame) {
@@ -13,7 +13,7 @@ public static class ALogSourceJump
         }
 
         string path = frame.FilePath.Replace('\\', '/');
-        if (!frame.IsLua && path.StartsWith("Assets/"))
+        if (path.StartsWith("Assets/"))
         {
             var asset = AssetDatabase.LoadAssetAtPath<Object>(path);
             if (asset != null)
