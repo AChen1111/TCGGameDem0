@@ -355,7 +355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SingletonManager
   m_singletons:
   - {fileID: 72525289}
-  m_sceneName: LogIn
+  m_sceneName: GameScene
 --- !u!4 &1371030319
 Transform:
   m_ObjectHideFlags: 0
