@@ -9,7 +9,6 @@ public static class HotUpdateEntry
 
     public static void Boot(Action<float> onProgress, string addressablesBaseUrl, Action<string> onError)
     {
-        ALog.Init();
         BootAsync(onProgress, addressablesBaseUrl, onError).Forget();
     }
 

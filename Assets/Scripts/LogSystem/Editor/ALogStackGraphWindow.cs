@@ -1,22 +1,27 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-/// <summary>展示单条日志调用堆栈的可视化窗口,由日志控制台的「调用堆栈图」按钮打开</summary>
+/// <summary>展示单条日志调用堆栈的可视化窗口,由内置 Console 工具栏的「堆栈图」按钮打开</summary>
 public class ALogStackGraphWindow : EditorWindow
 {
-    private ALogEntry m_entry;
+    public const string StyleSheetPath = "Assets/Scripts/LogSystem/Editor/ALogStackGraph.uss";
+
+    private string m_title;
+    private List<ALogFrame> m_frames;
     private ALogStackGraph m_graph;
 
-    public static void Show(ALogEntry entry) {
+    public static void Show(string title, List<ALogFrame> frames) {
         var window = GetWindow<ALogStackGraphWindow>(true, "调用堆栈图");
         window.minSize = new Vector2(540f, 420f);
-        window.m_entry = entry;
+        window.m_title = title;
+        window.m_frames = frames;
         window.Rebuild();
     }
 
     private void CreateGUI() {
-        var style = AssetDatabase.LoadAssetAtPath<StyleSheet>(ALogConsoleWindow.StyleSheetPath);
+        var style = AssetDatabase.LoadAssetAtPath<StyleSheet>(StyleSheetPath);
         if (style != null)
         {
             rootVisualElement.styleSheets.Add(style);
@@ -43,7 +48,7 @@ public class ALogStackGraphWindow : EditorWindow
             return;
         }
         var header = rootVisualElement.Q<Label>("graph-header");
-        header.text = m_entry == null ? "未选择日志" : $"[{m_entry.Category}] {m_entry.Message}";
-        m_graph.SetFrames(m_entry?.Frames);
+        header.text = string.IsNullOrEmpty(m_title) ? "未选择日志" : m_title;
+        m_graph.SetFrames(m_frames);
     }
 }

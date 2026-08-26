@@ -56,7 +56,7 @@ unity command --proxy-disable --project-path <project> create_gameobject --name 
 | `editor_play` / `editor_stop` / `editor_pause` | Play mode | — |
 | `recompile` | Force script compile | `--focus` |
 | `recompile_status` | Poll compile | — |
-| `run_tests` | Run tests | `--mode` (`all`/`editor`/`playmode`), `--filter`, `--async_tests` |
+| `run_tests` | Run tests — sync by default, blocks all other commands. Always `--filter`; use `--async_tests` for full suites | `--mode` (`all`/`editor`/`playmode`), `--filter`, `--async_tests` |
 | `test_status` / `cancel_tests` | Poll / abort tests | — |
 | `list_tests` | List tests | `--mode` |
 | `get_console_logs` | Console buffer | `--severity`, `--limit` |
@@ -77,4 +77,5 @@ unity command --proxy-disable --project-path <project> create_gameobject --name 
 
 - Destructive commands often require `--confirm true`; use `--dry_run` when available.
 - Scene/GO mutations blocked during Play mode.
-- Async flows: trigger once, then poll `*_status` until done.
+- Async flows: trigger once, then poll `*_status` until done. A CLI timeout never cancels the
+  Editor-side run — re-issuing the same command stacks a second run and can wedge the Editor.

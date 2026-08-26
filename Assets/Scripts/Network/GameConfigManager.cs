@@ -70,7 +70,7 @@ namespace AChen.Networking
                         throw;
                     }
 
-                    ALog.LogWarning("后端配置同步失败，继续使用本地最后可用版本：" + exception.Message, "Network");
+                    ALog.LogWarning("后端配置同步失败，继续使用本地最后可用版本：" + exception.Message, ALogCategories.Net);
                 }
             }
             finally
@@ -150,7 +150,7 @@ namespace AChen.Networking
             catch (Exception exception)
             {
                 LastError = exception.Message;
-                ALog.LogError("后端配置初始化失败：" + exception.Message, "Network");
+                ALog.LogError("后端配置初始化失败：" + exception.Message, ALogCategories.Net);
                 IsDone = true;
             }
         }
@@ -173,7 +173,7 @@ namespace AChen.Networking
             {
                 LastError = exception.Message;
                 m_store.MarkStale();
-                ALog.LogWarning("恢复前台时配置同步失败：" + exception.Message, "Network");
+                ALog.LogWarning("恢复前台时配置同步失败：" + exception.Message, ALogCategories.Net);
             }
         }
     }

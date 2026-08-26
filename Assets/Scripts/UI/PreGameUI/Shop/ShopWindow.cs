@@ -74,7 +74,7 @@ public class ShopWindow : AWindowController
                 {
                     ALog.LogWarning(
                         $"卡包 {config.Id} 封面加载失败：{config.CoverResourceKey}，{exception.Message}",
-                        "UI");
+                        ALogCategories.UI);
                 }
 
                 if (generation != m_RefreshGeneration || cancellationToken.IsCancellationRequested)
@@ -109,7 +109,7 @@ public class ShopWindow : AWindowController
         }
         catch (Exception exception)
         {
-            ALog.LogError("商店配置刷新失败：" + exception.Message, "UI");
+            ALog.LogError("商店配置刷新失败：" + exception.Message, ALogCategories.UI);
         }
     }
 
