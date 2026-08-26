@@ -1,0 +1,45 @@
+.stack-graph-root {
+    flex-grow: 1;
+}
+
+.stack-graph-header {
+    padding: 6px 10px;
+    white-space: normal;
+    -unity-font-style: bold;
+    background-color: rgb(56, 56, 56);
+}
+
+.stack-graph-empty {
+    -unity-text-align: middle-center;
+    margin-top: 40px;
+    color: rgb(140, 140, 140);
+}
+
+.stack-node {
+    justify-content: center;
+    padding: 6px 10px;
+    border-width: 1px;
+    border-color: rgb(90, 100, 115);
+    border-radius: 6px;
+    background-color: rgb(60, 63, 70);
+}
+
+.stack-node--leaf {
+    border-color: rgb(200, 110, 105);
+    background-color: rgb(74, 58, 58);
+}
+
+.stack-node--clickable:hover {
+    background-color: rgb(78, 86, 100);
+}
+
+.stack-node__title {
+    -unity-font-style: bold;
+    overflow: hidden;
+}
+
+.stack-node__location {
+    color: rgb(150, 170, 200);
+    font-size: 11px;
+    overflow: hidden;
+}

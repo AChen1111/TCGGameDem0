@@ -40,8 +40,10 @@ unity command --proxy-disable --project-path "%PROJECT%"
 If `Server Reachable=false`:
 
 1. Confirm Editor is focused on this project and finished compiling
-2. In Editor: **Pipeline → Start Server**
-3. Descriptor file: `Library/Pipeline/.unity-pipeline-port` (port range `7800`–`7849`)
+2. Check nothing is hogging the main thread — a long `run_tests` or a modal dialog (Editor not
+   started with `-automated`) blocks every command until it clears. See [Running tests](#running-tests-read-before-calling-run_tests).
+3. In Editor: **Pipeline → Start Server**
+4. Descriptor file: `Library/Pipeline/.unity-pipeline-port` (port range `7800`–`7849`)
 
 ## Standard invocation
 
@@ -67,6 +69,9 @@ Primitives: `cube`, `sphere`, `capsule`, `cylinder`, `plane`, `quad`. Objects ar
 
 ### Edit → recompile → test
 
+Simple, low-risk edits: recompile and check console errors; **do not** run tests.
+Run tests only for new features or large / high-risk changes, and then only with `--filter`.
+
 ```bash
 unity command --proxy-disable --project-path "%PROJECT%" set_autotick --enable true
 # Edit C# on disk, then:
@@ -77,6 +82,35 @@ unity command --proxy-disable --project-path "%PROJECT%" run_tests --mode editor
 ```
 
 Always enable `set_autotick` before headless compile/test work (unfocused Editor otherwise stalls).
+
+### Running tests (read before calling `run_tests`)
+
+Skip `run_tests` unless the change is a new feature or otherwise large / high-risk.
+
+`run_tests` is synchronous and `MainThreadRequired`: it holds the HTTP request open until the run
+finishes, and the Editor main thread is busy the whole time, so **every other Pipeline command
+queues behind it**.
+
+- **Always pass `--filter` in verification loops.** A bare `run_tests --mode editor` runs the whole
+  suite (hundreds of tests here) and never returns within the CLI's 30 s transport timeout.
+- **A CLI timeout does not cancel the run** — the Editor keeps going. Do *not* re-issue `run_tests`
+  after a timeout. Concurrent runs wedge `TestRunnerApi`, leaving `Server Reachable=false` with only
+  an Editor restart to recover (`cancel_tests` can no longer get through either).
+- **Full suites go through async mode**, same trigger-then-poll shape as `recompile`:
+
+```bash
+unity command --proxy-disable --project-path "%PROJECT%" run_tests --mode editor --async_tests
+unity command --proxy-disable --project-path "%PROJECT%" test_status    # poll until done
+unity command --proxy-disable --project-path "%PROJECT%" cancel_tests   # abort a stuck run
+```
+
+- `run_tests --timeout` is the in-Editor execution budget (default 300 s), **not** the transport
+  timeout. Raising it does not stop the CLI from giving up at 30 s.
+- `--filter` is a case-insensitive substring match, so `--filter ALog` also pulls in
+  `AddressableCatalogTests` (it contains "alog"). Use the full fixture name when the pass/fail
+  tally has to be exact.
+- PlayMode tests can't run synchronously at all (entering play mode triggers a domain reload that
+  drops the request) — `--async_tests` is mandatory there.
 
 ### Verify
 

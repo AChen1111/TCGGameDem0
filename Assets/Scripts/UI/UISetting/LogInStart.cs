@@ -11,7 +11,7 @@ public class LogInStart : MonoBehaviour
             AddressKeys.UISettings.LogInSetting);
         if (loginSettings == null)
         {
-            ALog.LogError("LogInSetting is null", "UI");
+            ALog.LogError("LogInSetting is null", ALogCategories.UI);
             return;
         }
 
