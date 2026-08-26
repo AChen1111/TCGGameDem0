@@ -14,7 +14,6 @@ public class ALogFrame
     public string Signature;
     public string FilePath;
     public int Line;
-    public bool IsLua;
 
     public bool CanJump => !string.IsNullOrEmpty(FilePath) && Line > 0;
 

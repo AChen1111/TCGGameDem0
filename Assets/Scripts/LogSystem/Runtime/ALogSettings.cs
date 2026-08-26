@@ -1,12 +1,12 @@
 using UnityEngine;
 
-/// <summary>日志系统运行时设置。出包时若 EnableInPlayer=false,ALog/Log.lua 不再写日志。</summary>
+/// <summary>日志系统运行时设置。出包时若 EnableInPlayer=false,ALog 不再写日志。</summary>
 public class ALogSettings : ScriptableObject
 {
     public const string ResourceName = "ALogSettings";
     public const string AssetPath = "Assets/Scripts/LogSystem/Resources/ALogSettings.asset";
 
-    [Tooltip("正式包是否启用日志。关闭后出包内 ALog / Log.lua 直接跳过。")]
+    [Tooltip("正式包是否启用日志。关闭后出包内 ALog 直接跳过。")]
     public bool EnableInPlayer = true;
 
     private static ALogSettings s_instance;

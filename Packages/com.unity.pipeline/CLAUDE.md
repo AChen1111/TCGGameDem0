@@ -31,8 +31,8 @@ run tests, eval C#, hot-reload files, play-mode control, status/heartbeat.
   (authoring-root path resolution + object handles).
   Destructive/overwriting commands gate on `confirm`/`dry_run` inline (see `delete_asset`). Structured
   multi-field command args implement `IStructuredCommandInput` (`Runtime/Common/`). See
-  `Documentation~/safety-and-mutations.md`, `Documentation~/authoring-commands.md`, and
-  `Documentation~/creating-commands.md`.
+  `../../.doc/unity-pipeline/safety-and-mutations.md`, `../../.doc/unity-pipeline/authoring-commands.md`, and
+  `../../.doc/unity-pipeline/creating-commands.md`.
 
 ## Driving & verifying (agents)
 
