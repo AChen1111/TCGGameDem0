@@ -55,6 +55,17 @@ static class UITween
             .BindToColorA(target);
     }
 
+    public static MotionHandle DoVerticalReveal(Image target, float duration)
+    {
+        target.type = Image.Type.Filled;
+        target.fillMethod = Image.FillMethod.Vertical;
+        target.fillOrigin = (int)Image.OriginVertical.Top;
+        target.fillAmount = 0;
+        return LMotion.Create(0f, 1f, duration)
+            .WithEase(Ease.OutCubic)
+            .Bind(value => target.fillAmount = value);
+    }
+
     public static MotionHandle DoScaleAnim(float from, float to, float duration, Transform target)
     {
         var fromScale = Vector3.one * from;
