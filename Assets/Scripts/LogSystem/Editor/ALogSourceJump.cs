@@ -29,12 +29,12 @@ public static class ALogSourceJump
         }
         if (!File.Exists(path))
         {
-            Debug.LogWarning($"[ALog] 文件不存在: {path}");
+            Debug.LogWarning($"[ALog] File not found: {path}");
             return;
         }
         if (!InternalEditorUtility.OpenFileAtLineExternal(path, frame.Line))
         {
-            Debug.LogWarning($"[ALog] 打开失败,请检查 Preferences > External Tools 的编辑器配置: {path}:{frame.Line}");
+            Debug.LogWarning($"[ALog] Failed to open source. Check Preferences > External Tools: {path}:{frame.Line}");
         }
     }
 }

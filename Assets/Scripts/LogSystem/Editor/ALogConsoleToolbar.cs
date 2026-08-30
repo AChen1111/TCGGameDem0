@@ -10,10 +10,10 @@ using UnityEngine;
 [InitializeOnLoad]
 public static class ALogConsoleToolbar
 {
-    private const string AllCategories = "全部";
+    private const string AllCategories = "All";
 
-    private static readonly GUIContent s_graphContent = new GUIContent("堆栈图", "把当前选中日志的调用堆栈画成调用链");
-    private static readonly GUIContent s_playerContent = new GUIContent("出包日志", "关闭后正式包内 ALog 不再写日志");
+    private static readonly GUIContent s_graphContent = new GUIContent("Stack Graph", "Visualize the selected log call stack");
+    private static readonly GUIContent s_playerContent = new GUIContent("Player Logs", "Enable ALog output in release players");
 
     private static string[] s_categories;
 
@@ -64,20 +64,20 @@ public static class ALogConsoleToolbar
 
     private static void OnToolbarGui() {
         string current = FromSearchText(ALogConsoleBridge.GetSearchText());
-        var dropdownContent = new GUIContent($"分类: {current}", "按 ALog 分类过滤内置控制台");
-        Rect dropdownRect = GUILayoutUtility.GetRect(dropdownContent, EditorStyles.toolbarDropDown, GUILayout.Width(110f));
+        var dropdownContent = new GUIContent($"Category: {current}", "Filter the Console by ALog category");
+        Rect dropdownRect = GUILayoutUtility.GetRect(dropdownContent, EditorStyles.toolbarDropDown, GUILayout.Width(125f));
         if (EditorGUI.DropdownButton(dropdownRect, dropdownContent, FocusType.Passive, EditorStyles.toolbarDropDown))
         {
             ShowCategoryMenu(dropdownRect, current);
         }
 
-        if (GUILayout.Button(s_graphContent, EditorStyles.toolbarButton, GUILayout.Width(56f)))
+        if (GUILayout.Button(s_graphContent, EditorStyles.toolbarButton, GUILayout.Width(82f)))
         {
             ShowStackGraph();
         }
 
         ALogSettings settings = ALogSettingsEditor.GetOrCreate();
-        bool enableInPlayer = GUILayout.Toggle(settings.EnableInPlayer, s_playerContent, EditorStyles.toolbarButton, GUILayout.Width(64f));
+        bool enableInPlayer = GUILayout.Toggle(settings.EnableInPlayer, s_playerContent, EditorStyles.toolbarButton, GUILayout.Width(78f));
         if (enableInPlayer != settings.EnableInPlayer)
         {
             settings.EnableInPlayer = enableInPlayer;
@@ -102,7 +102,7 @@ public static class ALogConsoleToolbar
         string callstack = ALogConsoleBridge.ActiveCallstack;
         if (string.IsNullOrWhiteSpace(callstack))
         {
-            EditorUtility.DisplayDialog("调用堆栈图", "请先在控制台里选中一条日志。", "好");
+            EditorUtility.DisplayDialog("Call Stack Graph", "Select a log entry in the Console first.", "OK");
             return;
         }
         List<ALogFrame> frames = ALogStackParser.TrimLoggingFrames(ALogStackParser.ParseCSharp(callstack));

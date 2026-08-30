@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e523a453bf09747a4629940a90c16c, type: 3}
   m_Name: ALogSettings
   m_EditorClassIdentifier: Assembly-CSharp::ALogSettings
-  EnableInPlayer: 1
+  EnableInPlayer: 0
