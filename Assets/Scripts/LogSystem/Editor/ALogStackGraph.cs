@@ -1,112 +1,282 @@
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UIElements;
 
+public enum ALogFrameKind
+{
+    Application,
+    Package,
+    NoSource,
+}
+
+public enum ALogFrameFilter
+{
+    All,
+    Application,
+    Package,
+    NoSource,
+}
+
 /// <summary>
-/// 调用堆栈的可视化:把栈帧画成自上而下的调用链,
-/// 最上方是最外层调用者,箭头指向被调用方,最下方是日志发生的位置。
-/// 节点可点击跳转源码;没有堆栈信息时显示空状态。
+/// 调用堆栈的可视化:把栈帧画成自上而下的调用时间线,
+/// 最上方是最外层调用者,最下方是日志发生的位置。
 /// </summary>
 public class ALogStackGraph : VisualElement
 {
-    private const float NodeWidth = 460f;
-    private const float NodeHeight = 58f;
-    private const float Gap = 46f;
-    private const float Margin = 20f;
+    private readonly List<ALogFrame> m_frames = new List<ALogFrame>();
+    private readonly HashSet<ALogFrame> m_collapsedFrames = new HashSet<ALogFrame>();
+    private ALogFrameFilter m_filter;
 
-    private static readonly Color LineColor = new Color(0.55f, 0.62f, 0.72f);
+    public event Action<int, int> VisibleCountChanged;
 
-    private readonly List<Rect> m_nodeRects = new List<Rect>();
+    public int VisibleCount { get; private set; }
+    public int TotalCount => m_frames.Count;
 
     public ALogStackGraph() {
-        style.position = Position.Relative;
-        generateVisualContent += OnGenerateVisualContent;
+        AddToClassList("stack-graph");
     }
 
     public void SetFrames(List<ALogFrame> frames) {
-        Clear();
-        m_nodeRects.Clear();
+        m_frames.Clear();
+        if (frames != null)
+        {
+            m_frames.AddRange(frames);
+        }
+        m_collapsedFrames.Clear();
+        Rebuild();
+    }
 
+    public void SetFilter(ALogFrameFilter filter) {
+        if (m_filter == filter)
+        {
+            return;
+        }
+        m_filter = filter;
+        Rebuild();
+    }
+
+    public void SetAllExpanded(bool expanded) {
+        m_collapsedFrames.Clear();
+        if (!expanded)
+        {
+            foreach (ALogFrame frame in m_frames)
+            {
+                m_collapsedFrames.Add(frame);
+            }
+        }
+        Rebuild();
+    }
+
+    public static ALogFrameKind Classify(ALogFrame frame) {
+        if (frame == null || string.IsNullOrEmpty(frame.FilePath))
+        {
+            return ALogFrameKind.NoSource;
+        }
+        string path = frame.FilePath.Replace('\\', '/');
+        if (path.StartsWith("Assets/", StringComparison.OrdinalIgnoreCase))
+        {
+            return ALogFrameKind.Application;
+        }
+        if (path.StartsWith("Packages/", StringComparison.OrdinalIgnoreCase)
+            || path.StartsWith("Library/PackageCache/", StringComparison.OrdinalIgnoreCase))
+        {
+            return ALogFrameKind.Package;
+        }
+        return ALogFrameKind.NoSource;
+    }
+
+    public static bool MatchesFilter(ALogFrame frame, ALogFrameFilter filter) {
+        if (filter == ALogFrameFilter.All)
+        {
+            return true;
+        }
+        switch (filter)
+        {
+            case ALogFrameFilter.Application:
+                return Classify(frame) == ALogFrameKind.Application;
+            case ALogFrameFilter.Package:
+                return Classify(frame) == ALogFrameKind.Package;
+            case ALogFrameFilter.NoSource:
+                return Classify(frame) == ALogFrameKind.NoSource;
+            default:
+                return false;
+        }
+    }
+
+    /// <summary>frames 保持 Unity 原始的由内向外顺序,越靠前越接近日志发生位置。</summary>
+    public static ALogFrame FindRootCause(IList<ALogFrame> frames) {
         if (frames == null || frames.Count == 0)
         {
-            style.height = 120f;
-            var empty = new Label("无堆栈信息");
-            empty.AddToClassList("stack-graph-empty");
-            Add(empty);
-            MarkDirtyRepaint();
+            return null;
+        }
+        foreach (ALogFrame frame in frames)
+        {
+            if (Classify(frame) == ALogFrameKind.Application)
+            {
+                return frame;
+            }
+        }
+        foreach (ALogFrame frame in frames)
+        {
+            if (frame != null && frame.CanJump)
+            {
+                return frame;
+            }
+        }
+        return frames[0];
+    }
+
+    private void Rebuild() {
+        Clear();
+
+        var visibleFrames = new List<ALogFrame>();
+        for (int i = m_frames.Count - 1; i >= 0; i--)
+        {
+            if (MatchesFilter(m_frames[i], m_filter))
+            {
+                visibleFrames.Add(m_frames[i]);
+            }
+        }
+
+        VisibleCount = visibleFrames.Count;
+        VisibleCountChanged?.Invoke(VisibleCount, TotalCount);
+
+        if (m_frames.Count == 0)
+        {
+            Add(CreateEmptyState("No stack information"));
+            return;
+        }
+        if (visibleFrames.Count == 0)
+        {
+            Add(CreateEmptyState("No frames match the current filter"));
             return;
         }
 
-        //堆栈是由内向外的,反过来画才是调用发生的先后顺序
-        for (int i = frames.Count - 1; i >= 0; i--)
+        ALogFrame rootCause = FindRootCause(m_frames);
+        for (int i = 0; i < visibleFrames.Count; i++)
         {
-            int index = frames.Count - 1 - i;
-            var rect = new Rect(Margin, Margin + index * (NodeHeight + Gap), NodeWidth, NodeHeight);
-            m_nodeRects.Add(rect);
-            Add(CreateNode(frames[i], index, index == frames.Count - 1, rect));
+            ALogFrame frame = visibleFrames[i];
+            int order = m_frames.Count - m_frames.IndexOf(frame);
+            Add(CreateFrameRow(frame, order, i == 0, i == visibleFrames.Count - 1, ReferenceEquals(frame, rootCause)));
         }
-
-        style.height = Margin * 2 + frames.Count * NodeHeight + (frames.Count - 1) * Gap;
-        MarkDirtyRepaint();
     }
 
-    private VisualElement CreateNode(ALogFrame frame, int order, bool isLeaf, Rect rect) {
-        var node = new VisualElement();
-        node.AddToClassList("stack-node");
-        if (isLeaf)
-        {
-            node.AddToClassList("stack-node--leaf");
-        }
-        node.style.position = Position.Absolute;
-        node.style.left = rect.x;
-        node.style.top = rect.y;
-        node.style.width = rect.width;
-        node.style.height = rect.height;
-
-        var title = new Label($"{order + 1}. {frame.Signature}");
-        title.AddToClassList("stack-node__title");
-        node.Add(title);
-
-        var location = new Label(frame.Location);
-        location.AddToClassList("stack-node__location");
-        node.Add(location);
-
-        if (frame.CanJump)
-        {
-            node.AddToClassList("stack-node--clickable");
-            node.RegisterCallback<ClickEvent>(_ => ALogSourceJump.Open(frame));
-        }
-        return node;
+    private VisualElement CreateEmptyState(string text) {
+        var empty = new Label(text);
+        empty.AddToClassList("stack-graph-empty");
+        return empty;
     }
 
-    private void OnGenerateVisualContent(MeshGenerationContext context) {
-        if (m_nodeRects.Count < 2)
+    private VisualElement CreateFrameRow(ALogFrame frame, int order, bool isFirst, bool isLast, bool isRootCause) {
+        var row = new VisualElement();
+        row.AddToClassList("stack-frame");
+
+        var timeline = new VisualElement();
+        timeline.AddToClassList("stack-frame__timeline");
+        if (isFirst)
         {
-            return;
+            timeline.AddToClassList("stack-frame__timeline--first");
+        }
+        if (isLast)
+        {
+            timeline.AddToClassList("stack-frame__timeline--last");
         }
 
-        Painter2D painter = context.painter2D;
-        painter.strokeColor = LineColor;
-        painter.fillColor = LineColor;
-        painter.lineWidth = 2f;
+        var rail = new VisualElement();
+        rail.AddToClassList("stack-frame__rail");
+        timeline.Add(rail);
 
-        float centerX = Margin + NodeWidth * 0.5f;
-        for (int i = 0; i < m_nodeRects.Count - 1; i++)
+        var marker = new Label(order.ToString());
+        marker.AddToClassList("stack-frame__marker");
+        if (isRootCause)
         {
-            float top = m_nodeRects[i].yMax;
-            float bottom = m_nodeRects[i + 1].yMin;
+            marker.AddToClassList("stack-frame__marker--root-cause");
+        }
+        timeline.Add(marker);
+        row.Add(timeline);
 
-            painter.BeginPath();
-            painter.MoveTo(new Vector2(centerX, top));
-            painter.LineTo(new Vector2(centerX, bottom - 10f));
-            painter.Stroke();
+        var card = new VisualElement();
+        card.AddToClassList("stack-frame__card");
+        if (isRootCause)
+        {
+            card.AddToClassList("stack-frame__card--root-cause");
+        }
 
-            painter.BeginPath();
-            painter.MoveTo(new Vector2(centerX, bottom));
-            painter.LineTo(new Vector2(centerX - 6f, bottom - 11f));
-            painter.LineTo(new Vector2(centerX + 6f, bottom - 11f));
-            painter.ClosePath();
-            painter.Fill();
+        var header = new VisualElement();
+        header.AddToClassList("stack-frame__header");
+
+        var signature = new Label(frame?.Signature ?? string.Empty);
+        signature.tooltip = frame?.Signature;
+        signature.AddToClassList("stack-frame__signature");
+        header.Add(signature);
+
+        var frameKind = Classify(frame);
+        var kind = new Label(GetKindText(frameKind));
+        kind.AddToClassList("stack-frame__kind");
+        kind.AddToClassList(GetKindClass(frameKind));
+        header.Add(kind);
+
+        bool expanded = !m_collapsedFrames.Contains(frame);
+        var toggle = new Button { text = expanded ? "Collapse" : "Expand", tooltip = expanded ? "Hide source location" : "Show source location" };
+        toggle.AddToClassList("stack-frame__toggle");
+        toggle.clicked += () => {
+            if (m_collapsedFrames.Contains(frame))
+            {
+                m_collapsedFrames.Remove(frame);
+            }
+            else
+            {
+                m_collapsedFrames.Add(frame);
+            }
+            Rebuild();
+        };
+        header.Add(toggle);
+        card.Add(header);
+
+        if (expanded)
+        {
+            var details = new VisualElement();
+            details.AddToClassList("stack-frame__details");
+
+            var location = new Label(frame?.Location ?? "<no source>");
+            location.tooltip = frame?.Location;
+            location.AddToClassList("stack-frame__location");
+            details.Add(location);
+
+            if (frame != null && frame.CanJump)
+            {
+                var openButton = new Button(() => ALogSourceJump.Open(frame)) { text = "Open Source" };
+                openButton.AddToClassList("stack-frame__open");
+                details.Add(openButton);
+            }
+            card.Add(details);
+        }
+
+        row.Add(card);
+        return row;
+    }
+
+    private static string GetKindText(ALogFrameKind kind) {
+        switch (kind)
+        {
+            case ALogFrameKind.Application:
+                return "Application";
+            case ALogFrameKind.Package:
+                return "Package";
+            default:
+                return "No Source";
+        }
+    }
+
+    private static string GetKindClass(ALogFrameKind kind) {
+        switch (kind)
+        {
+            case ALogFrameKind.Application:
+                return "stack-frame__kind--application";
+            case ALogFrameKind.Package:
+                return "stack-frame__kind--package";
+            default:
+                return "stack-frame__kind--no-source";
         }
     }
 }

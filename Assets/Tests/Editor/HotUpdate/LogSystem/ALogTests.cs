@@ -20,7 +20,7 @@ public class ALogTests
 
     [Test]
     public void Format_PrefixesCategory() {
-        Assert.AreEqual("[网络] 连接超时", ALog.Format(ALogCategories.Net, "连接超时"));
+        Assert.AreEqual("[Network] Connection timed out", ALog.Format(ALogCategories.Net, "Connection timed out"));
     }
 
     [Test]

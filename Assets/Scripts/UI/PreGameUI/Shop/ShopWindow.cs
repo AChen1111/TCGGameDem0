@@ -73,7 +73,7 @@ public class ShopWindow : AWindowController
                 catch (Exception exception)
                 {
                     ALog.LogWarning(
-                        $"卡包 {config.Id} 封面加载失败：{config.CoverResourceKey}，{exception.Message}",
+                        $"Card pack {config.Id} cover failed to load: {config.CoverResourceKey}, {exception.Message}",
                         ALogCategories.UI);
                 }
 
@@ -109,7 +109,7 @@ public class ShopWindow : AWindowController
         }
         catch (Exception exception)
         {
-            ALog.LogError("商店配置刷新失败：" + exception.Message, ALogCategories.UI);
+            ALog.LogError("Shop configuration refresh failed: " + exception.Message, ALogCategories.UI);
         }
     }
 

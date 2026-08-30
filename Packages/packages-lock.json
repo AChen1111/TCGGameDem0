@@ -12,13 +12,12 @@
       "hash": "0b4c588ee75a07198841d92aab653e6b39445089"
     },
     "com.boxqkrtm.ide.cursor": {
-      "version": "https://github.com/boxqkrtm/com.unity.ide.cursor.git",
+      "version": "file:com.boxqkrtm.ide.cursor",
       "depth": 0,
-      "source": "git",
+      "source": "embedded",
       "dependencies": {
         "com.unity.test-framework": "1.1.9"
-      },
-      "hash": "fd8ff1fb700caf062eb5cce364c1d0a85f99ebe6"
+      }
     },
     "com.code-philosophy.hybridclr": {
       "version": "https://github.com/focus-creative-games/hybridclr_unity.git#v8.14.1",
