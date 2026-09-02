@@ -19,4 +19,24 @@ public static class StringValidator
 
         return true;
     }
+
+    public static bool IsWeakPassword(string value)
+    {
+        bool hasLetter = false;
+        bool hasNumberOrSymbol = false;
+
+        foreach (char character in value)
+        {
+            if (char.IsLetter(character))
+            {
+                hasLetter = true;
+            }
+            else
+            {
+                hasNumberOrSymbol = true;
+            }
+        }
+
+        return !hasLetter || !hasNumberOrSymbol;
+    }
 }
