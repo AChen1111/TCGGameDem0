@@ -19,7 +19,7 @@ namespace Unity.Pipeline.Tests.Editor.Assets
     /// a full per-platform override round-trip (<c>ApplyAudioPlatform</c> +
     /// <c>ReadAudioPlatformOverride</c>): set override, read it back, then clear it.
     /// </summary>
-    public class ImportSettingsCommandTests
+    class ImportSettingsCommandTests
     {
         private const string Root = "Assets/__CLI212ImportTest";
 
@@ -30,7 +30,7 @@ namespace Unity.Pipeline.Tests.Editor.Assets
             if (AssetDatabase.IsValidFolder(Root))
             {
                 AssetDatabase.DeleteAsset(Root);
-                AssetDatabase.Refresh();
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
             }
         }
 

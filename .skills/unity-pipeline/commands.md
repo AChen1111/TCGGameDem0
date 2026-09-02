@@ -56,13 +56,16 @@ unity command --proxy-disable --project-path <project> create_gameobject --name 
 | `editor_play` / `editor_stop` / `editor_pause` | Play mode | — |
 | `recompile` | Force script compile | `--focus` |
 | `recompile_status` | Poll compile | — |
-| `run_tests` | Run tests — sync by default, blocks all other commands. Always `--filter`; use `--async_tests` for full suites | `--mode` (`all`/`editor`/`playmode`), `--filter`, `--async_tests` |
-| `test_status` / `cancel_tests` | Poll / abort tests | — |
+| `run_tests` | Run tests — sync by default; always `--filter`; use `--async_tests` for full suites | `--mode` (`all`/`editor`/`playmode`), `--filter`, `--async_tests` |
+| `test_status` / `cancel_tests` | Poll / abort tests (reachable while a run is in progress) | — |
 | `list_tests` | List tests | `--mode` |
 | `get_console_logs` | Console buffer | `--severity`, `--limit` |
 | `clear_console` | Clear console | — |
 | `screenshot` | Scene/Game PNG | `--view`, `--output`, `--width`, `--height` |
-| `capture_game_view` | Camera PNG base64 | `--width`, `--height`, `--camera`, `--save_path` |
+| `capture_game_view` | Game view PNG; default path-only when `--save_path` is set | `--width`, `--height`, `--camera`, `--save_path` |
+| `run_script` | Compile+run a C# file in memory (no domain reload) | `--file`, `--entry` |
+| `batch` | Up to 200 ordered ops in one request | see `.doc/unity-pipeline/commands/batch.md` |
+| `audit` / `audit_status` | Project Auditor scan (optional) | `--categories`, `--output` |
 
 ## Assets (brief)
 

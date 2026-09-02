@@ -14,7 +14,7 @@ namespace Unity.Pipeline.Tests.Editor.Assets
     /// that an unknown shader name fails clearly (no null Material / null-ref), and that the created
     /// Material is loadable and assignable to a Renderer's material slot.
     /// </summary>
-    public class MaterialAssetCommandsTests
+    class MaterialAssetCommandsTests
     {
         private const string Root = "Assets/__CLI221_222Test";
 
@@ -35,7 +35,7 @@ namespace Unity.Pipeline.Tests.Editor.Assets
             if (AssetDatabase.IsValidFolder(Root))
             {
                 AssetDatabase.DeleteAsset(Root);
-                AssetDatabase.Refresh();
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
             }
         }
 
