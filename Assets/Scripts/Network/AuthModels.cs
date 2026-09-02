@@ -7,14 +7,12 @@ namespace AChen.Networking
     {
         public Guid Id { get; }
         public string Username { get; }
-        public string Email { get; }
         public DateTimeOffset CreatedAt { get; }
 
-        internal AuthUser(Guid id, string username, string email, DateTimeOffset createdAt)
+        internal AuthUser(Guid id, string username, DateTimeOffset createdAt)
         {
             Id = id;
             Username = username;
-            Email = email;
             CreatedAt = createdAt;
         }
     }

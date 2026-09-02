@@ -4,19 +4,29 @@ using TMPro;
 using LitMotion;
 using Cysharp.Threading.Tasks;
 using System;
+using System.Text.RegularExpressions;
 using AChen.Networking;
 
 public class LogInWindow : AWindowController
 {
+    //两种登录状态: 登录和注册
+    private enum AuthMode
+    {
+        Login,
+        Register
+    }
+
     // --tag_start: 自动生成--
     [SerializeField] TMP_InputField m_InpLogName;
     [SerializeField] TMP_InputField m_InpLogPassWord;
+    [SerializeField] TMP_InputField m_InpLogPassWord_Again;
     [SerializeField] Button m_BtnOK;
     [SerializeField] Button m_BtnNo;
     [SerializeField] Button m_BtnRes;
     // --tag_end: 自动生成--
     [SerializeField] private CanvasGroup m_CanvasGroup;
-    private BackendConfig m_BackendConfig = new();
+    private AuthMode m_authMode;
+    private TMP_Text m_switchModeButtonText;
     //用于取消上一次输入反馈动画
     private MotionHandle m_nameInputMotion;
     private MotionHandle m_passwordInputMotion;
@@ -36,66 +46,109 @@ public class LogInWindow : AWindowController
     }
 
 
-    /// <summary>
-    /// 注册接口
-    /// </summary>
     private void OnBtnResClick()
     {
-         Application.OpenURL(m_BackendConfig.BaseUrl + "/register");
+        SetAuthMode(m_authMode == AuthMode.Login ? AuthMode.Register : AuthMode.Login);
     }
-    
 
-    /// <summary>
-    /// 登录接口
-    /// </summary>
     private void OnBtnOKClick()
     {
-        LoginAsync(m_InpLogName.text, m_InpLogPassWord.text).Forget();
+        AuthenticateAsync().Forget();
     }
 
-    private async UniTaskVoid LoginAsync(string logName, string logPassWord)
+    private async UniTaskVoid AuthenticateAsync()
     {
-        if (!StringValidator.IsEnglishOrNumber(logName) ||
-            !StringValidator.IsEnglishOrNumber(logPassWord))
+        string username = m_InpLogName.text.Trim();
+        string password = m_InpLogPassWord.text;
+        string validationMessage = ValidateInput(username, password);
+        if (validationMessage != null)
         {
-            m_UIFrame.OpenWindow(
-                AddressKeys.Prefab.MessageWindow,
-                new MessageWindowProperties("账号和密码只能包含英文和数字", 2f));
+            ShowMessage(validationMessage);
             return;
         }
 
-        m_BtnOK.interactable = false;
+        m_CanvasGroup.interactable = false;
         try
         {
-            await PlayerSession.Instance.LoginAsync(
-                logName,
-                logPassWord,
-                this.GetCancellationTokenOnDestroy());
+            if (m_authMode == AuthMode.Register)
+            {
+                await PlayerSession.Instance.RegisterAsync(
+                    username,
+                    password,
+                    this.GetCancellationTokenOnDestroy());
+                ALog.Log("账号注册成功并建立玩家会话.", ALogCategories.Net);
+            }
+            else
+            {
+                await PlayerSession.Instance.LoginAsync(
+                    username,
+                    password,
+                    this.GetCancellationTokenOnDestroy());
+                ALog.Log("账号登录成功并建立玩家会话.", ALogCategories.Net);
+            }
+
             await SceneLoader.LoadScene(AddressKeys.Scene.GameScene);
         }
-        catch(BackendApiException ex)
+        catch (BackendApiException exception)
         {
-            ALog.LogError(ex.Message);
-            m_UIFrame.OpenWindow(
-                AddressKeys.Prefab.MessageWindow,
-                new MessageWindowProperties(GetLoginErrorMessage(ex.Code), 2f));
+            ALog.LogError(
+                $"账号认证失败. Mode={m_authMode}; Code={exception.Code}; Status={exception.StatusCode}",
+                ALogCategories.Net);
+            ShowMessage(GetAuthErrorMessage(exception.Code));
+        }
+        catch (OperationCanceledException)
+        {
+            // 界面销毁时的请求取消属于正常流程.
         }
         finally
         {
-            if (m_BtnOK != null)
+            if (m_CanvasGroup != null)
             {
-                m_BtnOK.interactable = true;
+                m_CanvasGroup.interactable = true;
             }
         }
     }
 
-    private static string GetLoginErrorMessage(string code) => code switch
+    private string ValidateInput(string username, string password)
     {
+        if (!Regex.IsMatch(username, @"^[A-Za-z0-9_]{3,24}$"))
+        {
+            return "账号需为 3-24 位英文、数字或下划线";
+        }
+
+        if (password.Length is < 8 or > 128)
+        {
+            return "密码长度需为 8-128 位";
+        }
+
+        if (m_authMode == AuthMode.Register && StringValidator.IsWeakPassword(password))
+        {
+            return "密码过弱";
+        }
+
+        if (m_authMode == AuthMode.Register && password != m_InpLogPassWord_Again.text)
+        {
+            return "两次输入的密码不一致";
+        }
+
+        return null;
+    }
+
+    private void ShowMessage(string message)
+    {
+        m_UIFrame.OpenWindow(
+            AddressKeys.Prefab.MessageWindow,
+            new MessageWindowProperties(message, 2f));
+    }
+
+    private static string GetAuthErrorMessage(string code) => code switch
+    {
+        "ACCOUNT_EXISTS" => "该账号已被注册",
         "INVALID_CREDENTIALS" => "账号或密码错误",
         "VALIDATION_ERROR" => "账号或密码格式不正确",
         "NETWORK_ERROR" => "无法连接服务器，请检查网络",
         "RATE_LIMITED" => "操作过于频繁，请稍后再试",
-        _ => "登录失败，请稍后再试"
+        _ => "账号操作失败，请稍后再试"
     };
 
     protected override void RemoveListeners()
@@ -114,10 +167,12 @@ public class LogInWindow : AWindowController
     }
 
 
-    protected override void Awake() {
+    protected override void Awake()
+    {
         base.Awake();
         m_nameInputScale = m_InpLogName.transform.localScale;
         m_passwordInputScale = m_InpLogPassWord.transform.localScale;
+        m_switchModeButtonText = m_BtnRes.GetComponentInChildren<TMP_Text>();
     }
 
     private void OnNameInputChanged(string _)
@@ -162,7 +217,22 @@ public class LogInWindow : AWindowController
     {
         m_InpLogName.text = string.Empty;
         m_InpLogPassWord.text = string.Empty;
+        m_InpLogPassWord_Again.text = string.Empty;
+        SetAuthMode(AuthMode.Login);
         DoAnim().Forget();
+    }
+
+    private void SetAuthMode(AuthMode mode)
+    {
+        m_authMode = mode;
+        bool isRegister = mode == AuthMode.Register;
+        m_InpLogPassWord_Again.gameObject.SetActive(isRegister);
+        m_switchModeButtonText.text = isRegister ? "返回登录" : "注册";
+
+        if (!isRegister)
+        {
+            m_InpLogPassWord_Again.text = string.Empty;
+        }
     }
 
     private async UniTaskVoid DoAnim()

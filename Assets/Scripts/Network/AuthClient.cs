@@ -34,26 +34,25 @@ namespace AChen.Networking
 
         public async UniTask<AuthUser> RegisterAsync(
             string username,
-            string email,
             string password,
             CancellationToken cancellationToken = default)
         {
             AuthResponseDto response = await PostAuthAsync(
                 "/api/auth/register",
-                new RegisterRequest(username, email, password),
+                new RegisterRequest(username, password),
                 cancellationToken);
             SetSession(response, GameEvent.PlayerRegistered);
             return CurrentUser;
         }
 
         public async UniTask<AuthUser> LoginAsync(
-            string identifier,
+            string username,
             string password,
             CancellationToken cancellationToken = default)
         {
             AuthResponseDto response = await PostAuthAsync(
                 "/api/auth/login",
-                new LoginRequest(identifier, password),
+                new LoginRequest(username, password),
                 cancellationToken);
             SetSession(response, GameEvent.PlayerLoggedIn);
             return CurrentUser;
@@ -321,7 +320,7 @@ namespace AChen.Networking
         }
 
         static AuthUser ToUser(UserDto user) =>
-            new AuthUser(user.Id, user.Username, user.Email, user.CreatedAt);
+            new AuthUser(user.Id, user.Username, user.CreatedAt);
 
         static PlayerData ToPlayer(PlayerDto player) =>
             new PlayerData(
@@ -336,25 +335,23 @@ namespace AChen.Networking
         sealed class RegisterRequest
         {
             public string Username { get; }
-            public string Email { get; }
             public string Password { get; }
 
-            public RegisterRequest(string username, string email, string password)
+            public RegisterRequest(string username, string password)
             {
                 Username = username;
-                Email = email;
                 Password = password;
             }
         }
 
         sealed class LoginRequest
         {
-            public string Identifier { get; }
+            public string Username { get; }
             public string Password { get; }
 
-            public LoginRequest(string identifier, string password)
+            public LoginRequest(string username, string password)
             {
-                Identifier = identifier;
+                Username = username;
                 Password = password;
             }
         }
@@ -401,7 +398,6 @@ namespace AChen.Networking
 
             public Guid Id { get; set; }
             public string Username { get; set; }
-            public string Email { get; set; }
             public DateTimeOffset CreatedAt { get; set; }
         }
 
@@ -442,10 +438,16 @@ namespace AChen.Networking
         public PlayerData CurrentPlayer => m_authClient.CurrentPlayer;
 
         public UniTask<AuthUser> LoginAsync(
-            string identifier,
+            string username,
             string password,
             CancellationToken cancellationToken = default) =>
-            m_authClient.LoginAsync(identifier, password, cancellationToken);
+            m_authClient.LoginAsync(username, password, cancellationToken);
+
+        public UniTask<AuthUser> RegisterAsync(
+            string username,
+            string password,
+            CancellationToken cancellationToken = default) =>
+            m_authClient.RegisterAsync(username, password, cancellationToken);
 
         public UniTask<PlayerData> RefreshPlayerAsync(
             CancellationToken cancellationToken = default) =>
