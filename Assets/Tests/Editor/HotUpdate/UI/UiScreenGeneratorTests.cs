@@ -326,6 +326,64 @@ public class UiScreenGeneratorTests
         StringAssert.Contains("KeepMe();", text);
     }
 
+    [Test]
+    public void TryAttachAndBind_AddsMissingComponentAndAssignsFields()
+    {
+        var gen = CreateGenerator();
+        var btn = CreateChild("Btn_yy");
+        btn.AddComponent<Button>();
+        SetAuthoring(gen, UiScreenGenerator.Kind.Panel, "CollectTestPanel", "Assets/Scripts/UI");
+        gen.CollectUiBinds();
+
+        Assert.IsTrue(gen.TryAttachAndBind());
+        var panel = m_root.GetComponent<CollectTestPanel>();
+        Assert.IsNotNull(panel);
+        Assert.AreEqual(btn.GetComponent<Button>(), ReadField(panel, "m_Btnyy"));
+    }
+
+    [Test]
+    public void TryAttachAndBind_DoesNotDuplicateExistingComponent()
+    {
+        var gen = CreateGenerator();
+        var panel = m_root.AddComponent<CollectTestPanel>();
+        var btn = CreateChild("Btn_yy");
+        btn.AddComponent<Button>();
+        SetAuthoring(gen, UiScreenGenerator.Kind.Panel, "CollectTestPanel", "Assets/Scripts/UI");
+        gen.CollectUiBinds();
+
+        Assert.IsTrue(gen.TryAttachAndBind());
+        Assert.AreEqual(1, m_root.GetComponents<CollectTestPanel>().Length);
+        Assert.AreEqual(btn.GetComponent<Button>(), ReadField(panel, "m_Btnyy"));
+    }
+
+    [Test]
+    public void TryAttachAndBind_UnknownType_ReturnsFalse()
+    {
+        var gen = CreateGenerator();
+        SetAuthoring(gen, UiScreenGenerator.Kind.Panel, "DoesNotExistPanel", "Assets/Scripts/UI");
+
+        Assert.IsFalse(gen.TryAttachAndBind());
+        Assert.IsNull(m_root.GetComponent<CollectTestPanel>());
+    }
+
+    [Test]
+    public void RebuildUiBinds_CollectsWritesAndBindsSiblingScreen()
+    {
+        var gen = CreateGenerator();
+        var panel = m_root.AddComponent<CollectTestPanel>();
+        var btn = CreateChild("Btn_yy");
+        btn.AddComponent<Button>();
+        string folder = "Assets/Scripts/UI";
+        SetAuthoring(gen, UiScreenGenerator.Kind.Panel, "UiScreenGeneratorRebuildPanel", folder);
+        m_writtenPath = folder + "/UiScreenGeneratorRebuildPanel.cs";
+
+        gen.RebuildUiBinds();
+
+        Assert.IsTrue(File.Exists(m_writtenPath));
+        Assert.AreEqual(gen.BuildCsSource(), File.ReadAllText(m_writtenPath));
+        Assert.AreEqual(btn.GetComponent<Button>(), ReadField(panel, "m_Btnyy"));
+    }
+
     private UiScreenGenerator CreateGenerator()
     {
         m_root = new GameObject("Host", typeof(RectTransform));

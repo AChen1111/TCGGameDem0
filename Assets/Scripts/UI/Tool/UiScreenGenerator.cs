@@ -31,16 +31,7 @@ public class UiScreenGenerator : MonoBehaviour
         var so = new UnityEditor.SerializedObject(this);
         UiPrefixCollector.WriteBinds(so, "m_uiBinds", binds);
         so.ApplyModifiedProperties();
-        var behaviours = GetComponents<MonoBehaviour>();
-        for (int i = 0; i < behaviours.Length; i++)
-        {
-            if (behaviours[i] is IUIScreenController && behaviours[i] != this)
-            {
-                var screenSo = new UnityEditor.SerializedObject(behaviours[i]);
-                UiPrefixCollector.ApplySerializedFields(screenSo, binds);
-                screenSo.ApplyModifiedProperties();
-            }
-        }
+        BindToScreenControllers(binds);
 #else
         m_uiBinds = binds;
 #endif
@@ -50,26 +41,46 @@ public class UiScreenGenerator : MonoBehaviour
     [ContextMenu("创建UI脚本")]
     public void CreateUiScript()
     {
-        string folder = m_folderPath.Replace('\\', '/').TrimEnd('/');
-        Directory.CreateDirectory(folder);
-        string path = folder + "/" + m_className + ".cs";
-        UiPrefixBind[] binds = GetBinds();
-        ScanUsings(binds, out bool useUi, out bool useTmp);
-        string[] fields = BuildFieldLines(binds);
-        string text;
-        if (File.Exists(path))
+        if (!TryWriteUiScript(out string path))
         {
-            text = File.ReadAllText(path);
-            text = EnsureUsings(text, useUi, useTmp);
-            text = ReplaceGeneratedFields(text, fields);
+            return;
         }
-        else
+        ALog.Log($"创建UI脚本完成: class={m_className}; path={path}; object={name}", ALogCategories.UI);
+        ScheduleAttachAndBind();
+    }
+
+    [Button("重建引用")]
+    [ContextMenu("重建引用")]
+    public void RebuildUiBinds()
+    {
+        CollectUiBinds();
+        if (!TryWriteUiScript(out string path))
         {
-            text = BuildCsSource();
+            return;
         }
-        File.WriteAllText(path, text);
+        ALog.Log($"重建引用已写入脚本: class={m_className}; path={path}; object={name}", ALogCategories.UI);
+        ScheduleAttachAndBind();
+    }
+
+    public bool TryAttachAndBind()
+    {
 #if UNITY_EDITOR
-        UnityEditor.AssetDatabase.ImportAsset(path);
+        Type type = FindGeneratedType();
+        if (type == null)
+        {
+            return false;
+        }
+
+        var screen = GetComponent(type);
+        if (screen == null)
+        {
+            screen = UnityEditor.Undo.AddComponent(gameObject, type);
+        }
+
+        BindToScreenControllers(GetBinds());
+        return screen != null;
+#else
+        return false;
 #endif
     }
 
@@ -181,6 +192,51 @@ public class UiScreenGenerator : MonoBehaviour
         return lines;
     }
 
+    bool TryWriteUiScript(out string path)
+    {
+        path = null;
+        if (string.IsNullOrWhiteSpace(m_className) || string.IsNullOrWhiteSpace(m_folderPath))
+        {
+            ALog.LogError($"写入UI脚本失败: 类名或目录为空; object={name}", ALogCategories.UI);
+            return false;
+        }
+
+        string folder = m_folderPath.Replace('\\', '/').TrimEnd('/');
+        Directory.CreateDirectory(folder);
+        path = folder + "/" + m_className + ".cs";
+        UiPrefixBind[] binds = GetBinds();
+        ScanUsings(binds, out bool useUi, out bool useTmp);
+        string[] fields = BuildFieldLines(binds);
+        string text;
+        if (File.Exists(path))
+        {
+            text = File.ReadAllText(path);
+            text = EnsureUsings(text, useUi, useTmp);
+            text = ReplaceGeneratedFields(text, fields);
+        }
+        else
+        {
+            text = BuildCsSource();
+        }
+        File.WriteAllText(path, text);
+#if UNITY_EDITOR
+        UnityEditor.AssetDatabase.ImportAsset(path);
+#endif
+        return true;
+    }
+
+    void ScheduleAttachAndBind()
+    {
+#if UNITY_EDITOR
+        // 新增字段要等编译结束后才能绑上,先记下物体,Reload 后再绑一次
+        UnityEditor.SessionState.SetEntityId(PendingAttachKey, GetEntityId());
+        if (TryAttachAndBind())
+        {
+            ALog.Log($"已挂载并绑定UI脚本: class={m_className}; object={name}", ALogCategories.UI);
+        }
+#endif
+    }
+
     UiPrefixBind[] GetBinds()
     {
 #if UNITY_EDITOR
@@ -224,6 +280,93 @@ public class UiScreenGenerator : MonoBehaviour
     }
 
 #if UNITY_EDITOR
+    const string PendingAttachKey = "UiScreenGenerator.PendingAttach";
+
+    [UnityEditor.InitializeOnLoadMethod]
+    static void QueuePendingAttach()
+    {
+        UnityEditor.EditorApplication.delayCall += ConsumePendingAttach;
+    }
+
+    static void ConsumePendingAttach()
+    {
+        if (UnityEditor.EditorApplication.isCompiling || UnityEditor.EditorApplication.isUpdating)
+        {
+            UnityEditor.EditorApplication.delayCall += ConsumePendingAttach;
+            return;
+        }
+
+        EntityId id = UnityEditor.SessionState.GetEntityId(PendingAttachKey, EntityId.None);
+        if (id == EntityId.None)
+        {
+            return;
+        }
+
+        UnityEditor.SessionState.EraseEntityId(PendingAttachKey);
+        var gen = UnityEditor.EditorUtility.EntityIdToObject(id) as UiScreenGenerator;
+        if (gen == null)
+        {
+            return;
+        }
+
+        if (gen.TryAttachAndBind())
+        {
+            ALog.Log($"编译后挂载并绑定UI脚本完成: object={gen.name}; class={gen.m_className}", ALogCategories.UI);
+        }
+        else
+        {
+            ALog.LogError($"编译后挂载UI脚本失败: object={gen.name}; class={gen.m_className}", ALogCategories.UI);
+        }
+    }
+
+    void BindToScreenControllers(UiPrefixBind[] binds)
+    {
+        var behaviours = GetComponents<MonoBehaviour>();
+        for (int i = 0; i < behaviours.Length; i++)
+        {
+            if (behaviours[i] is IUIScreenController && behaviours[i] != this)
+            {
+                var screenSo = new UnityEditor.SerializedObject(behaviours[i]);
+                UiPrefixCollector.ApplySerializedFields(screenSo, binds);
+                screenSo.ApplyModifiedProperties();
+            }
+        }
+    }
+
+    Type FindGeneratedType()
+    {
+        if (string.IsNullOrWhiteSpace(m_className))
+        {
+            return null;
+        }
+
+        var script = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEditor.MonoScript>(GetScriptPath());
+        if (script != null)
+        {
+            Type fromScript = script.GetClass();
+            if (fromScript != null)
+            {
+                return fromScript;
+            }
+        }
+
+        var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+        for (int i = 0; i < assemblies.Length; i++)
+        {
+            Type type = assemblies[i].GetType(m_className);
+            if (type != null && typeof(MonoBehaviour).IsAssignableFrom(type) && !type.IsAbstract)
+            {
+                return type;
+            }
+        }
+        return null;
+    }
+
+    string GetScriptPath()
+    {
+        return m_folderPath.Replace('\\', '/').TrimEnd('/') + "/" + m_className + ".cs";
+    }
+
     UiPrefixBind[] ReadBindsFromSerialized()
     {
         var so = new UnityEditor.SerializedObject(this);
