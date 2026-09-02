@@ -1,5 +1,5 @@
 using System;
-using System.Threading.Tasks;
+using AChen.Networking;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using LitMotion.Extensions;
@@ -19,7 +19,7 @@ public class PreGameUIPanel : APanelController
     [SerializeField] Button m_BtnMail;
     [SerializeField] Button m_BtnSetting;
     // --tag_end: 自动生成--
-
+    [SerializeField] private Button m_BtnChangeName;
     [SerializeField] private RectTransform m_LeftLayOut;
     [SerializeField] private RectTransform m_RightLayOut;
     [SerializeField] private RectTransform m_UpLayOut;
@@ -40,10 +40,23 @@ public class PreGameUIPanel : APanelController
         m_wallpaperImage = m_wallpaper.GetComponent<Image>();
         base.Awake();
     }
+
     protected override void AddListeners()
     {
         m_BtnExit.onClick.AddListener(OnExitClick);
         m_BtnShop.onClick.AddListener(OnShopClick);
+        m_BtnChangeName.onClick.AddListener(OnChangeNameClick);
+    }
+    protected override void RemoveListeners()
+    {
+        m_BtnExit.onClick.RemoveListener(OnExitClick);
+        m_BtnShop.onClick.RemoveListener(OnShopClick);
+        m_BtnChangeName.onClick.RemoveListener(OnChangeNameClick);
+    }
+
+    private void OnChangeNameClick()
+    {
+        m_UIFrame.OpenWindow(AddressKeys.Prefab.ChangeNameWindow);
     }
 
     private void OnShopClick()
@@ -64,17 +77,29 @@ public class PreGameUIPanel : APanelController
 
     [Button("开始动画")]
     private async UniTask DoStartAnimAsync()
-    {   
-        //禁止输入
+    {
         m_CanvasGroup.interactable = false;
         m_wallpaper.SetActive(false);
         m_heroSprite.SetActive(false);
         m_CanvasGroup.alpha = 0;
-        //加载资源
-        await LoadWallpaperAndSpriteAsync(AddressKeys.Sprite.w_10_Down,AddressKeys.Sprite.w_10_Sprite);
+
+        PlayerData player = PlayerSession.Instance.CurrentPlayer;
+        if (player?.BackgroundId is int backgroundId)
+        {
+            await LoadWallpaperAndSpriteAsync(
+                AddressKeys.GetBackgroundSpriteAddress(backgroundId),
+                AddressKeys.GetBackgroundDownAddress(backgroundId));
+        }
+
+        ALog.Log("大厅资源就绪,遮挡层淡出并播放入场动画.", ALogCategories.UI);
 
         var seq = LSequence.Create();
         seq.Append(UITween.DoFadeAnim(0, 1, m_Duration, m_CanvasGroup));
+        // 遮挡与界面同时淡入,避免先关黑层时露出 GameScene 天空盒
+        if (SceneTransitionOverlay.TryFadeOut(m_Duration, out MotionHandle overlayFade))
+        {
+            seq.Join(overlayFade);
+        }
 
         //step1 布局向中心移动
         if (m_LeftLayOut != null) seq.Append(UITween.DoMoveAnim(m_LeftLayOut, UITween.MoveDirection.Right, m_Distance, m_Duration));
@@ -90,6 +115,7 @@ public class PreGameUIPanel : APanelController
         seq.Append(UITween.DoVerticalReveal(m_heroImage, m_Duration));
 
         await seq.Run().AddTo(this);
+        SceneTransitionOverlay.Hide();
         m_CanvasGroup.interactable = true;
     }
 
