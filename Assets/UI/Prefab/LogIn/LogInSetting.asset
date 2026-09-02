@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9e61f57c8661b94081f6053d169028b, type: 3}
   m_Name: LogInSetting
   m_EditorClassIdentifier: HotUpdate::UISettings
-  templateUIPrefab: {fileID: 6766948010704286730, guid: 4145850fe6390fc4491d9d82e0779b3c, type: 3}
+  templateUIPrefab: {fileID: 6766948010704286730, guid: f0f4960501a5f7d4687f555c783e0ed1, type: 3}
   screensToRegister:
   - {fileID: 6101269445667355044, guid: 9bec0272fce700648874a6c1fe3ff523, type: 3}
   - {fileID: 5414364316487525683, guid: a64c074234af9d240aa33eaf8e67d42a, type: 3}

@@ -87,10 +87,21 @@ public class LogInWindow : AWindowController
                 ALog.Log("账号登录成功并建立玩家会话.", ALogCategories.Net);
             }
 
-            await SceneLoader.LoadScene(AddressKeys.Scene.GameScene);
+            SceneTransitionOverlay.Show();
+            try
+            {
+                await SceneLoader.LoadScene(AddressKeys.Scene.GameScene);
+                return;
+            }
+            catch
+            {
+                SceneTransitionOverlay.Hide();
+                throw;
+            }
         }
         catch (BackendApiException exception)
         {
+            SceneTransitionOverlay.Hide();
             ALog.LogError(
                 $"账号认证失败. Mode={m_authMode}; Code={exception.Code}; Status={exception.StatusCode}",
                 ALogCategories.Net);
@@ -98,7 +109,7 @@ public class LogInWindow : AWindowController
         }
         catch (OperationCanceledException)
         {
-            // 界面销毁时的请求取消属于正常流程.
+            SceneTransitionOverlay.Hide();
         }
         finally
         {
@@ -237,13 +248,16 @@ public class LogInWindow : AWindowController
 
     private async UniTaskVoid DoAnim()
     {
-        //禁止用户输入
         m_CanvasGroup.interactable = false;
-        //播放动画
         var seq = LSequence.Create();
         seq.Append(UITween.DoFadeAnim(0, 1, 0.5f, m_CanvasGroup));
+        if (SceneTransitionOverlay.TryFadeOut(0.5f, out MotionHandle overlayFade))
+        {
+            seq.Join(overlayFade);
+        }
+
         await seq.Run().AddTo(this);
-        //允许用户输入
+        SceneTransitionOverlay.Hide();
         m_CanvasGroup.interactable = true;
     }
 

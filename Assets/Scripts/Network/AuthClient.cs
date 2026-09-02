@@ -20,6 +20,7 @@ namespace AChen.Networking
         };
 
         readonly BackendConfig m_config;
+        readonly IAuthSessionStore m_sessionStore;
         string m_accessToken;
         string m_refreshToken;
 
@@ -27,9 +28,10 @@ namespace AChen.Networking
         public AuthUser CurrentUser { get; private set; }
         public PlayerData CurrentPlayer { get; private set; }
 
-        public AuthClient(BackendConfig config = null)
+        public AuthClient(BackendConfig config = null, IAuthSessionStore sessionStore = null)
         {
             m_config = config ?? new BackendConfig();
+            m_sessionStore = sessionStore ?? new PlayerPrefsAuthSessionStore(m_config);
         }
 
         public async UniTask<AuthUser> RegisterAsync(
@@ -69,6 +71,32 @@ namespace AChen.Networking
             return CurrentUser;
         }
 
+        public async UniTask<bool> TryRestoreSessionAsync(CancellationToken cancellationToken = default)
+        {
+            if (IsAuthenticated)
+            {
+                return true;
+            }
+
+            if (!m_sessionStore.TryLoad(out m_refreshToken))
+            {
+                return false;
+            }
+
+            try
+            {
+                await RefreshAsync(cancellationToken);
+                return true;
+            }
+            catch
+            {
+                m_accessToken = null;
+                CurrentUser = null;
+                CurrentPlayer = null;
+                throw;
+            }
+        }
+
         public async UniTask<PlayerData> GetPlayerAsync(CancellationToken cancellationToken = default)
         {
             PlayerDto response = await SendAuthenticatedAsync<PlayerDto>(
@@ -83,13 +111,14 @@ namespace AChen.Networking
         public async UniTask<PlayerData> UpdatePlayerProfileAsync(
             string nickname,
             int? avatarId,
+            int? backgroundId,
             long expectedRevision,
             CancellationToken cancellationToken = default)
         {
             PlayerDto response = await SendAuthenticatedAsync<PlayerDto>(
                 "PATCH",
                 "/api/player/profile",
-                new UpdatePlayerProfileRequest(nickname, avatarId, expectedRevision),
+                new UpdatePlayerProfileRequest(nickname, avatarId, backgroundId, expectedRevision),
                 cancellationToken);
             SetCurrentPlayer(ToPlayer(response));
             return CurrentPlayer;
@@ -148,6 +177,7 @@ namespace AChen.Networking
             m_refreshToken = null;
             CurrentUser = null;
             CurrentPlayer = null;
+            m_sessionStore.Clear();
             if (previousUser != null)
             {
                 EventCenter.Dispatch(GameEvent.PlayerLoggedOut, previousUser);
@@ -302,6 +332,7 @@ namespace AChen.Networking
             m_refreshToken = response.RefreshToken;
             CurrentUser = user;
             SetCurrentPlayer(ToPlayer(response.Player));
+            m_sessionStore.Save(m_refreshToken);
             EventCenter.Dispatch(eventName, CurrentUser, CurrentPlayer);
         }
 
@@ -327,6 +358,8 @@ namespace AChen.Networking
                 player.Id,
                 player.Nickname,
                 player.AvatarId,
+                player.OwnedAvatarIds ?? Array.Empty<int>(),
+                player.BackgroundId,
                 player.Gold,
                 player.Revision,
                 player.CreatedAt,
@@ -370,12 +403,14 @@ namespace AChen.Networking
         {
             public string Nickname { get; }
             public int? AvatarId { get; }
+            public int? BackgroundId { get; }
             public long ExpectedRevision { get; }
 
-            public UpdatePlayerProfileRequest(string nickname, int? avatarId, long expectedRevision)
+            public UpdatePlayerProfileRequest(string nickname, int? avatarId, int? backgroundId, long expectedRevision)
             {
                 Nickname = nickname;
                 AvatarId = avatarId;
+                BackgroundId = backgroundId;
                 ExpectedRevision = expectedRevision;
             }
         }
@@ -409,6 +444,8 @@ namespace AChen.Networking
             public Guid Id { get; set; }
             public string Nickname { get; set; }
             public int? AvatarId { get; set; }
+            public int[] OwnedAvatarIds { get; set; }
+            public int? BackgroundId { get; set; }
             public long Gold { get; set; }
             public long Revision { get; set; }
             public DateTimeOffset CreatedAt { get; set; }
@@ -449,6 +486,10 @@ namespace AChen.Networking
             CancellationToken cancellationToken = default) =>
             m_authClient.RegisterAsync(username, password, cancellationToken);
 
+        public UniTask<bool> TryRestoreSessionAsync(
+            CancellationToken cancellationToken = default) =>
+            m_authClient.TryRestoreSessionAsync(cancellationToken);
+
         public UniTask<PlayerData> RefreshPlayerAsync(
             CancellationToken cancellationToken = default) =>
             m_authClient.GetPlayerAsync(cancellationToken);
@@ -456,11 +497,13 @@ namespace AChen.Networking
         public UniTask<PlayerData> UpdatePlayerProfileAsync(
             string nickname,
             int? avatarId,
+            int? backgroundId,
             long expectedRevision,
             CancellationToken cancellationToken = default) =>
             m_authClient.UpdatePlayerProfileAsync(
                 nickname,
                 avatarId,
+                backgroundId,
                 expectedRevision,
                 cancellationToken);
 
