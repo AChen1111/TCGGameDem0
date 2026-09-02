@@ -5,10 +5,12 @@ using System.Threading;
 using AChen.Networking;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopWindow : AWindowController
 {
     [SerializeField] private CardPackListController m_CardPackListController;
+    [SerializeField] private Button m_CloseButton;
     readonly List<ShopCardItemData> m_CardPackList = new List<ShopCardItemData>();
     int? m_SelectedCardPackId;
     int m_RefreshGeneration;
@@ -16,7 +18,14 @@ public class ShopWindow : AWindowController
     protected override void AddListeners()
     {
         GameConfigManager.Instance.Store.ConfigChanged += OnConfigChanged;
+        m_CloseButton.onClick.AddListener(OnCloseButtonClicked);
     }
+
+    private void OnCloseButtonClicked()
+    {
+        UI_Close();
+    }
+
 
     protected override void RemoveListeners()
     {
@@ -24,6 +33,7 @@ public class ShopWindow : AWindowController
         {
             GameConfigManager.Instance.Store.ConfigChanged -= OnConfigChanged;
         }
+        m_CloseButton.onClick.RemoveListener(OnCloseButtonClicked);
     }
 
     protected override void OnOpen()

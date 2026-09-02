@@ -124,6 +124,11 @@ public static class AddressableCatalogSetup
         WriteNested(sb, "Sprite", AssetDatabase.LoadAssetAtPath<SpriteAddressableCatalog>(SpritePath));
         WriteNested(sb, "Scene", AssetDatabase.LoadAssetAtPath<SceneAddressableCatalog>(ScenePath));
         WriteNested(sb, "UISettings", AssetDatabase.LoadAssetAtPath<UISettingsAddressableCatalog>(UISettingsPath));
+        sb.AppendLine();
+        sb.AppendLine("    public static string GetAvatarAddress(int avatarId)");
+        sb.AppendLine("    {");
+        sb.AppendLine("        return $\"a_{avatarId:D2}\";");
+        sb.AppendLine("    }");
         sb.AppendLine("}");
         string text = sb.ToString();
         if (File.ReadAllText(AddressKeysPath).Replace("\r\n", "\n") == text.Replace("\r\n", "\n"))

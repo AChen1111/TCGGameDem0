@@ -12,6 +12,7 @@ public class UIFrame : MonoBehaviour
 
     private PanelUILayer panelLayer;
     private WindowUILayer windowLayer;
+    private WindowParaLayer windowParaLayer;
     private Dictionary<string, GameObject> screenPrefabs;
 
     private Canvas mainCanvas;
@@ -62,6 +63,28 @@ public class UIFrame : MonoBehaviour
 
         if (screenPrefabs == null) {
             screenPrefabs = new Dictionary<string, GameObject>();
+        }
+
+        if (windowParaLayer == null) {
+            windowParaLayer = gameObject.GetComponentInChildren<WindowParaLayer>(true);
+        }
+    }
+
+    /// <summary>打开或关闭 DarkenBG 遮挡层。</summary>
+    public void SetDarkenVisible(bool visible) {
+        if (windowParaLayer == null) {
+            windowParaLayer = gameObject.GetComponentInChildren<WindowParaLayer>(true);
+        }
+
+        if (windowParaLayer == null) {
+            return;
+        }
+
+        if (visible) {
+            windowParaLayer.DarkenBG();
+        }
+        else {
+            windowParaLayer.HideDarken();
         }
     }
 
