@@ -112,14 +112,21 @@ Assets/Scripts/LuaRaw/LuaPadScratch.lua
 Assets/Scripts/LuaRaw/LuaPadScratch.lua.meta
 Assets/Scripts/LuaRaw/LuaPadDrafts/*.lua
 Assets/Scripts/LuaRaw/LuaPadDrafts/*.lua.meta
+/Unused~/Tools/**/node_modules/
+/Unused~/Tools/**/bin/
+/Unused~/Tools/**/obj/
 
-# Local-only Master Duel study dump (do not commit)
-/Assets/Learn/MasterDuel/Fonts/*.ttf
-/Assets/Learn/MasterDuel/Fonts/*.otf
-/Assets/Learn/MasterDuel/Fonts/*.ttf.meta
-/Assets/Learn/MasterDuel/Fonts/*.otf.meta
-/Assets/Learn/MasterDuel/UI/**/*.png
-/Assets/Learn/MasterDuel/UI/**/*.png.meta
+# Local clutter / one-off dumps
+/UnityCursorKit/
+/--clobber/
+/ProfilerCaptures/
+/TestBuild/
+/tmp/
+/tasks/
+feishu-*
+upload_*.ps1
+upload_done.txt
+draft_*
 
 
 # Optional: uncomment if you do NOT commit Asset Store tools
