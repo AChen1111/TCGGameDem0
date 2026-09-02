@@ -70,7 +70,7 @@ public static class AddressableCatalogMenu
     {
         var catalog = AssetDatabase.LoadAssetAtPath<SpriteAddressableCatalog>(AddressableCatalogSetup.SpritePath);
         string folder = Path.GetDirectoryName(path).Replace('\\', '/');
-        AddressableCatalogSetup.MarkFolderInGroup(AddressableCatalogSetup.RemoteCardGroup, folder);
+        AddressableCatalogSetup.MarkFolderInGroup(AddressableCatalogSetup.UiGroupForPath(folder), folder);
         Object[] assets = AssetDatabase.LoadAllAssetsAtPath(path);
         for (int i = 0; i < assets.Length; i++)
         {
