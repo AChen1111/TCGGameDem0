@@ -31,7 +31,7 @@ namespace AChen.Networking
         public AuthClient(BackendConfig config = null, IAuthSessionStore sessionStore = null)
         {
             m_config = config ?? new BackendConfig();
-            m_sessionStore = sessionStore ?? new PlayerPrefsAuthSessionStore(m_config);
+            m_sessionStore = sessionStore ?? new PlatformAuthSessionStore(m_config);
         }
 
         public async UniTask<AuthUser> RegisterAsync(

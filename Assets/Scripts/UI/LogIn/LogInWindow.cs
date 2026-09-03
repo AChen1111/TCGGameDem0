@@ -43,6 +43,7 @@ public class LogInWindow : AWindowController
         m_BtnRes.onClick.AddListener(OnBtnResClick);
         m_InpLogName.onValueChanged.AddListener(OnNameInputChanged);
         m_InpLogPassWord.onValueChanged.AddListener(OnPasswordInputChanged);
+        m_InpLogPassWord_Again.onValueChanged.AddListener(OnPasswordInputChanged);
     }
 
 
@@ -169,6 +170,7 @@ public class LogInWindow : AWindowController
         m_BtnRes.onClick.RemoveListener(OnBtnResClick);
         m_InpLogName.onValueChanged.RemoveListener(OnNameInputChanged);
         m_InpLogPassWord.onValueChanged.RemoveListener(OnPasswordInputChanged);
+        m_InpLogPassWord_Again.onValueChanged.RemoveListener(OnPasswordInputChanged);
     }
 
     private void OnBtnNoClick()
