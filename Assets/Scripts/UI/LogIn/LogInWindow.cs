@@ -4,18 +4,10 @@ using TMPro;
 using LitMotion;
 using Cysharp.Threading.Tasks;
 using System;
-using System.Text.RegularExpressions;
-using AChen.Networking;
+using AChen.Player;
 
 public class LogInWindow : AWindowController
 {
-    //两种登录状态: 登录和注册
-    private enum AuthMode
-    {
-        Login,
-        Register
-    }
-
     // --tag_start: 自动生成--
     [SerializeField] TMP_InputField m_InpLogName;
     [SerializeField] TMP_InputField m_InpLogPassWord;
@@ -61,7 +53,7 @@ public class LogInWindow : AWindowController
     {
         string username = m_InpLogName.text.Trim();
         string password = m_InpLogPassWord.text;
-        string validationMessage = ValidateInput(username, password);
+        string validationMessage = AuthFlow.Validate(m_authMode, username, password, m_InpLogPassWord_Again.text);
         if (validationMessage != null)
         {
             ShowMessage(validationMessage);
@@ -71,46 +63,26 @@ public class LogInWindow : AWindowController
         m_CanvasGroup.interactable = false;
         try
         {
-            if (m_authMode == AuthMode.Register)
+            AuthResult result = await AuthFlow.AuthenticateAsync(
+                m_authMode,
+                username,
+                password,
+                this.GetCancellationTokenOnDestroy());
+            if (!result.Succeeded)
             {
-                await PlayerSession.Instance.RegisterAsync(
-                    username,
-                    password,
-                    this.GetCancellationTokenOnDestroy());
-                ALog.Log("账号注册成功并建立玩家会话.", ALogCategories.Net);
-            }
-            else
-            {
-                await PlayerSession.Instance.LoginAsync(
-                    username,
-                    password,
-                    this.GetCancellationTokenOnDestroy());
-                ALog.Log("账号登录成功并建立玩家会话.", ALogCategories.Net);
-            }
-
-            SceneTransitionOverlay.Show();
-            try
-            {
-                await SceneLoader.LoadScene(AddressKeys.Scene.GameScene);
+                ShowMessage(result.ErrorMessage);
                 return;
             }
-            catch
-            {
-                SceneTransitionOverlay.Hide();
-                throw;
-            }
-        }
-        catch (BackendApiException exception)
-        {
-            SceneTransitionOverlay.Hide();
-            ALog.LogError(
-                $"账号认证失败. Mode={m_authMode}; Code={exception.Code}; Status={exception.StatusCode}",
-                ALogCategories.Net);
-            ShowMessage(GetAuthErrorMessage(exception.Code));
+
+            await GameFlow.EnterLobbyAsync();
         }
         catch (OperationCanceledException)
         {
-            SceneTransitionOverlay.Hide();
+        }
+        catch (Exception exception)
+        {
+            ALog.LogError("登录后进入大厅失败: " + exception.Message, ALogCategories.UI);
+            ShowMessage("进入大厅失败，请稍后再试");
         }
         finally
         {
@@ -121,47 +93,12 @@ public class LogInWindow : AWindowController
         }
     }
 
-    private string ValidateInput(string username, string password)
-    {
-        if (!Regex.IsMatch(username, @"^[A-Za-z0-9_]{3,24}$"))
-        {
-            return "账号需为 3-24 位英文、数字或下划线";
-        }
-
-        if (password.Length is < 8 or > 128)
-        {
-            return "密码长度需为 8-128 位";
-        }
-
-        if (m_authMode == AuthMode.Register && StringValidator.IsWeakPassword(password))
-        {
-            return "密码过弱";
-        }
-
-        if (m_authMode == AuthMode.Register && password != m_InpLogPassWord_Again.text)
-        {
-            return "两次输入的密码不一致";
-        }
-
-        return null;
-    }
-
     private void ShowMessage(string message)
     {
         m_UIFrame.OpenWindow(
             AddressKeys.Prefab.MessageWindow,
             new MessageWindowProperties(message, 2f));
     }
-
-    private static string GetAuthErrorMessage(string code) => code switch
-    {
-        "ACCOUNT_EXISTS" => "该账号已被注册",
-        "INVALID_CREDENTIALS" => "账号或密码错误",
-        "VALIDATION_ERROR" => "账号或密码格式不正确",
-        "NETWORK_ERROR" => "无法连接服务器，请检查网络",
-        "RATE_LIMITED" => "操作过于频繁，请稍后再试",
-        _ => "账号操作失败，请稍后再试"
-    };
 
     protected override void RemoveListeners()
     {

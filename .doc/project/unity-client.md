@@ -4,7 +4,10 @@
 | --- | --- | --- |
 | AOT 启动层 | `Assets/AOT` | 启动、下载清单、加载元数据和热更新程序集 |
 | 热更新业务层 | `Assets/Scripts`、`HotUpdate.asmdef` | 游戏流程、登录、配置和业务逻辑 |
-| UI 逻辑 | `Assets/Scripts/UI` | 界面、交互和状态展示 |
+| 场景入口与流程 | `Assets/Scripts/Bootstrap` | 各场景的启动脚本（`LoginSceneStart`、`LobbySceneStart`）与跨场景流程 `GameFlow` |
+| 玩家会话 | `Assets/Scripts/Player` | `PlayerSession`（跨场景会话与玩家数据）、`AuthFlow`（登录/注册校验与错误提示）、`IPlayerDataView` 数据绑定 |
+| 网络协议 | `Assets/Scripts/Network` | HTTP 客户端、DTO 与会话令牌存储，不含业务流程 |
+| UI 逻辑 | `Assets/Scripts/UI` | 界面、交互和状态展示；`UI/Core` 为框架与生成工具，`UI/Widgets` 为可复用小部件 |
 | UI 资源 | `Assets/UI` | 预制体与远程美术，见下表 |
 | 资源层 | `Assets/AddressableAssetsData`、`Assets/AddressableCatalogs` | Addressables 构建、目录和远程资源更新 |
 | 第三方插件 | `Assets/Plugins`、`Packages/` | Asset Store 插件与 UPM 包 |

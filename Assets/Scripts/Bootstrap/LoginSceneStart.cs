@@ -1,9 +1,13 @@
 using Cysharp.Threading.Tasks;
 using System;
 using AChen.Networking;
+using AChen.Player;
 using UnityEngine;
 
-public class LogInStart : MonoBehaviour
+/// <summary>
+/// 登录场景入口：优先恢复会话自动进入大厅，否则打开登录窗口。
+/// </summary>
+public class LoginSceneStart : MonoBehaviour
 {
     UIFrame m_uiFrame;
 
@@ -24,15 +28,13 @@ public class LogInStart : MonoBehaviour
             if (await PlayerSession.Instance.TryRestoreSessionAsync(this.GetCancellationTokenOnDestroy()))
             {
                 ALog.Log("自动登录成功并恢复玩家会话.", ALogCategories.Net);
-                SceneTransitionOverlay.Show();
                 try
                 {
-                    await SceneLoader.LoadScene(AddressKeys.Scene.GameScene);
+                    await GameFlow.EnterLobbyAsync();
                     return;
                 }
                 catch (Exception exception)
                 {
-                    SceneTransitionOverlay.Hide();
                     ALog.LogError(
                         "自动登录后加载大厅场景失败: " + exception.Message,
                         ALogCategories.UI);
