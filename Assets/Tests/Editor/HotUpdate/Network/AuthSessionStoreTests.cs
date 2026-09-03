@@ -1,18 +1,24 @@
+using System;
+using System.IO;
 using AChen.Networking;
 using NUnit.Framework;
 
 public sealed class AuthSessionStoreTests
 {
-    PlayerPrefsAuthSessionStore m_first;
-    PlayerPrefsAuthSessionStore m_second;
+    PlatformAuthSessionStore m_first;
+    PlatformAuthSessionStore m_second;
+    string m_storageRoot;
 
     [SetUp]
     public void SetUp()
     {
-        m_first = new PlayerPrefsAuthSessionStore(
-            new BackendConfig("https://auth-session-one.example.test"));
-        m_second = new PlayerPrefsAuthSessionStore(
-            new BackendConfig("https://auth-session-two.example.test"));
+        m_storageRoot = Path.Combine(Path.GetTempPath(), "AChenAuthSessionTests", Guid.NewGuid().ToString("N"));
+        m_first = new PlatformAuthSessionStore(
+            new BackendConfig("https://auth-session-one.example.test"),
+            m_storageRoot);
+        m_second = new PlatformAuthSessionStore(
+            new BackendConfig("https://auth-session-two.example.test"),
+            m_storageRoot);
         m_first.Clear();
         m_second.Clear();
     }
@@ -22,6 +28,10 @@ public sealed class AuthSessionStoreTests
     {
         m_first.Clear();
         m_second.Clear();
+        if (Directory.Exists(m_storageRoot))
+        {
+            Directory.Delete(m_storageRoot, true);
+        }
     }
 
     [Test]
