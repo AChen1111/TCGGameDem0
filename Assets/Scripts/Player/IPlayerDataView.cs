@@ -1,5 +1,6 @@
 using AChen.Events;
 using AChen.Networking;
+using AChen.Player;
 
 public interface IPlayerDataView
 {

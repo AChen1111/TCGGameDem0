@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PreGameUIPanel : APanelController
+public class PreGameUIPanel : APanelController, IPlayerDataView
 {
     // --tag_start: 自动生成--
     [SerializeField] Button m_BtnPlay;
@@ -32,13 +32,20 @@ public class PreGameUIPanel : APanelController
     [SerializeField] private GameObject m_heroSprite;
     private Image m_heroImage;
     private Image m_wallpaperImage;
+    private int? m_backgroundId;
+    private UniTask m_backgroundLoad = UniTask.CompletedTask;
 
-    public string key1,key2;
     protected override void Awake()
     {
         m_heroImage = m_heroSprite.GetComponent<Image>();
         m_wallpaperImage = m_wallpaper.GetComponent<Image>();
         base.Awake();
+    }
+
+    protected override void OnDestroy()
+    {
+        PlayerDataViews.Unbind(this);
+        base.OnDestroy();
     }
 
     protected override void AddListeners()
@@ -72,7 +79,31 @@ public class PreGameUIPanel : APanelController
 
     protected override void OnOpen()
     {
+        // Bind 会同步回调一次 OnPlayerDataChanged，先绑定再播动画以便等待背景加载
+        PlayerDataViews.Bind(this);
         DoStartAnimAsync().Forget();
+    }
+
+    protected override void OnClose()
+    {
+        PlayerDataViews.Unbind(this);
+    }
+
+    public void OnPlayerDataChanged(PlayerData data)
+    {
+        int? backgroundId = data?.BackgroundId;
+        if (backgroundId == m_backgroundId)
+        {
+            return;
+        }
+
+        m_backgroundId = backgroundId;
+        if (backgroundId is int id)
+        {
+            m_backgroundLoad = LoadWallpaperAndSpriteAsync(
+                AddressKeys.GetBackgroundSpriteAddress(id),
+                AddressKeys.GetBackgroundDownAddress(id));
+        }
     }
 
     [Button("开始动画")]
@@ -83,13 +114,7 @@ public class PreGameUIPanel : APanelController
         m_heroSprite.SetActive(false);
         m_CanvasGroup.alpha = 0;
 
-        PlayerData player = PlayerSession.Instance.CurrentPlayer;
-        if (player?.BackgroundId is int backgroundId)
-        {
-            await LoadWallpaperAndSpriteAsync(
-                AddressKeys.GetBackgroundSpriteAddress(backgroundId),
-                AddressKeys.GetBackgroundDownAddress(backgroundId));
-        }
+        await m_backgroundLoad;
 
         ALog.Log("大厅资源就绪,遮挡层淡出并播放入场动画.", ALogCategories.UI);
 
