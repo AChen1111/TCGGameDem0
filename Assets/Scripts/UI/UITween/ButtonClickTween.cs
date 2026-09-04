@@ -1,15 +1,17 @@
 using LitMotion;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-/// <summary>挂在 Button 上,点击时播放短促缩放.</summary>
+/// <summary>挂在 Button 上,按下时播放短促缩放.</summary>
 [RequireComponent(typeof(Button))]
-public class ButtonClickTween : MonoBehaviour
+public class ButtonClickTween : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] bool m_Skip;
     [SerializeField] float m_Duration = 0.12f;
     [SerializeField] float m_PunchScale = 1.04f;
-    [SerializeField] Ease m_Ease = Ease.InOutCubic;
+    [SerializeField] Ease m_Ease = Ease.OutCubic;
 
     Button m_Button;
     Vector3 m_OriginScale = Vector3.one;
@@ -21,6 +23,7 @@ public class ButtonClickTween : MonoBehaviour
         m_Button = GetComponent<Button>();
     }
 
+    [Button("重置特效")]
     void OnEnable()
     {
         if (!m_CapturedOrigin)
@@ -32,25 +35,15 @@ public class ButtonClickTween : MonoBehaviour
         {
             transform.localScale = m_OriginScale;
         }
-
-        if (m_Button != null)
-        {
-            m_Button.onClick.AddListener(OnClicked);
-        }
     }
 
     void OnDisable()
     {
-        if (m_Button != null)
-        {
-            m_Button.onClick.RemoveListener(OnClicked);
-        }
-
         m_Handle.TryCancel();
         transform.localScale = m_OriginScale;
     }
 
-    void OnClicked()
+    public void OnPointerDown(PointerEventData eventData)
     {
         if (m_Skip) return;
         if (m_Button != null && !m_Button.interactable) return;
