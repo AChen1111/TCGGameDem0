@@ -22,11 +22,14 @@ public class LogInWindow : AWindowController
     //用于取消上一次输入反馈动画
     private MotionHandle m_nameInputMotion;
     private MotionHandle m_passwordInputMotion;
+    private MotionHandle m_passwordAgainInputMotion;
     private int m_nameInputVersion;
     private int m_passwordInputVersion;
+    private int m_passwordAgainInputVersion;
     //记录输入框初始缩放，动画结束后恢复
     private Vector3 m_nameInputScale;
     private Vector3 m_passwordInputScale;
+    private Vector3 m_passwordAgainInputScale;
 
     protected override void AddListeners()
     {
@@ -35,7 +38,7 @@ public class LogInWindow : AWindowController
         m_BtnRes.onClick.AddListener(OnBtnResClick);
         m_InpLogName.onValueChanged.AddListener(OnNameInputChanged);
         m_InpLogPassWord.onValueChanged.AddListener(OnPasswordInputChanged);
-        m_InpLogPassWord_Again.onValueChanged.AddListener(OnPasswordInputChanged);
+        m_InpLogPassWord_Again.onValueChanged.AddListener(OnPasswordAgainInputChanged);
     }
 
 
@@ -107,7 +110,7 @@ public class LogInWindow : AWindowController
         m_BtnRes.onClick.RemoveListener(OnBtnResClick);
         m_InpLogName.onValueChanged.RemoveListener(OnNameInputChanged);
         m_InpLogPassWord.onValueChanged.RemoveListener(OnPasswordInputChanged);
-        m_InpLogPassWord_Again.onValueChanged.RemoveListener(OnPasswordInputChanged);
+        m_InpLogPassWord_Again.onValueChanged.RemoveListener(OnPasswordAgainInputChanged);
     }
 
     private void OnBtnNoClick()
@@ -122,6 +125,7 @@ public class LogInWindow : AWindowController
         base.Awake();
         m_nameInputScale = m_InpLogName.transform.localScale;
         m_passwordInputScale = m_InpLogPassWord.transform.localScale;
+        m_passwordAgainInputScale = m_InpLogPassWord_Again.transform.localScale;
         m_switchModeButtonText = m_BtnRes.GetComponentInChildren<TMP_Text>();
     }
 
@@ -161,6 +165,24 @@ public class LogInWindow : AWindowController
         m_InpLogPassWord.transform.localScale = m_passwordInputScale;
         //输入时播放短促缩放反馈
         m_passwordInputMotion = UITween.DoPunchScale(m_InpLogPassWord.transform, 1.04f, 0.12f);
+    }
+
+    private void OnPasswordAgainInputChanged(string _)
+    {
+        PlayPasswordAgainInputFeedbackAsync(++m_passwordAgainInputVersion).Forget();
+    }
+
+    private async UniTaskVoid PlayPasswordAgainInputFeedbackAsync(int version)
+    {
+        await UniTask.NextFrame();
+        if (version != m_passwordAgainInputVersion)
+        {
+            return;
+        }
+
+        m_passwordAgainInputMotion.TryCancel();
+        m_InpLogPassWord_Again.transform.localScale = m_passwordAgainInputScale;
+        m_passwordAgainInputMotion = UITween.DoPunchScale(m_InpLogPassWord_Again.transform, 1.04f, 0.12f);
     }
 
     protected override void OnOpen()
