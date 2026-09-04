@@ -55,3 +55,17 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: AvatarItemPrefab
+    reference:
+      m_AssetGUID: 01bd24fd410adfc4f94fc25477c9fb35
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: SelfChooseWindow
+    reference:
+      m_AssetGUID: 232a381f9091a5b45b781d75776f8311
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

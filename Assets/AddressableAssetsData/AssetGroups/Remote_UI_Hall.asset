@@ -60,6 +60,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a61f031e6c4d6b141904a677a6e75551
+    m_Address: SelfWindow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c2a48d32e1aaf41408acf01703d1b723
     m_Address: Avatar
     m_ReadOnly: 0
