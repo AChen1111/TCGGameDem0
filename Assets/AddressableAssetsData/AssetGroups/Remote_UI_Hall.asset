@@ -15,6 +15,56 @@ MonoBehaviour:
   m_GroupName: Remote_UI_Hall
   m_GUID: 372fa8289c74b294bb967291bb9011b2
   m_SerializeEntries:
+  - m_GUID: 4e943d3ff8ff4e729c2f7d8d684cef85
+    m_Address: Sprite/Shop
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4f4eac2010910c142a6e70cafeb11b15
+    m_Address: Sprite/Home
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 595cecafa007c144787c9a3b17e5bef4
+    m_Address: Sprite/Misc
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e2b51eae3654613afff07e202c133ec
+    m_Address: Sprite/Profile
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6b75e69c961840cb84cdf632e981d489
+    m_Address: Sprite/LoginBonus
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 75fdbc0be6dc49409e8c884c16d918e1
+    m_Address: Sprite/Replay
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 80d35e5c16f049a691024f2100dc23fe
+    m_Address: Sprite/Room
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 817b315ce32544b8a68f4d323c4a1e27
+    m_Address: Sprite/Wcs
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9022e84b7c5a44458ec853900eb0231c
+    m_Address: Sprite/Colosseum
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c2a48d32e1aaf41408acf01703d1b723
+    m_Address: Avatar
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ca1702b9e2d078e4cb8a10cf4fbbbed2
     m_Address: Shop
     m_ReadOnly: 0
@@ -30,8 +80,38 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e08db0a81d6a4ca47a3192e0118ac559
+    m_Address: Sprite/Badge
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9e572eb1d6441ae8d3932aaee4c2e69
+    m_Address: Sprite/Mission
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec64fecf51422b64c938d86f1beede52
+    m_Address: Sprite/Common
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ef5cc383925548258231754972748ae8
+    m_Address: Sprite/Deck
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f05a8654ab3a4b6dbf9a284787e8e665
+    m_Address: Sprite/Solo
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fc3ad0f45c5c2464abba97b174dc06b6
     m_Address: PreGameUI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ffaca0c8b3c040b5925c1e6cbc1c1cf4
+    m_Address: Sprite/Duel
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

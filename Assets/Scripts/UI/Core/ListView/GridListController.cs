@@ -54,6 +54,7 @@ public class GridListController : MonoBehaviour
                 return null;
 
             LoopListViewItem2 item = listView.NewListViewItem(prefabName);
+            ButtonClickTween.EnsureOn(item.transform);
             var row = item.GetComponent<IRowItem<TData>>();
             row?.SetRowData(rowIndex, dataList, mSelectedIndex, OnCardSelected);
             return item;

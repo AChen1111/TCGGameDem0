@@ -14,7 +14,7 @@ namespace Unity.Pipeline.Tests.Editor.Animation
     /// default), add transition (with a matching condition), and the validation failures (missing
     /// parameter, mode/type mismatch). Assets are generated in-test and cleaned up.
     /// </summary>
-    public class AnimatorControllerCommandsTests
+    class AnimatorControllerCommandsTests
     {
         private const string Root = "Assets/__CLI214CtrlTest";
 
@@ -25,7 +25,7 @@ namespace Unity.Pipeline.Tests.Editor.Animation
             if (AssetDatabase.IsValidFolder(Root))
             {
                 AssetDatabase.DeleteAsset(Root);
-                AssetDatabase.Refresh();
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
             }
         }
 

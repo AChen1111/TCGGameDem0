@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using AChen.Networking;
 using NUnit.Framework;
@@ -119,6 +120,8 @@ public sealed class GameConfigTests
     public void Player_avatar_id_contract_is_nullable_integer()
     {
         Assert.AreEqual(typeof(int?), typeof(PlayerData).GetProperty(nameof(PlayerData.AvatarId)).PropertyType);
+        Assert.AreEqual(typeof(IReadOnlyList<int>), typeof(PlayerData).GetProperty(nameof(PlayerData.OwnedAvatarIds)).PropertyType);
+        Assert.AreEqual(typeof(int?), typeof(PlayerData).GetProperty(nameof(PlayerData.BackgroundId)).PropertyType);
     }
 
     static GameConfigSnapshot CreateSnapshot(long revision, long priceGold)

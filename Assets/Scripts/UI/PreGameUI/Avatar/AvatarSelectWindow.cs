@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using AChen.Networking;
+using AChen.Player;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using UnityEngine;
@@ -22,17 +25,20 @@ public class AvatarSelectWindow : AWindowController<AvatarSelectWindowProperties
 {
     [SerializeField] AvatarListController m_AvatarListController;
     [SerializeField] Button m_BtnConfirm;
+    [SerializeField] Button m_CloseButton;
     [SerializeField] float m_ScrollToSelectedDuration = 0.25f;
     [SerializeField] Ease m_ScrollToSelectedEase = Ease.InOutCubic;
 
     protected override void AddListeners()
     {
         m_BtnConfirm.onClick.AddListener(OnConfirmClick);
+        m_CloseButton.onClick.AddListener(OnCloseButtonClicked);
     }
 
     protected override void RemoveListeners()
     {
         m_BtnConfirm.onClick.RemoveListener(OnConfirmClick);
+        m_CloseButton.onClick.RemoveListener(OnCloseButtonClicked);
     }
 
     protected override void OnOpen()
@@ -59,7 +65,17 @@ public class AvatarSelectWindow : AWindowController<AvatarSelectWindowProperties
         m_AvatarListController.MoveToSelectedIfHidden(m_ScrollToSelectedDuration, m_ScrollToSelectedEase);
     }
 
+    void OnCloseButtonClicked()
+    {
+        UI_Close();
+    }
+
     void OnConfirmClick()
+    {
+        ConfirmAsync().Forget();
+    }
+
+    async UniTaskVoid ConfirmAsync()
     {
         int index = m_AvatarListController.SelectedIndex;
         List<AvatarItemData> avatars = Properties.Avatars;
@@ -70,6 +86,41 @@ public class AvatarSelectWindow : AWindowController<AvatarSelectWindowProperties
         }
 
         AvatarItemData selected = avatars[index];
-        ALog.Log($"确认头像: Id={selected.Id}, Name={selected.Name}", ALogCategories.UI);
+        PlayerData player = PlayerSession.Instance.CurrentPlayer;
+        if (player == null)
+        {
+            ALog.LogError("确认头像失败: 无玩家数据", ALogCategories.UI);
+            ShowMessage("更换头像失败");
+            return;
+        }
+
+        try
+        {
+            await PlayerSession.Instance.UpdatePlayerProfileAsync(
+                player.Nickname,
+                selected.Id,
+                player.BackgroundId,
+                player.Revision,
+                this.GetCancellationTokenOnDestroy());
+            ALog.Log($"确认头像成功: Id={selected.Id}, Name={selected.Name}", ALogCategories.UI);
+            UI_Close();
+        }
+        catch (BackendApiException exception)
+        {
+            ALog.LogError(
+                $"确认头像失败. Code={exception.Code}; Status={exception.StatusCode}",
+                ALogCategories.UI);
+            ShowMessage("更换头像失败");
+        }
+        catch (OperationCanceledException)
+        {
+        }
+    }
+
+    void ShowMessage(string message)
+    {
+        m_UIFrame.OpenWindow(
+            AddressKeys.Prefab.MessageWindow,
+            new MessageWindowProperties(message, 2f));
     }
 }

@@ -20,7 +20,16 @@ public class SingletonManager : PersistentMonoSingleton<SingletonManager>
         }
         if (!string.IsNullOrEmpty(m_sceneName))
         {
-            await SceneLoader.LoadScene(m_sceneName);
+            SceneTransitionOverlay.Show();
+            try
+            {
+                await SceneLoader.LoadScene(m_sceneName);
+            }
+            catch
+            {
+                SceneTransitionOverlay.Hide();
+                throw;
+            }
         }
     }
 }

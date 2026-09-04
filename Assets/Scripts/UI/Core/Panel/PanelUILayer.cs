@@ -7,7 +7,6 @@ public class PanelUILayer : AUILayer<IPanelController> {
     [SerializeField]
     [Tooltip("按 Priority 把 Panel 挂到对应 para-layer")]
     private PanelPriorityLayerList priorityLayers = null;
-
     public override void ReparentScreen(IUIScreenController controller, Transform screenTransform) {
         var ctl = controller as IPanelController;
         if (ctl != null) {
@@ -18,7 +17,6 @@ public class PanelUILayer : AUILayer<IPanelController> {
         }
 
     }
-
     public override void ShowScreen(IPanelController screen) {
         screen.Show();
     }

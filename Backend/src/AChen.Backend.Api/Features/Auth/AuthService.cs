@@ -35,16 +35,14 @@ public sealed class AuthService(
     private async Task<User> AddAccountAsync(RegisterRequest request, CancellationToken cancellationToken)
     {
         var username = request.Username.Trim();
-        var email = request.Email.Trim().ToLowerInvariant();
         var normalizedUsername = username.ToUpperInvariant();
-        var normalizedEmail = email;
 
         var accountExists = await db.Users.AnyAsync(
-            user => user.NormalizedUsername == normalizedUsername || user.NormalizedEmail == normalizedEmail,
+            user => user.NormalizedUsername == normalizedUsername,
             cancellationToken);
         if (accountExists)
         {
-            throw new ApiException(StatusCodes.Status409Conflict, "ACCOUNT_EXISTS", "Username or email is already registered.");
+            throw new ApiException(StatusCodes.Status409Conflict, "ACCOUNT_EXISTS", "Username is already registered.");
         }
 
         var now = timeProvider.GetUtcNow();
@@ -52,8 +50,6 @@ public sealed class AuthService(
         {
             Username = username,
             NormalizedUsername = normalizedUsername,
-            Email = email,
-            NormalizedEmail = normalizedEmail,
             PasswordHash = "",
             CreatedAt = now,
             UpdatedAt = now
@@ -61,15 +57,7 @@ public sealed class AuthService(
         user.PasswordHash = passwordHasher.HashPassword(user, request.Password);
 
         db.Users.Add(user);
-        db.PlayerProfiles.Add(new PlayerProfile
-        {
-            UserId = user.Id,
-            Nickname = username,
-            Gold = 0,
-            Revision = 0,
-            CreatedAt = now,
-            UpdatedAt = now
-        });
+        db.PlayerProfiles.Add(PlayerProfile.ForNewAccount(user.Id, username, now));
 
         return user;
     }
@@ -82,28 +70,27 @@ public sealed class AuthService(
         }
         catch (DbUpdateException exception) when (exception.InnerException is SqliteException { SqliteErrorCode: 19 })
         {
-            throw new ApiException(StatusCodes.Status409Conflict, "ACCOUNT_EXISTS", "Username or email is already registered.");
+            throw new ApiException(StatusCodes.Status409Conflict, "ACCOUNT_EXISTS", "Username is already registered.");
         }
     }
 
     public async Task<AuthResponse> LoginAsync(LoginRequest request, CancellationToken cancellationToken)
     {
-        var identifier = request.Identifier.Trim();
-        var normalizedUsername = identifier.ToUpperInvariant();
-        var normalizedEmail = identifier.ToLowerInvariant();
+        var username = request.Username.Trim();
+        var normalizedUsername = username.ToUpperInvariant();
         var user = await db.Users.SingleOrDefaultAsync(
-            value => value.NormalizedUsername == normalizedUsername || value.NormalizedEmail == normalizedEmail,
+            value => value.NormalizedUsername == normalizedUsername,
             cancellationToken);
 
         if (user is null)
         {
-            throw new ApiException(StatusCodes.Status401Unauthorized, "INVALID_CREDENTIALS", "Identifier or password is incorrect.");
+            throw new ApiException(StatusCodes.Status401Unauthorized, "INVALID_CREDENTIALS", "Username or password is incorrect.");
         }
 
         var verification = passwordHasher.VerifyHashedPassword(user, user.PasswordHash, request.Password);
         if (verification == PasswordVerificationResult.Failed)
         {
-            throw new ApiException(StatusCodes.Status401Unauthorized, "INVALID_CREDENTIALS", "Identifier or password is incorrect.");
+            throw new ApiException(StatusCodes.Status401Unauthorized, "INVALID_CREDENTIALS", "Username or password is incorrect.");
         }
 
         if (verification == PasswordVerificationResult.SuccessRehashNeeded)
@@ -181,7 +168,7 @@ public sealed class AuthService(
             await playerService.GetAsync(user.Id, cancellationToken));
 
     private static UserResponse ToUserResponse(User user) =>
-        new(user.Id, user.Username, user.Email, user.CreatedAt);
+        new(user.Id, user.Username, user.CreatedAt);
 
     private static ApiException InvalidRefreshToken() =>
         new(StatusCodes.Status401Unauthorized, "INVALID_REFRESH_TOKEN", "Refresh token is invalid or expired.");

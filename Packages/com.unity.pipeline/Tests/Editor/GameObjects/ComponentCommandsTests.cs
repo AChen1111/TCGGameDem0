@@ -16,7 +16,7 @@ namespace Unity.Pipeline.Tests.Editor.GameObjects
     /// (set -> get) over primitive + enum + Vector types, object-reference assignment via a resolved
     /// handle, and the Undo-revert contract for a property mutation.
     /// </summary>
-    public class ComponentCommandsTests
+    class ComponentCommandsTests
     {
         private readonly List<GameObject> m_Spawned = new List<GameObject>();
 
@@ -45,7 +45,7 @@ namespace Unity.Pipeline.Tests.Editor.GameObjects
             if (AssetDatabase.IsValidFolder(AssetRoot))
             {
                 AssetDatabase.DeleteAsset(AssetRoot);
-                AssetDatabase.Refresh();
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
             }
         }
 
@@ -186,7 +186,7 @@ namespace Unity.Pipeline.Tests.Editor.GameObjects
             finally
             {
                 AssetDatabase.DeleteAsset(dir);
-                AssetDatabase.Refresh();
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
             }
         }
 

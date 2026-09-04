@@ -29,7 +29,19 @@ public class WindowParaLayer : MonoBehaviour {
     }
 
     public void DarkenBG() {
+        if (darkenBgObject == null) {
+            return;
+        }
+
         darkenBgObject.SetActive(true);
         darkenBgObject.transform.SetAsLastSibling();
+    }
+
+    public void HideDarken() {
+        if (darkenBgObject == null) {
+            return;
+        }
+
+        darkenBgObject.SetActive(false);
     }
 }
