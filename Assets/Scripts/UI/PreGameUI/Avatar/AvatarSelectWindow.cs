@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>头像选择窗口.调用 Init 传入头像 List,点确认读取当前选中项.</summary>
 public class AvatarSelectWindow : AWindowController
 {
     [SerializeField] AvatarListController m_AvatarListController;
@@ -9,37 +10,25 @@ public class AvatarSelectWindow : AWindowController
 
     protected override void AddListeners()
     {
-        if (m_BtnConfirm != null)
-        {
-            m_BtnConfirm.onClick.AddListener(OnConfirmClick);
-        }
+        m_BtnConfirm.onClick.AddListener(OnConfirmClick);
     }
 
     protected override void RemoveListeners()
     {
-        if (m_BtnConfirm != null)
-        {
-            m_BtnConfirm.onClick.RemoveListener(OnConfirmClick);
-        }
+        m_BtnConfirm.onClick.RemoveListener(OnConfirmClick);
     }
 
     public void Init(List<AvatarItemData> avatars, int selectedIndex = -1)
     {
-        if (m_AvatarListController == null)
-        {
-            ALog.LogWarning("头像选择窗口未绑定滑动列表", ALogCategories.UI);
-            return;
-        }
-
         m_AvatarListController.InitList(avatars, selectedIndex);
     }
 
     void OnConfirmClick()
     {
-        AvatarItemData selected = m_AvatarListController != null ? m_AvatarListController.Selected : null;
+        AvatarItemData selected = m_AvatarListController.Selected;
         if (selected == null)
         {
-            ALog.LogWarning("确认更换头像失败: 未选中头像", ALogCategories.UI);
+            ALog.LogWarning("确认头像失败: 未选中", ALogCategories.UI);
             return;
         }
 
