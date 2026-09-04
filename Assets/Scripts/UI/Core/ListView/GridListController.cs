@@ -77,13 +77,13 @@ public class GridListController : MonoBehaviour
         }
     }
 
-    /// <summary>选中项可能在首屏外,仅当对应行未显示时滚过去.</summary>
-    public void MoveToSelectedIfHidden()
+    /// <summary>选中项可能在首屏外,仅当对应行未显示时滚过去. duration 为秒,大于 0 时插值滚动.</summary>
+    public void MoveToSelectedIfHidden(float duration = 0)
     {
         if (!mIsInited || mSelectedIndex < 0) return;
         int selectedRow = mSelectedIndex / mRowCardCount;
         if (loopListView.GetShownItemByItemIndex(selectedRow) != null) return;
-        loopListView.MovePanelToItemIndex(selectedRow, 0);
+        loopListView.MovePanelToItemIndex(selectedRow, 0, duration);
     }
 
     private LoopListViewItem2 OnGetItemByIndex(LoopListView2 listView, int rowIndex)
