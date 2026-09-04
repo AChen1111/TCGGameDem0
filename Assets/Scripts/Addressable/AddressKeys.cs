@@ -11,6 +11,7 @@ public static class AddressKeys
         public static readonly string LogInWindow = "LogInWindow";
         public static readonly string MessageWindow = "MessageWindow";
         public static readonly string PreGameUIPanel = "PreGameUIPanel";
+        public static readonly string SelfChooseWindow = "SelfChooseWindow";
         public static readonly string ShopWindows = "ShopWindows";
     }
     public static class Sprite
@@ -74,7 +75,7 @@ public static class AddressKeys
         public static readonly string PreGameSceneUI = "PreGameSceneUI";
         public static readonly string UISetting = "UISetting";
     }
-    //--tag:auto-generated-end
+//--tag:auto-generated-end
     public static string GetAvatarAddress(int avatarId)
     {
         return $"a_{avatarId:D2}";
