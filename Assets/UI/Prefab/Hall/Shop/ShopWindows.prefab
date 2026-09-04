@@ -619,6 +619,7 @@ GameObject:
   - component: {fileID: 3515200968261698059}
   - component: {fileID: 7096564751891756802}
   - component: {fileID: 2289179561427710797}
+  - component: {fileID: 552824606606846064}
   m_Layer: 5
   m_Name: Btn_Close
   m_TagString: Untagged
@@ -727,6 +728,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &552824606606846064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6604187602353771790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4e9a1b2d8f46c0a3e5b9176d4f2c81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HotUpdate::ButtonClickTween
+  m_Skip: 0
+  m_Duration: 0.12
+  m_PunchScale: 1.04
+  m_Ease: 8
 --- !u!1 &6742923538812749942
 GameObject:
   m_ObjectHideFlags: 0
