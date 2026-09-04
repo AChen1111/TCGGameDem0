@@ -11,6 +11,7 @@ public class GridListController : MonoBehaviour
 
     private bool mIsInited;
     private int mSelectedIndex = -1;
+    private int mRowCardCount = 1;
     private Action<int> mOnSelectedCallback;
     private Func<LoopListView2, int, LoopListViewItem2> mOnGetItemHandler;
     protected virtual string key { get; set; }
@@ -30,6 +31,7 @@ public class GridListController : MonoBehaviour
         var rowItemComp = prefab.GetComponent<IRowItem<TData>>();
         int rowCardCount = rowItemComp != null ? rowItemComp.RowCardCount : 1;
         if (rowCardCount <= 0) rowCardCount = 1;
+        mRowCardCount = rowCardCount;
 
         if (loopListView.GetItemPrefabConfData(prefab.name) == null)
         {
@@ -73,6 +75,15 @@ public class GridListController : MonoBehaviour
             loopListView.SetListItemCount(rowCount, true);
             loopListView.RefreshAllShownItem();
         }
+    }
+
+    /// <summary>选中项可能在首屏外,仅当对应行未显示时滚过去.</summary>
+    public void MoveToSelectedIfHidden()
+    {
+        if (!mIsInited || mSelectedIndex < 0) return;
+        int selectedRow = mSelectedIndex / mRowCardCount;
+        if (loopListView.GetShownItemByItemIndex(selectedRow) != null) return;
+        loopListView.MovePanelToItemIndex(selectedRow, 0);
     }
 
     private LoopListViewItem2 OnGetItemByIndex(LoopListView2 listView, int rowIndex)

@@ -44,7 +44,16 @@ public class AvatarSelectWindow : AWindowController<AvatarSelectWindowProperties
 
     void BindList()
     {
-        m_AvatarListController.InitList(Properties.Avatars, null, Properties.SelectedIndex).Forget();
+        BindListAsync().Forget();
+    }
+
+    async UniTask BindListAsync()
+    {
+        await m_AvatarListController.InitList(Properties.Avatars, null, Properties.SelectedIndex);
+        // 等列表首帧把可视行创建出来,再判断预选项是否在视口外.
+        await UniTask.Yield();
+        if (m_AvatarListController == null) return;
+        m_AvatarListController.MoveToSelectedIfHidden();
     }
 
     void OnConfirmClick()
