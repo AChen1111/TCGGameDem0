@@ -6,9 +6,23 @@ using AChen.Networking;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class ShopWindow : AWindowController
+/// <summary>开窗参数.外部 OpenWindow(id, new ShopWindowProperties(list)).</summary>
+public sealed class ShopWindowProperties : IWindowProperties
 {
-    [SerializeField] private CardPackListController m_CardPackListController;
+    public List<ShopCardItemData> CardPacks { get; }
+    public int SelectedIndex { get; }
+
+    public ShopWindowProperties(List<ShopCardItemData> cardPacks, int selectedIndex = -1)
+    {
+        CardPacks = cardPacks;
+        SelectedIndex = selectedIndex;
+    }
+}
+
+/// <summary>商城窗口.OnOpen 读取 Properties 填列表.</summary>
+public class ShopWindow : AWindowController<ShopWindowProperties>
+{
+    [SerializeField] CardPackListController m_CardPackListController;
     readonly List<ShopCardItemData> m_CardPackList = new List<ShopCardItemData>();
     int? m_SelectedCardPackId;
     int m_RefreshGeneration;
@@ -28,89 +42,121 @@ public class ShopWindow : AWindowController
 
     protected override void OnOpen()
     {
-        RefreshAsync(true, this.GetCancellationTokenOnDestroy()).Forget();
+        BindList(Properties.CardPacks, Properties.SelectedIndex);
     }
 
     protected override void OnResume()
     {
-        RefreshAsync(true, this.GetCancellationTokenOnDestroy()).Forget();
+        RefreshFromConfigAsync(true, this.GetCancellationTokenOnDestroy()).Forget();
     }
 
     void OnConfigChanged(GameConfigSnapshot snapshot)
     {
         if (IsVisible)
         {
-            RefreshAsync(false, this.GetCancellationTokenOnDestroy()).Forget();
+            RefreshFromConfigAsync(false, this.GetCancellationTokenOnDestroy()).Forget();
         }
     }
 
-    async UniTaskVoid RefreshAsync(bool checkBackend, CancellationToken cancellationToken)
+    void BindList(List<ShopCardItemData> cardPacks, int selectedIndex)
+    {
+        m_CardPackList.Clear();
+        if (cardPacks != null)
+        {
+            m_CardPackList.AddRange(cardPacks);
+        }
+
+        int index = ResolveSelectedIndex(selectedIndex);
+        m_CardPackListController.InitList(m_CardPackList, OnSelected, index).Forget();
+    }
+
+    int ResolveSelectedIndex(int selectedIndex)
+    {
+        if (m_SelectedCardPackId.HasValue)
+        {
+            int byId = m_CardPackList.FindIndex(value => value.Id == m_SelectedCardPackId.Value);
+            if (byId >= 0)
+            {
+                return byId;
+            }
+
+            m_SelectedCardPackId = null;
+        }
+
+        if (selectedIndex >= 0 && selectedIndex < m_CardPackList.Count)
+        {
+            m_SelectedCardPackId = m_CardPackList[selectedIndex].Id;
+            return selectedIndex;
+        }
+
+        return -1;
+    }
+
+    async UniTaskVoid RefreshFromConfigAsync(bool checkBackend, CancellationToken cancellationToken)
     {
         int generation = ++m_RefreshGeneration;
         try
         {
-            GameConfigManager manager = GameConfigManager.Instance;
-            if (checkBackend)
+            List<ShopCardItemData> rebuilt = await LoadCardPacksAsync(checkBackend, cancellationToken);
+            if (generation != m_RefreshGeneration || cancellationToken.IsCancellationRequested)
             {
-                await manager.EnsureFreshAsync(false, cancellationToken);
+                return;
             }
 
-            GameConfigStore store = manager.Store;
-            CardPackConfig[] visible = store.Snapshot.CardPacks
-                .Where(store.IsCardPackVisible)
-                .OrderBy(value => value.SortOrder)
-                .ThenBy(value => value.Id)
-                .ToArray();
-            var rebuilt = new List<ShopCardItemData>(visible.Length);
-            for (int i = 0; i < visible.Length; i++)
-            {
-                CardPackConfig config = visible[i];
-                Sprite sprite = null;
-                try
-                {
-                    sprite = await AddressableLoader.Instance.LoadSprite(config.CoverResourceKey);
-                }
-                catch (Exception exception)
-                {
-                    ALog.LogWarning(
-                        $"Card pack {config.Id} cover failed to load: {config.CoverResourceKey}, {exception.Message}",
-                        ALogCategories.UI);
-                }
-
-                if (generation != m_RefreshGeneration || cancellationToken.IsCancellationRequested)
-                {
-                    return;
-                }
-
-                rebuilt.Add(new ShopCardItemData(
-                    config.Id,
-                    config.Title,
-                    sprite,
-                    config.PriceGold,
-                    config.EndsAt,
-                    i));
-            }
-
-            m_CardPackList.Clear();
-            m_CardPackList.AddRange(rebuilt);
-            int selectedIndex = m_SelectedCardPackId.HasValue
-                ? m_CardPackList.FindIndex(value => value.Id == m_SelectedCardPackId.Value)
-                : -1;
-            if (selectedIndex < 0)
-            {
-                m_SelectedCardPackId = null;
-            }
-
-            await m_CardPackListController.InitList(m_CardPackList, OnSelected, selectedIndex);
+            BindList(rebuilt, -1);
         }
         catch (OperationCanceledException)
         {
-            // Window is closing.
         }
         catch (Exception exception)
         {
             ALog.LogError("Shop configuration refresh failed: " + exception.Message, ALogCategories.UI);
         }
+    }
+
+    public static async UniTask<List<ShopCardItemData>> LoadCardPacksAsync(
+        bool checkBackend,
+        CancellationToken cancellationToken)
+    {
+        GameConfigManager manager = GameConfigManager.Instance;
+        if (checkBackend)
+        {
+            await manager.EnsureFreshAsync(false, cancellationToken);
+        }
+
+        GameConfigStore store = manager.Store;
+        CardPackConfig[] visible = store.Snapshot.CardPacks
+            .Where(store.IsCardPackVisible)
+            .OrderBy(value => value.SortOrder)
+            .ThenBy(value => value.Id)
+            .ToArray();
+        var rebuilt = new List<ShopCardItemData>(visible.Length);
+        for (int i = 0; i < visible.Length; i++)
+        {
+            CardPackConfig config = visible[i];
+            Sprite sprite = null;
+            try
+            {
+                sprite = await AddressableLoader.Instance.LoadSprite(config.CoverResourceKey);
+            }
+            catch (Exception exception)
+            {
+                ALog.LogWarning(
+                    $"Card pack {config.Id} cover failed to load: {config.CoverResourceKey}, {exception.Message}",
+                    ALogCategories.UI);
+            }
+
+            cancellationToken.ThrowIfCancellationRequested();
+            rebuilt.Add(new ShopCardItemData(
+                config.Id,
+                config.Title,
+                sprite,
+                config.PriceGold,
+                config.EndsAt,
+                i));
+        }
+
+        return rebuilt;
     }
 
     void OnSelected(int index)
