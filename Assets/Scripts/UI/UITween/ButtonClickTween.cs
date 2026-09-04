@@ -2,7 +2,7 @@ using LitMotion;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>点击时播放短促缩放.界面打开和列表取格子时自动挂上.</summary>
+/// <summary>挂在 Button 上,点击时播放短促缩放.</summary>
 [RequireComponent(typeof(Button))]
 public class ButtonClickTween : MonoBehaviour
 {
@@ -15,25 +15,6 @@ public class ButtonClickTween : MonoBehaviour
     Vector3 m_OriginScale = Vector3.one;
     bool m_CapturedOrigin;
     MotionHandle m_Handle;
-
-    public static void EnsureOn(Transform root)
-    {
-        if (root == null) return;
-        Button[] buttons = root.GetComponentsInChildren<Button>(true);
-        for (int i = 0; i < buttons.Length; i++)
-        {
-            EnsureOn(buttons[i]);
-        }
-    }
-
-    public static void EnsureOn(Button button)
-    {
-        if (button == null) return;
-        if (button.GetComponent<ButtonClickTween>() == null)
-        {
-            button.gameObject.AddComponent<ButtonClickTween>();
-        }
-    }
 
     void Awake()
     {

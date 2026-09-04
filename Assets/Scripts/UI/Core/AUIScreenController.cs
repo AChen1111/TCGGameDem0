@@ -144,8 +144,6 @@ public abstract class AUIScreenController : MonoBehaviour, IUIScreenController
             OnOpen();
             m_opened = true;
         }
-
-        ButtonClickTween.EnsureOn(transform);
     }
 
     void DestroyScreenObject()

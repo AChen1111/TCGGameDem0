@@ -2,8 +2,6 @@ public static class AddressKeys
 {
     public static class Prefab
     {
-        public static readonly string AvatarItem = "AvatarItem";
-        public static readonly string AvatarSelectWindow = "AvatarSelectWindow";
         public static readonly string CardPackRowPrefab = "CardPackRowPrefab";
         public static readonly string ChangeNameWindow = "ChangeNameWindow";
         public static readonly string LogInWindow = "LogInWindow";
