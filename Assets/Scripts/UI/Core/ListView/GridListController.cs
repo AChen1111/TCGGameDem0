@@ -19,7 +19,9 @@ public class GridListController : MonoBehaviour
     protected virtual string key { get; set; }
     public int SelectedIndex => mSelectedIndex;
 
-    public async UniTask InitList<TData>(
+    //todo:明天审一下
+    // 热更里泛型 async 实例方法会丢 <>4__this,所以异步加载和泛型绑定拆开
+    public UniTask InitList<TData>(
         List<TData> dataList,
         Action<int> onSelected = null,
         int selectedIndex = -1)
@@ -29,8 +31,16 @@ public class GridListController : MonoBehaviour
         mSelectedIndex = selectedIndex >= 0 && dataList != null && selectedIndex < dataList.Count
             ? selectedIndex
             : -1;
+        return LoadRowPrefabAsync().ContinueWith(prefab => BindList(prefab, dataList));
+    }
 
-        GameObject prefab = await AddressableLoader.Instance.LoadPrefab(key);
+    async UniTask<GameObject> LoadRowPrefabAsync()
+    {
+        return await AddressableLoader.Instance.LoadPrefab(key);
+    }
+
+    void BindList<TData>(GameObject prefab, List<TData> dataList)
+    {
         var rowItemComp = prefab.GetComponent<IRowItem<TData>>();
         int rowCardCount = rowItemComp != null ? rowItemComp.RowCardCount : 1;
         if (rowCardCount <= 0) rowCardCount = 1;
@@ -38,9 +48,17 @@ public class GridListController : MonoBehaviour
 
         if (loopListView.GetItemPrefabConfData(prefab.name) == null)
         {
+            // 横向列表的 PosY 由 StartPosOffset 决定,直接用预制体上的值
+            float startPosOffset = 0f;
+            if (loopListView.ArrangeType is ListItemArrangeType.LeftToRight or ListItemArrangeType.RightToLeft)
+            {
+                startPosOffset = prefab.GetComponent<RectTransform>().anchoredPosition.y;
+            }
+
             loopListView.ItemPrefabDataList.Add(new ItemPrefabConfData
             {
-                mItemPrefab = prefab
+                mItemPrefab = prefab,
+                mStartPosOffset = startPosOffset
             });
         }
 
