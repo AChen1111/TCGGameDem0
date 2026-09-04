@@ -75,17 +75,20 @@ static class UITween
             .BindToLocalScale(target);
     }
 
-    //短促缩放反馈：放大后回到原始尺寸
-    public static MotionHandle DoPunchScale(Transform target, float scale, float duration, Ease ease = Ease.OutCubic)
+    //短促缩放反馈：放大后回到原始尺寸.单条 Yoyo,避免 Sequence 晚一帧才启动
+    public static MotionHandle DoPunchScale(Transform target, float scale, float duration, Ease ease = Ease.OutCubic, System.Action onComplete = null)
     {
         var origin = target.localScale;
-        var seq = LSequence.Create();
-        seq.Append(LMotion.Create(origin, origin * scale, duration * 0.5f)
+        var peak = origin * scale;
+        var half = Mathf.Max(duration * 0.5f, 0.0001f);
+        var builder = LMotion.Create(origin, peak, half)
             .WithEase(ease)
-            .BindToLocalScale(target));
-        seq.Append(LMotion.Create(origin * scale, origin, duration * 0.5f)
-            .WithEase(ease)
-            .BindToLocalScale(target));
-        return seq.Run();
+            .WithLoops(2, LoopType.Yoyo);
+        if (onComplete != null)
+        {
+            builder = builder.WithOnComplete(onComplete);
+        }
+
+        return builder.BindToLocalScale(target);
     }
 }
