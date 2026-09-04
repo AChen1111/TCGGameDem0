@@ -76,15 +76,15 @@ static class UITween
     }
 
     //短促缩放反馈：放大后回到原始尺寸
-    public static MotionHandle DoPunchScale(Transform target, float scale, float duration)
+    public static MotionHandle DoPunchScale(Transform target, float scale, float duration, Ease ease = Ease.OutCubic)
     {
         var origin = target.localScale;
         var seq = LSequence.Create();
         seq.Append(LMotion.Create(origin, origin * scale, duration * 0.5f)
-            .WithEase(Ease.OutCubic)
+            .WithEase(ease)
             .BindToLocalScale(target));
         seq.Append(LMotion.Create(origin * scale, origin, duration * 0.5f)
-            .WithEase(Ease.OutCubic)
+            .WithEase(ease)
             .BindToLocalScale(target));
         return seq.Run();
     }
