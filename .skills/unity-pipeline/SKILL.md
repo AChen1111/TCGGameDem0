@@ -69,8 +69,8 @@ Primitives: `cube`, `sphere`, `capsule`, `cylinder`, `plane`, `quad`. Objects ar
 
 ### Edit → recompile → test
 
-Simple, low-risk edits: recompile and check console errors; **do not** run tests.
-Run tests only for new features or large / high-risk changes, and then only with `--filter`.
+除非用户明确要求编译或跑测试，否则不要 `recompile`、不要核对编译错误、不要 `run_tests`。改完即止。
+仅在用户点名编译或测试时使用下面的流程，测试必须带 `--filter`。
 
 ```bash
 unity command --proxy-disable --project-path "%PROJECT%" set_autotick --enable true
@@ -85,7 +85,7 @@ Always enable `set_autotick` before headless compile/test work (unfocused Editor
 
 ### Running tests (read before calling `run_tests`)
 
-Skip `run_tests` unless the change is a new feature or otherwise large / high-risk.
+除非用户明确要求跑测试，否则不要调用 `run_tests`。
 
 Command execution is still serialized (one `/api/exec` at a time). HTTP itself is concurrent:
 `editor_status`, `test_status`, and progress stay reachable while a long command runs.
@@ -115,6 +115,8 @@ unity command --proxy-disable --project-path "%PROJECT%" cancel_tests   # abort 
   drops the request) — `--async_tests` is mandatory there.
 
 ### Verify
+
+用控制台错误核对编译、或跑测试，仅在用户明确要求时进行。截图仅在需要确认画面时使用。
 
 ```bash
 unity command --proxy-disable --project-path "%PROJECT%" get_console_logs --severity error --limit 20
