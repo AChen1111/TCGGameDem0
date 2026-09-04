@@ -129,14 +129,6 @@ public static class AddressableCatalogSetup
         sb.AppendLine("    {");
         sb.AppendLine("        return $\"a_{avatarId:D2}\";");
         sb.AppendLine("    }");
-        sb.AppendLine("    public static string GetBackgroundDownAddress(int backgroundId)");
-        sb.AppendLine("    {");
-        sb.AppendLine("        return $\"w_{backgroundId:D2}_Down\";");
-        sb.AppendLine("    }");
-        sb.AppendLine("    public static string GetBackgroundSpriteAddress(int backgroundId)");
-        sb.AppendLine("    {");
-        sb.AppendLine("        return $\"w_{backgroundId:D2}_Sprite\";");
-        sb.AppendLine("    }");
         sb.AppendLine("}");
         string text = sb.ToString();
         if (File.ReadAllText(AddressKeysPath).Replace("\r\n", "\n") == text.Replace("\r\n", "\n"))
