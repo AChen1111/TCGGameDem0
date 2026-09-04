@@ -1,7 +1,11 @@
+using System;
+
 public static class AddressKeys
 {
+    //--tag:auto-generated
     public static class Prefab
     {
+        public static readonly string AvatarItemPrefab = "AvatarItemPrefab";
         public static readonly string CardPackRowPrefab = "CardPackRowPrefab";
         public static readonly string ChangeNameWindow = "ChangeNameWindow";
         public static readonly string LogInWindow = "LogInWindow";
@@ -70,17 +74,19 @@ public static class AddressKeys
         public static readonly string PreGameSceneUI = "PreGameSceneUI";
         public static readonly string UISetting = "UISetting";
     }
-
+    //--tag:auto-generated-end
     public static string GetAvatarAddress(int avatarId)
     {
         return $"a_{avatarId:D2}";
     }
-    public static string GetBackgroundDownAddress(int backgroundId)
+
+    internal static string GetBackgroundDownAddress(int id)
     {
-        return $"w_{backgroundId:D2}_Down";
+        return $"w_{id:D2}_Down";
     }
-    public static string GetBackgroundSpriteAddress(int backgroundId)
+
+    internal static string GetBackgroundSpriteAddress(int id)
     {
-        return $"w_{backgroundId:D2}_Sprite";
+        return $"w_{id:D2}_Sprite";
     }
 }
