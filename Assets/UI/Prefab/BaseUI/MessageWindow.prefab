@@ -148,7 +148,7 @@ MonoBehaviour:
   m_destroyOnClose: 0
   hideOnForegroundLost: 1
   windowPriority: 0
-  isPopup: 1
+  isPopup: 0
   m_TxtMessage: {fileID: 7249435883062365388}
 --- !u!1 &8042739573809434753
 GameObject:
