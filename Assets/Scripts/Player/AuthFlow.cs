@@ -86,18 +86,8 @@ namespace AChen.Player
                 ALog.LogError(
                     $"账号认证失败. Mode={mode}; Code={exception.Code}; Status={exception.StatusCode}",
                     ALogCategories.Net);
-                return AuthResult.Failure(GetErrorMessage(exception.Code));
+                return AuthResult.Failure(exception.Message);
             }
         }
-
-        public static string GetErrorMessage(string code) => code switch
-        {
-            "ACCOUNT_EXISTS" => "该账号已被注册",
-            "INVALID_CREDENTIALS" => "账号或密码错误",
-            "VALIDATION_ERROR" => "账号或密码格式不正确",
-            "NETWORK_ERROR" => "无法连接服务器，请检查网络",
-            "RATE_LIMITED" => "操作过于频繁，请稍后再试",
-            _ => "账号操作失败，请稍后再试"
-        };
     }
 }
