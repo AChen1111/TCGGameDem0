@@ -299,6 +299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7933825615715367219}
   - component: {fileID: 7588910192452169144}
+  - component: {fileID: 4999873114906615174}
   m_Layer: 0
   m_Name: Gold
   m_TagString: Untagged
@@ -352,3 +353,16 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &4999873114906615174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8210126774912202436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0685232e382ceb4ea4cea87a0983435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HotUpdate::GoldDataView
+  m_GoldText: {fileID: 2601842018669313517}

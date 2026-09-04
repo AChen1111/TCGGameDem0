@@ -19,7 +19,10 @@ public static class AddressableCatalogSetup
     public const string GameScenePath = "Assets/Scenes/GameScene.unity";
     public const string BaseUiFolder = "Assets/UI/Prefab/BaseUI";
     public const string HallFolder = "Assets/UI/Prefab/Hall";
-    public const string FontsFolder = "Assets/Learn/MasterDuel/Fonts";
+    public const string FontsFolder = "Assets/UI/Fonts";
+    public const string SpriteFolder = "Assets/UI/Sprite";
+    public const string CardFolder = "Assets/UI/Card";
+    public const string ShaderFolder = "Assets/UI/Shader";
     public const string PreGameUiFolder = HallFolder + "/PreGameUI";
     public const string PreGameUiSettingsPath = PreGameUiFolder + "/PreGameSceneUI.asset";
     public const string PreGameUiPanelPath = PreGameUiFolder + "/PreGameUIPanel.prefab";
@@ -40,20 +43,57 @@ public static class AddressableCatalogSetup
             return RemoteUiEventGroup;
         }
 
+        if (path.Contains("/BaseUI") || path.Contains("/Fonts/") || path.Contains(FontsFolder)
+            || path.Contains("/Shader/") || path.Contains(ShaderFolder))
+        {
+            return RemoteSharedGroup;
+        }
+
         if (path.Contains("/Card"))
         {
             return RemoteCardGroup;
         }
 
-        if (path.Contains("/BaseUI") || path.Contains("/Fonts/") || path.Contains(FontsFolder))
-        {
-            return RemoteSharedGroup;
-        }
-
         return RemoteUiHallGroup;
     }
 
+    public static void MarkUiArtFolders()
+    {
+        MarkFolderInGroup(RemoteSharedGroup, FontsFolder);
+        if (AssetDatabase.IsValidFolder(ShaderFolder))
+        {
+            MarkFolderInGroup(RemoteSharedGroup, ShaderFolder);
+        }
+
+        if (AssetDatabase.IsValidFolder(CardFolder + "/CardShopItem"))
+        {
+            MarkFolderInGroup(RemoteCardGroup, CardFolder + "/CardShopItem");
+        }
+
+        if (AssetDatabase.IsValidFolder(CardFolder + "/Wallpaper"))
+        {
+            MarkFolderInGroup(RemoteCardGroup, CardFolder + "/Wallpaper");
+        }
+
+        if (!AssetDatabase.IsValidFolder(SpriteFolder))
+        {
+            return;
+        }
+
+        string[] children = AssetDatabase.GetSubFolders(SpriteFolder);
+        for (int i = 0; i < children.Length; i++)
+        {
+            string child = children[i].Replace('\\', '/');
+            MarkFolderInGroup(UiGroupForPath(child), child, "Sprite/" + Path.GetFileName(child));
+        }
+    }
+
     public static void MarkFolderInGroup(string groupName, string folderPath)
+    {
+        MarkFolderInGroup(groupName, folderPath, null);
+    }
+
+    public static void MarkFolderInGroup(string groupName, string folderPath, string address)
     {
         folderPath = folderPath.Replace('\\', '/').TrimEnd('/');
         AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.GetSettings(true);
@@ -70,7 +110,8 @@ public static class AddressableCatalogSetup
             settings.RemoveAssetEntry(childGuids[i]);
         }
 
-        AddressableAssetEntry entry = MarkAddressable(settings, group, folderPath, Path.GetFileName(folderPath));
+        AddressableAssetEntry entry = MarkAddressable(settings, group, folderPath,
+            string.IsNullOrEmpty(address) ? Path.GetFileName(folderPath) : address);
         entry.IsFolder = true;
     }
 
@@ -83,6 +124,19 @@ public static class AddressableCatalogSetup
         WriteNested(sb, "Sprite", AssetDatabase.LoadAssetAtPath<SpriteAddressableCatalog>(SpritePath));
         WriteNested(sb, "Scene", AssetDatabase.LoadAssetAtPath<SceneAddressableCatalog>(ScenePath));
         WriteNested(sb, "UISettings", AssetDatabase.LoadAssetAtPath<UISettingsAddressableCatalog>(UISettingsPath));
+        sb.AppendLine();
+        sb.AppendLine("    public static string GetAvatarAddress(int avatarId)");
+        sb.AppendLine("    {");
+        sb.AppendLine("        return $\"a_{avatarId:D2}\";");
+        sb.AppendLine("    }");
+        sb.AppendLine("    public static string GetBackgroundDownAddress(int backgroundId)");
+        sb.AppendLine("    {");
+        sb.AppendLine("        return $\"w_{backgroundId:D2}_Down\";");
+        sb.AppendLine("    }");
+        sb.AppendLine("    public static string GetBackgroundSpriteAddress(int backgroundId)");
+        sb.AppendLine("    {");
+        sb.AppendLine("        return $\"w_{backgroundId:D2}_Sprite\";");
+        sb.AppendLine("    }");
         sb.AppendLine("}");
         string text = sb.ToString();
         if (File.ReadAllText(AddressKeysPath).Replace("\r\n", "\n") == text.Replace("\r\n", "\n"))

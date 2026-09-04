@@ -13,7 +13,7 @@ namespace Unity.Pipeline.Tests.Editor.Authoring
     /// deserialize fully, and serialization still emits a JSON object. Plus one end-to-end ViaClient
     /// test proving a string target flows through the real /api/exec dispatch path.
     /// </summary>
-    public class ObjectRefConverterTests
+    class ObjectRefConverterTests
     {
         private static ObjectRef Parse(string handle) =>
             JsonConvert.DeserializeObject<ObjectRef>("\"" + handle + "\"");
@@ -109,6 +109,45 @@ namespace Unity.Pipeline.Tests.Editor.Authoring
             var r = Parse("Enemy_1");
             Assert.AreEqual("Enemy_1", r.HierarchyPath);
             Assert.IsNull(r.InstanceId); Assert.IsNull(r.Guid);
+        }
+
+        #endregion
+
+        #region Authoring-root-relative asset paths (AUTHAPI-9)
+
+        [Test]
+        public void String_RelativePathWithExtension_IsPath()
+        {
+            // No "Assets/" prefix but a file extension: an authoring-root-relative asset path.
+            var r = Parse("Materials/FloorA.mat");
+            Assert.AreEqual("Materials/FloorA.mat", r.Path);
+            Assert.IsNull(r.HierarchyPath);
+        }
+
+        [Test]
+        public void String_BareFileWithExtension_IsPath()
+        {
+            var r = Parse("Enemy.prefab");
+            Assert.AreEqual("Enemy.prefab", r.Path);
+            Assert.IsNull(r.HierarchyPath);
+        }
+
+        [Test]
+        public void String_RelativeNoExtension_StaysHierarchyPath()
+        {
+            // No extension and no leading slash: still a scene hierarchy path, not an asset candidate.
+            var r = Parse("Root/Child");
+            Assert.AreEqual("Root/Child", r.HierarchyPath);
+            Assert.IsNull(r.Path);
+        }
+
+        [Test]
+        public void String_LeadingSlashWithExtension_StaysHierarchyPath()
+        {
+            // A leading slash marks a canonical hierarchy path even when a name looks dotted.
+            var r = Parse("/Root/Cube.001");
+            Assert.AreEqual("/Root/Cube.001", r.HierarchyPath);
+            Assert.IsNull(r.Path);
         }
 
         #endregion

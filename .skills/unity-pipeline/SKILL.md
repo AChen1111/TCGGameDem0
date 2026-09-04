@@ -87,15 +87,17 @@ Always enable `set_autotick` before headless compile/test work (unfocused Editor
 
 Skip `run_tests` unless the change is a new feature or otherwise large / high-risk.
 
-`run_tests` is synchronous and `MainThreadRequired`: it holds the HTTP request open until the run
-finishes, and the Editor main thread is busy the whole time, so **every other Pipeline command
-queues behind it**.
+Command execution is still serialized (one `/api/exec` at a time). HTTP itself is concurrent:
+`editor_status`, `test_status`, and progress stay reachable while a long command runs.
+
+`run_tests` still occupies the Editor main thread for the whole run. The CLI's 30 s transport
+timeout applies to the sync path, not to the Editor-side budget.
 
 - **Always pass `--filter` in verification loops.** A bare `run_tests --mode editor` runs the whole
   suite (hundreds of tests here) and never returns within the CLI's 30 s transport timeout.
 - **A CLI timeout does not cancel the run** — the Editor keeps going. Do *not* re-issue `run_tests`
-  after a timeout. Concurrent runs wedge `TestRunnerApi`, leaving `Server Reachable=false` with only
-  an Editor restart to recover (`cancel_tests` can no longer get through either).
+  after a timeout. Concurrent runs can still wedge `TestRunnerApi`, leaving `Server Reachable=false`
+  with only an Editor restart to recover.
 - **Full suites go through async mode**, same trigger-then-poll shape as `recompile`:
 
 ```bash
@@ -128,6 +130,10 @@ unity command --proxy-disable --project-path "%PROJECT%" editor_play
 unity command --proxy-disable --project-path "%PROJECT%" reload_file --filename Assets/Spinner.cs
 unity command --proxy-disable --project-path "%PROJECT%" eval "return 2 + 2;"
 ```
+
+`eval` default timeout is 60s. Longer or bulk work: `run_script` (in-memory compile, no domain
+reload) or `batch` (up to 200 ops). A stuck command may be a modal dialog — `editor_status`
+`blocked_by_dialog` means stop retrying and tell the user.
 
 ## Known noise (ignore for local Pipeline)
 
