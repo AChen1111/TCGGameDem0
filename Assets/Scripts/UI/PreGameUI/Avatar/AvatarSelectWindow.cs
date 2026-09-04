@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using LitMotion;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,7 @@ public class AvatarSelectWindow : AWindowController<AvatarSelectWindowProperties
     [SerializeField] AvatarListController m_AvatarListController;
     [SerializeField] Button m_BtnConfirm;
     [SerializeField] float m_ScrollToSelectedDuration = 0.25f;
+    [SerializeField] Ease m_ScrollToSelectedEase = Ease.InOutCubic;
 
     protected override void AddListeners()
     {
@@ -54,7 +56,7 @@ public class AvatarSelectWindow : AWindowController<AvatarSelectWindowProperties
         // 等列表首帧把可视行创建出来,再判断预选项是否在视口外.
         await UniTask.Yield();
         if (m_AvatarListController == null) return;
-        m_AvatarListController.MoveToSelectedIfHidden(m_ScrollToSelectedDuration);
+        m_AvatarListController.MoveToSelectedIfHidden(m_ScrollToSelectedDuration, m_ScrollToSelectedEase);
     }
 
     void OnConfirmClick()

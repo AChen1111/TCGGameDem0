@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using LitMotion;
 using SuperScrollView;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ public class GridListController : MonoBehaviour
     private int mRowCardCount = 1;
     private Action<int> mOnSelectedCallback;
     private Func<LoopListView2, int, LoopListViewItem2> mOnGetItemHandler;
+    private MotionHandle m_MoveToSelectedHandle;
     protected virtual string key { get; set; }
     public int SelectedIndex => mSelectedIndex;
 
@@ -22,6 +24,7 @@ public class GridListController : MonoBehaviour
         Action<int> onSelected = null,
         int selectedIndex = -1)
     {
+        CancelMoveToSelected();
         mOnSelectedCallback = onSelected;
         mSelectedIndex = selectedIndex >= 0 && dataList != null && selectedIndex < dataList.Count
             ? selectedIndex
@@ -77,13 +80,42 @@ public class GridListController : MonoBehaviour
         }
     }
 
-    /// <summary>选中项可能在首屏外,仅当对应行未显示时滚过去. duration 为秒,大于 0 时插值滚动.</summary>
-    public void MoveToSelectedIfHidden(float duration = 0)
+    /// <summary>选中项可能在首屏外,仅当对应行未显示时滚过去. duration 为秒,ease 用 LitMotion.Ease,默认 InOutCubic.</summary>
+    public void MoveToSelectedIfHidden(float duration = 0, Ease ease = Ease.InOutCubic)
     {
+        CancelMoveToSelected();
         if (!mIsInited || mSelectedIndex < 0) return;
         int selectedRow = mSelectedIndex / mRowCardCount;
         if (loopListView.GetShownItemByItemIndex(selectedRow) != null) return;
-        loopListView.MovePanelToItemIndex(selectedRow, 0, duration);
+
+        if (duration <= 0f)
+        {
+            loopListView.MovePanelToItemIndexImmediately(selectedRow, 0);
+            return;
+        }
+
+        // SuperScrollView 自带 duration 是线性插值,这里用 LitMotion 驱动行下标才能配 Ease.
+        float from = loopListView.GetFirstShownFloatItemIndexInViewPort();
+        LoopListView2 list = loopListView;
+        m_MoveToSelectedHandle = LMotion.Create(from, (float)selectedRow, duration)
+            .WithEase(ease)
+            .Bind(index =>
+            {
+                if (list == null) return;
+                int itemIndex = Mathf.Max(0, Mathf.FloorToInt(index));
+                list.MovePanelToItemIndexImmediately(itemIndex, 0);
+            })
+            .AddTo(this);
+    }
+
+    void CancelMoveToSelected()
+    {
+        m_MoveToSelectedHandle.TryCancel();
+    }
+
+    void OnDestroy()
+    {
+        CancelMoveToSelected();
     }
 
     private LoopListViewItem2 OnGetItemByIndex(LoopListView2 listView, int rowIndex)
