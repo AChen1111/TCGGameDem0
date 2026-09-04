@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using AChen.Networking;
 using Cysharp.Threading.Tasks;
@@ -18,6 +19,7 @@ public class PreGameUIPanel : APanelController, IPlayerDataView
     [SerializeField] Button m_BtnFriend;
     [SerializeField] Button m_BtnMail;
     [SerializeField] Button m_BtnSetting;
+    [SerializeField] Button m_BtnAvatar;
     // --tag_end: 自动生成--
     [SerializeField] private Button m_BtnChangeName;
     [SerializeField] private RectTransform m_LeftLayOut;
@@ -53,12 +55,14 @@ public class PreGameUIPanel : APanelController, IPlayerDataView
         m_BtnExit.onClick.AddListener(OnExitClick);
         m_BtnShop.onClick.AddListener(OnShopClick);
         m_BtnChangeName.onClick.AddListener(OnChangeNameClick);
+        m_BtnAvatar.onClick.AddListener(OnAvatarClick);
     }
     protected override void RemoveListeners()
     {
         m_BtnExit.onClick.RemoveListener(OnExitClick);
         m_BtnShop.onClick.RemoveListener(OnShopClick);
         m_BtnChangeName.onClick.RemoveListener(OnChangeNameClick);
+        m_BtnAvatar.onClick.RemoveListener(OnAvatarClick);
     }
 
     private void OnChangeNameClick()
@@ -66,11 +70,33 @@ public class PreGameUIPanel : APanelController, IPlayerDataView
         m_UIFrame.OpenWindow(AddressKeys.Prefab.ChangeNameWindow);
     }
 
+    private void OnAvatarClick()
+    {
+        OpenAvatarWithFakeDataAsync().Forget();
+    }
+
     private void OnShopClick()
     {
+        OpenShopWithFakeDataAsync().Forget();
+    }
+
+    async UniTaskVoid OpenAvatarWithFakeDataAsync()
+    {
+        List<AvatarItemData> avatars = await PreGameUiFakeData.CreateAvatarsAsync();
+        int selected = avatars.FindIndex(item => item.Owned);
+        ALog.Log($"打开头像窗(假数据): Count={avatars.Count}, Selected={selected}", ALogCategories.UI);
+        m_UIFrame.OpenWindow(
+            AddressKeys.Prefab.SelfChooseWindow,
+            new AvatarSelectWindowProperties(avatars, selected));
+    }
+
+    async UniTaskVoid OpenShopWithFakeDataAsync()
+    {
+        List<ShopCardItemData> packs = await PreGameUiFakeData.CreateCardPacksAsync();
+        ALog.Log($"打开商城窗(假数据): Count={packs.Count}", ALogCategories.UI);
         m_UIFrame.OpenWindow(
             AddressKeys.Prefab.ShopWindows,
-            new ShopWindowProperties(new List<ShopCardItemData>()));
+            new ShopWindowProperties(packs));
     }
 
     private void OnExitClick()
