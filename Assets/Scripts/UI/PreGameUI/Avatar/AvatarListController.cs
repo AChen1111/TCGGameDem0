@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using SuperScrollView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,86 +11,34 @@ public class AvatarItemData
     public Sprite Sprite;
 }
 
-/// <summary>滑动列表里的单个头像格子.预制体上挂此脚本,并绑按钮和图.</summary>
-public class AvatarItem : MonoBehaviour
+/// <summary>一行一个头像.预制体挂 LoopListViewItem2 和本脚本,供 GridListController 复用.</summary>
+public class AvatarItem : MonoBehaviour, IRowItem<AvatarItemData>
 {
     [SerializeField] Button m_BtnAll;
     [SerializeField] Image m_ImgMain;
 
     int m_Index;
-    AvatarListController m_List;
+    Action<int> m_OnSelected;
 
-    public void SetData(AvatarItemData data, int index, AvatarListController list)
+    public int RowCardCount => 1;
+
+    public void SetRowData(int rowIndex, List<AvatarItemData> allData, int selectedIndex, Action<int> onSelected)
     {
-        m_Index = index;
-        m_List = list;
-        m_ImgMain.sprite = data.Sprite;
+        m_Index = rowIndex;
+        m_OnSelected = onSelected;
+        m_ImgMain.sprite = allData[rowIndex].Sprite;
     }
 
     void Awake()
     {
-        m_BtnAll.onClick.AddListener(() => m_List.Select(m_Index));
+        m_BtnAll.onClick.AddListener(() => m_OnSelected?.Invoke(m_Index));
     }
 }
 
-/// <summary>头像滑动列表.Inspector 绑定 LoopListView2 和格子预制体后,调用 InitList 传入数据.</summary>
-public class AvatarListController : MonoBehaviour
+/// <summary>头像滑动列表,直接复用 GridListController. m_PrefabKey 填 PrefabCatalog 里的预制体名.</summary>
+public class AvatarListController : GridListController
 {
-    [SerializeField] LoopListView2 m_LoopListView;
-    [SerializeField] GameObject m_ItemPrefab;
+    [SerializeField] string m_PrefabKey;
 
-    List<AvatarItemData> m_Data;
-    bool m_Inited;
-    int m_SelectedIndex = -1;
-
-    public AvatarItemData Selected =>
-        m_Data != null && m_SelectedIndex >= 0 && m_SelectedIndex < m_Data.Count ? m_Data[m_SelectedIndex] : null;
-
-    public void InitList(List<AvatarItemData> avatars, int selectedIndex = -1)
-    {
-        m_Data = avatars;
-        m_SelectedIndex = selectedIndex;
-
-        // LoopListView2 只认已登记的预制体名,首次要把格子预制体塞进池.
-        if (m_LoopListView.GetItemPrefabConfData(m_ItemPrefab.name) == null)
-        {
-            m_LoopListView.ItemPrefabDataList.Add(new ItemPrefabConfData { mItemPrefab = m_ItemPrefab });
-        }
-
-        if (!m_Inited)
-        {
-            // SuperScrollView 不支持 AutoHideAndExpandViewport,否则 Init 会直接报错.
-            var scrollRect = m_LoopListView.GetComponent<ScrollRect>();
-            if (scrollRect.verticalScrollbarVisibility == ScrollRect.ScrollbarVisibility.AutoHideAndExpandViewport)
-            {
-                scrollRect.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
-            }
-
-            m_LoopListView.InitListView(m_Data.Count, OnGetItemByIndex);
-            m_Inited = true;
-            return;
-        }
-
-        m_LoopListView.SetListItemCount(m_Data.Count, true);
-        m_LoopListView.RefreshAllShownItem();
-    }
-
-    public void Select(int index)
-    {
-        m_SelectedIndex = index;
-        m_LoopListView.RefreshAllShownItem();
-    }
-
-    // 可视区域内回收复用格子时由 LoopListView2 回调,按 index 填数据.
-    LoopListViewItem2 OnGetItemByIndex(LoopListView2 listView, int index)
-    {
-        if (index < 0 || index >= m_Data.Count)
-        {
-            return null;
-        }
-
-        LoopListViewItem2 item = listView.NewListViewItem(m_ItemPrefab.name);
-        item.GetComponent<AvatarItem>().SetData(m_Data[index], index, this);
-        return item;
-    }
+    protected override string key => m_PrefabKey;
 }
