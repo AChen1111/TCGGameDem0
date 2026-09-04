@@ -277,7 +277,7 @@ namespace AChen.Networking
             T value = JsonConvert.DeserializeObject<T>(json, s_jsonSettings);
             if (value == null)
             {
-                throw new BackendApiException(0, "INVALID_RESPONSE", "Backend returned an invalid response.");
+                throw new BackendApiException(0, "INVALID_RESPONSE", "服务器响应无效，请稍后再试");
             }
 
             return value;
@@ -287,7 +287,7 @@ namespace AChen.Networking
         {
             if (request.responseCode <= 0)
             {
-                return new BackendApiException(0, "NETWORK_ERROR", request.error ?? "Could not reach backend.");
+                return new BackendApiException(0, "NETWORK_ERROR", "无法连接服务器，请检查网络");
             }
 
             try
@@ -300,7 +300,7 @@ namespace AChen.Networking
                     return new BackendApiException(
                         request.responseCode,
                         string.IsNullOrEmpty(problem.Code) ? "HTTP_ERROR" : problem.Code,
-                        string.IsNullOrEmpty(problem.Title) ? "Backend request failed." : problem.Title,
+                        string.IsNullOrEmpty(problem.Title) ? "服务器请求失败，请稍后再试" : problem.Title,
                         problem.Errors);
                 }
             }
@@ -309,7 +309,7 @@ namespace AChen.Networking
                 // Fall through to a response that does not expose an untrusted body.
             }
 
-            return new BackendApiException(request.responseCode, "HTTP_ERROR", "Backend request failed.");
+            return new BackendApiException(request.responseCode, "HTTP_ERROR", "服务器请求失败，请稍后再试");
         }
 
         void SetSession(AuthResponseDto response, string eventName)
@@ -319,7 +319,7 @@ namespace AChen.Networking
                 response.User == null ||
                 response.Player == null)
             {
-                throw new BackendApiException(0, "INVALID_RESPONSE", "Backend returned an incomplete auth response.");
+                throw new BackendApiException(0, "INVALID_RESPONSE", "服务器返回的登录数据不完整");
             }
 
             AuthUser user = ToUser(response.User);

@@ -78,7 +78,7 @@ public class ChangeNameWindow : AWindowController, IPlayerDataView
             ALog.LogError(
                 $"修改昵称失败. Code={exception.Code}; Status={exception.StatusCode}",
                 ALogCategories.UI);
-            ShowMessage("修改昵称失败");
+            ShowMessage(exception.Message);
         }
         catch (OperationCanceledException)
         {

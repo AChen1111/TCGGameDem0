@@ -30,7 +30,7 @@ namespace AChen.Networking
                 await UniTask.WaitUntil(() => !m_initializing, cancellationToken: cancellationToken);
                 if (!IsReady)
                 {
-                    throw new GameConfigDataException(LastError ?? "Game configuration failed to initialize.");
+                    throw new GameConfigDataException(LastError ?? "游戏配置初始化失败");
                 }
                 return;
             }
@@ -111,7 +111,7 @@ namespace AChen.Networking
                 {
                     if (!m_store.HasSnapshot)
                     {
-                        throw new GameConfigDataException("Backend returned 304 without a local configuration.");
+                        throw new GameConfigDataException("服务器未返回游戏配置，且本地没有可用缓存");
                     }
 
                     m_store.MarkChecked(result.ServerTime, checkedAtUtc);
