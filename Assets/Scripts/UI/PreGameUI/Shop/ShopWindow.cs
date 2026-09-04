@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>开窗参数.外部 OpenWindow(id, new ShopWindowProperties(list)).</summary>
 public sealed class ShopWindowProperties : IWindowProperties
@@ -19,6 +21,7 @@ public sealed class ShopWindowProperties : IWindowProperties
 public class ShopWindow : AWindowController<ShopWindowProperties>
 {
     [SerializeField] CardPackListController m_CardPackListController;
+    [SerializeField] Button m_CloseButton;
 
     protected override void OnOpen()
     {
@@ -28,6 +31,18 @@ public class ShopWindow : AWindowController<ShopWindowProperties>
     protected override void OnResume()
     {
         BindList();
+    }
+    protected override void AddListeners()
+    {
+        m_CloseButton.onClick.AddListener(OnCloseButtonClick);
+    }
+    protected override void RemoveListeners()
+    {
+        m_CloseButton.onClick.RemoveListener(OnCloseButtonClick);
+    }
+    private void OnCloseButtonClick()
+    {
+        UI_Close();
     }
 
     void BindList()
