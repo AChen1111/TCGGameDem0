@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using LitMotion;
@@ -48,27 +47,9 @@ public class PreGameUIPanel : APanelController
 
     private void OnShopClick()
     {
-        OpenShopAsync().Forget();
-    }
-
-    async UniTaskVoid OpenShopAsync()
-    {
-        try
-        {
-            List<ShopCardItemData> cardPacks = await ShopWindow.LoadCardPacksAsync(
-                true,
-                this.GetCancellationTokenOnDestroy());
-            m_UIFrame.OpenWindow(
-                AddressKeys.Prefab.ShopWindows,
-                new ShopWindowProperties(cardPacks));
-        }
-        catch (OperationCanceledException)
-        {
-        }
-        catch (Exception exception)
-        {
-            ALog.LogError("打开商城失败: " + exception.Message, ALogCategories.UI);
-        }
+        m_UIFrame.OpenWindow(
+            AddressKeys.Prefab.ShopWindows,
+            new ShopWindowProperties(new List<ShopCardItemData>()));
     }
 
     private void OnExitClick()
