@@ -10,7 +10,9 @@
         "Unity.InputSystem",
         "Unity.TextMeshPro",
         "UnityEngine.UI",
-        "SuperScrollView"
+        "SuperScrollView",
+        "spine-csharp",
+        "spine-unity"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

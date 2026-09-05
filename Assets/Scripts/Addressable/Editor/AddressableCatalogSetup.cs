@@ -23,6 +23,7 @@ public static class AddressableCatalogSetup
     public const string SpriteFolder = "Assets/UI/Sprite";
     public const string CardFolder = "Assets/UI/Card";
     public const string ShaderFolder = "Assets/UI/Shader";
+    public const string SpineRoot = "Assets/Art/Spine";
     public const string PreGameUiFolder = HallFolder + "/PreGameUI";
     public const string PreGameUiSettingsPath = PreGameUiFolder + "/PreGameSceneUI.asset";
     public const string PreGameUiPanelPath = PreGameUiFolder + "/PreGameUIPanel.prefab";
@@ -34,6 +35,7 @@ public static class AddressableCatalogSetup
     public const string RemoteSharedGroup = "Remote_Shared";
     public const string RemoteCardGroup = "Remote_Card";
     public const string RemoteSceneGroup = "Remote_Scene";
+    public const string RemoteSpineGroup = "Remote_Spine";
 
     public static string UiGroupForPath(string path)
     {
@@ -195,6 +197,44 @@ public static class AddressableCatalogSetup
         EditorUtility.SetDirty(schema);
         EditorUtility.SetDirty(group);
         EditorUtility.SetDirty(settings);
+    }
+
+    public static void EnsureRemoteSpineGroup()
+    {
+        AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.GetSettings(true);
+        AddressableAssetGroup group = settings.FindGroup(RemoteSpineGroup);
+        if (group == null)
+        {
+            group = settings.CreateGroup(RemoteSpineGroup, false, false, true, null,
+                typeof(BundledAssetGroupSchema), typeof(ContentUpdateGroupSchema));
+        }
+
+        BundledAssetGroupSchema schema = group.GetSchema<BundledAssetGroupSchema>();
+        schema.BuildPath.SetVariableByName(settings, AddressableAssetSettings.kRemoteBuildPath);
+        schema.LoadPath.SetVariableByName(settings, AddressableAssetSettings.kRemoteLoadPath);
+        schema.BundleMode = BundledAssetGroupSchema.BundlePackingMode.PackSeparately;
+
+        ContentUpdateGroupSchema updateSchema = group.GetSchema<ContentUpdateGroupSchema>();
+        updateSchema.StaticContent = false;
+        EditorUtility.SetDirty(schema);
+        EditorUtility.SetDirty(updateSchema);
+        EditorUtility.SetDirty(group);
+        EditorUtility.SetDirty(settings);
+    }
+
+    public static void AddSpinePrefab(string prefabPath)
+    {
+        prefabPath = prefabPath.Replace('\\', '/');
+        if (!prefabPath.StartsWith(SpineRoot + "/", System.StringComparison.Ordinal)
+            || !prefabPath.EndsWith(".prefab", System.StringComparison.OrdinalIgnoreCase))
+        {
+            throw new System.ArgumentException("Spine 预制体必须位于 " + SpineRoot + " 下: " + prefabPath);
+        }
+
+        EnsureRemoteSpineGroup();
+        string name = Path.GetFileNameWithoutExtension(prefabPath);
+        MarkInGroup(RemoteSpineGroup, prefabPath, "Spine/" + name);
+        AssetDatabase.SaveAssets();
     }
 
     public static void EnsureSceneAddressables()
