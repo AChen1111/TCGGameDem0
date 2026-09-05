@@ -6,6 +6,8 @@ public static class AddressKeys
     public static class Prefab
     {
         public static readonly string AvatarItemPrefab = "AvatarItemPrefab";
+        public static readonly string AvatarShopItemPrefab = "AvatarShopItemPrefab";
+        public static readonly string AvatarShopItemRowPrefab = "AvatarShopItemRowPrefab";
         public static readonly string CardPackRowPrefab = "CardPackRowPrefab";
         public static readonly string ChangeNameWindow = "ChangeNameWindow";
         public static readonly string LogInWindow = "LogInWindow";
@@ -13,6 +15,7 @@ public static class AddressKeys
         public static readonly string PreGameUIPanel = "PreGameUIPanel";
         public static readonly string SelfChooseWindow = "SelfChooseWindow";
         public static readonly string ShopWindows = "ShopWindows";
+        public static readonly string WallpaperShopItemRowPrefab = "WallpaperShopItemRowPrefab";
     }
     public static class Sprite
     {

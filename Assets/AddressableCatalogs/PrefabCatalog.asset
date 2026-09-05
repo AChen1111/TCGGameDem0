@@ -69,3 +69,24 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: AvatarShopItemRowPrefab
+    reference:
+      m_AssetGUID: f393de558fa14e244a55e10d9cba3a99
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: AvatarShopItemPrefab
+    reference:
+      m_AssetGUID: 5fbcf296c6e1538479b937c5bde22475
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: WallpaperShopItemRowPrefab
+    reference:
+      m_AssetGUID: bb8dd45543dfd4748b7da59747266c33
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
