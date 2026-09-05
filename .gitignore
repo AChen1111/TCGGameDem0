@@ -119,6 +119,7 @@ Assets/Scripts/LuaRaw/LuaPadDrafts/*.lua.meta
 /Unused~/Tools/**/obj/
 
 # Local clutter / one-off dumps
+/Recovery/
 /UnityCursorKit/
 /--clobber/
 /ProfilerCaptures/
