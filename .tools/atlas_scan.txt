@@ -1,0 +1,769 @@
+总目录 552
+渲染会缺件(区域落在空白像素) 234
+仅页尺寸被整体缩放(可正常渲染) 60
+
+=== 渲染会缺件 ===
+A・O・G次代机 返零_P19623JS
+  regions=22 空白区域=9
+  P19623.png/LeftArm; P19623.png/LeftShoulder; P19623.png/LeftUpperWingFront; P19623.png/Neck; P19623.png/RightArm; P19623.png/UnderBody; P19623.png/UnderBodyParts; P19623.png/UpperBodyBackA
+DDD 赦俿王死亡降神_P16849JS
+  regions=44 空白区域=5
+  P16849.png 实际 4096x4096 声明 4096x2048; P16849.png/LeftArm; P16849.png/LeftArmParts; P16849.png/LeftArmPartsBack; P16849.png/RightHand; P16849.png/RightShoulder
+G魔像 残破墓石_P17660JS
+  regions=16 空白区域=5
+  P17660.png/EyeEffect; P17660.png/LeftLeg1; P17660.png/RightLeg1; P17660.png/RightLeg2; P17660.png/RightLeg3
+I：P百变莱娜_P14676JS
+  regions=16 空白区域=7
+  P14676.png/Eye1; P14676.png/Eye2; P14676.png/Head; P14676.png/LeftHair; P14676.png/MaskBack; P14676.png/RightHair; P14676.png/RightUpperArm
+K9－EX “狼人”_P21382JS
+  regions=41 空白区域=2
+  P21382.png 实际 4096x4096 声明 4096x1024; P21382.png/LeftArmPartsBBack; P21382.png/RightHandA
+R.B.布鲁特・布鲁斯_P21637JS
+  regions=19 空白区域=2
+  P21637.png 实际 2048x2048 声明 2048x1024; P21637.png/LeftThigh; P21637.png/LeftUpperArm
+S：P小夜骑士_P19188JS
+  regions=26 空白区域=8
+  P19188.png/BagB; P19188.png/BodyScarf; P19188.png/BodyScarfBack; P19188.png/Eye0; P19188.png/Eye1; P19188.png/LeftArm; P19188.png/LeftLeg; P19188.png/Shine3
+W：P变幻舞夜_P22715JS
+  regions=60 空白区域=5
+  P22715.png/EyeA_L; P22715.png/EyeB_M; P22715.png/EyeLashesA_L; P22715.png/EyeLashesB_L; P22715.png/EyeLashesC_L
+上古精灵生命龙_P21176JS
+  regions=40 空白区域=7
+  P21176.png 实际 4096x1024 声明 4096x4096; P21176.png/BodyBackRingB; P21176.png/BodyBackRingBBack; P21176.png/Face; P21176.png/LeftHand; P21176.png/RightArmRingA; P21176.png/RightArmRingB; P21176.png/RightArmRingBBack
+书灵师・烈火爆裂_P17396JS
+  regions=30 空白区域=10
+  P17396_3.png 实际 1024x1024 声明 2048x2048; P17396.png/Hair1; P17396.png/Hair3; P17396.png/JacketBack1; P17396.png/JacketBack2; P17396.png/LeftEyeEffect; P17396.png/RightArm; P17396.png/RightEyeEffect; P17396.png/RightHand
+人攻智能ME－PSY－YA_P16213JS
+  regions=25 空白区域=7
+  P16213.png/Head; P16213.png/HeadPlasma1; P16213.png/HeadPlasma2; P16213.png/LeftUpperArm; P16213.png/Plasma1; P16213.png/Plasma8; P16213.png/Tail
+仪龙机巧－降星：天龙_P15640JS
+  regions=19 空白区域=2
+  P15640.png/LeftShieldArm; P15640.png/RightShield
+企鹅勇者_P15518JS
+  regions=49 空白区域=17
+  P15518.png 实际 2048x2048 声明 4096x4096; P15518.png/Effect10; P15518.png/Effect11; P15518.png/Effect13; P15518.png/Effect15; P15518.png/Effect16; P15518.png/Effect17; P15518.png/Effect18; P15518.png/Effect3
+俱利伽罗天童_P17433JS
+  regions=49 空白区域=2
+  P17433.png 实际 4096x4096 声明 2048x2048; P17433_3.png 实际 4096x4096 声明 2048x2048; P17433.png/Ribbon; P17433_3.png/RedFire/DragonHeadFire3
+假面－英雄 暗法_P11313JS
+  regions=17 空白区域=2
+  ForUnity.png/LeftLeg; ForUnity.png/RightWing02
+假面－英雄 暗法_P21730JS
+  regions=26 空白区域=2
+  P21730.png 实际 1024x2048 声明 4096x2048; P21730.png/LeftLegPartsA; P21730.png/Neck
+元素－英雄 勇猛新宇侠_P14112JS
+  regions=14 空白区域=6
+  P14112.png 实际 2048x2048 声明 4096x4096; P14112.png/LeftArm; P14112.png/LeftHand; P14112.png/LeftShoulder; P14112.png/LeftShoulderArmor; P14112.png/LeftThigh; P14112.png/RightLeg
+元素－英雄 新宇侠_P3881JS
+  regions=15 空白区域=5
+  P3881.png/LeftHand; P3881.png/LeftShoulder; P3881.png/LeftUpperArm; P3881.png/RightHand; P3881.png/RightShoulder
+光与暗之龙王_P20213JS
+  regions=35 空白区域=10
+  P20213.png 实际 4096x4096 声明 2048x2048; P20213.png/LeftShoulderBack; P20213.png/LeftUpperArm; P20213.png/RightHand; P20213.png/RightShoulder; P20213.png/RightShoulderBack; P20213.png/RightUpperArm; P20213.png/Sparkle2; P20213.png/Sparkle8
+光栅狮虎_P14580
+  regions=12 空白区域=4
+  P14580.png/LeftHand; P14580.png/RightCamera; P14580.png/RightLeg; P14580.png/Tail
+兽带斗士“王者”雷古拉斯_P17119JS
+  regions=25 空白区域=4
+  P17119.png 实际 2048x2048 声明 4096x4096; P17119.png/BeltParts1; P17119.png/BeltParts4; P17119.png/LeftLeg; P17119.png/RightThighParts
+冥帝厄瑞玻斯_P12091JS
+  regions=18 空白区域=2
+  P12091.png/Chair; P12091.png/RightLeg02
+冥帝王厄多斯_P21428JS
+  regions=30 空白区域=1
+  P21428.png 实际 2048x2048 声明 4096x4096; P21428.png/RightLeg
+冥骸合龙－冥铭途拉尔泰库特利卡_P19360JS
+  regions=25 空白区域=2
+  P19360.png 实际 4096x4096 声明 2048x2048; P19360.png/LeftArm; P19360.png/LeftShoulderBack
+冰翡啼 爱姬儿海神_P18183JS
+  regions=31 空白区域=5
+  P18183.png 实际 4096x4096 声明 2048x2048; P18183.png/Eye1; P18183.png/Eye2; P18183.png/Stone4; P18183.png/Stone6; P18183.png/floatParts7
+凶教导之天底 阿尔白・佐亚_P18176JS
+  regions=22 空白区域=5
+  P18176.png/BodyParts3; P18176.png/BodyParts4; P18176.png/LefArm; P18176.png/LefArmCircle; P18176.png/RightArmCircleBack
+凶饿猛毒捕食结合龙_P17147JS
+  regions=26 空白区域=6
+  P17147.png/BodyParts; P17147.png/HeadParts1; P17147.png/HeadParts4; P17147.png/LeftWing; P17147.png/RightThigh; P17147.png/RightUpperArm
+凶饿猛毒结合龙_P12628JS
+  regions=26 空白区域=1
+  P12628.png/BodyCore
+创狱神 涅瓦_P21444JS
+  regions=52 空白区域=4
+  P21444.png 实际 4096x4096 声明 2048x2048; P21444.png/LeftArmBParts; P21444.png/LeftWingParts; P21444.png/RightArmBParts; P21444.png/RightWing
+到临电子界＠伊格尼斯者_P15036JS
+  regions=25 空白区域=10
+  P15036_2.png 实际 4096x4096 声明 512x512; P15036.png/LeftHandParts; P15036.png/LeftShoulder; P15036.png/LeftUpperArm; P15036.png/RightShoulder; P15036.png/UpperBodyParts; P15036_2.png/Light/BodyLight; P15036_2.png/Light/HeadLight; P15036_2.png/Light/LeftUpperArmLight
+刻魔印契之魔镌客_P20196JS
+  regions=25 空白区域=5
+  P20196.png/HeadBack; P20196.png/HeadPartsA; P20196.png/HeadPartsB; P20196.png/RightBodyPartsBack; P20196.png/WaistbeltBack
+北斗天熊－柒犍_P16104JS
+  regions=22 空白区域=6
+  P16104.png 实际 2048x2048 声明 1306x1306; P16104.png/LeftArm; P16104.png/LeftHandParts1; P16104.png/LeftShoulder; P16104.png/LeftThighs; P16104.png/RightShoulder; P16104.png/RightShoulderTail2
+十二兽 龙三叉戟_P12788JS
+  regions=19 空白区域=6
+  P12788.png 实际 2048x2048 声明 4096x4096; P12788.png/LeftHand; P12788.png/LeftSleeve; P12788.png/Ornament; P12788.png/RgiftFinger1-1; P12788.png/RgiftHand; P12788.png/RgiftUpperArm
+卡氏地蛛之虫惑魔_P18314JS
+  regions=24 空白区域=1
+  P18314.png 实际 2048x2048 声明 4096x4096; P18314.png/LeftEye
+原石龙 帝皇龙_P20489JS
+  regions=71 空白区域=28
+  P20489.png/Body; P20489.png/Jaw; P20489.png/LeftHand; P20489.png/LeftHandA1; P20489.png/LeftHandB1; P20489.png/LeftHandC1; P20489.png/LeftHandC2; P20489.png/LeftHandD1
+原罪的迪亚贝尔赛_P19853JS
+  regions=42 空白区域=6
+  P19853.png/Eye_0; P19853.png/Headparts; P19853.png/RightHairAParts; P19853.png/RightHandPartsA; P19853.png/Sleeve; P19853.png/WaistPartsA
+古代机械齿轮暗黑巨人_P19847JS
+  regions=17 空白区域=1
+  P19847.png/Hook
+古生代化石骑士 骷髅王_P7253JS
+  regions=19 空白区域=1
+  P7253.png 实际 2048x2048 声明 4096x4096; P7253.png/BodyParts1
+召命之神弓－阿波罗萨_P14496JS
+  regions=25 空白区域=9
+  P14496.png/Bang; P14496.png/BearLeftLeg; P14496.png/Cloak; P14496.png/Head; P14496.png/LeftArm; P14496.png/LeftCloak; P14496.png/LeftThigh; P14496.png/RightArm
+召唤兽 伟魔瑟利昂_P21577JS
+  regions=31 空白区域=17
+  P21577.png 实际 4096x2048 声明 4096x4096; P21577.png/Body; P21577.png/HairA; P21577.png/HairB; P21577.png/HairC; P21577.png/HairCParts; P21577.png/HairD; P21577.png/Head; P21577.png/LeftArm
+召唤师 阿莱斯特_P3409JS
+  regions=30 空白区域=4
+  P3409.png/LeftArm; P3409.png/RightHand; P3409.png/WaistBeltA; P3409.png/WaistParts
+合体魔神－门之守护者_P18325JS
+  regions=47 空白区域=3
+  P18325.png/EF_BackThunder01; P18325.png/LeftBodyHand; P18325.png/RightShoulder
+合协码语者＠伊格尼斯者_P21188JS
+  regions=28 空白区域=4
+  P21188.png 实际 4096x1024 声明 4096x4096; P21188.png/BodyBackB; P21188.png/BodyBackC; P21188.png/LeftThighPartsABack; P21188.png/Neck
+同盟运输车_P14932JS
+  regions=30 空白区域=16
+  P14932.png/1stContainer1Front; P14932.png/1stContainer3; P14932.png/1stContainerTire3; P14932.png/1stContainerTire4; P14932.png/1stContainerTire5; P14932.png/2ndContainerBack; P14932.png/2ndContainerTire1; P14932.png/2ndContainerTire2
+命运－英雄 血魔-D_P3413JS
+  regions=32 空白区域=8
+  P3413.png 实际 4096x4096 声明 4096x1024; P3413.png/BodyPartsA; P3413.png/LeftFingerB; P3413.png/LeftFingerC; P3413.png/LeftFingerD; P3413.png/LeftKnee; P3413.png/LeftShoulderParts; P3413.png/RightShoulderParts; P3413.png/TailBack
+哆音服和弦・克理娅_P16091JS
+  regions=42 空白区域=3
+  P16091.png/NoteC; P16091.png/YoEye; P16091.png/YoRightArm
+四天之龙 清透翼同步龙_P22729JS
+  regions=20 空白区域=1
+  P22729.png 实际 2048x2048 声明 4096x4096; P22729.png/BodyParts
+圣殿的遣水士_P16749JS
+  regions=27 空白区域=12
+  P16749.png 实际 2048x2048 声明 4096x4096; P16749.png/Effect1; P16749.png/Effect7; P16749.png/Eye1; P16749.png/Hair; P16749.png/Head; P16749.png/LeftChain; P16749.png/RIghtBodyCloth; P16749.png/RIghtChain
+圣灵兽骑 蕾伊拉呗里_P19633JS
+  regions=49 空白区域=5
+  P19633.png 实际 2048x2048 声明 4096x4096; P19633.png/LHairParts; P19633.png/LHeadPartsB; P19633.png/LLeftLeg; P19633.png/PHair; P19633.png/WParts
+圣神蛇 阿波菲斯_P21038JS
+  regions=32 空白区域=4
+  P21038.png/LeftArmHide; P21038.png/LeftSnakeTongue; P21038.png/RightShadowSnake; P21038.png/UnderBody4
+圣骑士之追想 伊索尔德_P13500JS
+  regions=34 空白区域=8
+  P13500.png/GoldFur; P13500.png/GoldHair4; P13500.png/GoldRightArmBack; P13500.png/WhiteHairParts; P13500.png/WhiteHand; P13500.png/WhiteLeftEarring; P13500.png/WhiteRightEarring; P13500.png/WhiteRightShoulder
+坏狱神 朱庇特_P21810JS
+  regions=43 空白区域=2
+  P21810.png 实际 4096x4096 声明 4096x1024; P21810.png/LeftFrontLegB; P21810.png/UpperBodyParts
+复仇尸者・屠戮者_P13208JS
+  regions=25 空白区域=4
+  P13208_2.png 实际 2048x2048 声明 256x256; P13208.png/BodyScarf; P13208.png/RightFootParts; P13208.png/RightShoulder; P13208.png/Shine
+大日女之御巫_P21733JS
+  regions=41 空白区域=2
+  P21733.png/EffectA; P21733.png/EffectB
+大植然兽_P7969JS
+  regions=13 空白区域=2
+  P7969.png/Eye_1; P7969.png/TailA
+大王花之虫惑魔_P12026JS
+  regions=42 空白区域=5
+  P12026.png 实际 4096x4096 声明 2048x2048; P12026.png/AtlaBangs; P12026.png/DionaeaBangs; P12026.png/DionaeaLeftHand; P12026.png/RafflesiaIvy04; P12026.png/RafflesiarLeftHair
+天魔之声选姬・华耳琴璃_P19863JS
+  regions=27 空白区域=5
+  P19863.png 实际 4096x4096 声明 2048x2048; P19863.png/Body; P19863.png/Eye_1; P19863.png/HeadHairA; P19863.png/HeadHairC; P19863.png/LeftArmBack
+娱乐巫师 高空秋千超魔术师_P20411JS
+  regions=32 空白区域=12
+  P20411.png/Body; P20411.png/BodyBack; P20411.png/Ef_Eye; P20411.png/LeftArm; P20411.png/LeftLeg; P20411.png/LeftThigh; P20411.png/LeftUpperPartsA; P20411.png/LeftUpperPartsB
+宇宙铗 泽罗奥尔_P16236JS
+  regions=37 空白区域=1
+  P16236.png 实际 4096x4096 声明 2048x2048; P16236.png/BodyClaw4
+守宝团・乘风舰 寻宝盈天号_P15737JS
+  regions=9 空白区域=4
+  P157372.png 实际 2048x2048 声明 128x128; P157373.png 实际 256x256 声明 128x128; P15737.png/LeftArm; P15737.png/LeftHand; P15737.png/Pillar; P15737.png/RightArm
+守护者・客迈拉_P16845JS
+  regions=23 空白区域=8
+  P16845.png/C_HairBack; P16845.png/C_Jaw; P16845.png/L_Head; P16845.png/R_HeadParts; P16845.png/R_mouth; P16845.png/RightLeg; P16845.png/TailHead; P16845.png/UnderBodyBack
+对击斗魂 龙帝瓦里乌斯_P18732JS
+  regions=27 空白区域=1
+  P18732_2.png 实际 2048x2048 声明 4096x4096; P18732_3.png 实际 2048x2048 声明 4096x4096; P18732.png/EffectA
+尤贝尔－“永恒爱守”_P19493JS
+  regions=14 空白区域=1
+  P19493.png 实际 4096x4096 声明 2048x2048; P19493.png/TailParts
+巨石异物・阿特拉普尔隆_P21800JS
+  regions=45 空白区域=1
+  P21800.png 实际 4096x1024 声明 4096x4096; P21800.png/LeftAWingFront
+席取－六双丸_P17158JS
+  regions=83 空白区域=6
+  P17158_2.png 实际 1024x1024 声明 256x256; P17158.png/Particle1; P17158.png/Particle2; P17158.png/Particle3; P17158.png/Particle4; P17158.png/Particle5; P17158.png/Particle6
+幻之召唤神 艾克佐迪亚_P20212JS
+  regions=51 空白区域=16
+  P20212.png/LeftArmChain; P20212.png/LeftArmChainA; P20212.png/LeftArmChainABack; P20212.png/LeftArmChainC; P20212.png/LeftArmChainD; P20212.png/LeftArmChainE; P20212.png/LeftHand; P20212.png/LeftShoulder
+幻变骚灵・内存摩莉甘特_P14970JS
+  regions=14 空白区域=11
+  P14970.png/Body; P14970.png/BodyWing; P14970.png/LeftArm; P14970.png/LeftShoulder; P14970.png/LeftSkirt; P14970.png/LeftWing; P14970.png/RightArm; P14970.png/RightLeg
+幻变骚灵・十六进赫斯提亚_P13417JS
+  regions=33 空白区域=7
+  P134172.png 实际 2048x2048 声明 1024x1024; P13417.png/BodyLeftArm; P13417.png/LeftArm02; P13417.png/LeftArm03; P13417.png/LeftShoulder01; P13417.png/RightArm02; P134172.png/Fire/FireRightHand01; P134172.png/Fire/FireTailAhead
+废品战士_P19077JS
+  regions=24 空白区域=6
+  P19077.png/LeftArm; P19077.png/LeftLegBack; P19077.png/LeftScarf; P19077.png/LeftShoulder; P19077.png/RightScarf; P19077.png/ThunderEffect1
+废品战士_P7696JS
+  regions=19 空白区域=4
+  P7696.png/BackLefttShoulder; P7696.png/BackRightShoulder; P7696.png/Body2; P7696.png/RightHand
+异色眼灵摆读阵龙_P17145JS
+  regions=73 空白区域=10
+  P17145.png/LeftFoot_Light_1; P17145.png/LeftFoot_Light_3; P17145_2.png/Body; P17145_2.png/BodyParts; P17145_2.png/BodyParts_Light_1; P17145_2.png/BodyParts_Light_2; P17145_2.png/BodyParts_Light_3; P17145_2.png/Body_Light_1
+异色眼灵摆龙_P11213JS
+  regions=18 空白区域=6
+  P11213.png/Body; P11213.png/Chin; P11213.png/LeftArm; P11213.png/LeftShoulder; P11213.png/LeftThighBack; P11213.png/RightArm
+弈勇之聚－幻中_P17355JS
+  regions=41 空白区域=9
+  P17355.png/C_BodyParts; P17355.png/C_Head; P17355.png/L_Head; P17355.png/R_BodyBack1; P17355.png/R_BodyParts1; P17355.png/R_BodyParts1Back; P17355.png/R_BodyParts3; P17355.png/R_LeftLeg
+强炼装・银金_P13507JS
+  regions=36 空白区域=9
+  P13507.png 实际 2048x2048 声明 1472x1472; P13507.png/Effect2; P13507.png/Effect3; P13507.png/LeftCalf_Back; P13507.png/Parts3; P13507.png/RightArm2; P13507.png/RightArm2_Back; P13507.png/RightWing1; P13507.png/RightWing3
+征服王・黄金狂埃尔德里奇_P15731JS
+  regions=74 空白区域=7
+  P15731.png/Effect_Chest; P15731.png/LeftLowerParts; P15731.png/LeftLowerRope; P15731.png/LeftUpperParts; P15731.png/LeftUpperParts_light_1; P15731.png/LowerJaw_light_1; P15731.png/UpperJaw
+怒刹帝利・亚拉眦哈忒_P18191JS
+  regions=26 空白区域=1
+  P18191_2.png 实际 512x512 声明 2048x2048; P18191_2.png/RightTentacle
+急袭猛禽－起升反叛猎鹰_P19500JS
+  regions=14 空白区域=1
+  P19500.png/EF_red
+恐啡肽骇龙・肯特莱钉娜_P16843JS
+  regions=27 空白区域=9
+  P16843.png/LeftLeg; P16843.png/LeftSwordEffect1; P16843.png/LeftSwordEffect3; P16843.png/LeftThigh; P16843.png/LeftThighBack; P16843.png/RightCloakFront; P16843.png/RightShoulder; P16843.png/RightSwordEffect3
+恐惧爪・特赖希哈忒_P17160JS
+  regions=42 空白区域=16
+  P17160.png/B_LeftFinger; P17160.png/B_LeftHand; P17160.png/B_LeftHead; P17160.png/B_LeftHeadParts1; P17160.png/B_RightHead; P17160.png/Effect2; P17160.png/Effect3; P17160.png/Effect4
+恐龙摔跤手・潘克拉三角龙_P13896JS
+  regions=8 空白区域=1
+  P13896.png/LeftArm
+惊乐园的经理人＜∀阿尔历奇诺＞_P15967JS
+  regions=34 空白区域=4
+  P15967.png/LeftHair1; P15967.png/LeftHair2; P15967.png/LeftHand1; P15967.png/RightEarring
+惨绝戏之导化 阿卢绯尔_P20569JS
+  regions=25 空白区域=1
+  P20569.png 实际 4096x1024 声明 4096x4096; P20569.png/WhipCBack
+战神－不知火_P12162JS
+  regions=27 空白区域=2
+  P121622.png 实际 1024x1024 声明 2048x2048; P121623.png 实际 256x256 声明 2048x2048; P121624.png 实际 1024x1024 声明 2048x2048; P121622.png/RightWeapon; P121623.png/LeftFoot
+拉之翼神龙_P3401JS
+  regions=20 空白区域=1
+  P3401.png 实际 4096x4096 声明 2048x2048; P3401.png/LeftShoulderBack
+拉之翼神龙_P5000JS
+  regions=15 空白区域=1
+  P5000.png 实际 4096x4096 声明 2048x2048; P5000.png/HeadParts2
+拉之翼神龙－不死鸟_P12234
+  regions=24 空白区域=7
+  _noait_2.png 实际 2048x2048 声明 1024x1024; _noait_.png/HeadFire01; _noait_.png/HeadFire02; _noait_.png/LeftWingFire01; _noait_.png/LeftWingFire02; _noait_.png/LeftWingFire03; _noait_.png/LeftWingFire04; _noait_.png/RightWingFire02
+拓扑逻辑零衔尾蛇_P14624JS
+  regions=19 空白区域=7
+  P14624.png/Head; P14624.png/Horn; P14624.png/Jaw; P14624.png/LeftArm; P14624.png/LeftRing; P14624.png/RightShoulder; P14624.png/RightShoulderBack
+捕食植物 青锁龙森蚺_P14944JS
+  regions=17 空白区域=2
+  P14944.png 实际 4096x4096 声明 2048x2048; P14944.png/Leaf2_Back; P14944.png/Saliva4
+教导骑士弗鲁鲁多丽丝_P15242JS
+  regions=11 空白区域=5
+  P15242.png/BackRightShoulder; P15242.png/FrontTasset; P15242.png/LeftArm; P15242.png/RightArm; P15242.png/Shield
+时潜怪盗・盘面重造者_P14356JS
+  regions=16 空白区域=6
+  P14356.png/BodyBack; P14356.png/Jabot; P14356.png/LeftHand; P14356.png/LeftHandBack; P14356.png/MonocleParts; P14356.png/RightArm
+星圣 托勒密星团M7_P10004JS
+  regions=19 空白区域=3
+  P10004.png 实际 2048x2048 声明 4096x4096; P10004.png/BackHead; P10004.png/BackJaw; P10004.png/LeftOrnament1
+星尘龙_P3882JS
+  regions=17 空白区域=1
+  P3882.png 实际 4096x4096 声明 2048x2048; P3882.png/RightArmParts
+星杯剑士 阿乌拉姆_P13088JS
+  regions=16 空白区域=6
+  P13088.png/BackMuffler; P13088.png/Bang; P13088.png/Eye_1; P13088.png/Eye_2; P13088.png/LeftArm; P13088.png/Tasset
+星杯战士 宁吉尔苏_P13089JS
+  regions=22 空白区域=4
+  ForUnity.png 实际 2048x2048 声明 4096x4096; ForUnity.png/BackScarf; ForUnity.png/Head; ForUnity.png/LeftArm; ForUnity.png/TopHair
+暗反叛超量龙_P11385JS
+  regions=13 空白区域=4
+  P11385.png/BackJaw; P11385.png/LeftArm; P11385.png/LeftLeg; P11385.png/LeftShoulder
+暗红恶魔龙_P7735JS
+  regions=20 空白区域=6
+  P7735.png/LeftHand; P7735.png/LeftShoulder; P7735.png/LeftThigh; P7735.png/Neck; P7735.png/RightArm; P7735.png/RightHand
+暗黑界之龙神王 黑拉法_P17988JS
+  regions=25 空白区域=7
+  P17988.png/LeftArm; P17988.png/LeftHand; P17988.png/RightArm; P17988.png/RightFrontLeg; P17988.png/RightHand; P17988.png/RightUpperWing; P17988.png/UpperBodyParts2
+月女神之镞_P17469JS
+  regions=29 空白区域=1
+  P17469_3.png/Wing/LeftWing
+未界域之大脚_P13978JS
+  regions=14 空白区域=3
+  P13978.png/Hair; P13978.png/LeftCoth; P13978.png/RightCoth
+机偶大权现 无零武_P14852JS
+  regions=35 空白区域=9
+  P14852.png/Hair; P14852.png/HairBack; P14852.png/LeftArm1; P14852.png/LeftPaper1; P14852.png/RightArmPaper1; P14852.png/RightArmPaper2; P14852.png/RightCloth; P14852.png/RightFoot
+机关傀偶－迷魅机械神_P20221JS
+  regions=39 空白区域=21
+  P20221.png/BackHair; P20221.png/Cloak_2; P20221.png/FrontHair; P20221.png/LeftEar; P20221.png/LeftFoot; P20221.png/LeftForearm_2; P20221.png/LeftHand_2; P20221.png/LeftHand_3
+杀戮圣徒 摩尔蕾吉娜_P20509JS
+  regions=62 空白区域=20
+  P20509_2.png 实际 1024x1024 声明 2048x2048; P20509.png/BodyThornC; P20509.png/RightBodyHeadA; P20509_2.png/BodyThornA; P20509_2.png/BodyThornB; P20509_2.png/EyeLight; P20509_2.png/Jaw; P20509_2.png/LeftBodyHeadC; P20509_2.png/LeftThigh
+杀手旋律・赤印_P21959JS
+  regions=36 空白区域=12
+  P21959.png 实际 2048x1024 声明 2048x2048; P21959.png/EF_Eye; P21959.png/Earring; P21959.png/Eye_01; P21959.png/Eyeblow; P21959.png/Hair01; P21959.png/Hair05; P21959.png/HeadParts02; P21959.png/LeftArm03
+枪管上膛狞猛龙_P14114JS
+  regions=17 空白区域=1
+  P14114.png/Body
+枪管战幕龙_P22150JS
+  regions=26 空白区域=3
+  P22150.png 实际 4096x4096 声明 4096x1024; P22150.png/Jaw; P22150.png/JawBack; P22150.png/JawPartsA
+梦魇曲 崩界之伊布丽丝_P13571JS
+  regions=12 空白区域=2
+  _noait_.png 实际 2048x2048 声明 4096x4096; _noait_2.png 实际 2048x2048 声明 4096x4096; _noait_.png/Body; _noait_.png/Head
+梦魇曲・独角兽_P13601JS
+  regions=27 空白区域=1
+  P13601.png 实际 4096x4096 声明 2048x2048; P13601.png/LeftRingHind_2
+梦魇曲・独角兽_P3421JS
+  regions=46 空白区域=17
+  P3421_2.png 实际 512x512 声明 2048x2048; P3421.png/I_Eye1; P3421.png/I_Eye2; P3421.png/I_HairBack; P3421.png/I_LeftLeg; P3421.png/I_RightArm; P3421.png/I_RightThigh; P3421.png/T_BodyParts3; P3421.png/T_BodyParts4Back
+梦魔镜天魔－涅伊洛斯_P14898JS
+  regions=23 空白区域=8
+  P14898.png/BodyBack1; P14898.png/BodyBack2; P14898.png/BodyBack3; P14898.png/Head; P14898.png/LeftArm; P14898.png/RightArm; P14898.png/RightCloak; P14898.png/RightFoot
+正义盟军 灾难兽_P7552JS
+  regions=13 空白区域=1
+  P7552.png 实际 2048x2048 声明 1024x1024; P7552.png/LeftFrontLeg3
+正义盟军 陆军元帅_P7973JS
+  regions=31 空白区域=18
+  ForUnity.png 实际 2048x2048 声明 4096x4096; ForUnity_2.png 实际 2048x2048 声明 4096x4096; ForUnity.png/BackLightParts1; ForUnity.png/BackLightParts5; ForUnity.png/Head; ForUnity.png/HeadBack; ForUnity.png/LeftHand; ForUnity.png/LightParts2; ForUnity.png/LightParts5; ForUnity.png/Lightparts3
+武装龙闪电 LV10_P15692JS
+  regions=39 空白区域=18
+  P15692.png/BodyBack; P15692.png/BodyParts1; P15692.png/BodyParts2; P15692.png/BodyParts3; P15692.png/Head; P15692.png/LeftHand; P15692.png/LeftWingParts; P15692.png/LightEffect10
+死之宣告_P14585JS
+  regions=25 空白区域=9
+  P14585_2.png 实际 2048x2048 声明 1024x1024; P14585.png/LeftArm; P14585.png/LeftHand; P14585.png/LeftShoulder; P14585.png/RightShoulder; P14585_2.png/Effect/HeadEffect; P14585_2.png/Effect/HeadEffect1; P14585_2.png/Effect/LeftShoulderEffect; P14585_2.png/Effect/LeftUpperArmEffect
+死亡皇帝恶魔_P22134JS
+  regions=38 空白区域=1
+  P22134.png 实际 4096x4096 声明 4096x2048; P22134.png/RightThighParts
+毁灭的黑魔术师_P21610JS
+  regions=32 空白区域=4
+  P21610.png/Ef_EffectD; P21610.png/Ef_EffectH; P21610.png/Head; P21610.png/LeftKnee
+水晶机巧－玻璃光纤_P13508JS
+  regions=13 空白区域=5
+  P13508.png 实际 2048x2048 声明 1179x1179; P13508.png/Ornaments01; P13508.png/Ornaments02; P13508.png/RightArm; P13508.png/RightHand; P13508.png/RightLeg
+水晶清透翼超同步龙_P20776JS
+  regions=28 空白区域=11
+  P20776.png/Body; P20776.png/HeadBack; P20776.png/LeftShoulder; P20776.png/LeftUpperArmBacK; P20776.png/LeftWing; P20776.png/NeckPartsA; P20776.png/NeckPartsB; P20776.png/RightLegWing
+流天救世星龙_P16228JS
+  regions=37 空白区域=8
+  P16228.png 实际 2048x2048 声明 1024x1024; P16228_2.png/Shader/Body1_Back1White; P16228_2.png/Shader/HeadWhite; P16228_2.png/Shader/LeftArm2White; P16228_2.png/Shader/LeftHandWhite; P16228_2.png/Shader/RightArm1White; P16228_2.png/Shader/RightFootWingWhite; P16228_2.png/Shader/RightHandWhite; P16228_2.png/Shader/RightShoulder1White
+浮－朋.克.惊龙_P16731JS
+  regions=31 空白区域=5
+  P16731.png 实际 2048x2048 声明 4096x4096; P16731.png/Body2Wave2; P16731.png/HeadBack; P16731.png/MasterEffect; P16731.png/RightBackRope1; P16731.png/RightHand
+海皇龙神 波塞多拉・邃渊_P20519JS
+  regions=35 空白区域=4
+  P20519.png/LeftJawBack; P20519.png/RightJaw; P20519.png/RightJawBack; P20519.png/RightLegParts
+海龟坏兽加美希尔_P12106JS
+  regions=13 空白区域=2
+  P12106.png/RightWing1; P12106.png/RightWing2
+淘气仙星・蜀葵天使_P13083JS
+  regions=31 空白区域=11
+  P13083.png/Head; P13083.png/LeftShoulder; P13083.png/Rose1; P13083.png/Rose10; P13083.png/Rose11; P13083.png/Rose12; P13083.png/Rose13; P13083.png/Rose2
+淘气仙星・高贵蓝天使_P20295JS
+  regions=44 空白区域=10
+  P20295_2.png 实际 2048x2048 声明 512x512; P20295.png/HeadBallB; P20295.png/HeadFront; P20295.png/LeftLegBallA; P20295.png/LeftLegBallC; P20295.png/RightHairC; P20295.png/RightWaistBall; P20295.png/WaistClothB; P20295.png/WaistClothBBack
+深渊兽 卢绯里昂_P17765
+  regions=50 空白区域=34
+  ForUnity.png 实际 2048x2048 声明 4096x4096; ForUnity_2.png 实际 2048x2048 声明 4096x4096; ForUnity_3.png 实际 2048x2048 声明 4096x4096; ForUnity.png/Body; ForUnity.png/BodyEffect; ForUnity.png/BodyParts; ForUnity.png/Head; ForUnity.png/HeadEffect; ForUnity.png/Jaw; ForUnity.png/LeftArmParts; ForUnity.png/LeftHandEffect
+混元魔龙 混沌支配者_P15277JS
+  regions=14 空白区域=5
+  P15277.png/EffetCircle; P15277.png/Head; P15277.png/LeftShoulder; P15277.png/RightShoulder; P15277.png/Tail
+混沌天使－混元的双翼－_P18507JS
+  regions=26 空白区域=11
+  P18507_2.png 实际 1024x1024 声明 2048x2048; P18507_3.png 实际 512x512 声明 2048x2048; P18507_4.png 实际 512x512 声明 2048x2048; P18507_2.png/RightArm; P18507_2.png/RightHand; P18507_2.png/RightLeg; P18507_3.png/LeftArmCloth; P18507_3.png/RightArmCloth; P18507_3.png/RightClothA; P18507_3.png/Waist; P18507_4.png/LeftHand
+混沌幻魔阿米泰尔－虚无幻影罗生闷_P15514JS
+  regions=23 空白区域=14
+  P15514_2.png 实际 4096x4096 声明 2048x2048; P15514.png/Body1; P15514.png/Body2Parts; P15514.png/Body3; P15514.png/Head; P15514.png/Jaw; P15514.png/JawParts; P15514.png/LeftArm; P15514.png/LeftJaw
+混沌编号101 寂静荣耀黑暗骑士_P10932JS
+  regions=20 空白区域=5
+  P10932.png/Head; P10932.png/LeftArm1; P10932.png/LeftArm2Back; P10932.png/LowerBody; P10932.png/RightArm2
+混沌编号32 海咬龙 鲨龙兽・鳄煞_P20517JS
+  regions=21 空白区域=7
+  P20517.png/HeadPartsBack; P20517.png/LeftArm; P20517.png/LeftLeg; P20517.png/LeftThighB; P20517.png/RightThighA; P20517.png/RightThighABack; P20517.png/UpperBody
+混沌编号62 超银河眼光子龙皇_P18188JS
+  regions=61 空白区域=22
+  P18188_2.png/Red/ATailFrontRed; P18188_2.png/Red/BTailRed; P18188_2.png/Red/BodyRed; P18188_2.png/Red/BodyRedParts1; P18188_2.png/Red/BodyRedParts2; P18188_2.png/Red/CTailRed; P18188_2.png/Red/HeadRed; P18188_2.png/Red/LeftHeadRed
+火山性帝皇_P18915JS
+  regions=25 空白区域=3
+  P18915.png/BodyBack; P18915.png/Neck; P18915.png/RightSoulder
+灭亡之暗 维都苏_P20068JS
+  regions=39 空白区域=20
+  ForUnity.png 实际 2048x2048 声明 4096x4096; ForUnity_2.png 实际 2048x2048 声明 1024x1024; ForUnity.png/HeadJaw; ForUnity.png/LeftFloatingStone; ForUnity.png/LeftHeadParts; ForUnity.png/LeftSoul; ForUnity.png/RightFloatingStone; ForUnity.png/RightHand; ForUnity.png/RightHeadWing; ForUnity.png/RightLeg
+灿幻超龙 三极天龙_P19881JS
+  regions=53 空白区域=10
+  ForUnity.png 实际 2048x2048 声明 4096x4096; ForUnity_2.png 实际 2048x2048 声明 4096x4096; ForUnity.png/LeftArm; ForUnity.png/Sparks2; ForUnity.png/Sparks3; ForUnity.png/Sparks5; ForUnity_2.png/Effect/BlueThunder1; ForUnity_2.png/Effect/BlueThunder2; ForUnity_2.png/Effect/BlueThunder3; ForUnity_2.png/Effect/YellowBeam
+炎狱魔神_P7550JS
+  regions=12 空白区域=4
+  P75502.png 实际 2048x2048 声明 1024x1024; P7550.png/ChestBelt; P7550.png/LeftHand; P7550.png/RightArm; P7550.png/RightHand
+炎王神 迦楼多尼克斯・永炎_P19403JS
+  regions=61 空白区域=1
+  P19403.png/Spark7
+炎神－不知火_P12782JS
+  regions=26 空白区域=3
+  P12782.png 实际 4096x4096 声明 2048x2048; P12782.png/BodyBack; P12782.png/HorseParts1; P12782.png/LeftArm
+烙印龙 阿尔比昂_P15994JS
+  regions=19 空白区域=2
+  P15994.png 实际 4096x4096 声明 2048x2048; P15994.png/Chin; P15994.png/LeftOrnament
+焰凰神－奈芙蒂斯_P14016JS
+  regions=37 空白区域=13
+  P14016.png/BodyParts; P14016.png/Head; P14016.png/HeadParts; P14016.png/LeftFoot2; P14016.png/LeftFoot3; P14016.png/LeftLeg; P14016.png/LeftThigh; P14016.png/RightFoot1
+焰圣骑士帝－查理_P15276JS
+  regions=24 空白区域=7
+  P15276.png/HeadParts1; P15276.png/HeadParts3; P15276.png/LeftHandParts1; P15276.png/LeftHandParts2; P15276.png/LeftHandParts3; P15276.png/LeftHandParts4; P15276.png/NeckParts
+狱炎机・提耶拉_P11833JS
+  regions=20 空白区域=11
+  P11833.png/Chest; P11833.png/Head; P11833.png/LeftArm; P11833.png/LeftEffect; P11833.png/LeftPipe01; P11833.png/LeftPipe02; P11833.png/LeftShoulder; P11833.png/RightArm
+狱炎机・洪潦_P19628JS
+  regions=23 空白区域=3
+  ForUnity.png 实际 2048x2048 声明 4096x4096; ForUnity_2.png 实际 2048x2048 声明 4096x4096; ForUnity.png/Horn; ForUnity.png/Mainhead; ForUnity.png/RightHand
+狱花之大煌耀圣 斯特莉西亚_P22143JS
+  regions=41 空白区域=1
+  P22143.png/LeftThigh
+电子光虫－总线独角仙_P12328JS
+  regions=12 空白区域=1
+  P12328.png/RightLeg2
+电子终极龙_P6397JS
+  regions=17 空白区域=13
+  P6397.png/Body; P6397.png/FrontChin; P6397.png/FrontHead; P6397.png/FrontNeck; P6397.png/LeftChin; P6397.png/LeftHead; P6397.png/LeftNeck; P6397.png/RightChin
+电脑堺狐－仙仙_P15515JS
+  regions=24 空白区域=5
+  P155152.png/Luminous/Luminous02; P155152.png/Luminous/LuminousBack01; P155152.png/Luminous/LuminousBack04; P155152.png/Luminous/LuminousBack05; P155152.png/Luminous/LuminousBack08
+白森的妖魔 迪亚贝尔_P20219JS
+  regions=38 空白区域=3
+  P20219.png 实际 2048x2048 声明 4096x4096; P20219.png/LeftEarring; P20219.png/Muffler; P20219.png/RightEarring
+白骨王_P6341JS
+  regions=13 空白区域=1
+  P6341.png 实际 1024x1024 声明 2048x2048; P6341.png/RightHand
+真六武众－紫炎_P9332JS
+  regions=22 空白区域=3
+  P9332.png/LeftArm; P9332.png/RightArm; P9332.png/SwordChain
+真次代机黑机车人_P8261JS
+  regions=13 空白区域=5
+  P8261.png/BodyBack1; P8261.png/BodyBack2; P8261.png/LeftArm; P8261.png/RightHandBack; P8261.png/RightSoulder
+真龙剑皇大师杰作_P12938JS
+  regions=38 空白区域=4
+  P12938.png/BodyPartsB; P12938.png/HairPartsFront; P12938.png/LeftWingB; P12938.png/RightLeg
+神史莱姆_P15332JS
+  regions=29 空白区域=5
+  P15332.png 实际 4096x4096 声明 2048x2048; P15332.png/BodySlimeThorn2; P15332.png/BodySlimeThorn4; P15332.png/BodySlimeUnder1; P15332.png/BodySlimeUnder2; P15332.png/RightArmSlime2
+神影依・拿非利_P3894JS
+  regions=27 空白区域=11
+  ForUnity_2.png 实际 2048x2048 声明 4096x4096; ForUnity.png/Head; ForUnity.png/HeadBackB; ForUnity.png/HeadBackC; ForUnity.png/LeftHand; ForUnity.png/RightHand; ForUnity.png/RightThigh; ForUnity.png/RightWaist; ForUnity_2.png/String/StringABack
+神影依・米德拉什_P3895JS
+  regions=34 空白区域=1
+  P3895_2.png 实际 1024x1024 声明 512x512; P3895_2.png/Effect/H_CaneEf
+神影金龙 胶子光龙_P20280JS
+  regions=34 空白区域=13
+  P20280.png/Body; P20280.png/BodyPartsA; P20280.png/LeftHair; P20280.png/LeftHairPartsA; P20280.png/LeftHairPartsABack; P20280.png/LeftLeg; P20280.png/LeftThigh; P20280.png/LeftWing
+神碑之翼 福金_P17383JS
+  regions=20 空白区域=8
+  P17383.png/Eye1; P17383.png/Eye2; P17383.png/HeadBack; P17383.png/RightFoot; P17383.png/RightLeg; P17383.png/RightTigh; P17383.png/SkirtParts; P17383.png/Tail2
+神雷龙_P13924JS
+  regions=50 空白区域=14
+  P13924.png 实际 4096x4096 声明 3322x1581; P13924.png/LeftHeadElectric05; P13924.png/LeftHeadElectric09; P13924.png/MiddleHeadElectric01; P13924.png/NeckElectric01; P13924.png/NeckElectric02; P13924.png/NeckElectric05; P13924.png/NeckElectric06; P13924.png/RightHeadElectric01
+究极传导恐兽_P13010JS
+  regions=21 空白区域=1
+  P13010.png/RightArmEffect
+究极龙魔导师_P19718JS
+  regions=35 空白区域=27
+  P19718_2.png 实际 512x512 声明 4096x4096; P19718.png/CenterHeadPartsA; P19718.png/CenterHeadPartsB; P19718.png/CenterNeckA; P19718.png/CenterNeckB; P19718.png/LeftArm; P19718.png/LeftHand; P19718.png/LeftHead; P19718.png/LeftHeadPartsA
+纠罪巧－惧鲸 Atoriϝ.MAR_P21948JS
+  regions=90 空白区域=17
+  P21948.png 实际 4096x4096 声明 4096x1024; P21948.png/EF_BodyBShine; P21948.png/EF_HeadCannonShine4; P21948.png/EF_HeadCannonShine5; P21948.png/EF_HeadCannonShine8; P21948.png/EF_LeftArmCannonShine1; P21948.png/EF_LeftFinAShine; P21948.png/EF_RainEffectG; P21948.png/EF_RainEffectH
+红莲蔷薇龙_P15996JS
+  regions=27 空白区域=1
+  P15996.png 实际 2048x2048 声明 4096x4096; P15996.png/Petal7
+终戒超兽－瓦鲁达罗斯_P19886JS
+  regions=21 空白区域=1
+  ForUnitykde.png 实际 2048x2048 声明 4096x4096; ForUnitykde_2.png 实际 1024x1024 声明 2048x2048; ForUnitykde.png/HeadLeft
+绚岚豪火 凤尼克斯_P21783JS
+  regions=38 空白区域=7
+  P21783.png/HeadEffectA; P21783.png/HeadEffectB; P21783.png/LeftCloudA; P21783.png/LeftCloudC; P21783.png/LeftCloudD; P21783.png/LeftCloudE; P21783.png/RightWingThunderAEffect
+绯暗红恶魔_P19021JS
+  regions=26 空白区域=5
+  ForUnity.png/LeftArm; ForUnity.png/LeftHand; ForUnity.png/LeftUpKness; ForUnity.png/RightLeg; ForUnity_2.png/Fire/LeftOyaYubi
+绯暗红超新星龙_P14957JS
+  regions=23 空白区域=3
+  P14957.png/Body; P14957.png/EF_LeftFire; P14957.png/Neck
+编号38 希望魁龙 泰坦银河_P12260JS
+  regions=18 空白区域=1
+  P12260.png/RightArm
+美丽的磁律机坏_P21461JS
+  regions=46 空白区域=1
+  P21461.png 实际 2048x2048 声明 4096x4096; P21461.png/Hair1
+翼日编号0 未来皇霍普ZEXAL_P21453JS
+  regions=31 空白区域=5
+  P21453.png/SparkleA; P21453.png/SparkleB; P21453.png/SparkleC; P21453.png/SparkleD; P21453.png/SparkleE
+翼日编号0 未来龙皇霍普_P14958JS
+  regions=37 空白区域=1
+  P14958.png/LeftSwordFront
+耀斑主宰者 许珀里翁_P16650JS
+  regions=29 空白区域=3
+  P16650_2.png/Fire/LeftFootFire; P16650_2.png/Fire/LeftWing; P16650_2.png/Fire/RightFootFire
+自鸣天琴・朗基尔苏_P13931JS
+  regions=23 空白区域=11
+  P13931.png/FrontHair; P13931.png/Head; P13931.png/LeftArm1; P13931.png/LeftBackHair; P13931.png/LeftHair1; P13931.png/LeftHair2; P13931.png/LeftShoulder; P13931.png/LeftShoulderArmorBack
+芬芳夜魔－迷迭香_P19505JS
+  regions=34 空白区域=10
+  P19505.png 实际 2048x2048 声明 4096x4096; P19505.png/Belt; P19505.png/Crown; P19505.png/Eye_01; P19505.png/HeadPartsA; P19505.png/HeadPartsB; P19505.png/HeadPartsC; P19505.png/HeadPartsD; P19505.png/LeftArmPartsA
+荷鲁斯之黑炎神_P19473JS
+  regions=42 空白区域=4
+  P19473.png 实际 2048x2048 声明 4096x4096; P19473.png/HeadBack; P19473.png/LeftLeg; P19473.png/RigheFoot; P19473.png/RightArm
+虹天气 彩虹_P13334JS
+  regions=51 空白区域=17
+  P13334.png/Bang; P13334.png/CloakBack; P13334.png/Face; P13334.png/Head; P13334.png/HeadCrownBack; P13334.png/HeadEffect; P13334.png/LeftBang; P13334.png/LeftHeadCrown
+蚀神之光 提斯蒂娜_P19419JS
+  regions=42 空白区域=1
+  P19413.png 实际 4096x4096 声明 2048x2048; P19413.png/RoundHand1
+蛇眼断罪龙_P21177JS
+  regions=64 空白区域=23
+  P21177.png/BodyBack; P21177.png/BodyBackA; P21177.png/BodyFireA; P21177.png/BodyFireB; P21177.png/BodyFireC; P21177.png/BodyFireD; P21177.png/BreathLightA2; P21177.png/BreathLightB
+蜂军－革命之阔枪大游击_P20512JS
+  regions=31 空白区域=8
+  P20512.png 实际 4096x512 声明 4096x2048; P20512.png/LeftBackArm; P20512.png/LeftLegPartrs; P20512.png/LeftUpperArmA; P20512.png/RightBackArm; P20512.png/RightHandB; P20512.png/RightLegParts; P20512.png/RightUpperArmA; P20512.png/UpperBody
+解码语者・灼热燃魂_P14962JS
+  regions=15 空白区域=2
+  ForUnity.png 实际 2048x2048 声明 4096x4096; ForUnity_2.png 实际 2048x2048 声明 4096x4096; ForUnity_3.png 实际 2048x2048 声明 4096x4096; ForUnity_3.png/Fire02/Fire_Effect; ForUnity_3.png/Fire02/Fire_Head
+讲述妖精传姬之人_P22543JS
+  regions=60 空白区域=9
+  P22543.png 实际 2048x1024 声明 2048x2048; P22543.png/FairyF; P22543.png/HairA; P22543.png/HoodA; P22543.png/KiraA; P22543.png/KiraK; P22543.png/LeftFinger; P22543.png/RightFinger; P22543.png/UpperBodyPartsA
+诅咒恋尸狂_P14581JS
+  regions=21 空白区域=3
+  _noait_.png 实际 2048x2048 声明 4096x4096; _noait_.png/Head; _noait_2.png/Fire/BabyBodyFire; _noait_2.png/Fire/RightThighFire01
+调和之天救龙_P22533JS
+  regions=21 空白区域=2
+  P22533.png/LeftThigh; P22533.png/TailPartsB
+调狱神 朱诺拉_P22142JS
+  regions=60 空白区域=6
+  P22142.png 实际 4096x1024 声明 4096x4096; P22142.png/EF_LeftArm1; P22142.png/EF_RightArm3; P22142.png/MaskDepth; P22142.png/Weapon1ChainDepth; P22142.png/Weapon2; P22142.png/Weapon2Chain
+贵日女之御巫_P21616JS
+  regions=78 空白区域=7
+  P21616.png 实际 4096x4096 声明 2048x2048; P21616.png/H_BodyPartsA; P21616.png/H_BodyPartsB; P21616.png/N_BodyBack; P21616.png/N_BodyParts; P21616.png/N_LeftEarring; P21616.png/N_LeftTailParts; P21616.png/N_RightLegPartsA
+赐炎之咎姬_P19507JS
+  regions=31 空白区域=3
+  P19507_2.png 实际 4096x4096 声明 1024x1024; P19507_2.png/Fire/LeftHeadFire2; P19507_2.png/Fire/RightHeadFire1; P19507_2.png/Fire/RightHeadFire2
+赤龙_P18825JS
+  regions=21 空白区域=7
+  ForUnity.png/Right_Hand; ForUnity_2.png/Line/Head_UnderLine; ForUnity_2.png/Line/Head_UpLine; ForUnity_2.png/Line/Left_Leg_Line; ForUnity_2.png/Line/Right_Hand_Line; ForUnity_2.png/Line/Tail_Line; ForUnity_2.png/Line/eye
+超巨霸“冠军”飒嘉斯_P18190JS
+  regions=22 空白区域=1
+  P18190.png/BeltEffect2
+超机怪虫・感质方舟_P13266JS
+  regions=13 空白区域=3
+  ForUnity.png/LeftWing01; ForUnity.png/RightWing01; ForUnity2.png/RightLeg01
+超机怪虫・神经元逻各斯_P13265JS
+  regions=19 空白区域=4
+  P13265.png/DecoCenter; P13265.png/LeftBigJoint; P13265.png/LeftBigRoot; P13265.png/RightSmallRoot
+超电导战机 帝皇机翁麦格农_P12581JS
+  regions=43 空白区域=21
+  P12581.png/Effect10; P12581.png/Effect12; P12581.png/Effect13; P12581.png/Effect14; P12581.png/Effect2; P12581.png/Effect3; P12581.png/Effect5; P12581.png/Effect8
+超越恐龙 厄兆陨龙_P18721JS
+  regions=21 空白区域=4
+  P18721.png 实际 2048x2048 声明 4096x4096; P18721_2.png 实际 1024x1024 声明 2048x2048; P18721.png/Effect4; P18721.png/HeadParts; P18721.png/LightThigh; P18721.png/RightLeg
+超越灵摆・轨迹的魔术使_P17159JS
+  regions=20 空白区域=3
+  P17159.png 实际 4096x4096 声明 2048x2048; P17159.png/Chain; P17159.png/Pendant; P17159.png/Pendant_Light
+超魔导战士－混沌之主宰者_P16841JS
+  regions=22 空白区域=5
+  P16841.png 实际 2048x2048 声明 4096x4096; P16841.png/BodyBack1; P16841.png/CloakBack; P16841.png/Head; P16841.png/LeftArm; P16841.png/Shoulder1
+超魔导龙骑士－真红眼德拉古恩_P14952JS
+  regions=40 空白区域=6
+  P14952.png/Effect/EffectB; P14952.png/Headpart; P14952.png/HoodFront; P14952.png/LeftLeg; P14952.png/LeftShoulderBBack; P14952.png/RightShoulderABack
+轰之创王 哈尔_P15013JS
+  regions=27 空白区域=11
+  P15013.png/LeftShoulder; P15013.png/LeftUpperArm; P15013.png/RightArm; P15013.png/RightHand; P15013.png/RightShoulder; P15013.png/Thorn1; P15013.png/Thorn4; P15013.png/Thorn5
+迷宫城的白银姬・拉比丽斯_P17785JS
+  regions=40 空白区域=2
+  P17785.png/EyeParts00; P17785.png/EyeParts01
+迷宫城的白银姬・拉比丽斯_P21230JS
+  regions=66 空白区域=20
+  P21230.png 实际 4096x4096 声明 4096x1024; P21230.png/BackSkirt; P21230.png/Eye1; P21230.png/Eyebrows; P21230.png/FrontHair; P21230.png/Head; P21230.png/LeftArm; P21230.png/LeftArmRibbonB; P21230.png/LeftArmRibbonC
+邪恶★双子 麻烦桑妮_P16537JS
+  regions=30 空白区域=1
+  P16537.png 实际 2048x2048 声明 1024x1024; P16537.png/S_Eye2
+邪恶－英雄 恶刃死魔_P14586JS
+  regions=20 空白区域=2
+  P14586.png 实际 2048x2048 声明 4096x4096; P14586.png/LeftArmBack; P14586.png/LeftHand
+铁兽战线 凶鸟施莱格_P15527JS
+  regions=16 空白区域=1
+  P15527.png 实际 4096x4096 声明 2048x2048; P15527.png/Cloth03
+银河眼光子龙_P9729JS
+  regions=17 空白区域=1
+  P9729.png 实际 2048x2048 声明 4096x4096; P9729.png/LeftHand
+银河眼光波极龙_P15854JS
+  regions=52 空白区域=7
+  P15854.png/BodyBack; P15854.png/LeftFinger; P15854.png/LeftHandBack; P15854.png/LeftShoulderBack; P158542.png/Pattern/LeftHandPattern; P158542.png/Pattern/RightHandPattern; P158542.png/Pattern/RightShoulderPattern
+闪刀姬－泽克_P14947JS
+  regions=39 空白区域=1
+  P14947.png/RozeHead
+闪刀姬－篝_P3899JS
+  regions=42 空白区域=14
+  ForUnity_2.png 实际 2048x2048 声明 1024x1024; ForUnity.png/Eye_0; ForUnity.png/Eye_1; ForUnity.png/HairPartsA; ForUnity.png/HairPartsB; ForUnity.png/LeftArm; ForUnity.png/LeftWaistA; ForUnity.png/LeftWingD; ForUnity_2.png/Fire/LeftWingFireB
+闪刀姬－雫_P13669JS
+  regions=46 空白区域=6
+  P13669.png/Eye_0; P13669.png/Eye_1; P13669.png/LeftWaistPartsBack; P13669.png/RightWaistParts; P13669.png/RightWaistPartsFront; P13669.png/UpperBodyBack
+闪刀姬－雫_P3433JS
+  regions=52 空白区域=7
+  P3433_2.png 实际 1024x1024 声明 2048x2048; P3433_2.png/BackShield; P3433_2.png/CenterShield_1; P3433_2.png/CenterShield_2; P3433_2.png/Roze_LeftLeg; P3433_2.png/Text_2; P3433_2.png/TopLeftShield_2; P3433_2.png/TopRightShield_2
+防火墙龙_P13082JS
+  regions=24 空白区域=3
+  P13082.png 实际 4096x4096 声明 2048x2048; P13082.png/LeftThigh; P13082.png/LeftWingParts01Back; P13082.png/RightWingParts01Back
+阿尔戈☆群星－荣冠的阿德拉_P20749JS
+  regions=33 空白区域=13
+  P20749.png 实际 4096x2048 声明 4096x4096; P20749.png/Body; P20749.png/Eye0; P20749.png/Eye1; P20749.png/GLeftWing; P20749.png/HairBack; P20749.png/LeftHeadHair; P20749.png/LeftThigh; P20749.png/LeftWaistParts
+阿尔白斯之落胤_P20567JS
+  regions=24 空白区域=1
+  P20567.png/Ef_Particle
+随风飘飘游×雪喵_P16502JS
+  regions=47 空白区域=5
+  P16502.png 实际 2048x2048 声明 4096x4096; P16502.png/LeftBirdHead; P16502.png/OwlBody; P16502.png/WhiteSnow2; P16502.png/WhiteSnow23; P16502.png/WhiteSnow9
+雷热涡炉・绝命导爆_P20578JS
+  regions=62 空白区域=6
+  P20578.png 实际 4096x4096 声明 4096x2048; P20578.png/EF_LeftLegFireB; P20578.png/HeadThunderA; P20578.png/LeftShoulderThunderA; P20578.png/LeftShoulderThunderB; P20578.png/RightArmParts; P20578.png/RightShoulderThunder
+青眼混沌极限龙_P12487
+  regions=8 空白区域=5
+  P12487.png/Head; P12487.png/Left_Arm; P12487.png/Neck; P12487.png/Right_Arm; P12487.png/Right_Wing
+青眼白龙_P3801JS
+  regions=24 空白区域=1
+  P3801.png 实际 4096x4096 声明 2048x2048; P3801.png/RightClaw1
+风魔女－钻铃_P15734JS
+  regions=68 空白区域=1
+  P15734.png/Shine10
+驱魔姐妹・卡尔玛尔_P22147JS
+  regions=42 空白区域=2
+  P22147.png 实际 4096x4096 声明 4096x2048; P22147.png/RightArm; P22147.png/SmallWaterEffect_C
+驱魔姐妹双姝・圣母颂歌_P17157JS
+  regions=106 空白区域=2
+  P17157.png 实际 4096x4096 声明 2048x2048; P17157.png/WaterDrop_C; P17157.png/WaterDrop_H
+高速疾行机人 遥控清透翼骑手_P16380JS
+  regions=23 空白区域=11
+  P16380.png/BodyParts; P16380.png/Debris1; P16380.png/Debris2; P16380.png/Debris3; P16380.png/EffectAntenna1; P16380.png/EffectAntenna2; P16380.png/LeftHand; P16380.png/RightHand
+鬼计・阿尔卡德_P10783JS
+  regions=14 空白区域=5
+  P10783.png/BackBatLeftWing; P10783.png/BackBatLeftWing2; P10783.png/BackBatRighttWing; P10783.png/BodyBack; P10783.png/Neck
+鬼计的惰天使_P11422JS
+  regions=33 空白区域=9
+  P11422_2.png 实际 2048x2048 声明 1024x1024; P11422.png/Body; P11422.png/Eye3; P11422.png/Ghost1; P11422.png/Ghost2; P11422.png/HatFur; P11422.png/Heart2; P11422.png/Heart3; P11422.png/LeftHand
+魅影骑士团锈蚀月刃斧_P14054JS
+  regions=24 空白区域=5
+  P14054.png/BodyBack; P14054.png/Head; P14054.png/LeftArm1; P14054.png/LeftArm2; P14054.png/LeftHand
+魔幻甜点女王・后冠提拉米苏_P10270JS
+  regions=36 空白区域=6
+  P10270.png/Accessory; P10270.png/Bird01RightWing; P10270.png/LeftEarring; P10270.png/LeftHair; P10270.png/Rabbit; P10270.png/RightEarring
+魔弹射手 马克斯_P14209JS
+  regions=19 空白区域=1
+  P14209.png/LeftCollar_Back
+魔救奇迹－龙石_P15105JS
+  regions=16 空白区域=2
+  P15105.png 实际 2048x2048 声明 4096x4096; P15105.png/Person; P15105.png/PersonEffect
+魔键变鬼－特兰斯福尔米涅_P16530JS
+  regions=29 空白区域=13
+  P16530_2.png 实际 4096x4096 声明 512x512; P16530.png/BodyEffect; P16530.png/Hair; P16530.png/LeftBodyBack; P16530.png/LeftHandEffect; P16530.png/LeftHornEffect; P16530.png/LeftLeg; P16530.png/LeftThigh; P16530.png/LeftWingEffect
+黄金卿埃尔德里奇_P15123JS
+  regions=20 空白区域=1
+  P151235.png/KiraLight_3
+黄金卿埃尔德里奇_P3423JS
+  regions=73 空白区域=5
+  P3423_2.png/L_Effect3; P3423_2.png/S_Effect1; P3423_2.png/S_Effect2; P3423_2.png/S_Effect3; P3423_3.png/L_Effect1
+黄金荣耀－星狮_P18458JS
+  regions=35 空白区域=5
+  P18458.png 实际 2048x2048 声明 4096x4096; P18458_2.png 实际 1024x1024 声明 2048x2048; P18458.png/C_Eye0; P18458.png/C_HeadPartsA; P18458.png/C_RightHairParts; P18458.png/L_RightArm; P18458.png/L_RightShoulder
+黑羽－全装甲之翼_P13852JS
+  regions=20 空白区域=1
+  P13852.png 实际 2048x2048 声明 4096x4096; P13852.png/RightLegBack
+黑翼突击龙_P17797JS
+  regions=21 空白区域=5
+  P17797.png/HairBack; P17797.png/Jaw; P17797.png/LeftBodyParts2; P17797.png/LeftShoulder; P17797.png/TailParts1
+黑蔷薇龙_P3420JS
+  regions=65 空白区域=17
+  P3420.png 实际 4096x2048 声明 4096x4096; P3420.png/FlowerF; P3420.png/FlowerL; P3420.png/FlowerO; P3420.png/FlowerQ; P3420.png/FlowerR; P3420.png/HeadPartsA; P3420.png/HeadPartsB; P3420.png/HeadPartsC
+黑蔷薇龙_P7898JS
+  regions=36 空白区域=2
+  P7898.png/RightThigh; P7898_7.png/BackRoseD3
+黑衣龙之艾克利西亚_P22144JS
+  regions=44 空白区域=1
+  P22144.png 实际 4096x4096 声明 4096x2048; P22144.png/E_RightLegCloth01
+黑魔女 迪亚贝尔斯塔_P21231JS
+  regions=33 空白区域=7
+  USP21231_kde.png 实际 2048x1024 声明 2048x2048; USP21231_kde.png/Eye1; USP21231_kde.png/Eye2; USP21231_kde.png/Eye3; USP21231_kde.png/Eyeblow; USP21231_kde.png/Hair1; USP21231_kde.png/Monocle; USP21231_kde.png/RightFinger
+龙女仆・总管龙女_P3435JS
+  regions=53 空白区域=5
+  P3435.png 实际 2048x1024 声明 2048x2048; P3435.png/C_HairPartsA; P3435.png/C_RightHandParts; P3435.png/C_RightWingFront; P3435.png/H_Body; P3435.png/H_HairPartsC
+龙血公 吸血鬼_P15844JS
+  regions=28 空白区域=3
+  P15844.png 实际 4096x4096 声明 2048x2048; P15844.png/Hair1Back; P15844.png/HeadBack; P15844.png/LeftWaist
+龙骑兵团领主－格奥鲁吉亚斯_P22199JS
+  regions=35 空白区域=7
+  P22199.png 实际 4096x2048 声明 4096x4096; P22199.png/Ascalon_TailA; P22199.png/Georgios_RightArm; P22199.png/Georgios_RightWeapon; P22199.png/Georgios_RightWeaponEffectA; P22199.png/Georgios_WaistString; P22199.png/LightEffectC; P22199.png/LightEffectF
+
+=== 仅整体缩放 ===
+ABC－龙型破坏炮_P12590JS  P12590.png 实际 1024x1024 声明 1473x1473
+S：P小夜骑士_P22747JS  P22747.png 实际 2048x2048 声明 2048x1024
+丽之魔妖－妖狐_P14041JS  P14041_2.png 实际 4096x4096 声明 2048x2048
+刀皇－都牟羽沓薙_P18487JS  P18487.png 实际 4096x4096 声明 2048x2048; P18487_2.png 实际 4096x4096 声明 2048x2048; P18487_3.png 实际 2048x2048 声明 1024x1024
+刚鬼 大师食人魔_P13595JS  P13595.png 实际 4096x4096 声明 2048x2048
+剑斗兽多米提安努斯_P14660JS  P14660.png 实际 4096x4096 声明 2048x2048
+双穹之圣骑联盟・机界骑士_P14297JS  P14297.png 实际 2048x2048 声明 4096x4096
+双重汇编亚龙_P13199  P13199.png 实际 2048x2048 声明 4096x4096; P131992.png 实际 512x512 声明 1024x1024; P131993.png 实际 1024x1024 声明 2048x2048
+召命之神弓－阿波罗萨_P3411JS  P3411.png 实际 2048x2048 声明 4096x4096
+大傩主水_P18195JS  P18195.png 实际 2048x2048 声明 4096x4096; P18195_2.png 实际 2048x2048 声明 4096x4096
+大将军 紫炎_P6969JS  P9696.png 实际 4096x4096 声明 2048x2048
+宝石骑士・红玉_P8911JS  P8911.png 实际 2048x2048 声明 1993x1993; P89112.png 实际 2048x2048 声明 1866x1866; P89113.png 实际 2048x2048 声明 1787x1787
+年糕蛙_P12642  P12642.png 实际 2048x2048 声明 4096x4096
+幻兽机 哥萨克龙_P10534JS  P10534.png 实际 4096x4096 声明 2048x2048
+影之创王 雷万汀_P18192JS  P18192_2.png 实际 4096x4096 声明 1024x1024
+念力终焉处刑者_P17154JS  P17154.png 实际 2048x2048 声明 4096x4096; P17154_2.png 实际 2048x2048 声明 4096x4096
+救援王牌 爆流涡轮机_P17997JS  P17997_2.png 实际 4096x4096 声明 2048x2048
+星宿爪龙 阿尔扎里昂_P21359JS  P21359.png 实际 4096x4096 声明 2048x2048
+星骑士 星圣 卡多克乌斯_P18508JS  P18508.png 实际 2048x2048 声明 4096x4096
+暗灵神欧布尔米拉吉_P13735JS  P13735.png 实际 2048x2048 声明 4096x4096
+机动雾龙・暴龙_P12137JS  P12137.png 实际 1024x1024 声明 1119x1119; P121372.png 实际 2048x2048 声明 1309x1309
+机皇神龙三曲腿_P15337JS  P15337_2.png 实际 2048x2048 声明 1024x1024
+极神圣帝奥丁_P9331JS  P9331.png 实际 2048x2048 声明 4096x4096
+格布林百罗刹 巨魁加蓬迦_P19502JS  P19502_2.png 实际 1024x1024 声明 2048x2048
+梦魇曲・鹰头狮_P13602JS  P13602.png 实际 2048x2048 声明 2065x2065; P136022.png 实际 4096x4096 声明 1793x1793
+欧西里斯之天空龙_P3869JS  P3869_2.png 实际 4096x4096 声明 2048x2048
+欧贝利斯克之巨神兵_P3868JS  P3868.png 实际 2048x2048 声明 4096x4096
+欧贝利斯克之巨神兵_P4998JS  P4998.png 实际 4096x4096 声明 2048x2048
+水精鳞－巨齿深渊_P10242JS  P10242.png 实际 4096x4096 声明 2048x2048
+混元的战士 混沌士兵_P14193JS  P14193.png 实际 2048x2048 声明 4096x4096
+混沌编号1 混沌源数之门－零_P15379JS  P153792.png 实际 1024x1024 声明 2048x2048
+混沌编号88 机关傀偶－灾难狮子_P11016JS  P11016.png 实际 4096x4096 声明 2048x2048; P11016_2.png 实际 2048x2048 声明 1024x1024
+炎斩机最终西格玛_P14751JS  P14751.png 实际 4096x4096 声明 2048x2048
+电子龙无限_P11765JS  P11765.png 实际 2048x2048 声明 4096x4096
+真炎龙 阿尔比昂_P18498JS  P18498_2.png 实际 2048x2048 声明 4096x4096
+神兵灾星－厄咒弑 堤・丰_P19184JS  P19184_2.png 实际 4096x4096 声明 2048x2048
+禁咒仪・灵智涅瑞伊斯_P18177JS  P18177.png 实际 4096x4096 声明 2048x2048
+究极宝玉神 彩虹龙_P7171JS  P7171.png 实际 2048x2048 声明 4096x4096
+精神骨架装载王 欧米伽_P12074JS  P12074.png 实际 4096x4096 声明 2048x2048
+紫宵之机界骑士_P13390JS  P13390.png 实际 2048x2048 声明 4096x4096
+终焉之王 迪米斯_P6613JS  P6613.png 实际 2048x2048 声明 4096x4096
+维刹思・阿斯特劳德_P18499JS  P18499_2.png 实际 4096x4096 声明 1024x1024; P18499_4.png 实际 4096x4096 声明 1024x1024
+编号39 希望皇霍普_P9575  P9575.png 实际 2048x2048 声明 1154x1154
+至深游魊_P17754JS  P17754_3.png 实际 2048x2048 声明 4096x4096
+蕾祸之大王鬼牙_P19891JS  P19891.png 实际 4096x4096 声明 2048x2048
+访问码语者_P15032JS  P15032.png 实际 2048x2048 声明 4096x4096
+超巨大战舰 金属仆从_P22083JS  P22083.png 实际 4096x2048 声明 1024x2048
+超重型炮塔列车 古斯塔夫超大炮_P9963JS  P9963.png 实际 512x512 声明 1357x1357
+转生炎兽 怒火不死鸟_P18912JS  P18912.png 实际 2048x2048 声明 4096x4096; P18912_2.png 实际 2048x2048 声明 4096x4096
+邪帝盖乌斯_P7516JS  P7516.png 实际 4096x4096 声明 1995x1995
+邪恶－英雄 新宇霸主_P20768JS  P20768.png 实际 4096x4096 声明 2048x2048
+铠皇龙－电子黑暗终极龙_P16300JS  P16300.png 实际 2048x2048 声明 2042x2042; P163002.png 实际 2048x2048 声明 865x865
+闪刀姬－篝_P13668  P13668.png 实际 4096x4096 声明 2048x2048
+闪刀姬＝零萝_P21460JS  P21460.png 实际 2048x2048 声明 2048x1024
+零冰魔妖－雪女_P14948JS  P14948_2.png 实际 2048x2048 声明 4096x4096
+霸王暴龙 凶饿猛毒透翼龙_P22540JS  P22540.png 实际 4096x4096 声明 2048x2048
+青眼喷气龙_P16809JS  P16809_2.png 实际 1024x1024 声明 2048x2048
+鲜花之女男爵_P16386JS  P16386.png 实际 2048x2048 声明 1588x1588
+黄昏的堕天使 路西法_P22139JS  P22139.png 实际 2048x2048 声明 4096x4096
+黑魔女 迪亚贝尔斯塔_P19148JS  UP19148_2.png 实际 1024x1024 声明 512x512
