@@ -1409,6 +1409,48 @@ namespace SuperScrollView
             rtf.anchorMax = anchorMax;
         }
 
+        /*
+        运行时追加一种行预制体。InitItemPool 只在 InitListView 时跑一次，
+        列表初始化后再往 ItemPrefabDataList 里加预制体不会有对应对象池，
+        NewListViewItem 会返回 null，所以同一个列表要切换不同行类型时用这个方法注册。
+        */
+        public void AddItemPrefab(ItemPrefabConfData data)
+        {
+            if (data == null || data.mItemPrefab == null)
+            {
+                return;
+            }
+            string prefabName = data.mItemPrefab.name;
+            if (mItemPoolDict.ContainsKey(prefabName))
+            {
+                return;
+            }
+            if (GetItemPrefabConfData(prefabName) == null)
+            {
+                mItemPrefabDataList.Add(data);
+            }
+            if (mListViewInited == false)
+            {
+                return;
+            }
+            RectTransform rtf = data.mItemPrefab.GetComponent<RectTransform>();
+            if (rtf == null)
+            {
+                Debug.LogError("RectTransform component is not found in the prefab " + prefabName);
+                return;
+            }
+            AdjustAnchor(rtf);
+            AdjustPivot(rtf);
+            if (data.mItemPrefab.GetComponent<LoopListViewItem2>() == null)
+            {
+                data.mItemPrefab.AddComponent<LoopListViewItem2>();
+            }
+            ItemPool pool = new ItemPool();
+            pool.Init(data.mItemPrefab, data.mPadding, data.mStartPosOffset, data.mInitCreateCount, mContainerTrans);
+            mItemPoolDict.Add(prefabName, pool);
+            mItemPoolList.Add(pool);
+        }
+
         void InitItemPool()
         {
             foreach (ItemPrefabConfData data in mItemPrefabDataList)

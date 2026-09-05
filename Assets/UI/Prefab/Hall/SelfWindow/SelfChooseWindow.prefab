@@ -328,9 +328,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5637963124809585880}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f8a2c1d9e0b4756a4d1c8e7b6f5a309, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: HotUpdate::AvatarListController
+  m_Script: {fileID: 11500000, guid: dc88a36801746234e9c7ad44fde70a6a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: HotUpdate::GridListController
   loopListView: {fileID: 6412750030922234793}
 --- !u!114 &6412750030922234793
 MonoBehaviour:
