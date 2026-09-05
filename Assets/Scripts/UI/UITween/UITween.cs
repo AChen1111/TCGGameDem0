@@ -75,6 +75,20 @@ static class UITween
             .BindToLocalScale(target);
     }
 
+    public static MotionHandle DoScaleAnim(
+        Vector3 from,
+        Vector3 to,
+        float duration,
+        Transform target,
+        Ease ease = Ease.OutCubic)
+    {
+        target.localScale = from;
+        return LMotion.Create(from, to, duration)
+            .WithEase(ease)
+            .BindToLocalScale(target);
+    }
+
+
     //短促缩放反馈：放大后回到原始尺寸.单条 Yoyo,避免 Sequence 晚一帧才启动
     public static MotionHandle DoPunchScale(Transform target, float scale, float duration, Ease ease = Ease.OutCubic, System.Action onComplete = null)
     {

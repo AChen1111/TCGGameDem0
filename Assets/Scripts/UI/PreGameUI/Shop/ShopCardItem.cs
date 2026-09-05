@@ -39,6 +39,9 @@ public class ShopCardItem : MonoBehaviour
     [SerializeField] TextMeshProUGUI m_TxtRemainTime;
     // --tag_end: 自动生成--
     private int m_Index;
+    private int m_Id;
+    private string m_Title;
+    private long m_PriceGold;
     private Action<int> m_OnSelected;
     public void SetData(ShopCardItemData data,bool isSelected,Action<int> onSelected)
     {
@@ -47,6 +50,9 @@ public class ShopCardItem : MonoBehaviour
         m_TxtValue.text = data.PriceGold.ToString("N0");
         m_TxtRemainTime.text = FormatRemainingTime(data.EndsAt);
         m_Index = data.Index;
+        m_Id = data.Id;
+        m_Title = data.Title;
+        m_PriceGold = data.PriceGold;
 
         //todo:被选择效果
         if(isSelected)
@@ -63,6 +69,9 @@ public class ShopCardItem : MonoBehaviour
         m_BtnAll.onClick.RemoveListener(OnSelectedClick);
     }
     private void OnSelectedClick() {
+        ALog.Log(
+            $"购买卡包点击: Id={m_Id}; Title={m_Title}; PriceGold={m_PriceGold}.",
+            ALogCategories.UI);
         m_OnSelected?.Invoke(m_Index);//通知上层点击了哪个
     }
 
