@@ -1,30 +1,30 @@
+using System;
 using LitMotion;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// 跨场景全屏黑遮挡.切场景前 Show,目标界面就绪后 FadeOut / Hide.
+/// 跨场景加载界面.切场景前显示 LoadIN,目标界面就绪后淡出并隐藏。
 /// </summary>
 public static class SceneTransitionOverlay
 {
     const int SortingOrder = 32767;
 
     static GameObject s_root;
-    static Image s_image;
+    static CanvasGroup s_canvasGroup;
 
     public static bool IsVisible => s_root != null && s_root.activeSelf;
 
     public static void Show()
     {
         Ensure();
-        Color color = s_image.color;
-        color.a = 1f;
-        s_image.color = color;
+        s_canvasGroup.alpha = 1f;
+        s_canvasGroup.blocksRaycasts = true;
         bool alreadyVisible = s_root.activeSelf;
         s_root.SetActive(true);
         if (!alreadyVisible)
         {
-            ALog.Log("打开跨场景遮挡层.", ALogCategories.UI);
+            ALog.Log("打开跨场景 LoadIN 加载界面.", ALogCategories.UI);
         }
     }
 
@@ -36,7 +36,7 @@ public static class SceneTransitionOverlay
         }
 
         s_root.SetActive(false);
-        ALog.Log("关闭跨场景遮挡层.", ALogCategories.UI);
+        ALog.Log("关闭跨场景 LoadIN 加载界面.", ALogCategories.UI);
     }
 
     public static bool TryFadeOut(float duration, out MotionHandle handle)
@@ -47,7 +47,8 @@ public static class SceneTransitionOverlay
             return false;
         }
 
-        handle = UITween.DoFadeAnim(1f, 0f, duration, s_image);
+        s_canvasGroup.blocksRaycasts = false;
+        handle = UITween.DoFadeAnim(1f, 0f, duration, s_canvasGroup);
         return true;
     }
 
@@ -58,24 +59,38 @@ public static class SceneTransitionOverlay
             return;
         }
 
-        s_root = new GameObject("SceneTransitionOverlay");
-        Object.DontDestroyOnLoad(s_root);
+        GameObject prefab = Resources.Load<GameObject>("LoadIN");
+        if (prefab == null)
+        {
+            ALog.LogError("打开跨场景加载界面失败: Resources/LoadIN.prefab 不存在.", ALogCategories.UI);
+            throw new InvalidOperationException("Resources/LoadIN.prefab does not exist.");
+        }
 
-        var canvas = s_root.AddComponent<Canvas>();
+        s_root = UnityEngine.Object.Instantiate(prefab);
+        s_root.name = "SceneTransitionOverlay";
+        s_root.transform.localScale = Vector3.one;
+        UnityEngine.Object.DontDestroyOnLoad(s_root);
+
+        Canvas canvas = s_root.GetComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.sortingOrder = SortingOrder;
-        s_root.AddComponent<GraphicRaycaster>();
 
-        var blocker = new GameObject("Blocker", typeof(RectTransform));
-        blocker.transform.SetParent(s_root.transform, false);
-        var rect = blocker.GetComponent<RectTransform>();
-        rect.anchorMin = Vector2.zero;
-        rect.anchorMax = Vector2.one;
-        rect.offsetMin = Vector2.zero;
-        rect.offsetMax = Vector2.zero;
+        s_canvasGroup = s_root.GetComponent<CanvasGroup>();
+        if (s_canvasGroup == null)
+        {
+            s_canvasGroup = s_root.AddComponent<CanvasGroup>();
+        }
 
-        s_image = blocker.AddComponent<Image>();
-        s_image.color = Color.black;
-        s_image.raycastTarget = true;
+        Image background = s_root.GetComponentInChildren<Image>(true);
+        if (background != null)
+        {
+            RectTransform rect = background.rectTransform;
+            rect.anchorMin = Vector2.zero;
+            rect.anchorMax = Vector2.one;
+            rect.offsetMin = Vector2.zero;
+            rect.offsetMax = Vector2.zero;
+        }
+
+        s_root.SetActive(false);
     }
 }
