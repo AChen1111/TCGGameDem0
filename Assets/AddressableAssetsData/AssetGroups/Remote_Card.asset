@@ -16,13 +16,18 @@ MonoBehaviour:
   m_GUID: e3d7b92d591d06e46bf53a5c679c86e3
   m_SerializeEntries:
   - m_GUID: 3202e95fff771e4458f474c1e9337f0e
-    m_Address: Assets/MasterDuel/CardShopItem
+    m_Address: CardShopItem
     m_ReadOnly: 0
     m_SerializedLabels:
     - CardDeckShop
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 553ca123bbea4a7bad2467fa79579a69
+    m_Address: Sprite/Card
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8038889c447c4b8439b6fe36339b47b7
-    m_Address: Assets/MasterDuel/Wallpaper
+    m_Address: Wallpaper
     m_ReadOnly: 0
     m_SerializedLabels:
     - wallpaper

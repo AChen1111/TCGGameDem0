@@ -8,4 +8,6 @@
 | [unity-client.md](unity-client.md) | Unity 客户端结构与职责 |
 | [hot-update-and-content.md](hot-update-and-content.md) | 热更新启动链和内容分发 |
 | [backend.md](backend.md) | 后端结构与数据职责 |
+| [spine-atlas-repair.md](spine-atlas-repair.md) | Spine 图集坐标错位的批量体检与修复 |
+| [troubleshooting.md](troubleshooting.md) | 疑难故障的排查记录与结论 |
 

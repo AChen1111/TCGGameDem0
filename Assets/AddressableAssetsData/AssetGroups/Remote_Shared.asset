@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Remote_Shared
   m_GUID: 0d1aea6a0f2078c4782c51151a5ee657
   m_SerializeEntries:
+  - m_GUID: 28d2ebb8eede40e458778cfd43bcbf16
+    m_Address: Shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 334d1b08032268248a25b7ce002bb510
     m_Address: Fonts
     m_ReadOnly: 0

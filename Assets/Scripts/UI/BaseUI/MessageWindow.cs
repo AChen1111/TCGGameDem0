@@ -31,7 +31,7 @@ public class MessageWindow : AWindowController<MessageWindowProperties>
 
     async UniTaskVoid PlayOpenAsync()
     {
-        m_TxtMessage.text = Properties.Message;
+        ApplyMessage();
         await UITween.DoScaleAnim(0, 1, 2, transform).AddTo(gameObject);
         m_closeCts = new CancellationTokenSource();
         CloseAfterAsync(Properties.Duration, m_closeCts.Token).Forget();
@@ -39,7 +39,14 @@ public class MessageWindow : AWindowController<MessageWindowProperties>
 
     protected override void OnResume()
     {
-        m_TxtMessage.text = Properties.Message;
+        ApplyMessage();
+    }
+
+    void ApplyMessage()
+    {
+        string message = Properties.Message;
+        m_TxtMessage.text = message;
+        ALog.Log($"提示弹窗: {message}", ALogCategories.UI);
     }
 
     protected override void OnClose()

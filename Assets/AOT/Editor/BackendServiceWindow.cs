@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Sockets;
 using System.Security.Cryptography;
+using System.Text;
 using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
@@ -40,6 +41,7 @@ static class BackendServiceController
     static bool s_StopRequested;
     static double s_NextProbeAt;
     static double s_StartedAt;
+    static int s_OpenWindowCount;
 
     public static event Action Changed;
 
@@ -48,6 +50,14 @@ static class BackendServiceController
     public static IReadOnlyList<string> LogLines => s_LogLines;
     public static bool CanStart => State == BackendServiceState.Stopped || State == BackendServiceState.Faulted;
     public static bool CanStop => IsAlive(s_BuildProcess) || TryGetOwnedBackendProcess() != null;
+
+    // IsPortOpen 是同步 TcpClient.Connect,在有回环过滤驱动的机器上一次拒绝要 2 秒.
+    // 只有真的有人在看服务状态时才轮询,否则它每 0.5 秒就会卡住编辑器主线程.
+    static bool ShouldProbe =>
+        s_OpenWindowCount > 0 ||
+        State == BackendServiceState.Building ||
+        State == BackendServiceState.Starting ||
+        State == BackendServiceState.Running;
 
     static string ProjectRoot => Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
     static string BackendDirectory => Path.Combine(ProjectRoot, "Backend", "src", "AChen.Backend.Api");
@@ -269,7 +279,9 @@ static class BackendServiceController
                 UseShellExecute = false,
                 CreateNoWindow = true,
                 RedirectStandardOutput = true,
-                RedirectStandardError = true
+                RedirectStandardError = true,
+                StandardOutputEncoding = Encoding.UTF8,
+                StandardErrorEncoding = Encoding.UTF8
             }
         };
         process.OutputDataReceived += (_, args) => QueueLog(logPrefix, args.Data);
@@ -286,6 +298,16 @@ static class BackendServiceController
 
         process.BeginOutputReadLine();
         process.BeginErrorReadLine();
+    }
+
+    public static void RegisterWindow()
+    {
+        s_OpenWindowCount++;
+    }
+
+    public static void UnregisterWindow()
+    {
+        s_OpenWindowCount = Math.Max(0, s_OpenWindowCount - 1);
     }
 
     static void Update()
@@ -305,6 +327,11 @@ static class BackendServiceController
         if (addedLog)
         {
             NotifyChanged();
+        }
+
+        if (!ShouldProbe)
+        {
+            return;
         }
 
         if (EditorApplication.timeSinceStartup < s_NextProbeAt)
@@ -676,11 +703,13 @@ public sealed class BackendServiceWindow : EditorWindow
     {
         minSize = new Vector2(480f, 420f);
         BackendServiceController.Changed += Repaint;
+        BackendServiceController.RegisterWindow();
     }
 
     void OnDisable()
     {
         BackendServiceController.Changed -= Repaint;
+        BackendServiceController.UnregisterWindow();
     }
 
     void OnGUI()

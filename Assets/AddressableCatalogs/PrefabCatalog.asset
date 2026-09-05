@@ -48,3 +48,45 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: ChangeNameWindow
+    reference:
+      m_AssetGUID: afc3ada57acd30545808a4f75dae2ea3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: AvatarItemPrefab
+    reference:
+      m_AssetGUID: 01bd24fd410adfc4f94fc25477c9fb35
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: SelfChooseWindow
+    reference:
+      m_AssetGUID: 232a381f9091a5b45b781d75776f8311
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: AvatarShopItemRowPrefab
+    reference:
+      m_AssetGUID: f393de558fa14e244a55e10d9cba3a99
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: AvatarShopItemPrefab
+    reference:
+      m_AssetGUID: 5fbcf296c6e1538479b937c5bde22475
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: WallpaperShopItemRowPrefab
+    reference:
+      m_AssetGUID: bb8dd45543dfd4748b7da59747266c33
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

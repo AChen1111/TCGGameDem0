@@ -98,18 +98,18 @@ namespace AChen.Networking
         {
             if (snapshot == null)
             {
-                throw new GameConfigDataException("Game configuration is missing.");
+                throw new GameConfigDataException("缺少游戏配置");
             }
 
             if (snapshot.SchemaVersion != SupportedSchemaVersion)
             {
                 throw new GameConfigDataException(
-                    $"Unsupported game configuration schema: {snapshot.SchemaVersion}.");
+                    $"不支持的游戏配置结构版本：{snapshot.SchemaVersion}");
             }
 
             if (snapshot.Revision <= 0 || snapshot.PublishedAt == default)
             {
-                throw new GameConfigDataException("Game configuration version is invalid.");
+                throw new GameConfigDataException("游戏配置版本无效");
             }
 
             ValidateAvatars(snapshot.Avatars);
@@ -126,12 +126,12 @@ namespace AChen.Networking
                     string.IsNullOrWhiteSpace(avatar.Name) || avatar.Name.Length > 64 ||
                     string.IsNullOrWhiteSpace(avatar.ResourceKey) || avatar.ResourceKey.Length > 128)
                 {
-                    throw new GameConfigDataException("Avatar configuration contains an invalid item.");
+                    throw new GameConfigDataException("头像配置包含无效项目");
                 }
 
                 if (!ids.Add(avatar.Id) || !resourceKeys.Add(avatar.ResourceKey))
                 {
-                    throw new GameConfigDataException("Avatar configuration contains duplicate IDs or resource keys.");
+                    throw new GameConfigDataException("头像配置包含重复的 ID 或资源键");
                 }
             }
         }
@@ -146,12 +146,12 @@ namespace AChen.Networking
                     string.IsNullOrWhiteSpace(cardPack.CoverResourceKey) || cardPack.CoverResourceKey.Length > 128 ||
                     cardPack.StartsAt.HasValue && cardPack.EndsAt.HasValue && cardPack.EndsAt <= cardPack.StartsAt)
                 {
-                    throw new GameConfigDataException("Card pack configuration contains an invalid item.");
+                    throw new GameConfigDataException("卡包配置包含无效项目");
                 }
 
                 if (!ids.Add(cardPack.Id))
                 {
-                    throw new GameConfigDataException("Card pack configuration contains duplicate IDs.");
+                    throw new GameConfigDataException("卡包配置包含重复 ID");
                 }
             }
         }

@@ -1,15 +1,38 @@
+using System;
+
 public static class AddressKeys
 {
+    //--tag:auto-generated
     public static class Prefab
     {
+        public static readonly string AvatarItemPrefab = "AvatarItemPrefab";
+        public static readonly string AvatarShopItemPrefab = "AvatarShopItemPrefab";
+        public static readonly string AvatarShopItemRowPrefab = "AvatarShopItemRowPrefab";
         public static readonly string CardPackRowPrefab = "CardPackRowPrefab";
+        public static readonly string ChangeNameWindow = "ChangeNameWindow";
         public static readonly string LogInWindow = "LogInWindow";
         public static readonly string MessageWindow = "MessageWindow";
         public static readonly string PreGameUIPanel = "PreGameUIPanel";
+        public static readonly string SelfChooseWindow = "SelfChooseWindow";
         public static readonly string ShopWindows = "ShopWindows";
+        public static readonly string WallpaperShopItemRowPrefab = "WallpaperShopItemRowPrefab";
     }
     public static class Sprite
     {
+        public static readonly string a_00 = "a_00";
+        public static readonly string a_01 = "a_01";
+        public static readonly string a_02 = "a_02";
+        public static readonly string a_03 = "a_03";
+        public static readonly string a_04 = "a_04";
+        public static readonly string a_05 = "a_05";
+        public static readonly string a_06 = "a_06";
+        public static readonly string a_07 = "a_07";
+        public static readonly string a_08 = "a_08";
+        public static readonly string a_09 = "a_09";
+        public static readonly string a_10 = "a_10";
+        public static readonly string a_11 = "a_11";
+        public static readonly string a_12 = "a_12";
+        public static readonly string a_13 = "a_13";
         public static readonly string c_00 = "c_00";
         public static readonly string c_01 = "c_01";
         public static readonly string c_02 = "c_02";
@@ -54,5 +77,20 @@ public static class AddressKeys
         public static readonly string LogInSetting = "LogInSetting";
         public static readonly string PreGameSceneUI = "PreGameSceneUI";
         public static readonly string UISetting = "UISetting";
+    }
+//--tag:auto-generated-end
+    public static string GetAvatarAddress(int avatarId)
+    {
+        return $"a_{avatarId:D2}";
+    }
+
+    internal static string GetBackgroundDownAddress(int id)
+    {
+        return $"w_{id:D2}_Down";
+    }
+
+    internal static string GetBackgroundSpriteAddress(int id)
+    {
+        return $"w_{id:D2}_Sprite";
     }
 }

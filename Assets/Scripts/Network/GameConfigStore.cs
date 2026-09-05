@@ -32,7 +32,7 @@ namespace AChen.Networking
             GameConfigSnapshotValidator.Validate(snapshot);
             if (string.IsNullOrWhiteSpace(etag))
             {
-                throw new GameConfigDataException("Game configuration ETag is missing.");
+                throw new GameConfigDataException("缺少游戏配置版本标识");
             }
 
             var avatars = new Dictionary<int, AvatarConfig>(snapshot.Avatars.Count);

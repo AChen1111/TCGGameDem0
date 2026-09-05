@@ -69,7 +69,7 @@ namespace AChen.Networking
                 }
             }
 
-            throw lastException ?? new BackendApiException(0, "NETWORK_ERROR", "Could not reach backend.");
+            throw lastException ?? new BackendApiException(0, "NETWORK_ERROR", "无法连接服务器，请检查网络");
         }
 
         async UniTask<GameConfigFetchResult> FetchOnceAsync(
@@ -120,18 +120,18 @@ namespace AChen.Networking
                         s_jsonSettings);
                     GameConfigSnapshotValidator.Validate(snapshot);
                 }
-                catch (JsonException exception)
+                catch (JsonException)
                 {
-                    throw new BackendApiException(0, "INVALID_RESPONSE", exception.Message);
+                    throw new BackendApiException(0, "INVALID_RESPONSE", "服务器返回的游戏配置无效");
                 }
-                catch (GameConfigDataException exception)
+                catch (GameConfigDataException)
                 {
-                    throw new BackendApiException(0, "INVALID_RESPONSE", exception.Message);
+                    throw new BackendApiException(0, "INVALID_RESPONSE", "服务器返回的游戏配置无效");
                 }
 
                 if (string.IsNullOrWhiteSpace(responseEtag))
                 {
-                    throw new BackendApiException(0, "INVALID_RESPONSE", "Backend omitted the game config ETag.");
+                    throw new BackendApiException(0, "INVALID_RESPONSE", "服务器响应缺少游戏配置版本标识");
                 }
 
                 return new GameConfigFetchResult(false, snapshot, responseEtag, serverTime);
@@ -147,7 +147,7 @@ namespace AChen.Networking
         {
             if (request.responseCode <= 0)
             {
-                return new BackendApiException(0, "NETWORK_ERROR", request.error ?? "Could not reach backend.");
+                return new BackendApiException(0, "NETWORK_ERROR", "无法连接服务器，请检查网络");
             }
 
             try
@@ -160,7 +160,7 @@ namespace AChen.Networking
                     return new BackendApiException(
                         request.responseCode,
                         string.IsNullOrEmpty(problem.Code) ? "HTTP_ERROR" : problem.Code,
-                        string.IsNullOrEmpty(problem.Title) ? "Backend request failed." : problem.Title,
+                        string.IsNullOrEmpty(problem.Title) ? "服务器请求失败，请稍后再试" : problem.Title,
                         problem.Errors);
                 }
             }
@@ -169,7 +169,7 @@ namespace AChen.Networking
                 // Fall through to the safe generic response.
             }
 
-            return new BackendApiException(request.responseCode, "HTTP_ERROR", "Backend request failed.");
+            return new BackendApiException(request.responseCode, "HTTP_ERROR", "服务器请求失败，请稍后再试");
         }
 
         [Preserve]
