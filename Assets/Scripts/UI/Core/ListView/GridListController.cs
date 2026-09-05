@@ -16,12 +16,13 @@ public class GridListController : MonoBehaviour
     private Action<int> mOnSelectedCallback;
     private Func<LoopListView2, int, LoopListViewItem2> mOnGetItemHandler;
     private MotionHandle m_MoveToSelectedHandle;
-    protected virtual string key { get; set; }
+    private string mCurrentPrefabName;
     public int SelectedIndex => mSelectedIndex;
 
     //todo:明天审一下
     // 热更里泛型 async 实例方法会丢 <>4__this,所以异步加载和泛型绑定拆开
     public UniTask InitList<TData>(
+        string rowPrefabKey,
         List<TData> dataList,
         Action<int> onSelected = null,
         int selectedIndex = -1)
@@ -31,12 +32,12 @@ public class GridListController : MonoBehaviour
         mSelectedIndex = selectedIndex >= 0 && dataList != null && selectedIndex < dataList.Count
             ? selectedIndex
             : -1;
-        return LoadRowPrefabAsync().ContinueWith(prefab => BindList(prefab, dataList));
+        return LoadRowPrefabAsync(rowPrefabKey).ContinueWith(prefab => BindList(prefab, dataList));
     }
 
-    async UniTask<GameObject> LoadRowPrefabAsync()
+    async UniTask<GameObject> LoadRowPrefabAsync(string rowPrefabKey)
     {
-        return await AddressableLoader.Instance.LoadPrefab(key);
+        return await AddressableLoader.Instance.LoadPrefab(rowPrefabKey);
     }
 
     void BindList<TData>(GameObject prefab, List<TData> dataList)
@@ -55,7 +56,7 @@ public class GridListController : MonoBehaviour
                 startPosOffset = prefab.GetComponent<RectTransform>().anchoredPosition.y;
             }
 
-            loopListView.ItemPrefabDataList.Add(new ItemPrefabConfData
+            loopListView.AddItemPrefab(new ItemPrefabConfData
             {
                 mItemPrefab = prefab,
                 mStartPosOffset = startPosOffset
@@ -77,6 +78,9 @@ public class GridListController : MonoBehaviour
             return item;
         };
 
+        bool prefabChanged = mCurrentPrefabName != prefabName;
+        mCurrentPrefabName = prefabName;
+
         if (!mIsInited)
         {
             var scrollRect = loopListView.GetComponent<ScrollRect>();
@@ -90,12 +94,20 @@ public class GridListController : MonoBehaviour
 
             loopListView.InitListView(rowCount, OnGetItemByIndex);
             mIsInited = true;
+            return;
         }
-        else
+
+        if (prefabChanged)
         {
-            loopListView.SetListItemCount(rowCount, true);
-            loopListView.RefreshAllShownItem();
+            // 换了行预制体,先清空让旧类型的行全部回收,否则复用池会把旧行留在视口里;
+            // 置 0 后再设新数量会从头重建,滚动位置一并归零
+            loopListView.SetListItemCount(0, false);
+            loopListView.SetListItemCount(rowCount, false);
+            return;
         }
+
+        loopListView.SetListItemCount(rowCount, true);
+        loopListView.RefreshAllShownItem();
     }
 
     /// <summary>选中项可能在首屏外,仅当对应行未显示时滚过去. duration 为秒,ease 用 LitMotion.Ease,默认 InOutCubic.</summary>

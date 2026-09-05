@@ -24,7 +24,7 @@ public sealed class AvatarSelectWindowProperties : IWindowProperties
 /// <summary>头像选择窗口.OnOpen 读取 Properties 填列表,确认按钮取当前选中项.</summary>
 public class AvatarSelectWindow : AWindowController<AvatarSelectWindowProperties>
 {
-    [SerializeField] AvatarListController m_AvatarListController;
+    [SerializeField] GridListController m_AvatarListController;
     [SerializeField] Button m_BtnConfirm;
     [SerializeField] Button m_BtnClose;
     [SerializeField] float m_ScrollToSelectedDuration = 0.25f;
@@ -76,7 +76,7 @@ public class AvatarSelectWindow : AWindowController<AvatarSelectWindowProperties
             ? -1
             : avatars.FindIndex(item => item.Id == selectedId);
 
-        await m_AvatarListController.InitList(avatars, null, selected);
+        await m_AvatarListController.InitList(AddressKeys.Prefab.AvatarItemPrefab, avatars, null, selected);
         // 等列表首帧把可视行创建出来,再判断预选项是否在视口外.
         await UniTask.Yield();
         if (m_AvatarListController == null) return;
