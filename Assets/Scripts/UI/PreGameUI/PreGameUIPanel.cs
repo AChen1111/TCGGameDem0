@@ -77,7 +77,8 @@ public class PreGameUIPanel : APanelController, IPlayerDataView
 
     private void OnShopClick()
     {
-        OpenShopWithFakeDataAsync().Forget();
+        ALog.Log("打开商城窗", ALogCategories.UI);
+        m_UIFrame.OpenWindow(AddressKeys.Prefab.ShopWindows, new ShopWindowProperties());
     }
 
     async UniTaskVoid OpenAvatarWithFakeDataAsync()
@@ -88,15 +89,6 @@ public class PreGameUIPanel : APanelController, IPlayerDataView
         m_UIFrame.OpenWindow(
             AddressKeys.Prefab.SelfChooseWindow,
             new AvatarSelectWindowProperties(avatars, selected));
-    }
-
-    async UniTaskVoid OpenShopWithFakeDataAsync()
-    {
-        List<ShopCardItemData> packs = await PreGameUiFakeData.CreateCardPacksAsync();
-        ALog.Log($"打开商城窗(假数据): Count={packs.Count}", ALogCategories.UI);
-        m_UIFrame.OpenWindow(
-            AddressKeys.Prefab.ShopWindows,
-            new ShopWindowProperties(packs));
     }
 
     private void OnExitClick()

@@ -25,17 +25,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166675969153819560}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.3335937}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1919477854946453900}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 726, y: 512}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5113584969835003322
 CanvasRenderer:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 501afd3b47577fc4c88d9da66a066109, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a333ba9ec1f41046b996e2a0487918c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -241,8 +241,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -205.99988, y: -46.55493}
-  m_SizeDelta: {x: 0, y: 191.61}
+  m_AnchoredPosition: {x: -205.99988, y: -82.22302}
+  m_SizeDelta: {x: 0, y: 286.726}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8115011911805737329
 CanvasRenderer:
@@ -265,15 +265,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 4809313ad0b4df841aeb3580a98e3b42, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -339,9 +339,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1559547142542710924}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edcb5c81f7c179d449bf39ecacf6ce33, type: 3}
+  m_Script: {fileID: 11500000, guid: dc88a36801746234e9c7ad44fde70a6a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: HotUpdate::CardPackListController
+  m_EditorClassIdentifier: HotUpdate::GridListController
   loopListView: {fileID: 7540779382736432449}
 --- !u!1 &2376846979936977607
 GameObject:
@@ -379,8 +379,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -40.899}
+  m_SizeDelta: {x: 0, y: -40.899}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &588023551190442805
 CanvasRenderer:
@@ -895,7 +895,7 @@ MonoBehaviour:
   hideOnForegroundLost: 1
   windowPriority: 0
   isPopup: 0
-  m_CardPackListController: {fileID: 2109761450490998113}
+  m_ListController: {fileID: 2109761450490998113}
   m_CloseButton: {fileID: 3515200968261698059}
   m_ChooseButtons:
   - {fileID: 1726680169225254930}
