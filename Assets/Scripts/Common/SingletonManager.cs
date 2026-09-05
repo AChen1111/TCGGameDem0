@@ -1,9 +1,10 @@
+using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 /// <summary>
-/// 按 list 顺序逐个初始化单例,全部完成后切换场景
+/// 按 list 顺序初始化单例,进入登录流程前恢复会话并选择目标场景。
 /// </summary>
 public class SingletonManager : PersistentMonoSingleton<SingletonManager>
 {
@@ -20,14 +21,26 @@ public class SingletonManager : PersistentMonoSingleton<SingletonManager>
         }
         if (!string.IsNullOrEmpty(m_sceneName))
         {
-            SceneTransitionOverlay.Show();
+            string targetScene = m_sceneName;
             try
             {
-                await SceneLoader.LoadScene(m_sceneName);
+                if (targetScene == AddressKeys.Scene.LogIn)
+                {
+                    targetScene = await GameFlow.GetStartupSceneAsync(this.GetCancellationTokenOnDestroy());
+                }
+
+                SceneTransitionOverlay.Show();
+                await SceneLoader.LoadScene(targetScene);
+                ALog.Log($"Init 场景切换完成. Target={targetScene}", ALogCategories.UI);
             }
-            catch
+            catch (OperationCanceledException)
             {
                 SceneTransitionOverlay.Hide();
+            }
+            catch (Exception exception)
+            {
+                SceneTransitionOverlay.Hide();
+                ALog.LogError($"Init 场景切换失败. Target={targetScene}; Error={exception.Message}", ALogCategories.UI);
                 throw;
             }
         }
