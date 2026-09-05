@@ -32,12 +32,11 @@ public class AvatarShopItem : MonoBehaviour
     AvatarShopItemData m_Data;
     Action<int> m_OnSelected;
 
-    public void SetData(AvatarShopItemData data, bool isSelected, Action<int> onSelected)
+    public void SetData(AvatarShopItemData data, Action<int> onSelected)
     {
         m_Data = data;
         m_OnSelected = onSelected;
         m_ImgMain.sprite = data.Sprite;
-        m_ImgMain.color = isSelected ? ShopItemColors.Selected : ShopItemColors.Normal;
     }
 
     void Awake()
