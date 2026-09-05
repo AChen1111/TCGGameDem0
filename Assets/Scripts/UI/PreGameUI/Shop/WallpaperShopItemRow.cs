@@ -20,7 +20,7 @@ public class WallpaperShopItemRow : MonoBehaviour, IRowItem<WallpaperShopItemDat
             if (allData != null && realIndex < allData.Count)
             {
                 m_Items[i].gameObject.SetActive(true);
-                m_Items[i].SetData(allData[realIndex], selectedIndex == realIndex, onSelected);
+                m_Items[i].SetData(allData[realIndex], onSelected);
             }
             else
             {

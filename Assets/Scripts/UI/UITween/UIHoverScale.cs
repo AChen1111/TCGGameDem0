@@ -16,6 +16,9 @@ public sealed class UIHoverScale : MonoBehaviour, IPointerEnterHandler, IPointer
 
     Vector3 m_originScale;
     MotionHandle m_handle;
+    int m_originSiblingIndex;
+    LayoutGroup m_parentLayout;
+    bool m_raised;
 
     void Awake()
     {
@@ -30,6 +33,7 @@ public sealed class UIHoverScale : MonoBehaviour, IPointerEnterHandler, IPointer
     {
         m_handle.TryCancel();
         transform.localScale = m_originScale;
+        SetRaised(false);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -39,12 +43,42 @@ public sealed class UIHoverScale : MonoBehaviour, IPointerEnterHandler, IPointer
             return;
         }
 
+        SetRaised(true);
         AnimateTo(m_originScale * m_scaleMultiplier);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        SetRaised(false);
         AnimateTo(m_originScale);
+    }
+
+    void SetRaised(bool raised)
+    {
+        if (m_raised == raised) return;
+        m_raised = raised;
+        if (raised)
+        {
+            m_originSiblingIndex = transform.GetSiblingIndex();
+            m_parentLayout = transform.parent != null
+                ? transform.parent.GetComponent<LayoutGroup>()
+                : null;
+            // 先停布局再改层级,否则 HorizontalLayoutGroup 会按新顺序把格子挤走
+            if (m_parentLayout != null)
+            {
+                m_parentLayout.enabled = false;
+            }
+
+            transform.SetAsLastSibling();
+            return;
+        }
+
+        transform.SetSiblingIndex(m_originSiblingIndex);
+        if (m_parentLayout != null)
+        {
+            m_parentLayout.enabled = true;
+            m_parentLayout = null;
+        }
     }
 
     void AnimateTo(Vector3 targetScale)

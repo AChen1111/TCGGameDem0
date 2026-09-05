@@ -32,12 +32,11 @@ public class WallpaperShopItem : MonoBehaviour
     WallpaperShopItemData m_Data;
     Action<int> m_OnSelected;
 
-    public void SetData(WallpaperShopItemData data, bool isSelected, Action<int> onSelected)
+    public void SetData(WallpaperShopItemData data, Action<int> onSelected)
     {
         m_Data = data;
         m_OnSelected = onSelected;
         m_ImgMain.sprite = data.Sprite;
-        m_ImgMain.color = isSelected ? ShopItemColors.Selected : ShopItemColors.Normal;
     }
 
     void Awake()

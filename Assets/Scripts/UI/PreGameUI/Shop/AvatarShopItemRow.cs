@@ -11,6 +11,7 @@ public class AvatarShopItemRow : MonoBehaviour, IRowItem<AvatarShopItemData>
 
     public void SetRowData(int rowIndex, List<AvatarShopItemData> allData, int selectedIndex, Action<int> onSelected)
     {
+        EnsureItems();
         if (m_Items == null) return;
         int count = m_Items.Length;
         for (int i = 0; i < count; i++)
@@ -20,12 +21,25 @@ public class AvatarShopItemRow : MonoBehaviour, IRowItem<AvatarShopItemData>
             if (allData != null && realIndex < allData.Count)
             {
                 m_Items[i].gameObject.SetActive(true);
-                m_Items[i].SetData(allData[realIndex], selectedIndex == realIndex, onSelected);
+                m_Items[i].SetData(allData[realIndex], onSelected);
             }
             else
             {
                 m_Items[i].gameObject.SetActive(false);
             }
         }
+    }
+
+    void EnsureItems()
+    {
+        if (m_Items != null)
+        {
+            for (int i = 0; i < m_Items.Length; i++)
+            {
+                if (m_Items[i] != null) return;
+            }
+        }
+
+        m_Items = GetComponentsInChildren<AvatarShopItem>(true);
     }
 }
