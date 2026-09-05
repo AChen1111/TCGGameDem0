@@ -135,6 +135,16 @@ public class AddressableCatalogTests
             AddressableCatalogSetup.UiGroupForPath("Assets/UI/Prefab/BaseUI/UIFrame.prefab"));
         Assert.AreEqual(AddressableCatalogSetup.RemoteUiHallGroup,
             AddressableCatalogSetup.UiGroupForPath("Assets/UI/Prefab/Hall/PreGameUI/PreGameSceneUI.asset"));
+        Assert.AreEqual(AddressableCatalogSetup.RemoteSharedGroup,
+            AddressableCatalogSetup.UiGroupForPath(AddressableCatalogSetup.FontsFolder));
+        Assert.AreEqual(AddressableCatalogSetup.RemoteSharedGroup,
+            AddressableCatalogSetup.UiGroupForPath(AddressableCatalogSetup.ShaderFolder + "/CardPackFoilCrimp.shader"));
+        Assert.AreEqual(AddressableCatalogSetup.RemoteCardGroup,
+            AddressableCatalogSetup.UiGroupForPath(AddressableCatalogSetup.CardFolder + "/CardShopItem"));
+        Assert.AreEqual(AddressableCatalogSetup.RemoteUiHallGroup,
+            AddressableCatalogSetup.UiGroupForPath(AddressableCatalogSetup.SpriteFolder + "/Home"));
+        Assert.AreEqual(AddressableCatalogSetup.RemoteUiEventGroup,
+            AddressableCatalogSetup.UiGroupForPath(AddressableCatalogSetup.SpriteFolder + "/Event/LoginBonus"));
     }
 
     [Test]

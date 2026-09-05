@@ -22,7 +22,7 @@ namespace Unity.Pipeline.Tests.Editor.Scenes
     /// teardown, and any build-list entries added by the tests are removed, so the suite leaves no
     /// residue in the host project.
     /// </summary>
-    public class SceneCommandsTests
+    class SceneCommandsTests
     {
         private const string TestRoot = "Assets/__CLI193Test";
         private const string ScenePath = TestRoot + "/RoundTrip.unity";
@@ -63,7 +63,7 @@ namespace Unity.Pipeline.Tests.Editor.Scenes
                 }
             }
             if (deletedAny)
-                AssetDatabase.Refresh();
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
         }
 
         private static bool IsTestScenePath(string path) =>

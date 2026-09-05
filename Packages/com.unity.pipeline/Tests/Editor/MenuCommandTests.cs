@@ -8,6 +8,9 @@ using Unity.Pipeline.Editor.Commands;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
+#if UNITY_6000_5_OR_NEWER
+using Unity.Scripting.LifecycleManagement;
+#endif
 
 namespace Unity.Pipeline.Tests.Editor
 {
@@ -15,9 +18,12 @@ namespace Unity.Pipeline.Tests.Editor
     /// Tests for the <c>menu</c> command (CLI-110). Uses a test-only menu item so the positive path
     /// is deterministic and free of side effects, rather than relying on built-in Editor menus.
     /// </summary>
-    public class MenuCommandTests
+#if UNITY_6000_5_OR_NEWER
+    [NoAutoStaticsCleanup]
+#endif
+    class MenuCommandTests
     {
-        const string k_TestMenuPath = "PipelineTests/Invoke Marker";
+        const string k_TestMenuPath = "Window/Pipeline/Tests/Invoke Marker";
         static bool s_MarkerInvoked;
 
         [MenuItem(k_TestMenuPath)]
@@ -112,7 +118,7 @@ namespace Unity.Pipeline.Tests.Editor
             // does not treat that expected log as a failure.
             LogAssert.Expect(LogType.Error, new Regex("ExecuteMenuItem failed because there is no menu named"));
 
-            var result = MenuItemCommand.ExecuteMenu("PipelineTests/This Item Does Not Exist 12345");
+            var result = MenuItemCommand.ExecuteMenu("Window/Pipeline/Tests/This Item Does Not Exist 12345");
 
             Assert.IsFalse(result.Success, "An unknown menu item should fail");
             StringAssert.Contains("not found", result.Message);

@@ -33,6 +33,16 @@ public sealed class ContentReleasePublisherWindow : EditorWindow
         GetWindow<ContentReleasePublisherWindow>("Content Release");
     }
 
+    [MenuItem("Tools/HotUpdate/Build And Publish Release From Env")]
+    static void PublishFromEnv()
+    {
+        var window = GetWindow<ContentReleasePublisherWindow>("Content Release");
+        string version = Environment.GetEnvironmentVariable("ACHEN_CONTENT_VERSION");
+        window.m_ContentVersion = string.IsNullOrWhiteSpace(version) ? "0.2.0" : version.Trim();
+        window.m_Notes = "folder cleanup remote UI art";
+        _ = window.BuildAndPublishAsync();
+    }
+
     void OnEnable()
     {
         m_BackendUrl = EditorPrefs.GetString(BackendUrlPreference, CodeUpdate.DefaultBackendUrl);
