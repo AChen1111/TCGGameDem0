@@ -90,3 +90,10 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: ChooseWindow
+    reference:
+      m_AssetGUID: 1a75c66ce8c4812448ee3251d08545b7
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
