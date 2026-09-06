@@ -124,6 +124,21 @@ namespace AChen.Networking
             return CurrentPlayer;
         }
 
+        public async UniTask<PlayerData> PurchaseShopItemAsync(
+            string catalogType,
+            int itemId,
+            long expectedRevision,
+            CancellationToken cancellationToken = default)
+        {
+            PlayerDto response = await SendAuthenticatedAsync<PlayerDto>(
+                UnityWebRequest.kHttpVerbPOST,
+                "/api/player/purchase",
+                new PurchaseShopItemRequest(catalogType, itemId, expectedRevision),
+                cancellationToken);
+            SetCurrentPlayer(ToPlayer(response));
+            return CurrentPlayer;
+        }
+
         public async UniTask RefreshAsync(CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(m_refreshToken))
@@ -360,6 +375,7 @@ namespace AChen.Networking
                 player.AvatarId,
                 player.OwnedAvatarIds ?? Array.Empty<int>(),
                 player.BackgroundId,
+                player.OwnedBackgroundIds ?? Array.Empty<int>(),
                 player.Gold,
                 player.Revision,
                 player.CreatedAt,
@@ -415,6 +431,20 @@ namespace AChen.Networking
             }
         }
 
+        sealed class PurchaseShopItemRequest
+        {
+            public string CatalogType { get; }
+            public int ItemId { get; }
+            public long ExpectedRevision { get; }
+
+            public PurchaseShopItemRequest(string catalogType, int itemId, long expectedRevision)
+            {
+                CatalogType = catalogType;
+                ItemId = itemId;
+                ExpectedRevision = expectedRevision;
+            }
+        }
+
         [Preserve]
         sealed class AuthResponseDto
         {
@@ -446,6 +476,7 @@ namespace AChen.Networking
             public int? AvatarId { get; set; }
             public int[] OwnedAvatarIds { get; set; }
             public int? BackgroundId { get; set; }
+            public int[] OwnedBackgroundIds { get; set; }
             public long Gold { get; set; }
             public long Revision { get; set; }
             public DateTimeOffset CreatedAt { get; set; }

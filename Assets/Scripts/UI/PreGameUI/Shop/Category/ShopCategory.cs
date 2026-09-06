@@ -1,4 +1,29 @@
+using System;
 using Cysharp.Threading.Tasks;
+
+public static class ShopCatalogTypes
+{
+    public const string Avatar = "avatar";
+    public const string Wallpaper = "wallpaper";
+}
+
+public readonly struct ShopPurchaseTarget
+{
+    public string CatalogType { get; }
+    public int Id { get; }
+    public string Name { get; }
+    public long PriceGold { get; }
+    public bool Owned { get; }
+
+    public ShopPurchaseTarget(string catalogType, int id, string name, long priceGold, bool owned)
+    {
+        CatalogType = catalogType;
+        Id = id;
+        Name = name;
+        PriceGold = priceGold;
+        Owned = owned;
+    }
+}
 
 /// <summary>
 /// 商城的一个商品品类.GridListController.InitList 是泛型方法,窗口层无法多态调用,
@@ -20,5 +45,15 @@ public abstract class ShopCategory
     public abstract string DisplayName { get; }
 
     /// <summary>拉数据并绑到列表上.数据首次加载后由子类缓存,再次切回不重复拉取.</summary>
-    public abstract UniTask BindAsync(GridListController list);
+    public abstract UniTask BindAsync(GridListController list, Action<int> onSelected);
+
+    public virtual bool TryGetPurchaseTarget(int index, out ShopPurchaseTarget target)
+    {
+        target = default;
+        return false;
+    }
+
+    public virtual void InvalidateCache()
+    {
+    }
 }

@@ -1,23 +1,33 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>头像商品数据.PriceGold 和 Owned 暂无对应 UI 元素,先随数据带上,点击时输出到日志.</summary>
+/// <summary>头像商品数据.</summary>
 public class AvatarShopItemData
 {
     public int Id { get; }
     public string Name { get; }
     public Sprite Sprite { get; }
     public long PriceGold { get; }
+    public DateTimeOffset? EndsAt { get; }
     public bool Owned { get; }
     public int Index { get; }
 
-    public AvatarShopItemData(int id, string name, Sprite sprite, long priceGold, bool owned, int index)
+    public AvatarShopItemData(
+        int id,
+        string name,
+        Sprite sprite,
+        long priceGold,
+        DateTimeOffset? endsAt,
+        bool owned,
+        int index)
     {
         Id = id;
         Name = name;
         Sprite = sprite;
         PriceGold = priceGold;
+        EndsAt = endsAt;
         Owned = owned;
         Index = index;
     }
@@ -28,6 +38,9 @@ public class AvatarShopItem : MonoBehaviour
 {
     [SerializeField] Button m_BtnAll;
     [SerializeField] Image m_ImgMain;
+    [SerializeField] TextMeshProUGUI m_TxtTitle;
+    [SerializeField] TextMeshProUGUI m_TxtRemainTime;
+    [SerializeField] TextMeshProUGUI m_TxtValue;
 
     AvatarShopItemData m_Data;
     Action<int> m_OnSelected;
@@ -37,6 +50,9 @@ public class AvatarShopItem : MonoBehaviour
         m_Data = data;
         m_OnSelected = onSelected;
         m_ImgMain.sprite = data.Sprite;
+        m_TxtTitle.text = data.Name;
+        m_TxtRemainTime.text = FormatRemainingTime(data.EndsAt);
+        m_TxtValue.text = data.PriceGold.ToString("N0");
     }
 
     void Awake()
@@ -56,5 +72,15 @@ public class AvatarShopItem : MonoBehaviour
             $"商城头像点击: Id={m_Data.Id}; Name={m_Data.Name}; PriceGold={m_Data.PriceGold}; Owned={m_Data.Owned}.",
             ALogCategories.UI);
         m_OnSelected?.Invoke(m_Data.Index);
+    }
+
+    static string FormatRemainingTime(DateTimeOffset? endsAt)
+    {
+        if (!endsAt.HasValue) return string.Empty;
+        TimeSpan remaining = endsAt.Value - AChen.Networking.GameConfigManager.Instance.Store.ServerNow;
+        if (remaining <= TimeSpan.Zero) return "已结束";
+        if (remaining.TotalDays >= 1) return $"{Math.Ceiling(remaining.TotalDays)}天";
+        if (remaining.TotalHours >= 1) return $"{Math.Ceiling(remaining.TotalHours)}小时";
+        return $"{Math.Max(1, Math.Ceiling(remaining.TotalMinutes))}分钟";
     }
 }

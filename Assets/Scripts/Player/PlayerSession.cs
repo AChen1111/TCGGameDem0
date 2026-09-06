@@ -48,6 +48,17 @@ namespace AChen.Player
                 expectedRevision,
                 cancellationToken);
 
+        public UniTask<PlayerData> PurchaseShopItemAsync(
+            string catalogType,
+            int itemId,
+            long expectedRevision,
+            CancellationToken cancellationToken = default) =>
+            m_authClient.PurchaseShopItemAsync(
+                catalogType,
+                itemId,
+                expectedRevision,
+                cancellationToken);
+
         public UniTask LogoutAsync(CancellationToken cancellationToken = default) =>
             m_authClient.LogoutAsync(cancellationToken);
 

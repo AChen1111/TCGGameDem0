@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 
@@ -13,7 +14,7 @@ public sealed class CardPackShopCategory : ShopCategory
     public override string RowPrefabKey => AddressKeys.Prefab.CardPackRowPrefab;
     public override string DisplayName => "卡包";
 
-    public override async UniTask BindAsync(GridListController list)
+    public override async UniTask BindAsync(GridListController list, Action<int> onSelected)
     {
         if (m_Items == null)
         {
@@ -21,6 +22,11 @@ public sealed class CardPackShopCategory : ShopCategory
             ALog.Log($"商城品类数据加载完成: 品类={DisplayName}, Count={m_Items.Count}", ALogCategories.UI);
         }
 
-        await list.InitList(RowPrefabKey, m_Items);
+        await list.InitList(RowPrefabKey, m_Items, onSelected);
+    }
+
+    public override void InvalidateCache()
+    {
+        m_Items = null;
     }
 }

@@ -155,9 +155,12 @@ public class GridListController : MonoBehaviour
 
     private void OnCardSelected(int dataIndex)
     {
-        if (mSelectedIndex == dataIndex) return;
+        bool changed = mSelectedIndex != dataIndex;
         mSelectedIndex = dataIndex;
         mOnSelectedCallback?.Invoke(dataIndex);
-        loopListView.RefreshAllShownItem();
+        if (changed)
+        {
+            loopListView.RefreshAllShownItem();
+        }
     }
 }
