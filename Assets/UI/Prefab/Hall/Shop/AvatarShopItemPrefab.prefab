@@ -279,6 +279,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: HotUpdate::AvatarShopItem
   m_BtnAll: {fileID: 706553979991881440}
   m_ImgMain: {fileID: 8917118269442963463}
+  m_TxtTitle: {fileID: 1261853121834144684}
+  m_TxtRemainTime: {fileID: 4048324122660098965}
+  m_TxtValue: {fileID: 1494302330009321690}
 --- !u!1001 &919419610956132044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -424,6 +427,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9130492894ce4a4b8374d9d9a5962cc, type: 3}
+--- !u!114 &1494302330009321690 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1765054049833446934, guid: c9130492894ce4a4b8374d9d9a5962cc, type: 3}
+  m_PrefabInstance: {fileID: 919419610956132044}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!224 &8606637743332388586 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8913331948699156518, guid: c9130492894ce4a4b8374d9d9a5962cc, type: 3}
@@ -558,6 +572,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4e8366b04670c1479b5e262852bc3f7, type: 3}
+--- !u!114 &1261853121834144684 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3807095452176251541, guid: f4e8366b04670c1479b5e262852bc3f7, type: 3}
+  m_PrefabInstance: {fileID: 2690484741477247289}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &4048324122660098965 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2123461282464070316, guid: f4e8366b04670c1479b5e262852bc3f7, type: 3}
+  m_PrefabInstance: {fileID: 2690484741477247289}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!224 &4266032220851333049 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2190288931900804736, guid: f4e8366b04670c1479b5e262852bc3f7, type: 3}

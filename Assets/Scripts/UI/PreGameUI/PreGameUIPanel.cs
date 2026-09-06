@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using AChen.Networking;
+using AChen.Player;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using LitMotion.Extensions;
@@ -72,7 +73,7 @@ public class PreGameUIPanel : APanelController, IPlayerDataView
 
     private void OnAvatarClick()
     {
-        OpenAvatarWithFakeDataAsync().Forget();
+        OpenAvatarAsync().Forget();
     }
 
     private void OnShopClick()
@@ -81,14 +82,25 @@ public class PreGameUIPanel : APanelController, IPlayerDataView
         m_UIFrame.OpenWindow(AddressKeys.Prefab.ShopWindows, new ShopWindowProperties());
     }
 
-    async UniTaskVoid OpenAvatarWithFakeDataAsync()
+    async UniTaskVoid OpenAvatarAsync()
     {
-        List<AvatarItemData> avatars = await PreGameUiFakeData.CreateAvatarsAsync();
-        int selected = avatars.FindIndex(item => item.Owned);
-        ALog.Log($"打开头像窗(假数据): Count={avatars.Count}, Selected={selected}", ALogCategories.UI);
-        m_UIFrame.OpenWindow(
-            AddressKeys.Prefab.SelfChooseWindow,
-            new AvatarSelectWindowProperties(avatars, selected));
+        try
+        {
+            List<AvatarItemData> avatars = await ServerShopDataSource.LoadAvatarSelectionAsync();
+            int? avatarId = PlayerSession.HasInstance ? PlayerSession.Instance.CurrentPlayer?.AvatarId : null;
+            int selected = avatarId.HasValue ? avatars.FindIndex(item => item.Id == avatarId.Value) : -1;
+            ALog.Log($"打开头像窗: Count={avatars.Count}, Selected={selected}", ALogCategories.UI);
+            m_UIFrame.OpenWindow(
+                AddressKeys.Prefab.SelfChooseWindow,
+                new AvatarSelectWindowProperties(avatars, selected));
+        }
+        catch (Exception exception)
+        {
+            ALog.LogError("打开头像窗失败: " + exception.Message, ALogCategories.UI);
+            m_UIFrame.OpenWindow(
+                AddressKeys.Prefab.MessageWindow,
+                new MessageWindowProperties("头像数据加载失败", 2f));
+        }
     }
 
     private void OnExitClick()

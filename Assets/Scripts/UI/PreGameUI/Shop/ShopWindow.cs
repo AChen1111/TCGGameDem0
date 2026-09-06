@@ -1,4 +1,6 @@
 using System;
+using AChen.Networking;
+using AChen.Player;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,11 +26,12 @@ public class ShopWindow : AWindowController<ShopWindowProperties>
     ShopCategory[] m_Categories;
     int m_SelectedChooseIndex;
     bool m_IsSwitching;
+    bool m_IsPurchasing;
 
     protected override void Awake()
     {
         // 品类顺序与 m_ChooseButtons 一一对应,新增品类在这里加一项并在预制体上加一个页签按钮
-        IShopDataSource dataSource = new FakeShopDataSource();
+        IShopDataSource dataSource = new ServerShopDataSource();
         m_Categories = new ShopCategory[]
         {
             new CardPackShopCategory(dataSource),
@@ -94,7 +97,7 @@ public class ShopWindow : AWindowController<ShopWindowProperties>
         }
 
         // 数据加载是异步的,连点会让后发的绑定被先发的覆盖,这里直接丢弃切换中的点击
-        if (m_IsSwitching) return;
+        if (m_IsSwitching || m_IsPurchasing) return;
 
         ApplyChooseHighlight(index);
         SwitchCategoryAsync(index).Forget();
@@ -106,7 +109,8 @@ public class ShopWindow : AWindowController<ShopWindowProperties>
         ShopCategory category = m_Categories[index];
         try
         {
-            await category.BindAsync(m_ListController).AttachExternalCancellation(this.GetCancellationTokenOnDestroy());
+            await category.BindAsync(m_ListController, OnShopItemClicked)
+                .AttachExternalCancellation(this.GetCancellationTokenOnDestroy());
             ALog.Log($"商城切换品类成功: Index={index}, 品类={category.DisplayName}", ALogCategories.UI);
         }
         catch (OperationCanceledException)
@@ -147,5 +151,79 @@ public class ShopWindow : AWindowController<ShopWindowProperties>
 
             image.color = i == selectedIndex ? ShopItemColors.Selected : ShopItemColors.Normal;
         }
+    }
+
+    void OnShopItemClicked(int index)
+    {
+        if (m_IsSwitching || m_IsPurchasing) return;
+        ShopCategory category = m_Categories[m_SelectedChooseIndex];
+        if (!category.TryGetPurchaseTarget(index, out ShopPurchaseTarget target))
+        {
+            return;
+        }
+
+        PurchaseAsync(category, target).Forget();
+    }
+
+    async UniTaskVoid PurchaseAsync(ShopCategory category, ShopPurchaseTarget target)
+    {
+        if (target.Owned)
+        {
+            ShowMessage("已拥有");
+            return;
+        }
+
+        PlayerData player = PlayerSession.HasInstance ? PlayerSession.Instance.CurrentPlayer : null;
+        if (player == null)
+        {
+            ShowMessage("购买失败");
+            return;
+        }
+
+        if (player.Gold < target.PriceGold)
+        {
+            ALog.LogWarning(
+                $"商城购买中止: 品类={target.CatalogType}, Id={target.Id}, Name={target.Name}, 价格={target.PriceGold}, 余额={player.Gold}, 原因=金币不足",
+                ALogCategories.UI);
+            ShowMessage("金币不足");
+            return;
+        }
+
+        m_IsPurchasing = true;
+        try
+        {
+            PlayerData updated = await PlayerSession.Instance.PurchaseShopItemAsync(
+                target.CatalogType,
+                target.Id,
+                player.Revision,
+                this.GetCancellationTokenOnDestroy());
+            ALog.Log(
+                $"商城购买成功: 品类={target.CatalogType}, Id={target.Id}, Name={target.Name}, 价格={target.PriceGold}, 余额={updated.Gold}",
+                ALogCategories.UI);
+            category.InvalidateCache();
+            await category.BindAsync(m_ListController, OnShopItemClicked)
+                .AttachExternalCancellation(this.GetCancellationTokenOnDestroy());
+        }
+        catch (OperationCanceledException)
+        {
+        }
+        catch (BackendApiException exception)
+        {
+            ALog.LogError(
+                $"商城购买失败: 品类={target.CatalogType}, Id={target.Id}, Name={target.Name}, Code={exception.Code}, Status={exception.StatusCode}",
+                ALogCategories.UI);
+            ShowMessage(exception.Code == "INSUFFICIENT_GOLD" ? "金币不足" : exception.Message);
+        }
+        finally
+        {
+            m_IsPurchasing = false;
+        }
+    }
+
+    void ShowMessage(string message)
+    {
+        m_UIFrame.OpenWindow(
+            AddressKeys.Prefab.MessageWindow,
+            new MessageWindowProperties(message, 2f));
     }
 }
