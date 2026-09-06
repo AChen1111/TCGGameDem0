@@ -41,6 +41,7 @@ public class AvatarShopItem : MonoBehaviour
     [SerializeField] TextMeshProUGUI m_TxtTitle;
     [SerializeField] TextMeshProUGUI m_TxtRemainTime;
     [SerializeField] TextMeshProUGUI m_TxtValue;
+    [SerializeField] GameObject m_GoOwned;
 
     AvatarShopItemData m_Data;
     Action<int> m_OnSelected;
@@ -53,11 +54,13 @@ public class AvatarShopItem : MonoBehaviour
         m_TxtTitle.text = data.Name;
         m_TxtRemainTime.text = FormatRemainingTime(data.EndsAt);
         m_TxtValue.text = data.PriceGold.ToString("N0");
+        ApplyOwnState(data.Owned ? ShopItemOwnState.Owned : ShopItemOwnState.Unowned);
     }
 
     void Awake()
     {
         m_BtnAll.onClick.AddListener(OnClick);
+        ApplyOwnState(ShopItemOwnState.Unowned);
     }
 
     void OnDestroy()
@@ -65,9 +68,16 @@ public class AvatarShopItem : MonoBehaviour
         m_BtnAll.onClick.RemoveListener(OnClick);
     }
 
+    void ApplyOwnState(ShopItemOwnState state)
+    {
+        bool owned = state == ShopItemOwnState.Owned;
+        m_GoOwned.SetActive(owned);
+        m_BtnAll.interactable = !owned;
+    }
+
     void OnClick()
     {
-        if (m_Data == null) return;
+        if (m_Data == null || m_Data.Owned) return;
         ALog.Log(
             $"商城头像点击: Id={m_Data.Id}; Name={m_Data.Name}; PriceGold={m_Data.PriceGold}; Owned={m_Data.Owned}.",
             ALogCategories.UI);
