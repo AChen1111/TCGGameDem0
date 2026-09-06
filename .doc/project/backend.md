@@ -5,7 +5,7 @@
 | 模块 | 职责 |
 | --- | --- |
 | Auth | 注册、登录和令牌认证 |
-| Players | 玩家资料读取和更新 |
+| Players | 玩家资料读取、更新和商城购买 |
 | GameConfig | 游戏配置下发 |
 | ContentDelivery | Manifest、文件下载和内容发布 |
 | Data | EF Core 数据访问、迁移和 SQLite 存储 |
