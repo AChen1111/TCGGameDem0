@@ -162,7 +162,21 @@ public class ShopWindow : AWindowController<ShopWindowProperties>
             return;
         }
 
-        PurchaseAsync(category, target).Forget();
+        if (target.Owned)
+        {
+            ShowMessage("已拥有");
+            return;
+        }
+
+        ALog.Log(
+            $"商城购买确认: 品类={target.CatalogType}, Id={target.Id}, Name={target.Name}, 价格={target.PriceGold}",
+            ALogCategories.UI);
+        m_UIFrame.OpenWindow(
+            AddressKeys.Prefab.ChooseWindow,
+            new ChooseWindowProperties(
+                $"确认花费 {target.PriceGold} 金币购买{target.Name}?",
+                () => PurchaseAsync(category, target).Forget(),
+                null));
     }
 
     async UniTaskVoid PurchaseAsync(ShopCategory category, ShopPurchaseTarget target)
