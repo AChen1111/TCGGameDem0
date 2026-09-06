@@ -30,14 +30,15 @@ public sealed class GameConfigTests
     public void Validator_rejects_duplicate_avatar_ids()
     {
         var snapshot = new GameConfigSnapshot(
-            1,
+            2,
             1,
             DateTimeOffset.UtcNow,
             new[]
             {
-                new AvatarConfig(1, "A", "Avatar_A", 0, true),
-                new AvatarConfig(1, "B", "Avatar_B", 1, true)
+                new AvatarConfig(1, "A", "Avatar_A", 0, 0, true),
+                new AvatarConfig(1, "B", "Avatar_B", 0, 1, true)
             },
+            Array.Empty<WallpaperConfig>(),
             Array.Empty<CardPackConfig>());
 
         Assert.Throws<GameConfigDataException>(() => GameConfigSnapshotValidator.Validate(snapshot));
@@ -54,6 +55,8 @@ public sealed class GameConfigTests
         store.Replace(CreateSnapshot(1, 1000), "\"game-config-1\"", now, now, false);
         Assert.IsTrue(store.TryGetAvatar(1, out AvatarConfig avatar));
         Assert.AreEqual("Avatar_Default", avatar.ResourceKey);
+        Assert.IsTrue(store.TryGetWallpaper(1, out WallpaperConfig wallpaper));
+        Assert.AreEqual("Wallpaper_Default", wallpaper.ResourceKey);
         Assert.IsTrue(store.TryGetCardPack(1001, out CardPackConfig cardPack));
         Assert.AreEqual(1000, cardPack.PriceGold);
 
@@ -122,16 +125,18 @@ public sealed class GameConfigTests
         Assert.AreEqual(typeof(int?), typeof(PlayerData).GetProperty(nameof(PlayerData.AvatarId)).PropertyType);
         Assert.AreEqual(typeof(IReadOnlyList<int>), typeof(PlayerData).GetProperty(nameof(PlayerData.OwnedAvatarIds)).PropertyType);
         Assert.AreEqual(typeof(int?), typeof(PlayerData).GetProperty(nameof(PlayerData.BackgroundId)).PropertyType);
+        Assert.AreEqual(typeof(IReadOnlyList<int>), typeof(PlayerData).GetProperty(nameof(PlayerData.OwnedBackgroundIds)).PropertyType);
     }
 
     static GameConfigSnapshot CreateSnapshot(long revision, long priceGold)
     {
         DateTimeOffset publishedAt = new DateTimeOffset(2026, 8, 23, 9, 0, 0, TimeSpan.Zero);
         return new GameConfigSnapshot(
-            1,
+            2,
             revision,
             publishedAt,
-            new[] { new AvatarConfig(1, "默认头像", "Avatar_Default", 0, true) },
+            new[] { new AvatarConfig(1, "默认头像", "Avatar_Default", 200, 0, true) },
+            new[] { new WallpaperConfig(1, "默认壁纸", "Wallpaper_Default", 500, 0, true) },
             new[]
             {
                 new CardPackConfig(

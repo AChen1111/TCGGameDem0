@@ -7,6 +7,7 @@ namespace AChen.Networking
     public sealed class GameConfigStore
     {
         IReadOnlyDictionary<int, AvatarConfig> m_avatars = new Dictionary<int, AvatarConfig>();
+        IReadOnlyDictionary<int, WallpaperConfig> m_wallpapers = new Dictionary<int, WallpaperConfig>();
         IReadOnlyDictionary<int, CardPackConfig> m_cardPacks = new Dictionary<int, CardPackConfig>();
         DateTimeOffset m_serverTime;
         DateTimeOffset m_serverTimeReceivedAtUtc;
@@ -18,6 +19,7 @@ namespace AChen.Networking
         public bool HasSnapshot => Snapshot != null;
         public bool IsStale { get; private set; }
         public IReadOnlyDictionary<int, AvatarConfig> Avatars => m_avatars;
+        public IReadOnlyDictionary<int, WallpaperConfig> Wallpapers => m_wallpapers;
         public IReadOnlyDictionary<int, CardPackConfig> CardPacks => m_cardPacks;
         public DateTimeOffset ServerNow =>
             m_serverTime + (DateTimeOffset.UtcNow - m_serverTimeReceivedAtUtc);
@@ -47,7 +49,14 @@ namespace AChen.Networking
                 cardPacks.Add(cardPack.Id, cardPack);
             }
 
+            var wallpapers = new Dictionary<int, WallpaperConfig>(snapshot.Wallpapers.Count);
+            foreach (WallpaperConfig wallpaper in snapshot.Wallpapers)
+            {
+                wallpapers.Add(wallpaper.Id, wallpaper);
+            }
+
             m_avatars = avatars;
+            m_wallpapers = wallpapers;
             m_cardPacks = cardPacks;
             Snapshot = snapshot;
             ETag = etag;
@@ -80,6 +89,8 @@ namespace AChen.Networking
 
         public bool TryGetAvatar(int id, out AvatarConfig avatar) => m_avatars.TryGetValue(id, out avatar);
 
+        public bool TryGetWallpaper(int id, out WallpaperConfig wallpaper) => m_wallpapers.TryGetValue(id, out wallpaper);
+
         public bool TryGetCardPack(int id, out CardPackConfig cardPack) => m_cardPacks.TryGetValue(id, out cardPack);
 
         public bool IsCardPackVisible(CardPackConfig cardPack)
@@ -89,6 +100,22 @@ namespace AChen.Networking
                    cardPack.IsEnabled &&
                    (!cardPack.StartsAt.HasValue || cardPack.StartsAt <= now) &&
                    (!cardPack.EndsAt.HasValue || cardPack.EndsAt > now);
+        }
+
+        public bool IsAvatarVisible(AvatarConfig avatar)
+        {
+            DateTimeOffset now = ServerNow;
+            return avatar != null && avatar.IsEnabled &&
+                   (!avatar.StartsAt.HasValue || avatar.StartsAt <= now) &&
+                   (!avatar.EndsAt.HasValue || avatar.EndsAt > now);
+        }
+
+        public bool IsWallpaperVisible(WallpaperConfig wallpaper)
+        {
+            DateTimeOffset now = ServerNow;
+            return wallpaper != null && wallpaper.IsEnabled &&
+                   (!wallpaper.StartsAt.HasValue || wallpaper.StartsAt <= now) &&
+                   (!wallpaper.EndsAt.HasValue || wallpaper.EndsAt > now);
         }
     }
 }

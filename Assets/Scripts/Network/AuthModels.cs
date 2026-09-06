@@ -24,6 +24,7 @@ namespace AChen.Networking
         public int? AvatarId { get; }
         public IReadOnlyList<int> OwnedAvatarIds { get; }
         public int? BackgroundId { get; }
+        public IReadOnlyList<int> OwnedBackgroundIds { get; }
         public long Gold { get; }
         public long Revision { get; }
         public DateTimeOffset CreatedAt { get; }
@@ -35,6 +36,7 @@ namespace AChen.Networking
             int? avatarId,
             IReadOnlyList<int> ownedAvatarIds,
             int? backgroundId,
+            IReadOnlyList<int> ownedBackgroundIds,
             long gold,
             long revision,
             DateTimeOffset createdAt,
@@ -45,6 +47,7 @@ namespace AChen.Networking
             AvatarId = avatarId;
             OwnedAvatarIds = ownedAvatarIds ?? Array.Empty<int>();
             BackgroundId = backgroundId;
+            OwnedBackgroundIds = ownedBackgroundIds ?? Array.Empty<int>();
             Gold = gold;
             Revision = revision;
             CreatedAt = createdAt;

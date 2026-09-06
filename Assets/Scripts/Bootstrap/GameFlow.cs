@@ -15,6 +15,7 @@ public static class GameFlow
         {
             if (await PlayerSession.Instance.TryRestoreSessionAsync(cancellationToken))
             {
+                await GameConfigManager.Instance.InitializeAsync(cancellationToken: cancellationToken);
                 ALog.Log("Init 恢复玩家会话成功, 进入 GameScene.", ALogCategories.Net);
                 return AddressKeys.Scene.GameScene;
             }
@@ -49,6 +50,7 @@ public static class GameFlow
         try
         {
             SceneTransitionOverlay.Show();
+            await GameConfigManager.Instance.InitializeAsync();
             await SceneLoader.LoadScene(AddressKeys.Scene.GameScene);
         }
         catch

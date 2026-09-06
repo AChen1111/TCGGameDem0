@@ -13,6 +13,7 @@ namespace AChen.Networking
         public long Revision { get; }
         public DateTimeOffset PublishedAt { get; }
         public IReadOnlyList<AvatarConfig> Avatars { get; }
+        public IReadOnlyList<WallpaperConfig> Wallpapers { get; }
         public IReadOnlyList<CardPackConfig> CardPacks { get; }
 
         [JsonConstructor]
@@ -21,12 +22,14 @@ namespace AChen.Networking
             long revision,
             DateTimeOffset publishedAt,
             IEnumerable<AvatarConfig> avatars,
+            IEnumerable<WallpaperConfig> wallpapers,
             IEnumerable<CardPackConfig> cardPacks)
         {
             SchemaVersion = schemaVersion;
             Revision = revision;
             PublishedAt = publishedAt;
             Avatars = (avatars ?? Array.Empty<AvatarConfig>()).ToArray();
+            Wallpapers = (wallpapers ?? Array.Empty<WallpaperConfig>()).ToArray();
             CardPacks = (cardPacks ?? Array.Empty<CardPackConfig>()).ToArray();
         }
     }
@@ -37,17 +40,51 @@ namespace AChen.Networking
         public int Id { get; }
         public string Name { get; }
         public string ResourceKey { get; }
+        public long PriceGold { get; }
         public int SortOrder { get; }
         public bool IsEnabled { get; }
 
+        public DateTimeOffset? StartsAt { get; }
+        public DateTimeOffset? EndsAt { get; }
+
         [JsonConstructor]
-        public AvatarConfig(int id, string name, string resourceKey, int sortOrder, bool isEnabled)
+        public AvatarConfig(int id, string name, string resourceKey, long priceGold, int sortOrder, bool isEnabled, DateTimeOffset? startsAt = null, DateTimeOffset? endsAt = null)
         {
             Id = id;
             Name = name;
             ResourceKey = resourceKey;
+            PriceGold = priceGold;
             SortOrder = sortOrder;
             IsEnabled = isEnabled;
+            StartsAt = startsAt;
+            EndsAt = endsAt;
+        }
+    }
+
+    [Preserve]
+    public sealed class WallpaperConfig
+    {
+        public int Id { get; }
+        public string Name { get; }
+        public string ResourceKey { get; }
+        public long PriceGold { get; }
+        public int SortOrder { get; }
+        public bool IsEnabled { get; }
+
+        public DateTimeOffset? StartsAt { get; }
+        public DateTimeOffset? EndsAt { get; }
+
+        [JsonConstructor]
+        public WallpaperConfig(int id, string name, string resourceKey, long priceGold, int sortOrder, bool isEnabled, DateTimeOffset? startsAt = null, DateTimeOffset? endsAt = null)
+        {
+            Id = id;
+            Name = name;
+            ResourceKey = resourceKey;
+            PriceGold = priceGold;
+            SortOrder = sortOrder;
+            IsEnabled = isEnabled;
+            StartsAt = startsAt;
+            EndsAt = endsAt;
         }
     }
 
@@ -92,7 +129,7 @@ namespace AChen.Networking
 
     public static class GameConfigSnapshotValidator
     {
-        public const int SupportedSchemaVersion = 1;
+        public const int SupportedSchemaVersion = 2;
 
         public static void Validate(GameConfigSnapshot snapshot)
         {
@@ -113,6 +150,7 @@ namespace AChen.Networking
             }
 
             ValidateAvatars(snapshot.Avatars);
+            ValidateWallpapers(snapshot.Wallpapers);
             ValidateCardPacks(snapshot.CardPacks);
         }
 
@@ -122,9 +160,10 @@ namespace AChen.Networking
             var resourceKeys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             foreach (AvatarConfig avatar in avatars ?? Array.Empty<AvatarConfig>())
             {
-                if (avatar == null || avatar.Id <= 0 ||
+                if (avatar == null || avatar.Id < 0 || avatar.PriceGold < 0 ||
                     string.IsNullOrWhiteSpace(avatar.Name) || avatar.Name.Length > 64 ||
-                    string.IsNullOrWhiteSpace(avatar.ResourceKey) || avatar.ResourceKey.Length > 128)
+                    string.IsNullOrWhiteSpace(avatar.ResourceKey) || avatar.ResourceKey.Length > 128 ||
+                    avatar.StartsAt.HasValue && avatar.EndsAt.HasValue && avatar.EndsAt <= avatar.StartsAt)
                 {
                     throw new GameConfigDataException("头像配置包含无效项目");
                 }
@@ -132,6 +171,27 @@ namespace AChen.Networking
                 if (!ids.Add(avatar.Id) || !resourceKeys.Add(avatar.ResourceKey))
                 {
                     throw new GameConfigDataException("头像配置包含重复的 ID 或资源键");
+                }
+            }
+        }
+
+        static void ValidateWallpapers(IReadOnlyList<WallpaperConfig> wallpapers)
+        {
+            var ids = new HashSet<int>();
+            var resourceKeys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (WallpaperConfig wallpaper in wallpapers ?? Array.Empty<WallpaperConfig>())
+            {
+                if (wallpaper == null || wallpaper.Id < 0 || wallpaper.PriceGold < 0 ||
+                    string.IsNullOrWhiteSpace(wallpaper.Name) || wallpaper.Name.Length > 64 ||
+                    string.IsNullOrWhiteSpace(wallpaper.ResourceKey) || wallpaper.ResourceKey.Length > 128 ||
+                    wallpaper.StartsAt.HasValue && wallpaper.EndsAt.HasValue && wallpaper.EndsAt <= wallpaper.StartsAt)
+                {
+                    throw new GameConfigDataException("壁纸配置包含无效项目");
+                }
+
+                if (!ids.Add(wallpaper.Id) || !resourceKeys.Add(wallpaper.ResourceKey))
+                {
+                    throw new GameConfigDataException("壁纸配置包含重复的 ID 或资源键");
                 }
             }
         }
