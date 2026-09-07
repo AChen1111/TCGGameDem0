@@ -33,10 +33,13 @@ public class PreGameUIPanel : APanelController, IPlayerDataView
     [SerializeField] private float m_Distance = 1500f;
     [SerializeField] private GameObject m_wallpaper;
     [SerializeField] private GameObject m_heroSprite;
+    [SerializeField] private Button m_BtnChangeWallpaper;//切换按钮
+    [SerializeField] WallpaperDisplayConfig m_WallpaperDisplayConfig;
     private Image m_heroImage;
     private Image m_wallpaperImage;
     private int? m_backgroundId;
     private UniTask m_backgroundLoad = UniTask.CompletedTask;
+    private bool m_isSwitchingWallpaper;
 
     protected override void Awake()
     {
@@ -57,13 +60,126 @@ public class PreGameUIPanel : APanelController, IPlayerDataView
         m_BtnShop.onClick.AddListener(OnShopClick);
         m_BtnChangeName.onClick.AddListener(OnChangeNameClick);
         m_BtnAvatar.onClick.AddListener(OnAvatarClick);
+        m_BtnChangeWallpaper.onClick.AddListener(OnChangeWallpaperClick);
     }
+
+    private void OnChangeWallpaperClick()
+    {
+        SwitchToNextWallpaperAsync().Forget();
+    }
+
+    async UniTaskVoid SwitchToNextWallpaperAsync()
+    {
+        if (m_isSwitchingWallpaper)
+        {
+            return;
+        }
+
+        PlayerData player = PlayerSession.Instance.CurrentPlayer;
+        IReadOnlyList<int> owned = player.OwnedBackgroundIds;
+        if (owned == null || owned.Count == 0)
+        {
+            ALog.LogWarning("切换壁纸中止: 没有已拥有壁纸", ALogCategories.UI);
+            return;
+        }
+
+        int nextId = GetNextOwnedBackgroundId(owned, player.BackgroundId);
+        m_isSwitchingWallpaper = true;
+        try
+        {
+            if (nextId != player.BackgroundId)
+            {
+                // 先藏旧图,避免换图完成前仍以不透明状态露出新图
+                SetImageAlpha(m_wallpaperImage, 0f);
+                m_heroSprite.SetActive(false);
+
+                await PlayerSession.Instance.UpdatePlayerProfileAsync(
+                    player.Nickname,
+                    player.AvatarId,
+                    nextId,
+                    player.Revision,
+                    this.GetCancellationTokenOnDestroy());
+                await m_backgroundLoad;
+            }
+
+            ALog.Log($"切换壁纸成功: Id={nextId}, Owned={owned.Count}", ALogCategories.UI);
+            await PlayWallpaperRevealAsync();
+        }
+        catch (OperationCanceledException)
+        {
+        }
+        catch (BackendApiException exception)
+        {
+            RestoreWallpaperVisible();
+            ALog.LogError(
+                $"切换壁纸失败: Id={nextId}, Code={exception.Code}, Status={exception.StatusCode}",
+                ALogCategories.UI);
+            m_UIFrame.OpenWindow(
+                AddressKeys.Prefab.MessageWindow,
+                new MessageWindowProperties(exception.Message, 2f));
+        }
+        catch (Exception exception)
+        {
+            RestoreWallpaperVisible();
+            ALog.LogError($"切换壁纸失败: Id={nextId}, 原因={exception.Message}", ALogCategories.UI);
+            m_UIFrame.OpenWindow(
+                AddressKeys.Prefab.MessageWindow,
+                new MessageWindowProperties("壁纸切换失败", 2f));
+        }
+        finally
+        {
+            m_isSwitchingWallpaper = false;
+        }
+    }
+
+    static int GetNextOwnedBackgroundId(IReadOnlyList<int> owned, int? current)
+    {
+        int[] ids = new int[owned.Count];
+        for (int i = 0; i < owned.Count; i++)
+        {
+            ids[i] = owned[i];
+        }
+
+        Array.Sort(ids);
+        int index = current is int currentId ? Array.IndexOf(ids, currentId) : -1;
+        // 从当前下一张开始,到末尾后回到第一张
+        return ids[(index + 1) % ids.Length];
+    }
+
+    static void SetImageAlpha(Image image, float alpha)
+    {
+        Color color = image.color;
+        color.a = alpha;
+        image.color = color;
+    }
+
+    void RestoreWallpaperVisible()
+    {
+        SetImageAlpha(m_wallpaperImage, 1f);
+        m_heroSprite.SetActive(true);
+    }
+
+    void AppendWallpaperReveal(MotionSequenceBuilder seq)
+    {
+        seq.Append(UITween.DoFadeAnim(0, 1, m_Duration, m_wallpaperImage));
+        m_heroSprite.SetActive(true);
+        seq.Append(UITween.DoVerticalReveal(m_heroImage, m_Duration));
+    }
+
+    async UniTask PlayWallpaperRevealAsync()
+    {
+        var seq = LSequence.Create();
+        AppendWallpaperReveal(seq);
+        await seq.Run().AddTo(this);
+    }
+
     protected override void RemoveListeners()
     {
         m_BtnExit.onClick.RemoveListener(OnExitClick);
         m_BtnShop.onClick.RemoveListener(OnShopClick);
         m_BtnChangeName.onClick.RemoveListener(OnChangeNameClick);
         m_BtnAvatar.onClick.RemoveListener(OnAvatarClick);
+        m_BtnChangeWallpaper.onClick.RemoveListener(OnChangeWallpaperClick);
     }
 
     private void OnChangeNameClick()
@@ -133,8 +249,9 @@ public class PreGameUIPanel : APanelController, IPlayerDataView
         if (backgroundId is int id)
         {
             m_backgroundLoad = LoadWallpaperAndSpriteAsync(
-                AddressKeys.GetBackgroundSpriteAddress(id),
-                AddressKeys.GetBackgroundDownAddress(id));
+                id,
+                AddressKeys.GetBackgroundDownAddress(id),
+                AddressKeys.GetBackgroundSpriteAddress(id));
         }
     }
 
@@ -165,18 +282,15 @@ public class PreGameUIPanel : APanelController, IPlayerDataView
         if (m_DownLayOut != null) seq.Join(UITween.DoMoveAnim(m_DownLayOut, UITween.MoveDirection.Up, m_Distance, m_Duration));
         
 
-        //step2 加载背景
-        seq.Append(UITween.DoFadeAnim(0, 1, m_Duration, m_wallpaperImage));
-        m_heroSprite.SetActive(true);
-        //step3 加载英雄
-        seq.Append(UITween.DoVerticalReveal(m_heroImage, m_Duration));
+        //step2-3 背景淡入后英雄显现
+        AppendWallpaperReveal(seq);
 
         await seq.Run().AddTo(this);
         SceneTransitionOverlay.Hide();
         m_CanvasGroup.interactable = true;
     }
 
-    private async UniTask LoadWallpaperAndSpriteAsync(string wallpaper, string sprite)
+    private async UniTask LoadWallpaperAndSpriteAsync(int wallpaperId, string wallpaper, string sprite)
     {
         var wallpaperSprite = AddressableLoader.Instance.LoadSprite(wallpaper);
         var spriteSprite = AddressableLoader.Instance.LoadSprite(sprite);
@@ -184,5 +298,19 @@ public class PreGameUIPanel : APanelController, IPlayerDataView
         m_wallpaperImage.sprite = await wallpaperSprite;
         m_heroImage.SetNativeSize();
         m_wallpaperImage.SetNativeSize();
+        ApplyWallpaperOffsets(wallpaperId);
+    }
+
+    void ApplyWallpaperOffsets(int wallpaperId)
+    {
+        Vector3 spriteOffset = Vector3.zero;
+        Vector3 downOffset = Vector3.zero;
+        if (m_WallpaperDisplayConfig != null)
+        {
+            m_WallpaperDisplayConfig.GetOffsets(wallpaperId, out spriteOffset, out downOffset);
+        }
+
+        m_wallpaper.transform.localPosition = downOffset;
+        m_heroSprite.transform.localPosition = spriteOffset;
     }
 }
