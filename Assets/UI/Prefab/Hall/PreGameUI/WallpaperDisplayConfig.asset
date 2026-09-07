@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1121bb1e71d0a6f47b55a9c9f1803be0, type: 3}
+  m_Name: WallpaperDisplayConfig
+  m_EditorClassIdentifier: HotUpdate::WallpaperDisplayConfig
+  m_Items:
+  - id: 0
+    spriteOffset: {x: 480, y: 20, z: 0}
+    downOffset: {x: 480, y: 20, z: 0}
+  - id: 1
+    spriteOffset: {x: 480, y: 100, z: 0}
+    downOffset: {x: 480, y: 20, z: 0}
+  - id: 2
+    spriteOffset: {x: 300, y: 20, z: 0}
+    downOffset: {x: 300, y: 100, z: 0}
+  - id: 3
+    spriteOffset: {x: 0, y: 0, z: 0}
+    downOffset: {x: 0, y: 0, z: 0}
+  - id: 4
+    spriteOffset: {x: 480, y: 20, z: 0}
+    downOffset: {x: 480, y: 20, z: 0}
+  - id: 5
+    spriteOffset: {x: 300, y: 20, z: 0}
+    downOffset: {x: 300, y: 20, z: 0}
+  - id: 6
+    spriteOffset: {x: 0, y: 0, z: 0}
+    downOffset: {x: 0, y: 0, z: 0}
+  - id: 7
+    spriteOffset: {x: 0, y: 0, z: 0}
+    downOffset: {x: 0, y: 0, z: 0}
+  - id: 8
+    spriteOffset: {x: 0, y: 0, z: 0}
+    downOffset: {x: 0, y: 0, z: 0}
+  - id: 9
+    spriteOffset: {x: 0, y: 0, z: 0}
+    downOffset: {x: 0, y: 0, z: 0}
+  - id: 10
+    spriteOffset: {x: 0, y: 0, z: 0}
+    downOffset: {x: 0, y: 0, z: 0}

@@ -166,7 +166,7 @@ MonoBehaviour:
   m_destroyOnClose: 0
   hideOnForegroundLost: 1
   windowPriority: 0
-  isPopup: 0
+  isPopup: 1
   m_AvatarListController: {fileID: 5759970909729681870}
   m_BtnConfirm: {fileID: 2586555484446612050}
   m_BtnClose: {fileID: 4563534536523984960}
@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc88a36801746234e9c7ad44fde70a6a, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: HotUpdate::GridListController
   loopListView: {fileID: 6412750030922234793}
 --- !u!114 &6412750030922234793
