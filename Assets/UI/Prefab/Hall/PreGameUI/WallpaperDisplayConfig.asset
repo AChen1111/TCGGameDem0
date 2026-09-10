@@ -23,8 +23,8 @@ MonoBehaviour:
     spriteOffset: {x: 300, y: 20, z: 0}
     downOffset: {x: 300, y: 100, z: 0}
   - id: 3
-    spriteOffset: {x: 0, y: 0, z: 0}
-    downOffset: {x: 0, y: 0, z: 0}
+    spriteOffset: {x: 500, y: 200, z: 0}
+    downOffset: {x: 500, y: 200, z: 0}
   - id: 4
     spriteOffset: {x: 480, y: 20, z: 0}
     downOffset: {x: 480, y: 20, z: 0}
@@ -32,17 +32,17 @@ MonoBehaviour:
     spriteOffset: {x: 300, y: 20, z: 0}
     downOffset: {x: 300, y: 20, z: 0}
   - id: 6
-    spriteOffset: {x: 0, y: 0, z: 0}
-    downOffset: {x: 0, y: 0, z: 0}
+    spriteOffset: {x: 200, y: 50, z: 0}
+    downOffset: {x: 200, y: 500, z: 0}
   - id: 7
-    spriteOffset: {x: 0, y: 0, z: 0}
-    downOffset: {x: 0, y: 0, z: 0}
+    spriteOffset: {x: 200, y: 50, z: 0}
+    downOffset: {x: 200, y: 50, z: 0}
   - id: 8
-    spriteOffset: {x: 0, y: 0, z: 0}
-    downOffset: {x: 0, y: 0, z: 0}
+    spriteOffset: {x: 200, y: 200, z: 0}
+    downOffset: {x: 200, y: 200, z: 0}
   - id: 9
-    spriteOffset: {x: 0, y: 0, z: 0}
-    downOffset: {x: 0, y: 0, z: 0}
+    spriteOffset: {x: 200, y: 200, z: 0}
+    downOffset: {x: 200, y: 200, z: 0}
   - id: 10
-    spriteOffset: {x: 0, y: 0, z: 0}
-    downOffset: {x: 0, y: 0, z: 0}
+    spriteOffset: {x: 0, y: 200, z: 0}
+    downOffset: {x: 0, y: 200, z: 0}
