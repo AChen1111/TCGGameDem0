@@ -13,6 +13,7 @@ public class SingletonManager : PersistentMonoSingleton<SingletonManager>
 
     async UniTaskVoid Start()
     {
+        GameFlow.Initialize();
         for (int i = 0; i < m_singletons.Count; i++)
         {
             MonoSingleton singleton = m_singletons[i];
@@ -29,17 +30,14 @@ public class SingletonManager : PersistentMonoSingleton<SingletonManager>
                     targetScene = await GameFlow.GetStartupSceneAsync(this.GetCancellationTokenOnDestroy());
                 }
 
-                SceneTransitionOverlay.Show();
                 await SceneLoader.LoadScene(targetScene);
                 ALog.Log($"Init 场景切换完成. Target={targetScene}", ALogCategories.UI);
             }
             catch (OperationCanceledException)
             {
-                SceneTransitionOverlay.Hide();
             }
             catch (Exception exception)
             {
-                SceneTransitionOverlay.Hide();
                 ALog.LogError($"Init 场景切换失败. Target={targetScene}; Error={exception.Message}", ALogCategories.UI);
                 throw;
             }

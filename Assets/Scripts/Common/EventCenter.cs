@@ -2,68 +2,129 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
+using UnityEngine;
 
 namespace AChen.Events
 {
-    /// <summary>进程内事件中心。事件名使用 <see cref="GameEvent"/> 中定义的字符串常量。</summary>
+    /// <summary>进程内事件中心。事件用 <see cref="GameEvent"/> 里声明的 <see cref="EventId"/>，类型跟事件走。</summary>
     public static class EventCenter
     {
-        static readonly Dictionary<string, Delegate> s_listeners = new();
+        static readonly Dictionary<string, Delegate> s_listeners = new Dictionary<string, Delegate>();
+        static readonly Dictionary<string, Type> s_signatures = new Dictionary<string, Type>();
 
-        public static void AddListener(string eventName, Action listener) => Add(eventName, listener);
-        public static void AddListener<T>(string eventName, Action<T> listener) => Add(eventName, listener);
-        public static void AddListener<T1, T2>(string eventName, Action<T1, T2> listener) => Add(eventName, listener);
-
-        public static void RemoveListener(string eventName, Action listener) => Remove(eventName, listener);
-        public static void RemoveListener<T>(string eventName, Action<T> listener) => Remove(eventName, listener);
-        public static void RemoveListener<T1, T2>(string eventName, Action<T1, T2> listener) => Remove(eventName, listener);
-
-        /// <summary>发布一个无参数事件。</summary>
-        public static void Dispatch(string eventName)
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetState()
         {
-            GetPublisher(out string publisher, out string triggerFunction);
-            Invoke<Action>(eventName, publisher, triggerFunction, listener => listener());
+            s_listeners.Clear();
+            s_signatures.Clear();
         }
 
-        /// <summary>发布一个带一个强类型参数的事件。</summary>
-        public static void Dispatch<T>(string eventName, T arg)
+        /// <summary>订阅无参数事件。通常在 <c>OnEnable</c> 中调用。</summary>
+        /// <param name="evt">在 <see cref="GameEvent"/> 中定义的事件。</param>
+        /// <param name="listener">事件触发时同步执行的回调。</param>
+        /// <exception cref="ArgumentNullException"><paramref name="listener"/> 为空。</exception>
+        public static void AddListener(EventId evt, Action listener) =>
+            Add(evt.Name, evt.HandlerType, listener);
+
+        /// <summary>订阅带一个强类型参数的事件。参数类型由事件定义推断。</summary>
+        /// <typeparam name="T">事件参数类型。</typeparam>
+        /// <param name="evt">在 <see cref="GameEvent"/> 中定义的事件。</param>
+        /// <param name="listener">事件触发时同步执行的回调。</param>
+        /// <exception cref="ArgumentNullException"><paramref name="listener"/> 为空。</exception>
+        public static void AddListener<T>(EventId<T> evt, Action<T> listener) =>
+            Add(evt.Name, evt.HandlerType, listener);
+
+        /// <summary>订阅带两个强类型参数的事件。参数类型由事件定义推断。</summary>
+        /// <typeparam name="T1">第一个事件参数类型。</typeparam>
+        /// <typeparam name="T2">第二个事件参数类型。</typeparam>
+        /// <param name="evt">在 <see cref="GameEvent"/> 中定义的事件。</param>
+        /// <param name="listener">事件触发时同步执行的回调。</param>
+        /// <exception cref="ArgumentNullException"><paramref name="listener"/> 为空。</exception>
+        public static void AddListener<T1, T2>(EventId<T1, T2> evt, Action<T1, T2> listener) =>
+            Add(evt.Name, evt.HandlerType, listener);
+
+        /// <summary>取消无参数事件订阅。应与 <see cref="AddListener(EventId,Action)"/> 成对使用。</summary>
+        /// <param name="evt">订阅时使用的事件。</param>
+        /// <param name="listener">订阅时使用的同一个回调实例。</param>
+        public static void RemoveListener(EventId evt, Action listener) =>
+            Remove(evt.Name, evt.HandlerType, listener);
+
+        /// <summary>取消单参数事件订阅。应在 <c>OnDisable</c> 或销毁前调用。</summary>
+        /// <typeparam name="T">事件参数类型。</typeparam>
+        /// <param name="evt">订阅时使用的事件。</param>
+        /// <param name="listener">订阅时使用的同一个回调实例。</param>
+        public static void RemoveListener<T>(EventId<T> evt, Action<T> listener) =>
+            Remove(evt.Name, evt.HandlerType, listener);
+
+        /// <summary>取消双参数事件订阅。应在 <c>OnDisable</c> 或销毁前调用。</summary>
+        /// <typeparam name="T1">第一个事件参数类型。</typeparam>
+        /// <typeparam name="T2">第二个事件参数类型。</typeparam>
+        /// <param name="evt">订阅时使用的事件。</param>
+        /// <param name="listener">订阅时使用的同一个回调实例。</param>
+        public static void RemoveListener<T1, T2>(EventId<T1, T2> evt, Action<T1, T2> listener) =>
+            Remove(evt.Name, evt.HandlerType, listener);
+
+        /// <summary>同步派发无参数事件；没有监听器时为空操作。</summary>
+        /// <param name="evt">要派发的事件。</param>
+        public static void Dispatch(EventId evt)
         {
-            GetPublisher(out string publisher, out string triggerFunction);
-            Invoke<Action<T>>(eventName, publisher, triggerFunction, listener => listener(arg));
+            EnsureSignature(evt.Name, evt.HandlerType);
+            GetPublisher(evt.TraceDispatch, out string publisher, out string triggerFunction);
+            Invoke<Action>(evt.Name, publisher, triggerFunction, evt.TraceDispatch, listener => listener());
         }
 
-        /// <summary>发布一个带两个强类型参数的事件。</summary>
-        public static void Dispatch<T1, T2>(string eventName, T1 arg1, T2 arg2)
+        /// <summary>同步派发带一个参数的事件。</summary>
+        /// <typeparam name="T">事件参数类型。</typeparam>
+        /// <param name="evt">要派发的事件。</param>
+        /// <param name="arg">传给所有监听器的参数。</param>
+        public static void Dispatch<T>(EventId<T> evt, T arg)
         {
-            GetPublisher(out string publisher, out string triggerFunction);
-            Invoke<Action<T1, T2>>(eventName, publisher, triggerFunction, listener => listener(arg1, arg2));
+            EnsureSignature(evt.Name, evt.HandlerType);
+            GetPublisher(evt.TraceDispatch, out string publisher, out string triggerFunction);
+            Invoke<Action<T>>(evt.Name, publisher, triggerFunction, evt.TraceDispatch, listener => listener(arg));
         }
 
-        static void Add(string eventName, Delegate listener)
+        /// <summary>同步派发带两个参数的事件。</summary>
+        /// <typeparam name="T1">第一个事件参数类型。</typeparam>
+        /// <typeparam name="T2">第二个事件参数类型。</typeparam>
+        /// <param name="evt">要派发的事件。</param>
+        /// <param name="arg1">传给所有监听器的第一个参数。</param>
+        /// <param name="arg2">传给所有监听器的第二个参数。</param>
+        public static void Dispatch<T1, T2>(EventId<T1, T2> evt, T1 arg1, T2 arg2)
         {
-            Validate(eventName, listener);
-            if (s_listeners.TryGetValue(eventName, out Delegate existing))
+            EnsureSignature(evt.Name, evt.HandlerType);
+            GetPublisher(evt.TraceDispatch, out string publisher, out string triggerFunction);
+            Invoke<Action<T1, T2>>(evt.Name, publisher, triggerFunction, evt.TraceDispatch, listener => listener(arg1, arg2));
+        }
+
+        static void Add(string eventName, Type signature, Delegate listener)
+        {
+            if (listener == null)
             {
-                EnsureSameSignature(eventName, existing, listener);
-                s_listeners[eventName] = Delegate.Combine(existing, listener);
-                Log("Subscribe", eventName, DescribeListener(listener));
-                return;
+                throw new ArgumentNullException(nameof(listener));
             }
 
-            s_listeners.Add(eventName, listener);
+            EnsureSignature(eventName, signature);
+            s_listeners.TryGetValue(eventName, out Delegate existing);
+            s_listeners[eventName] = Delegate.Combine(existing, listener);
             Log("Subscribe", eventName, DescribeListener(listener));
         }
 
-        static void Remove(string eventName, Delegate listener)
+        static void Remove(string eventName, Type signature, Delegate listener)
         {
-            Validate(eventName, listener);
+            if (listener == null)
+            {
+                throw new ArgumentNullException(nameof(listener));
+            }
+
+            EnsureSignature(eventName, signature);
             if (!s_listeners.TryGetValue(eventName, out Delegate existing))
             {
                 return;
             }
 
-            EnsureSameSignature(eventName, existing, listener);
             Delegate remaining = Delegate.Remove(existing, listener);
+            if (remaining == existing) return;
             if (remaining == null)
             {
                 s_listeners.Remove(eventName);
@@ -80,36 +141,70 @@ namespace AChen.Events
             string eventName,
             string publisher,
             string triggerFunction,
+            bool traceDispatch,
             Action<TDelegate> invoke)
             where TDelegate : Delegate
         {
             if (!s_listeners.TryGetValue(eventName, out Delegate listeners))
             {
-                LogDispatch(eventName, publisher, triggerFunction, 0);
+                if (traceDispatch) LogDispatch(eventName, publisher, triggerFunction, 0);
                 return;
             }
 
-            if (listeners is not TDelegate typedListeners)
-            {
-                throw new InvalidOperationException(
-                    $"Event '{eventName}' was dispatched with parameters that differ from its listeners.");
-            }
-
-            Delegate[] subscribers = typedListeners.GetInvocationList();
-            LogDispatch(eventName, publisher, triggerFunction, subscribers.Length);
+            Delegate[] subscribers = listeners.GetInvocationList();
+            if (traceDispatch) LogDispatch(eventName, publisher, triggerFunction, subscribers.Length);
             foreach (Delegate listener in subscribers)
             {
-                Log(
-                    "Invoke",
-                    eventName,
-                    $"Publisher={publisher}; Trigger={triggerFunction}; {DescribeListener(listener)}");
-                invoke((TDelegate)listener);
+                try
+                {
+                    invoke((TDelegate)listener);
+                }
+                catch (Exception exception)
+                {
+                    // 一个订阅者失败不能中断其他订阅者, 或让已提交的业务操作变为失败.
+                    ALog.LogError(
+                        $"事件回调失败. Event={eventName}; Publisher={publisher}; Trigger={triggerFunction}; " +
+                        $"{DescribeListener(listener)}; Error={exception}",
+                        ALogCategories.Event);
+                }
             }
         }
 
-        static void GetPublisher(out string publisher, out string triggerFunction)
+        static void EnsureSignature(string eventName, Type signature)
         {
-            if (!ALog.Enabled)
+            if (s_signatures.TryGetValue(eventName, out Type existing))
+            {
+                if (existing != signature)
+                {
+                    throw new InvalidOperationException(
+                        $"Event '{eventName}' expects {FormatSignature(existing)}, got {FormatSignature(signature)}.");
+                }
+
+                return;
+            }
+
+            s_signatures.Add(eventName, signature);
+        }
+
+        static string FormatSignature(Type signature)
+        {
+            if (signature == typeof(Action))
+            {
+                return "no parameters";
+            }
+
+            Type[] args = signature.GenericTypeArguments;
+            if (args.Length == 1)
+            {
+                return args[0].Name;
+            }
+
+            return args[0].Name + ", " + args[1].Name;
+        }
+
+        static void GetPublisher(bool traceDispatch, out string publisher, out string triggerFunction)
+        {
+            if (!traceDispatch || !ALog.Enabled)
             {
                 publisher = "Disabled";
                 triggerFunction = "Disabled";
@@ -142,28 +237,6 @@ namespace AChen.Events
             if (ALog.Enabled)
             {
                 ALog.Log($"[{action}] Event={eventName}; {detail}", ALogCategories.Event);
-            }
-        }
-
-        static void Validate(string eventName, Delegate listener)
-        {
-            if (string.IsNullOrWhiteSpace(eventName))
-            {
-                throw new ArgumentException("Event name cannot be empty.", nameof(eventName));
-            }
-
-            if (listener == null)
-            {
-                throw new ArgumentNullException(nameof(listener));
-            }
-        }
-
-        static void EnsureSameSignature(string eventName, Delegate existing, Delegate listener)
-        {
-            if (existing.GetType() != listener.GetType())
-            {
-                throw new InvalidOperationException(
-                    $"Event '{eventName}' is already registered with a different listener signature.");
             }
         }
     }

@@ -5,6 +5,7 @@ using LitMotion;
 using Cysharp.Threading.Tasks;
 using System;
 using AChen.Player;
+using AChen.Events;
 
 public class LogInWindow : AWindowController
 {
@@ -19,26 +20,21 @@ public class LogInWindow : AWindowController
     [SerializeField] private CanvasGroup m_CanvasGroup;
     private AuthMode m_authMode;
     private TMP_Text m_switchModeButtonText;
-    //用于取消上一次输入反馈动画
-    private MotionHandle m_nameInputMotion;
-    private MotionHandle m_passwordInputMotion;
-    private MotionHandle m_passwordAgainInputMotion;
-    private int m_nameInputVersion;
-    private int m_passwordInputVersion;
-    private int m_passwordAgainInputVersion;
-    //记录输入框初始缩放，动画结束后恢复
-    private Vector3 m_nameInputScale;
-    private Vector3 m_passwordInputScale;
-    private Vector3 m_passwordAgainInputScale;
+    InputFeedback m_nameInputFeedback;
+    InputFeedback m_passwordInputFeedback;
+    InputFeedback m_passwordAgainInputFeedback;
 
     protected override void AddListeners()
     {
+        EventCenter.AddListener(GameEvent.LobbyEntering, OnLobbyEntering);
+        EventCenter.AddListener(GameEvent.LobbyEntered, OnLobbyEntered);
+        EventCenter.AddListener(GameEvent.LobbyEntryFailed, OnLobbyEntryFailed);
         m_BtnOK.onClick.AddListener(OnBtnOKClick);
         m_BtnNo.onClick.AddListener(OnBtnNoClick);
         m_BtnRes.onClick.AddListener(OnBtnResClick);
-        m_InpLogName.onValueChanged.AddListener(OnNameInputChanged);
-        m_InpLogPassWord.onValueChanged.AddListener(OnPasswordInputChanged);
-        m_InpLogPassWord_Again.onValueChanged.AddListener(OnPasswordAgainInputChanged);
+        m_InpLogName.onValueChanged.AddListener(m_nameInputFeedback.OnChanged);
+        m_InpLogPassWord.onValueChanged.AddListener(m_passwordInputFeedback.OnChanged);
+        m_InpLogPassWord_Again.onValueChanged.AddListener(m_passwordAgainInputFeedback.OnChanged);
     }
 
 
@@ -54,6 +50,7 @@ public class LogInWindow : AWindowController
 
     private async UniTaskVoid AuthenticateAsync()
     {
+        if (m_authenticating || m_enteringLobby) return;
         string username = m_InpLogName.text.Trim();
         string password = m_InpLogPassWord.text;
         string validationMessage = AuthFlow.Validate(m_authMode, username, password, m_InpLogPassWord_Again.text);
@@ -63,7 +60,8 @@ public class LogInWindow : AWindowController
             return;
         }
 
-        m_CanvasGroup.interactable = false;
+        m_authenticating = true;
+        UpdateInteraction();
         try
         {
             AuthResult result = await AuthFlow.AuthenticateAsync(
@@ -74,115 +72,76 @@ public class LogInWindow : AWindowController
             if (!result.Succeeded)
             {
                 ShowMessage(result.ErrorMessage);
-                return;
             }
-
-            await GameFlow.EnterLobbyAsync();
         }
         catch (OperationCanceledException)
         {
         }
         catch (Exception exception)
         {
-            ALog.LogError("登录后进入大厅失败: " + exception.Message, ALogCategories.UI);
-            ShowMessage("进入大厅失败，请稍后再试");
+            ALog.LogError("账号认证异常: " + exception.Message, ALogCategories.UI);
+            ShowMessage("登录失败，请稍后重试");
         }
         finally
         {
-            if (m_CanvasGroup != null)
-            {
-                m_CanvasGroup.interactable = true;
-            }
+            m_authenticating = false;
+            UpdateInteraction();
         }
     }
 
-    private void ShowMessage(string message)
+    bool m_authenticating;
+    bool m_enteringLobby;
+
+    void OnLobbyEntering()
     {
-        m_UIFrame.OpenWindow(
-            AddressKeys.Prefab.MessageWindow,
-            new MessageWindowProperties(message, 2f));
+        m_enteringLobby = true;
+        UpdateInteraction();
+    }
+
+    void OnLobbyEntered()
+    {
+        m_enteringLobby = false;
+        UpdateInteraction();
+    }
+
+    void OnLobbyEntryFailed(string message)
+    {
+        m_enteringLobby = false;
+        UpdateInteraction();
+        if (this != null && IsVisible) ShowMessage("进入大厅失败，请稍后再试");
+    }
+
+    void UpdateInteraction()
+    {
+        if (m_CanvasGroup != null) m_CanvasGroup.interactable = !m_authenticating && !m_enteringLobby;
     }
 
     protected override void RemoveListeners()
     {
+        EventCenter.RemoveListener(GameEvent.LobbyEntering, OnLobbyEntering);
+        EventCenter.RemoveListener(GameEvent.LobbyEntered, OnLobbyEntered);
+        EventCenter.RemoveListener(GameEvent.LobbyEntryFailed, OnLobbyEntryFailed);
         m_BtnNo.onClick.RemoveListener(OnBtnNoClick);
         m_BtnOK.onClick.RemoveListener(OnBtnOKClick);
         m_BtnRes.onClick.RemoveListener(OnBtnResClick);
-        m_InpLogName.onValueChanged.RemoveListener(OnNameInputChanged);
-        m_InpLogPassWord.onValueChanged.RemoveListener(OnPasswordInputChanged);
-        m_InpLogPassWord_Again.onValueChanged.RemoveListener(OnPasswordAgainInputChanged);
+        m_InpLogName.onValueChanged.RemoveListener(m_nameInputFeedback.OnChanged);
+        m_InpLogPassWord.onValueChanged.RemoveListener(m_passwordInputFeedback.OnChanged);
+        m_InpLogPassWord_Again.onValueChanged.RemoveListener(m_passwordAgainInputFeedback.OnChanged);
     }
 
     private void OnBtnNoClick()
     {
-        //退出游戏
-        Application.Quit();
+        EventCenter.Dispatch(GameEvent.GameExitRequested);
     }
 
 
     protected override void Awake()
     {
-        base.Awake();
-        m_nameInputScale = m_InpLogName.transform.localScale;
-        m_passwordInputScale = m_InpLogPassWord.transform.localScale;
-        m_passwordAgainInputScale = m_InpLogPassWord_Again.transform.localScale;
+        m_nameInputFeedback = new InputFeedback(m_InpLogName);
+        m_passwordInputFeedback = new InputFeedback(m_InpLogPassWord);
+        m_passwordAgainInputFeedback = new InputFeedback(m_InpLogPassWord_Again);
         m_switchModeButtonText = m_BtnRes.GetComponentInChildren<TMP_Text>();
-    }
-
-    private void OnNameInputChanged(string _)
-    {
-        PlayNameInputFeedbackAsync(++m_nameInputVersion).Forget();
-    }
-
-    private async UniTaskVoid PlayNameInputFeedbackAsync(int version)
-    {
-        await UniTask.NextFrame();
-        if (version != m_nameInputVersion)
-        {
-            return;
-        }
-
-        m_nameInputMotion.TryCancel();
-        m_InpLogName.transform.localScale = m_nameInputScale;
-        //输入时播放短促缩放反馈
-        m_nameInputMotion = UITween.DoPunchScale(m_InpLogName.transform, 1.04f, 0.12f);
-    }
-
-    private void OnPasswordInputChanged(string _)
-    {
-        PlayPasswordInputFeedbackAsync(++m_passwordInputVersion).Forget();
-    }
-
-    private async UniTaskVoid PlayPasswordInputFeedbackAsync(int version)
-    {
-        await UniTask.NextFrame();
-        if (version != m_passwordInputVersion)
-        {
-            return;
-        }
-
-        m_passwordInputMotion.TryCancel();
-        m_InpLogPassWord.transform.localScale = m_passwordInputScale;
-        //输入时播放短促缩放反馈
-        m_passwordInputMotion = UITween.DoPunchScale(m_InpLogPassWord.transform, 1.04f, 0.12f);
-    }
-
-    private void OnPasswordAgainInputChanged(string _)
-    {
-        PlayPasswordAgainInputFeedbackAsync(++m_passwordAgainInputVersion).Forget();
-    }
-
-    private async UniTaskVoid PlayPasswordAgainInputFeedbackAsync(int version)
-    {
-        await UniTask.NextFrame();
-        if (version != m_passwordAgainInputVersion)
-        {
-            return;
-        }
-
-        m_passwordAgainInputMotion.TryCancel();
-        m_InpLogPassWord_Again.transform.localScale = m_passwordAgainInputScale;
-        m_passwordAgainInputMotion = UITween.DoPunchScale(m_InpLogPassWord_Again.transform, 1.04f, 0.12f);
+        base.Awake();
     }
 
     protected override void OnOpen()
@@ -219,9 +178,37 @@ public class LogInWindow : AWindowController
 
         await seq.Run().AddTo(this);
         SceneTransitionOverlay.Hide();
-        m_CanvasGroup.interactable = true;
+        UpdateInteraction();
     }
 
+    sealed class InputFeedback
+    {
+        readonly TMP_InputField m_field;
+        readonly Vector3 m_scale;
+        MotionHandle m_motion;
+        int m_version;
 
+        public InputFeedback(TMP_InputField field)
+        {
+            m_field = field;
+            m_scale = field.transform.localScale;
+        }
 
+        public void OnChanged(string _) => PlayAsync().Forget();
+
+        async UniTaskVoid PlayAsync()
+        {
+            int version = ++m_version;
+            await UniTask.NextFrame();
+            if (version != m_version)
+            {
+                return;
+            }
+
+            m_motion.TryCancel();
+            m_field.transform.localScale = m_scale;
+            //输入时播放短促缩放反馈
+            m_motion = UITween.DoPunchScale(m_field.transform, 1.04f, 0.12f);
+        }
+    }
 }

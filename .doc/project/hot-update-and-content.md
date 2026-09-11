@@ -14,5 +14,5 @@
 
 `构建热更新 DLL -> 构建 Addressables -> 生成 Manifest -> 上传后端内容服务 -> 客户端按版本更新`
 
-发布前需配置环境变量 `ACHEN_CONTENT_PUBLISH_KEY`，然后执行 Unity 菜单 `Tools/HotUpdate/Build And Publish Release`。
+发布前需配置环境变量 `ACHEN_CONTENT_PUBLISH_KEY`，然后执行 Unity 菜单 `Tools/热更发布/Build And Publish Release`。
 

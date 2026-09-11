@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using AChen.Events;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
@@ -65,6 +66,44 @@ public class UiDestroyOnCloseTests
         var second = Object.FindFirstObjectByType<DestroyOnCloseTestPanel>();
         Assert.IsNotNull(second);
         Assert.IsTrue(second.gameObject.activeSelf);
+    }
+
+    [Test]
+    public void Destroy_notification_only_unregisters_the_owning_frame()
+    {
+        var firstFrame = CreateFrame();
+        var secondFrame = CreateFrame();
+        var first = CreatePanel(true);
+        var second = CreatePanel(true);
+        firstFrame.RegisterScreen("SamePanel", first, first.transform);
+        secondFrame.RegisterScreen("SamePanel", second, second.transform);
+
+        first.Close();
+
+        Assert.IsFalse(firstFrame.IsScreenRegistered("SamePanel"));
+        Assert.IsTrue(secondFrame.IsScreenRegistered("SamePanel"));
+    }
+
+    [Test]
+    public void Window_requests_are_routed_to_the_owning_frame()
+    {
+        var firstFrame = CreateFrame();
+        var secondFrame = CreateFrame();
+        var first = CreateWindow(false);
+        var second = CreateWindow(false);
+        firstFrame.RegisterScreen("SameWindow", first, first.transform);
+        secondFrame.RegisterScreen("SameWindow", second, second.transform);
+        first.gameObject.SetActive(false);
+        second.gameObject.SetActive(false);
+
+        EventCenter.Dispatch(UIEvent.WindowOpenRequested, firstFrame, new WindowOpenRequest("SameWindow"));
+        Assert.IsTrue(first.IsVisible);
+        Assert.IsFalse(second.IsVisible);
+
+        secondFrame.OpenWindow("SameWindow");
+        first.UI_Close();
+        Assert.IsFalse(first.IsVisible);
+        Assert.IsTrue(second.IsVisible);
     }
 
     DestroyOnCloseTestPanel CreatePanel(bool destroyOnClose)

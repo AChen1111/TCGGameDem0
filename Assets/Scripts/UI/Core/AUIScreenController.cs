@@ -1,5 +1,9 @@
-﻿using UnityEngine;
 using System;
+using System.Threading;
+using AChen.Events;
+using AChen.Networking;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 /// <summary>
 /// UI 界面基类。业务请继承 AWindowController 或 APanelController。
@@ -11,17 +15,13 @@ public abstract class AUIScreenController : MonoBehaviour, IUIScreenController
     bool m_destroyOnClose;
 
     bool m_opened;
+    bool m_destroyNotified;
+    CancellationTokenSource m_screenCancellation;
 
     /// <summary>界面 Id，默认与 Prefab 名相同。</summary>
     public string ScreenId { get; set; }
 
     protected IScreenProperties Properties { get; private set; }
-
-    /// <summary>请求所属 Layer 关闭自己。</summary>
-    public Action<IUIScreenController> CloseRequest { get; set; }
-
-    /// <summary>界面被销毁时通知 Layer。</summary>
-    public Action<IUIScreenController> ScreenDestroyed { get; set; }
 
     /// <summary>当前是否可见。</summary>
     public bool IsVisible { get; private set; }
@@ -48,14 +48,83 @@ public abstract class AUIScreenController : MonoBehaviour, IUIScreenController
     protected virtual void OnDestroy()
     {
         m_opened = false;
-        if (ScreenDestroyed != null)
-        {
-            ScreenDestroyed(this);
-        }
-
-        CloseRequest = null;
-        ScreenDestroyed = null;
+        CancelScreenWork();
+        NotifyDestroyed();
         RemoveListeners();
+    }
+
+    /// <summary>本次打开周期的取消令牌: Close 或销毁时取消; 被盖住(Hide)期间保持有效.</summary>
+    protected CancellationToken ScreenToken =>
+        m_screenCancellation?.Token ?? new CancellationToken(canceled: true);
+
+    /// <summary>界面当前是否处于打开周期内(已 OnOpen 且未 Close).</summary>
+    protected bool IsOpened => m_opened && m_screenCancellation != null;
+
+    /// <summary>
+    /// 执行一次会访问后端的界面命令: 界面关闭即取消; BackendApiException 直接把服务端文案提示给玩家;
+    /// 其它异常记日志并提示 fallbackMessage. 返回是否成功完成.
+    /// </summary>
+    protected async UniTask<bool> RunGuardedAsync(
+        Func<CancellationToken, UniTask> action,
+        string operation,
+        string fallbackMessage)
+    {
+        CancellationToken token = ScreenToken;
+        if (token.IsCancellationRequested) return false;
+
+        try
+        {
+            await action(token);
+            token.ThrowIfCancellationRequested();
+            return true;
+        }
+        catch (OperationCanceledException)
+        {
+            return false;
+        }
+        catch (BackendApiException exception)
+        {
+            if (token.IsCancellationRequested) return false;
+            ALog.LogWarning($"{operation}失败. Screen={ScreenId}; Code={exception.Code}; Status={exception.StatusCode}", ALogCategories.UI);
+            ShowMessage(exception.Message);
+            return false;
+        }
+        catch (Exception exception)
+        {
+            if (token.IsCancellationRequested) return false;
+            ALog.LogError($"{operation}异常. Screen={ScreenId}; Error={exception.Message}", ALogCategories.UI);
+            ShowMessage(fallbackMessage);
+            return false;
+        }
+    }
+
+    void CancelScreenWork()
+    {
+        m_screenCancellation?.Cancel();
+        m_screenCancellation?.Dispose();
+        m_screenCancellation = null;
+    }
+
+    void NotifyDestroyed()
+    {
+        if (m_destroyNotified) return;
+        m_destroyNotified = true;
+        EventCenter.Dispatch(UIEvent.ScreenDestroyed, (IUIScreenController)this);
+    }
+
+    protected void RequestOpenWindow(string screenId, IWindowProperties properties = null)
+    {
+        if (m_UIFrame == null)
+        {
+            ALog.LogError($"打开窗口请求失败. Screen={ScreenId}; Target={screenId}; 原因=未绑定 UIFrame", ALogCategories.UI);
+            return;
+        }
+        EventCenter.Dispatch(UIEvent.WindowOpenRequested, m_UIFrame, new WindowOpenRequest(screenId, properties));
+    }
+
+    protected void ShowMessage(string message)
+    {
+        RequestOpenWindow(AddressKeys.Prefab.MessageWindow, new MessageWindowProperties(message, 2f));
     }
 
     /// <summary>绑定事件，默认在 Awake 调用。</summary>
@@ -111,15 +180,12 @@ public abstract class AUIScreenController : MonoBehaviour, IUIScreenController
     {
         m_opened = false;
         OnClose();
+        CancelScreenWork();
         gameObject.SetActive(false);
         IsVisible = false;
         if (m_destroyOnClose)
         {
-            if (ScreenDestroyed != null)
-            {
-                ScreenDestroyed(this);
-            }
-            ScreenDestroyed = null;
+            NotifyDestroyed();
             DestroyScreenObject();
         }
     }
@@ -141,8 +207,10 @@ public abstract class AUIScreenController : MonoBehaviour, IUIScreenController
         }
         else
         {
-            OnOpen();
+            CancelScreenWork();
+            m_screenCancellation = new CancellationTokenSource();
             m_opened = true;
+            OnOpen();
         }
     }
 

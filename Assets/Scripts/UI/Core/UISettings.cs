@@ -5,7 +5,7 @@ using UnityEngine;
 /// UI 配置：Frame Prefab 以及实例化时要注册的界面。
 /// </summary>
 
-[CreateAssetMenu(fileName = "UISettings", menuName = "deVoid UI/UI Settings")]
+[CreateAssetMenu(fileName = "UISettings", menuName = "TCG/UI/UI Settings")]
 public class UISettings : ScriptableObject
 {
     [Tooltip("UI Frame Prefab")]

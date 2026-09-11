@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
+
+using AChen.Events;
 
 /// <summary>
 /// 管理 Window。有历史栈和队列，同一时间只有一个可交互，含弹窗。
@@ -15,19 +17,15 @@ public class WindowUILayer : AUILayer<IWindowController>
 
     public override void Initialize() {
         base.Initialize();
-        registeredScreens = new Dictionary<string, IWindowController>();
         windowQueue = new Queue<WindowHistoryEntry>();
         windowHistory = new Stack<WindowHistoryEntry>();
+        EventCenter.RemoveListener(UIEvent.WindowCloseRequested, OnCloseRequestedByWindow);
+        EventCenter.AddListener(UIEvent.WindowCloseRequested, OnCloseRequestedByWindow);
     }
 
-    protected override void ProcessScreenRegister(string screenId, IWindowController controller) {
-        base.ProcessScreenRegister(screenId, controller);
-        controller.CloseRequest += OnCloseRequestedByWindow;
-    }
-
-    protected override void ProcessScreenUnregister(string screenId, IWindowController controller) {
-        base.ProcessScreenUnregister(screenId, controller);
-        controller.CloseRequest -= OnCloseRequestedByWindow;
+    protected override void OnDestroy() {
+        EventCenter.RemoveListener(UIEvent.WindowCloseRequested, OnCloseRequestedByWindow);
+        base.OnDestroy();
     }
 
     public override void ShowScreen(IWindowController screen) {
@@ -39,7 +37,7 @@ public class WindowUILayer : AUILayer<IWindowController>
             windowQueue.Enqueue(new WindowHistoryEntry(screen, properties));
         }
         else {
-            DoShow(screen, properties);
+            DoShow(new WindowHistoryEntry(screen, properties));
         }
     }
 
@@ -55,10 +53,10 @@ public class WindowUILayer : AUILayer<IWindowController>
             }
 
             if (windowQueue.Count > 0) {
-                ShowNextInQueue();
+                DoShow(windowQueue.Dequeue());
             }
             else if (windowHistory.Count > 0) {
-                ShowPreviousInHistory();
+                DoShow(windowHistory.Pop());
             }
         }
         else {
@@ -77,6 +75,8 @@ public class WindowUILayer : AUILayer<IWindowController>
         CurrentWindow = null;
         priorityParaLayer.RefreshDarken();
         windowHistory.Clear();
+        // 排队中的窗口随全部关闭一起丢弃, 否则下一次打开会先弹出过期的排队项.
+        windowQueue.Clear();
     }
 
     public override void ReparentScreen(IUIScreenController controller, Transform screenTransform) {
@@ -101,24 +101,6 @@ public class WindowUILayer : AUILayer<IWindowController>
         }
 
         return controller.WindowPriority != WindowPriority.ForceForeground;
-    }
-
-    private void ShowPreviousInHistory() {
-        if (windowHistory.Count > 0) {
-            WindowHistoryEntry window = windowHistory.Pop();
-            DoShow(window);
-        }
-    }
-
-    private void ShowNextInQueue() {
-        if (windowQueue.Count > 0) {
-            WindowHistoryEntry window = windowQueue.Dequeue();
-            DoShow(window);
-        }
-    }
-
-    private void DoShow(IWindowController screen, IScreenProperties properties = null) {
-        DoShow(new WindowHistoryEntry(screen, properties));
     }
 
     private void DoShow(WindowHistoryEntry windowEntry) {
@@ -149,6 +131,9 @@ public class WindowUILayer : AUILayer<IWindowController>
     }
 
     private void OnCloseRequestedByWindow(IUIScreenController screen) {
-        HideScreen(screen as IWindowController);
+        if (string.IsNullOrEmpty(screen.ScreenId)
+            || !registeredScreens.TryGetValue(screen.ScreenId, out IWindowController owned)
+            || !ReferenceEquals(owned, screen)) return;
+        HideScreen(owned);
     }
 }

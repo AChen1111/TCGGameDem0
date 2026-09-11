@@ -1144,6 +1144,7 @@ GameObject:
   - component: {fileID: 855445367161671634}
   - component: {fileID: 8234930916011492848}
   - component: {fileID: 3634693997185836215}
+  - component: {fileID: 8234930916011492849}
   m_Layer: 5
   m_Name: PreGameUIPanel
   m_TagString: Untagged
@@ -1235,7 +1236,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e925713541487c84fb473ab936d578e9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PreGameUIPanel
+  m_EditorClassIdentifier: HotUpdate::PreGameUIPanel
   m_destroyOnClose: 0
   priority: 0
   m_BtnPlay: {fileID: 2543257582590959485}
@@ -1248,16 +1249,29 @@ MonoBehaviour:
   m_BtnSetting: {fileID: 9052097494262071546}
   m_BtnAvatar: {fileID: 3101438045887416945}
   m_BtnChangeName: {fileID: 722098231998896598}
+  m_BtnChangeWallpaper: {fileID: 6781169144371973377}
   m_LeftLayOut: {fileID: 5001685258247830197}
   m_RightLayOut: {fileID: 0}
   m_UpLayOut: {fileID: 3445351309041394274}
   m_DownLayOut: {fileID: 0}
   m_CanvasGroup: {fileID: 3634693997185836215}
+  m_WallpaperView: {fileID: 8234930916011492849}
   m_Duration: 1
   m_Distance: 1500
+--- !u!114 &8234930916011492849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4966124854734445874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e0419814d9103a4686e71f5a8677e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HotUpdate::LobbyWallpaperView
   m_wallpaper: {fileID: 1850575445426727540}
   m_heroSprite: {fileID: 3368097671329428498}
-  m_BtnChangeWallpaper: {fileID: 6781169144371973377}
   m_WallpaperDisplayConfig: {fileID: 11400000, guid: 0539aacb2851d9b459cd07f658764d67, type: 2}
 --- !u!225 &3634693997185836215
 CanvasGroup:

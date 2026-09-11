@@ -1,24 +1,18 @@
 using System;
+using System.Threading;
+using AChen.Events;
 using AChen.Networking;
 using AChen.Player;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>开窗参数.商品数据由品类自己加载,这里只指定初始页签.</summary>
-public sealed class ShopWindowProperties : IWindowProperties
+/// <summary>商城窗口. 页签与品类一一对应, 切换页签即用同一个列表重绑该品类的商品.</summary>
+public class ShopWindow : AWindowController
 {
-    public int InitialTabIndex { get; }
+    static readonly Color s_tabNormalColor = Color.white;
+    static readonly Color s_tabSelectedColor = Color.yellow;
 
-    public ShopWindowProperties(int initialTabIndex = 0)
-    {
-        InitialTabIndex = initialTabIndex;
-    }
-}
-
-/// <summary>商城窗口.页签与品类一一对应,切换页签即用同一个列表重绑该品类的商品.</summary>
-public class ShopWindow : AWindowController<ShopWindowProperties>
-{
     [SerializeField] GridListController m_ListController;
     [SerializeField] Button m_CloseButton;
     [SerializeField] Button[] m_ChooseButtons;
@@ -27,100 +21,163 @@ public class ShopWindow : AWindowController<ShopWindowProperties>
     int m_SelectedChooseIndex;
     bool m_IsSwitching;
     bool m_IsPurchasing;
+    bool m_IsShown;
+    bool m_RefreshPending;
+    bool m_AreItemsCurrent;
+    CancellationTokenSource m_RefreshCancellation;
+    GameConfigSnapshot m_ConfigSnapshot;
 
     protected override void Awake()
     {
-        // 品类顺序与 m_ChooseButtons 一一对应,新增品类在这里加一项并在预制体上加一个页签按钮
-        IShopDataSource dataSource = new ServerShopDataSource();
+        // 品类顺序与 m_ChooseButtons 一一对应, 新增品类在这里加一项并在预制体上加一个页签按钮.
         m_Categories = new ShopCategory[]
         {
-            new CardPackShopCategory(dataSource),
-            new AvatarShopCategory(dataSource),
-            new WallpaperShopCategory(dataSource),
+            new CardPackShopCategory(),
+            new CosmeticShopCategory("头像", ShopCatalogTypes.Avatar, AddressKeys.Prefab.AvatarShopItemRowPrefab),
+            new CosmeticShopCategory("壁纸", ShopCatalogTypes.Wallpaper, AddressKeys.Prefab.WallpaperShopItemRowPrefab),
         };
+        m_ConfigSnapshot = GameConfigManager.HasInstance ? GameConfigManager.Instance.Store.Snapshot : null;
         base.Awake();
     }
 
     protected override void OnOpen()
     {
-        SwitchCategory(Properties != null ? Properties.InitialTabIndex : 0);
+        m_IsPurchasing = false;
+        m_IsShown = true;
+        SwitchCategory(0);
     }
 
     protected override void OnResume()
     {
+        m_IsShown = true;
         SwitchCategory(m_SelectedChooseIndex);
+    }
+
+    protected override void OnHide()
+    {
+        PauseRefresh();
+    }
+
+    protected override void OnClose()
+    {
+        PauseRefresh();
+    }
+
+    void PauseRefresh()
+    {
+        m_IsShown = false;
+        m_RefreshCancellation?.Cancel();
     }
 
     protected override void AddListeners()
     {
-        m_CloseButton.onClick.AddListener(OnCloseButtonClick);
-        if (m_ChooseButtons == null) return;
+        EventCenter.AddListener(GameEvent.PlayerOwnedAvatarsChanged, OnOwnedAvatarsChanged);
+        EventCenter.AddListener(GameEvent.PlayerOwnedWallpapersChanged, OnOwnedWallpapersChanged);
+        EventCenter.AddListener(GameEvent.GameConfigChanged, OnConfigChanged);
+        m_CloseButton.onClick.AddListener(UI_Close);
         for (int i = 0; i < m_ChooseButtons.Length; i++)
         {
             int index = i;
             Button button = m_ChooseButtons[i];
-            if (button == null) continue;
             button.transition = Selectable.Transition.None;
-            button.onClick.AddListener(() => OnChooseButtonClick(index));
+            button.onClick.AddListener(() => SwitchCategory(index));
         }
     }
 
     protected override void RemoveListeners()
     {
-        m_CloseButton.onClick.RemoveListener(OnCloseButtonClick);
-        if (m_ChooseButtons == null) return;
+        EventCenter.RemoveListener(GameEvent.PlayerOwnedAvatarsChanged, OnOwnedAvatarsChanged);
+        EventCenter.RemoveListener(GameEvent.PlayerOwnedWallpapersChanged, OnOwnedWallpapersChanged);
+        EventCenter.RemoveListener(GameEvent.GameConfigChanged, OnConfigChanged);
+        PauseRefresh();
+        m_CloseButton.onClick.RemoveListener(UI_Close);
         for (int i = 0; i < m_ChooseButtons.Length; i++)
         {
-            if (m_ChooseButtons[i] != null)
-            {
-                m_ChooseButtons[i].onClick.RemoveAllListeners();
-            }
+            m_ChooseButtons[i].onClick.RemoveAllListeners();
         }
     }
 
-    void OnCloseButtonClick()
+    void OnOwnedAvatarsChanged(PlayerData player) => OnOwnedItemsChanged(ShopCatalogTypes.Avatar, player);
+
+    void OnOwnedWallpapersChanged(PlayerData player) => OnOwnedItemsChanged(ShopCatalogTypes.Wallpaper, player);
+
+    void OnOwnedItemsChanged(string catalogType, PlayerData player)
     {
-        UI_Close();
+        if (player == null || m_Categories[m_SelectedChooseIndex].CatalogType == catalogType) RequestRefresh();
     }
 
-    void OnChooseButtonClick(int index)
+    void OnConfigChanged(GameConfigSnapshot snapshot, bool isStale)
     {
-        SwitchCategory(index);
+        // 只有过期状态变化时仍是同一份快照, 无需重新加载商品图片.
+        if (ReferenceEquals(m_ConfigSnapshot, snapshot)) return;
+
+        m_ConfigSnapshot = snapshot;
+        RequestRefresh();
     }
 
     void SwitchCategory(int index)
     {
-        if (m_Categories == null || m_Categories.Length == 0) return;
-        if (index < 0 || index >= m_Categories.Length)
-        {
-            index = 0;
-        }
-
-        // 数据加载是异步的,连点会让后发的绑定被先发的覆盖,这里直接丢弃切换中的点击
-        if (m_IsSwitching || m_IsPurchasing) return;
-
+        m_SelectedChooseIndex = index;
         ApplyChooseHighlight(index);
-        SwitchCategoryAsync(index).Forget();
+        RequestRefresh();
     }
 
-    async UniTaskVoid SwitchCategoryAsync(int index)
+    void RequestRefresh()
+    {
+        m_RefreshPending = true;
+        m_AreItemsCurrent = false;
+        m_RefreshCancellation?.Cancel();
+        TryRefresh();
+    }
+
+    void TryRefresh()
+    {
+        if (!m_IsShown || !m_RefreshPending || m_IsSwitching || m_IsPurchasing) return;
+
+        RefreshCurrentCategoryAsync().Forget();
+    }
+
+    async UniTaskVoid RefreshCurrentCategoryAsync()
     {
         m_IsSwitching = true;
-        ShopCategory category = m_Categories[index];
         try
         {
-            await category.BindAsync(m_ListController, OnShopItemClicked)
-                .AttachExternalCancellation(this.GetCancellationTokenOnDestroy());
-            ALog.Log($"商城切换品类成功: Index={index}, 品类={category.DisplayName}", ALogCategories.UI);
-        }
-        catch (OperationCanceledException)
-        {
-        }
-        catch (Exception exception)
-        {
-            ALog.LogError(
-                $"商城切换品类失败: Index={index}, 品类={category.DisplayName}, 原因={exception.Message}",
-                ALogCategories.UI);
+            // 购买结果的事件早于购买 await 返回, 保留 pending 后由购买结束继续刷新.
+            while (m_IsShown && m_RefreshPending && !m_IsPurchasing)
+            {
+                m_RefreshPending = false;
+                int index = m_SelectedChooseIndex;
+                ShopCategory category = m_Categories[index];
+                using (var cancellation = CancellationTokenSource.CreateLinkedTokenSource(this.GetCancellationTokenOnDestroy()))
+                {
+                    m_RefreshCancellation = cancellation;
+                    try
+                    {
+                        if (!PlayerSession.HasInstance || PlayerSession.Instance.CurrentPlayer == null)
+                        {
+                            m_ListController.ClearList();
+                            continue;
+                        }
+                        await category.BindAsync(m_ListController, OnShopItemClicked, cancellation.Token);
+                        cancellation.Token.ThrowIfCancellationRequested();
+                        m_AreItemsCurrent = true;
+                        ALog.Log($"商城刷新品类成功: Index={index}, 品类={category.DisplayName}", ALogCategories.UI);
+                    }
+                    catch (OperationCanceledException)
+                    {
+                    }
+                    catch (Exception exception)
+                    {
+                        ALog.LogError(
+                            $"商城刷新品类失败: Index={index}, 品类={category.DisplayName}, 原因={exception.Message}",
+                            ALogCategories.UI);
+                    }
+                    finally
+                    {
+                        m_RefreshCancellation = null;
+                    }
+                }
+            }
         }
         finally
         {
@@ -130,32 +187,16 @@ public class ShopWindow : AWindowController<ShopWindowProperties>
 
     void ApplyChooseHighlight(int selectedIndex)
     {
-        if (m_ChooseButtons == null || m_ChooseButtons.Length == 0) return;
-        if (selectedIndex < 0 || selectedIndex >= m_ChooseButtons.Length)
-        {
-            selectedIndex = 0;
-        }
-
-        m_SelectedChooseIndex = selectedIndex;
         for (int i = 0; i < m_ChooseButtons.Length; i++)
         {
-            Button button = m_ChooseButtons[i];
-            if (button == null) continue;
-
-            Image image = button.GetComponent<Image>();
-            if (image == null)
-            {
-                ALog.LogWarning($"商城选项按钮缺少 Image: Index={i}, Name={button.name}", ALogCategories.UI);
-                continue;
-            }
-
-            image.color = i == selectedIndex ? ShopItemColors.Selected : ShopItemColors.Normal;
+            Image image = m_ChooseButtons[i].GetComponent<Image>();
+            image.color = i == selectedIndex ? s_tabSelectedColor : s_tabNormalColor;
         }
     }
 
     void OnShopItemClicked(int index)
     {
-        if (m_IsSwitching || m_IsPurchasing) return;
+        if (m_IsSwitching || m_IsPurchasing || !m_AreItemsCurrent) return;
         ShopCategory category = m_Categories[m_SelectedChooseIndex];
         if (!category.TryGetPurchaseTarget(index, out ShopPurchaseTarget target))
         {
@@ -171,21 +212,17 @@ public class ShopWindow : AWindowController<ShopWindowProperties>
         ALog.Log(
             $"商城购买确认: 品类={target.CatalogType}, Id={target.Id}, Name={target.Name}, 价格={target.PriceGold}",
             ALogCategories.UI);
-        m_UIFrame.OpenWindow(
+        RequestOpenWindow(
             AddressKeys.Prefab.ChooseWindow,
             new ChooseWindowProperties(
                 $"确认花费 {target.PriceGold} 金币购买{target.Name}?",
-                () => PurchaseAsync(category, target).Forget(),
+                () => PurchaseAsync(target).Forget(),
                 null));
     }
 
-    async UniTaskVoid PurchaseAsync(ShopCategory category, ShopPurchaseTarget target)
+    async UniTaskVoid PurchaseAsync(ShopPurchaseTarget target)
     {
-        if (target.Owned)
-        {
-            ShowMessage("已拥有");
-            return;
-        }
+        if (m_IsPurchasing || !IsOpened) return;
 
         PlayerData player = PlayerSession.HasInstance ? PlayerSession.Instance.CurrentPlayer : null;
         if (player == null)
@@ -204,40 +241,13 @@ public class ShopWindow : AWindowController<ShopWindowProperties>
         }
 
         m_IsPurchasing = true;
-        try
-        {
-            PlayerData updated = await PlayerSession.Instance.PurchaseShopItemAsync(
-                target.CatalogType,
-                target.Id,
-                player.Revision,
-                this.GetCancellationTokenOnDestroy());
-            ALog.Log(
-                $"商城购买成功: 品类={target.CatalogType}, Id={target.Id}, Name={target.Name}, 价格={target.PriceGold}, 余额={updated.Gold}",
-                ALogCategories.UI);
-            category.InvalidateCache();
-            await category.BindAsync(m_ListController, OnShopItemClicked)
-                .AttachExternalCancellation(this.GetCancellationTokenOnDestroy());
-        }
-        catch (OperationCanceledException)
-        {
-        }
-        catch (BackendApiException exception)
-        {
-            ALog.LogError(
-                $"商城购买失败: 品类={target.CatalogType}, Id={target.Id}, Name={target.Name}, Code={exception.Code}, Status={exception.StatusCode}",
-                ALogCategories.UI);
-            ShowMessage(exception.Code == "INSUFFICIENT_GOLD" ? "金币不足" : exception.Message);
-        }
-        finally
-        {
-            m_IsPurchasing = false;
-        }
-    }
+        await RunGuardedAsync(
+            token => PlayerSession.Instance.PurchaseShopItemAsync(target.CatalogType, target.Id, token),
+            $"商城购买 {target.CatalogType}/{target.Id}",
+            "购买失败，请稍后重试");
+        if (this == null || !IsOpened) return;
 
-    void ShowMessage(string message)
-    {
-        m_UIFrame.OpenWindow(
-            AddressKeys.Prefab.MessageWindow,
-            new MessageWindowProperties(message, 2f));
+        m_IsPurchasing = false;
+        TryRefresh();
     }
 }

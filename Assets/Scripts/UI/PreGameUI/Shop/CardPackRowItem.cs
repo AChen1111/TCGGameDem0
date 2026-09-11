@@ -10,21 +10,6 @@ public class CardPackRowItem : MonoBehaviour, IRowItem<ShopCardItemData>
 
     public void SetRowData(int rowIndex, List<ShopCardItemData> allData, int selectedIndex, Action<int> onSelected)
     {
-        if (m_ShopCardItems == null) return;
-        int count = m_ShopCardItems.Length;
-        for (int i = 0; i < count; i++)
-        {
-            if (m_ShopCardItems[i] == null) continue;
-            int realIndex = rowIndex * count + i;
-            if (allData != null && realIndex < allData.Count)
-            {
-                m_ShopCardItems[i].gameObject.SetActive(true);
-                m_ShopCardItems[i].SetData(allData[realIndex], selectedIndex == realIndex, onSelected);
-            }
-            else
-            {
-                m_ShopCardItems[i].gameObject.SetActive(false);
-            }
-        }
+        ShopItemRow.Bind(m_ShopCardItems, rowIndex, allData, onSelected, static (item, data, selected) => item.SetData(data, selected));
     }
 }

@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
+using AChen.Events;
 
 /// <summary>
 /// UI 层基类。打开、关闭等逻辑由子类实现。
@@ -21,6 +22,12 @@ public abstract class AUILayer<TScreen> : MonoBehaviour where TScreen : IUIScree
     /// <summary>初始化本层。</summary>
     public virtual void Initialize() {
         registeredScreens = new Dictionary<string, TScreen>();
+        EventCenter.RemoveListener(UIEvent.ScreenDestroyed, OnScreenDestroyed);
+        EventCenter.AddListener(UIEvent.ScreenDestroyed, OnScreenDestroyed);
+    }
+
+    protected virtual void OnDestroy() {
+        EventCenter.RemoveListener(UIEvent.ScreenDestroyed, OnScreenDestroyed);
     }
 
     /// <summary>把界面挂到本层 Transform 下。</summary>
@@ -35,10 +42,11 @@ public abstract class AUILayer<TScreen> : MonoBehaviour where TScreen : IUIScree
     /// <param name="controller">控制器</param>
     public void RegisterScreen(string screenId, TScreen controller) {
         if (!registeredScreens.ContainsKey(screenId)) {
-            ProcessScreenRegister(screenId, controller);
+            controller.ScreenId = screenId;
+            registeredScreens.Add(screenId, controller);
         }
         else {
-            Debug.LogError("[AUILayerController] Screen controller already registered for id: " + screenId);
+            Debug.LogError("[AUILayer] Screen controller already registered for id: " + screenId);
         }
     }
 
@@ -47,10 +55,10 @@ public abstract class AUILayer<TScreen> : MonoBehaviour where TScreen : IUIScree
     /// <param name="controller">控制器</param>
     public void UnregisterScreen(string screenId, TScreen controller) {
         if (registeredScreens.ContainsKey(screenId)) {
-            ProcessScreenUnregister(screenId, controller);
+            registeredScreens.Remove(screenId);
         }
         else {
-            Debug.LogError("[AUILayerController] Screen controller not registered for id: " + screenId);
+            Debug.LogError("[AUILayer] Screen controller not registered for id: " + screenId);
         }
     }
 
@@ -62,7 +70,7 @@ public abstract class AUILayer<TScreen> : MonoBehaviour where TScreen : IUIScree
             ShowScreen(ctl);
         }
         else {
-            Debug.LogError("[AUILayerController] Screen ID " + screenId + " not registered to this layer!");
+            Debug.LogError("[AUILayer] Screen ID " + screenId + " not registered to this layer!");
         }
     }
 
@@ -73,7 +81,7 @@ public abstract class AUILayer<TScreen> : MonoBehaviour where TScreen : IUIScree
             ShowScreen(ctl, properties);
         }
         else {
-            Debug.LogError("[AUILayerController] Screen ID " + screenId + " not registered!");
+            Debug.LogError("[AUILayer] Screen ID " + screenId + " not registered!");
         }
     }
 
@@ -85,7 +93,7 @@ public abstract class AUILayer<TScreen> : MonoBehaviour where TScreen : IUIScree
             HideScreen(ctl);
         }
         else {
-            Debug.LogError("[AUILayerController] Could not hide Screen ID " + screenId + " as it is not registered to this layer!");
+            Debug.LogError("[AUILayer] Could not hide Screen ID " + screenId + " as it is not registered to this layer!");
         }
     }
 
@@ -109,21 +117,11 @@ public abstract class AUILayer<TScreen> : MonoBehaviour where TScreen : IUIScree
         }
     }
 
-    protected virtual void ProcessScreenRegister(string screenId, TScreen controller) {
-        controller.ScreenId = screenId;
-        registeredScreens.Add(screenId, controller);
-        controller.ScreenDestroyed += OnScreenDestroyed;
-    }
-
-    protected virtual void ProcessScreenUnregister(string screenId, TScreen controller) {
-        controller.ScreenDestroyed -= OnScreenDestroyed;
-        registeredScreens.Remove(screenId);
-    }
-
     private void OnScreenDestroyed(IUIScreenController screen) {
         if (!string.IsNullOrEmpty(screen.ScreenId)
-            && registeredScreens.ContainsKey(screen.ScreenId)) {
-            UnregisterScreen(screen.ScreenId, (TScreen) screen);
+            && registeredScreens.TryGetValue(screen.ScreenId, out TScreen owned)
+            && ReferenceEquals(owned, screen)) {
+            registeredScreens.Remove(screen.ScreenId);
         }
     }
 }

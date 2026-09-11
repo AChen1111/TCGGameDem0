@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using AChen.Events;
+
 /// <summary>
 /// Window 基类。
 /// </summary>
@@ -30,7 +32,7 @@ public abstract class AWindowController : AUIScreenController, IWindowController
     /// 给 Inspector 绑按钮用的关闭入口。真正出栈清理走 OnClose。
     /// </summary>
     public virtual void UI_Close() {
-        CloseRequest(this);
+        EventCenter.Dispatch(UIEvent.WindowCloseRequested, (IUIScreenController)this);
     }
 
     protected override void HierarchyFixOnShow() {

@@ -425,9 +425,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7837994051919033432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e1be4fe488b94c469b7d1bcee8711fe, type: 3}
+  m_Script: {fileID: 11500000, guid: 466e0fef984508c488357309c06ea525, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: HotUpdate::AvatarShopItem
+  m_EditorClassIdentifier: HotUpdate::ShopOwnedItem
   m_BtnAll: {fileID: 706553979991881440}
   m_ImgMain: {fileID: 8917118269442963463}
   m_TxtTitle: {fileID: 1261853121834144684}

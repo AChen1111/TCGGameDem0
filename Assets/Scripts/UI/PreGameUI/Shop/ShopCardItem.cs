@@ -38,28 +38,17 @@ public class ShopCardItem : MonoBehaviour
     [SerializeField] TextMeshProUGUI m_TxtValue;
     [SerializeField] TextMeshProUGUI m_TxtRemainTime;
     // --tag_end: 自动生成--
-    private int m_Index;
-    private int m_Id;
-    private string m_Title;
-    private long m_PriceGold;
-    private Action<int> m_OnSelected;
-    public void SetData(ShopCardItemData data,bool isSelected,Action<int> onSelected)
+    ShopCardItemData m_Data;
+    Action<int> m_OnSelected;
+
+    public void SetData(ShopCardItemData data, Action<int> onSelected)
     {
+        m_Data = data;
+        m_OnSelected = onSelected;
         m_TxtTitile.text = data.Title;
         m_ImgMain.sprite = data.MainSprite;
         m_TxtValue.text = data.PriceGold.ToString("N0");
-        m_TxtRemainTime.text = FormatRemainingTime(data.EndsAt);
-        m_Index = data.Index;
-        m_Id = data.Id;
-        m_Title = data.Title;
-        m_PriceGold = data.PriceGold;
-
-        //todo:被选择效果
-        if(isSelected)
-        {
-        }
-
-        m_OnSelected = onSelected;
+        m_TxtRemainTime.text = ShopRemainingTime.Format(data.EndsAt);
     }
 
     private void Awake() {
@@ -69,35 +58,10 @@ public class ShopCardItem : MonoBehaviour
         m_BtnAll.onClick.RemoveListener(OnSelectedClick);
     }
     private void OnSelectedClick() {
+        if (m_Data == null) return;
         ALog.Log(
-            $"购买卡包点击: Id={m_Id}; Title={m_Title}; PriceGold={m_PriceGold}.",
+            $"购买卡包点击: Id={m_Data.Id}; Title={m_Data.Title}; PriceGold={m_Data.PriceGold}.",
             ALogCategories.UI);
-        m_OnSelected?.Invoke(m_Index);//通知上层点击了哪个
-    }
-
-    static string FormatRemainingTime(DateTimeOffset? endsAt)
-    {
-        if (!endsAt.HasValue)
-        {
-            return string.Empty;
-        }
-
-        TimeSpan remaining = endsAt.Value - AChen.Networking.GameConfigManager.Instance.Store.ServerNow;
-        if (remaining <= TimeSpan.Zero)
-        {
-            return "已结束";
-        }
-
-        if (remaining.TotalDays >= 1)
-        {
-            return $"{Math.Ceiling(remaining.TotalDays)}天";
-        }
-
-        if (remaining.TotalHours >= 1)
-        {
-            return $"{Math.Ceiling(remaining.TotalHours)}小时";
-        }
-
-        return $"{Math.Max(1, Math.Ceiling(remaining.TotalMinutes))}分钟";
+        m_OnSelected?.Invoke(m_Data.Index);
     }
 }

@@ -1,4 +1,4 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "UISettingsCatalog", menuName = "Addressable/UISettings Catalog")]
+[CreateAssetMenu(fileName = "UISettingsCatalog", menuName = "TCG/Addressable/UISettings Catalog")]
 public class UISettingsAddressableCatalog : AddressableCatalog<AssetReferenceUISettings> { }
