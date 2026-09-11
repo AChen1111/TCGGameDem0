@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using AChen.Events;
 using UnityEngine;
 
 /// <summary>
@@ -41,6 +42,8 @@ public class UIFrame : MonoBehaviour
 
     /// <summary>初始化 Panel / Window 两层。需要额外 Layer 时可重写。</summary>
     public virtual void Initialize() {
+        EventCenter.RemoveListener(UIEvent.WindowOpenRequested, OnWindowOpenRequested);
+        EventCenter.AddListener(UIEvent.WindowOpenRequested, OnWindowOpenRequested);
         if (panelLayer == null) {
             panelLayer = gameObject.GetComponentInChildren<PanelUILayer>(true);
             if (panelLayer == null) {
@@ -68,6 +71,15 @@ public class UIFrame : MonoBehaviour
         if (windowParaLayer == null) {
             windowParaLayer = gameObject.GetComponentInChildren<WindowParaLayer>(true);
         }
+    }
+
+    void OnDestroy() {
+        EventCenter.RemoveListener(UIEvent.WindowOpenRequested, OnWindowOpenRequested);
+    }
+
+    void OnWindowOpenRequested(UIFrame target, WindowOpenRequest request) {
+        if (target != this) return;
+        OpenWindow(request.ScreenId, request.Properties);
     }
 
     /// <summary>打开或关闭 DarkenBG 遮挡层。</summary>

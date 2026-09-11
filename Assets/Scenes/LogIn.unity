@@ -274,7 +274,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e8ef9b022b81f04cbb602bb6aa3f657, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: HotUpdate::LogInStart
+  m_EditorClassIdentifier: HotUpdate::SceneEntry
+  m_kind: 0
 --- !u!4 &1559148985
 Transform:
   m_ObjectHideFlags: 0

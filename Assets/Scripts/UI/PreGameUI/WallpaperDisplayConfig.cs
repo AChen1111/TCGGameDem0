@@ -9,7 +9,7 @@ public sealed class WallpaperDisplayOffset
     public Vector3 downOffset;
 }
 
-[CreateAssetMenu(fileName = "WallpaperDisplayConfig", menuName = "AChen/Wallpaper Display Config")]
+[CreateAssetMenu(fileName = "WallpaperDisplayConfig", menuName = "TCG/UI/Wallpaper Display Config")]
 public sealed class WallpaperDisplayConfig : ScriptableObject
 {
     [SerializeField] WallpaperDisplayOffset[] m_Items = Array.Empty<WallpaperDisplayOffset>();

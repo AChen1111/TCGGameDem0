@@ -16,12 +16,12 @@ public class WindowParaLayer : MonoBehaviour {
     }
 
     public void RefreshDarken() {
+        // 已销毁的弹窗顺手移出列表, 避免长期运行后列表堆积空引用.
+        containedScreens.RemoveAll(screen => screen == null);
         for (int i = 0; i < containedScreens.Count; i++) {
-            if (containedScreens[i] != null) {
-                if (containedScreens[i].activeSelf) {
-                    darkenBgObject.SetActive(true);
-                    return;
-                }
+            if (containedScreens[i].activeSelf) {
+                darkenBgObject.SetActive(true);
+                return;
             }
         }
 

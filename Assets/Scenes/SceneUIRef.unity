@@ -282,9 +282,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1044600055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ed3a93949c89fc4c989b89ee112acd4, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e8ef9b022b81f04cbb602bb6aa3f657, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: HotUpdate::UIStart
+  m_EditorClassIdentifier: HotUpdate::SceneEntry
+  m_kind: 1
 --- !u!4 &1044600057
 Transform:
   m_ObjectHideFlags: 0

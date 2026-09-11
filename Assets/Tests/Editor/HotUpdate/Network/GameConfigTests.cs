@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using AChen.Events;
 using AChen.Networking;
 using NUnit.Framework;
 
@@ -49,21 +50,59 @@ public sealed class GameConfigTests
     {
         var store = new GameConfigStore();
         int notifications = 0;
-        store.ConfigChanged += _ => notifications++;
+        Action<GameConfigSnapshot, bool> onChanged = (_, _) => notifications++;
+        EventCenter.AddListener(GameEvent.GameConfigChanged, onChanged);
         DateTimeOffset now = DateTimeOffset.UtcNow;
 
-        store.Replace(CreateSnapshot(1, 1000), "\"game-config-1\"", now, now, false);
-        Assert.IsTrue(store.TryGetAvatar(1, out AvatarConfig avatar));
-        Assert.AreEqual("Avatar_Default", avatar.ResourceKey);
-        Assert.IsTrue(store.TryGetWallpaper(1, out WallpaperConfig wallpaper));
-        Assert.AreEqual("Wallpaper_Default", wallpaper.ResourceKey);
-        Assert.IsTrue(store.TryGetCardPack(1001, out CardPackConfig cardPack));
-        Assert.AreEqual(1000, cardPack.PriceGold);
+        try
+        {
+            store.Replace(CreateSnapshot(1, 1000), "\"game-config-1\"", now, now, false);
+            Assert.IsTrue(store.TryGetAvatar(1, out AvatarConfig avatar));
+            Assert.AreEqual("Avatar_Default", avatar.ResourceKey);
+            Assert.IsTrue(store.TryGetWallpaper(1, out WallpaperConfig wallpaper));
+            Assert.AreEqual("Wallpaper_Default", wallpaper.ResourceKey);
+            Assert.IsTrue(store.TryGetCardPack(1001, out CardPackConfig cardPack));
+            Assert.AreEqual(1000, cardPack.PriceGold);
 
-        store.Replace(CreateSnapshot(2, 1200), "\"game-config-2\"", now, now, false);
-        Assert.AreEqual(2, store.Snapshot.Revision);
-        Assert.AreEqual(1200, store.CardPacks[1001].PriceGold);
-        Assert.AreEqual(2, notifications);
+            store.Replace(CreateSnapshot(2, 1200), "\"game-config-2\"", now, now, false);
+            Assert.AreEqual(2, store.Snapshot.Revision);
+            Assert.AreEqual(1200, store.CardPacks[1001].PriceGold);
+            Assert.AreEqual(2, notifications);
+        }
+        finally
+        {
+            EventCenter.RemoveListener(GameEvent.GameConfigChanged, onChanged);
+        }
+    }
+
+    [Test]
+    public void Store_notifies_only_when_stale_state_changes()
+    {
+        var store = new GameConfigStore();
+        var states = new List<bool>();
+        bool callbacksObservedCommittedState = true;
+        Action<GameConfigSnapshot, bool> onChanged = (snapshot, stale) =>
+        {
+            states.Add(stale);
+            callbacksObservedCommittedState &= ReferenceEquals(store.Snapshot, snapshot) && store.IsStale == stale;
+        };
+        EventCenter.AddListener(GameEvent.GameConfigChanged, onChanged);
+        try
+        {
+            DateTimeOffset now = DateTimeOffset.UtcNow;
+            store.Replace(CreateSnapshot(1, 1000), "config-1", now, now, false);
+            store.MarkStale();
+            store.MarkStale();
+            store.MarkChecked(now, now);
+            store.MarkChecked(now, now);
+
+            CollectionAssert.AreEqual(new[] { false, true, false }, states);
+            Assert.IsTrue(callbacksObservedCommittedState);
+        }
+        finally
+        {
+            EventCenter.RemoveListener(GameEvent.GameConfigChanged, onChanged);
+        }
     }
 
     [Test]

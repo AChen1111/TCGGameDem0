@@ -1,5 +1,3 @@
-﻿using System;
-
 /// <summary>
 /// 所有 UI 界面都要实现的接口。
 /// </summary>
@@ -13,8 +11,6 @@ public interface IUIScreenController
     void Hide();
     void Close();
 
-    Action<IUIScreenController> CloseRequest { get; set; }
-    Action<IUIScreenController> ScreenDestroyed { get; set; }
 }
 
 /// <summary>

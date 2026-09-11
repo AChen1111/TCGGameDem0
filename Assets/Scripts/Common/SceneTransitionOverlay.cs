@@ -1,7 +1,9 @@
 using System;
 using LitMotion;
+using AChen.Events;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 跨场景加载界面.切场景前显示 LoadIN,目标界面就绪后淡出并隐藏。
@@ -14,6 +16,25 @@ public static class SceneTransitionOverlay
     static CanvasGroup s_canvasGroup;
 
     public static bool IsVisible => s_root != null && s_root.activeSelf;
+
+    public static void Initialize()
+    {
+        EventCenter.RemoveListener(GameEvent.SceneLoadStarted, OnSceneLoadStarted);
+        EventCenter.RemoveListener(GameEvent.SceneLoadFailed, OnSceneLoadFailed);
+        EventCenter.RemoveListener(GameEvent.LobbyEntering, Show);
+        EventCenter.RemoveListener(GameEvent.LobbyEntryFailed, OnLobbyEntryFailed);
+        EventCenter.AddListener(GameEvent.SceneLoadStarted, OnSceneLoadStarted);
+        EventCenter.AddListener(GameEvent.SceneLoadFailed, OnSceneLoadFailed);
+        EventCenter.AddListener(GameEvent.LobbyEntering, Show);
+        EventCenter.AddListener(GameEvent.LobbyEntryFailed, OnLobbyEntryFailed);
+    }
+
+    static void OnSceneLoadStarted(string sceneName, LoadSceneMode loadMode)
+    {
+        if (loadMode == LoadSceneMode.Single) Show();
+    }
+    static void OnSceneLoadFailed(string sceneName, Exception exception) => Hide();
+    static void OnLobbyEntryFailed(string message) => Hide();
 
     public static void Show()
     {
@@ -76,20 +97,13 @@ public static class SceneTransitionOverlay
         canvas.sortingOrder = SortingOrder;
 
         s_canvasGroup = s_root.GetComponent<CanvasGroup>();
-        if (s_canvasGroup == null)
-        {
-            s_canvasGroup = s_root.AddComponent<CanvasGroup>();
-        }
 
         Image background = s_root.GetComponentInChildren<Image>(true);
-        if (background != null)
-        {
-            RectTransform rect = background.rectTransform;
-            rect.anchorMin = Vector2.zero;
-            rect.anchorMax = Vector2.one;
-            rect.offsetMin = Vector2.zero;
-            rect.offsetMax = Vector2.zero;
-        }
+        RectTransform rect = background.rectTransform;
+        rect.anchorMin = Vector2.zero;
+        rect.anchorMax = Vector2.one;
+        rect.offsetMin = Vector2.zero;
+        rect.offsetMax = Vector2.zero;
 
         s_root.SetActive(false);
     }

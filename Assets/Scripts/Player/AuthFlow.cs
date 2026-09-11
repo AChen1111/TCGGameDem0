@@ -46,7 +46,7 @@ namespace AChen.Player
                 return "密码长度需为 8-128 位";
             }
 
-            if (mode == AuthMode.Register && StringValidator.IsWeakPassword(password))
+            if (mode == AuthMode.Register && IsWeakPassword(password))
             {
                 return "密码过弱";
             }
@@ -57,6 +57,20 @@ namespace AChen.Player
             }
 
             return null;
+        }
+
+        /// <summary>密码至少同时包含字母与非字母字符.</summary>
+        static bool IsWeakPassword(string value)
+        {
+            bool hasLetter = false;
+            bool hasNumberOrSymbol = false;
+            foreach (char character in value)
+            {
+                if (char.IsLetter(character)) hasLetter = true;
+                else hasNumberOrSymbol = true;
+            }
+
+            return !hasLetter || !hasNumberOrSymbol;
         }
 
         /// <summary>调用 PlayerSession 完成登录或注册。取消时抛出 OperationCanceledException，其余后端错误转为失败结果。</summary>

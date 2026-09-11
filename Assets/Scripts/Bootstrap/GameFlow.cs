@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using AChen.Events;
 using AChen.Networking;
 using AChen.Player;
 using Cysharp.Threading.Tasks;
@@ -9,6 +10,33 @@ using Cysharp.Threading.Tasks;
 /// </summary>
 public static class GameFlow
 {
+    static bool s_enteringLobby;
+
+    public static void Initialize()
+    {
+        EventCenter.RemoveListener(GameEvent.PlayerLoggedIn, OnAuthenticated);
+        EventCenter.RemoveListener(GameEvent.PlayerRegistered, OnAuthenticated);
+        EventCenter.RemoveListener(GameEvent.GameExitRequested, OnExitRequested);
+        EventCenter.AddListener(GameEvent.PlayerLoggedIn, OnAuthenticated);
+        EventCenter.AddListener(GameEvent.PlayerRegistered, OnAuthenticated);
+        EventCenter.AddListener(GameEvent.GameExitRequested, OnExitRequested);
+        SceneTransitionOverlay.Initialize();
+    }
+
+    [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetState() => s_enteringLobby = false;
+
+    static void OnExitRequested()
+    {
+        ALog.Log("收到退出请求, 结束游戏.", ALogCategories.UI);
+        UnityEngine.Application.Quit();
+    }
+
+    static void OnAuthenticated(AuthUser user, PlayerData player)
+    {
+        EnterLobbyAsync().Forget();
+    }
+
     public static async UniTask<string> GetStartupSceneAsync(CancellationToken cancellationToken)
     {
         try
@@ -43,20 +71,26 @@ public static class GameFlow
     }
 
     /// <summary>
-    /// 显示遮挡层并切换到大厅场景。失败时收回遮挡层并抛出，由调用方决定提示方式。
+    /// 登录状态通知驱动大厅流程; UI 通过流程事件更新忙碌状态与错误提示.
     /// </summary>
-    public static async UniTask EnterLobbyAsync()
+    static async UniTaskVoid EnterLobbyAsync()
     {
+        if (s_enteringLobby) return;
+        s_enteringLobby = true;
+        EventCenter.Dispatch(GameEvent.LobbyEntering);
         try
         {
-            SceneTransitionOverlay.Show();
             await GameConfigManager.Instance.InitializeAsync();
             await SceneLoader.LoadScene(AddressKeys.Scene.GameScene);
         }
-        catch
+        catch (Exception exception)
         {
-            SceneTransitionOverlay.Hide();
-            throw;
+            s_enteringLobby = false;
+            ALog.LogError($"登录后进入大厅失败. Error={exception.Message}", ALogCategories.UI);
+            EventCenter.Dispatch(GameEvent.LobbyEntryFailed, exception.Message);
+            return;
         }
+        s_enteringLobby = false;
+        EventCenter.Dispatch(GameEvent.LobbyEntered);
     }
 }

@@ -3,10 +3,10 @@
 | 操作 | 方式 |
 | --- | --- |
 | 打开项目 | Unity `6000.5.2f1` |
-| 启动后端 | Unity 菜单 `Tools/AChen/启动后端服务`，或执行 `dotnet run --project Backend/src/AChen.Backend.Api` |
+| 启动后端 | Unity 菜单 `Tools/后端服务/启动`，或执行 `dotnet run --project Backend/src/AChen.Backend.Api` |
 | 检查后端 | `http://127.0.0.1:5080/health`；就绪检查为 `/ready` |
 | 运行游戏 | 从唯一构建场景 `Assets/Scenes/PreInit.unity` 进入 Play Mode |
-| 发布内容 | 设置 `ACHEN_CONTENT_PUBLISH_KEY`，执行 `Tools/HotUpdate/Build And Publish Release` |
+| 发布内容 | 设置 `ACHEN_CONTENT_PUBLISH_KEY`，执行 `Tools/热更发布/Build And Publish Release` |
 | 后端测试 | `dotnet test Backend/AChen.Backend.sln` |
 | Unity 自动化 | 参考 [Unity Pipeline](../unity-pipeline/index.md) |
 

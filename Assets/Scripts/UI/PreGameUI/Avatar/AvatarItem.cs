@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>一行一个头像.预制体挂 LoopListViewItem2 和本脚本,供 GridListController 复用.</summary>
-public class AvatarItem : MonoBehaviour, IRowItem<AvatarItemData>
+public class AvatarItem : MonoBehaviour, IRowItem<ShopOwnedItemData>
 {
     [SerializeField] Button m_BtnAll; // 整行点击热区,回传当前行下标
     [SerializeField] Image m_ImgMain; // 头像图,由 SetRowData 赋 Sprite
@@ -19,11 +19,11 @@ public class AvatarItem : MonoBehaviour, IRowItem<AvatarItemData>
 
     public int RowCardCount => 1;
 
-    public void SetRowData(int rowIndex, List<AvatarItemData> allData, int selectedIndex, Action<int> onSelected)
+    public void SetRowData(int rowIndex, List<ShopOwnedItemData> allData, int selectedIndex, Action<int> onSelected)
     {
         m_Index = rowIndex;
         m_OnSelected = onSelected;
-        AvatarItemData data = allData[rowIndex];
+        ShopOwnedItemData data = allData[rowIndex];
         m_ImgMain.sprite = data.Sprite;
         m_Owned = data.Owned;
 

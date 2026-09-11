@@ -4,7 +4,7 @@ using Debug = UnityEngine.Debug;
 /// <summary>
 /// 分类日志系统的运行时入口:给消息加上分类前缀后写入 Unity 控制台。
 /// 使用 ALog.Log / LogWarning / LogError 写入日志,分类取 ALogCategories 中的常量。
-/// 日志的浏览、过滤、跳转由内置 Console 工具栏上的 ALog 按钮提供(见 LogSystem/Editor)。
+/// 日志的浏览、过滤、跳转由内置 Console 工具栏上的 ALog 按钮提供(见 Scripts/Editor/LogSystem)。
 /// </summary>
 public static class ALog
 {

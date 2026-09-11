@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using SuperScrollView;
@@ -17,34 +18,47 @@ public class GridListController : MonoBehaviour
     private Func<LoopListView2, int, LoopListViewItem2> mOnGetItemHandler;
     private MotionHandle m_MoveToSelectedHandle;
     private string mCurrentPrefabName;
+    int m_bindVersion;
     public int SelectedIndex => mSelectedIndex;
 
-    //todo:明天审一下
     // 热更里泛型 async 实例方法会丢 <>4__this,所以异步加载和泛型绑定拆开
     public UniTask InitList<TData>(
         string rowPrefabKey,
         List<TData> dataList,
         Action<int> onSelected = null,
-        int selectedIndex = -1)
+        int selectedIndex = -1,
+        CancellationToken cancellationToken = default)
     {
+        int version = ++m_bindVersion;
         CancelMoveToSelected();
-        mOnSelectedCallback = onSelected;
-        mSelectedIndex = selectedIndex >= 0 && dataList != null && selectedIndex < dataList.Count
-            ? selectedIndex
-            : -1;
-        return LoadRowPrefabAsync(rowPrefabKey).ContinueWith(prefab => BindList(prefab, dataList));
+        return LoadRowPrefabAsync(rowPrefabKey, cancellationToken).ContinueWith(prefab =>
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (this == null || version != m_bindVersion)
+            {
+                throw new OperationCanceledException();
+            }
+
+            mOnSelectedCallback = onSelected;
+            mSelectedIndex = selectedIndex >= 0 && selectedIndex < dataList.Count
+                ? selectedIndex
+                : -1;
+            BindList(prefab, dataList);
+        });
     }
 
-    async UniTask<GameObject> LoadRowPrefabAsync(string rowPrefabKey)
+    async UniTask<GameObject> LoadRowPrefabAsync(string rowPrefabKey, CancellationToken cancellationToken)
     {
-        return await AddressableLoader.Instance.LoadPrefab(rowPrefabKey);
+        return await AddressableLoader.Instance.LoadPrefab(rowPrefabKey)
+            .AttachExternalCancellation(cancellationToken);
     }
 
     void BindList<TData>(GameObject prefab, List<TData> dataList)
     {
-        var rowItemComp = prefab.GetComponent<IRowItem<TData>>();
-        int rowCardCount = rowItemComp != null ? rowItemComp.RowCardCount : 1;
-        if (rowCardCount <= 0) rowCardCount = 1;
+        var rowItemComp = prefab.GetComponent<IRowItem<TData>>()
+            ?? throw new InvalidOperationException($"列表预制体缺少对应行类型: Prefab={prefab.name}; Data={typeof(TData).Name}");
+        int rowCardCount = rowItemComp.RowCardCount;
+        if (rowCardCount <= 0) throw new InvalidOperationException($"列表每行数量必须大于 0: Prefab={prefab.name}");
         mRowCardCount = rowCardCount;
 
         if (loopListView.GetItemPrefabConfData(prefab.name) == null)
@@ -64,17 +78,17 @@ public class GridListController : MonoBehaviour
         }
 
         string prefabName = prefab.name;
-        int totalCount = dataList != null ? dataList.Count : 0;
+        int totalCount = dataList.Count;
         int rowCount = Mathf.CeilToInt((float)totalCount / rowCardCount);
 
         mOnGetItemHandler = (listView, rowIndex) =>
         {
-            if (rowIndex < 0 || rowIndex >= Mathf.CeilToInt((float)(dataList != null ? dataList.Count : 0) / rowCardCount))
+            if (rowIndex < 0 || rowIndex >= Mathf.CeilToInt((float)dataList.Count / rowCardCount))
                 return null;
 
             LoopListViewItem2 item = listView.NewListViewItem(prefabName);
             var row = item.GetComponent<IRowItem<TData>>();
-            row?.SetRowData(rowIndex, dataList, mSelectedIndex, OnCardSelected);
+            row.SetRowData(rowIndex, dataList, mSelectedIndex, OnCardSelected);
             return item;
         };
 
@@ -138,6 +152,16 @@ public class GridListController : MonoBehaviour
             .AddTo(this);
     }
 
+    public void ClearList()
+    {
+        m_bindVersion++;
+        CancelMoveToSelected();
+        mOnSelectedCallback = null;
+        mOnGetItemHandler = null;
+        mSelectedIndex = -1;
+        if (mIsInited) loopListView.SetListItemCount(0, false);
+    }
+
     void CancelMoveToSelected()
     {
         m_MoveToSelectedHandle.TryCancel();
@@ -145,6 +169,13 @@ public class GridListController : MonoBehaviour
 
     void OnDestroy()
     {
+        m_bindVersion++;
+        CancelMoveToSelected();
+    }
+
+    void OnDisable()
+    {
+        m_bindVersion++;
         CancelMoveToSelected();
     }
 

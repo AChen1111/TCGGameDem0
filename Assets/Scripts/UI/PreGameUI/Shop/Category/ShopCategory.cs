@@ -1,6 +1,8 @@
 using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 
+/// <summary>与后端购买接口约定的品类标识.</summary>
 public static class ShopCatalogTypes
 {
     public const string Avatar = "avatar";
@@ -26,34 +28,26 @@ public readonly struct ShopPurchaseTarget
 }
 
 /// <summary>
-/// 商城的一个商品品类.GridListController.InitList 是泛型方法,窗口层无法多态调用,
-/// 所以把具体数据类型收在子类的 BindAsync 里,窗口层只面对这个非泛型基类.
+/// 商城的一个商品品类. GridListController.InitList 是泛型方法, 在热更里无法动态构造,
+/// 所以把具体数据类型的绑定封装在 BindAsync 里, 窗口侧只面向非泛型基类.
 /// </summary>
 public abstract class ShopCategory
 {
-    protected readonly IShopDataSource DataSource;
-
-    protected ShopCategory(IShopDataSource dataSource)
-    {
-        DataSource = dataSource;
-    }
-
-    /// <summary>行预制体的 Addressable key.</summary>
-    public abstract string RowPrefabKey { get; }
-
-    /// <summary>品类名,仅用于日志.</summary>
+    /// <summary>品类名, 只用于日志.</summary>
     public abstract string DisplayName { get; }
 
-    /// <summary>拉数据并绑到列表上.数据首次加载后由子类缓存,再次切回不重复拉取.</summary>
-    public abstract UniTask BindAsync(GridListController list, Action<int> onSelected);
+    /// <summary>对应的后端品类标识; 不可购买的品类为 null.</summary>
+    public virtual string CatalogType => null;
+
+    /// <summary>用当前配置和玩家资产生成列表; 图片经 AddressableLoader 加载.</summary>
+    public abstract UniTask BindAsync(
+        GridListController list,
+        Action<int> onSelected,
+        CancellationToken cancellationToken = default);
 
     public virtual bool TryGetPurchaseTarget(int index, out ShopPurchaseTarget target)
     {
         target = default;
         return false;
-    }
-
-    public virtual void InvalidateCache()
-    {
     }
 }

@@ -179,12 +179,25 @@ public class AddressableLoader : PersistentMonoSingleton<AddressableLoader>
     {
         if (cache.TryGetValue(assetName, out var existing) && existing.IsValid())
         {
-            return existing.Result;
+            // 多个事件订阅者可能同时请求同一资源,等待共享句柄完成.
+            return await existing.Task;
         }
 
         var handle = Addressables.LoadAssetAsync<TAsset>(catalog.Get(assetName));
         cache[assetName] = handle;
-        return await handle.Task;
+        try
+        {
+            return await handle.Task;
+        }
+        catch
+        {
+            if (cache.TryGetValue(assetName, out var cached) && cached.Equals(handle))
+            {
+                cache.Remove(assetName);
+                if (handle.IsValid()) Addressables.Release(handle);
+            }
+            throw;
+        }
     }
 
     static async UniTask<SceneInstance> AwaitScene(

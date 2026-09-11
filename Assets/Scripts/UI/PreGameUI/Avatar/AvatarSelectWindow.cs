@@ -1,28 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using AChen.Events;
 using AChen.Networking;
 using AChen.Player;
 using Cysharp.Threading.Tasks;
 using LitMotion;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>开窗参数.外部 OpenWindow(id, new AvatarSelectWindowProperties(list)).</summary>
-public sealed class AvatarSelectWindowProperties : IWindowProperties
-{
-    public List<AvatarItemData> Avatars { get; }
-    public int SelectedIndex { get; }
-
-    public AvatarSelectWindowProperties(List<AvatarItemData> avatars, int selectedIndex = -1)
-    {
-        Avatars = avatars;
-        SelectedIndex = selectedIndex;
-    }
-}
-
-/// <summary>头像选择窗口.OnOpen 读取 Properties 填列表,确认按钮取当前选中项.</summary>
-public class AvatarSelectWindow : AWindowController<AvatarSelectWindowProperties>
+/// <summary>头像选择窗口, 根据玩家资产和配置变化刷新可选头像.</summary>
+public class AvatarSelectWindow : AWindowController
 {
     [SerializeField] GridListController m_AvatarListController;
     [SerializeField] Button m_BtnConfirm;
@@ -30,25 +18,39 @@ public class AvatarSelectWindow : AWindowController<AvatarSelectWindowProperties
     [SerializeField] float m_ScrollToSelectedDuration = 0.25f;
     [SerializeField] Ease m_ScrollToSelectedEase = Ease.InOutCubic;
 
+    List<ShopOwnedItemData> m_avatars;
+    Guid? m_playerId;
+    int? m_selectedAvatarId;
+    bool m_isLoading;
+    bool m_isSubmitting;
+    bool m_loadFailureShown;
+    GameConfigSnapshot m_configSnapshot;
+    CancellationTokenSource m_loadCancellation;
+
     protected override void AddListeners()
     {
         m_BtnConfirm.onClick.AddListener(OnConfirmClick);
-        m_BtnClose.onClick.AddListener(OnCloseClick);
-    }
-
-    private void OnCloseClick()
-    {
-        UI_Close();
+        m_BtnClose.onClick.AddListener(UI_Close);
     }
 
     protected override void RemoveListeners()
     {
+        StopObserving();
         m_BtnConfirm.onClick.RemoveListener(OnConfirmClick);
-        m_BtnClose.onClick.RemoveListener(OnCloseClick);
+        m_BtnClose.onClick.RemoveListener(UI_Close);
     }
 
     protected override void OnOpen()
     {
+        PlayerData player = PlayerSession.HasInstance ? PlayerSession.Instance.CurrentPlayer : null;
+        m_playerId = player?.Id;
+        m_selectedAvatarId = player?.AvatarId;
+        m_avatars = null;
+        m_isSubmitting = false;
+        m_loadFailureShown = false;
+        m_configSnapshot = GameConfigManager.HasInstance ? GameConfigManager.Instance.Store.Snapshot : null;
+        EventCenter.AddListener(GameEvent.PlayerOwnedAvatarsChanged, OnInventoryChanged);
+        EventCenter.AddListener(GameEvent.GameConfigChanged, OnGameConfigChanged);
         BindList();
     }
 
@@ -56,41 +58,131 @@ public class AvatarSelectWindow : AWindowController<AvatarSelectWindowProperties
     {
         BindList();
     }
-    [Button("重试特效")]
+
+    protected override void OnHide()
+    {
+        CancelListLoad();
+    }
+
+    protected override void OnClose()
+    {
+        StopObserving();
+    }
+
+    void StopObserving()
+    {
+        EventCenter.RemoveListener(GameEvent.PlayerOwnedAvatarsChanged, OnInventoryChanged);
+        EventCenter.RemoveListener(GameEvent.GameConfigChanged, OnGameConfigChanged);
+        CancelListLoad();
+    }
+
+    void CancelListLoad()
+    {
+        m_loadCancellation?.Cancel();
+        m_loadCancellation?.Dispose();
+        m_loadCancellation = null;
+    }
+
+    void OnInventoryChanged(PlayerData player)
+    {
+        if (m_playerId != player?.Id)
+        {
+            m_playerId = player?.Id;
+            m_selectedAvatarId = player?.AvatarId;
+        }
+        BindList();
+    }
+
+    void OnGameConfigChanged(GameConfigSnapshot snapshot, bool isStale)
+    {
+        if (ReferenceEquals(m_configSnapshot, snapshot)) return;
+        m_configSnapshot = snapshot;
+        BindList();
+    }
+
     void BindList()
     {
-        BindListAsync().Forget();
+        if (!IsVisible || !IsOpened) return;
+        CancelListLoad();
+        m_loadCancellation = CancellationTokenSource.CreateLinkedTokenSource(ScreenToken);
+        BindListAsync(m_loadCancellation.Token).Forget();
     }
 
-    async UniTask BindListAsync()
+    // 列表加载与提交分开取消: 隐藏或重新刷新只取消加载, 提交随窗口关闭取消.
+    async UniTask BindListAsync(CancellationToken token)
     {
-        List<AvatarItemData> avatars = Properties.Avatars;
-        int selectedId = -1;
-        if (avatars != null && Properties.SelectedIndex >= 0 && Properties.SelectedIndex < avatars.Count)
+        m_isLoading = true;
+        UpdateConfirmButton();
+        try
         {
-            selectedId = avatars[Properties.SelectedIndex].Id;
+            PlayerData player = PlayerSession.HasInstance ? PlayerSession.Instance.CurrentPlayer : null;
+            List<ShopOwnedItemData> avatars = player == null
+                ? new List<ShopOwnedItemData>()
+                : await ShopCatalogQuery.LoadCosmeticsAsync(ShopCatalogTypes.Avatar, visibleOnly: false, cancellationToken: token);
+            token.ThrowIfCancellationRequested();
+            SortOwnedThenId(avatars);
+            int selected = avatars.FindIndex(item => item.Owned && item.Id == m_selectedAvatarId);
+            if (selected < 0)
+            {
+                selected = avatars.FindIndex(item => item.Owned && item.Id == player?.AvatarId);
+            }
+
+            await m_AvatarListController.InitList(
+                AddressKeys.Prefab.AvatarItemPrefab,
+                avatars,
+                OnAvatarSelected,
+                selected,
+                cancellationToken: token);
+            token.ThrowIfCancellationRequested();
+            m_avatars = avatars;
+            m_selectedAvatarId = selected >= 0 ? avatars[selected].Id : (int?)null;
+            // 等列表首帧创建可视行; 关闭或新刷新会取消旧加载, 避免回写过期列表.
+            await UniTask.Yield(cancellationToken: token);
+            token.ThrowIfCancellationRequested();
+            m_AvatarListController.MoveToSelectedIfHidden(m_ScrollToSelectedDuration, m_ScrollToSelectedEase);
+            m_loadFailureShown = false;
         }
-
-        SortOwnedThenId(avatars);
-        int selected = selectedId < 0 || avatars == null
-            ? -1
-            : avatars.FindIndex(item => item.Id == selectedId);
-
-        await m_AvatarListController.InitList(AddressKeys.Prefab.AvatarItemPrefab, avatars, null, selected);
-        // 等列表首帧把可视行创建出来,再判断预选项是否在视口外.
-        await UniTask.Yield();
-        if (m_AvatarListController == null) return;
-        m_AvatarListController.MoveToSelectedIfHidden(m_ScrollToSelectedDuration, m_ScrollToSelectedEase);
+        catch (OperationCanceledException)
+        {
+        }
+        catch (Exception exception)
+        {
+            if (token.IsCancellationRequested) return;
+            m_avatars = null;
+            ALog.LogError($"头像列表加载失败: Error={exception.Message}", ALogCategories.UI);
+            // 恢复窗口会重新加载, 同一次失败只弹一次提示, 避免错误弹窗循环.
+            if (!m_loadFailureShown)
+            {
+                m_loadFailureShown = true;
+                ShowMessage("头像列表加载失败，请稍后重试");
+            }
+        }
+        finally
+        {
+            if (this != null && !token.IsCancellationRequested)
+            {
+                m_isLoading = false;
+                UpdateConfirmButton();
+            }
+        }
     }
 
-    // 已拥有在前,同组再按 Id
-    static void SortOwnedThenId(List<AvatarItemData> avatars)
+    void OnAvatarSelected(int index)
     {
-        if (avatars == null || avatars.Count <= 1)
-        {
-            return;
-        }
+        if (m_isLoading || m_avatars == null || index < 0 || index >= m_avatars.Count) return;
+        m_selectedAvatarId = m_avatars[index].Id;
+        UpdateConfirmButton();
+    }
 
+    void UpdateConfirmButton()
+    {
+        m_BtnConfirm.interactable = !m_isLoading && !m_isSubmitting && m_avatars != null &&
+                                   m_avatars.Exists(item => item.Owned && item.Id == m_selectedAvatarId);
+    }
+
+    // 已拥有在前, 同组再按 Id
+    static void SortOwnedThenId(List<ShopOwnedItemData> avatars)
+    {
         avatars.Sort(static (a, b) =>
         {
             int owned = b.Owned.CompareTo(a.Owned);
@@ -105,56 +197,24 @@ public class AvatarSelectWindow : AWindowController<AvatarSelectWindowProperties
 
     async UniTaskVoid SubmitAsync()
     {
-        int index = m_AvatarListController.SelectedIndex;
-        List<AvatarItemData> avatars = Properties.Avatars;
-        if (avatars == null || index < 0 || index >= avatars.Count)
+        if (m_isLoading || m_isSubmitting || !IsOpened) return;
+        ShopOwnedItemData selected = m_avatars?.Find(item => item.Id == m_selectedAvatarId);
+        if (selected == null || !selected.Owned)
         {
-            ALog.LogWarning("确认头像失败: 未选中", ALogCategories.UI);
+            ALog.LogWarning($"确认头像失败: Id={selected?.Id}, 原因={(selected == null ? "未选中" : "未拥有")}", ALogCategories.UI);
             return;
         }
 
-        AvatarItemData selected = avatars[index];
-        // 列表点击已拦掉未拥有项,但预选下标由外部传入,这里兜一层避免确认到未拥有的头像.
-        if (!selected.Owned)
-        {
-            ALog.LogWarning($"确认头像失败: Id={selected.Id}, 原因=未拥有", ALogCategories.UI);
-            return;
-        }
+        m_isSubmitting = true;
+        UpdateConfirmButton();
+        bool succeeded = await RunGuardedAsync(
+            token => PlayerSession.Instance.SetAvatarAsync(selected.Id, token),
+            "修改头像",
+            "修改头像失败，请稍后重试");
+        if (this == null || !IsOpened) return;
 
-        PlayerData player = PlayerSession.HasInstance ? PlayerSession.Instance.CurrentPlayer : null;
-        if (player == null)
-        {
-            ShowMessage("修改头像失败");
-            return;
-        }
-
-        try
-        {
-            await PlayerSession.Instance.UpdatePlayerProfileAsync(
-                player.Nickname,
-                selected.Id,
-                player.BackgroundId,
-                player.Revision,
-                this.GetCancellationTokenOnDestroy());
-            ALog.Log($"确认头像成功: Id={selected.Id}, Name={selected.Name}", ALogCategories.UI);
-            UI_Close();
-        }
-        catch (BackendApiException exception)
-        {
-            ALog.LogError(
-                $"修改头像失败. Code={exception.Code}; Status={exception.StatusCode}",
-                ALogCategories.UI);
-            ShowMessage(exception.Message);
-        }
-        catch (OperationCanceledException)
-        {
-        }
-    }
-
-    void ShowMessage(string message)
-    {
-        m_UIFrame.OpenWindow(
-            AddressKeys.Prefab.MessageWindow,
-            new MessageWindowProperties(message, 2f));
+        m_isSubmitting = false;
+        UpdateConfirmButton();
+        if (succeeded) UI_Close();
     }
 }
