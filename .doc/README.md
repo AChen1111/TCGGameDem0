@@ -1,8 +1,9 @@
 # 文档索引
 
-| 分类 | 文档入口 |
+| 分类 | 入口 |
 | --- | --- |
-| 项目架构与操作 | [project/README.md](project/README.md) |
+| 系统架构与操作 | [project/README.md](project/README.md) |
+| 架构总览 | [project/architecture.md](project/architecture.md) |
 | 后端 API | [backend/api/README.md](backend/api/README.md) |
 | Unity Pipeline | [unity-pipeline/index.md](unity-pipeline/index.md) |
 | Unity Pipeline 命令目录 | [unity-pipeline/TableOfContents.md](unity-pipeline/TableOfContents.md) |

@@ -1,14 +1,16 @@
-# 游戏王决斗系统架构：UDP 确定性帧同步
+# 决斗系统架构
 
-> 更新：2026-09-09。设计文档，尚未实现。
+> 更新：2026-09-09。设计规格，代码尚未落地。整体分层与现有 HTTP 后端的关系见 [系统架构](architecture.md)。
 >
-> 已确认：经典确定性输入帧同步，自研 UDP；服务器与双方客户端运行同一套完整规则。服务器决定封帧顺序并运行参考副本，不是只向客户端下发状态结果。后端只支持对决，不建设账号、商城、匹配大厅。
+> 同步方式是经典确定性输入帧同步，传输自研 UDP。服务器与双方客户端运行同一套完整规则：服务器决定封帧顺序并运行参考副本，客户端按同一份输入自行计算，而不是只接收场面快照。
 >
-> 使用边界：可信好友原型。双方客户端持有或能推导完整手牌、牌库顺序和随机状态，UI 隐藏不构成保密。用户已接受这一限制；本方案不承诺防作弊或公网安全。
+> 首版只做对决会话。账号、商城、匹配大厅仍由现有 HTTP 后端承担，决斗服务不复用那套 JWT / SQLite 启动依赖。
 >
-> 本文保留卡牌、回合、响应、卡效扩展、重连和回放的必要模型；优先复用与可理解性，不追求高性能。只修改文档，不删除现有后端功能，也不新增代码或运行编译、测试。
+> 使用边界是可信好友原型。三端持有或能推导完整手牌、牌库顺序和随机状态；UI 按席位隐藏信息，不构成保密。本规格不承诺防作弊或公网安全。
+>
+> 本文给出卡牌、回合、响应、卡效扩展、重连和回放的必要模型。优先复用与可理解性，不追求高性能。现有登录、内容发布和数据库能力保持独立。
 
-本文说明完整系统怎样组织；[英雄卡组逐卡建模与效果响应手册](hero-card-modeling.md)说明 19 种卡分别怎样定义、每个效果如何发动和处理。两份文档配套使用，不把逐卡实现细节缩成一个通用 OnUse。
+系统怎样分层写在这里；19 种卡分别怎样定义、每个效果如何发动和处理，见 [英雄卡组手册](hero-card-modeling.md)。两份文档配套使用，不把逐卡细节缩成一个通用 `OnUse`。
 
 ## 1. 首版到底做什么
 
@@ -28,22 +30,22 @@
 
 同步策略采用服务器协调的确定性 lockstep：发同一份输入，各端自行计算，而不是持续同步场面。服务器截止封帧，不要求每帧等齐两人明确发来的操作；客户端只能执行已封口的完整帧。[N1]
 
-规则目标仍是 Master Duel 的实际行为，但当前只有项目静态资料与官方 OCG / TCG 参考。未经实机确认的差异必须标为待验证，不承诺完整复刻所有裁定。
+规则目标仍是 Master Duel 的实际行为，但当前只有仓库内静态资料与官方 OCG / TCG 参考。未经实机确认的差异必须标为待验证，不承诺完整复刻所有裁定。
 
-## 2. 最小后端与现有项目的关系
+## 2. 最小后端与现有 HTTP API 的关系
 
-### 2.1 独立的小服务，不改造整个旧 API
+### 2.1 独立的小服务，不改造整个现有 API
 
-已有 Backend/src/AChen.Backend.Api 是 ASP.NET Core / .NET 8 项目，但其启动会校验账号和内容发布配置，并执行数据库迁移。直接复用它的 Program.cs，不能做到“只启动对决”。
+`Backend/src/AChen.Backend.Api` 是 ASP.NET Core / .NET 8 工程，启动会校验账号和内容发布配置，并执行数据库迁移。直接复用它的 `Program.cs`，做不到“只启动对决”。
 
-建议在同一仓库新增 AChen.Duel.Server，仍采用 ASP.NET Core / .NET 8，但拥有独立入口：
+决斗服务独立为 `AChen.Duel.Server`，仍用 ASP.NET Core / .NET 8，但拥有自己的入口：
 
 - ASP.NET 宿主只提供进程生命周期、配置、日志和可选 /health。
 - 用 UdpDuelService : BackgroundService 自建 UdpClient / Socket，监听一个 UDP 端口；装配内存会话、封帧器、参考内核和文件记录器。[N3][N4]
 - 裸 UDP 不经过 Kestrel 的 HTTP 路由或 HTTP 限流；不把 HTTP/3 等同于自定义 UDP 协议。
 - 不引用 AChen.Backend.Api，不需要 JWT、SQLite、发布密钥或内容管理服务。
-- 旧 API、客户端原有登录与资源发布功能原样保留；本次不删代码、不迁移数据。
-- 决斗开发入口使用本地对战地址、预设构筑与已准备的资源，不把登录、商城或卡组收藏作为进入对局的条件。客户端现有启动链若仍依赖内容服务，属于原项目依赖，不能据此声称整套客户端已离线化。
+- 现有 API、客户端登录与资源发布原样保留，不把数据迁进对战进程。
+- 决斗开发入口使用本地对战地址、预设构筑与已准备的资源，不把登录、商城或卡组收藏作为进入对局的条件。客户端启动链若仍依赖内容服务，那是原有热更依赖，不能据此声称整套客户端已离线化。
 
 ### 2.2 一份规则源码，两种运行环境
 
@@ -334,7 +336,7 @@ SummonProcedure 区分召唤尝试、允许的召唤无效窗口和召唤成功�
 
 ### 11.2 逻辑帧不是渲染帧，也不是规则响应时机
 
-建议以 10 Hz 封帧，即每 100 ms 一次；这是可调工程起点，不是性能测量结论。
+首版以 10 Hz 封帧，即每 100 ms 一次。这是可调工程起点，不是性能测量结论。
 
 - FrameNo 是从 1 连续递增的模拟输入批次。
 - 渲染可运行 60 / 120 FPS；UI 动画不写规则状态。
@@ -343,7 +345,7 @@ SummonProcedure 区分召唤尝试、允许的召唤无效窗口和召唤成功�
 - 玩家正在思考时，封帧和网络仍能继续；空帧不会替玩家操作。
 - 客户端只需按顺序执行，不必与服务器在同一墙钟毫秒完成；缺帧就停规则执行，收发和动画仍可运行。
 
-本项目采用“服务器截止封帧”的输入 lockstep：服务器为没有新命令的席位写 NoInput，不等待两人各发一次明确空输入。只有收到服务器已封帧的 NoInput，客户端才知道它是真的空；未收到某帧时不能自行补空帧。[N1]
+采用“服务器截止封帧”的输入 lockstep：服务器为没有新命令的席位写 NoInput，不等待两人各发一次明确空输入。只有收到服务器已封帧的 NoInput，客户端才知道它是真的空；未收到某帧时不能自行补空帧。[N1]
 
 ### 11.3 最小输入与帧结构
 
@@ -410,7 +412,7 @@ FrameBundle 的输入部分一旦封口就不可更改。ExpectedStateHash 在�
 
 ### 11.6 只实现本游戏需要的可靠性
 
-UDP 不保证可靠、去重或有序，重传也必须受流量控制；大包依赖 IP 分片会降低可靠性。[N2] 本项目不写通用 TCP 替代库，只实现三个小机制：
+UDP 不保证可靠、去重或有序，重传也必须受流量控制；大包依赖 IP 分片会降低可靠性。[N2] 不写通用 TCP 替代库，只实现三个小机制：
 
 | 数据 | 如何确认和补发 |
 | --- | --- |
@@ -433,7 +435,7 @@ Queued / Framed 不是卡效执行成功，帧 ACK 也不是状态一致。客�
 
 首版使用显式字段的紧凑二进制消息：固定整数宽度与字节序，字符串用 UTF-8 与长度前缀，枚举和数组长度校验。禁止 CLR 类型名或任意对象图；摘要序列化独立于网络封套。
 
-建议起始约束：
+首版起始约束：
 
 | 项目 | 起始约束 |
 | --- | --- |
@@ -503,7 +505,7 @@ Queued / Framed 不是卡效执行成功，帧 ACK 也不是状态一致。客�
 
 空帧首版直接记录即可；将来压缩空帧时必须保留精确帧号区间与等价重演语义。播放可以快进或暂停，重演仍不能跳过会改变逻辑游标或系统控制的帧。
 
-文件由 StartRecord、递增帧记录和结束标记组成，服务端保留参考记录，客户端也可记录自己接收并执行的完整帧。它们包含或能推导双方秘密，符合本版已确认的信任边界；分享文件即可能公开整局牌序。普通回放 UI 默认按玩家视角显示，不因此声称文件本身保密。
+文件由 StartRecord、递增帧记录和结束标记组成，服务端保留参考记录，客户端也可记录自己接收并执行的完整帧。它们包含或能推导双方秘密，符合本版信任边界；分享文件即可能公开整局牌序。普通回放 UI 默认按玩家视角显示，不因此声称文件本身保密。
 
 文件写入失败标记 ReplayIncomplete 并记录诊断，已经执行的卡效不回滚；“帧已执行”不等于“回放已落盘”。缺结束标记的文件按不完整记录处理，禁止伪装正常完局。
 
@@ -522,7 +524,7 @@ Queued / Framed 不是卡效执行成功，帧 ACK 也不是状态一致。客�
 
 ### 14.1 当前验证到哪一步
 
-已完成项目结构静态核对、官方规则参考核对、协议模型审查与以下纸面推演。没有实现可运行系统，没有运行编译或测试，没有完成 MD 实机一致性验证。
+已完成目录结构静态核对、官方规则参考核对、协议模型审查与以下纸面推演。没有可运行实现，未经编译或测试验收，也没有完成 MD 实机一致性验证。
 
 规则证据分为官方 OCG / TCG 参考、工程推导、待确认；只有具备具体 MD 版本和对局证据后，才能标记 MDObserved。独立审查不能代替运行验收。
 
@@ -563,27 +565,28 @@ V03–V10 是工程状态推演，只说明协议约束相容，不表示 UDP �
 | A 规则骨架 | 卡 / 卡组 / 区域、回合、普通动作、确定性 ID / 随机 | 脱离 Unity 可推进普通怪兽对局 |
 | B 响应和写卡 | 执行帧、选择、连锁、操作与英雄处理器 | 逐卡案例有明确结果，不在错误时点响应 |
 | C 本地帧执行 | ExecuteFrame、StartRecord、帧日志、Unity 视图和交互 | 同帧日志逐帧摘要一致，动画可跳过 |
-| D UDP 帧同步 | 独立服务、匿名双人、10 Hz 封帧、重发去重与补帧 | 三端按同一封帧计算；不依赖旧 API 或数据库 |
+| D UDP 帧同步 | 独立服务、匿名双人、10 Hz 封帧、重发去重与补帧 | 三端按同一封帧计算；不依赖现有 HTTP API 或数据库 |
 | E 恢复与验收 | 追帧、从头重演、摘要对照、清理和文件失败处理 | 第 14 节相应验收通过后才称可用好友原型 |
 
-开发早期先做目标 Player 的 UDP 往返及同一小段 FrameLog 跨运行时摘要对照，尽早排除传输与确定性障碍，再填充完整 D 阶段。该项属于后续实施，本次不运行。
+开发早期先做目标 Player 的 UDP 往返，以及同一小段 FrameLog 的跨运行时摘要对照，尽早排除传输与确定性障碍，再填充完整 D 阶段。
 
 高复用的验收标准是：普通新卡只增加定义与效果组合；新机制只扩展对应规则模块；新平台只替换连接 / 显示适配。不是提前把账号、房间平台、插件系统和分布式服务都建出来。
 
-## 16. 文档依据与参考
+## 16. 相关文档与参考
 
-项目依据：
+相关文档：
 
-- [Unity 客户端架构](unity-client.md)：当前 AOT、HotUpdate、Network、UI 与资源边界。
-- [热更新与内容分发](hot-update-and-content.md)：现有单 HotUpdate.dll 的启动与发布链。
-- [后端架构](backend.md)：旧 API 的职责；精简对决服务与它独立，不删除原功能。
-- [逐卡手册](hero-card-modeling.md)：19 种卡的定义、效果流程、响应案例与待核验分支。
+- [系统架构](architecture.md)：现有四层与 HTTP 边界；决斗服务与之并列，不替换。
+- [Unity 客户端](unity-client.md)：AOT、HotUpdate、Network、UI 与资源边界。
+- [热更新与内容分发](hot-update-and-content.md)：单个 `HotUpdate.dll` 的启动与发布链。
+- [后端](backend.md)：现有 API 的职责；对决服务与它独立。
+- [英雄卡组手册](hero-card-modeling.md)：19 种卡的定义、效果流程、响应案例与待核验分支。
 
 静态核对位置：
 
 - Assets/Scripts/HotUpdate.asmdef、Assets/AOT/LoadDll.cs：客户端程序集与加载。
 - Backend/src/AChen.Backend.Api/Program.cs、AChen.Backend.Api.csproj：现有 .NET 8 入口、配置和数据库依赖。
-- Assets/Scripts/Network/AuthClient.cs、BackendConfig.cs：现有 REST，不是实时对战传输。
+- Assets/Scripts/Network/Auth/AuthApi.cs、Network/Http/BackendConfig.cs：现有 REST，不是实时对战传输。
 - Assets/Scripts/Common/EventCenter.cs：应用通知，不是规则时机调度器。
 - Recovery/CodeAnalysis/CS/Assembly-CSharp/YgomGame.Duel/Engine.cs：回合 / 战斗枚举、输入输出和原生引擎接口。恢复代码多数是元数据与空方法，不能据此获得完整裁定实现。
 
@@ -594,14 +597,14 @@ V03–V10 是工程状态推演，只说明协议约束相容，不表示 UDP �
 - [R3：OCG — 英雄炸裂 FAQ](https://www.db.yugioh-card.com/yugiohdb/faq_search.action?cid=7637&ope=4&request_locale=ja)。
 - [R4：OCG — 融合 FAQ](https://www.db.yugioh-card.com/yugiohdb/faq_search.action?cid=4837&ope=4&request_locale=ja)。
 - [R5：OCG — 公开中的手牌诱发案例](https://www.db.yugioh-card.com/yugiohdb/faq_search.action?fid=23948&ope=5&request_locale=ja)。
-- [N1：Glenn Fiedler — Deterministic Lockstep](https://gafferongames.com/post/deterministic_lockstep/)：相同初态 / 输入与缺输入等待的模型；本项目的低频截止封帧细节为工程设计。
+- [N1：Glenn Fiedler — Deterministic Lockstep](https://gafferongames.com/post/deterministic_lockstep/)：相同初态 / 输入与缺输入等待的模型；此处的低频截止封帧细节为工程设计。
 - [N2：IETF RFC 8085](https://www.rfc-editor.org/rfc/rfc8085.html)：UDP 可靠性、有序性、消息尺寸与拥塞约束。
 - [N3：Microsoft — UdpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.sockets.udpclient?view=net-8.0)：服务端标准 UDP API。
 - [N4：Microsoft — Hosted services](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-8.0)：进程内后台服务宿主。
-- [N5：Unity — .NET 配置文件支持](https://docs.unity3d.com/6000.5/Documentation/Manual/dotnet-profile-support.html)：共享 API 范围参考，不是本项目构建验证。
+- [N5：Unity — .NET 配置文件支持](https://docs.unity3d.com/6000.5/Documentation/Manual/dotnet-profile-support.html)：共享 API 范围参考，不是一次构建验证结论。
 - [N6：Unity — Web 网络限制](https://docs.unity3d.com/6000.5/Documentation/Manual/webgl-networking.html)：浏览器没有原生 UDP / .NET socket。
 
-规则参考于前轮核对，联网参考于 2026-09-09 核对。工程参数、协议字段与阶段划分是本项目设计，不是官方游戏规则。
+规则参考于规格编写时核对，联网参考于 2026-09-09 核对。工程参数、协议字段与阶段划分是本规格的设计，不是官方游戏规则。
 
 [R1]: https://www.yugioh-card.com/en/play/fast-effect-timing/
 [R2]: https://www.yugioh-card.com/eu/play/damage-step-rules/
