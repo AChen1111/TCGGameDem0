@@ -891,8 +891,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2386fcdc0ed0da4fad1a8252ed36c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: HotUpdate::ShopWindow
-  m_destroyOnClose: 0
-  hideOnForegroundLost: 1
+  m_destroyOnClose: 1
+  hideOnForegroundLost: 0
   windowPriority: 0
   isPopup: 0
   m_ListController: {fileID: 2109761450490998113}
