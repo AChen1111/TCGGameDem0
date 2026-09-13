@@ -104,3 +104,17 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: CardPreviewWindow
+    reference:
+      m_AssetGUID: ac395b48b12afb547a33d09a3c77c1e6
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: CardPreviewRowPrefab
+    reference:
+      m_AssetGUID: c48bcb147460f4d4fb176823efe28f37
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

@@ -118,6 +118,10 @@ Assets/Scripts/LuaRaw/LuaPadDrafts/*.lua.meta
 /Unused~/Tools/**/bin/
 /Unused~/Tools/**/obj/
 
+# Admin console
+/AdminWeb/node_modules/
+/AdminWeb/dist/
+
 # Local clutter / one-off dumps
 /Recovery/
 /UnityCursorKit/

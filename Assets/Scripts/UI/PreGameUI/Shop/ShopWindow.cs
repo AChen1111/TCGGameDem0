@@ -209,12 +209,12 @@ public class ShopWindow : AWindowController
             }
 
             ALog.Log(
-                $"商城抽卡确认: Id={drawTarget.Id}; Title={drawTarget.Title}; Pool={drawTarget.PoolKey}; Count={DrawCount}",
+                $"商城抽卡预览: Id={drawTarget.Id}; Title={drawTarget.Title}; Pool={drawTarget.PoolKey}; PriceGold={drawTarget.PriceGold}; Count={DrawCount}",
                 ALogCategories.UI);
             RequestOpenWindow(
-                AddressKeys.Prefab.ChooseWindow,
-                new ChooseWindowProperties(
-                    $"确认抽取{drawTarget.Title}？",
+                AddressKeys.Prefab.CardPreviewWindow,
+                new CardPreviewWindowProperty(
+                    drawTarget,
                     () => DrawPackAsync(drawTarget).Forget(),
                     null));
             return;
@@ -277,8 +277,26 @@ public class ShopWindow : AWindowController
     {
         if (m_IsPurchasing || !IsOpened) return;
 
+        PlayerData player = PlayerSession.HasInstance ? PlayerSession.Instance.CurrentPlayer : null;
+        if (player == null)
+        {
+            ShowMessage("抽卡失败");
+            return;
+        }
+
+        if (player.Gold < target.PriceGold)
+        {
+            ALog.LogWarning(
+                $"商城抽卡中止: Id={target.Id}; Title={target.Title}; Pool={target.PoolKey}; 价格={target.PriceGold}; 余额={player.Gold}; 原因=金币不足",
+                ALogCategories.UI);
+            ShowMessage("金币不足");
+            return;
+        }
+
         m_IsPurchasing = true;
-        ALog.Log($"提交抽卡. Id={target.Id}; Title={target.Title}; Pool={target.PoolKey}; Count={DrawCount}", ALogCategories.Net);
+        ALog.Log(
+            $"提交抽卡. Id={target.Id}; Title={target.Title}; Pool={target.PoolKey}; PriceGold={target.PriceGold}; Count={DrawCount}",
+            ALogCategories.Net);
         try
         {
             if (!PlayerSession.HasInstance || !PlayerSession.Instance.IsAuthenticated)
@@ -286,9 +304,9 @@ public class ShopWindow : AWindowController
                 throw new BackendApiException(401, "INVALID_ACCESS_TOKEN", "登录状态已失效，请重新登录");
             }
 
-            CardDrawResponse response = await PlayerSession.Instance.DrawCardsAsync(target.PoolKey, DrawCount);
+            CardDrawResponse response = await PlayerSession.Instance.DrawCardsAsync(target.Id, target.PoolKey, DrawCount);
             ALog.Log(
-                $"抽卡成功. Pool={target.PoolKey}; Count={response.Results.Count}; Revision={response.Player.Revision}",
+                $"抽卡成功. Id={target.Id}; Pool={target.PoolKey}; Count={response.Results.Count}; Gold={response.Player.Gold}; Revision={response.Player.Revision}",
                 ALogCategories.Net);
             List<CardPickViewData> cards = await LoadDrawCardsAsync(target.PoolKey, response.Results);
             if (this == null || !IsOpened)

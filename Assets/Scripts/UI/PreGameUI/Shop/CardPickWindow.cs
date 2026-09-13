@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public sealed class CardPickWindowProperty : IWindowProperties
 {
@@ -16,8 +17,10 @@ public sealed class CardPickWindowProperty : IWindowProperties
 public class CardPickWindow : AWindowController<CardPickWindowProperty>
 {
     // --tag_start: 自动生成--
-    [SerializeField] Button m_BtnNext;
+    [SerializeField] Image m_ImgDim;
     [SerializeField] RawImage m_RawCardPick;
+    [SerializeField] TextMeshProUGUI m_TxtNum;
+    [SerializeField] Button m_BtnNext;
     // --tag_end: 自动生成--
     [SerializeField] GameObject _stagePrefab;
     [SerializeField] float _fadeDuration = 0.5f;
@@ -100,6 +103,21 @@ public class CardPickWindow : AWindowController<CardPickWindowProperty>
         }
     }
 
+    void OnProgressChanged(int current, int total)
+    {
+        if (m_TxtNum == null)
+        {
+            return;
+        }
+
+        bool show = current > 0 && total > 0;
+        m_TxtNum.gameObject.SetActive(show);
+        if (show)
+        {
+            m_TxtNum.text = current + "/" + total;
+        }
+    }
+
     bool TrySpawnStage()
     {
         ReleaseStage();
@@ -125,6 +143,7 @@ public class CardPickWindow : AWindowController<CardPickWindowProperty>
         Camera uiCamera = m_UIFrame != null ? m_UIFrame.UICamera : null;
         _controller.BindPointer(new CardPickScreenPointer(m_RawCardPick, uiCamera, pickCamera));
         _controller.NextVisibleChanged += OnNextVisible;
+        _controller.ProgressChanged += OnProgressChanged;
         return true;
     }
 
@@ -262,6 +281,7 @@ public class CardPickWindow : AWindowController<CardPickWindowProperty>
         if (_controller != null)
         {
             _controller.NextVisibleChanged -= OnNextVisible;
+            _controller.ProgressChanged -= OnProgressChanged;
             _controller.BindPointer(null);
             Camera pickCamera = _controller.PickCamera;
             if (pickCamera != null)

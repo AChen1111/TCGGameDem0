@@ -41,6 +41,7 @@ public sealed class CardPackDrawTests
         Assert.AreEqual(7, target.Id);
         Assert.AreEqual("卡包06", target.Title);
         Assert.AreEqual("Card02", target.PoolKey);
+        Assert.AreEqual(700, target.PriceGold);
         Assert.IsFalse(category.TryGetPurchaseTarget(0, out _));
         Assert.IsFalse(category.TryGetDrawTarget(-1, out _));
         Assert.IsFalse(category.TryGetDrawTarget(1, out _));
@@ -99,10 +100,29 @@ public sealed class CardPackDrawTests
             Assert.AreEqual(0, new CardPickWindowProperty(null).Cards.Count);
             Assert.AreEqual(CardShaderType.None, CardPickController.ToShaderType(-1));
             Assert.AreEqual(CardShaderType.Outline, CardPickController.ToShaderType(3));
+            Assert.AreEqual(CardShaderType.Gold, CardPickController.ToShaderType(4));
+            Assert.AreEqual(CardShaderType.None, CardPickController.ToShaderType(5));
         }
         finally
         {
             UnityEngine.Object.DestroyImmediate(texture);
         }
+    }
+
+    [Test]
+    public void Preview_window_property_keeps_draw_target()
+    {
+        var target = new ShopDrawTarget(7, "卡包06", "Card02", 700);
+        bool confirmed = false;
+        var property = new CardPreviewWindowProperty(target, () => confirmed = true, null);
+
+        Assert.AreEqual(7, property.Target.Id);
+        Assert.AreEqual("卡包06", property.Target.Title);
+        Assert.AreEqual("Card02", property.Target.PoolKey);
+        Assert.AreEqual(700, property.Target.PriceGold);
+        Assert.IsNotNull(property.OnConfirm);
+        Assert.IsNull(property.OnCancel);
+        property.OnConfirm();
+        Assert.IsTrue(confirmed);
     }
 }

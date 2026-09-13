@@ -42,6 +42,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _GoldNoiseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -62,11 +66,20 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _Effect: 0
+    - _GoldFlowSpeed: 2.34
+    - _GoldOutline: 0.44
+    - _GoldSandDensity: 11.7
+    - _GoldSparkle: 0.95
+    - _GoldWidth: 0.028
     - _HoloScale: 5
     - _HoloSpeed: 0.25
     - _HoloStrength: 0.55
     - _MirrorScale: 8
     - _MirrorStrength: 0.55
+    - _OutlineFilm: 0.32
+    - _OutlineSweepSpeed: 0.4
+    - _OutlineSweepStrength: 0.85
+    - _OutlineSweepWidth: 0.05
     - _OutlineWidth: 0.035
     - _QueueOffset: 0
     - _SampleGI: 0
@@ -80,6 +93,7 @@ Material:
     - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 0, g: 0, b: 0, a: 1}
     - _DissolveEdgeColor: {r: 2.2, g: 0.75, b: 0.18, a: 1}
+    - _GoldColor: {r: 1.45, g: 1.02, b: 0.32, a: 1}
     - _HoloTint: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineColor: {r: 1, g: 0.86, b: 0.35, a: 1}
   m_BuildTextureStacks: []

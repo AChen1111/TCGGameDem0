@@ -10,6 +10,7 @@ public enum CardShaderType
     Colorful = 1,//炫彩
     Mirror = 2,//镜碎
     Outline = 3,//描边
+    Gold = 4,//金沙
 }
 
 public enum CardStatus
@@ -62,22 +63,24 @@ public class CardPickView : MonoBehaviour
     static readonly int EffectId = Shader.PropertyToID("_Effect");
     static readonly int BaseMapId = Shader.PropertyToID("_BaseMap");
     static readonly int DissolveId = Shader.PropertyToID("_Dissolve");
+    static readonly int GoldOutlineId = Shader.PropertyToID("_GoldOutline");
     static readonly string[] Keywords =
     {
         "_EFFECT_NONE",
         "_EFFECT_COLORFUL",
         "_EFFECT_MIRROR",
         "_EFFECT_OUTLINE",
+        "_EFFECT_GOLD",
     };
 
-
-
-    //应用材质效果
+    //应用材质效果. Gold 正面描边, 背面只闪砂
     void ApplyEffect(CardShaderType type)
     {
         int index = (int)type;
         _matFront.SetFloat(EffectId, index);
         _matBack.SetFloat(EffectId, index);
+        _matFront.SetFloat(GoldOutlineId, 1f);
+        _matBack.SetFloat(GoldOutlineId, 0f);
 
         for (int i = 0; i < Keywords.Length; i++)
         {
@@ -92,6 +95,15 @@ public class CardPickView : MonoBehaviour
                 _matBack.DisableKeyword(Keywords[i]);
             }
         }
+    }
+
+    [Button("切换效果")]
+    public void CycleEffect()
+    {
+        int next = ((int)_cardShaderType + 1) % Keywords.Length;
+        _cardShaderType = (CardShaderType)next;
+        ApplyEffect(_cardShaderType);
+        ALog.Log($"卡牌切换效果. Card={name}; Type={_cardShaderType}", ALogCategories.Default);
     }
 
     void ApplyDissolve(float value)

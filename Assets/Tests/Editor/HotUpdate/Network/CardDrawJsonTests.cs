@@ -55,4 +55,19 @@ public sealed class CardDrawJsonTests
         Assert.AreEqual(2, response.Player.OwnedCards.Count);
         Assert.AreEqual(new Guid("11111111-1111-1111-1111-111111111111"), response.Player.Id);
     }
+
+    [Test]
+    public void Pool_json_maps_cards_and_source_pool()
+    {
+        const string json =
+            "{\"poolKey\":\"Card01\",\"cards\":[{\"cardId\":\"14558127\",\"sourcePool\":\"Card01\"},{\"cardId\":\"89631139\",\"sourcePool\":\"Card01\"}]}";
+
+        GachaPoolData pool = AuthApi.ParseGachaPoolJson(json);
+
+        Assert.AreEqual("Card01", pool.PoolKey);
+        Assert.AreEqual(2, pool.Cards.Count);
+        Assert.AreEqual("14558127", pool.Cards[0].CardId);
+        Assert.AreEqual("Card01", pool.Cards[0].SourcePool);
+        Assert.AreEqual("89631139", pool.Cards[1].CardId);
+    }
 }

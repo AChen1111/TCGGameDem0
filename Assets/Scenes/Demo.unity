@@ -215,7 +215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &95062117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,14 +228,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b112a3ba0d013468cb4d8eadde32fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: HotUpdate::CardPickController
-  _cardPickViewDatas:
-  - cardShaderType: 1
-  - cardShaderType: 0
-  - cardShaderType: 0
-  - cardShaderType: 1
-  - cardShaderType: 1
+  _gameObjectHorizontalLayout: {fileID: 0}
   _cardPrefab: {fileID: 616615370615826085, guid: 9049c194f4e3fb945a145a39c1f3ed95, type: 3}
-  _checkNextCardButton: {fileID: 1051288325}
+  _pickCamera: {fileID: 0}
 --- !u!4 &95062118
 Transform:
   m_ObjectHideFlags: 0
@@ -606,6 +601,156 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -380}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!21 &1190193292
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Mat_Edge
+  m_Shader: {fileID: 4800000, guid: 2097cc67a28917148a99c14991b9922e, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _EFFECT_NONE
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GoldNoiseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AddPrecomputedVelocity: 0
+    - _AlphaClip: 0
+    - _AlphaToMask: 0
+    - _Blend: 0
+    - _BlendOp: 0
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _Dissolve: 0
+    - _DissolveDir: 0.55
+    - _DissolveEdgeWidth: 0.08
+    - _DissolveScale: 10
+    - _DstBlend: 0
+    - _DstBlendAlpha: 0
+    - _Effect: 0
+    - _GoldFlowSpeed: 0.85
+    - _GoldOutline: 1
+    - _GoldSandDensity: 8
+    - _GoldSparkle: 0.32
+    - _GoldWidth: 0.02
+    - _HoloScale: 5
+    - _HoloSpeed: 0.25
+    - _HoloStrength: 0.55
+    - _MirrorScale: 8
+    - _MirrorStrength: 0.55
+    - _OutlineFilm: 0.32
+    - _OutlineSweepSpeed: 0.4
+    - _OutlineSweepStrength: 0.85
+    - _OutlineSweepWidth: 0.1
+    - _OutlineWidth: 0.035
+    - _QueueOffset: 0
+    - _SampleGI: 0
+    - _Sparkle: 0.4
+    - _SrcBlend: 1
+    - _SrcBlendAlpha: 1
+    - _Surface: 0
+    - _XRMotionVectorsPass: 1
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _DissolveEdgeColor: {r: 2.2, g: 0.75, b: 0.18, a: 1}
+    - _GoldColor: {r: 1, g: 0.78, b: 0.28, a: 1}
+    - _HoloTint: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 1, g: 0.86, b: 0.35, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!1001 &1303363233
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 616615370615826085, guid: 9049c194f4e3fb945a145a39c1f3ed95, type: 3}
+      propertyPath: m_Name
+      value: CardPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752944930539441552, guid: 9049c194f4e3fb945a145a39c1f3ed95, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752944930539441552, guid: 9049c194f4e3fb945a145a39c1f3ed95, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752944930539441552, guid: 9049c194f4e3fb945a145a39c1f3ed95, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752944930539441552, guid: 9049c194f4e3fb945a145a39c1f3ed95, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752944930539441552, guid: 9049c194f4e3fb945a145a39c1f3ed95, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752944930539441552, guid: 9049c194f4e3fb945a145a39c1f3ed95, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752944930539441552, guid: 9049c194f4e3fb945a145a39c1f3ed95, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752944930539441552, guid: 9049c194f4e3fb945a145a39c1f3ed95, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752944930539441552, guid: 9049c194f4e3fb945a145a39c1f3ed95, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752944930539441552, guid: 9049c194f4e3fb945a145a39c1f3ed95, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905378876726934484, guid: 9049c194f4e3fb945a145a39c1f3ed95, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1190193292}
+    - target: {fileID: 9179357805583985634, guid: 9049c194f4e3fb945a145a39c1f3ed95, type: 3}
+      propertyPath: _cardShaderType
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9049c194f4e3fb945a145a39c1f3ed95, type: 3}
 --- !u!1 &1359514600
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,7 +897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1488935598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -997,3 +1142,4 @@ SceneRoots:
   - {fileID: 1488935601}
   - {fileID: 95062118}
   - {fileID: 22680575}
+  - {fileID: 1303363233}

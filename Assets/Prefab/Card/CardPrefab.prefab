@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f5b2b31a2eef14e9c2fc5547585647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: HotUpdate::CardPickView
-  _cardShaderType: 0
+  _cardShaderType: 4
   _meshFrontRenderer: {fileID: 4465777527426645647}
   _meshBackRenderer: {fileID: 5360964038295524098}
   _matFront: {fileID: 2100000, guid: d178fbe06dea4144ab64580b52241c76, type: 2}
@@ -85,6 +85,10 @@ MonoBehaviour:
   _cardStatus: 0
   _cardFlip: {fileID: 4579004028647199577}
   _cardMouseTilt: {fileID: 2374794982874429964}
+  _translateZDuration: 0.45
+  _translateZEase: 9
+  _dissolveDuration: 0.6
+  _dissolveEase: 9
 --- !u!1 &761159936683974164
 GameObject:
   m_ObjectHideFlags: 0

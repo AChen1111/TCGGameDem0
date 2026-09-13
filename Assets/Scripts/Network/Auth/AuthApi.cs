@@ -87,6 +87,7 @@ namespace AChen.Networking
 
         public async UniTask<CardDrawResponse> DrawCardsAsync(
             string accessToken,
+            int packId,
             string poolKey,
             int count,
             long expectedRevision,
@@ -95,10 +96,25 @@ namespace AChen.Networking
             CardDrawResponseDto dto = await m_http.SendAsync<CardDrawResponseDto>(
                 UnityWebRequest.kHttpVerbPOST,
                 "/api/player/card-draws",
-                new DrawCardsRequest(poolKey, count, expectedRevision),
+                new DrawCardsRequest(packId, poolKey, count, expectedRevision),
                 accessToken,
                 cancellationToken);
             return ToDraw(dto);
+        }
+
+        public async UniTask<GachaPoolData> GetGachaPoolAsync(
+            string accessToken,
+            string poolKey,
+            CancellationToken cancellationToken)
+        {
+            string key = poolKey ?? string.Empty;
+            GachaPoolDto dto = await m_http.SendAsync<GachaPoolDto>(
+                UnityWebRequest.kHttpVerbGET,
+                "/api/gacha/pools/" + Uri.EscapeDataString(key),
+                null,
+                accessToken,
+                cancellationToken);
+            return ToPool(dto);
         }
 
         public static PlayerData ParsePlayerJson(string json) =>
@@ -106,6 +122,9 @@ namespace AChen.Networking
 
         public static CardDrawResponse ParseDrawJson(string json) =>
             ToDraw(BackendJson.DeserializeResponse<CardDrawResponseDto>(json));
+
+        public static GachaPoolData ParseGachaPoolJson(string json) =>
+            ToPool(BackendJson.DeserializeResponse<GachaPoolDto>(json));
 
         async UniTask<AuthSession> PostAuthAsync(string path, object body, CancellationToken cancellationToken)
         {
@@ -165,6 +184,26 @@ namespace AChen.Networking
             }
 
             return new CardDrawResponse(mapped, ToPlayer(dto.Player));
+        }
+
+        static GachaPoolData ToPool(GachaPoolDto dto)
+        {
+            if (dto == null || string.IsNullOrEmpty(dto.PoolKey))
+            {
+                throw new BackendApiException(0, "INVALID_RESPONSE", "服务器返回的卡池数据不完整");
+            }
+
+            GachaPoolCardDto[] cards = dto.Cards ?? Array.Empty<GachaPoolCardDto>();
+            var mapped = new GachaPoolCard[cards.Length];
+            for (int i = 0; i < cards.Length; i++)
+            {
+                GachaPoolCardDto card = cards[i];
+                mapped[i] = new GachaPoolCard(
+                    card != null ? card.CardId : null,
+                    card != null ? card.SourcePool : null);
+            }
+
+            return new GachaPoolData(dto.PoolKey, mapped);
         }
 
         static OwnedCardData[] ToOwnedCards(OwnedCardDto[] cards)
@@ -241,12 +280,14 @@ namespace AChen.Networking
 
         sealed class DrawCardsRequest
         {
+            public int PackId { get; }
             public string PoolKey { get; }
             public int Count { get; }
             public long ExpectedRevision { get; }
 
-            public DrawCardsRequest(string poolKey, int count, long expectedRevision)
+            public DrawCardsRequest(int packId, string poolKey, int count, long expectedRevision)
             {
+                PackId = packId;
                 PoolKey = poolKey;
                 Count = count;
                 ExpectedRevision = expectedRevision;
@@ -319,6 +360,24 @@ namespace AChen.Networking
 
             public CardDrawResultDto[] Results { get; set; }
             public PlayerDto Player { get; set; }
+        }
+
+        [Preserve]
+        sealed class GachaPoolCardDto
+        {
+            public GachaPoolCardDto() { }
+
+            public string CardId { get; set; }
+            public string SourcePool { get; set; }
+        }
+
+        [Preserve]
+        sealed class GachaPoolDto
+        {
+            public GachaPoolDto() { }
+
+            public string PoolKey { get; set; }
+            public GachaPoolCardDto[] Cards { get; set; }
         }
     }
 }

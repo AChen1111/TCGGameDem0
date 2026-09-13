@@ -1258,6 +1258,18 @@ MonoBehaviour:
   m_WallpaperView: {fileID: 8234930916011492849}
   m_Duration: 1
   m_Distance: 1500
+--- !u!225 &3634693997185836215
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4966124854734445874}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &8234930916011492849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1273,18 +1285,6 @@ MonoBehaviour:
   m_wallpaper: {fileID: 1850575445426727540}
   m_heroSprite: {fileID: 3368097671329428498}
   m_WallpaperDisplayConfig: {fileID: 11400000, guid: 0539aacb2851d9b459cd07f658764d67, type: 2}
---- !u!225 &3634693997185836215
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4966124854734445874}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &5279010566118677030
 GameObject:
   m_ObjectHideFlags: 0

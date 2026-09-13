@@ -17,6 +17,7 @@ public class CardPickController : MonoBehaviour
     Action _onFinished;
 
     public event Action<bool> NextVisibleChanged;
+    public event Action<int, int> ProgressChanged;
 
     public Camera PickCamera =>
         _pickCamera != null ? _pickCamera : GetComponentInChildren<Camera>(true);
@@ -69,6 +70,7 @@ public class CardPickController : MonoBehaviour
         _cardObjects[0].gameObject.SetActive(true);
         _cardObjects[0].SwitchStatus(CardStatus.CanFlip);
         _currentCardIndex = 0;
+        RaiseProgress();
         ALog.Log($"抽卡效果开始. Count={_cardObjects.Count}", ALogCategories.UI);
     }
 
@@ -86,6 +88,7 @@ public class CardPickController : MonoBehaviour
         _currentCardIndex = 0;
         _revealFinished = false;
         _onFinished = null;
+        RaiseProgress();
         if (_gameObjectHorizontalLayout != null)
         {
             _gameObjectHorizontalLayout.enabled = false;
@@ -110,7 +113,7 @@ public class CardPickController : MonoBehaviour
 
     public static CardShaderType ToShaderType(int rarity)
     {
-        if (rarity < 0 || rarity > (int)CardShaderType.Outline)
+        if (rarity < 0 || rarity > (int)CardShaderType.Gold)
         {
             return CardShaderType.None;
         }
@@ -140,6 +143,7 @@ public class CardPickController : MonoBehaviour
             });
 
         _currentCardIndex++;
+        RaiseProgress();
         if (_currentCardIndex < _cardObjects.Count)
         {
             _cardObjects[_currentCardIndex].gameObject.SetActive(true);
@@ -164,7 +168,7 @@ public class CardPickController : MonoBehaviour
 
     async UniTask DoEndShow()
     {
-        await UniTask.Delay(1000);
+        await UniTask.Delay(800);
         if (_cardObjects.Count == 0)
         {
             return;
@@ -209,6 +213,13 @@ public class CardPickController : MonoBehaviour
     void RaiseNextVisible(bool visible)
     {
         NextVisibleChanged?.Invoke(visible);
+    }
+
+    void RaiseProgress()
+    {
+        int total = _cardObjects.Count;
+        int current = total == 0 || _currentCardIndex >= total ? 0 : _currentCardIndex + 1;
+        ProgressChanged?.Invoke(current, total);
     }
 
     static void SetLayerRecursively(GameObject root, int layer)

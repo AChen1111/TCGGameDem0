@@ -57,6 +57,30 @@ namespace AChen.Networking
         }
     }
 
+    public sealed class GachaPoolCard
+    {
+        public string CardId { get; }
+        public string SourcePool { get; }
+
+        internal GachaPoolCard(string cardId, string sourcePool)
+        {
+            CardId = cardId ?? string.Empty;
+            SourcePool = sourcePool ?? string.Empty;
+        }
+    }
+
+    public sealed class GachaPoolData
+    {
+        public string PoolKey { get; }
+        public IReadOnlyList<GachaPoolCard> Cards { get; }
+
+        internal GachaPoolData(string poolKey, IReadOnlyList<GachaPoolCard> cards)
+        {
+            PoolKey = poolKey ?? string.Empty;
+            Cards = cards ?? Array.Empty<GachaPoolCard>();
+        }
+    }
+
     public sealed class PlayerData
     {
         public Guid Id { get; }

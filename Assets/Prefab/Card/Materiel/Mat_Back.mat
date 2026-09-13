@@ -25,7 +25,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _EFFECT_COLORFUL
+  - _EFFECT_GOLD
   m_InvalidKeywords: []
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -61,6 +61,10 @@ Material:
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GoldNoiseMap:
+        m_Texture: {fileID: 2800000, guid: c4e8a17b29d64f0e9a5c3b71e8d2064f, type: 3}
+        m_Scale: {x: 4, y: 4}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 5a65479f510604c4a866a47883c726df, type: 3}
@@ -111,25 +115,30 @@ Material:
     - _ColorMode: 0
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DetailAlbedoMapScale: 1
+    - _DetailNormalMapScale: 1
     - _Dissolve: 0
     - _DissolveDir: 0.55
     - _DissolveEdgeWidth: 0.08
     - _DissolveScale: 10
-    - _DetailAlbedoMapScale: 1
-    - _DetailNormalMapScale: 1
     - _DistortionBlend: 0.5
     - _DistortionEnabled: 0
     - _DistortionStrength: 1
     - _DistortionStrengthScaled: 0
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _Effect: 1
+    - _Effect: 4
     - _EmissionEnabled: 0
     - _EnvironmentReflections: 1
     - _FlipbookMode: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _GoldFlowSpeed: 0.85
+    - _GoldOutline: 0
+    - _GoldSandDensity: 8
+    - _GoldSparkle: 0.95
+    - _GoldWidth: 0.028
     - _HoloScale: 5
     - _HoloSpeed: 0.25
     - _HoloStrength: 0.55
@@ -139,6 +148,10 @@ Material:
     - _MirrorStrength: 0.55
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _OutlineFilm: 1
+    - _OutlineSweepSpeed: 0.4
+    - _OutlineSweepStrength: 0.85
+    - _OutlineSweepWidth: 0.05
     - _OutlineWidth: 0.035
     - _Parallax: 0.005
     - _QueueOffset: 0
@@ -159,11 +172,12 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _DissolveEdgeColor: {r: 2.2, g: 0.75, b: 0.18, a: 1}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
+    - _DissolveEdgeColor: {r: 2.2, g: 0.75, b: 0.18, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _GoldColor: {r: 1.45, g: 1.02, b: 0.32, a: 1}
     - _HoloTint: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineColor: {r: 1, g: 0.86, b: 0.35, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}

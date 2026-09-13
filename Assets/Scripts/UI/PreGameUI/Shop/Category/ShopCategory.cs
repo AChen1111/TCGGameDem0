@@ -63,11 +63,13 @@ public readonly struct ShopDrawTarget
     public int Id { get; }
     public string Title { get; }
     public string PoolKey { get; }
+    public long PriceGold { get; }
 
-    public ShopDrawTarget(int id, string title, string poolKey)
+    public ShopDrawTarget(int id, string title, string poolKey, long priceGold)
     {
         Id = id;
         Title = title;
         PoolKey = poolKey ?? string.Empty;
+        PriceGold = priceGold;
     }
 }

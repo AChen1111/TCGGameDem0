@@ -29,7 +29,7 @@ public sealed class CardPackShopCategory : ShopCategory
         }
 
         ShopCardItemData item = m_Items[index];
-        target = new ShopDrawTarget(item.Id, item.Title, item.PoolKey);
+        target = new ShopDrawTarget(item.Id, item.Title, item.PoolKey, item.PriceGold);
         return true;
     }
 }

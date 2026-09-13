@@ -197,11 +197,25 @@ namespace AChen.Player
                     (accessToken, ct) => Api.PurchaseShopItemAsync(accessToken, catalogType, itemId, player.Revision, ct),
                     token), cancellationToken);
 
-        public UniTask<CardDrawResponse> DrawCardsAsync(string poolKey, int count, CancellationToken cancellationToken = default) =>
-            ExecuteDrawAsync("DrawCards", $"{poolKey}/{count}", (player, token) =>
+        public UniTask<CardDrawResponse> DrawCardsAsync(int packId, string poolKey, int count, CancellationToken cancellationToken = default) =>
+            ExecuteDrawAsync("DrawCards", $"{packId}/{poolKey}/{count}", (player, token) =>
                 SendAuthenticatedDrawAsync(
-                    (accessToken, ct) => Api.DrawCardsAsync(accessToken, poolKey, count, player.Revision, ct),
+                    (accessToken, ct) => Api.DrawCardsAsync(accessToken, packId, poolKey, count, player.Revision, ct),
                     token), cancellationToken);
+
+        public async UniTask<GachaPoolData> GetGachaPoolAsync(string poolKey, CancellationToken cancellationToken = default)
+        {
+            if (!IsAuthenticated || CurrentPlayer == null)
+            {
+                throw new BackendApiException(401, "INVALID_ACCESS_TOKEN", "登录状态已失效，请重新登录");
+            }
+
+            GachaPoolData pool = await SendAuthenticatedPoolAsync(poolKey, cancellationToken);
+            ALog.Log(
+                $"读取卡池完成. Pool={pool.PoolKey}; Count={pool.Cards.Count}",
+                ALogCategories.Net);
+            return pool;
+        }
 
         UniTask<PlayerData> UpdateBackgroundAsync(PlayerData player, int backgroundId, CancellationToken token) =>
             player.BackgroundId == backgroundId
@@ -338,6 +352,32 @@ namespace AChen.Player
 
             SetCurrentPlayer(player);
             return CurrentPlayer;
+        }
+
+        async UniTask<GachaPoolData> SendAuthenticatedPoolAsync(string poolKey, CancellationToken cancellationToken)
+        {
+            if (!IsAuthenticated)
+            {
+                throw new BackendApiException(401, "INVALID_ACCESS_TOKEN", "登录状态已失效，请重新登录");
+            }
+
+            long sessionVersion = SessionVersion;
+            try
+            {
+                GachaPoolData pool = await Api.GetGachaPoolAsync(m_accessToken, poolKey, cancellationToken);
+                EnsureSessionVersion(sessionVersion);
+                return pool;
+            }
+            catch (BackendApiException exception) when (
+                exception.StatusCode == 401 && SessionVersion == sessionVersion &&
+                !string.IsNullOrEmpty(m_refreshToken))
+            {
+                await RefreshAsync(cancellationToken);
+                EnsureSessionVersion(sessionVersion);
+                GachaPoolData pool = await Api.GetGachaPoolAsync(m_accessToken, poolKey, cancellationToken);
+                EnsureSessionVersion(sessionVersion);
+                return pool;
+            }
         }
 
         async UniTask<CardDrawResponse> SendAuthenticatedDrawAsync(
