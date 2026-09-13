@@ -104,7 +104,8 @@ UI 可以读 `PlayerSession` 和配置 Store，不能绕过会话直接改金币
 | 模块 | 路径前缀 | 职责 |
 | --- | --- | --- |
 | Auth | `/api/auth` | 注册、登录、刷新、登出、当前用户 |
-| Players | `/api/player` | 引导数据、改资料、购买 |
+| Players | `/api/player` | 引导数据、改资料、购买、抽卡 |
+| Gacha | `/api/gacha` | 卡池 / 全部卡牌 CSV 导入与加权抽卡（权重不下发客户端） |
 | AccountManagement | `/api/accounts/admin` | 按发布密钥给账号加金币 |
 | GameConfig | `/api/game-config` | 已发布引导；`/admin/draft` 改草稿并发布 |
 | ContentDelivery | `/api/content`、`/content` | Release、Manifest、不可变文件下载 |
@@ -114,7 +115,7 @@ UI 可以读 `PlayerSession` 和配置 Store，不能绕过会话直接改金币
 
 | 方式 | 用在哪 |
 | --- | --- |
-| Bearer Access Token | 玩家资料与购买 |
+| Bearer Access Token | 玩家资料、购买与抽卡 |
 | `X-Content-Publish-Key` | 内容发布、账号金币、配置管理 |
 | 内容后台 Cookie | Razor Pages 管理台 |
 

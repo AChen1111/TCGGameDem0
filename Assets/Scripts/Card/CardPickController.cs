@@ -1,50 +1,183 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using System;
+using UnityEngine.AddressableAssets;
+using AChen.Networking;
+using AChen.Player;
 using Cysharp.Threading.Tasks;
-using UnityEngine.Serialization;
 
 //抽卡界面的卡牌列表控制器
 public class CardPickController : MonoBehaviour {
-    int _cardCount;//每次抽取的数量
+    [SerializeField] private string _poolKey = "Card01";
+    [SerializeField] private int _drawCount = 1;
     [SerializeField] private GameObjectHorizontalLayout _gameObjectHorizontalLayout;
-    [SerializeField, FormerlySerializedAs("_cardViewDatas")] private List<CardPickViewData> _cardPickViewDatas = new List<CardPickViewData>();
-    private List<CardPickView> _cardObjects = new List<CardPickView>();
-    public GameObject _cardPrefab;
-    public Button _checkNextCardButton;
+    [SerializeField] private GameObject _cardPrefab;
+    [SerializeField] private Button _drawButton;
+    [SerializeField] private Button _checkNextCardButton;
+    private readonly List<CardPickView> _cardObjects = new List<CardPickView>();
     private int _currentCardIndex = 0;
+    private bool _drawing;
+    private bool _drawn;
 
     void Awake()
     {
-        _gameObjectHorizontalLayout.enabled = false;
-        Init();
-    }
-    void Init()
-    {
-        //todo:从服务器上获取这次key的抽取结果
-        _cardCount = _cardPickViewDatas.Count;
-        for (int i = 0; i < _cardCount; i++)
+        if (_gameObjectHorizontalLayout != null)
         {
-            GameObject card = Instantiate(_cardPrefab, transform);
-            _cardObjects.Add(card.GetComponent<CardPickView>());
-            _cardObjects[i].Init(_cardPickViewDatas[i]);
-            _cardObjects[i].gameObject.SetActive(false);
-            _cardObjects[i].SwitchStatus(CardStatus.None);
-            _cardObjects[i].gameObject.transform.localPosition = new Vector3(0, 0, i);//z轴排列
+            _gameObjectHorizontalLayout.enabled = false;
         }
 
-        _checkNextCardButton.onClick.AddListener(CheckNextCard);
+        if (_drawButton == null)
+        {
+            _drawButton = _checkNextCardButton;
+        }
 
-        //实例化第一张卡牌
+        if (_drawButton != null)
+        {
+            _drawButton.onClick.AddListener(OnPrimaryClick);
+        }
+
+        if (_checkNextCardButton != null && _checkNextCardButton != _drawButton)
+        {
+            _checkNextCardButton.gameObject.SetActive(false);
+            _checkNextCardButton.onClick.AddListener(CheckNextCard);
+        }
+    }
+
+    void OnPrimaryClick()
+    {
+        if (!_drawn)
+        {
+            SubmitDraw().Forget();
+            return;
+        }
+
+        CheckNextCard();
+    }
+
+    async UniTaskVoid SubmitDraw()
+    {
+        if (_drawing)
+        {
+            return;
+        }
+
+        _drawing = true;
+        if (_drawButton != null)
+        {
+            _drawButton.interactable = false;
+        }
+
+        ALog.Log($"提交抽卡. Pool={_poolKey}; Count={_drawCount}", ALogCategories.Net);
+        try
+        {
+            if (!PlayerSession.HasInstance || !PlayerSession.Instance.IsAuthenticated)
+            {
+                throw new BackendApiException(401, "INVALID_ACCESS_TOKEN", "登录状态已失效，请重新登录");
+            }
+
+            CardDrawResponse response = await PlayerSession.Instance.DrawCardsAsync(_poolKey, _drawCount);
+            ALog.Log($"抽卡成功. Pool={_poolKey}; Count={response.Results.Count}; Revision={response.Player.Revision}", ALogCategories.Net);
+            _drawn = true;
+            await BuildCardsAsync(response.Results);
+        }
+        catch (BackendApiException exception)
+        {
+            ALog.LogWarning($"抽卡失败. Pool={_poolKey}; Count={_drawCount}; Code={exception.Code}; Status={exception.StatusCode}", ALogCategories.Net);
+            if (_drawButton != null)
+            {
+                _drawButton.interactable = true;
+            }
+        }
+        finally
+        {
+            _drawing = false;
+        }
+    }
+
+    async UniTask BuildCardsAsync(IReadOnlyList<CardDrawResult> results)
+    {
+        for (int i = 0; i < results.Count; i++)
+        {
+            CardDrawResult result = results[i];
+            GameObject card = Instantiate(_cardPrefab, transform);
+            CardPickView view = card.GetComponent<CardPickView>();
+            string sourcePool = string.IsNullOrEmpty(result.SourcePool) ? _poolKey : result.SourcePool;
+            Texture texture = await LoadCardTextureAsync(sourcePool, result.CardId);
+            view.Init(new CardPickViewData
+            {
+                cardId = result.CardId,
+                cardShaderType = ToShaderType(result.Rarity),
+                cardTexture = texture
+            });
+            view.gameObject.SetActive(false);
+            view.SwitchStatus(CardStatus.None);
+            view.gameObject.transform.localPosition = new Vector3(0, 0, i);
+            _cardObjects.Add(view);
+        }
+
+        if (_drawButton != null && _drawButton != _checkNextCardButton)
+        {
+            _drawButton.gameObject.SetActive(false);
+        }
+
+        if (_cardObjects.Count == 0)
+        {
+            return;
+        }
+
+        if (_checkNextCardButton != null)
+        {
+            _checkNextCardButton.gameObject.SetActive(true);
+        }
+
         _cardObjects[0].gameObject.SetActive(true);
         _cardObjects[0].SwitchStatus(CardStatus.CanFlip);
         _currentCardIndex = 0;
     }
 
+    static CardShaderType ToShaderType(int rarity)
+    {
+        if (rarity < 0 || rarity > (int)CardShaderType.Outline)
+        {
+            return CardShaderType.None;
+        }
+
+        return (CardShaderType)rarity;
+    }
+
+    static async UniTask<Texture> LoadCardTextureAsync(string poolKey, string cardId)
+    {
+        if (!CardPoolAddress.TryGetBagFolder(poolKey, out string bag) || string.IsNullOrEmpty(cardId))
+        {
+            return null;
+        }
+
+        string path = $"Assets/UI/Card/{bag}/{cardId}.jpg";
+        var handle = Addressables.LoadAssetAsync<Sprite>(path);
+        try
+        {
+            Sprite sprite = await handle.Task;
+            return sprite != null ? sprite.texture : null;
+        }
+        catch
+        {
+            if (handle.IsValid())
+            {
+                Addressables.Release(handle);
+            }
+
+            ALog.LogWarning($"加载卡图失败. Path={path}", ALogCategories.Net);
+            return null;
+        }
+    }
+
     private void CheckNextCard()
     {
-        //反面说明还没有翻开
+        if (_cardObjects.Count == 0)
+        {
+            return;
+        }
+
         if(!_cardObjects[_currentCardIndex].IsFlipped())
         {
             _cardObjects[_currentCardIndex].DoFlip();
@@ -66,10 +199,9 @@ public class CardPickController : MonoBehaviour {
             _cardObjects[_currentCardIndex].gameObject.SetActive(true);
         }
 
-        //给剩余的卡牌回到z的位置
         for(int i = _currentCardIndex; i < _cardObjects.Count; i++)
         {
-            int index = i;//解决闭包问题
+            int index = i;
             _cardObjects[index].DoTranslateZ(index - _currentCardIndex, () =>
             {
                 _cardObjects[index].SwitchStatus(CardStatus.CanFlip);
@@ -80,7 +212,11 @@ public class CardPickController : MonoBehaviour {
         if(_currentCardIndex   == _cardObjects.Count)
         {
             ALog.Log("所有卡牌已翻开", ALogCategories.Default);
-            _checkNextCardButton.gameObject.SetActive(false);
+            if (_checkNextCardButton != null)
+            {
+                _checkNextCardButton.gameObject.SetActive(false);
+            }
+
             DoEndShow().Forget();
         }
     }
@@ -89,12 +225,14 @@ public class CardPickController : MonoBehaviour {
     {
         await UniTask.Delay(1000);
 
-        //全部显示
         for(int i = 0; i < _cardObjects.Count; i++)
         {
             _cardObjects[i].gameObject.SetActive(true);
         }
-        _gameObjectHorizontalLayout.enabled = true;
+        if (_gameObjectHorizontalLayout != null)
+        {
+            _gameObjectHorizontalLayout.enabled = true;
+        }
 
         
         int count = _cardObjects.Count;

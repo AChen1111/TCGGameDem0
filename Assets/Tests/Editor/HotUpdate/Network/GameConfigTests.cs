@@ -165,6 +165,7 @@ public sealed class GameConfigTests
         Assert.AreEqual(typeof(IReadOnlyList<int>), typeof(PlayerData).GetProperty(nameof(PlayerData.OwnedAvatarIds)).PropertyType);
         Assert.AreEqual(typeof(int?), typeof(PlayerData).GetProperty(nameof(PlayerData.BackgroundId)).PropertyType);
         Assert.AreEqual(typeof(IReadOnlyList<int>), typeof(PlayerData).GetProperty(nameof(PlayerData.OwnedBackgroundIds)).PropertyType);
+        Assert.AreEqual(typeof(IReadOnlyList<OwnedCardData>), typeof(PlayerData).GetProperty(nameof(PlayerData.OwnedCards)).PropertyType);
     }
 
     static GameConfigSnapshot CreateSnapshot(long revision, long priceGold)

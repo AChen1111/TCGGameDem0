@@ -197,6 +197,12 @@ namespace AChen.Player
                     (accessToken, ct) => Api.PurchaseShopItemAsync(accessToken, catalogType, itemId, player.Revision, ct),
                     token), cancellationToken);
 
+        public UniTask<CardDrawResponse> DrawCardsAsync(string poolKey, int count, CancellationToken cancellationToken = default) =>
+            ExecuteDrawAsync("DrawCards", $"{poolKey}/{count}", (player, token) =>
+                SendAuthenticatedDrawAsync(
+                    (accessToken, ct) => Api.DrawCardsAsync(accessToken, poolKey, count, player.Revision, ct),
+                    token), cancellationToken);
+
         UniTask<PlayerData> UpdateBackgroundAsync(PlayerData player, int backgroundId, CancellationToken token) =>
             player.BackgroundId == backgroundId
                 ? UniTask.FromResult(player)
@@ -255,6 +261,52 @@ namespace AChen.Player
             }
         }
 
+        async UniTask<CardDrawResponse> ExecuteDrawAsync(
+            string operation,
+            string target,
+            Func<PlayerData, CancellationToken, UniTask<CardDrawResponse>> execute,
+            CancellationToken cancellationToken)
+        {
+            long sessionVersion = SessionVersion;
+            await m_mutationLock.WaitAsync(cancellationToken);
+            try
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                EnsureSessionVersion(sessionVersion);
+                PlayerData player = CurrentPlayer;
+                if (!IsAuthenticated || player == null)
+                {
+                    throw new BackendApiException(401, "INVALID_ACCESS_TOKEN", "登录状态已失效，请重新登录");
+                }
+
+                CardDrawResponse updated = await execute(player, cancellationToken);
+                ALog.Log($"玩家操作完成. Operation={operation}; Target={target}; Player={updated.Player.Id}; Count={updated.Results.Count}; Revision={updated.Player.Revision}", ALogCategories.Net);
+                return updated;
+            }
+            catch (BackendApiException exception)
+            {
+                if (exception.Code == "PLAYER_DATA_CHANGED" && SessionVersion == sessionVersion)
+                {
+                    try
+                    {
+                        await SendAuthenticatedAsync(Api.GetPlayerAsync, cancellationToken);
+                    }
+                    catch (OperationCanceledException) { throw; }
+                    catch (Exception refreshException)
+                    {
+                        ALog.LogWarning($"冲突后刷新玩家失败. Operation={operation}; Error={refreshException.Message}", ALogCategories.Net);
+                    }
+                }
+
+                ALog.LogWarning($"玩家操作失败. Operation={operation}; Target={target}; Code={exception.Code}; Status={exception.StatusCode}", ALogCategories.Net);
+                throw;
+            }
+            finally
+            {
+                m_mutationLock.Release();
+            }
+        }
+
         // ---- 鉴权请求与状态提交 ----
 
         /// <summary>带访问令牌调用接口; 401 时刷新令牌重试一次, 成功后把返回的玩家资料提交为当前状态.</summary>
@@ -286,6 +338,36 @@ namespace AChen.Player
 
             SetCurrentPlayer(player);
             return CurrentPlayer;
+        }
+
+        async UniTask<CardDrawResponse> SendAuthenticatedDrawAsync(
+            Func<string, CancellationToken, UniTask<CardDrawResponse>> call,
+            CancellationToken cancellationToken)
+        {
+            if (!IsAuthenticated)
+            {
+                throw new BackendApiException(401, "INVALID_ACCESS_TOKEN", "登录状态已失效，请重新登录");
+            }
+
+            long sessionVersion = SessionVersion;
+            CardDrawResponse response;
+            try
+            {
+                response = await call(m_accessToken, cancellationToken);
+                EnsureSessionVersion(sessionVersion);
+            }
+            catch (BackendApiException exception) when (
+                exception.StatusCode == 401 && SessionVersion == sessionVersion &&
+                !string.IsNullOrEmpty(m_refreshToken))
+            {
+                await RefreshAsync(cancellationToken);
+                EnsureSessionVersion(sessionVersion);
+                response = await call(m_accessToken, cancellationToken);
+                EnsureSessionVersion(sessionVersion);
+            }
+
+            SetCurrentPlayer(response.Player);
+            return new CardDrawResponse(response.Results, CurrentPlayer);
         }
 
         /// <summary>提交服务器返回的会话; evt 为 null 表示令牌刷新, 只更新状态不发登录事件.</summary>

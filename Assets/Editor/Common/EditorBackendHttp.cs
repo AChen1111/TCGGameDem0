@@ -47,6 +47,31 @@ public static class EditorBackendHttp
         }
     }
 
+    /// <summary>发送原始文本请求体, 例如 text/csv.</summary>
+    public static async Task<string> SendRawAsync(
+        string baseUrl,
+        string method,
+        string path,
+        byte[] body,
+        string contentType,
+        string publishKey)
+    {
+        using (var request = new UnityWebRequest(BuildUrl(baseUrl, path), method))
+        {
+            request.downloadHandler = new DownloadHandlerBuffer();
+            if (body != null)
+            {
+                request.uploadHandler = new UploadHandlerRaw(body);
+                request.SetRequestHeader("Content-Type", contentType);
+            }
+
+            request.SetRequestHeader(PublishKeyHeader, publishKey);
+            await AwaitAsync(request);
+            ThrowIfFailed(request);
+            return request.downloadHandler.text;
+        }
+    }
+
     /// <summary>GET 请求; allowNotFound 时 404 返回 null 而不抛出.</summary>
     public static async Task<string> GetAsync(
         string baseUrl,

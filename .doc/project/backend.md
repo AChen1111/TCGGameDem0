@@ -9,7 +9,8 @@
 | 模块 | 代码位置 | 对外能力 |
 | --- | --- | --- |
 | Auth | `Features/Auth` | 注册、登录、刷新并轮换 Token、登出、查询当前用户 |
-| Players | `Features/Players` | 引导数据、改昵称 / 当前头像 / 壁纸、购买外观 |
+| Players | `Features/Players` | 引导数据、改昵称 / 当前头像 / 壁纸、购买外观、抽卡 |
+| Gacha | `Features/Gacha` | 卡池 CSV 导入、全部卡牌目录、全局稀有度权重、加权抽卡 |
 | AccountManagement | `Features/AccountManagement` | 发布密钥查询或增加指定账号金币 |
 | GameConfig | `Features/GameConfig` | 已发布引导、草稿替换/发布、CSV、Git 快照 |
 | ContentDelivery | `Features/ContentDelivery` | Release 生命周期、活动版本、Manifest、不可变文件 |
@@ -39,7 +40,7 @@
 | Publish Key | `X-Content-Publish-Key` | 发布、运营金币、配置管理 |
 | Content Admin Cookie | `AChen.ContentAdmin` | `/admin` 页面，8 小时，密钥指纹变化即失效 |
 
-玩家改资料和购买必须带 `expectedRevision`，防止用过期引导数据覆盖。金币与拥有列表不能由 `PATCH /api/player/profile` 改写。购买价格取已发布配置的 `priceGold`，请求体不能指定金额。
+玩家改资料、购买和抽卡必须带 `expectedRevision`，防止用过期引导数据覆盖。金币与拥有列表不能由 `PATCH /api/player/profile` 改写。购买价格取已发布配置的 `priceGold`，请求体不能指定金额。抽卡走 `POST /api/player/card-draws`，权重只留在服务端。
 
 限流按策略名挂到路由：
 
@@ -59,7 +60,7 @@
 
 决斗服务若落地，使用独立入口 `AChen.Duel.Server`：只提供进程生命周期和 UDP 后台服务，不引用本 API，不跑 JWT、SQLite 或发布密钥校验。本 API 继续承担账号、商城与内容，不删、不迁去对战进程。
 
-购买接口只结算 `avatar` 和 `wallpaper`。卡包会出现在已发布配置和大厅列表，没有对应的购买 API。
+购买接口只结算 `avatar` 和 `wallpaper`。卡包会出现在已发布配置和大厅列表，没有对应的购买 API。抽卡不扣金币，结果写入 `ownedCards`。卡池 CSV 用 `PUT /api/gacha/admin/config` 导入，Unity 菜单「Tools/配置表/抽卡卡池导入」。全部卡牌 CSV 用 `PUT /api/gacha/admin/cards` 导入，Unity 菜单「Tools/配置表/全部卡牌导入」；`poolKey=CardAll` 从该表等权抽取。
 
 ## 5. 管理台页面
 

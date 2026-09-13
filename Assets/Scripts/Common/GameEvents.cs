@@ -26,6 +26,7 @@ namespace AChen.Events
         public static readonly EventId<int?> PlayerBackgroundChanged = new EventId<int?>("Player.BackgroundChanged");
         public static readonly EventId<PlayerData> PlayerOwnedAvatarsChanged = new EventId<PlayerData>("Player.OwnedAvatarsChanged");
         public static readonly EventId<PlayerData> PlayerOwnedWallpapersChanged = new EventId<PlayerData>("Player.OwnedWallpapersChanged");
+        public static readonly EventId<PlayerData> PlayerOwnedCardsChanged = new EventId<PlayerData>("Player.OwnedCardsChanged");
 
         /// <summary>游戏配置快照被替换或过期状态变化后触发。参数：<c>GameConfigSnapshot</c>、<c>bool isStale</c>。</summary>
         public static readonly EventId<GameConfigSnapshot, bool> GameConfigChanged = new EventId<GameConfigSnapshot, bool>("GameConfig.Changed");

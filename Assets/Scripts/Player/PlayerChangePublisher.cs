@@ -15,6 +15,7 @@ namespace AChen.Player
             bool identityChanged = previous?.Id != current?.Id;
             bool avatarsChanged = identityChanged || !SameIds(previous?.OwnedAvatarIds, current?.OwnedAvatarIds);
             bool wallpapersChanged = identityChanged || !SameIds(previous?.OwnedBackgroundIds, current?.OwnedBackgroundIds);
+            bool cardsChanged = identityChanged || !SameCards(previous?.OwnedCards, current?.OwnedCards);
 
             if (identityChanged || previous?.Gold != current?.Gold)
                 EventCenter.Dispatch(GameEvent.PlayerGoldChanged, current?.Gold);
@@ -28,10 +29,37 @@ namespace AChen.Player
                 EventCenter.Dispatch(GameEvent.PlayerOwnedAvatarsChanged, current);
             if (wallpapersChanged)
                 EventCenter.Dispatch(GameEvent.PlayerOwnedWallpapersChanged, current);
+            if (cardsChanged)
+                EventCenter.Dispatch(GameEvent.PlayerOwnedCardsChanged, current);
         }
 
         static bool SameIds(IReadOnlyList<int> previous, IReadOnlyList<int> current) =>
             ReferenceEquals(previous, current) ||
             (previous != null && current != null && new HashSet<int>(previous).SetEquals(current));
+
+        static bool SameCards(IReadOnlyList<OwnedCardData> previous, IReadOnlyList<OwnedCardData> current)
+        {
+            if (ReferenceEquals(previous, current))
+            {
+                return true;
+            }
+
+            if (previous == null || current == null || previous.Count != current.Count)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < previous.Count; i++)
+            {
+                OwnedCardData left = previous[i];
+                OwnedCardData right = current[i];
+                if (left.CardId != right.CardId || left.Rarity != right.Rarity || left.Count != right.Count)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }

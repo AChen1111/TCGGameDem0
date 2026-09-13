@@ -17,6 +17,46 @@ namespace AChen.Networking
         }
     }
 
+    public sealed class OwnedCardData
+    {
+        public string CardId { get; }
+        public int Rarity { get; }
+        public int Count { get; }
+
+        internal OwnedCardData(string cardId, int rarity, int count)
+        {
+            CardId = cardId ?? string.Empty;
+            Rarity = rarity;
+            Count = count;
+        }
+    }
+
+    public sealed class CardDrawResult
+    {
+        public string CardId { get; }
+        public int Rarity { get; }
+        public string SourcePool { get; }
+
+        internal CardDrawResult(string cardId, int rarity, string sourcePool)
+        {
+            CardId = cardId ?? string.Empty;
+            Rarity = rarity;
+            SourcePool = sourcePool ?? string.Empty;
+        }
+    }
+
+    public sealed class CardDrawResponse
+    {
+        public IReadOnlyList<CardDrawResult> Results { get; }
+        public PlayerData Player { get; }
+
+        internal CardDrawResponse(IReadOnlyList<CardDrawResult> results, PlayerData player)
+        {
+            Results = results ?? Array.Empty<CardDrawResult>();
+            Player = player;
+        }
+    }
+
     public sealed class PlayerData
     {
         public Guid Id { get; }
@@ -25,6 +65,7 @@ namespace AChen.Networking
         public IReadOnlyList<int> OwnedAvatarIds { get; }
         public int? BackgroundId { get; }
         public IReadOnlyList<int> OwnedBackgroundIds { get; }
+        public IReadOnlyList<OwnedCardData> OwnedCards { get; }
         public long Gold { get; }
         public long Revision { get; }
         public DateTimeOffset CreatedAt { get; }
@@ -37,6 +78,7 @@ namespace AChen.Networking
             IReadOnlyList<int> ownedAvatarIds,
             int? backgroundId,
             IReadOnlyList<int> ownedBackgroundIds,
+            IReadOnlyList<OwnedCardData> ownedCards,
             long gold,
             long revision,
             DateTimeOffset createdAt,
@@ -48,6 +90,7 @@ namespace AChen.Networking
             OwnedAvatarIds = ownedAvatarIds ?? Array.Empty<int>();
             BackgroundId = backgroundId;
             OwnedBackgroundIds = ownedBackgroundIds ?? Array.Empty<int>();
+            OwnedCards = ownedCards ?? Array.Empty<OwnedCardData>();
             Gold = gold;
             Revision = revision;
             CreatedAt = createdAt;

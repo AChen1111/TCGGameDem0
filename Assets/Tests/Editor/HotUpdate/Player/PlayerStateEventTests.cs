@@ -35,7 +35,7 @@ public sealed class PlayerStateEventTests
     {
         PlayerData first = CreatePlayer(Guid.NewGuid(), 100);
         PlayerData second = CreatePlayer(Guid.NewGuid(), 100);
-        string[] expected = { "gold", "nickname", "avatar", "background", "ownedAvatars", "ownedWallpapers" };
+        string[] expected = { "gold", "nickname", "avatar", "background", "ownedAvatars", "ownedWallpapers", "ownedCards" };
         using (var recorder = new Recorder())
         {
             Publish(first, second);
@@ -61,7 +61,7 @@ public sealed class PlayerStateEventTests
     {
         DateTimeOffset now = DateTimeOffset.UtcNow;
         return (PlayerData)Activator.CreateInstance(typeof(PlayerData), BindingFlags.Instance | BindingFlags.NonPublic,
-            null, new object[] { id, "player", (int?)1, avatars ?? new[] { 1 }, (int?)10, new[] { 10 }, gold, 1L, now, now }, null);
+            null, new object[] { id, "player", (int?)1, avatars ?? new[] { 1 }, (int?)10, new[] { 10 }, Array.Empty<OwnedCardData>(), gold, 1L, now, now }, null);
     }
 
     static void Publish(PlayerData previous, PlayerData current) =>
@@ -79,6 +79,7 @@ public sealed class PlayerStateEventTests
             EventCenter.AddListener(GameEvent.PlayerBackgroundChanged, Background);
             EventCenter.AddListener(GameEvent.PlayerOwnedAvatarsChanged, Avatars);
             EventCenter.AddListener(GameEvent.PlayerOwnedWallpapersChanged, Wallpapers);
+            EventCenter.AddListener(GameEvent.PlayerOwnedCardsChanged, Cards);
         }
 
         public void Dispose()
@@ -89,6 +90,7 @@ public sealed class PlayerStateEventTests
             EventCenter.RemoveListener(GameEvent.PlayerBackgroundChanged, Background);
             EventCenter.RemoveListener(GameEvent.PlayerOwnedAvatarsChanged, Avatars);
             EventCenter.RemoveListener(GameEvent.PlayerOwnedWallpapersChanged, Wallpapers);
+            EventCenter.RemoveListener(GameEvent.PlayerOwnedCardsChanged, Cards);
         }
 
         void Gold(long? value) => Events.Add("gold");
@@ -97,5 +99,6 @@ public sealed class PlayerStateEventTests
         void Background(int? value) => Events.Add("background");
         void Avatars(PlayerData value) => Events.Add("ownedAvatars");
         void Wallpapers(PlayerData value) => Events.Add("ownedWallpapers");
+        void Cards(PlayerData value) => Events.Add("ownedCards");
     }
 }

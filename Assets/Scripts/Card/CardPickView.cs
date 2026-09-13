@@ -22,8 +22,9 @@ public enum CardStatus
 [Serializable]
 public struct CardPickViewData
 {
+    public string cardId;
     public CardShaderType cardShaderType;
-    //public Sprite sprite;
+    public Texture cardTexture;
 }
 
 //抽卡界面的卡牌视图
@@ -118,12 +119,16 @@ public class CardPickView : MonoBehaviour
     public void Init(CardPickViewData cardPickViewData)
     {
         _cardShaderType = cardPickViewData.cardShaderType;
-        //_spriteRenderer.sprite = cardPickViewData.sprite;
         _matFront = new Material(_matFront);
         _matBack = new Material(_matBack);
         _meshFrontRenderer.material = _matFront;
         _meshBackRenderer.material = _matBack;
         BindEdgeMaterial();
+        if (cardPickViewData.cardTexture != null)
+        {
+            _matFront.SetTexture(BaseMapId, cardPickViewData.cardTexture);
+        }
+
         ApplyEffect(_cardShaderType);
         ApplyDissolve(0f);
         SwitchStatus(CardStatus.None);

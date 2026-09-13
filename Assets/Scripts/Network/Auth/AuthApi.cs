@@ -85,6 +85,28 @@ namespace AChen.Networking
             return ToPlayer(dto);
         }
 
+        public async UniTask<CardDrawResponse> DrawCardsAsync(
+            string accessToken,
+            string poolKey,
+            int count,
+            long expectedRevision,
+            CancellationToken cancellationToken)
+        {
+            CardDrawResponseDto dto = await m_http.SendAsync<CardDrawResponseDto>(
+                UnityWebRequest.kHttpVerbPOST,
+                "/api/player/card-draws",
+                new DrawCardsRequest(poolKey, count, expectedRevision),
+                accessToken,
+                cancellationToken);
+            return ToDraw(dto);
+        }
+
+        public static PlayerData ParsePlayerJson(string json) =>
+            ToPlayer(BackendJson.DeserializeResponse<PlayerDto>(json));
+
+        public static CardDrawResponse ParseDrawJson(string json) =>
+            ToDraw(BackendJson.DeserializeResponse<CardDrawResponseDto>(json));
+
         async UniTask<AuthSession> PostAuthAsync(string path, object body, CancellationToken cancellationToken)
         {
             AuthResponseDto response = await m_http.SendAsync<AuthResponseDto>(
@@ -118,10 +140,52 @@ namespace AChen.Networking
                 player.OwnedAvatarIds,
                 player.BackgroundId,
                 player.OwnedBackgroundIds,
+                ToOwnedCards(player.OwnedCards),
                 player.Gold,
                 player.Revision,
                 player.CreatedAt,
                 player.UpdatedAt);
+
+        static CardDrawResponse ToDraw(CardDrawResponseDto dto)
+        {
+            if (dto == null || dto.Player == null)
+            {
+                throw new BackendApiException(0, "INVALID_RESPONSE", "服务器返回的抽卡数据不完整");
+            }
+
+            CardDrawResultDto[] results = dto.Results ?? Array.Empty<CardDrawResultDto>();
+            var mapped = new CardDrawResult[results.Length];
+            for (int i = 0; i < results.Length; i++)
+            {
+                CardDrawResultDto result = results[i];
+                mapped[i] = new CardDrawResult(
+                    result != null ? result.CardId : null,
+                    result != null ? result.Rarity : 0,
+                    result != null ? result.SourcePool : null);
+            }
+
+            return new CardDrawResponse(mapped, ToPlayer(dto.Player));
+        }
+
+        static OwnedCardData[] ToOwnedCards(OwnedCardDto[] cards)
+        {
+            if (cards == null || cards.Length == 0)
+            {
+                return Array.Empty<OwnedCardData>();
+            }
+
+            var mapped = new OwnedCardData[cards.Length];
+            for (int i = 0; i < cards.Length; i++)
+            {
+                OwnedCardDto card = cards[i];
+                mapped[i] = new OwnedCardData(
+                    card != null ? card.CardId : null,
+                    card != null ? card.Rarity : 0,
+                    card != null ? card.Count : 0);
+            }
+
+            return mapped;
+        }
 
         sealed class CredentialsRequest
         {
@@ -175,6 +239,20 @@ namespace AChen.Networking
             }
         }
 
+        sealed class DrawCardsRequest
+        {
+            public string PoolKey { get; }
+            public int Count { get; }
+            public long ExpectedRevision { get; }
+
+            public DrawCardsRequest(string poolKey, int count, long expectedRevision)
+            {
+                PoolKey = poolKey;
+                Count = count;
+                ExpectedRevision = expectedRevision;
+            }
+        }
+
         [Preserve]
         sealed class AuthResponseDto
         {
@@ -207,10 +285,40 @@ namespace AChen.Networking
             public int[] OwnedAvatarIds { get; set; }
             public int? BackgroundId { get; set; }
             public int[] OwnedBackgroundIds { get; set; }
+            public OwnedCardDto[] OwnedCards { get; set; }
             public long Gold { get; set; }
             public long Revision { get; set; }
             public DateTimeOffset CreatedAt { get; set; }
             public DateTimeOffset UpdatedAt { get; set; }
+        }
+
+        [Preserve]
+        sealed class OwnedCardDto
+        {
+            public OwnedCardDto() { }
+
+            public string CardId { get; set; }
+            public int Rarity { get; set; }
+            public int Count { get; set; }
+        }
+
+        [Preserve]
+        sealed class CardDrawResultDto
+        {
+            public CardDrawResultDto() { }
+
+            public string CardId { get; set; }
+            public int Rarity { get; set; }
+            public string SourcePool { get; set; }
+        }
+
+        [Preserve]
+        sealed class CardDrawResponseDto
+        {
+            public CardDrawResponseDto() { }
+
+            public CardDrawResultDto[] Results { get; set; }
+            public PlayerDto Player { get; set; }
         }
     }
 }
