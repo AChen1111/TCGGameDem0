@@ -24,7 +24,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: 2097cc67a28917148a99c14991b9922e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _EFFECT_COLORFUL
   m_InvalidKeywords: []
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -110,6 +111,10 @@ Material:
     - _ColorMode: 0
     - _Cull: 2
     - _Cutoff: 0.5
+    - _Dissolve: 0
+    - _DissolveDir: 0.55
+    - _DissolveEdgeWidth: 0.08
+    - _DissolveScale: 10
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DistortionBlend: 0.5
@@ -118,6 +123,7 @@ Material:
     - _DistortionStrengthScaled: 0
     - _DstBlend: 0
     - _DstBlendAlpha: 0
+    - _Effect: 1
     - _EmissionEnabled: 0
     - _EnvironmentReflections: 1
     - _FlipbookMode: 0
@@ -129,8 +135,11 @@ Material:
     - _HoloStrength: 0.55
     - _LightingEnabled: 0
     - _Metallic: 0
+    - _MirrorScale: 8
+    - _MirrorStrength: 0.55
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _OutlineWidth: 0.035
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -150,11 +159,13 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _DissolveEdgeColor: {r: 2.2, g: 0.75, b: 0.18, a: 1}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HoloTint: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 1, g: 0.86, b: 0.35, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

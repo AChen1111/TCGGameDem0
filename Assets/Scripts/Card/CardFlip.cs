@@ -1,4 +1,5 @@
 using LitMotion;
+using NUnit.Framework;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,11 +18,22 @@ public sealed class CardFlip : MonoBehaviour
     // 进播放时的朝向, 翻面只在这之上加 Y 旋转
     Quaternion m_rest;
     MotionHandle m_handle;
-    // true 表示目标是卡背朝向相机
-    bool m_showBack;
+    // true 表示目标是卡背朝向相机. 抽卡初始是背面
+    bool m_showBack = true;
 
     /// <summary>当前绕 Y 转了多少度. 0 正面, 180 背面. 倾斜脚本会读这个值.</summary>
-    public float Yaw { get; private set; }
+    public float Yaw { get; private set; } = 180f;
+
+    // 正面 = true, 背面 = false. 看翻面目标, 不读欧拉角
+    public bool IsFlipped => !m_showBack;
+
+    public void SetShowBack(bool showBack)
+    {
+        m_handle.TryCancel();
+        m_showBack = showBack;
+        Yaw = showBack ? 180f : 0f;
+        Apply();
+    }
 
     void Awake()
     {
@@ -33,27 +45,6 @@ public sealed class CardFlip : MonoBehaviour
         m_handle.TryCancel();
         Yaw = m_showBack ? 180f : 0f;
         Apply();
-    }
-
-    void Update()
-    {
-        if (Mouse.current == null || !Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            return;
-        }
-
-        var camera = Camera.main;
-        if (camera == null)
-        {
-            return;
-        }
-
-        // 从鼠标位置打一条射线, 打到这张卡的子物体(正面/背面/侧边)就翻面
-        var ray = camera.ScreenPointToRay(Mouse.current.position.ReadValue());
-        if (Physics.Raycast(ray, out var hit) && hit.transform.IsChildOf(transform))
-        {
-            Flip();
-        }
     }
 
     void LateUpdate()
@@ -80,4 +71,5 @@ public sealed class CardFlip : MonoBehaviour
     {
         transform.localRotation = m_rest * Quaternion.Euler(0f, Yaw, 0f);
     }
+
 }

@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1752944930539441552}
+  - component: {fileID: 2374794982874429964}
+  - component: {fileID: 4579004028647199577}
+  - component: {fileID: 9179357805583985634}
   m_Layer: 0
   m_Name: CardPrefab
   m_TagString: Untagged
@@ -34,6 +37,54 @@ Transform:
   - {fileID: 7162379470190148419}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2374794982874429964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616615370615826085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df3ac81f6a74184478401c8d7eac5502, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HotUpdate::CardMouseTilt
+  m_degreesPerUnit: 20
+  m_lerpSpeed: 12
+--- !u!114 &4579004028647199577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616615370615826085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92cf28715222b98438ae3ee44bc6e868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HotUpdate::CardFlip
+  m_duration: 0.45
+  m_ease: 9
+--- !u!114 &9179357805583985634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616615370615826085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7f5b2b31a2eef14e9c2fc5547585647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HotUpdate::CardView
+  _cardShaderType: 0
+  _meshFrontRenderer: {fileID: 4465777527426645647}
+  _meshBackRenderer: {fileID: 5360964038295524098}
+  _matFront: {fileID: 2100000, guid: d178fbe06dea4144ab64580b52241c76, type: 2}
+  _matBack: {fileID: 2100000, guid: 218de9d8e2f51154eb086d537d36ea99, type: 2}
+  _cardStatus: 0
+  _cardFlip: {fileID: 4579004028647199577}
+  _cardMouseTilt: {fileID: 2374794982874429964}
 --- !u!1 &761159936683974164
 GameObject:
   m_ObjectHideFlags: 0
