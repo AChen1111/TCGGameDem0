@@ -54,6 +54,7 @@ public class CardPickView : MonoBehaviour
     MotionHandle _translateZHandle;
     MotionHandle _dissolveHandle;
     Material _matEdge;
+    CardPickController _controller;
 
     //todo:增加卡图替换功能
     //[SerializeField] private SpriteRenderer _spriteRenderer;//卡图
@@ -180,26 +181,46 @@ public class CardPickView : MonoBehaviour
     }
 
     
+    void Awake()
+    {
+        _controller = GetComponentInParent<CardPickController>();
+    }
+
     //检测卡牌是否被点击
     void Update()
     {
-        if (Mouse.current == null || !Mouse.current.leftButton.wasPressedThisFrame)
+        if (_cardStatus != CardStatus.CanFlip
+            || Mouse.current == null
+            || !Mouse.current.leftButton.wasPressedThisFrame)
         {
             return;
         }
 
-        var camera = Camera.main;
-        if (camera == null)
+        if (!TryGetPickRay(out Ray ray))
         {
             return;
         }
 
-        // 从鼠标位置打一条射线, 打到这张卡的子物体(正面/背面/侧边)就翻面
-        var ray = camera.ScreenPointToRay(Mouse.current.position.ReadValue());
-        if (Physics.Raycast(ray, out var hit) && hit.transform.IsChildOf(transform) && _cardStatus == CardStatus.CanFlip)
+        if (Physics.Raycast(ray, out var hit) && hit.transform.IsChildOf(transform))
         {
             DoFlip();
         }
+    }
+
+    bool TryGetPickRay(out Ray ray)
+    {
+        if (_controller == null)
+        {
+            _controller = GetComponentInParent<CardPickController>();
+        }
+
+        if (_controller == null)
+        {
+            ray = default;
+            return false;
+        }
+
+        return _controller.TryGetPointerRay(out ray);
     }
     
     void OnDisable()

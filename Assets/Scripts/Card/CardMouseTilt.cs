@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 /// <summary>
 /// 鼠标在卡面上移动时的倾斜. 只叠加在翻面角度之上, 不改 Yaw.
@@ -17,11 +16,13 @@ public sealed class CardMouseTilt : MonoBehaviour
     // 卡面半宽半高, 用来判断鼠标是否还在牌面上
     Vector2 m_half;
     CardFlip m_flip;
+    CardPickController m_controller;
 
     void Awake()
     {
         m_rest = transform.localRotation;
         m_flip = GetComponent<CardFlip>();
+        m_controller = GetComponentInParent<CardPickController>();
         var collider = GetComponentInChildren<Collider>();
         var extents = collider != null ? collider.bounds.extents : new Vector3(0.5f, 0.73f, 0f);
         m_half = new Vector2(extents.x, extents.y);
@@ -63,8 +64,12 @@ public sealed class CardMouseTilt : MonoBehaviour
     bool TryHover(out Vector2 offset)
     {
         offset = default;
-        var camera = Camera.main;
-        if (camera == null || Mouse.current == null)
+        if (m_controller == null)
+        {
+            m_controller = GetComponentInParent<CardPickController>();
+        }
+
+        if (m_controller == null || !m_controller.TryGetPointerRay(out Ray ray))
         {
             return false;
         }
@@ -73,7 +78,6 @@ public sealed class CardMouseTilt : MonoBehaviour
         var restWorld = transform.parent != null
             ? transform.parent.rotation * m_rest
             : m_rest;
-        var ray = camera.ScreenPointToRay(Mouse.current.position.ReadValue());
         var plane = new Plane(restWorld * Vector3.back, transform.position);
         if (!plane.Raycast(ray, out float enter))
         {

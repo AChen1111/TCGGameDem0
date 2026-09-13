@@ -1,141 +1,114 @@
-using UnityEngine;
+using System;
 using System.Collections.Generic;
-using UnityEngine.UI;
-using UnityEngine.AddressableAssets;
-using AChen.Networking;
-using AChen.Player;
+using UnityEngine;
 using Cysharp.Threading.Tasks;
 
-//抽卡界面的卡牌列表控制器
-public class CardPickController : MonoBehaviour {
-    [SerializeField] private string _poolKey = "Card01";
-    [SerializeField] private int _drawCount = 1;
-    [SerializeField] private GameObjectHorizontalLayout _gameObjectHorizontalLayout;
-    [SerializeField] private GameObject _cardPrefab;
-    [SerializeField] private Button _drawButton;
-    [SerializeField] private Button _checkNextCardButton;
-    private readonly List<CardPickView> _cardObjects = new List<CardPickView>();
-    private int _currentCardIndex = 0;
-    private bool _drawing;
-    private bool _drawn;
+/// <summary>抽卡展示效果. 只播翻面、溶解和展开, 不持有 UI 按键.</summary>
+public class CardPickController : MonoBehaviour
+{
+    [SerializeField] GameObjectHorizontalLayout _gameObjectHorizontalLayout;
+    [SerializeField] GameObject _cardPrefab;
+    [SerializeField] Camera _pickCamera;
 
-    void Awake()
+    readonly List<CardPickView> _cardObjects = new List<CardPickView>();
+    ICardPickPointer _pointer;
+    int _currentCardIndex;
+    bool _revealFinished;
+    Action _onFinished;
+
+    public event Action<bool> NextVisibleChanged;
+
+    public Camera PickCamera =>
+        _pickCamera != null ? _pickCamera : GetComponentInChildren<Camera>(true);
+
+    public void BindPointer(ICardPickPointer pointer)
     {
+        _pointer = pointer;
+    }
+
+    public bool TryGetPointerRay(out Ray ray)
+    {
+        if (_pointer == null)
+        {
+            ray = default;
+            return false;
+        }
+
+        return _pointer.TryGetPointerRay(out ray);
+    }
+
+    public void Play(IReadOnlyList<CardPickViewData> cards, Action onFinished)
+    {
+        Clear();
+        _onFinished = onFinished;
         if (_gameObjectHorizontalLayout != null)
         {
             _gameObjectHorizontalLayout.enabled = false;
         }
 
-        if (_drawButton == null)
+        if (cards == null || cards.Count == 0 || _cardPrefab == null)
         {
-            _drawButton = _checkNextCardButton;
-        }
-
-        if (_drawButton != null)
-        {
-            _drawButton.onClick.AddListener(OnPrimaryClick);
-        }
-
-        if (_checkNextCardButton != null && _checkNextCardButton != _drawButton)
-        {
-            _checkNextCardButton.gameObject.SetActive(false);
-            _checkNextCardButton.onClick.AddListener(CheckNextCard);
-        }
-    }
-
-    void OnPrimaryClick()
-    {
-        if (!_drawn)
-        {
-            SubmitDraw().Forget();
+            ALog.LogWarning("抽卡效果无卡可播", ALogCategories.UI);
             return;
         }
 
-        CheckNextCard();
-    }
-
-    async UniTaskVoid SubmitDraw()
-    {
-        if (_drawing)
+        int layer = gameObject.layer;
+        for (int i = 0; i < cards.Count; i++)
         {
-            return;
-        }
-
-        _drawing = true;
-        if (_drawButton != null)
-        {
-            _drawButton.interactable = false;
-        }
-
-        ALog.Log($"提交抽卡. Pool={_poolKey}; Count={_drawCount}", ALogCategories.Net);
-        try
-        {
-            if (!PlayerSession.HasInstance || !PlayerSession.Instance.IsAuthenticated)
-            {
-                throw new BackendApiException(401, "INVALID_ACCESS_TOKEN", "登录状态已失效，请重新登录");
-            }
-
-            CardDrawResponse response = await PlayerSession.Instance.DrawCardsAsync(_poolKey, _drawCount);
-            ALog.Log($"抽卡成功. Pool={_poolKey}; Count={response.Results.Count}; Revision={response.Player.Revision}", ALogCategories.Net);
-            _drawn = true;
-            await BuildCardsAsync(response.Results);
-        }
-        catch (BackendApiException exception)
-        {
-            ALog.LogWarning($"抽卡失败. Pool={_poolKey}; Count={_drawCount}; Code={exception.Code}; Status={exception.StatusCode}", ALogCategories.Net);
-            if (_drawButton != null)
-            {
-                _drawButton.interactable = true;
-            }
-        }
-        finally
-        {
-            _drawing = false;
-        }
-    }
-
-    async UniTask BuildCardsAsync(IReadOnlyList<CardDrawResult> results)
-    {
-        for (int i = 0; i < results.Count; i++)
-        {
-            CardDrawResult result = results[i];
             GameObject card = Instantiate(_cardPrefab, transform);
+            SetLayerRecursively(card, layer);
             CardPickView view = card.GetComponent<CardPickView>();
-            string sourcePool = string.IsNullOrEmpty(result.SourcePool) ? _poolKey : result.SourcePool;
-            Texture texture = await LoadCardTextureAsync(sourcePool, result.CardId);
-            view.Init(new CardPickViewData
-            {
-                cardId = result.CardId,
-                cardShaderType = ToShaderType(result.Rarity),
-                cardTexture = texture
-            });
+            view.Init(cards[i]);
             view.gameObject.SetActive(false);
             view.SwitchStatus(CardStatus.None);
             view.gameObject.transform.localPosition = new Vector3(0, 0, i);
             _cardObjects.Add(view);
         }
 
-        if (_drawButton != null && _drawButton != _checkNextCardButton)
+        RaiseNextVisible(true);
+        _cardObjects[0].gameObject.SetActive(true);
+        _cardObjects[0].SwitchStatus(CardStatus.CanFlip);
+        _currentCardIndex = 0;
+        ALog.Log($"抽卡效果开始. Count={_cardObjects.Count}", ALogCategories.UI);
+    }
+
+    public void Clear()
+    {
+        for (int i = 0; i < _cardObjects.Count; i++)
         {
-            _drawButton.gameObject.SetActive(false);
+            if (_cardObjects[i] != null)
+            {
+                Destroy(_cardObjects[i].gameObject);
+            }
         }
 
-        if (_cardObjects.Count == 0)
+        _cardObjects.Clear();
+        _currentCardIndex = 0;
+        _revealFinished = false;
+        _onFinished = null;
+        if (_gameObjectHorizontalLayout != null)
+        {
+            _gameObjectHorizontalLayout.enabled = false;
+        }
+    }
+
+    public void Advance()
+    {
+        if (_revealFinished)
+        {
+            _onFinished?.Invoke();
+            return;
+        }
+
+        if (_cardObjects.Count == 0 || _currentCardIndex >= _cardObjects.Count)
         {
             return;
         }
 
-        if (_checkNextCardButton != null)
-        {
-            _checkNextCardButton.gameObject.SetActive(true);
-        }
-
-        _cardObjects[0].gameObject.SetActive(true);
-        _cardObjects[0].SwitchStatus(CardStatus.CanFlip);
-        _currentCardIndex = 0;
+        CheckNextCard();
     }
 
-    static CardShaderType ToShaderType(int rarity)
+    public static CardShaderType ToShaderType(int rarity)
     {
         if (rarity < 0 || rarity > (int)CardShaderType.Outline)
         {
@@ -145,61 +118,34 @@ public class CardPickController : MonoBehaviour {
         return (CardShaderType)rarity;
     }
 
-    static async UniTask<Texture> LoadCardTextureAsync(string poolKey, string cardId)
+    void CheckNextCard()
     {
-        if (!CardPoolAddress.TryGetBagFolder(poolKey, out string bag) || string.IsNullOrEmpty(cardId))
-        {
-            return null;
-        }
-
-        string path = $"Assets/UI/Card/{bag}/{cardId}.jpg";
-        var handle = Addressables.LoadAssetAsync<Sprite>(path);
-        try
-        {
-            Sprite sprite = await handle.Task;
-            return sprite != null ? sprite.texture : null;
-        }
-        catch
-        {
-            if (handle.IsValid())
-            {
-                Addressables.Release(handle);
-            }
-
-            ALog.LogWarning($"加载卡图失败. Path={path}", ALogCategories.Net);
-            return null;
-        }
-    }
-
-    private void CheckNextCard()
-    {
-        if (_cardObjects.Count == 0)
-        {
-            return;
-        }
-
-        if(!_cardObjects[_currentCardIndex].IsFlipped())
+        if (!_cardObjects[_currentCardIndex].IsFlipped())
         {
             _cardObjects[_currentCardIndex].DoFlip();
             return;
         }
-        
-        int m_index = _currentCardIndex;
-        _cardObjects[m_index].DoDissolve(
+
+        int dissolveIndex = _currentCardIndex;
+        _cardObjects[dissolveIndex].DoDissolve(
             () =>
             {
-                _cardObjects[m_index].gameObject.SetActive(false);
-                _cardObjects[m_index].SwitchStatus(CardStatus.ShowEnd);
-            }
-        );
+                if (_cardObjects.Count <= dissolveIndex || _cardObjects[dissolveIndex] == null)
+                {
+                    return;
+                }
+
+                _cardObjects[dissolveIndex].gameObject.SetActive(false);
+                _cardObjects[dissolveIndex].SwitchStatus(CardStatus.ShowEnd);
+            });
 
         _currentCardIndex++;
-        if(_currentCardIndex < _cardObjects.Count)
+        if (_currentCardIndex < _cardObjects.Count)
         {
             _cardObjects[_currentCardIndex].gameObject.SetActive(true);
         }
 
-        for(int i = _currentCardIndex; i < _cardObjects.Count; i++)
+        for (int i = _currentCardIndex; i < _cardObjects.Count; i++)
         {
             int index = i;
             _cardObjects[index].DoTranslateZ(index - _currentCardIndex, () =>
@@ -208,33 +154,32 @@ public class CardPickController : MonoBehaviour {
             });
         }
 
-
-        if(_currentCardIndex   == _cardObjects.Count)
+        if (_currentCardIndex == _cardObjects.Count)
         {
             ALog.Log("所有卡牌已翻开", ALogCategories.Default);
-            if (_checkNextCardButton != null)
-            {
-                _checkNextCardButton.gameObject.SetActive(false);
-            }
-
+            RaiseNextVisible(false);
             DoEndShow().Forget();
         }
     }
 
-    private async UniTask DoEndShow()
+    async UniTask DoEndShow()
     {
         await UniTask.Delay(1000);
+        if (_cardObjects.Count == 0)
+        {
+            return;
+        }
 
-        for(int i = 0; i < _cardObjects.Count; i++)
+        for (int i = 0; i < _cardObjects.Count; i++)
         {
             _cardObjects[i].gameObject.SetActive(true);
         }
+
         if (_gameObjectHorizontalLayout != null)
         {
             _gameObjectHorizontalLayout.enabled = true;
         }
 
-        
         int count = _cardObjects.Count;
         int left = (count - 1) / 2;
         int right = count / 2;
@@ -242,6 +187,11 @@ public class CardPickController : MonoBehaviour {
         while (left >= 0)
         {
             await UniTask.Delay(100);
+            if (_cardObjects.Count == 0)
+            {
+                return;
+            }
+
             _cardObjects[left].RestoreDissolve();
             if (right != left)
             {
@@ -251,6 +201,23 @@ public class CardPickController : MonoBehaviour {
             left--;
             right++;
         }
+
+        _revealFinished = true;
+        RaiseNextVisible(true);
     }
 
+    void RaiseNextVisible(bool visible)
+    {
+        NextVisibleChanged?.Invoke(visible);
+    }
+
+    static void SetLayerRecursively(GameObject root, int layer)
+    {
+        root.layer = layer;
+        Transform transform = root.transform;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            SetLayerRecursively(transform.GetChild(i).gameObject, layer);
+        }
+    }
 }
