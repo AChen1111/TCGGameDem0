@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using System;
 using Cysharp.Threading.Tasks;
+using UnityEngine.Serialization;
 
 //抽卡界面的卡牌列表控制器
-public class CardListController : MonoBehaviour {
+public class CardPickController : MonoBehaviour {
     int _cardCount;//每次抽取的数量
     [SerializeField] private GameObjectHorizontalLayout _gameObjectHorizontalLayout;
-    [SerializeField] private List<CardViewData> _cardViewDatas = new List<CardViewData>();
-    private List<CardView> _cardObjects = new List<CardView>();
+    [SerializeField, FormerlySerializedAs("_cardViewDatas")] private List<CardPickViewData> _cardPickViewDatas = new List<CardPickViewData>();
+    private List<CardPickView> _cardObjects = new List<CardPickView>();
     public GameObject _cardPrefab;
     public Button _checkNextCardButton;
     private int _currentCardIndex = 0;
@@ -22,12 +23,12 @@ public class CardListController : MonoBehaviour {
     void Init()
     {
         //todo:从服务器上获取这次key的抽取结果
-        _cardCount = _cardViewDatas.Count;
+        _cardCount = _cardPickViewDatas.Count;
         for (int i = 0; i < _cardCount; i++)
         {
             GameObject card = Instantiate(_cardPrefab, transform);
-            _cardObjects.Add(card.GetComponent<CardView>());
-            _cardObjects[i].Init(_cardViewDatas[i]);
+            _cardObjects.Add(card.GetComponent<CardPickView>());
+            _cardObjects[i].Init(_cardPickViewDatas[i]);
             _cardObjects[i].gameObject.SetActive(false);
             _cardObjects[i].SwitchStatus(CardStatus.None);
             _cardObjects[i].gameObject.transform.localPosition = new Vector3(0, 0, i);//z轴排列
@@ -46,7 +47,7 @@ public class CardListController : MonoBehaviour {
         //反面说明还没有翻开
         if(!_cardObjects[_currentCardIndex].IsFlipped())
         {
-            _cardObjects[_currentCardIndex].DoFilp();
+            _cardObjects[_currentCardIndex].DoFlip();
             return;
         }
         

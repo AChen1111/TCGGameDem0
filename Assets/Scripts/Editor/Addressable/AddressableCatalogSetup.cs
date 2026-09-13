@@ -77,6 +77,8 @@ public static class AddressableCatalogSetup
             MarkFolderInGroup(RemoteCardGroup, CardFolder + "/Wallpaper");
         }
 
+        MarkCardBagFolders();
+
         if (!AssetDatabase.IsValidFolder(SpriteFolder))
         {
             return;
@@ -87,6 +89,26 @@ public static class AddressableCatalogSetup
         {
             string child = children[i].Replace('\\', '/');
             MarkFolderInGroup(UiGroupForPath(child), child, "Sprite/" + Path.GetFileName(child));
+        }
+    }
+
+    static void MarkCardBagFolders()
+    {
+        if (!AssetDatabase.IsValidFolder(CardFolder))
+        {
+            return;
+        }
+
+        string[] children = AssetDatabase.GetSubFolders(CardFolder);
+        for (int i = 0; i < children.Length; i++)
+        {
+            string child = children[i].Replace('\\', '/');
+            if (!Path.GetFileName(child).StartsWith("CardBag", System.StringComparison.Ordinal))
+            {
+                continue;
+            }
+
+            MarkFolderInGroup(RemoteCardGroup, child);
         }
     }
 

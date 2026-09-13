@@ -76,7 +76,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7f5b2b31a2eef14e9c2fc5547585647, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: HotUpdate::CardView
+  m_EditorClassIdentifier: HotUpdate::CardPickView
   _cardShaderType: 0
   _meshFrontRenderer: {fileID: 4465777527426645647}
   _meshBackRenderer: {fileID: 5360964038295524098}

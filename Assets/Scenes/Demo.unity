@@ -227,8 +227,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5b112a3ba0d013468cb4d8eadde32fc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: HotUpdate::CardListController
-  _cardViewDatas:
+  m_EditorClassIdentifier: HotUpdate::CardPickController
+  _cardPickViewDatas:
   - cardShaderType: 1
   - cardShaderType: 0
   - cardShaderType: 0

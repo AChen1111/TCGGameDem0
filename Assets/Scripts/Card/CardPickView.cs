@@ -20,14 +20,14 @@ public enum CardStatus
 }
 
 [Serializable]
-public struct CardViewData
+public struct CardPickViewData
 {
     public CardShaderType cardShaderType;
     //public Sprite sprite;
 }
 
 //抽卡界面的卡牌视图
-public class CardView : MonoBehaviour
+public class CardPickView : MonoBehaviour
 {
 
     [Header("显示变量")]
@@ -115,10 +115,10 @@ public class CardView : MonoBehaviour
 
 
 
-    public void Init(CardViewData cardViewData)
+    public void Init(CardPickViewData cardPickViewData)
     {
-        _cardShaderType = cardViewData.cardShaderType;
-        //_spriteRenderer.sprite = cardViewData.sprite;
+        _cardShaderType = cardPickViewData.cardShaderType;
+        //_spriteRenderer.sprite = cardPickViewData.sprite;
         _matFront = new Material(_matFront);
         _matBack = new Material(_matBack);
         _meshFrontRenderer.material = _matFront;
@@ -137,7 +137,7 @@ public class CardView : MonoBehaviour
     }
 
     //翻面
-    public void DoFilp()
+    public void DoFlip()
     {
         _cardFlip.Flip();
     }
@@ -193,7 +193,7 @@ public class CardView : MonoBehaviour
         var ray = camera.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (Physics.Raycast(ray, out var hit) && hit.transform.IsChildOf(transform) && _cardStatus == CardStatus.CanFlip)
         {
-            DoFilp();
+            DoFlip();
         }
     }
     
