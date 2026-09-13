@@ -45,6 +45,7 @@ public sealed class EditorCardPackConfig
     public int id;
     public string title;
     public string coverResourceKey;
+    public string poolKey;
     public long priceGold;
     public string startsAt;
     public string endsAt;
@@ -57,7 +58,7 @@ public static class GameConfigCsvEditorParser
     static readonly string[] Header =
     {
         "Table", "Id", "Name", "ResourceKey", "PriceGold",
-        "StartsAt", "EndsAt", "SortOrder", "IsEnabled"
+        "StartsAt", "EndsAt", "SortOrder", "IsEnabled", "PoolKey"
     };
 
     public static EditorGameConfigDocument ParseFile(string path)
@@ -126,11 +127,14 @@ public static class GameConfigCsvEditorParser
             }
             else if (table.Equals("CardPack", StringComparison.OrdinalIgnoreCase))
             {
+                string poolKey = RestoreSpreadsheetValue(row.Fields[9]).Trim();
+                ValidateText(poolKey, 32, row.Line, "PoolKey");
                 cardPacks.Add(new EditorCardPackConfig
                 {
                     id = id,
                     title = name,
                     coverResourceKey = resourceKey,
+                    poolKey = poolKey,
                     priceGold = priceGold,
                     startsAt = ParseDate(row.Fields[5], row.Line, "StartsAt"),
                     endsAt = ParseDate(row.Fields[6], row.Line, "EndsAt"),

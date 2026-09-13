@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,10 +20,13 @@ public class CardPickWindow : AWindowController<CardPickWindowProperty>
     [SerializeField] RawImage m_RawCardPick;
     // --tag_end: 自动生成--
     [SerializeField] GameObject _stagePrefab;
+    [SerializeField] float _fadeDuration = 0.5f;
 
     GameObject _stage;
     CardPickController _controller;
     RenderTexture _rt;
+    CanvasGroup _canvasGroup;
+    bool _closing;
 
     protected override void AddListeners()
     {
@@ -42,6 +46,15 @@ public class CardPickWindow : AWindowController<CardPickWindowProperty>
 
     protected override void OnOpen()
     {
+        _closing = false;
+        CanvasGroup group = ResolveCanvasGroup();
+        if (group != null)
+        {
+            group.alpha = 0f;
+            group.interactable = false;
+            group.blocksRaycasts = true;
+        }
+
         if (!TrySpawnStage())
         {
             return;
@@ -53,12 +66,19 @@ public class CardPickWindow : AWindowController<CardPickWindowProperty>
         }
 
         _controller.Play(Properties.Cards, UI_Close);
+        FadeInAsync().Forget();
         ALog.Log($"抽卡窗口展示. Count={Properties.Cards.Count}", ALogCategories.UI);
+    }
+
+    public override void UI_Close()
+    {
+        FadeOutThenCloseAsync().Forget();
     }
 
     protected override void OnClose()
     {
         ReleaseStage();
+        ResetCloseVisual();
     }
 
     protected override void OnDestroy()
@@ -108,10 +128,107 @@ public class CardPickWindow : AWindowController<CardPickWindowProperty>
         return true;
     }
 
+    async UniTaskVoid FadeInAsync()
+    {
+        CanvasGroup group = ResolveCanvasGroup();
+        if (group == null)
+        {
+            return;
+        }
+
+        await UITween.FadeInAsync(group, _fadeDuration, this);
+        if (this == null || _closing)
+        {
+            return;
+        }
+
+        group.interactable = true;
+        group.blocksRaycasts = true;
+    }
+
+    async UniTaskVoid FadeOutThenCloseAsync()
+    {
+        if (_closing)
+        {
+            return;
+        }
+
+        _closing = true;
+        CanvasGroup group = ResolveCanvasGroup();
+        if (group != null)
+        {
+            await UITween.FadeOutAsync(group, _fadeDuration, this);
+            if (this == null)
+            {
+                return;
+            }
+        }
+
+        ALog.Log("抽卡窗口淡出完成", ALogCategories.UI);
+        base.UI_Close();
+    }
+
+    CanvasGroup ResolveCanvasGroup()
+    {
+        if (_canvasGroup == null)
+        {
+            _canvasGroup = GetComponent<CanvasGroup>();
+        }
+
+        return _canvasGroup;
+    }
+
+    void ResetCloseVisual()
+    {
+        _closing = false;
+        CanvasGroup group = ResolveCanvasGroup();
+        if (group == null)
+        {
+            return;
+        }
+
+        group.alpha = 1f;
+        group.interactable = true;
+        group.blocksRaycasts = true;
+    }
+
+    void OnRectTransformDimensionsChange()
+    {
+        if (_controller == null)
+        {
+            return;
+        }
+
+        Camera pickCamera = _controller.PickCamera;
+        if (pickCamera != null)
+        {
+            BindRenderTexture(pickCamera);
+        }
+    }
+
     void BindRenderTexture(Camera pickCamera)
     {
         int width = Mathf.Max(Screen.width, 1);
         int height = Mathf.Max(Screen.height, 1);
+        if (_rt != null && _rt.IsCreated() && _rt.width == width && _rt.height == height)
+        {
+            FitPickCamera(pickCamera, width, height);
+            return;
+        }
+
+        if (_rt != null)
+        {
+            pickCamera.targetTexture = null;
+            if (m_RawCardPick != null)
+            {
+                m_RawCardPick.texture = null;
+            }
+
+            _rt.Release();
+            Destroy(_rt);
+            _rt = null;
+        }
+
         _rt = new RenderTexture(width, height, 16, RenderTextureFormat.ARGB32)
         {
             name = "CardPickRT",
@@ -124,7 +241,20 @@ public class CardPickWindow : AWindowController<CardPickWindowProperty>
         pickCamera.allowMSAA = false;
         pickCamera.targetTexture = _rt;
         m_RawCardPick.texture = _rt;
+        FitPickCamera(pickCamera, width, height);
         ALog.Log($"抽卡RT已绑定. Size={width}x{height}", ALogCategories.UI);
+    }
+
+    // 保证单卡翻面和五张展开都落在视锥内, 避免偏方/超宽比例裁切
+    static void FitPickCamera(Camera camera, int width, int height)
+    {
+        const float distance = 2f;
+        const float halfWidth = 1.9f;
+        const float halfHeight = 1.05f;
+        float aspect = Mathf.Max(width / (float)height, 0.01f);
+        float fovHeight = 2f * Mathf.Atan(halfHeight / distance) * Mathf.Rad2Deg;
+        float fovWidth = 2f * Mathf.Atan(halfWidth / (aspect * distance)) * Mathf.Rad2Deg;
+        camera.fieldOfView = Mathf.Max(fovHeight, fovWidth);
     }
 
     void ReleaseStage()

@@ -9,6 +9,7 @@ public static class AddressKeys
         public static readonly string AvatarShopItemPrefab = "AvatarShopItemPrefab";
         public static readonly string AvatarShopItemRowPrefab = "AvatarShopItemRowPrefab";
         public static readonly string CardPackRowPrefab = "CardPackRowPrefab";
+        public static readonly string CardPickWindow = "CardPickWindow";
         public static readonly string ChangeNameWindow = "ChangeNameWindow";
         public static readonly string ChooseWindow = "ChooseWindow";
         public static readonly string LogInWindow = "LogInWindow";

@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using LitMotion;
 using LitMotion.Extensions;
 using UnityEngine;
@@ -42,6 +43,36 @@ static class UITween
             .WithEase(Ease.OutCubic)
             .BindToAlpha(target);
     }
+
+    public static MotionHandle DoFadeIn(CanvasGroup target, float duration)
+    {
+        return DoFadeAnim(0f, 1f, duration, target);
+    }
+
+    public static MotionHandle DoFadeOut(CanvasGroup target, float duration)
+    {
+        return DoFadeAnim(target.alpha, 0f, duration, target);
+    }
+
+    public static UniTask FadeInAsync(CanvasGroup target, float duration, Component lifetime)
+    {
+        target.interactable = false;
+        target.blocksRaycasts = true;
+        return RunAsync(DoFadeIn(target, duration), lifetime);
+    }
+
+    public static UniTask FadeOutAsync(CanvasGroup target, float duration, Component lifetime)
+    {
+        target.interactable = false;
+        target.blocksRaycasts = false;
+        return RunAsync(DoFadeOut(target, duration), lifetime);
+    }
+
+    public static async UniTask RunAsync(MotionHandle handle, Component lifetime)
+    {
+        await handle.AddTo(lifetime);
+    }
+
     //Image的渐入渐出动画
     public static MotionHandle DoFadeAnim(float from, float to, float duration, Image target)
     {
@@ -53,6 +84,16 @@ static class UITween
         return LMotion.Create(from, to, duration)
             .WithEase(Ease.OutCubic)
             .BindToColorA(target);
+    }
+
+    public static MotionHandle DoFadeIn(Image target, float duration)
+    {
+        return DoFadeAnim(0f, 1f, duration, target);
+    }
+
+    public static MotionHandle DoFadeOut(Image target, float duration)
+    {
+        return DoFadeAnim(target.color.a, 0f, duration, target);
     }
 
     public static MotionHandle DoVerticalReveal(Image target, float duration)

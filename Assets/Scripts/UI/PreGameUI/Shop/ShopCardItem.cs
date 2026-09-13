@@ -8,6 +8,7 @@ public class ShopCardItemData
     public int Id { get; }
     public string Title { get; }
     public Sprite MainSprite { get; }
+    public string PoolKey { get; }
     public long PriceGold { get; }
     public DateTimeOffset? EndsAt { get; }
     public int Index { get; }
@@ -16,6 +17,7 @@ public class ShopCardItemData
         int id,
         string title,
         Sprite mainSprite,
+        string poolKey,
         long priceGold,
         DateTimeOffset? endsAt,
         int index)
@@ -23,6 +25,7 @@ public class ShopCardItemData
         Id = id;
         Title = title;
         MainSprite = mainSprite;
+        PoolKey = poolKey ?? string.Empty;
         PriceGold = priceGold;
         EndsAt = endsAt;
         Index = index;

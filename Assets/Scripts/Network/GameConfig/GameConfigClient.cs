@@ -101,6 +101,7 @@ namespace AChen.Networking
             catch (Exception exception) when (
                 exception is JsonException || exception is GameConfigDataException)
             {
+                ALog.LogError($"游戏配置无效. 原因={exception.Message}", ALogCategories.Net);
                 throw new BackendApiException(0, "INVALID_RESPONSE", "服务器返回的游戏配置无效");
             }
 

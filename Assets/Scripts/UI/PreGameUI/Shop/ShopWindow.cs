@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using AChen.Events;
 using AChen.Networking;
@@ -20,6 +21,7 @@ public class ShopWindow : AWindowController
     ShopCategory[] m_Categories;
     int m_SelectedChooseIndex;
     bool m_IsSwitching;
+    const int DrawCount = 5;
     bool m_IsPurchasing;
     bool m_IsShown;
     bool m_RefreshPending;
@@ -198,6 +200,26 @@ public class ShopWindow : AWindowController
     {
         if (m_IsSwitching || m_IsPurchasing || !m_AreItemsCurrent) return;
         ShopCategory category = m_Categories[m_SelectedChooseIndex];
+        if (category.TryGetDrawTarget(index, out ShopDrawTarget drawTarget))
+        {
+            if (!CardPoolAddress.IsKnownDrawPool(drawTarget.PoolKey))
+            {
+                ShowMessage("该卡包未配置卡池");
+                return;
+            }
+
+            ALog.Log(
+                $"商城抽卡确认: Id={drawTarget.Id}; Title={drawTarget.Title}; Pool={drawTarget.PoolKey}; Count={DrawCount}",
+                ALogCategories.UI);
+            RequestOpenWindow(
+                AddressKeys.Prefab.ChooseWindow,
+                new ChooseWindowProperties(
+                    $"确认抽取{drawTarget.Title}？",
+                    () => DrawPackAsync(drawTarget).Forget(),
+                    null));
+            return;
+        }
+
         if (!category.TryGetPurchaseTarget(index, out ShopPurchaseTarget target))
         {
             return;
@@ -249,5 +271,98 @@ public class ShopWindow : AWindowController
 
         m_IsPurchasing = false;
         TryRefresh();
+    }
+
+    async UniTaskVoid DrawPackAsync(ShopDrawTarget target)
+    {
+        if (m_IsPurchasing || !IsOpened) return;
+
+        m_IsPurchasing = true;
+        ALog.Log($"提交抽卡. Id={target.Id}; Title={target.Title}; Pool={target.PoolKey}; Count={DrawCount}", ALogCategories.Net);
+        try
+        {
+            if (!PlayerSession.HasInstance || !PlayerSession.Instance.IsAuthenticated)
+            {
+                throw new BackendApiException(401, "INVALID_ACCESS_TOKEN", "登录状态已失效，请重新登录");
+            }
+
+            CardDrawResponse response = await PlayerSession.Instance.DrawCardsAsync(target.PoolKey, DrawCount);
+            ALog.Log(
+                $"抽卡成功. Pool={target.PoolKey}; Count={response.Results.Count}; Revision={response.Player.Revision}",
+                ALogCategories.Net);
+            List<CardPickViewData> cards = await LoadDrawCardsAsync(target.PoolKey, response.Results);
+            if (this == null || !IsOpened)
+            {
+                return;
+            }
+
+            if (cards == null)
+            {
+                ShowMessage("卡图加载失败，请稍后重试");
+                return;
+            }
+
+            RequestOpenWindow(AddressKeys.Prefab.CardPickWindow, new CardPickWindowProperty(cards));
+        }
+        catch (BackendApiException exception)
+        {
+            ALog.LogWarning(
+                $"抽卡失败. Pool={target.PoolKey}; Count={DrawCount}; Code={exception.Code}; Status={exception.StatusCode}",
+                ALogCategories.Net);
+            ShowMessage(string.IsNullOrEmpty(exception.Message) ? "抽卡失败，请稍后重试" : exception.Message);
+        }
+        catch (Exception exception)
+        {
+            ALog.LogError($"抽卡异常. Pool={target.PoolKey}; 原因={exception.Message}", ALogCategories.Net);
+            ShowMessage("抽卡失败，请稍后重试");
+        }
+        finally
+        {
+            if (this != null)
+            {
+                m_IsPurchasing = false;
+            }
+        }
+    }
+
+    async UniTask<List<CardPickViewData>> LoadDrawCardsAsync(string requestPoolKey, IReadOnlyList<CardDrawResult> results)
+    {
+        SceneTransitionOverlay.Show();
+        try
+        {
+            var tasks = new UniTask<CardPickViewData>[results.Count];
+            for (int i = 0; i < results.Count; i++)
+            {
+                tasks[i] = LoadDrawCardAsync(requestPoolKey, results[i]);
+            }
+
+            CardPickViewData[] cards = await UniTask.WhenAll(tasks);
+            for (int i = 0; i < cards.Length; i++)
+            {
+                if (cards[i].cardTexture == null)
+                {
+                    ALog.LogWarning($"抽卡卡图缺失. CardId={results[i].CardId}; SourcePool={results[i].SourcePool}", ALogCategories.UI);
+                    return null;
+                }
+            }
+
+            return new List<CardPickViewData>(cards);
+        }
+        finally
+        {
+            SceneTransitionOverlay.Hide();
+        }
+    }
+
+    static async UniTask<CardPickViewData> LoadDrawCardAsync(string requestPoolKey, CardDrawResult result)
+    {
+        string poolKey = string.IsNullOrEmpty(result.SourcePool) ? requestPoolKey : result.SourcePool;
+        Texture texture = await CardPoolAddress.LoadCardTextureAsync(poolKey, result.CardId);
+        return new CardPickViewData
+        {
+            cardId = result.CardId,
+            cardShaderType = CardPickController.ToShaderType(result.Rarity),
+            cardTexture = texture
+        };
     }
 }

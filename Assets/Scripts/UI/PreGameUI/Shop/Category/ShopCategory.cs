@@ -50,4 +50,24 @@ public abstract class ShopCategory
         target = default;
         return false;
     }
+
+    public virtual bool TryGetDrawTarget(int index, out ShopDrawTarget target)
+    {
+        target = default;
+        return false;
+    }
+}
+
+public readonly struct ShopDrawTarget
+{
+    public int Id { get; }
+    public string Title { get; }
+    public string PoolKey { get; }
+
+    public ShopDrawTarget(int id, string title, string poolKey)
+    {
+        Id = id;
+        Title = title;
+        PoolKey = poolKey ?? string.Empty;
+    }
 }

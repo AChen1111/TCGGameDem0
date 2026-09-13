@@ -31,7 +31,7 @@ public sealed class GameConfigTests
     public void Validator_rejects_duplicate_avatar_ids()
     {
         var snapshot = new GameConfigSnapshot(
-            2,
+            3,
             1,
             DateTimeOffset.UtcNow,
             new[]
@@ -116,6 +116,7 @@ public sealed class GameConfigTests
             1,
             "Active",
             "Pack_Active",
+            "Card01",
             1,
             serverNow.AddMinutes(-1),
             serverNow.AddMinutes(1),
@@ -125,6 +126,7 @@ public sealed class GameConfigTests
             2,
             "Future",
             "Pack_Future",
+            "Card01",
             1,
             serverNow.AddMinutes(1),
             null,
@@ -134,6 +136,7 @@ public sealed class GameConfigTests
             3,
             "Disabled",
             "Pack_Disabled",
+            "Card01",
             1,
             null,
             null,
@@ -172,7 +175,7 @@ public sealed class GameConfigTests
     {
         DateTimeOffset publishedAt = new DateTimeOffset(2026, 8, 23, 9, 0, 0, TimeSpan.Zero);
         return new GameConfigSnapshot(
-            2,
+            3,
             revision,
             publishedAt,
             new[] { new AvatarConfig(1, "默认头像", "Avatar_Default", 200, 0, true) },
@@ -183,6 +186,7 @@ public sealed class GameConfigTests
                     1001,
                     "基础卡包",
                     "CardPack_Default",
+                    "Card01",
                     priceGold,
                     null,
                     null,

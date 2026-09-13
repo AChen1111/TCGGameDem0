@@ -87,6 +87,7 @@ namespace AChen.Networking
         public int Id { get; }
         public string Title { get; }
         public string CoverResourceKey { get; }
+        public string PoolKey { get; }
         public long PriceGold { get; }
         public DateTimeOffset? StartsAt { get; }
         public DateTimeOffset? EndsAt { get; }
@@ -98,6 +99,7 @@ namespace AChen.Networking
             int id,
             string title,
             string coverResourceKey,
+            string poolKey,
             long priceGold,
             DateTimeOffset? startsAt,
             DateTimeOffset? endsAt,
@@ -107,6 +109,7 @@ namespace AChen.Networking
             Id = id;
             Title = title;
             CoverResourceKey = coverResourceKey;
+            PoolKey = poolKey ?? string.Empty;
             PriceGold = priceGold;
             StartsAt = startsAt;
             EndsAt = endsAt;
@@ -122,7 +125,7 @@ namespace AChen.Networking
 
     public static class GameConfigSnapshotValidator
     {
-        public const int SupportedSchemaVersion = 2;
+        public const int SupportedSchemaVersion = 3;
 
         public static void Validate(GameConfigSnapshot snapshot)
         {
@@ -176,6 +179,7 @@ namespace AChen.Networking
                 if (cardPack == null || cardPack.Id <= 0 || cardPack.PriceGold < 0 ||
                     string.IsNullOrWhiteSpace(cardPack.Title) || cardPack.Title.Length > 64 ||
                     string.IsNullOrWhiteSpace(cardPack.CoverResourceKey) || cardPack.CoverResourceKey.Length > 128 ||
+                    cardPack.PoolKey.Length > 32 || cardPack.PoolKey.Any(char.IsControl) ||
                     cardPack.StartsAt.HasValue && cardPack.EndsAt.HasValue && cardPack.EndsAt <= cardPack.StartsAt)
                 {
                     throw new GameConfigDataException("卡包配置包含无效项目");

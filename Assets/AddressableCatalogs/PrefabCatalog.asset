@@ -97,3 +97,10 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: CardPickWindow
+    reference:
+      m_AssetGUID: 57208fe5bab00e44fb6756c3faa3d5d0
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

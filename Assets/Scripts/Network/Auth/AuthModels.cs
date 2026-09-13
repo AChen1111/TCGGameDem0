@@ -33,9 +33,9 @@ namespace AChen.Networking
 
     public sealed class CardDrawResult
     {
-        public string CardId { get; }
-        public int Rarity { get; }
-        public string SourcePool { get; }
+        public string CardId { get; }//卡牌ID
+        public int Rarity { get; }//卡牌稀有度
+        public string SourcePool { get; }//卡牌来源池
 
         internal CardDrawResult(string cardId, int rarity, string sourcePool)
         {

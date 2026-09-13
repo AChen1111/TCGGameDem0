@@ -27,7 +27,7 @@ public static class ShopCatalogQuery
         for (int i = 0; i < configs.Length; i++)
         {
             CardPackConfig config = configs[i];
-            result.Add(new ShopCardItemData(config.Id, config.Title, sprites[i], config.PriceGold, config.EndsAt, i));
+            result.Add(new ShopCardItemData(config.Id, config.Title, sprites[i], config.PoolKey, config.PriceGold, config.EndsAt, i));
         }
 
         return result;
