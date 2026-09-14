@@ -33,6 +33,7 @@ public class PreGameUIPanel : APanelController
     [SerializeField] float m_Distance = 1500f;
 
     bool m_isSwitchingWallpaper;
+    bool m_isSwitchingLanguage;
 
     protected override void AddListeners()
     {
@@ -41,6 +42,7 @@ public class PreGameUIPanel : APanelController
         m_BtnChangeName.onClick.AddListener(OnChangeNameClick);
         m_BtnAvatar.onClick.AddListener(OnAvatarClick);
         m_BtnChangeWallpaper.onClick.AddListener(OnChangeWallpaperClick);
+        m_BtnSetting.onClick.AddListener(OnSettingClick);
     }
 
     protected override void RemoveListeners()
@@ -51,6 +53,7 @@ public class PreGameUIPanel : APanelController
         m_BtnChangeName.onClick.RemoveListener(OnChangeNameClick);
         m_BtnAvatar.onClick.RemoveListener(OnAvatarClick);
         m_BtnChangeWallpaper.onClick.RemoveListener(OnChangeWallpaperClick);
+        m_BtnSetting.onClick.RemoveListener(OnSettingClick);
     }
 
     protected override void OnOpen()
@@ -85,6 +88,34 @@ public class PreGameUIPanel : APanelController
     }
 
     void OnExitClick() => EventCenter.Dispatch(GameEvent.GameExitRequested);
+
+    void OnSettingClick() => SwitchLanguageAsync().Forget();
+
+    async UniTaskVoid SwitchLanguageAsync()
+    {
+        if (m_isSwitchingLanguage || !IsOpened) return;
+
+        GameLanguage next = LocalizationService.CurrentLanguage == GameLanguage.English
+            ? GameLanguage.SimplifiedChinese
+            : GameLanguage.English;
+        m_isSwitchingLanguage = true;
+        ALog.Log($"大厅设置切换语言并重装大厅. Next={next}", ALogCategories.UI);
+        SceneTransitionOverlay.Show();
+        LocalizationService.SetLanguage(next);
+        try
+        {
+            await SceneLoader.ReloadScene(AddressKeys.Scene.GameScene);
+        }
+        catch (Exception exception)
+        {
+            ALog.LogError($"大厅切换语言后重装场景失败. Next={next}; Error={exception.Message}", ALogCategories.UI);
+            SceneTransitionOverlay.Hide();
+            if (this != null)
+            {
+                m_isSwitchingLanguage = false;
+            }
+        }
+    }
 
     void OnChangeWallpaperClick() => SwitchToNextWallpaperAsync().Forget();
 

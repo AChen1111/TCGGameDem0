@@ -35,4 +35,31 @@ public static class SceneLoader
             s_isLoading = false;
         }
     }
+
+    public static async UniTask<SceneInstance> ReloadScene(string sceneName)
+    {
+        if (string.IsNullOrWhiteSpace(sceneName))
+        {
+            throw new ArgumentException("场景资源名不能为空。", nameof(sceneName));
+        }
+
+        await UniTask.WaitUntil(() => !s_isLoading);
+        s_isLoading = true;
+        try
+        {
+            EventCenter.Dispatch(GameEvent.SceneLoadStarted, sceneName, LoadSceneMode.Single);
+            SceneInstance scene = await AddressableLoader.Instance.ReloadScene(sceneName);
+            ALog.Log($"业务场景重装完成. Scene={sceneName}", ALogCategories.UI);
+            return scene;
+        }
+        catch (Exception exception)
+        {
+            EventCenter.Dispatch(GameEvent.SceneLoadFailed, sceneName, exception);
+            throw;
+        }
+        finally
+        {
+            s_isLoading = false;
+        }
+    }
 }

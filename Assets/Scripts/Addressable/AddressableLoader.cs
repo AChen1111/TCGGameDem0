@@ -118,6 +118,41 @@ public class AddressableLoader : PersistentMonoSingleton<AddressableLoader>
         }
     }
 
+    // 丢掉同名缓存后再 Single 加载, 否则会直接返回已打开的大厅.
+    public async UniTask<SceneInstance> ReloadScene(string assetName, IProgress<float> progress = null)
+    {
+        AsyncOperationHandle<SceneInstance> previous = default;
+        bool hadPrevious = m_sceneHandles.TryGetValue(assetName, out previous);
+        if (hadPrevious)
+        {
+            m_sceneHandles.Remove(assetName);
+        }
+
+        var handle = Addressables.LoadSceneAsync(m_sceneCatalog.Get(assetName), LoadSceneMode.Single);
+        m_sceneHandles[assetName] = handle;
+        try
+        {
+            SceneInstance scene = await AwaitScene(handle, progress);
+            ReleaseUnloadedSceneHandles(assetName);
+            if (hadPrevious && previous.IsValid())
+            {
+                Addressables.Release(previous);
+            }
+
+            return scene;
+        }
+        catch
+        {
+            m_sceneHandles.Remove(assetName);
+            if (handle.IsValid())
+            {
+                Addressables.Release(handle);
+            }
+
+            throw;
+        }
+    }
+
     public void ReleaseSprite(string assetName)
     {
         Addressables.Release(m_spriteHandles[assetName]);
