@@ -2,31 +2,39 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// 屏幕适配器
+/// 锁定 16:9 设计分辨率. 更高或更宽的屏幕由 CanvasScaler Expand 留出额外空间, 不改设计宽度.
 /// </summary>
 public class ScreenFitter : MonoBehaviour
 {
-   private int height = 960; //逻辑宽度
-   public CanvasScaler[] m_CanvasScaler;
-   public Camera m_Camera;
+    const float DesignWidth = 1706f;
+    const float DesignHeight = 960f;
 
-   private void Awake() 
-   {
-     //计算比例
-     float ratio = (float)Screen.width/Screen.height;
-     DoFit(ratio);
-   }
+    public CanvasScaler[] m_CanvasScaler;
+    public Camera m_Camera;
 
-   private void DoFit(float ratio) {
-      foreach (var cs in m_CanvasScaler)
-      {
-        cs.referenceResolution = new Vector2(height*ratio, height);
-      }
-      if(m_Camera != null)
-      {
-        //2f是因为算的半轴
-        //100 是因为 ppu = 100
-        m_Camera.orthographicSize = height/(2f * 100);
-      }
-   }
+    void Awake()
+    {
+        DoFit();
+    }
+
+    void DoFit()
+    {
+        Vector2 design = new Vector2(DesignWidth, DesignHeight);
+        if (m_CanvasScaler != null)
+        {
+            for (int i = 0; i < m_CanvasScaler.Length; i++)
+            {
+                CanvasScaler scaler = m_CanvasScaler[i];
+                if (scaler != null)
+                {
+                    scaler.referenceResolution = design;
+                }
+            }
+        }
+
+        if (m_Camera != null)
+        {
+            m_Camera.orthographicSize = DesignHeight / (2f * 100f);
+        }
+    }
 }
