@@ -8,6 +8,7 @@ public static class CardPoolAddress
     public const string Card01 = "CardBag01_BlueEyes";
     public const string Card02 = "CardBag02_Hero";
     public const string Card03 = "CardBag03_SkyStriker";
+    static readonly string[] EnglishExts = { ".jpg", ".png", ".webp" };
 
     public static bool IsKnownDrawPool(string poolKey)
     {
@@ -40,7 +41,64 @@ public static class CardPoolAddress
             return null;
         }
 
-        string address = $"{bag}/{cardId}.jpg";
+        if (LocalizationService.CurrentLanguage != GameLanguage.English)
+        {
+            return await LoadAddressAsync($"{bag}/{cardId}.jpg", poolKey, cardId, $"{bag}/{cardId}.jpg");
+        }
+
+        for (int i = 0; i < EnglishExts.Length; i++)
+        {
+            string address = $"{bag}/en/{cardId}{EnglishExts[i]}";
+            Texture texture = await TryLoadAddressAsync(address);
+            if (texture != null)
+            {
+                return texture;
+            }
+        }
+
+        ALog.LogWarning(
+            $"加载卡图失败. Language=English; Pool={poolKey}; CardId={cardId}; Address={bag}/en/{cardId}.*",
+            ALogCategories.Localization);
+        return null;
+    }
+
+    static async UniTask<Texture> LoadAddressAsync(string address, string poolKey, string cardId, string logAddress)
+    {
+        Texture texture = await TryLoadAddressAsync(address);
+        if (texture != null)
+        {
+            return texture;
+        }
+
+        ALog.LogWarning(
+            $"加载卡图失败. Language={LocalizationService.CurrentLanguage}; Pool={poolKey}; CardId={cardId}; Address={logAddress}",
+            ALogCategories.Localization);
+        return null;
+    }
+
+    static async UniTask<Texture> TryLoadAddressAsync(string address)
+    {
+        var locHandle = Addressables.LoadResourceLocationsAsync(address, typeof(Texture));
+        try
+        {
+            var locations = await locHandle.Task;
+            if (locations == null || locations.Count == 0)
+            {
+                return null;
+            }
+        }
+        catch
+        {
+            return null;
+        }
+        finally
+        {
+            if (locHandle.IsValid())
+            {
+                Addressables.Release(locHandle);
+            }
+        }
+
         var handle = Addressables.LoadAssetAsync<Texture>(address);
         try
         {
@@ -53,7 +111,6 @@ public static class CardPoolAddress
                 Addressables.Release(handle);
             }
 
-            ALog.LogWarning($"加载卡图失败. Address={address}", ALogCategories.Net);
             return null;
         }
     }
