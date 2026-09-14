@@ -7,10 +7,10 @@ using LitMotion;
 
 public sealed class MessageWindowProperties : IWindowProperties
 {
-    public string Message { get; }
+    public LocalizedMessage Message { get; }
     public float Duration { get; }
 
-    public MessageWindowProperties(string message, float duration)
+    public MessageWindowProperties(LocalizedMessage message, float duration)
     {
         Message = message;
         Duration = duration;
@@ -44,8 +44,8 @@ public class MessageWindow : AWindowController<MessageWindowProperties>
 
     void ApplyMessage()
     {
-        string message = Properties.Message;
-        m_TxtMessage.text = message;
+        LocalizedMessage message = Properties.Message;
+        m_TxtMessage.Localized().SetMessage(message);
         ALog.Log($"提示弹窗: {message}", ALogCategories.UI);
     }
 

@@ -57,7 +57,11 @@ public class CardPreviewWindow : AWindowController<CardPreviewWindowProperty>
         }
 
         ShopDrawTarget target = Properties.Target;
-        m_TxtMessage.text = $"确认花费 {target.PriceGold} 金币抽取{target.Title}？";
+        m_TxtMessage.Localized().SetKey("ui.shop.confirm_draw", new Dictionary<string, object>
+        {
+            ["gold"] = target.PriceGold,
+            ["title"] = new LocalizedMessage("shop.pack." + target.Id.ToString("D2"))
+        });
         ALog.Log(
             $"卡包预览打开. Id={target.Id}; Title={target.Title}; Pool={target.PoolKey}; PriceGold={target.PriceGold}",
             ALogCategories.UI);
@@ -136,7 +140,7 @@ public class CardPreviewWindow : AWindowController<CardPreviewWindowProperty>
             if (cards.Count == 0)
             {
                 ALog.LogWarning($"卡包预览无卡图. Pool={target.PoolKey}", ALogCategories.UI);
-                ShowMessage("卡图加载失败，请稍后重试");
+                ShowMessage("err.card_art_load_failed");
                 return;
             }
 
@@ -168,7 +172,7 @@ public class CardPreviewWindow : AWindowController<CardPreviewWindowProperty>
             ALog.LogWarning(
                 $"卡包预览加载失败. Pool={target.PoolKey}; Code={exception.Code}; Status={exception.StatusCode}",
                 ALogCategories.Net);
-            ShowMessage(string.IsNullOrEmpty(exception.Message) ? "卡池加载失败，请稍后重试" : exception.Message);
+            ShowMessage(exception.UserMessage);
         }
         catch (Exception exception)
         {
@@ -178,7 +182,7 @@ public class CardPreviewWindow : AWindowController<CardPreviewWindowProperty>
             }
 
             ALog.LogError($"卡包预览异常. Pool={target.PoolKey}; 原因={exception.Message}", ALogCategories.UI);
-            ShowMessage("卡池加载失败，请稍后重试");
+            ShowMessage("err.pool_load_failed");
         }
     }
 

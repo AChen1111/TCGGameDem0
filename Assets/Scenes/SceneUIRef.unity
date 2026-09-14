@@ -559,6 +559,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1488935601}
     m_Modifications:
+    - target: {fileID: 1752105110716745589, guid: 57208fe5bab00e44fb6756c3faa3d5d0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752105110716745589, guid: 57208fe5bab00e44fb6756c3faa3d5d0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752105110716745589, guid: 57208fe5bab00e44fb6756c3faa3d5d0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 168.22943
+      objectReference: {fileID: 0}
     - target: {fileID: 4609079992806754118, guid: 57208fe5bab00e44fb6756c3faa3d5d0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -642,6 +654,10 @@ PrefabInstance:
     - target: {fileID: 6277717379300900357, guid: 57208fe5bab00e44fb6756c3faa3d5d0, type: 3}
       propertyPath: m_Name
       value: CardPickWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277717379300900357, guid: 57208fe5bab00e44fb6756c3faa3d5d0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

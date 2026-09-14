@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1930442129000499061}
   - component: {fileID: 9196850677845972534}
   - component: {fileID: 2424098413936584263}
+  - component: {fileID: 314281667511529565}
   m_Layer: 5
   m_Name: desc
   m_TagString: Untagged
@@ -271,3 +272,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb14550db88072418a5bbafb2f93356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ImageAspectLayoutElement
+--- !u!114 &314281667511529565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910767992720855373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef0499324339894abb6f00cf35fd755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AChen.Shared::LocalizedText
+  key: ui.common.gift_pack
+  dynamicContent: 0

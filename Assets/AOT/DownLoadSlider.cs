@@ -15,11 +15,14 @@ public class DownLoadSlider : MonoBehaviour
     public void Set(float progress)
     {
         slider.value = progress;
-        text.text = Mathf.RoundToInt(progress * 100f) + "%";
+        text.Localized().SetKey("ui.update.percent", new System.Collections.Generic.Dictionary<string, object>
+        {
+            ["percent"] = Mathf.RoundToInt(progress * 100f)
+        });
     }
 
-    public void SetError(string message)
+    public void SetError(LocalizedMessage message)
     {
-        text.text = string.IsNullOrWhiteSpace(message) ? "内容更新失败" : message;
+        text.Localized().SetMessage(message ?? new LocalizedMessage("err.content_update_failed"));
     }
 }

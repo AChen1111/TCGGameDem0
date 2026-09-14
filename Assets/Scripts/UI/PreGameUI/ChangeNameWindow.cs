@@ -74,7 +74,7 @@ public class ChangeNameWindow : AWindowController
         bool succeeded = await RunGuardedAsync(
             token => PlayerSession.Instance.RenameAsync(nickname, token),
             "修改昵称",
-            "修改昵称失败，请稍后重试");
+            "err.rename_failed");
         if (this == null || !IsOpened) return;
 
         m_isSubmitting = false;

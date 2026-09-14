@@ -1,0 +1,14 @@
+{
+  "source": "TableData/Localization/Translations.csv",
+  "bytesOutput": "Assets/Resources/Localization/Translations.bytes",
+  "csOutput": "Assets/Shared/Localization/Generated/TranslationRow.cs",
+  "namespace": "Table",
+  "className": "TranslationRow",
+  "uniqueKey": "Key",
+  "matchingPlaceholders": ["Chinese", "English"],
+  "columns": [
+    { "header": "key", "name": "Key", "type": "string", "description": "文字 key" },
+    { "header": "zh-CN", "name": "Chinese", "type": "string", "description": "简体中文" },
+    { "header": "en", "name": "English", "type": "string", "description": "英文" }
+  ]
+}

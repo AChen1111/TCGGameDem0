@@ -114,7 +114,7 @@ public class CardPickWindow : AWindowController<CardPickWindowProperty>
         m_TxtNum.gameObject.SetActive(show);
         if (show)
         {
-            m_TxtNum.text = current + "/" + total;
+            m_TxtNum.Localized().SetKey("ui.common.progress", new System.Collections.Generic.Dictionary<string, object> { ["current"] = current, ["total"] = total });
         }
     }
 

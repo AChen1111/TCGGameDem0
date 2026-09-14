@@ -99,7 +99,7 @@ public class PreGameUIPanel : APanelController
             await PlayerSession.Instance.SetNextBackgroundAsync(token);
             await m_WallpaperView.WaitForReadyAsync(token);
             await m_WallpaperView.PlayRevealAsync(m_Duration);
-        }, "切换壁纸", "壁纸切换失败");
+        }, "切换壁纸", "err.change_wallpaper_failed");
         if (this == null || !IsOpened) return;
 
         if (!succeeded) m_WallpaperView.RestoreVisible();

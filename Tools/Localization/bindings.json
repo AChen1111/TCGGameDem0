@@ -1,0 +1,245 @@
+[
+  {
+    "asset": "Assets/Resources/LoadIN.prefab",
+    "gameObject": "2242943756993194444",
+    "name": "Load",
+    "textId": "5113265141686466351",
+    "componentId": "715127212453592644",
+    "key": "ui.loading",
+    "dynamic": false
+  },
+  {
+    "asset": "Assets/Scenes/PreInit.unity",
+    "gameObject": "10224691",
+    "name": "Title",
+    "textId": "10224693",
+    "componentId": "813266538231248579",
+    "key": "ui.update.downloading",
+    "dynamic": false
+  },
+  {
+    "asset": "Assets/Scenes/PreInit.unity",
+    "gameObject": "1903583950",
+    "name": "Percent",
+    "textId": "1903583952",
+    "componentId": "813870294036157781",
+    "key": "ui.update.percent",
+    "dynamic": true
+  },
+  {
+    "asset": "Assets/UI/Prefab/BaseUI/BtnAndText.prefab",
+    "gameObject": "910767992720855373",
+    "name": "desc",
+    "textId": "2424098413936584263",
+    "componentId": "314281667511529565",
+    "key": "ui.common.gift_pack",
+    "dynamic": false
+  },
+  {
+    "asset": "Assets/UI/Prefab/BaseUI/BuyBottom.prefab",
+    "gameObject": "342307140458030169",
+    "name": "Txt_Value",
+    "textId": "1765054049833446934",
+    "componentId": "496672518941302699",
+    "key": "ui.common.gold_amount",
+    "dynamic": true
+  },
+  {
+    "asset": "Assets/UI/Prefab/BaseUI/CardPreviewWindow.prefab",
+    "gameObject": "8042739573809434753",
+    "name": "Txt_Message",
+    "textId": "7249435883062365388",
+    "componentId": "475542821339808098",
+    "key": "ui.placeholder.new_text",
+    "dynamic": true
+  },
+  {
+    "asset": "Assets/UI/Prefab/BaseUI/ChooseWindow.prefab",
+    "gameObject": "8042739573809434753",
+    "name": "Txt_Message",
+    "textId": "7249435883062365388",
+    "componentId": "191053974992935396",
+    "key": "ui.placeholder.new_text",
+    "dynamic": true
+  },
+  {
+    "asset": "Assets/UI/Prefab/BaseUI/Gold.prefab",
+    "gameObject": "1215383509970149719",
+    "name": "Txt_gold",
+    "textId": "2601842018669313517",
+    "componentId": "1102150301297617530",
+    "key": "ui.common.gold_amount",
+    "dynamic": true
+  },
+  {
+    "asset": "Assets/UI/Prefab/BaseUI/Header.prefab",
+    "gameObject": "1354681038494534185",
+    "name": "RemainTime",
+    "textId": "4379861562020568544",
+    "componentId": "354513459420581959",
+    "key": "ui.shop.remaining_time_label",
+    "dynamic": false
+  },
+  {
+    "asset": "Assets/UI/Prefab/BaseUI/Header.prefab",
+    "gameObject": "1727201933415479091",
+    "name": "Txt_RemainTime",
+    "textId": "2123461282464070316",
+    "componentId": "919181200296256617",
+    "key": "ui.shop.remaining_days",
+    "dynamic": true
+  },
+  {
+    "asset": "Assets/UI/Prefab/BaseUI/Header.prefab",
+    "gameObject": "8404023580767241173",
+    "name": "Txt_Titile",
+    "textId": "3807095452176251541",
+    "componentId": "454281276362510128",
+    "key": "ui.placeholder.title",
+    "dynamic": false
+  },
+  {
+    "asset": "Assets/UI/Prefab/BaseUI/MessageWindow.prefab",
+    "gameObject": "8042739573809434753",
+    "name": "Txt_Message",
+    "textId": "7249435883062365388",
+    "componentId": "759543162461976924",
+    "key": "ui.placeholder.new_text",
+    "dynamic": true
+  },
+  {
+    "asset": "Assets/UI/Prefab/BaseUI/TextInBtn.prefab",
+    "gameObject": "9026334822729556335",
+    "name": "Text (TMP)",
+    "textId": "2618176736565451016",
+    "componentId": "780398465015374988",
+    "key": "ui.common.play",
+    "dynamic": false
+  },
+  {
+    "asset": "Assets/UI/Prefab/Hall/PreGameUI/ChangeNameWindow.prefab",
+    "gameObject": "889320605806293148",
+    "name": "Placeholder",
+    "textId": "2416011770039018894",
+    "componentId": "569461105520334195",
+    "key": "ui.nickname.placeholder",
+    "dynamic": false
+  },
+  {
+    "asset": "Assets/UI/Prefab/Hall/Shop/CardPickWindow.prefab",
+    "gameObject": "1909060697959203386",
+    "name": "Text (TMP)",
+    "textId": "3953241792809569914",
+    "componentId": "1133704124166109355",
+    "key": "ui.common.next",
+    "dynamic": false
+  },
+  {
+    "asset": "Assets/UI/Prefab/Hall/Shop/CardPickWindow.prefab",
+    "gameObject": "4278333155765027897",
+    "name": "Txt_Num",
+    "textId": "8187966736914172269",
+    "componentId": "751829058185805621",
+    "key": "ui.common.progress",
+    "dynamic": true
+  },
+  {
+    "asset": "Assets/UI/Prefab/Hall/Shop/ShopWindows.prefab",
+    "gameObject": "3521403273485190430",
+    "name": "Text (TMP)",
+    "textId": "20403717888244005",
+    "componentId": "188964968195651586",
+    "key": "ui.shop.tab_avatar",
+    "dynamic": false
+  },
+  {
+    "asset": "Assets/UI/Prefab/Hall/Shop/ShopWindows.prefab",
+    "gameObject": "7939212599119365175",
+    "name": "Text (TMP)",
+    "textId": "3611527075201848489",
+    "componentId": "431451847616216997",
+    "key": "ui.shop.tab_pack",
+    "dynamic": false
+  },
+  {
+    "asset": "Assets/UI/Prefab/Hall/Shop/ShopWindows.prefab",
+    "gameObject": "8346723242970292406",
+    "name": "Text (TMP)",
+    "textId": "1580696331809726378",
+    "componentId": "946173885651025200",
+    "key": "ui.shop.tab_wallpaper",
+    "dynamic": false
+  },
+  {
+    "asset": "Assets/UI/Prefab/LogIn/LogInWindow.prefab",
+    "gameObject": "731180618974905792",
+    "name": "tx",
+    "textId": "7118482419996060791",
+    "componentId": "22378086333044489",
+    "key": "ui.login.register",
+    "dynamic": false
+  },
+  {
+    "asset": "Assets/UI/Prefab/LogIn/LogInWindow.prefab",
+    "gameObject": "3679078254269493058",
+    "name": "Placeholder",
+    "textId": "8560520777414401167",
+    "componentId": "1046423475977060943",
+    "key": "ui.login.placeholder_password_again",
+    "dynamic": false
+  },
+  {
+    "asset": "Assets/UI/Prefab/LogIn/LogInWindow.prefab",
+    "gameObject": "6272265120780071923",
+    "name": "Placeholder",
+    "textId": "5457385636167342458",
+    "componentId": "512502928969327237",
+    "key": "ui.login.placeholder_account",
+    "dynamic": false
+  },
+  {
+    "asset": "Assets/UI/Prefab/LogIn/LogInWindow.prefab",
+    "gameObject": "7300679307367163403",
+    "name": "Placeholder",
+    "textId": "5630430385921687540",
+    "componentId": "270614436019822966",
+    "key": "ui.login.placeholder_password",
+    "dynamic": false
+  },
+  {
+    "asset": "Assets/UI/Prefab/Hall/PreGameUI/PreGameUIPanel.prefab",
+    "instance": "2129436764998177500",
+    "key": "ui.lobby.deck",
+    "sourceComponent": "780398465015374988"
+  },
+  {
+    "asset": "Assets/UI/Prefab/Hall/PreGameUI/PreGameUIPanel.prefab",
+    "instance": "3168049663544627890",
+    "key": "ui.lobby.exit",
+    "sourceComponent": "780398465015374988"
+  },
+  {
+    "asset": "Assets/UI/Prefab/Hall/PreGameUI/PreGameUIPanel.prefab",
+    "instance": "4533863658563200615",
+    "key": "ui.lobby.shop",
+    "sourceComponent": "780398465015374988"
+  },
+  {
+    "asset": "Assets/UI/Prefab/Hall/PreGameUI/PreGameUIPanel.prefab",
+    "instance": "4857813478083350149",
+    "key": "ui.lobby.mail",
+    "sourceComponent": "314281667511529565"
+  },
+  {
+    "asset": "Assets/UI/Prefab/Hall/PreGameUI/PreGameUIPanel.prefab",
+    "instance": "6169199038188070869",
+    "key": "ui.lobby.friend",
+    "sourceComponent": "314281667511529565"
+  },
+  {
+    "asset": "Assets/UI/Prefab/Hall/PreGameUI/PreGameUIPanel.prefab",
+    "instance": "7227771414156144541",
+    "key": "ui.lobby.settings",
+    "sourceComponent": "314281667511529565"
+  }
+]

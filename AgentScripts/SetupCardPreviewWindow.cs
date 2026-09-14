@@ -15,10 +15,10 @@ public static class SetupCardPreviewWindow
     const string SettingsPath = "Assets/UI/Prefab/Hall/UISetting.asset";
     const int UiLayer = 5;
     const int CardsPerRow = 5;
-    const float ViewportWidth = 700f;
-    const float CardWidth = 131f;
-    const float CardHeight = 191f;
-    const float RowHeight = 199f;
+    const float ViewportWidth = 1321f;
+    const float CardWidth = 203f;
+    const float CardHeight = 296f;
+    const float RowHeight = 308f;
 
     public static string Run()
     {
@@ -86,8 +86,8 @@ public static class SetupCardPreviewWindow
         rootRect.sizeDelta = new Vector2(ViewportWidth, RowHeight);
 
         var layout = root.AddComponent<HorizontalLayoutGroup>();
-        layout.padding = new RectOffset(10, 10, 4, 4);
-        layout.spacing = 6f;
+        layout.padding = new RectOffset(121, 121, 6, 6);
+        layout.spacing = 16f;
         layout.childAlignment = TextAnchor.MiddleCenter;
         layout.childControlWidth = false;
         layout.childControlHeight = false;

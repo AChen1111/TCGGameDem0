@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 10224692}
   - component: {fileID: 10224694}
   - component: {fileID: 10224693}
+  - component: {fileID: 813266538231248579}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -1093,6 +1094,7 @@ GameObject:
   - component: {fileID: 1903583951}
   - component: {fileID: 1903583953}
   - component: {fileID: 1903583952}
+  - component: {fileID: 813870294036157781}
   m_Layer: 5
   m_Name: Percent
   m_TagString: Untagged
@@ -1353,3 +1355,31 @@ SceneRoots:
   - {fileID: 1730453416}
   - {fileID: 605289311}
   - {fileID: 613436952}
+--- !u!114 &813266538231248579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10224691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef0499324339894abb6f00cf35fd755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AChen.Shared::LocalizedText
+  key: ui.update.downloading
+  dynamicContent: 0
+--- !u!114 &813870294036157781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903583950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef0499324339894abb6f00cf35fd755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AChen.Shared::LocalizedText
+  key: ui.update.percent
+  dynamicContent: 1

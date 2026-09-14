@@ -10,7 +10,7 @@ Shader "Card/CardEffect"
         [Header(Colorful)]
         _HoloStrength ("Holo Strength", Range(0, 1)) = 0.55
         _HoloScale ("Streak Density", Range(0.5, 12)) = 5
-        _HoloSpeed ("Flow Speed", Range(0, 2)) = 0.25
+        _HoloSpeed ("Light Follow", Range(0, 2)) = 0.25
         _Sparkle ("Sparkle", Range(0, 1)) = 0.4
         [HDR] _HoloTint ("Holo Tint", Color) = (1, 1, 1, 1)
 
@@ -22,7 +22,7 @@ Shader "Card/CardEffect"
         _OutlineWidth ("Outline Width", Range(0.005, 0.12)) = 0.035
         [HDR] _OutlineColor ("Outline Color", Color) = (1, 0.86, 0.35, 1)
         _OutlineFilm ("Gold Film", Range(0, 1)) = 1
-        _OutlineSweepSpeed ("Sweep Speed", Range(0, 2)) = 0.2
+        _OutlineSweepSpeed ("Light Follow", Range(0, 2)) = 0.2
         _OutlineSweepWidth ("Sweep Width", Range(0.02, 0.35)) = 0.05
         _OutlineSweepStrength ("Sweep Strength", Range(0, 2)) = 0.85
 
@@ -156,16 +156,39 @@ Shader "Card/CardEffect"
                 return SAMPLE_TEXTURE2D(_GoldNoiseMap, sampler_GoldNoiseMap, TRANSFORM_TEX(uv, _GoldNoiseMap));
             }
 
+            float3 ObjectSpaceMainLightDir()
+            {
+                float3 dirOS = TransformWorldToObjectDir(_MainLightPosition.xyz);
+                float len = length(dirOS);
+                return len > 1e-4 ? dirOS / len : float3(0.2, 0.55, 1.0);
+            }
+
+            // 亮带沿主光在卡面 XY 上的投影滑动. follow 越大, 光方向带动越明显
+            float LightSweep(float2 uv, float3 lightOS, float width, float follow)
+            {
+                float2 dir = lightOS.xy;
+                float dirLen = length(dir);
+                dir = dirLen > 1e-4 ? dir / dirLen : float2(0.85, 0.45);
+                float axis = uv.x * dir.x + uv.y * dir.y;
+                float sweepPos = saturate(0.5 + (lightOS.x * 0.75 + lightOS.y * 0.35) * (0.35 + follow));
+                float sweep = 1.0 - saturate(abs(axis - lerp(-0.18, 1.18, sweepPos)) / max(width, 1e-4));
+                return pow(saturate(sweep), 2.8);
+            }
+
             half4 ApplyColorful(half4 albedo, float2 uv, float3 positionOS)
             {
+                float3 lightOS = ObjectSpaceMainLightDir();
                 float3 viewOS = normalize(TransformWorldToObject(_WorldSpaceCameraPos) - positionOS);
-                float shift = viewOS.x * 0.85 + viewOS.y * 0.35;
-                float t = uv.x * _HoloScale + uv.y * (_HoloScale * 0.35) + shift + _Time.y * _HoloSpeed;
+                float shift = (lightOS.x * 0.85 + lightOS.y * 0.35) * (0.4 + _HoloSpeed);
+                float t = uv.x * _HoloScale + uv.y * (_HoloScale * 0.35) + shift;
                 half3 rainbow = HoloPalette(t) * _HoloTint.rgb;
                 float stripe = saturate(0.35 + 0.65 * sin((uv.x * 2.2 + uv.y * 0.8 + shift) * 6.2831853));
-                float spark = pow(Hash21(uv * 160.0 + floor(_Time.y * 8.0)), 12.0) * _Sparkle;
-                half mask = saturate(stripe + spark);
+                float spark = pow(Hash21(uv * 160.0), 12.0) * _Sparkle;
+                float sweep = LightSweep(uv, lightOS, 0.12, _HoloSpeed);
+                float spec = pow(saturate(dot(reflect(-lightOS, float3(0.0, 0.0, 1.0)), viewOS)), 6.0);
+                half mask = saturate(stripe + spark * (0.3 + sweep + spec) + sweep * 0.5);
                 albedo.rgb = lerp(albedo.rgb, albedo.rgb * 0.65 + rainbow * 0.9, _HoloStrength * mask);
+                albedo.rgb += rainbow * sweep * _HoloStrength * 0.4;
                 return albedo;
             }
 
@@ -188,94 +211,35 @@ Shader "Card/CardEffect"
                 float outline = 1.0 - smoothstep(0.0, _OutlineWidth, e);
                 albedo.rgb = lerp(albedo.rgb, _OutlineColor.rgb, outline);
 
-                // 整卡金色薄膜, 噪声让膜面不平, 边缘随视角略亮
                 float3 viewOS = normalize(TransformWorldToObject(_WorldSpaceCameraPos) - positionOS);
                 half4 nFilm = SampleGoldNoise(uv);
                 float fresnel = pow(1.0 - saturate(abs(viewOS.z)), 2.2);
                 float film = _OutlineFilm * (0.5 + fresnel * 0.7) * (0.82 + nFilm.a * 0.36);
                 albedo.rgb = lerp(albedo.rgb, albedo.rgb * _OutlineColor.rgb, film);
-
-                // 斜向扫光, 从左下往右上周期性扫过
-                float sweepPos = frac(_Time.y * _OutlineSweepSpeed);
-                float axis = uv.x * 0.85 + uv.y * 0.45;
-                float sweep = 1.0 - saturate(abs(axis - lerp(-0.18, 1.28, sweepPos)) / max(_OutlineSweepWidth, 1e-4));
-                sweep = pow(sweep, 2.8);
-                albedo.rgb += _OutlineColor.rgb * sweep * _OutlineSweepStrength;
                 return albedo;
-            }
-
-            // 单位 UV 矩形周长, 底边左端起顺时针
-            float GoldPerimeter(float2 uv)
-            {
-                float left = uv.x;
-                float right = 1.0 - uv.x;
-                float bottom = uv.y;
-                float top = 1.0 - uv.y;
-                float nearest = min(min(left, right), min(bottom, top));
-                if (left <= nearest + 1e-5)
-                {
-                    return 3.0 + (1.0 - uv.y);
-                }
-
-                if (right <= nearest + 1e-5)
-                {
-                    return 1.0 + uv.y;
-                }
-
-                if (bottom <= nearest + 1e-5)
-                {
-                    return uv.x;
-                }
-
-                return 2.0 + (1.0 - uv.x);
             }
 
             half4 ApplyGold(half4 albedo, float2 uv, float3 positionOS)
             {
-                // 卡面金沙: 噪声筛出沙粒后按时相闪, 视角只做加成
-                float3 viewOS = normalize(TransformWorldToObject(_WorldSpaceCameraPos) - positionOS);
-                half4 nFace = SampleGoldNoise(uv);
-                half4 nSpark = SampleGoldNoise(uv * 3.2 + nFace.rg * 0.03);
-                float seed = frac(nSpark.r * 17.27 + nSpark.g * 9.13 + nSpark.b * 5.41);
-                float grain = saturate((seed - 0.87) * 12.0);
-                grain *= grain;
-                float twinkle = pow(saturate(sin(_Time.y * (1.15 + nSpark.b * 1.25) + nSpark.r * 28.0) * 0.5 + 0.5), 3.0);
-                float3 flakeN = nSpark.rgb * 2.0 - 1.0;
-                flakeN = normalize(float3(flakeN.xy, max(flakeN.z, 0.2)));
-                float3 lightOS = normalize(float3(0.2, 0.55, 1.0) + viewOS * 0.2);
-                float spec = pow(saturate(dot(reflect(-lightOS, flakeN), viewOS)), 8.0);
-                float viewSweep = 1.0 - abs(frac(uv.x * 0.8 + viewOS.x * 0.7 + nFace.g * 0.15) * 2.0 - 1.0);
-                viewSweep = pow(saturate(viewSweep), 2.2);
-                float glitter = grain * (twinkle * 1.25 + spec * 0.55) * _GoldSparkle;
-                albedo.rgb = lerp(albedo.rgb, _GoldColor.rgb * 1.55, saturate(glitter));
-                albedo.rgb += _GoldColor.rgb * glitter * 1.1;
-
-                if (_GoldOutline <= 0.5)
+                // 正面铺金沙, 背面 _GoldOutline=0 不加沙粒
+                if (_GoldOutline > 0.5)
                 {
-                    return albedo;
+                    float3 viewOS = normalize(TransformWorldToObject(_WorldSpaceCameraPos) - positionOS);
+                    half4 nFace = SampleGoldNoise(uv);
+                    half4 nSpark = SampleGoldNoise(uv * 3.2 + nFace.rg * 0.03);
+                    float seed = frac(nSpark.r * 17.27 + nSpark.g * 9.13 + nSpark.b * 5.41);
+                    float grain = saturate((seed - 0.87) * 12.0);
+                    grain *= grain;
+                    float3 flakeN = nSpark.rgb * 2.0 - 1.0;
+                    flakeN = normalize(float3(flakeN.xy, max(flakeN.z, 0.2)));
+                    float3 lightOS = normalize(float3(0.2, 0.55, 1.0) + viewOS * 0.2);
+                    float spec = pow(saturate(dot(reflect(-lightOS, flakeN), viewOS)), 8.0);
+                    float glitter = grain * (1.25 + spec * 0.55) * _GoldSparkle;
+                    albedo.rgb = lerp(albedo.rgb, _GoldColor.rgb * 1.55, saturate(glitter));
+                    albedo.rgb += _GoldColor.rgb * glitter * 1.1;
                 }
 
-                float e = min(min(uv.x, 1.0 - uv.x), min(uv.y, 1.0 - uv.y));
-                float band = 1.0 - smoothstep(0.0, _GoldWidth, e);
-                float peri = GoldPerimeter(uv);
-                float2 warp = nFace.rg - 0.5;
-                float2 sandUv = float2(
-                    peri * _GoldSandDensity * 0.22 - _Time.y * _GoldFlowSpeed * 0.08,
-                    e * (_GoldSandDensity * 0.85)) + warp * 0.12;
-                half4 nEdge = SampleGoldNoise(sandUv);
-                float metal = saturate(nEdge.b * 0.55 + nEdge.g * 0.45);
-                float edgeGrain = pow(nEdge.a, 3.2);
-                float flakeGrain = edgeGrain * step(0.58, nEdge.a);
-
-                half3 dark = _GoldColor.rgb * 0.45;
-                half3 mid = _GoldColor.rgb;
-                half3 hot = _GoldColor.rgb * half3(1.8, 1.4, 0.7) + 0.25;
-                half3 gold = lerp(dark, mid, saturate(metal * 1.25 + 0.25));
-                gold = lerp(gold, hot, flakeGrain * (0.55 + viewSweep));
-
-                albedo.rgb = lerp(albedo.rgb, gold, saturate(band * (0.9 + metal * 0.2)));
-                albedo.rgb += hot * (0.28 + flakeGrain) * band * 1.6;
-                return albedo;
+                return ApplyOutline(albedo, uv, positionOS);
             }
 
             // 噪声 clip + 边缘自发光. Dir 越大越从下往上烧

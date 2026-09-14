@@ -126,17 +126,20 @@ namespace AChen.Networking
     {
         public long StatusCode { get; }
         public string Code { get; }
+        public LocalizedMessage UserMessage { get; }
         public IReadOnlyDictionary<string, string[]> Errors { get; }
 
         internal BackendApiException(
             long statusCode,
             string code,
             string message,
-            IReadOnlyDictionary<string, string[]> errors = null)
+            IReadOnlyDictionary<string, string[]> errors = null,
+            string localizationKey = null)
             : base(message)
         {
             StatusCode = statusCode;
             Code = code;
+            UserMessage = new LocalizedMessage(localizationKey ?? LocalizationService.ErrorKey(code));
             Errors = errors ?? new Dictionary<string, string[]>();
         }
     }

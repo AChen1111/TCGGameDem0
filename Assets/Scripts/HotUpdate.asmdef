@@ -12,7 +12,8 @@
         "UnityEngine.UI",
         "SuperScrollView",
         "spine-csharp",
-        "spine-unity"
+        "spine-unity",
+        "AChen.Shared"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

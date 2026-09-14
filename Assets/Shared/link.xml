@@ -1,0 +1,4 @@
+<linker>
+  <!-- 热更新 DLL 通过共享接口访问这些类型, 安装包裁剪时保留. -->
+  <assembly fullname="AChen.Shared" preserve="all" />
+</linker>

@@ -7,7 +7,7 @@ public static class HotUpdateEntry
 {
     public const string InitSceneAddress = "Init";
 
-    public static void Boot(Action<float> onProgress, string addressablesBaseUrl, Action<string> onError)
+    public static void Boot(Action<float> onProgress, string addressablesBaseUrl, Action<LocalizedMessage> onError)
     {
         BootAsync(onProgress, addressablesBaseUrl, onError).Forget();
     }
@@ -15,7 +15,7 @@ public static class HotUpdateEntry
     static async UniTaskVoid BootAsync(
         Action<float> onProgress,
         string addressablesBaseUrl,
-        Action<string> onError)
+        Action<LocalizedMessage> onError)
     {
         try
         {
@@ -26,7 +26,8 @@ public static class HotUpdateEntry
         catch (Exception exception)
         {
             UnityEngine.Debug.LogException(exception);
-            onError?.Invoke("Addressables 更新失败：" + exception.Message);
+            onError?.Invoke(new LocalizedMessage("err.addressables_update_failed",
+                new System.Collections.Generic.Dictionary<string, object> { ["message"] = exception.Message }));
         }
     }
 }

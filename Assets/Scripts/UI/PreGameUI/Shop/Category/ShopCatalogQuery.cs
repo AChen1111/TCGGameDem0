@@ -85,7 +85,8 @@ public static class ShopCatalogQuery
                 config.PriceGold,
                 config.EndsAt,
                 owned.Contains(config.Id),
-                i));
+                i,
+                table));
         }
 
         return result;

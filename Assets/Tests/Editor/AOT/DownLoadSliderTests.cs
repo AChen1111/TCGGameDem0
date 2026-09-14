@@ -11,6 +11,8 @@ public class DownLoadSliderTests
         var root = new GameObject("bar");
         var slider = root.AddComponent<Slider>();
         var tmp = new GameObject("text").AddComponent<TextMeshProUGUI>();
+        tmp.gameObject.SetActive(false);
+        tmp.gameObject.AddComponent<LocalizedText>();
         var bar = root.AddComponent<DownLoadSlider>();
         bar.slider = slider;
         bar.text = tmp;
@@ -20,8 +22,9 @@ public class DownLoadSliderTests
             Assert.AreEqual(0.42f, slider.value, 0.0001f);
             Assert.AreEqual("42%", tmp.text);
 
-            bar.SetError("hash mismatch");
-            Assert.AreEqual("hash mismatch", tmp.text);
+            var error = new LocalizedMessage("err.content_update_failed");
+            bar.SetError(error);
+            Assert.AreEqual(error.ToString(), tmp.text);
         }
         finally
         {

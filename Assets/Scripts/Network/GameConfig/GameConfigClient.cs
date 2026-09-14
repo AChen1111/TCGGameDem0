@@ -102,12 +102,12 @@ namespace AChen.Networking
                 exception is JsonException || exception is GameConfigDataException)
             {
                 ALog.LogError($"游戏配置无效. 原因={exception.Message}", ALogCategories.Net);
-                throw new BackendApiException(0, "INVALID_RESPONSE", "服务器返回的游戏配置无效");
+                throw new BackendApiException(0, "INVALID_RESPONSE", "服务器返回的游戏配置无效", localizationKey: "err.invalid_response.game_config_invalid");
             }
 
             if (string.IsNullOrWhiteSpace(responseEtag))
             {
-                throw new BackendApiException(0, "INVALID_RESPONSE", "服务器响应缺少游戏配置版本标识");
+                throw new BackendApiException(0, "INVALID_RESPONSE", "服务器响应缺少游戏配置版本标识", localizationKey: "err.invalid_response.game_config_etag");
             }
 
             return new GameConfigFetchResult(false, snapshot, responseEtag, serverTime);

@@ -8,6 +8,7 @@ public class ShopOwnedItemData
 {
     public int Id { get; }
     public string Name { get; }
+    public string NameKey { get; }
     public Sprite Sprite { get; }
     public long PriceGold { get; }
     public DateTimeOffset? EndsAt { get; }
@@ -21,10 +22,12 @@ public class ShopOwnedItemData
         long priceGold,
         DateTimeOffset? endsAt,
         bool owned,
-        int index)
+        int index,
+        string catalogType = ShopCatalogTypes.Avatar)
     {
         Id = id;
         Name = name;
+        NameKey = "shop." + catalogType + "." + id.ToString("D2");
         Sprite = sprite;
         PriceGold = priceGold;
         EndsAt = endsAt;
@@ -51,9 +54,9 @@ public class ShopOwnedItem : MonoBehaviour
         m_Data = data;
         m_OnSelected = onSelected;
         m_ImgMain.sprite = data.Sprite;
-        m_TxtTitle.text = data.Name;
-        m_TxtRemainTime.text = ShopRemainingTime.Format(data.EndsAt);
-        m_TxtValue.text = data.PriceGold.ToString("N0");
+        m_TxtTitle.Localized().SetKey(data.NameKey);
+        ShopRemainingTime.Apply(m_TxtRemainTime.Localized(), data.EndsAt);
+        m_TxtValue.Localized().SetKey("ui.common.gold_amount", new System.Collections.Generic.Dictionary<string, object> { ["gold"] = data.PriceGold.ToString("N0") });
         ApplyOwnState(data.Owned);
     }
 

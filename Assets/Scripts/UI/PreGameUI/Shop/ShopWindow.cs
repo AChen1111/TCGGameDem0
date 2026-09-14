@@ -204,7 +204,7 @@ public class ShopWindow : AWindowController
         {
             if (!CardPoolAddress.IsKnownDrawPool(drawTarget.PoolKey))
             {
-                ShowMessage("该卡包未配置卡池");
+                ShowMessage("err.pack_pool_missing");
                 return;
             }
 
@@ -227,7 +227,7 @@ public class ShopWindow : AWindowController
 
         if (target.Owned)
         {
-            ShowMessage("已拥有");
+            ShowMessage("err.already_owned");
             return;
         }
 
@@ -237,7 +237,11 @@ public class ShopWindow : AWindowController
         RequestOpenWindow(
             AddressKeys.Prefab.ChooseWindow,
             new ChooseWindowProperties(
-                $"确认花费 {target.PriceGold} 金币购买{target.Name}?",
+                new LocalizedMessage("ui.shop.confirm_buy", new Dictionary<string, object>
+                {
+                    ["gold"] = target.PriceGold,
+                    ["name"] = new LocalizedMessage("shop." + target.CatalogType + "." + target.Id.ToString("D2"))
+                }),
                 () => PurchaseAsync(target).Forget(),
                 null));
     }
@@ -249,7 +253,7 @@ public class ShopWindow : AWindowController
         PlayerData player = PlayerSession.HasInstance ? PlayerSession.Instance.CurrentPlayer : null;
         if (player == null)
         {
-            ShowMessage("购买失败");
+            ShowMessage("err.purchase_failed");
             return;
         }
 
@@ -258,7 +262,7 @@ public class ShopWindow : AWindowController
             ALog.LogWarning(
                 $"商城购买中止: 品类={target.CatalogType}, Id={target.Id}, Name={target.Name}, 价格={target.PriceGold}, 余额={player.Gold}, 原因=金币不足",
                 ALogCategories.UI);
-            ShowMessage("金币不足");
+            ShowMessage("err.insufficient_gold");
             return;
         }
 
@@ -266,7 +270,7 @@ public class ShopWindow : AWindowController
         await RunGuardedAsync(
             token => PlayerSession.Instance.PurchaseShopItemAsync(target.CatalogType, target.Id, token),
             $"商城购买 {target.CatalogType}/{target.Id}",
-            "购买失败，请稍后重试");
+            "err.purchase_failed_retry");
         if (this == null || !IsOpened) return;
 
         m_IsPurchasing = false;
@@ -280,7 +284,7 @@ public class ShopWindow : AWindowController
         PlayerData player = PlayerSession.HasInstance ? PlayerSession.Instance.CurrentPlayer : null;
         if (player == null)
         {
-            ShowMessage("抽卡失败");
+            ShowMessage("err.draw_failed");
             return;
         }
 
@@ -289,7 +293,7 @@ public class ShopWindow : AWindowController
             ALog.LogWarning(
                 $"商城抽卡中止: Id={target.Id}; Title={target.Title}; Pool={target.PoolKey}; 价格={target.PriceGold}; 余额={player.Gold}; 原因=金币不足",
                 ALogCategories.UI);
-            ShowMessage("金币不足");
+            ShowMessage("err.insufficient_gold");
             return;
         }
 
@@ -316,7 +320,7 @@ public class ShopWindow : AWindowController
 
             if (cards == null)
             {
-                ShowMessage("卡图加载失败，请稍后重试");
+                ShowMessage("err.card_art_load_failed");
                 return;
             }
 
@@ -327,12 +331,12 @@ public class ShopWindow : AWindowController
             ALog.LogWarning(
                 $"抽卡失败. Pool={target.PoolKey}; Count={DrawCount}; Code={exception.Code}; Status={exception.StatusCode}",
                 ALogCategories.Net);
-            ShowMessage(string.IsNullOrEmpty(exception.Message) ? "抽卡失败，请稍后重试" : exception.Message);
+            ShowMessage(exception.UserMessage);
         }
         catch (Exception exception)
         {
             ALog.LogError($"抽卡异常. Pool={target.PoolKey}; 原因={exception.Message}", ALogCategories.Net);
-            ShowMessage("抽卡失败，请稍后重试");
+            ShowMessage("err.draw_failed_retry");
         }
         finally
         {

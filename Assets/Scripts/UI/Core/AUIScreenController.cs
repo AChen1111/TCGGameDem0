@@ -61,7 +61,7 @@ public abstract class AUIScreenController : MonoBehaviour, IUIScreenController
     protected bool IsOpened => m_opened && m_screenCancellation != null;
 
     /// <summary>
-    /// 执行一次会访问后端的界面命令: 界面关闭即取消; BackendApiException 直接把服务端文案提示给玩家;
+    /// 执行一次会访问后端的界面命令: 界面关闭即取消; BackendApiException 按错误 key 提示给玩家;
     /// 其它异常记日志并提示 fallbackMessage. 返回是否成功完成.
     /// </summary>
     protected async UniTask<bool> RunGuardedAsync(
@@ -86,7 +86,7 @@ public abstract class AUIScreenController : MonoBehaviour, IUIScreenController
         {
             if (token.IsCancellationRequested) return false;
             ALog.LogWarning($"{operation}失败. Screen={ScreenId}; Code={exception.Code}; Status={exception.StatusCode}", ALogCategories.UI);
-            ShowMessage(exception.Message);
+            ShowMessage(exception.UserMessage);
             return false;
         }
         catch (Exception exception)
@@ -122,7 +122,9 @@ public abstract class AUIScreenController : MonoBehaviour, IUIScreenController
         EventCenter.Dispatch(UIEvent.WindowOpenRequested, m_UIFrame, new WindowOpenRequest(screenId, properties));
     }
 
-    protected void ShowMessage(string message)
+    protected void ShowMessage(string key) => ShowMessage(new LocalizedMessage(key));
+
+    protected void ShowMessage(LocalizedMessage message)
     {
         RequestOpenWindow(AddressKeys.Prefab.MessageWindow, new MessageWindowProperties(message, 2f));
     }

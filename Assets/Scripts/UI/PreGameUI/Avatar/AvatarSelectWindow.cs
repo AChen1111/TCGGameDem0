@@ -154,7 +154,7 @@ public class AvatarSelectWindow : AWindowController
             if (!m_loadFailureShown)
             {
                 m_loadFailureShown = true;
-                ShowMessage("头像列表加载失败，请稍后重试");
+                ShowMessage("err.avatar_list_load_failed");
             }
         }
         finally
@@ -210,7 +210,7 @@ public class AvatarSelectWindow : AWindowController
         bool succeeded = await RunGuardedAsync(
             token => PlayerSession.Instance.SetAvatarAsync(selected.Id, token),
             "修改头像",
-            "修改头像失败，请稍后重试");
+            "err.change_avatar_failed");
         if (this == null || !IsOpened) return;
 
         m_isSubmitting = false;

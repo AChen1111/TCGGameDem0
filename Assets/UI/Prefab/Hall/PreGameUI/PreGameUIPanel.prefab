@@ -1894,6 +1894,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Btn_Deck
       objectReference: {fileID: 0}
+    - target: {fileID: 780398465015374988, guid: e16260d0033a40d46aaa6a03f7ad89e6, type: 3}
+      propertyPath: key
+      value: ui.lobby.deck
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2180,6 +2184,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Btn_Exit
       objectReference: {fileID: 0}
+    - target: {fileID: 780398465015374988, guid: e16260d0033a40d46aaa6a03f7ad89e6, type: 3}
+      propertyPath: key
+      value: ui.lobby.exit
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2320,6 +2328,10 @@ PrefabInstance:
     - target: {fileID: 7567905886588763191, guid: e16260d0033a40d46aaa6a03f7ad89e6, type: 3}
       propertyPath: m_Name
       value: Btn_Shop
+      objectReference: {fileID: 0}
+    - target: {fileID: 780398465015374988, guid: e16260d0033a40d46aaa6a03f7ad89e6, type: 3}
+      propertyPath: key
+      value: ui.lobby.shop
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2473,6 +2485,10 @@ PrefabInstance:
     - target: {fileID: 9018288651764066824, guid: bb1558a4908869b4ea5ae3929be67fb3, type: 3}
       propertyPath: m_Name
       value: Btn_Mail
+      objectReference: {fileID: 0}
+    - target: {fileID: 314281667511529565, guid: bb1558a4908869b4ea5ae3929be67fb3, type: 3}
+      propertyPath: key
+      value: ui.lobby.mail
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2749,6 +2765,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Btn_Friend
       objectReference: {fileID: 0}
+    - target: {fileID: 314281667511529565, guid: bb1558a4908869b4ea5ae3929be67fb3, type: 3}
+      propertyPath: key
+      value: ui.lobby.friend
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2901,6 +2921,10 @@ PrefabInstance:
     - target: {fileID: 9018288651764066824, guid: bb1558a4908869b4ea5ae3929be67fb3, type: 3}
       propertyPath: m_Name
       value: Btn_Setting
+      objectReference: {fileID: 0}
+    - target: {fileID: 314281667511529565, guid: bb1558a4908869b4ea5ae3929be67fb3, type: 3}
+      propertyPath: key
+      value: ui.lobby.settings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

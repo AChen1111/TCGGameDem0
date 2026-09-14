@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 72020287774966163}
   - component: {fileID: 5643358110203945903}
   - component: {fileID: 2601842018669313517}
+  - component: {fileID: 1102150301297617530}
   m_Layer: 0
   m_Name: Txt_gold
   m_TagString: Untagged
@@ -366,3 +367,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: HotUpdate::GoldDataView
   m_GoldText: {fileID: 2601842018669313517}
+--- !u!114 &1102150301297617530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215383509970149719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef0499324339894abb6f00cf35fd755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AChen.Shared::LocalizedText
+  key: ui.common.gold_amount
+  dynamicContent: 1

@@ -73,7 +73,7 @@ public class CardPickView : MonoBehaviour
         "_EFFECT_GOLD",
     };
 
-    //应用材质效果. Gold 正面描边, 背面只闪砂
+    //应用材质效果. Gold 正面金沙+描边, 背面只描边无沙粒
     void ApplyEffect(CardShaderType type)
     {
         int index = (int)type;

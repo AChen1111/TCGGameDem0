@@ -80,7 +80,7 @@ public class LogInWindow : AWindowController
         catch (Exception exception)
         {
             ALog.LogError("账号认证异常: " + exception.Message, ALogCategories.UI);
-            ShowMessage("登录失败，请稍后重试");
+            ShowMessage("err.login_failed");
         }
         finally
         {
@@ -108,7 +108,7 @@ public class LogInWindow : AWindowController
     {
         m_enteringLobby = false;
         UpdateInteraction();
-        if (this != null && IsVisible) ShowMessage("进入大厅失败，请稍后再试");
+        if (this != null && IsVisible) ShowMessage("err.enter_lobby_failed");
     }
 
     void UpdateInteraction()
@@ -158,7 +158,7 @@ public class LogInWindow : AWindowController
         m_authMode = mode;
         bool isRegister = mode == AuthMode.Register;
         m_InpLogPassWord_Again.gameObject.SetActive(isRegister);
-        m_switchModeButtonText.text = isRegister ? "返回登录" : "注册";
+        m_switchModeButtonText.Localized().SetKey(isRegister ? "ui.login.back_to_login" : "ui.login.register");
 
         if (!isRegister)
         {

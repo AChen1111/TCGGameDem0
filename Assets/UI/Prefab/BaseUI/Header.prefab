@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7427062626939277795}
   - component: {fileID: 1964477532234675866}
   - component: {fileID: 4379861562020568544}
+  - component: {fileID: 354513459420581959}
   m_Layer: 5
   m_Name: RemainTime
   m_TagString: Untagged
@@ -148,6 +149,7 @@ GameObject:
   - component: {fileID: 1432508574434072069}
   - component: {fileID: 3824849749400249242}
   - component: {fileID: 2123461282464070316}
+  - component: {fileID: 919181200296256617}
   m_Layer: 5
   m_Name: Txt_RemainTime
   m_TagString: Untagged
@@ -323,6 +325,7 @@ GameObject:
   - component: {fileID: 3340509148544674091}
   - component: {fileID: 6913533624800059394}
   - component: {fileID: 3807095452176251541}
+  - component: {fileID: 454281276362510128}
   m_Layer: 5
   m_Name: Txt_Titile
   m_TagString: Untagged
@@ -449,3 +452,45 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &354513459420581959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354681038494534185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef0499324339894abb6f00cf35fd755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AChen.Shared::LocalizedText
+  key: ui.shop.remaining_time_label
+  dynamicContent: 0
+--- !u!114 &919181200296256617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727201933415479091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef0499324339894abb6f00cf35fd755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AChen.Shared::LocalizedText
+  key: ui.shop.remaining_days
+  dynamicContent: 1
+--- !u!114 &454281276362510128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8404023580767241173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef0499324339894abb6f00cf35fd755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AChen.Shared::LocalizedText
+  key: ui.placeholder.title
+  dynamicContent: 0

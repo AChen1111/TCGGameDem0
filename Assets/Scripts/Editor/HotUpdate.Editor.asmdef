@@ -10,7 +10,8 @@
         "Unity.ResourceManager",
         "Unity.InputSystem",
         "Unity.TextMeshPro",
-        "UnityEngine.UI"
+        "UnityEngine.UI",
+        "AChen.Shared"
     ],
     "includePlatforms": [
         "Editor"

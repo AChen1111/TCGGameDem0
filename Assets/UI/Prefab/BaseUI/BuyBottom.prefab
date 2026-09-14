@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 9135593464655317113}
   - component: {fileID: 5485308299012277645}
   - component: {fileID: 1765054049833446934}
+  - component: {fileID: 496672518941302699}
   m_Layer: 5
   m_Name: Txt_Value
   m_TagString: Untagged
@@ -321,3 +322,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &496672518941302699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342307140458030169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef0499324339894abb6f00cf35fd755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AChen.Shared::LocalizedText
+  key: ui.common.gold_amount
+  dynamicContent: 1

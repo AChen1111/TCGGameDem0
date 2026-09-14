@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public sealed class ChooseWindowProperties : IWindowProperties
 {
-    public string Message { get; }
+    public LocalizedMessage Message { get; }
     public Action OnOk { get; }
     public Action OnNo { get; }
 
-    public ChooseWindowProperties(string message, Action onOk, Action onNo)
+    public ChooseWindowProperties(LocalizedMessage message, Action onOk, Action onNo)
     {
         Message = message;
         OnOk = onOk;
@@ -49,7 +49,7 @@ public class ChooseWindow : AWindowController<ChooseWindowProperties>
 
     void Apply()
     {
-        m_TxtMessage.text = Properties.Message;
+        m_TxtMessage.Localized().SetMessage(Properties.Message);
         ALog.Log($"选择弹窗: {Properties.Message}", ALogCategories.UI);
     }
 

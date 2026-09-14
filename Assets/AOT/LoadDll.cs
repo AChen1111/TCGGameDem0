@@ -38,7 +38,7 @@ public class LoadDll : MonoBehaviour
             yield return FetchRemoteContent(bar);
             if (!CodeUpdate.IsComplete)
             {
-                Fail(bar, CodeUpdate.LastError);
+                Fail(bar, CodeUpdate.LastErrorMessage);
                 yield break;
             }
 
@@ -48,7 +48,7 @@ public class LoadDll : MonoBehaviour
         }
 #else
         yield return LoadAotMetadataFiles();
-        if (!string.IsNullOrEmpty(m_LoadError))
+        if (m_LoadError != null)
         {
             Fail(bar, m_LoadError);
             yield break;
@@ -57,7 +57,7 @@ public class LoadDll : MonoBehaviour
         yield return FetchRemoteContent(bar);
         if (!CodeUpdate.IsComplete)
         {
-            Fail(bar, CodeUpdate.LastError);
+            Fail(bar, CodeUpdate.LastErrorMessage);
             yield break;
         }
 
@@ -70,10 +70,10 @@ public class LoadDll : MonoBehaviour
         Type entry = hotUpdate.GetType("HotUpdateEntry");
         MethodInfo boot = entry == null
             ? null
-            : entry.GetMethod("Boot", new[] { typeof(Action<float>), typeof(string), typeof(Action<string>) });
+            : entry.GetMethod("Boot", new[] { typeof(Action<float>), typeof(string), typeof(Action<LocalizedMessage>) });
         if (boot == null)
         {
-            Fail(bar, "HotUpdateEntry.Boot 启动接口不存在。");
+            Fail(bar, new LocalizedMessage("err.hot_update_boot_missing"));
             yield break;
         }
 
@@ -81,7 +81,7 @@ public class LoadDll : MonoBehaviour
         {
             onAssets,
             addressablesBaseUrl,
-            new Action<string>(message => Fail(bar, message))
+            new Action<LocalizedMessage>(message => Fail(bar, message))
         });
     }
 
@@ -94,7 +94,7 @@ public class LoadDll : MonoBehaviour
         }
         catch (Exception exception)
         {
-            Fail(bar, exception.Message);
+            Fail(bar, new LocalizedMessage("err.unsupported_platform", new Dictionary<string, object> { ["message"] = exception.Message }));
             yield break;
         }
 
@@ -108,7 +108,7 @@ public class LoadDll : MonoBehaviour
     }
 
 #if !UNITY_EDITOR
-    string m_LoadError;
+    LocalizedMessage m_LoadError;
 
     IEnumerator LoadAotMetadataFiles()
     {
@@ -127,7 +127,7 @@ public class LoadDll : MonoBehaviour
                 yield return request.SendWebRequest();
                 if (request.result != UnityWebRequest.Result.Success)
                 {
-                    m_LoadError = "读取 AOT 元数据失败：" + file + "，" + request.error;
+                    m_LoadError = new LocalizedMessage("err.aot_metadata_failed", new Dictionary<string, object> { ["file"] = file, ["error"] = request.error });
                     yield break;
                 }
 
@@ -155,10 +155,10 @@ public class LoadDll : MonoBehaviour
         }
     }
 
-    static void Fail(DownLoadSlider bar, string message)
+    static void Fail(DownLoadSlider bar, LocalizedMessage message)
     {
-        string detail = string.IsNullOrWhiteSpace(message) ? "内容更新失败。" : message;
-        Debug.LogError("[ContentDelivery] " + detail);
+        LocalizedMessage detail = message ?? new LocalizedMessage("err.content_update_failed");
+        ALog.LogError("启动内容更新失败. Key=" + detail.Key + "; Detail=" + detail, ALogCategories.Localization);
         if (bar != null)
         {
             bar.SetError(detail);

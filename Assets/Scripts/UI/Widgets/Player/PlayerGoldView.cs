@@ -79,7 +79,7 @@ public class PlayerGoldView : MonoBehaviour
     {
         if (m_GoldText.text != gold)
         {
-            m_GoldText.text = gold;
+            m_GoldText.Localized().SetKey("ui.common.gold_amount", new System.Collections.Generic.Dictionary<string, object> { ["gold"] = gold });
         }
     }
 }

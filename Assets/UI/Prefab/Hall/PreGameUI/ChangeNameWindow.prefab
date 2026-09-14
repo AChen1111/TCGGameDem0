@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1871839214732904554}
   - component: {fileID: 2416011770039018894}
   - component: {fileID: 4015906086370647435}
+  - component: {fileID: 569461105520334195}
   m_Layer: 5
   m_Name: Placeholder
   m_TagString: Untagged
@@ -1013,3 +1014,17 @@ MonoBehaviour:
   m_InpName: {fileID: 1791339491751014577}
   m_BtnOk: {fileID: 6165965132945338170}
   m_BtnNo: {fileID: 5570381123747339359}
+--- !u!114 &569461105520334195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889320605806293148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef0499324339894abb6f00cf35fd755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AChen.Shared::LocalizedText
+  key: ui.nickname.placeholder
+  dynamicContent: 0

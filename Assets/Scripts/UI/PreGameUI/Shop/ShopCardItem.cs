@@ -48,10 +48,10 @@ public class ShopCardItem : MonoBehaviour
     {
         m_Data = data;
         m_OnSelected = onSelected;
-        m_TxtTitile.text = data.Title;
+        m_TxtTitile.Localized().SetKey("shop.pack." + data.Id.ToString("D2"));
         m_ImgMain.sprite = data.MainSprite;
-        m_TxtValue.text = data.PriceGold.ToString("N0");
-        m_TxtRemainTime.text = ShopRemainingTime.Format(data.EndsAt);
+        m_TxtValue.Localized().SetKey("ui.common.gold_amount", new System.Collections.Generic.Dictionary<string, object> { ["gold"] = data.PriceGold.ToString("N0") });
+        ShopRemainingTime.Apply(m_TxtRemainTime.Localized(), data.EndsAt);
     }
 
     private void Awake() {

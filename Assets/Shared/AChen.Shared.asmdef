@@ -1,0 +1,5 @@
+{
+    "name": "AChen.Shared",
+    "references": ["Unity.TextMeshPro", "UnityEngine.UI"],
+    "autoReferenced": true
+}

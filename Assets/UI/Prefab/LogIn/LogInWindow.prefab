@@ -316,6 +316,7 @@ GameObject:
   - component: {fileID: 5680339144664848405}
   - component: {fileID: 2205428187943771926}
   - component: {fileID: 7118482419996060791}
+  - component: {fileID: 22378086333044489}
   m_Layer: 5
   m_Name: tx
   m_TagString: Untagged
@@ -1032,6 +1033,7 @@ GameObject:
   - component: {fileID: 5130823285322243532}
   - component: {fileID: 8560520777414401167}
   - component: {fileID: 8914839438328265915}
+  - component: {fileID: 1046423475977060943}
   m_Layer: 5
   m_Name: Placeholder
   m_TagString: Untagged
@@ -1780,6 +1782,7 @@ GameObject:
   - component: {fileID: 2822062016640446926}
   - component: {fileID: 5457385636167342458}
   - component: {fileID: 4467654022567537190}
+  - component: {fileID: 512502928969327237}
   m_Layer: 5
   m_Name: Placeholder
   m_TagString: Untagged
@@ -2212,6 +2215,7 @@ GameObject:
   - component: {fileID: 6292525956760761755}
   - component: {fileID: 5630430385921687540}
   - component: {fileID: 445230698273206533}
+  - component: {fileID: 270614436019822966}
   m_Layer: 5
   m_Name: Placeholder
   m_TagString: Untagged
@@ -2530,3 +2534,59 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &22378086333044489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731180618974905792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef0499324339894abb6f00cf35fd755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AChen.Shared::LocalizedText
+  key: ui.login.register
+  dynamicContent: 0
+--- !u!114 &1046423475977060943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3679078254269493058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef0499324339894abb6f00cf35fd755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AChen.Shared::LocalizedText
+  key: ui.login.placeholder_password_again
+  dynamicContent: 0
+--- !u!114 &512502928969327237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6272265120780071923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef0499324339894abb6f00cf35fd755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AChen.Shared::LocalizedText
+  key: ui.login.placeholder_account
+  dynamicContent: 0
+--- !u!114 &270614436019822966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7300679307367163403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef0499324339894abb6f00cf35fd755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AChen.Shared::LocalizedText
+  key: ui.login.placeholder_password
+  dynamicContent: 0

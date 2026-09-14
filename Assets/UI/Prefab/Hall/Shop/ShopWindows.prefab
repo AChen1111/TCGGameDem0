@@ -601,6 +601,7 @@ GameObject:
   - component: {fileID: 9072248204774634341}
   - component: {fileID: 2563256798608303715}
   - component: {fileID: 20403717888244005}
+  - component: {fileID: 188964968195651586}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -727,6 +728,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &188964968195651586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3521403273485190430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef0499324339894abb6f00cf35fd755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AChen.Shared::LocalizedText
+  key: ui.shop.tab_avatar
+  dynamicContent: 0
 --- !u!1 &3670374022211578740
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,6 +1331,7 @@ GameObject:
   - component: {fileID: 2527980552581020723}
   - component: {fileID: 3530767590631036222}
   - component: {fileID: 3611527075201848489}
+  - component: {fileID: 431451847616216997}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1442,6 +1458,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &431451847616216997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7939212599119365175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef0499324339894abb6f00cf35fd755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AChen.Shared::LocalizedText
+  key: ui.shop.tab_pack
+  dynamicContent: 0
 --- !u!1 &8346723242970292406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1453,6 +1483,7 @@ GameObject:
   - component: {fileID: 5503096095801847361}
   - component: {fileID: 5491385202207875231}
   - component: {fileID: 1580696331809726378}
+  - component: {fileID: 946173885651025200}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1579,6 +1610,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &946173885651025200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8346723242970292406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef0499324339894abb6f00cf35fd755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AChen.Shared::LocalizedText
+  key: ui.shop.tab_wallpaper
+  dynamicContent: 0
 --- !u!1 &8623372965485184721
 GameObject:
   m_ObjectHideFlags: 0

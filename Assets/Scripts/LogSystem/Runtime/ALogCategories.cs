@@ -5,4 +5,5 @@ public static class ALogCategories
     public const string Net = "Network";
     public const string Event = "Event";
     public const string UI = "UI";
+    public const string Localization = "Localization";
 }

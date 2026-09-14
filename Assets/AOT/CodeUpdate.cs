@@ -44,7 +44,8 @@ public static class CodeUpdate
     const int RetryCount = 2;
 
     public static bool IsComplete { get; private set; }
-    public static string LastError { get; private set; }
+    public static LocalizedMessage LastErrorMessage { get; private set; }
+    public static string LastError => LastErrorMessage?.ToString();
     public static ContentReleaseManifest CurrentManifest { get; private set; }
     public static string AddressablesBaseUrl { get; private set; }
 
@@ -124,7 +125,7 @@ public static class CodeUpdate
         Action<float> onProgress = null)
     {
         IsComplete = false;
-        LastError = null;
+        LastErrorMessage = null;
         CurrentManifest = null;
         AddressablesBaseUrl = null;
 
@@ -136,7 +137,7 @@ public static class CodeUpdate
             error => requestError = error);
         if (!string.IsNullOrEmpty(requestError))
         {
-            LastError = "获取内容版本失败：" + requestError;
+            LastErrorMessage = new LocalizedMessage("err.content_version_failed", new Dictionary<string, object> { ["error"] = requestError });
             yield break;
         }
 
@@ -149,7 +150,7 @@ public static class CodeUpdate
         }
         catch (Exception exception)
         {
-            LastError = "内容清单无效：" + exception.Message;
+            LastErrorMessage = new LocalizedMessage("err.content_manifest_invalid", new Dictionary<string, object> { ["message"] = exception.Message });
             yield break;
         }
 
@@ -181,7 +182,7 @@ public static class CodeUpdate
             }
             catch (Exception exception)
             {
-                LastError = "热更 DLL 地址无效：" + exception.Message;
+                LastErrorMessage = new LocalizedMessage("err.hot_update_dll_url_invalid", new Dictionary<string, object> { ["message"] = exception.Message });
                 yield break;
             }
 
@@ -193,14 +194,14 @@ public static class CodeUpdate
                 onProgress);
             if (!string.IsNullOrEmpty(requestError))
             {
-                LastError = "下载热更 DLL 失败：" + requestError;
+                LastErrorMessage = new LocalizedMessage("err.hot_update_dll_download_failed", new Dictionary<string, object> { ["error"] = requestError });
                 yield break;
             }
 
             if (dllBytes.LongLength != manifest.hotUpdate.size
                 || !HasExpectedSha256(dllBytes, manifest.hotUpdate.sha256))
             {
-                LastError = "热更 DLL 的长度或 SHA-256 校验失败。";
+                LastErrorMessage = new LocalizedMessage("err.hot_update_dll_checksum_failed");
                 yield break;
             }
 
@@ -210,7 +211,7 @@ public static class CodeUpdate
             }
             catch (Exception exception)
             {
-                LastError = "写入热更缓存失败：" + exception.Message;
+                LastErrorMessage = new LocalizedMessage("err.hot_update_cache_write_failed", new Dictionary<string, object> { ["message"] = exception.Message });
                 yield break;
             }
         }
@@ -329,6 +330,6 @@ public static class CodeUpdate
             }
         }
 
-        onError(lastError ?? "未知网络错误");
+        onError(lastError ?? LocalizationService.GetText("err.unknown_network"));
     }
 }

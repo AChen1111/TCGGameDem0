@@ -14,16 +14,16 @@ namespace AChen.Player
     public readonly struct AuthResult
     {
         public bool Succeeded { get; }
-        public string ErrorMessage { get; }
+        public LocalizedMessage ErrorMessage { get; }
 
-        AuthResult(bool succeeded, string errorMessage)
+        AuthResult(bool succeeded, LocalizedMessage errorMessage)
         {
             Succeeded = succeeded;
             ErrorMessage = errorMessage;
         }
 
         public static AuthResult Success() => new AuthResult(true, null);
-        public static AuthResult Failure(string message) => new AuthResult(false, message);
+        public static AuthResult Failure(LocalizedMessage message) => new AuthResult(false, message);
     }
 
     /// <summary>
@@ -33,27 +33,27 @@ namespace AChen.Player
     {
         static readonly Regex s_usernamePattern = new Regex(@"^[A-Za-z0-9_]{3,24}$", RegexOptions.Compiled);
 
-        /// <summary>返回 null 表示通过，否则为可直接展示的提示文本。</summary>
+        /// <summary>返回 null 表示通过，否则为多语言 key。</summary>
         public static string Validate(AuthMode mode, string username, string password, string passwordConfirm)
         {
             if (username == null || !s_usernamePattern.IsMatch(username))
             {
-                return "账号需为 3-24 位英文、数字或下划线";
+                return "err.username_invalid";
             }
 
             if (password == null || password.Length is < 8 or > 128)
             {
-                return "密码长度需为 8-128 位";
+                return "err.password_length";
             }
 
             if (mode == AuthMode.Register && IsWeakPassword(password))
             {
-                return "密码过弱";
+                return "err.password_weak";
             }
 
             if (mode == AuthMode.Register && password != passwordConfirm)
             {
-                return "两次输入的密码不一致";
+                return "err.password_mismatch";
             }
 
             return null;
@@ -100,7 +100,7 @@ namespace AChen.Player
                 ALog.LogError(
                     $"账号认证失败. Mode={mode}; Code={exception.Code}; Status={exception.StatusCode}",
                     ALogCategories.Net);
-                return AuthResult.Failure(exception.Message);
+                return AuthResult.Failure(exception.UserMessage);
             }
         }
     }

@@ -12,7 +12,8 @@
         "Unity.TextMeshPro",
         "UnityEngine.UI",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "AChen.Shared"
     ],
     "includePlatforms": [
         "Editor"

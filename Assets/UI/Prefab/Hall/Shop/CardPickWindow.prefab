@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 7707644073706074399}
   - component: {fileID: 6104485142444810522}
   - component: {fileID: 3953241792809569914}
+  - component: {fileID: 1133704124166109355}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -341,6 +342,7 @@ GameObject:
   - component: {fileID: 2525211131405844202}
   - component: {fileID: 5826928340455532826}
   - component: {fileID: 8187966736914172269}
+  - component: {fileID: 751829058185805621}
   m_Layer: 5
   m_Name: Txt_Num
   m_TagString: Untagged
@@ -746,3 +748,31 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1133704124166109355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909060697959203386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef0499324339894abb6f00cf35fd755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AChen.Shared::LocalizedText
+  key: ui.common.next
+  dynamicContent: 0
+--- !u!114 &751829058185805621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4278333155765027897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef0499324339894abb6f00cf35fd755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AChen.Shared::LocalizedText
+  key: ui.common.progress
+  dynamicContent: 1

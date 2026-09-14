@@ -135,14 +135,14 @@ namespace AChen.Networking
                 response.User == null ||
                 response.Player == null)
             {
-                throw new BackendApiException(0, "INVALID_RESPONSE", "服务器返回的登录数据不完整");
+                throw new BackendApiException(0, "INVALID_RESPONSE", "服务器返回的登录数据不完整", localizationKey: "err.invalid_response.login_incomplete");
             }
 
             AuthUser user = ToUser(response.User);
             PlayerData player = ToPlayer(response.Player);
             if (player.Id != user.Id)
             {
-                throw new BackendApiException(0, "INVALID_RESPONSE", "服务器返回的玩家身份不一致");
+                throw new BackendApiException(0, "INVALID_RESPONSE", "服务器返回的玩家身份不一致", localizationKey: "err.invalid_response.player_mismatch");
             }
 
             return new AuthSession(response.AccessToken, response.RefreshToken, user, player);
@@ -169,7 +169,7 @@ namespace AChen.Networking
         {
             if (dto == null || dto.Player == null)
             {
-                throw new BackendApiException(0, "INVALID_RESPONSE", "服务器返回的抽卡数据不完整");
+                throw new BackendApiException(0, "INVALID_RESPONSE", "服务器返回的抽卡数据不完整", localizationKey: "err.invalid_response.draw_incomplete");
             }
 
             CardDrawResultDto[] results = dto.Results ?? Array.Empty<CardDrawResultDto>();
@@ -190,7 +190,7 @@ namespace AChen.Networking
         {
             if (dto == null || string.IsNullOrEmpty(dto.PoolKey))
             {
-                throw new BackendApiException(0, "INVALID_RESPONSE", "服务器返回的卡池数据不完整");
+                throw new BackendApiException(0, "INVALID_RESPONSE", "服务器返回的卡池数据不完整", localizationKey: "err.invalid_response.pool_incomplete");
             }
 
             GachaPoolCardDto[] cards = dto.Cards ?? Array.Empty<GachaPoolCardDto>();

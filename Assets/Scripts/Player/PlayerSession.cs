@@ -146,7 +146,7 @@ namespace AChen.Player
                 string value = nickname?.Trim() ?? string.Empty;
                 if (value.Length is < 2 or > 24 || value.Any(char.IsControl))
                 {
-                    throw new BackendApiException(422, "VALIDATION_ERROR", "昵称需为 2-24 个字符且不能包含控制字符");
+                    throw new BackendApiException(422, "VALIDATION_ERROR", "昵称需为 2-24 个字符且不能包含控制字符", localizationKey: "err.nickname_invalid");
                 }
 
                 return value == player.Nickname
@@ -184,7 +184,7 @@ namespace AChen.Player
                 int[] owned = player.OwnedBackgroundIds.OrderBy(value => value).ToArray();
                 if (owned.Length == 0)
                 {
-                    throw new BackendApiException(422, "WALLPAPER_NOT_OWNED", "没有已拥有壁纸");
+                    throw new BackendApiException(422, "WALLPAPER_NOT_OWNED", "没有已拥有壁纸", localizationKey: "err.no_owned_wallpaper");
                 }
 
                 int index = player.BackgroundId is int id ? Array.IndexOf(owned, id) : -1;

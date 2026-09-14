@@ -36,14 +36,17 @@ public class LoadingText : MonoBehaviour
 
     private IEnumerator AnimateText()
     {
-        string[] frames = { "正在加载中.", "正在加载中..", "正在加载中..." };
+        LocalizedText localized = text.Localized();
         // 加载提示不受游戏暂停或时间缩放影响.
         var delay = new WaitForSecondsRealtime(Mathf.Max(0.05f, interval));
         int index = 0;
         while (true)
         {
-            text.text = frames[index];
-            index = (index + 1) % frames.Length;
+            localized.SetKey("ui.loading.animated", new System.Collections.Generic.Dictionary<string, object>
+            {
+                ["dots"] = new string('.', index + 1)
+            });
+            index = (index + 1) % 3;
             yield return delay;
         }
     }
