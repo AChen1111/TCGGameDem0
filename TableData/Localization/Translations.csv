@@ -21,6 +21,49 @@ ui.common.play,Play,Play
 ui.common.gift_pack,礼包,Gift Pack
 ui.common.gold_amount,{gold},{gold}
 ui.common.hello,你好,Hello
+ui.card.race.warrior,战士族,Warrior
+ui.card.race.spellcaster,魔法师族,Spellcaster
+ui.card.race.fairy,天使族,Fairy
+ui.card.race.fiend,恶魔族,Fiend
+ui.card.race.zombie,不死族,Zombie
+ui.card.race.machine,机械族,Machine
+ui.card.race.aqua,水族,Aqua
+ui.card.race.pyro,炎族,Pyro
+ui.card.race.rock,岩石族,Rock
+ui.card.race.winged_beast,鸟兽族,Winged Beast
+ui.card.race.plant,植物族,Plant
+ui.card.race.insect,昆虫族,Insect
+ui.card.race.thunder,雷族,Thunder
+ui.card.race.dragon,龙族,Dragon
+ui.card.race.beast,兽族,Beast
+ui.card.race.beast_warrior,兽战士族,Beast-Warrior
+ui.card.race.dinosaur,恐龙族,Dinosaur
+ui.card.race.fish,鱼族,Fish
+ui.card.race.sea_serpent,海龙族,Sea Serpent
+ui.card.race.reptile,爬虫类族,Reptile
+ui.card.race.psychic,念动力族,Psychic
+ui.card.race.divine_beast,幻神兽族,Divine-Beast
+ui.card.race.creator_god,创造神族,Creator God
+ui.card.race.wyrm,幻龙族,Wyrm
+ui.card.race.cyberse,电子界族,Cyberse
+ui.card.race.illusion,幻想魔族,Illusion
+ui.card.frame.ritual,仪式,Ritual
+ui.card.frame.fusion,融合,Fusion
+ui.card.frame.synchro,同调,Synchro
+ui.card.frame.xyz,超量,Xyz
+ui.card.frame.link,连接,Link
+ui.card.flag.tuner,调整,Tuner
+ui.card.flag.effect,效果,Effect
+ui.card.flag.special_summon,特殊召唤,Special Summon
+ui.card.spell.normal,通常魔法,Normal Spell
+ui.card.spell.quick,速攻魔法,Quick-Play Spell
+ui.card.spell.continuous,永续魔法,Continuous Spell
+ui.card.spell.equip,装备魔法,Equip Spell
+ui.card.spell.field,场地魔法,Field Spell
+ui.card.spell.ritual,仪式魔法,Ritual Spell
+ui.card.trap.normal,通常陷阱,Normal Trap
+ui.card.trap.continuous,永续陷阱,Continuous Trap
+ui.card.trap.counter,反击陷阱,Counter Trap
 ui.placeholder.new_text,New Text,New Text
 ui.placeholder.title,这是一个标题的占位测试,Title placeholder
 ui.loading,正在加载中...,Loading...

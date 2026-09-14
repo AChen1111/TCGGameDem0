@@ -144,7 +144,38 @@ public class CardPickWindow : AWindowController<CardPickWindowProperty>
         _controller.BindPointer(new CardPickScreenPointer(m_RawCardPick, uiCamera, pickCamera));
         _controller.NextVisibleChanged += OnNextVisible;
         _controller.ProgressChanged += OnProgressChanged;
+        _controller.CardInspectRequested += OnCardInspectRequested;
         return true;
+    }
+
+    void OnCardInspectRequested(int index)
+    {
+        if (Properties == null || Properties.Cards == null)
+        {
+            return;
+        }
+
+        IReadOnlyList<CardPickViewData> cards = Properties.Cards;
+        if (index < 0 || index >= cards.Count)
+        {
+            return;
+        }
+
+        var entries = new CardDetailEntry[cards.Count];
+        for (int i = 0; i < cards.Count; i++)
+        {
+            CardPickViewData card = cards[i];
+            entries[i] = new CardDetailEntry(card.cardId, string.Empty, card.cardTexture);
+        }
+
+        RequestOpenWindow(
+            AddressKeys.Prefab.CardDetailOverlay,
+            new CardDetailWindowProperty(entries, index, OnDetailVisibleChanged));
+    }
+
+    void OnDetailVisibleChanged(bool visible)
+    {
+        _controller?.SetInspectEnabled(!visible);
     }
 
     async UniTaskVoid FadeInAsync()
@@ -282,6 +313,7 @@ public class CardPickWindow : AWindowController<CardPickWindowProperty>
         {
             _controller.NextVisibleChanged -= OnNextVisible;
             _controller.ProgressChanged -= OnProgressChanged;
+            _controller.CardInspectRequested -= OnCardInspectRequested;
             _controller.BindPointer(null);
             Camera pickCamera = _controller.PickCamera;
             if (pickCamera != null)

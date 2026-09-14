@@ -18,6 +18,7 @@ public enum CardStatus
     None = 0,//没有显出
     CanFlip = 1,//可以被翻面
     ShowEnd = 3,//所有卡都被翻开
+    CanInspect = 4,//展开后可点开详情
 }
 
 [Serializable]
@@ -56,6 +57,8 @@ public class CardPickView : MonoBehaviour
     MotionHandle _dissolveHandle;
     Material _matEdge;
     CardPickController _controller;
+    CardPickViewData _data;
+    int _index;
 
     //todo:增加卡图替换功能
     //[SerializeField] private SpriteRenderer _spriteRenderer;//卡图
@@ -132,6 +135,7 @@ public class CardPickView : MonoBehaviour
     public void Init(CardPickViewData cardPickViewData)
     {
         _cardShaderType = cardPickViewData.cardShaderType;
+        _data = cardPickViewData;
         _matFront = new Material(_matFront);
         _matBack = new Material(_matBack);
         _meshFrontRenderer.material = _matFront;
@@ -146,6 +150,15 @@ public class CardPickView : MonoBehaviour
         ApplyDissolve(0f);
         SwitchStatus(CardStatus.None);
     }
+
+    public void SetIndex(int index)
+    {
+        _index = index;
+    }
+
+    public int Index => _index;
+
+    public CardPickViewData Data => _data;
 
 
     //正面 = true, 背面 = false.
@@ -188,6 +201,11 @@ public class CardPickView : MonoBehaviour
                 _cardMouseTilt.enabled = false;
                 _cardFlip.enabled = false;
                 break;
+            case CardStatus.CanInspect:
+                _cardFlip.SetShowBack(false);
+                _cardMouseTilt.enabled = true;
+                _cardFlip.enabled = false;
+                break;
         }
        
     }
@@ -201,9 +219,12 @@ public class CardPickView : MonoBehaviour
     //检测卡牌是否被点击
     void Update()
     {
-        if (_cardStatus != CardStatus.CanFlip
-            || Mouse.current == null
-            || !Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current == null || !Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            return;
+        }
+
+        if (_cardStatus != CardStatus.CanFlip && _cardStatus != CardStatus.CanInspect)
         {
             return;
         }
@@ -215,6 +236,12 @@ public class CardPickView : MonoBehaviour
 
         if (Physics.Raycast(ray, out var hit) && hit.transform.IsChildOf(transform))
         {
+            if (_cardStatus == CardStatus.CanInspect)
+            {
+                _controller?.NotifyInspect(_index);
+                return;
+            }
+
             DoFlip();
         }
     }

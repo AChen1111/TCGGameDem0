@@ -118,3 +118,17 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: CardDetailOverlay
+    reference:
+      m_AssetGUID: 7412b019034304547a32f5e8dfe0ea00
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: CardZoomWindow
+    reference:
+      m_AssetGUID: f6bea0640fd9bc94aa7b61eaf79716f9
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

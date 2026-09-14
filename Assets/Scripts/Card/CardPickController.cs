@@ -14,13 +14,17 @@ public class CardPickController : MonoBehaviour
     ICardPickPointer _pointer;
     int _currentCardIndex;
     bool _revealFinished;
+    bool _inspectEnabled = true;
     Action _onFinished;
 
     public event Action<bool> NextVisibleChanged;
     public event Action<int, int> ProgressChanged;
+    public event Action<int> CardInspectRequested;
 
     public Camera PickCamera =>
         _pickCamera != null ? _pickCamera : GetComponentInChildren<Camera>(true);
+
+    public GameObject CardPrefab => _cardPrefab;
 
     public void BindPointer(ICardPickPointer pointer)
     {
@@ -60,6 +64,7 @@ public class CardPickController : MonoBehaviour
             SetLayerRecursively(card, layer);
             CardPickView view = card.GetComponent<CardPickView>();
             view.Init(cards[i]);
+            view.SetIndex(i);
             view.gameObject.SetActive(false);
             view.SwitchStatus(CardStatus.None);
             view.gameObject.transform.localPosition = new Vector3(0, 0, i);
@@ -87,6 +92,7 @@ public class CardPickController : MonoBehaviour
         _cardObjects.Clear();
         _currentCardIndex = 0;
         _revealFinished = false;
+        _inspectEnabled = true;
         _onFinished = null;
         RaiseProgress();
         if (_gameObjectHorizontalLayout != null)
@@ -207,7 +213,30 @@ public class CardPickController : MonoBehaviour
         }
 
         _revealFinished = true;
+        for (int i = 0; i < _cardObjects.Count; i++)
+        {
+            if (_cardObjects[i] != null)
+            {
+                _cardObjects[i].SwitchStatus(CardStatus.CanInspect);
+            }
+        }
+
         RaiseNextVisible(true);
+    }
+
+    public void SetInspectEnabled(bool enabled)
+    {
+        _inspectEnabled = enabled;
+    }
+
+    public void NotifyInspect(int index)
+    {
+        if (!_revealFinished || !_inspectEnabled || index < 0 || index >= _cardObjects.Count)
+        {
+            return;
+        }
+
+        CardInspectRequested?.Invoke(index);
     }
 
     void RaiseNextVisible(bool visible)

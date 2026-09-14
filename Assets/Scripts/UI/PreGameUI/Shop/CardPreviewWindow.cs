@@ -110,6 +110,14 @@ public class CardPreviewWindow : AWindowController<CardPreviewWindowProperty>
 
         CardInUIData card = m_Cards[index];
         ALog.Log($"卡包预览点卡. CardId={card.CardId}; SourcePool={card.SourcePool}", ALogCategories.UI);
+        var entries = new CardDetailEntry[m_Cards.Count];
+        for (int i = 0; i < m_Cards.Count; i++)
+        {
+            CardInUIData item = m_Cards[i];
+            entries[i] = new CardDetailEntry(item.CardId, item.SourcePool, item.Texture);
+        }
+
+        RequestOpenWindow(AddressKeys.Prefab.CardDetailOverlay, new CardDetailWindowProperty(entries, index));
     }
 
     async UniTaskVoid LoadPoolAsync(ShopDrawTarget target)
