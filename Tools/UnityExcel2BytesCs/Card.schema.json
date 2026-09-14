@@ -1,0 +1,21 @@
+{
+  "source": "TableData/Card/Cards.csv",
+  "bytesOutput": "Assets/Resources/Card/Cards.bytes",
+  "csOutput": "Assets/Shared/Card/Generated/CardRow.cs",
+  "namespace": "Table",
+  "className": "CardRow",
+  "uniqueKey": "CardId",
+  "matchingPlaceholders": [],
+  "columns": [
+    { "header": "cardId", "name": "CardId", "type": "string", "description": "八位卡密" },
+    { "header": "kind", "name": "Kind", "type": "int", "description": "1怪兽 2魔法 3陷阱" },
+    { "header": "frame", "name": "Frame", "type": "int", "description": "名栏框色" },
+    { "header": "level", "name": "Level", "type": "int", "description": "星/Rank/Link" },
+    { "header": "attribute", "name": "Attribute", "type": "int", "description": "属性" },
+    { "header": "race", "name": "Race", "type": "int", "description": "种族" },
+    { "header": "atk", "name": "Atk", "type": "int", "description": "攻击, -1为问号" },
+    { "header": "def", "name": "Def", "type": "int", "description": "守备, -1为问号" },
+    { "header": "flags", "name": "Flags", "type": "int", "description": "效果/调整等位标记" },
+    { "header": "spellTrapType", "name": "SpellTrapType", "type": "int", "description": "魔法陷阱种类" }
+  ]
+}

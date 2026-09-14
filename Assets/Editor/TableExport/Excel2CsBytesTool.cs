@@ -11,12 +11,24 @@ public static class Excel2CsBytesTool
     [MenuItem("SDGSupporter/Excel/Export Localization CSV")]
     public static void ExportLocalization()
     {
+        ExportSchema("Tools/UnityExcel2BytesCs/Localization.schema.json", ALogCategories.Localization);
+    }
+
+    [MenuItem("SDGSupporter/Excel/Export Card CSV")]
+    public static void ExportCard()
+    {
+        ExportSchema("Tools/UnityExcel2BytesCs/Card.schema.json", ALogCategories.Default);
+    }
+
+    static void ExportSchema(string schemaRelativePath, string category)
+    {
         string root = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
         string script = Path.Combine(root, "Tools/UnityExcel2BytesCs/Excel2CsBytesTool.ps1");
+        string schema = Path.Combine(root, schemaRelativePath.Replace('/', Path.DirectorySeparatorChar));
         var start = new ProcessStartInfo
         {
             FileName = "powershell.exe",
-            Arguments = "-NoProfile -NonInteractive -ExecutionPolicy Bypass -File \"" + script + "\"",
+            Arguments = "-NoProfile -NonInteractive -ExecutionPolicy Bypass -File \"" + script + "\" -SchemaPath \"" + schema + "\"",
             WorkingDirectory = root,
             UseShellExecute = false,
             CreateNoWindow = true,
@@ -34,15 +46,16 @@ public static class Excel2CsBytesTool
                 process.WaitForExit();
                 if (process.ExitCode != 0)
                 {
-                    ALog.LogError("语言表导出失败. Source=TableData/Localization/Translations.csv; Error=" + error.GetAwaiter().GetResult(), ALogCategories.Localization);
+                    ALog.LogError("导表失败. Schema=" + schemaRelativePath + "; Error=" + error.GetAwaiter().GetResult(), category);
                     return;
                 }
-                ALog.Log(output.GetAwaiter().GetResult().Trim(), ALogCategories.Localization);
+
+                ALog.Log(output.GetAwaiter().GetResult().Trim(), category);
             }
         }
         catch (Exception exception)
         {
-            ALog.LogError("语言表导出失败. Tool=" + script + "; Error=" + exception.Message, ALogCategories.Localization);
+            ALog.LogError("导表失败. Schema=" + schemaRelativePath + "; Error=" + exception.Message, category);
         }
     }
 }
