@@ -37,6 +37,7 @@ public static class LocalizationService
         s_initialized = true;
         s_language = PlayerPrefs.GetInt(PreferenceKey, 0) == 1 ? GameLanguage.English : GameLanguage.SimplifiedChinese;
         s_settings = Resources.Load<LocalizationSettings>("Localization/Settings");
+        EnsureEnglishFallbacks();
         TextAsset data = Resources.Load<TextAsset>(ResourcePath);
         if (data == null)
         {
@@ -115,6 +116,59 @@ public static class LocalizationService
             if (font == null) ReportMissing("Localization/Settings", "缺少当前语言字体");
             return font;
         }
+    }
+
+    // 切语言时同步字体, 并按设计字号为上限做自适应, 避免英文撑破窄框.
+    public static void ApplyPresentation(TMP_Text text)
+    {
+        if (text == null) return;
+        TMP_FontAsset font = CurrentFont;
+        if (font != null && text.font != font)
+        {
+            text.font = font;
+            text.fontSharedMaterial = font.material;
+        }
+        EnableAutoSize(text);
+    }
+
+    public static void EnableAutoSize(TMP_Text text)
+    {
+        if (text == null) return;
+        float max = text.enableAutoSizing && text.fontSizeMax > 1f ? text.fontSizeMax : text.fontSize;
+        if (max < 1f) max = 36f;
+        text.fontSizeMax = max;
+        // min 已贴近 max 时视为锁定字号, 避免同组按钮因文案长短缩到不同大小.
+        if (!(text.enableAutoSizing && text.fontSizeMin >= max - 0.01f))
+            text.fontSizeMin = Mathf.Min(8f, max);
+        text.enableAutoSizing = true;
+    }
+
+    static void EnsureEnglishFallbacks()
+    {
+        if (s_settings == null) return;
+        TMP_FontAsset english = s_settings.englishFont;
+        TMP_FontAsset chinese = s_settings.chineseFont;
+        if (english == null || chinese == null || ReferenceEquals(english, chinese)) return;
+        if (english.fallbackFontAssetTable == null)
+            english.fallbackFontAssetTable = new List<TMP_FontAsset>();
+        bool added = false;
+        if (chinese.fallbackFontAssetTable != null)
+        {
+            for (int i = 0; i < chinese.fallbackFontAssetTable.Count; i++)
+            {
+                TMP_FontAsset punct = chinese.fallbackFontAssetTable[i];
+                if (punct == null || english.fallbackFontAssetTable.Contains(punct)) continue;
+                english.fallbackFontAssetTable.Add(punct);
+                added = true;
+            }
+        }
+        if (!english.fallbackFontAssetTable.Contains(chinese))
+        {
+            english.fallbackFontAssetTable.Add(chinese);
+            added = true;
+        }
+        if (added)
+            ALog.Log($"英文字体已挂中文回退. English={english.name}; Chinese={chinese.name}", ALogCategories.Localization);
     }
 
     public static string ErrorKey(string code)

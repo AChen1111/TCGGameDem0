@@ -59,7 +59,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 2
-  m_Spacing: 20
+  m_Spacing: -8
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -1582,7 +1582,7 @@ MonoBehaviour:
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 8
   m_fontSizeMax: 50
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -1806,6 +1806,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6415224895233999434}
     m_Modifications:
+    - target: {fileID: 780398465015374988, guid: e16260d0033a40d46aaa6a03f7ad89e6, type: 3}
+      propertyPath: key
+      value: ui.lobby.deck
+      objectReference: {fileID: 0}
     - target: {fileID: 2618176736565451016, guid: e16260d0033a40d46aaa6a03f7ad89e6, type: 3}
       propertyPath: m_text
       value: Deck
@@ -1893,10 +1897,6 @@ PrefabInstance:
     - target: {fileID: 7567905886588763191, guid: e16260d0033a40d46aaa6a03f7ad89e6, type: 3}
       propertyPath: m_Name
       value: Btn_Deck
-      objectReference: {fileID: 0}
-    - target: {fileID: 780398465015374988, guid: e16260d0033a40d46aaa6a03f7ad89e6, type: 3}
-      propertyPath: key
-      value: ui.lobby.deck
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2096,6 +2096,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6415224895233999434}
     m_Modifications:
+    - target: {fileID: 780398465015374988, guid: e16260d0033a40d46aaa6a03f7ad89e6, type: 3}
+      propertyPath: key
+      value: ui.lobby.exit
+      objectReference: {fileID: 0}
     - target: {fileID: 2618176736565451016, guid: e16260d0033a40d46aaa6a03f7ad89e6, type: 3}
       propertyPath: m_text
       value: Exit
@@ -2184,10 +2188,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Btn_Exit
       objectReference: {fileID: 0}
-    - target: {fileID: 780398465015374988, guid: e16260d0033a40d46aaa6a03f7ad89e6, type: 3}
-      propertyPath: key
-      value: ui.lobby.exit
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2241,6 +2241,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6415224895233999434}
     m_Modifications:
+    - target: {fileID: 780398465015374988, guid: e16260d0033a40d46aaa6a03f7ad89e6, type: 3}
+      propertyPath: key
+      value: ui.lobby.shop
+      objectReference: {fileID: 0}
     - target: {fileID: 2618176736565451016, guid: e16260d0033a40d46aaa6a03f7ad89e6, type: 3}
       propertyPath: m_text
       value: Shop
@@ -2329,10 +2333,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Btn_Shop
       objectReference: {fileID: 0}
-    - target: {fileID: 780398465015374988, guid: e16260d0033a40d46aaa6a03f7ad89e6, type: 3}
-      propertyPath: key
-      value: ui.lobby.shop
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2386,6 +2386,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7252629352747429037}
     m_Modifications:
+    - target: {fileID: 314281667511529565, guid: bb1558a4908869b4ea5ae3929be67fb3, type: 3}
+      propertyPath: key
+      value: ui.lobby.mail
+      objectReference: {fileID: 0}
     - target: {fileID: 1860463252380462951, guid: bb1558a4908869b4ea5ae3929be67fb3, type: 3}
       propertyPath: m_Transition
       value: 1
@@ -2485,10 +2489,6 @@ PrefabInstance:
     - target: {fileID: 9018288651764066824, guid: bb1558a4908869b4ea5ae3929be67fb3, type: 3}
       propertyPath: m_Name
       value: Btn_Mail
-      objectReference: {fileID: 0}
-    - target: {fileID: 314281667511529565, guid: bb1558a4908869b4ea5ae3929be67fb3, type: 3}
-      propertyPath: key
-      value: ui.lobby.mail
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2665,6 +2665,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7252629352747429037}
     m_Modifications:
+    - target: {fileID: 314281667511529565, guid: bb1558a4908869b4ea5ae3929be67fb3, type: 3}
+      propertyPath: key
+      value: ui.lobby.friend
+      objectReference: {fileID: 0}
     - target: {fileID: 1860463252380462951, guid: bb1558a4908869b4ea5ae3929be67fb3, type: 3}
       propertyPath: m_Transition
       value: 1
@@ -2765,10 +2769,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Btn_Friend
       objectReference: {fileID: 0}
-    - target: {fileID: 314281667511529565, guid: bb1558a4908869b4ea5ae3929be67fb3, type: 3}
-      propertyPath: key
-      value: ui.lobby.friend
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2822,6 +2822,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7252629352747429037}
     m_Modifications:
+    - target: {fileID: 314281667511529565, guid: bb1558a4908869b4ea5ae3929be67fb3, type: 3}
+      propertyPath: key
+      value: ui.lobby.settings
+      objectReference: {fileID: 0}
     - target: {fileID: 1860463252380462951, guid: bb1558a4908869b4ea5ae3929be67fb3, type: 3}
       propertyPath: m_Transition
       value: 1
@@ -2921,10 +2925,6 @@ PrefabInstance:
     - target: {fileID: 9018288651764066824, guid: bb1558a4908869b4ea5ae3929be67fb3, type: 3}
       propertyPath: m_Name
       value: Btn_Setting
-      objectReference: {fileID: 0}
-    - target: {fileID: 314281667511529565, guid: bb1558a4908869b4ea5ae3929be67fb3, type: 3}
-      propertyPath: key
-      value: ui.lobby.settings
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

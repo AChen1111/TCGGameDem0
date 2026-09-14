@@ -41,13 +41,7 @@ public sealed class LocalizedText : MonoBehaviour
     public void Refresh()
     {
         if (m_text == null) m_text = GetComponent<TMP_Text>();
-        TMP_FontAsset font = LocalizationService.CurrentFont;
-        if (font != null && m_text.font != font)
-        {
-            m_text.font = font;
-            // 材质必须匹配新字体图集, 不能继续引用旧图集的预设材质.
-            m_text.fontSharedMaterial = font.material;
-        }
+        LocalizationService.ApplyPresentation(m_text);
         if (m_cleared || (dynamicContent && m_message == null)) { m_text.text = string.Empty; return; }
         m_text.text = LocalizationService.GetText(m_message?.Key ?? key, m_message?.Arguments);
     }
