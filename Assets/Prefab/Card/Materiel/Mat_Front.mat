@@ -126,7 +126,7 @@ Material:
     - _GlossyReflections: 0
     - _GoldFlowSpeed: 0.85
     - _GoldOutline: 1
-    - _GoldSandDensity: 8
+    - _GoldSandDensity: 4
     - _GoldSparkle: 0.95
     - _GoldWidth: 0.028
     - _HoloScale: 5
