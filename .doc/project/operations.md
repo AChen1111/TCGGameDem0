@@ -1,6 +1,24 @@
 # 日常操作
 
-分层与职责见 [系统架构](architecture.md)。接口与错误码见 [后端 API](../backend/api/README.md)。
+分层与职责见 [系统架构](architecture.md)。接口与错误码见 [后端 API](https://github.com/AChen1111/TCGCardDem0-Backend/blob/main/docs/api/README.md)。
+
+`Backend/` 是子模块 [TCGCardDem0-Backend](https://github.com/AChen1111/TCGCardDem0-Backend)。克隆游戏仓库时带上子模块：
+
+```powershell
+git clone --recurse-submodules https://github.com/AChen1111/TCGGameDem0.git
+```
+
+已经克隆、但 `Backend/` 是空目录时：
+
+```powershell
+git submodule update --init
+```
+
+跟踪后端 `main` 的最新提交：
+
+```powershell
+git submodule update --remote Backend
+```
 
 ## 1. 常用入口
 
@@ -61,7 +79,7 @@ dotnet run --project Backend/src/AChen.Backend.Api
 
 | 范围 | 方式 |
 | --- | --- |
-| 后端 | `dotnet test Backend/AChen.Backend.sln` |
+| 后端 | `dotnet test Backend/AChen.Backend.sln`（子模块内） |
 | Unity Editor | `Window > General > Test Runner`，跑 `Assets/Tests/Editor`（程序集 `HotUpdate.Editor.Tests`） |
 | Unity 自动化 | [Unity Pipeline](../unity-pipeline/index.md) |
 

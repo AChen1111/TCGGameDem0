@@ -165,7 +165,7 @@ ShopWindow → ShopCategory
   → 下载 DLL 与 Addressables
 ```
 
-接口字段与错误码见 [后端 API](../backend/api/README.md)。环境变量、管理台登录和测试入口见 [日常操作](operations.md)。
+接口字段与错误码见 [后端 API](https://github.com/AChen1111/TCGCardDem0-Backend/blob/main/docs/api/README.md)。环境变量、管理台登录和测试入口见 [日常操作](operations.md)。
 
 ## 6. Editor 工具放哪里
 
@@ -205,7 +205,7 @@ ShopWindow → ShopCategory
 | [Unity 客户端](unity-client.md) | 目录、UI 资源分组、程序集边界 |
 | [热更新与内容分发](hot-update-and-content.md) | 启动链、发布链、Editor / Player 差异 |
 | [后端](backend.md) | 模块、存储、鉴权与管理台 |
-| [后端 API](../backend/api/README.md) | 路由、请求体、错误码 |
+| [后端 API](https://github.com/AChen1111/TCGCardDem0-Backend/blob/main/docs/api/README.md) | 路由、请求体、错误码 |
 | [日常操作](operations.md) | 环境变量、管理台、启后端、发版、测试 |
 | [决斗系统架构](duel-architecture.md) | UDP 确定性帧同步、三端同核、回放 |
 | [英雄卡组手册](hero-card-modeling.md) | 19 种卡的字段、发动步骤与案例 |

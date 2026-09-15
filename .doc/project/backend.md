@@ -1,6 +1,6 @@
 # 后端
 
-后端位于 `Backend/src/AChen.Backend.Api`，.NET 8、ASP.NET Core Minimal API、EF Core、SQLite。与客户端的职责划分见 [系统架构](architecture.md)。路径与请求体见 [后端 API](../backend/api/README.md)。
+后端位于 `Backend/src/AChen.Backend.Api`（Git 子模块 [TCGCardDem0-Backend](https://github.com/AChen1111/TCGCardDem0-Backend)），.NET 8、ASP.NET Core Minimal API、EF Core、SQLite。与客户端的职责划分见 [系统架构](architecture.md)。路径与请求体见 [后端 API](https://github.com/AChen1111/TCGCardDem0-Backend/blob/main/docs/api/README.md)。
 
 ## 1. 模块
 

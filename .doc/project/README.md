@@ -14,4 +14,4 @@
 | [Spine 图集体检](spine-atlas-repair.md) | 图集坐标错位的批量检查与修复 |
 | [故障分析](troubleshooting.md) | 已定位故障的证据链与结论 |
 
-接口清单与错误码：[后端 API](../backend/api/README.md)。
+接口清单与错误码：[后端 API](https://github.com/AChen1111/TCGCardDem0-Backend/blob/main/docs/api/README.md)。

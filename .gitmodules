@@ -1,0 +1,4 @@
+[submodule "Backend"]
+	path = Backend
+	url = https://github.com/AChen1111/TCGCardDem0-Backend.git
+	branch = main

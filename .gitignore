@@ -118,10 +118,6 @@ Assets/Scripts/LuaRaw/LuaPadDrafts/*.lua.meta
 /Unused~/Tools/**/bin/
 /Unused~/Tools/**/obj/
 
-# Admin console
-/AdminWeb/node_modules/
-/AdminWeb/dist/
-
 # Local clutter / one-off dumps
 /Recovery/
 /UnityCursorKit/
@@ -144,14 +140,4 @@ draft_*
 # /[Aa]ssets/XLua/Gen/
 # /[Aa]ssets/XLua/Gen.meta
 
-# ASP.NET Core backend build output and local state
-/Backend/**/bin/
-/Backend/**/obj/
-/Backend/src/AChen.Backend.Api/Data/*.db*
-/Backend/src/AChen.Backend.Api/Data/content/
-/Backend/src/AChen.Backend.Api/Data/game-config-git/
-/Backend/.env
 .playwright-cli/
-
-# Backend project definitions are hand-maintained, unlike Unity generated projects.
-!/Backend/**/*.csproj
