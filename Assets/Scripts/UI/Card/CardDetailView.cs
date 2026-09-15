@@ -71,137 +71,20 @@ public class CardDetailView : MonoBehaviour
     Action m_OnClosed;
     Action<bool> m_OnVisibleChanged;
     Action<Texture> m_OnCardClicked;
-    bool m_Bound;
 
     public bool IsShowing => gameObject.activeSelf;
 
     void Awake()
     {
-        EnsureBound();
+        BindCardButton();
     }
 
-    void EnsureBound()
+    void BindCardButton()
     {
-        if (m_Bound)
-        {
-            return;
-        }
-
-        m_BtnDim = Coalesce(m_BtnDim, "Img_Dim");
-        m_RawCard = Coalesce(m_RawCard, "Raw_Card");
-        m_BtnCard = Coalesce(m_BtnCard, "Raw_Card");
         if (m_BtnCard == null && m_RawCard != null)
         {
             m_BtnCard = m_RawCard.GetComponent<Button>();
         }
-        m_ImgNameBase = Coalesce(m_ImgNameBase, "Img_NameBase");
-        m_TxtName = Coalesce(m_TxtName, "Txt_Name");
-        m_ImgAttr = Coalesce(m_ImgAttr, "Img_Attr");
-        m_GoLevelRow = m_GoLevelRow != null ? m_GoLevelRow : FindGo("Go_LevelRow");
-        m_ImgLevel = Coalesce(m_ImgLevel, "Img_Level");
-        m_TxtLevel = Coalesce(m_TxtLevel, "Txt_Level");
-        BindTypeSlots();
-        m_GoStatRow = m_GoStatRow != null ? m_GoStatRow : FindGo("Go_StatRow");
-        m_GoAtk = m_GoAtk != null ? m_GoAtk : FindGo("Go_Atk");
-        m_TxtAtk = Coalesce(m_TxtAtk, "Txt_Atk");
-        m_GoDef = m_GoDef != null ? m_GoDef : FindGo("Go_Def");
-        m_ImgDef = Coalesce(m_ImgDef, "Img_Def");
-        m_TxtDef = Coalesce(m_TxtDef, "Txt_Def");
-        m_TxtType = Coalesce(m_TxtType, "Txt_Type");
-        m_TxtDesc = Coalesce(m_TxtDesc, "Txt_Desc");
-        m_BtnPrev = Coalesce(m_BtnPrev, "Btn_Prev");
-        m_BtnNext = Coalesce(m_BtnNext, "Btn_Next");
-        m_SpriteAttrLight = CoalesceSprite(m_SpriteAttrLight, "Img_BankAttrLight");
-        m_SpriteAttrDark = CoalesceSprite(m_SpriteAttrDark, "Img_BankAttrDark");
-        m_SpriteAttrFire = CoalesceSprite(m_SpriteAttrFire, "Img_BankAttrFire");
-        m_SpriteAttrWater = CoalesceSprite(m_SpriteAttrWater, "Img_BankAttrWater");
-        m_SpriteAttrWind = CoalesceSprite(m_SpriteAttrWind, "Img_BankAttrWind");
-        m_SpriteAttrEarth = CoalesceSprite(m_SpriteAttrEarth, "Img_BankAttrEarth");
-        m_SpriteAttrDivine = CoalesceSprite(m_SpriteAttrDivine, "Img_BankAttrDivine");
-        m_SpriteLevel = CoalesceSprite(m_SpriteLevel, "Img_BankLevel");
-        m_SpriteRank = CoalesceSprite(m_SpriteRank, "Img_BankRank");
-        m_SpriteLink = CoalesceSprite(m_SpriteLink, "Img_BankLink");
-        m_SpriteDef = CoalesceSprite(m_SpriteDef, "Img_BankDef");
-        m_SpriteTuner = CoalesceSprite(m_SpriteTuner, "Img_BankTuner");
-        m_SpriteEffect = CoalesceSprite(m_SpriteEffect, "Img_BankEffect");
-        m_SpriteFusion = CoalesceSprite(m_SpriteFusion, "Img_BankFusion");
-        m_SpriteSynchro = CoalesceSprite(m_SpriteSynchro, "Img_BankSynchro");
-        m_SpriteXyz = CoalesceSprite(m_SpriteXyz, "Img_BankXyz");
-        m_SpriteLinkType = CoalesceSprite(m_SpriteLinkType, "Img_BankLinkType");
-        m_SpriteSpell = CoalesceSprite(m_SpriteSpell, "Img_BankSpell");
-        m_SpriteTrap = CoalesceSprite(m_SpriteTrap, "Img_BankTrap");
-        m_SpriteQuick = CoalesceSprite(m_SpriteQuick, "Img_BankQuick");
-        m_SpriteContinuous = CoalesceSprite(m_SpriteContinuous, "Img_BankContinuous");
-        m_SpriteEquip = CoalesceSprite(m_SpriteEquip, "Img_BankEquip");
-        m_SpriteField = CoalesceSprite(m_SpriteField, "Img_BankField");
-        m_SpriteRitual = CoalesceSprite(m_SpriteRitual, "Img_BankRitual");
-        m_SpriteCounter = CoalesceSprite(m_SpriteCounter, "Img_BankCounter");
-        m_Bound = true;
-    }
-
-    void BindTypeSlots()
-    {
-        if (m_ImgTypes == null || m_ImgTypes.Length < 4)
-        {
-            m_ImgTypes = new[]
-            {
-                FindNamed<Image>("Img_Type0"),
-                FindNamed<Image>("Img_Type1"),
-                FindNamed<Image>("Img_Type2"),
-                FindNamed<Image>("Img_Type3")
-            };
-            return;
-        }
-
-        for (int i = 0; i < m_ImgTypes.Length; i++)
-        {
-            if (m_ImgTypes[i] == null)
-            {
-                m_ImgTypes[i] = FindNamed<Image>("Img_Type" + i);
-            }
-        }
-    }
-
-    T Coalesce<T>(T current, string objectName) where T : Component
-    {
-        return current != null ? current : FindNamed<T>(objectName);
-    }
-
-    Sprite CoalesceSprite(Sprite current, string objectName)
-    {
-        return current != null ? current : SpriteOf(objectName);
-    }
-
-    T FindNamed<T>(string objectName) where T : Component
-    {
-        Transform child = FindDeep(objectName);
-        return child != null ? child.GetComponent<T>() : null;
-    }
-
-    GameObject FindGo(string objectName)
-    {
-        Transform child = FindDeep(objectName);
-        return child != null ? child.gameObject : null;
-    }
-
-    Sprite SpriteOf(string objectName)
-    {
-        Image image = FindNamed<Image>(objectName);
-        return image != null ? image.sprite : null;
-    }
-
-    Transform FindDeep(string objectName)
-    {
-        Transform[] all = GetComponentsInChildren<Transform>(true);
-        for (int i = 0; i < all.Length; i++)
-        {
-            if (all[i].name == objectName)
-            {
-                return all[i];
-            }
-        }
-
-        return null;
     }
 
     public void SetCallbacks(Action onClosed, Action<bool> onVisibleChanged, Action<Texture> onCardClicked = null)
@@ -261,7 +144,7 @@ public class CardDetailView : MonoBehaviour
 
     public void Show(IReadOnlyList<CardDetailEntry> cards, int index)
     {
-        EnsureBound();
+        BindCardButton();
         if (cards == null || cards.Count == 0 || index < 0 || index >= cards.Count)
         {
             ALog.LogWarning("卡牌详情打开失败. 原因=列表为空或下标无效", ALogCategories.UI);

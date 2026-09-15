@@ -10,6 +10,21 @@ public static class UpdateDetector
 {
     public static bool IsComplete { get; private set; }
 
+    public static async UniTask InitializeLocalAsync(Action<float> onProgress = null)
+    {
+        IsComplete = false;
+        AsyncOperationHandle init = Addressables.InitializeAsync(false);
+        try
+        {
+            await init.Task;
+            RequireSuccess(init, "初始化 Addressables");
+        }
+        finally { if (init.IsValid()) Addressables.Release(init); }
+        onProgress?.Invoke(1f);
+        IsComplete = true;
+        ALog.Log("使用本地 Addressables, 跳过远程目录.", ALogCategories.Net);
+    }
+
     public static async UniTask DownloadAssets(string addressablesBaseUrl, Action<float> onProgress = null)
     {
         IsComplete = false;

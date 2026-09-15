@@ -21,8 +21,7 @@ public class CardPickController : MonoBehaviour
     public event Action<int, int> ProgressChanged;
     public event Action<int> CardInspectRequested;
 
-    public Camera PickCamera =>
-        _pickCamera != null ? _pickCamera : GetComponentInChildren<Camera>(true);
+    public Camera PickCamera => _pickCamera;
 
     public GameObject CardPrefab => _cardPrefab;
 

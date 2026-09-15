@@ -137,9 +137,6 @@ namespace AChen.Player
 
         // ---- 玩家资料操作 ----
 
-        public UniTask<PlayerData> RefreshPlayerAsync(CancellationToken cancellationToken = default) =>
-            ExecuteMutationAsync("RefreshPlayer", "Current", (_, token) => SendAuthenticatedAsync(Api.GetPlayerAsync, token), cancellationToken);
-
         public UniTask<PlayerData> RenameAsync(string nickname, CancellationToken cancellationToken = default) =>
             ExecuteMutationAsync("Rename", "Profile", (player, token) =>
             {
@@ -198,10 +195,14 @@ namespace AChen.Player
                     token), cancellationToken);
 
         public UniTask<CardDrawResponse> DrawCardsAsync(int packId, string poolKey, int count, CancellationToken cancellationToken = default) =>
-            ExecuteDrawAsync("DrawCards", $"{packId}/{poolKey}/{count}", (player, token) =>
-                SendAuthenticatedDrawAsync(
+            ExecuteLockedAsync(
+                "DrawCards",
+                $"{packId}/{poolKey}/{count}",
+                (player, token) => SendAuthenticatedDrawAsync(
                     (accessToken, ct) => Api.DrawCardsAsync(accessToken, packId, poolKey, count, player.Revision, ct),
-                    token), cancellationToken);
+                    token),
+                updated => $"Player={updated.Player.Id}; Count={updated.Results.Count}; Revision={updated.Player.Revision}",
+                cancellationToken);
 
         public async UniTask<GachaPoolData> GetGachaPoolAsync(string poolKey, CancellationToken cancellationToken = default)
         {
@@ -227,10 +228,23 @@ namespace AChen.Player
                 (accessToken, ct) => Api.UpdateProfileAsync(accessToken, nickname, avatarId, backgroundId, revision, ct),
                 token);
 
-        async UniTask<PlayerData> ExecuteMutationAsync(
+        UniTask<PlayerData> ExecuteMutationAsync(
             string operation,
             string target,
             Func<PlayerData, CancellationToken, UniTask<PlayerData>> execute,
+            CancellationToken cancellationToken) =>
+            ExecuteLockedAsync(
+                operation,
+                target,
+                execute,
+                updated => $"Player={updated.Id}; Revision={updated.Revision}",
+                cancellationToken);
+
+        async UniTask<T> ExecuteLockedAsync<T>(
+            string operation,
+            string target,
+            Func<PlayerData, CancellationToken, UniTask<T>> execute,
+            Func<T, string> successDetail,
             CancellationToken cancellationToken)
         {
             long sessionVersion = SessionVersion;
@@ -246,8 +260,8 @@ namespace AChen.Player
                     throw new BackendApiException(401, "INVALID_ACCESS_TOKEN", "登录状态已失效，请重新登录");
                 }
 
-                PlayerData updated = await execute(player, cancellationToken);
-                ALog.Log($"玩家操作完成. Operation={operation}; Target={target}; Player={updated.Id}; Revision={updated.Revision}", ALogCategories.Net);
+                T updated = await execute(player, cancellationToken);
+                ALog.Log($"玩家操作完成. Operation={operation}; Target={target}; {successDetail(updated)}", ALogCategories.Net);
                 return updated;
             }
             catch (BackendApiException exception)
@@ -255,52 +269,6 @@ namespace AChen.Player
                 if (exception.Code == "PLAYER_DATA_CHANGED" && SessionVersion == sessionVersion)
                 {
                     // 冲突后同步最新状态,不自动重放购买等有副作用的操作.
-                    try
-                    {
-                        await SendAuthenticatedAsync(Api.GetPlayerAsync, cancellationToken);
-                    }
-                    catch (OperationCanceledException) { throw; }
-                    catch (Exception refreshException)
-                    {
-                        ALog.LogWarning($"冲突后刷新玩家失败. Operation={operation}; Error={refreshException.Message}", ALogCategories.Net);
-                    }
-                }
-
-                ALog.LogWarning($"玩家操作失败. Operation={operation}; Target={target}; Code={exception.Code}; Status={exception.StatusCode}", ALogCategories.Net);
-                throw;
-            }
-            finally
-            {
-                m_mutationLock.Release();
-            }
-        }
-
-        async UniTask<CardDrawResponse> ExecuteDrawAsync(
-            string operation,
-            string target,
-            Func<PlayerData, CancellationToken, UniTask<CardDrawResponse>> execute,
-            CancellationToken cancellationToken)
-        {
-            long sessionVersion = SessionVersion;
-            await m_mutationLock.WaitAsync(cancellationToken);
-            try
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-                EnsureSessionVersion(sessionVersion);
-                PlayerData player = CurrentPlayer;
-                if (!IsAuthenticated || player == null)
-                {
-                    throw new BackendApiException(401, "INVALID_ACCESS_TOKEN", "登录状态已失效，请重新登录");
-                }
-
-                CardDrawResponse updated = await execute(player, cancellationToken);
-                ALog.Log($"玩家操作完成. Operation={operation}; Target={target}; Player={updated.Player.Id}; Count={updated.Results.Count}; Revision={updated.Player.Revision}", ALogCategories.Net);
-                return updated;
-            }
-            catch (BackendApiException exception)
-            {
-                if (exception.Code == "PLAYER_DATA_CHANGED" && SessionVersion == sessionVersion)
-                {
                     try
                     {
                         await SendAuthenticatedAsync(Api.GetPlayerAsync, cancellationToken);

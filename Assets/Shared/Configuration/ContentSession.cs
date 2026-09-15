@@ -12,5 +12,7 @@ namespace AChen.Configuration
         public static System.DateTimeOffset ServerTime;
         public static System.DateTimeOffset ServerTimeReceivedAt;
         public static bool RestartRequired;
+        /// <summary>Editor 默认走工程内资源与配置, 不拉远程内容包.</summary>
+        public static bool UseLocalAssets;
     }
 }

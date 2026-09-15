@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -24,8 +25,7 @@ public abstract class MonoSingleton<T> : MonoSingleton where T : MonoSingleton<T
         {
             if (s_instance == null)
             {
-                GameObject go = new GameObject("[" + typeof(T).Name + "]");
-                s_instance = go.AddComponent<T>();
+                throw new InvalidOperationException(typeof(T).Name + " 未在 Init 场景挂载");
             }
             return s_instance;
         }

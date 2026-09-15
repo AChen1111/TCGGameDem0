@@ -11,8 +11,7 @@ namespace AChen.Networking
         readonly GameConfigStore m_store = new GameConfigStore();
         public GameConfigStore Store => m_store;
         public bool IsReady => m_store.HasSnapshot;
-        public string LastError { get; private set; }
-        public UniTask InitializeAsync(BackendConfig config = null, CancellationToken cancellationToken = default)
+        public UniTask InitializeAsync(CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
             LocalGameConfiguration.RequireCurrent();
@@ -29,13 +28,11 @@ namespace AChen.Networking
             IsDone = true;
             return UniTask.CompletedTask;
         }
-        public UniTask EnsureFreshAsync(bool force = false, CancellationToken cancellationToken = default) => InitializeAsync(cancellationToken: cancellationToken);
         protected override void OnInit()
         {
             try { InitializeAsync().GetAwaiter().GetResult(); }
             catch (Exception exception)
             {
-                LastError = exception.Message;
                 IsDone = true;
                 ALog.LogError("配置初始化失败: " + exception.Message, ALogCategories.Net);
             }

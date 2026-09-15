@@ -125,6 +125,30 @@ public static class CodeUpdate
         throw new NotSupportedException("Content delivery does not support the current platform.");
     }
 
+    public const string EditorLocalReleaseId = "editor-local";
+
+    /// <summary>Editor 默认: 只绑定后端地址与本地会话, 不拉 Manifest / DLL / 远程目录.</summary>
+    public static void BindEditorLocalSession(string backendUrl, string channel, string platform, string appVersion)
+    {
+        IsComplete = true;
+        LastErrorMessage = null;
+        CurrentManifest = null;
+        AddressablesBaseUrl = null;
+        DateTimeOffset now = DateTimeOffset.UtcNow;
+        AChen.Configuration.ContentSession.BackendUrl = backendUrl;
+        AChen.Configuration.ContentSession.Channel = channel;
+        AChen.Configuration.ContentSession.Platform = platform;
+        AChen.Configuration.ContentSession.AppVersion = appVersion;
+        AChen.Configuration.ContentSession.ReleaseId = EditorLocalReleaseId;
+        AChen.Configuration.ContentSession.ConfigHash = string.Empty;
+        AChen.Configuration.ContentSession.CatalogUrl = null;
+        AChen.Configuration.ContentSession.ServerTime = now;
+        AChen.Configuration.ContentSession.ServerTimeReceivedAt = now;
+        AChen.Configuration.ContentSession.RestartRequired = false;
+        AChen.Configuration.ContentSession.UseLocalAssets = true;
+        ALog.Log("Editor 使用本地内容会话, 跳过远程 Manifest.", ALogCategories.Net);
+    }
+
     public static IEnumerator FetchInto(
         Dictionary<string, byte[]> bytes,
         string backendUrl,
@@ -238,6 +262,7 @@ public static class CodeUpdate
         AChen.Configuration.ContentSession.ServerTime = DateTimeOffset.Parse(manifest.serverTime);
         AChen.Configuration.ContentSession.ServerTimeReceivedAt = manifestReceivedAt;
         AChen.Configuration.ContentSession.RestartRequired = false;
+        AChen.Configuration.ContentSession.UseLocalAssets = false;
         onProgress?.Invoke(1f);
         IsComplete = true;
     }

@@ -25,16 +25,15 @@ public class CardDetailWindow : AWindowController<CardDetailWindowProperty>
 
     protected override void OnOpen()
     {
-        CardDetailView view = ResolveView();
-        if (view == null || Properties == null)
+        if (m_View == null || Properties == null)
         {
             ALog.LogError("卡牌详情窗口打开失败. 原因=视图或参数缺失", ALogCategories.UI);
             return;
         }
 
         // Dim 点击走 UI_Close, 由 Window 出栈, 避免 View 直接 SetActive(false)
-        view.SetCallbacks(UI_Close, null, OpenZoom);
-        view.Show(Properties.Cards, Properties.Index);
+        m_View.SetCallbacks(UI_Close, null, OpenZoom);
+        m_View.Show(Properties.Cards, Properties.Index);
         Properties.OnVisibleChanged?.Invoke(true);
         int count = Properties.Cards != null ? Properties.Cards.Count : 0;
         ALog.Log($"卡牌详情窗口打开. Count={count}; Index={Properties.Index}", ALogCategories.UI);
@@ -60,15 +59,5 @@ public class CardDetailWindow : AWindowController<CardDetailWindowProperty>
         }
 
         RequestOpenWindow(AddressKeys.Prefab.CardZoomWindow, new CardZoomWindowProperty(texture));
-    }
-
-    CardDetailView ResolveView()
-    {
-        if (m_View == null)
-        {
-            m_View = GetComponent<CardDetailView>();
-        }
-
-        return m_View;
     }
 }

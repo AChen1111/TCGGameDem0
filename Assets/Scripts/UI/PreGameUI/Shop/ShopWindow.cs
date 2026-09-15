@@ -38,7 +38,7 @@ public class ShopWindow : AWindowController
             new CosmeticShopCategory("头像", ShopCatalogTypes.Avatar, AddressKeys.Prefab.AvatarShopItemRowPrefab),
             new CosmeticShopCategory("壁纸", ShopCatalogTypes.Wallpaper, AddressKeys.Prefab.WallpaperShopItemRowPrefab),
         };
-        m_ConfigSnapshot = GameConfigManager.HasInstance ? GameConfigManager.Instance.Store.Snapshot : null;
+        m_ConfigSnapshot = GameConfigManager.Instance.Store.Snapshot;
         base.Awake();
     }
 
@@ -155,7 +155,7 @@ public class ShopWindow : AWindowController
                     m_RefreshCancellation = cancellation;
                     try
                     {
-                        if (!PlayerSession.HasInstance || PlayerSession.Instance.CurrentPlayer == null)
+                        if (PlayerSession.Instance.CurrentPlayer == null)
                         {
                             m_ListController.ClearList();
                             continue;
@@ -250,7 +250,7 @@ public class ShopWindow : AWindowController
     {
         if (m_IsPurchasing || !IsOpened) return;
 
-        PlayerData player = PlayerSession.HasInstance ? PlayerSession.Instance.CurrentPlayer : null;
+        PlayerData player = PlayerSession.Instance.CurrentPlayer;
         if (player == null)
         {
             ShowMessage("err.purchase_failed");
@@ -281,7 +281,7 @@ public class ShopWindow : AWindowController
     {
         if (m_IsPurchasing || !IsOpened) return;
 
-        PlayerData player = PlayerSession.HasInstance ? PlayerSession.Instance.CurrentPlayer : null;
+        PlayerData player = PlayerSession.Instance.CurrentPlayer;
         if (player == null)
         {
             ShowMessage("err.draw_failed");
@@ -303,7 +303,7 @@ public class ShopWindow : AWindowController
             ALogCategories.Net);
         try
         {
-            if (!PlayerSession.HasInstance || !PlayerSession.Instance.IsAuthenticated)
+            if (!PlayerSession.Instance.IsAuthenticated)
             {
                 throw new BackendApiException(401, "INVALID_ACCESS_TOKEN", "登录状态已失效，请重新登录");
             }

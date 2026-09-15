@@ -126,7 +126,7 @@ public class CardPreviewWindow : AWindowController<CardPreviewWindowProperty>
         CancellationToken token = ScreenToken;
         try
         {
-            if (!PlayerSession.HasInstance || !PlayerSession.Instance.IsAuthenticated)
+            if (!PlayerSession.Instance.IsAuthenticated)
             {
                 throw new BackendApiException(401, "INVALID_ACCESS_TOKEN", "登录状态已失效，请重新登录");
             }

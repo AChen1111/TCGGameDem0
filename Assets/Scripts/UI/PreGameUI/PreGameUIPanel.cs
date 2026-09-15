@@ -61,7 +61,7 @@ public class PreGameUIPanel : APanelController
         m_isSwitchingWallpaper = false;
         EventCenter.AddListener(GameEvent.PlayerBackgroundChanged, OnBackgroundChanged);
         // 先应用当前背景, 后续只订阅背景变化.
-        OnBackgroundChanged(PlayerSession.HasInstance ? PlayerSession.Instance.CurrentPlayer?.BackgroundId : null);
+        OnBackgroundChanged(PlayerSession.Instance.CurrentPlayer?.BackgroundId);
         PlayIntroAsync().Forget();
     }
 

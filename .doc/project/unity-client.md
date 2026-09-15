@@ -32,12 +32,18 @@
 
 `Init` 场景里的 `SingletonManager` 按列表初始化常驻单例，再调用 `GameFlow.GetStartupSceneAsync`。会话恢复与全局订阅不放进 `LogIn` / `GameScene` 的 `SceneEntry`。
 
+常驻单例必须挂在 Init 场景。`MonoSingleton.Instance` 不会在运行时创建物体，未挂载会抛异常。登录 / 大厅 UI 可以假定 `PlayerSession` 与 `GameConfigManager` 已存在；令牌失效仍按 `IsAuthenticated` 处理。`GameEvent.PlayerLoggedOut` 是会话被清理后的通知，大厅若以后做登出按钮应订阅它，不要另发明一件事件。
+
+Editor 默认（未勾选 `LoadDll.useRemoteContentInEditor`）使用工程内 Init、Addressables 与 GameConfig，不拉远程 Manifest 或内容目录。后台交易也不再核对客户端 Release 是否与活动版本一致。
+
 ## 3. UI 怎么打开
 
 每个业务场景带一份 `UISettings`。`SceneEntry` 加载后调用 `CreateUIInstance()` 得到 `UIFrame`：
 
 - 登录：`OpenWindow(AddressKeys.Prefab.LogInWindow)`
 - 大厅：`ShowPanel(AddressKeys.Prefab.PreGameUIPanel)`
+
+业务继续用这两个入口打开界面，不要绕开 `UIFrame`。`UI/Core` 是框架层，不要改它的公开 API 与初始化路径。
 
 Panel 常驻分层级显示；Window 进栈，带遮罩层。屏幕控制器从 `APanelController` / `AWindowController` 派生。预制体上的 `UiScreenGenerator` 按前缀收集引用并生成绑定代码，生成块夹在固定标签之间，不要手改标签内代码。
 

@@ -34,7 +34,14 @@ namespace AChen.Networking
                 using (var sha = SHA256.Create())
                 {
                     string hash = BitConverter.ToString(sha.ComputeHash(asset.bytes)).Replace("-", "").ToLowerInvariant();
-                    if (hash != ContentSession.ConfigHash) throw new FormatException("客户端配置与发布清单不一致");
+                    if (ContentSession.UseLocalAssets)
+                    {
+                        ContentSession.ConfigHash = hash;
+                    }
+                    else if (hash != ContentSession.ConfigHash)
+                    {
+                        throw new FormatException("客户端配置与发布清单不一致");
+                    }
                 }
                 var data = JsonConvert.DeserializeObject<PublishedGameConfig>(asset.text);
                 if (data == null) throw new FormatException("统一配置为空");
@@ -57,6 +64,11 @@ namespace AChen.Networking
 
         public static async UniTask CheckVersionAsync(CancellationToken token = default)
         {
+            if (ContentSession.UseLocalAssets)
+            {
+                return;
+            }
+
             RequireCurrent();
             string path = "/api/content/manifests/latest?channel=" + Uri.EscapeDataString(ContentSession.Channel)
                 + "&platform=" + Uri.EscapeDataString(ContentSession.Platform) + "&appVersion=" + Uri.EscapeDataString(ContentSession.AppVersion);
@@ -74,6 +86,13 @@ namespace AChen.Networking
 
         public static void RequireCurrent()
         {
+            if (ContentSession.UseLocalAssets)
+            {
+                if (!IsReady)
+                    throw new BackendApiException(503, "CONTENT_NOT_READY", "游戏配置未就绪，请重试");
+                return;
+            }
+
             if (ContentSession.RestartRequired)
                 throw new BackendApiException(409, "CONTENT_UPDATE_REQUIRED", "游戏内容已更新，请重启游戏");
             if (!IsReady || string.IsNullOrEmpty(ContentSession.ReleaseId))

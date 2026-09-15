@@ -36,10 +36,20 @@ public class LoadDll : MonoBehaviour
         if (!useRemoteContentInEditor)
         {
             hotUpdate = AppDomain.CurrentDomain.GetAssemblies().First(a => a.GetName().Name == "HotUpdate");
-            yield return FetchRemoteContent(bar);
-            if (!CodeUpdate.IsComplete) { Fail(bar, CodeUpdate.LastErrorMessage); yield break; }
+            string platform;
+            try
+            {
+                platform = CodeUpdate.PlatformName();
+            }
+            catch (Exception exception)
+            {
+                Fail(bar, new LocalizedMessage("err.unsupported_platform", new Dictionary<string, object> { ["message"] = exception.Message }));
+                yield break;
+            }
+
+            CodeUpdate.BindEditorLocalSession(backendUrl, channel, platform, Application.version);
             onAssets = value => SetProgress(bar, value);
-            addressablesBaseUrl = CodeUpdate.AddressablesBaseUrl;
+            addressablesBaseUrl = null;
         }
         else
         {

@@ -38,7 +38,7 @@ public class ChangeNameWindow : AWindowController
         m_BtnOk.interactable = true;
         m_InpName.SetTextWithoutNotify(string.Empty);
         EventCenter.AddListener(GameEvent.PlayerNicknameChanged, OnNicknameChanged);
-        var player = PlayerSession.HasInstance ? PlayerSession.Instance.CurrentPlayer : null;
+        var player = PlayerSession.Instance.CurrentPlayer;
         OnNicknameChanged(player?.Id, player?.Nickname);
     }
 

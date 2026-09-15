@@ -7,11 +7,11 @@
 ```text
 PreInit
   LoadDll
-    取内容 Manifest
-    加载 AOT 元数据
-    加载 HotUpdate.dll
+    Editor 默认：已编译 HotUpdate，不拉 Manifest
+    Player / 远程 Editor：取内容 Manifest，加载 AOT 元数据与 HotUpdate.dll
   HotUpdateEntry.Boot
-    UpdateDetector 按 Addressables 基址更新资源
+    Editor 默认：本地 Addressables + 工程内 GameConfig
+    Player / 远程 Editor：UpdateDetector 按 Addressables 基址更新资源
     加载 Init 场景
   SingletonManager → 登录或大厅
 ```

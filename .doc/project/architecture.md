@@ -43,7 +43,8 @@ PreInit
     Editor 默认：直接取已编译的 HotUpdate 程序集
     Player / 远程 Editor：拉 Manifest → 下载 DLL → 补 AOT 元数据
   HotUpdateEntry.Boot
-    UpdateDetector 更新 Addressables
+    Editor 默认：初始化本地 Addressables，加载工程内 Init
+    Player / 远程 Editor：UpdateDetector 按发布目录更新 Addressables
     加载 Init 场景
 Init
   SingletonManager 按列表初始化常驻单例
@@ -63,7 +64,7 @@ LogIn / GameScene
 | `GameScene` | 打开大厅面板 |
 | `SceneUIRef` | UI 制作参考，不参与启动链 |
 
-Editor 默认不走远程 DLL，便于改完即玩。勾选 `LoadDll.useRemoteContentInEditor` 后，Editor 与 Player 走同一条内容链。
+Editor 默认不走远程 DLL 和远程 Addressables，用已编译程序集与工程内资源、配置，便于改完即玩。勾选 `LoadDll.useRemoteContentInEditor` 后，Editor 与 Player 走同一条内容链。后台结算不再核对客户端 Release，缺活动配置才返回 `CONTENT_NOT_READY`。
 
 ## 3. 客户端怎么拆
 

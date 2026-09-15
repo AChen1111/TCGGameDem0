@@ -42,7 +42,6 @@ public class CardZoomWindow : AWindowController<CardZoomWindowProperty>
 
     protected override void OnOpen()
     {
-        BindRefs();
         m_Closing = false;
         m_Animating = true;
         ResetDim(0f);
@@ -102,21 +101,6 @@ public class CardZoomWindow : AWindowController<CardZoomWindowProperty>
         if (pickCamera != null)
         {
             BindRenderTexture(pickCamera);
-        }
-    }
-
-    void BindRefs()
-    {
-        if (m_ImgDim == null)
-        {
-            Transform dim = FindDeep("Img_Dim");
-            m_ImgDim = dim != null ? dim.GetComponent<Image>() : null;
-        }
-
-        if (m_RawCard == null)
-        {
-            Transform card = FindDeep("Raw_Card");
-            m_RawCard = card != null ? card.GetComponent<RawImage>() : null;
         }
     }
 
@@ -446,19 +430,5 @@ public class CardZoomWindow : AWindowController<CardZoomWindowProperty>
         {
             SetLayerRecursively(transform.GetChild(i).gameObject, layer);
         }
-    }
-
-    Transform FindDeep(string objectName)
-    {
-        Transform[] all = GetComponentsInChildren<Transform>(true);
-        for (int i = 0; i < all.Length; i++)
-        {
-            if (all[i].name == objectName)
-            {
-                return all[i];
-            }
-        }
-
-        return null;
     }
 }

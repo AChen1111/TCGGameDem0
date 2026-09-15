@@ -42,13 +42,13 @@ public class AvatarSelectWindow : AWindowController
 
     protected override void OnOpen()
     {
-        PlayerData player = PlayerSession.HasInstance ? PlayerSession.Instance.CurrentPlayer : null;
+        PlayerData player = PlayerSession.Instance.CurrentPlayer;
         m_playerId = player?.Id;
         m_selectedAvatarId = player?.AvatarId;
         m_avatars = null;
         m_isSubmitting = false;
         m_loadFailureShown = false;
-        m_configSnapshot = GameConfigManager.HasInstance ? GameConfigManager.Instance.Store.Snapshot : null;
+        m_configSnapshot = GameConfigManager.Instance.Store.Snapshot;
         EventCenter.AddListener(GameEvent.PlayerOwnedAvatarsChanged, OnInventoryChanged);
         EventCenter.AddListener(GameEvent.GameConfigChanged, OnGameConfigChanged);
         BindList();
@@ -115,7 +115,7 @@ public class AvatarSelectWindow : AWindowController
         UpdateConfirmButton();
         try
         {
-            PlayerData player = PlayerSession.HasInstance ? PlayerSession.Instance.CurrentPlayer : null;
+            PlayerData player = PlayerSession.Instance.CurrentPlayer;
             List<ShopOwnedItemData> avatars = player == null
                 ? new List<ShopOwnedItemData>()
                 : await ShopCatalogQuery.LoadCosmeticsAsync(ShopCatalogTypes.Avatar, visibleOnly: false, cancellationToken: token);

@@ -22,7 +22,7 @@ public class PlayerGoldView : MonoBehaviour
     {
         EventCenter.AddListener(GameEvent.PlayerGoldChanged, OnGoldChanged);
         // 首次展示直接跳值, 避免从 0 滚到余额
-        Apply(PlayerSession.HasInstance ? PlayerSession.Instance.CurrentPlayer?.Gold : null, false);
+        Apply(PlayerSession.Instance.CurrentPlayer?.Gold, false);
     }
 
     void OnDisable()

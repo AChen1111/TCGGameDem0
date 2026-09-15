@@ -19,7 +19,14 @@ public static class HotUpdateEntry
     {
         try
         {
-            await UpdateDetector.DownloadAssets(addressablesBaseUrl, onProgress);
+            if (string.IsNullOrEmpty(addressablesBaseUrl))
+            {
+                await UpdateDetector.InitializeLocalAsync(onProgress);
+            }
+            else
+            {
+                await UpdateDetector.DownloadAssets(addressablesBaseUrl, onProgress);
+            }
             await AChen.Networking.LocalGameConfiguration.InitializeAsync();
             var initScene = Addressables.LoadSceneAsync(InitSceneAddress, LoadSceneMode.Single);
             await initScene.Task;

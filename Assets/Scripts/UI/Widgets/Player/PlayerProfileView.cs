@@ -21,7 +21,7 @@ public class PlayerProfileView : MonoBehaviour
     {
         EventCenter.AddListener(GameEvent.PlayerNicknameChanged, OnNicknameChanged);
         EventCenter.AddListener(GameEvent.PlayerAvatarChanged, OnAvatarChanged);
-        var player = PlayerSession.HasInstance ? PlayerSession.Instance.CurrentPlayer : null;
+        var player = PlayerSession.Instance.CurrentPlayer;
         OnNicknameChanged(player?.Id, player?.Nickname);
         OnAvatarChanged(player?.AvatarId);
     }

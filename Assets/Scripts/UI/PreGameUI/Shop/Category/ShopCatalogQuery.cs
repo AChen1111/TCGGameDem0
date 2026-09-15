@@ -105,7 +105,7 @@ public static class ShopCatalogQuery
 
     static PlayerData RequirePlayer()
     {
-        PlayerData player = PlayerSession.HasInstance ? PlayerSession.Instance.CurrentPlayer : null;
+        PlayerData player = PlayerSession.Instance.CurrentPlayer;
         return player ?? throw new InvalidOperationException("玩家数据尚未初始化");
     }
 

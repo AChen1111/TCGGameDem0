@@ -90,13 +90,14 @@ namespace AChen.Networking
             CancellationToken cancellationToken)
         {
             bool mutation = path == "/api/player/purchase" || path == "/api/player/card-draws" || path == "/api/player/profile";
-            if (mutation) LocalGameConfiguration.RequireCurrent();
+            bool localAssets = AChen.Configuration.ContentSession.UseLocalAssets;
+            if (mutation && !localAssets) LocalGameConfiguration.RequireCurrent();
             using (var request = new UnityWebRequest(m_config.BaseUrl + path, method))
             {
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.timeout = m_config.TimeoutSeconds;
                 request.SetRequestHeader("Accept", "application/json");
-                if (!string.IsNullOrEmpty(AChen.Configuration.ContentSession.ReleaseId))
+                if (!localAssets && !string.IsNullOrEmpty(AChen.Configuration.ContentSession.ReleaseId))
                 {
                     request.SetRequestHeader("X-Content-Release", AChen.Configuration.ContentSession.ReleaseId);
                     request.SetRequestHeader("X-Content-Channel", AChen.Configuration.ContentSession.Channel);
@@ -137,7 +138,7 @@ namespace AChen.Networking
                 catch (UnityWebRequestException)
                 {
                     var error = BackendHttpError.FromRequest(request);
-                    if (error.Code == "CONTENT_UPDATE_REQUIRED")
+                    if (error.Code == "CONTENT_UPDATE_REQUIRED" && !localAssets)
                     {
                         AChen.Configuration.ContentSession.RestartRequired = true;
                         ContentUpdatePrompt.ShowRestart();
