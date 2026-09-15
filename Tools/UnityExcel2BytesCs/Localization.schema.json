@@ -1,6 +1,6 @@
 {
   "source": "TableData/Localization/Translations.csv",
-  "bytesOutput": "Assets/Resources/Localization/Translations.bytes",
+  "bytesOutput": "TableData/Generated/Translations.bytes",
   "csOutput": "Assets/Shared/Localization/Generated/TranslationRow.cs",
   "namespace": "Table",
   "className": "TranslationRow",

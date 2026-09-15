@@ -40,6 +40,7 @@ public sealed class LocalizedText : MonoBehaviour
 
     public void Refresh()
     {
+        if (!LocalizationService.IsReady) return;
         if (m_text == null) m_text = GetComponent<TMP_Text>();
         LocalizationService.ApplyPresentation(m_text);
         if (m_cleared || (dynamicContent && m_message == null)) { m_text.text = string.Empty; return; }

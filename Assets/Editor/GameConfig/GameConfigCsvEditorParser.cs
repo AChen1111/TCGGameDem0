@@ -162,6 +162,8 @@ public static class GameConfigCsvEditorParser
         };
     }
 
+    public static string[][] ReadFields(string csv) => ReadRows(csv).Select(x => x.Fields).ToArray();
+
     static List<CsvRow> ReadRows(string csv)
     {
         var rows = new List<CsvRow>();

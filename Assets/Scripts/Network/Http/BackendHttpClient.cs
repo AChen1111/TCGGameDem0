@@ -89,11 +89,20 @@ namespace AChen.Networking
             Func<long, bool> acceptStatus,
             CancellationToken cancellationToken)
         {
+            bool mutation = path == "/api/player/purchase" || path == "/api/player/card-draws" || path == "/api/player/profile";
+            if (mutation) LocalGameConfiguration.RequireCurrent();
             using (var request = new UnityWebRequest(m_config.BaseUrl + path, method))
             {
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.timeout = m_config.TimeoutSeconds;
                 request.SetRequestHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(AChen.Configuration.ContentSession.ReleaseId))
+                {
+                    request.SetRequestHeader("X-Content-Release", AChen.Configuration.ContentSession.ReleaseId);
+                    request.SetRequestHeader("X-Content-Channel", AChen.Configuration.ContentSession.Channel);
+                    request.SetRequestHeader("X-Content-Platform", AChen.Configuration.ContentSession.Platform);
+                    request.SetRequestHeader("X-Content-App-Version", AChen.Configuration.ContentSession.AppVersion);
+                }
 
                 if (body != null)
                 {
@@ -127,7 +136,13 @@ namespace AChen.Networking
                 }
                 catch (UnityWebRequestException)
                 {
-                    throw BackendHttpError.FromRequest(request);
+                    var error = BackendHttpError.FromRequest(request);
+                    if (error.Code == "CONTENT_UPDATE_REQUIRED")
+                    {
+                        AChen.Configuration.ContentSession.RestartRequired = true;
+                        ContentUpdatePrompt.ShowRestart();
+                    }
+                    throw error;
                 }
 
                 return new BackendHttpResponse(

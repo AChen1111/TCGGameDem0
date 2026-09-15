@@ -107,6 +107,7 @@ public sealed class ContentReleasePublisherWindow : EditorWindow
         {
             ValidateInputs(publishKey);
             m_IsBusy = true;
+            PublishedConfigBuilder.Prepare();
             SetStatus(0.02f, "构建 Addressables…");
             AddressableAssetSettings.BuildPlayerContent(out AddressablesPlayerBuildResult addressablesResult);
             if (!string.IsNullOrEmpty(addressablesResult.Error))
@@ -136,12 +137,12 @@ public sealed class ContentReleasePublisherWindow : EditorWindow
             await SetActiveReleaseAsync(publishKey, release.id, currentReleaseId, package);
 
             SetStatus(1f, "发布成功：" + m_ContentVersion.Trim());
-            Debug.Log($"[ContentDelivery] Release {release.id} 已发布到 {Channel}。");
+            ALog.Log($"内容发布完成. Release={release.id}; Channel={Channel}; Result=Success", ALogCategories.Net);
         }
         catch (Exception exception)
         {
             SetStatus(0f, "发布失败：" + exception.Message);
-            Debug.LogException(exception);
+            ALog.LogError("内容发布失败. Result=Failed; Error=" + exception.Message, ALogCategories.Net);
             EditorUtility.DisplayDialog("内容发布失败", exception.Message, "关闭");
         }
         finally
@@ -391,6 +392,7 @@ public static class ContentReleasePackageBuilder
         var sources = new List<PackageSource>
         {
             new PackageSource(dllPath, HotUpdateRelativePath),
+            new PackageSource(PublishedConfigBuilder.ConfigPath, "GameConfig/config.json"),
             new PackageSource(catalogs[0], "Addressables/" + Path.GetFileName(catalogs[0])),
             new PackageSource(catalogHash, "Addressables/" + Path.GetFileName(catalogHash))
         };
@@ -401,7 +403,8 @@ public static class ContentReleasePackageBuilder
 
         var manifest = new ReleaseManifest
         {
-            schemaVersion = 1,
+            schemaVersion = 2,
+            configPath = "GameConfig/config.json",
             platform = platform,
             appVersion = appVersion,
             contentVersion = contentVersion,
@@ -497,6 +500,7 @@ public static class ContentReleasePackageBuilder
         public string appVersion;
         public string contentVersion;
         public string hotUpdatePath;
+        public string configPath;
         public string catalogPath;
         public string catalogHashPath;
         public ReleaseFile[] files;

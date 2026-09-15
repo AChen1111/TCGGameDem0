@@ -17,6 +17,8 @@ public sealed class ContentReleaseManifest
     public string appVersion;
     public string contentVersion;
     public string publishedAt;
+    public string serverTime;
+    public HotUpdateArtifact config;
     public HotUpdateArtifact hotUpdate;
     public AddressablesArtifact addressables;
 }
@@ -42,6 +44,13 @@ public static class CodeUpdate
     public const string DefaultBackendUrl = "http://127.0.0.1:5080";
     public const string DefaultChannel = "development";
     const int RetryCount = 2;
+    static bool s_contentNotReady;
+
+    [Serializable]
+    sealed class ContentProblem
+    {
+        public string code;
+    }
 
     public static bool IsComplete { get; private set; }
     public static LocalizedMessage LastErrorMessage { get; private set; }
@@ -137,10 +146,11 @@ public static class CodeUpdate
             error => requestError = error);
         if (!string.IsNullOrEmpty(requestError))
         {
-            LastErrorMessage = new LocalizedMessage("err.content_version_failed", new Dictionary<string, object> { ["error"] = requestError });
+            LastErrorMessage = new LocalizedMessage(s_contentNotReady ? "err.content_not_ready" : "err.content_version_failed", new Dictionary<string, object> { ["error"] = requestError });
             yield break;
         }
 
+        DateTimeOffset manifestReceivedAt = DateTimeOffset.UtcNow;
         ContentReleaseManifest manifest;
         try
         {
@@ -218,6 +228,16 @@ public static class CodeUpdate
 
         bytes[LoadDll.HotUpdateFile] = dllBytes;
         CurrentManifest = manifest;
+        AChen.Configuration.ContentSession.BackendUrl = backendUrl;
+        AChen.Configuration.ContentSession.Channel = channel;
+        AChen.Configuration.ContentSession.Platform = platform;
+        AChen.Configuration.ContentSession.AppVersion = appVersion;
+        AChen.Configuration.ContentSession.ReleaseId = manifest.releaseId;
+        AChen.Configuration.ContentSession.ConfigHash = manifest.config.sha256;
+        AChen.Configuration.ContentSession.CatalogUrl = ResolveContentUrl(backendUrl, manifest.addressables.catalogPath);
+        AChen.Configuration.ContentSession.ServerTime = DateTimeOffset.Parse(manifest.serverTime);
+        AChen.Configuration.ContentSession.ServerTimeReceivedAt = manifestReceivedAt;
+        AChen.Configuration.ContentSession.RestartRequired = false;
         onProgress?.Invoke(1f);
         IsComplete = true;
     }
@@ -228,7 +248,7 @@ public static class CodeUpdate
         string platform,
         string appVersion)
     {
-        if (manifest == null || manifest.schemaVersion != 1)
+        if (manifest == null || manifest.schemaVersion != 2)
         {
             throw new InvalidDataException("不支持的 schemaVersion。");
         }
@@ -238,6 +258,10 @@ public static class CodeUpdate
             || !string.Equals(manifest.channel, channel, StringComparison.Ordinal)
             || !string.Equals(manifest.platform, platform, StringComparison.Ordinal)
             || !string.Equals(manifest.appVersion, appVersion, StringComparison.Ordinal)
+            || manifest.config == null
+            || manifest.config.size < 1
+            || string.IsNullOrWhiteSpace(manifest.config.sha256)
+            || !DateTimeOffset.TryParse(manifest.serverTime, out _)
             || manifest.hotUpdate == null
             || manifest.addressables == null
             || manifest.hotUpdate.size < 1
@@ -247,7 +271,8 @@ public static class CodeUpdate
         }
 
         string expectedPrefix = "/content/releases/" + releaseId.ToString("D") + "/";
-        if (!manifest.hotUpdate.path.StartsWith(expectedPrefix, StringComparison.OrdinalIgnoreCase)
+        if (manifest.config.path != expectedPrefix + "GameConfig/config.json"
+            || !manifest.hotUpdate.path.StartsWith(expectedPrefix, StringComparison.OrdinalIgnoreCase)
             || !manifest.addressables.basePath.StartsWith(expectedPrefix, StringComparison.OrdinalIgnoreCase)
             || !manifest.addressables.catalogPath.StartsWith(expectedPrefix, StringComparison.OrdinalIgnoreCase)
             || !manifest.addressables.catalogHashPath.StartsWith(expectedPrefix, StringComparison.OrdinalIgnoreCase))
@@ -307,10 +332,13 @@ public static class CodeUpdate
         Action<float> onProgress)
     {
         string lastError = null;
+        s_contentNotReady = false;
+        long status = 0;
         for (int attempt = 0; attempt <= RetryCount; attempt++)
         {
             using (UnityWebRequest request = UnityWebRequest.Get(url))
             {
+                request.timeout = 20;
                 UnityWebRequestAsyncOperation operation = request.SendWebRequest();
                 while (!operation.isDone)
                 {
@@ -327,9 +355,20 @@ public static class CodeUpdate
                 lastError = string.IsNullOrWhiteSpace(request.error)
                     ? "HTTP " + request.responseCode
                     : request.error + " (HTTP " + request.responseCode + ")";
+                status = request.responseCode;
+                // 启动阶段尚无语言表, 只识别服务端错误码, 不显示原始响应正文.
+                try
+                {
+                    s_contentNotReady = JsonUtility.FromJson<ContentProblem>(request.downloadHandler.text)?.code == "CONTENT_NOT_READY";
+                }
+                catch (Exception) { }
+                if (status >= 400 && status < 500 && status != 408 && status != 429) break;
             }
         }
 
-        onError(lastError ?? LocalizationService.GetText("err.unknown_network"));
+        ALog.LogError("内容请求失败. Path=" + new Uri(url).AbsolutePath + "; HTTP=" + status
+            + "; Code=" + (s_contentNotReady ? "CONTENT_NOT_READY" : "REQUEST_FAILED")
+            + "; Error=" + lastError, ALogCategories.Localization);
+        onError(lastError ?? "未知网络错误");
     }
 }

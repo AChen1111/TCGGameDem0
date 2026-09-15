@@ -107,14 +107,8 @@ namespace AChen.Networking
             string poolKey,
             CancellationToken cancellationToken)
         {
-            string key = poolKey ?? string.Empty;
-            GachaPoolDto dto = await m_http.SendAsync<GachaPoolDto>(
-                UnityWebRequest.kHttpVerbGET,
-                "/api/gacha/pools/" + Uri.EscapeDataString(key),
-                null,
-                accessToken,
-                cancellationToken);
-            return ToPool(dto);
+            cancellationToken.ThrowIfCancellationRequested();
+            return await UniTask.FromResult(LocalGameConfiguration.GetPool(poolKey ?? string.Empty));
         }
 
         public static PlayerData ParsePlayerJson(string json) =>

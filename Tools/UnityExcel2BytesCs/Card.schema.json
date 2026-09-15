@@ -1,6 +1,6 @@
 {
   "source": "TableData/Card/Cards.csv",
-  "bytesOutput": "Assets/Resources/Card/Cards.bytes",
+  "bytesOutput": "TableData/Generated/Cards.bytes",
   "csOutput": "Assets/Shared/Card/Generated/CardRow.cs",
   "namespace": "Table",
   "className": "CardRow",

@@ -18,7 +18,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File Tools/UnityExcel2BytesCs
 
 - CSV 主表: `TableData/Localization/Translations.csv`, 不随安装包发布。
 - 字段映射: `Localization.schema.json`, 将 `key/zh-CN/en` 映射为 `Key/Chinese/English`。
-- bytes: `Assets/Resources/Localization/Translations.bytes`。
+- bytes: `TableData/Generated/Translations.bytes`。
 - C# 数据类: `Assets/Shared/Localization/Generated/TranslationRow.cs`, 属于 AChen.Shared。
 
 修改 CSV 后需要重新导出, 将源表和生成产物一并纳入版本控制。仅修改文案时, 生成 C# 内容不变, 工具不会重写它。不要手动修改生成的 C#。最初添加工具及数据类后, Unity 菜单需等编辑器正常编译脚本后才可用; 命令行导出不需要这一步。
@@ -29,6 +29,10 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File Tools/UnityExcel2BytesCs
 
 二进制采用显式字段读写, 不再使用 XML 中转、BinaryFormatter 或本机绝对路径。格式为 `ETB1` 魔数、32 字节 schema SHA-256、Int32 行数, 后接逐行字段。整数为 little-endian Int32, 布尔值为单字节, 字符串使用 .NET BinaryWriter 的 7-bit 字节长度 + UTF-8, 数组为 Int32 数量 + 元素。该格式与原版 BinaryFormatter bytes 不兼容。
 
-生成的读取类核对格式和 schema, `LocalizationService` 使用 `Resources.Load<TextAsset>("Localization/Translations").bytes` 加载, 再建立 key 字典。运行时不读取或解析 CSV。
+生成的读取类核对格式和 schema, 发布器将 bytes 打入统一配置快照, `LocalizationService` 在 Addressables 配置初始化完成后安装语言字典。运行时不读取或解析 CSV。
 
 `inspect_export.py` 可只读核对本次语言表的 bytes 与 CSV 是否逐字段一致。它不执行 Unity、C# 编译或游戏测试。
+
+## 统一内容发布
+
+现有内容发布窗口会在构建 Addressables 前自动导出卡牌和多语言表, 校验商品、卡池、资源引用和壁纸偏移, 生成 `Assets/GameConfiguration/config.json`。此文件是生成产物, 请修改 CSV 或 Inspector 源数据。

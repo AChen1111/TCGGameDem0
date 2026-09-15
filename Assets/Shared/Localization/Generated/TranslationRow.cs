@@ -19,7 +19,7 @@ namespace Table
             using (var reader = new BinaryReader(stream, new UTF8Encoding(false, true)))
             {
                 if (reader.ReadInt32() != 0x31425445) throw new InvalidDataException("Invalid table format.");
-                if (BitConverter.ToString(reader.ReadBytes(32)).Replace("-", "").ToLowerInvariant() != "989f7a2812700a83b9d38db2578f4ed4bf00d0cdf2a5bd2e0b39934dd5c9a6a9")
+                if (BitConverter.ToString(reader.ReadBytes(32)).Replace("-", "").ToLowerInvariant() != "73f786db1752c10f9ee5ab7c5401f549dd908cc23fc7dc94b2a41b551e3eed68")
                     throw new InvalidDataException("Table schema mismatch. Export bytes and C# together.");
                 int count = reader.ReadInt32();
                 if (count < 0 || count > stream.Length - stream.Position) throw new InvalidDataException("Invalid row count.");

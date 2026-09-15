@@ -13,7 +13,6 @@ public sealed class LobbyWallpaperView : MonoBehaviour
 {
     [SerializeField] GameObject m_wallpaper;
     [SerializeField] GameObject m_heroSprite;
-    [SerializeField] WallpaperDisplayConfig m_WallpaperDisplayConfig;
 
     Image m_heroImage;
     Image m_wallpaperImage;
@@ -138,9 +137,12 @@ public sealed class LobbyWallpaperView : MonoBehaviour
     {
         Vector3 spriteOffset = Vector3.zero;
         Vector3 downOffset = Vector3.zero;
-        if (m_WallpaperDisplayConfig != null)
+        foreach (var offset in AChen.Networking.LocalGameConfiguration.Data.WallpaperOffsets)
         {
-            m_WallpaperDisplayConfig.GetOffsets(backgroundId, out spriteOffset, out downOffset);
+            if (offset.Id != backgroundId) continue;
+            spriteOffset = new Vector3(offset.Sprite[0], offset.Sprite[1], offset.Sprite[2]);
+            downOffset = new Vector3(offset.Down[0], offset.Down[1], offset.Down[2]);
+            break;
         }
 
         m_wallpaper.transform.localPosition = downOffset;

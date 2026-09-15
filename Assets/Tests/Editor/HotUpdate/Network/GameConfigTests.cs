@@ -145,23 +145,6 @@ public sealed class GameConfigTests
     }
 
     [Test]
-    public void Cache_isolated_by_backend_and_falls_back_to_last_good_backup()
-    {
-        var first = new GameConfigCache(new BackendConfig("https://one.example.test"), m_TemporaryRoot);
-        var second = new GameConfigCache(new BackendConfig("https://two.example.test"), m_TemporaryRoot);
-        Assert.AreNotEqual(first.CachePath, second.CachePath);
-
-        DateTimeOffset now = DateTimeOffset.UtcNow;
-        first.Save(CreateSnapshot(1, 1000), "\"game-config-1\"", now, now);
-        first.Save(CreateSnapshot(2, 1200), "\"game-config-2\"", now, now);
-        File.WriteAllText(first.CachePath, "not-json");
-
-        Assert.IsTrue(first.TryLoad(out CachedGameConfig cached));
-        Assert.AreEqual(1, cached.Snapshot.Revision);
-        Assert.AreEqual("\"game-config-1\"", cached.ETag);
-    }
-
-    [Test]
     public void Player_avatar_id_contract_is_nullable_integer()
     {
         Assert.AreEqual(typeof(int?), typeof(PlayerData).GetProperty(nameof(PlayerData.AvatarId)).PropertyType);

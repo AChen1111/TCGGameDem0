@@ -18,6 +18,7 @@ public static class LocalizationService
     static GameLanguage s_language;
     static LocalizationSettings s_settings;
 
+    public static bool IsReady => s_initialized;
     public static event Action LanguageChanged;
     public static GameLanguage CurrentLanguage { get { Initialize(); return s_language; } }
 
@@ -33,33 +34,18 @@ public static class LocalizationService
 
     public static void Initialize()
     {
-        if (s_initialized) return;
-        s_initialized = true;
+        if (!s_initialized) throw new InvalidOperationException("多语言配置尚未初始化");
+    }
+
+    public static void Install(IReadOnlyList<Table.TranslationRow> rows, LocalizationSettings settings)
+    {
+        s_table.Clear();
+        foreach (var row in rows) s_table.Add(row.Key, row);
+        s_settings = settings;
         s_language = PlayerPrefs.GetInt(PreferenceKey, 0) == 1 ? GameLanguage.English : GameLanguage.SimplifiedChinese;
-        s_settings = Resources.Load<LocalizationSettings>("Localization/Settings");
         EnsureEnglishFallbacks();
-        TextAsset data = Resources.Load<TextAsset>(ResourcePath);
-        if (data == null)
-        {
-            ReportMissing(ResourcePath, "语言表资源不存在");
-            return;
-        }
-        try
-        {
-            var rows = Table.TranslationRow.LoadBytes(data.bytes);
-            foreach (Table.TranslationRow row in rows)
-            {
-                if (string.IsNullOrWhiteSpace(row.Key) || s_table.ContainsKey(row.Key))
-                    throw new System.IO.InvalidDataException("语言表 key 为空或重复: " + row.Key);
-                s_table.Add(row.Key, row);
-            }
-            ALog.Log($"多语言二进制表初始化完成. Language={s_language}; Entries={s_table.Count}", ALogCategories.Localization);
-        }
-        catch (Exception exception) when (exception is System.IO.IOException || exception is ArgumentException || exception is FormatException)
-        {
-            s_table.Clear();
-            ALog.LogError($"语言表加载失败. Resource={ResourcePath}; Error={exception.Message}", ALogCategories.Localization);
-        }
+        s_initialized = true;
+        ALog.Log("多语言配置安装完成. Entries=" + rows.Count, ALogCategories.Localization);
     }
 
     public static void SetLanguage(GameLanguage language)

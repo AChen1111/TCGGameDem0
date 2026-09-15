@@ -9,8 +9,9 @@ namespace AChen.Networking
         public string BaseUrl { get; }
         public int TimeoutSeconds { get; }
 
-        public BackendConfig(string baseUrl = LocalDevelopmentUrl, int timeoutSeconds = 10)
+        public BackendConfig(string baseUrl = null, int timeoutSeconds = 10)
         {
+            baseUrl = baseUrl ?? AChen.Configuration.ContentSession.BackendUrl ?? LocalDevelopmentUrl;
             if (!Uri.TryCreate(baseUrl, UriKind.Absolute, out Uri uri) ||
                 (uri.Scheme != Uri.UriSchemeHttp && uri.Scheme != Uri.UriSchemeHttps))
             {

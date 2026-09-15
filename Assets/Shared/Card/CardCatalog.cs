@@ -19,40 +19,14 @@ public static class CardCatalog
 
     public static void Initialize()
     {
-        if (s_initialized)
-        {
-            return;
-        }
+        if (!s_initialized) throw new InvalidOperationException("卡牌配置尚未初始化");
+    }
 
+    public static void Install(System.Collections.Generic.IReadOnlyList<Table.CardRow> rows)
+    {
+        s_table.Clear();
+        foreach (var row in rows) s_table.Add(row.CardId, row);
         s_initialized = true;
-        TextAsset data = Resources.Load<TextAsset>(ResourcePath);
-        if (data == null)
-        {
-            ALog.LogError($"卡牌表资源不存在. Resource={ResourcePath}", ALogCategories.Default);
-            return;
-        }
-
-        try
-        {
-            var rows = Table.CardRow.LoadBytes(data.bytes);
-            for (int i = 0; i < rows.Count; i++)
-            {
-                Table.CardRow row = rows[i];
-                if (string.IsNullOrWhiteSpace(row.CardId) || s_table.ContainsKey(row.CardId))
-                {
-                    throw new InvalidDataException("卡牌表 CardId 为空或重复: " + row.CardId);
-                }
-
-                s_table.Add(row.CardId, row);
-            }
-
-            ALog.Log($"卡牌表初始化完成. Count={s_table.Count}", ALogCategories.Default);
-        }
-        catch (Exception exception) when (exception is InvalidDataException || exception is IOException || exception is ArgumentException || exception is FormatException)
-        {
-            s_table.Clear();
-            ALog.LogError($"卡牌表加载失败. Resource={ResourcePath}; Error={exception.Message}", ALogCategories.Default);
-        }
     }
 
     public static bool TryGet(string cardId, out Table.CardRow row)

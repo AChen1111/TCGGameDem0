@@ -101,6 +101,7 @@ public class CodeUpdateTests
             {
                 string[] entries = archive.Entries.Select(value => value.FullName).ToArray();
                 CollectionAssert.Contains(entries, "release-manifest.json");
+                CollectionAssert.Contains(entries, "GameConfig/config.json");
                 CollectionAssert.Contains(entries, "HybridCLR/HotUpdate.dll.bytes");
                 CollectionAssert.Contains(entries, "Addressables/catalog_0.1.0.bin");
                 CollectionAssert.Contains(entries, "Addressables/catalog_0.1.0.hash");
@@ -110,7 +111,7 @@ public class CodeUpdateTests
                 using (var reader = new StreamReader(manifestEntry.Open()))
                 {
                     string json = reader.ReadToEnd();
-                    StringAssert.Contains("\"schemaVersion\": 1", json);
+                    StringAssert.Contains("\"schemaVersion\": 2", json);
                     StringAssert.Contains("\"contentVersion\": \"0.1.1\"", json);
                     StringAssert.Contains(ContentReleasePackageBuilder.Sha256OfFile(dll), json);
                 }

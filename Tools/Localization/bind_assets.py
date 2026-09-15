@@ -81,7 +81,7 @@ for p in paths():
         bindings.append({'asset':p.relative_to(ROOT).as_posix(),'instance':override['instance'],'key':key,'sourceComponent':component})
     if source!=p.read_text(encoding='utf-8-sig'):p.write_text(source,encoding='utf-8')
 
-settings=ROOT/'Assets/Resources/Localization/Settings.asset'
+settings=ROOT/'Assets/GameConfiguration/LocalizationSettings.asset'
 settings.write_text(f'''%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000

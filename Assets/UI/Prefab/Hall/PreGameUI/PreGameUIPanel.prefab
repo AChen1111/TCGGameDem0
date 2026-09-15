@@ -1284,7 +1284,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: HotUpdate::LobbyWallpaperView
   m_wallpaper: {fileID: 1850575445426727540}
   m_heroSprite: {fileID: 3368097671329428498}
-  m_WallpaperDisplayConfig: {fileID: 11400000, guid: 0539aacb2851d9b459cd07f658764d67, type: 2}
 --- !u!1 &5279010566118677030
 GameObject:
   m_ObjectHideFlags: 0

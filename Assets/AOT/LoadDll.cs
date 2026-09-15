@@ -16,12 +16,18 @@ public class LoadDll : MonoBehaviour
     [SerializeField] string backendUrl = CodeUpdate.DefaultBackendUrl;
     [SerializeField] string channel = CodeUpdate.DefaultChannel;
     [SerializeField] bool useRemoteContentInEditor;
+    Action m_retry;
+    bool m_failed;
 
     static readonly Dictionary<string, byte[]> s_bytes = new Dictionary<string, byte[]>();
 
     IEnumerator Start()
     {
+        m_failed = false;
+        m_retry = () => StartCoroutine(Start());
         DownLoadSlider bar = FindAnyObjectByType<DownLoadSlider>();
+        bar.BindRetry(Retry);
+        bar.Set(0f);
         Assembly hotUpdate;
         Action<float> onAssets;
         string addressablesBaseUrl;
@@ -30,8 +36,10 @@ public class LoadDll : MonoBehaviour
         if (!useRemoteContentInEditor)
         {
             hotUpdate = AppDomain.CurrentDomain.GetAssemblies().First(a => a.GetName().Name == "HotUpdate");
+            yield return FetchRemoteContent(bar);
+            if (!CodeUpdate.IsComplete) { Fail(bar, CodeUpdate.LastErrorMessage); yield break; }
             onAssets = value => SetProgress(bar, value);
-            addressablesBaseUrl = string.Empty;
+            addressablesBaseUrl = CodeUpdate.AddressablesBaseUrl;
         }
         else
         {
@@ -77,12 +85,13 @@ public class LoadDll : MonoBehaviour
             yield break;
         }
 
-        boot.Invoke(null, new object[]
+        m_retry = () => { m_failed = false; boot.Invoke(null, new object[]
         {
             onAssets,
             addressablesBaseUrl,
             new Action<LocalizedMessage>(message => Fail(bar, message))
-        });
+        }); };
+        m_retry();
     }
 
     IEnumerator FetchRemoteContent(DownLoadSlider bar)
@@ -147,6 +156,15 @@ public class LoadDll : MonoBehaviour
     }
 #endif
 
+    void Retry()
+    {
+        if (!m_failed) return;
+        m_failed = false;
+        FindAnyObjectByType<DownLoadSlider>().Set(0f);
+        ALog.Log("重试启动内容更新", ALogCategories.Localization);
+        m_retry?.Invoke();
+    }
+
     static void SetProgress(DownLoadSlider bar, float value)
     {
         if (bar != null)
@@ -155,10 +173,11 @@ public class LoadDll : MonoBehaviour
         }
     }
 
-    static void Fail(DownLoadSlider bar, LocalizedMessage message)
+    void Fail(DownLoadSlider bar, LocalizedMessage message)
     {
+        m_failed = true;
         LocalizedMessage detail = message ?? new LocalizedMessage("err.content_update_failed");
-        ALog.LogError("启动内容更新失败. Key=" + detail.Key + "; Detail=" + detail, ALogCategories.Localization);
+        ALog.LogError("启动内容更新失败. Key=" + detail.Key, ALogCategories.Localization);
         if (bar != null)
         {
             bar.SetError(detail);

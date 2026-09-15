@@ -708,3 +708,9 @@ ui.lobby.shop,商城,Shop
 ui.lobby.mail,邮件,Mail
 ui.lobby.friend,好友,Friends
 ui.lobby.settings,设置,Settings
+err.content_update_required,游戏内容已更新，请重启游戏,Game content has changed. Please restart the game.
+err.content_not_ready,游戏配置未就绪，请重试,Game configuration is not ready. Please retry.
+ui.content.restart_required,游戏内容已更新，请退出并重新启动游戏。,Game content has changed. Please quit and restart.
+ui.content.check_failed,检查游戏内容失败，请检查网络后重试。,Unable to check game content. Check your connection and retry.
+ui.content.exit,退出游戏,Quit game
+ui.content.retry,重试,Retry

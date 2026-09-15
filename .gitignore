@@ -152,3 +152,6 @@ draft_*
 /Backend/src/AChen.Backend.Api/Data/game-config-git/
 /Backend/.env
 .playwright-cli/
+
+# Backend project definitions are hand-maintained, unlike Unity generated projects.
+!/Backend/**/*.csproj

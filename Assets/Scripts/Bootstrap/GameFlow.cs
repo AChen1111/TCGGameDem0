@@ -26,6 +26,25 @@ public static class GameFlow
     [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.SubsystemRegistration)]
     static void ResetState() => s_enteringLobby = false;
 
+    static async UniTask CheckContentAsync(CancellationToken token)
+    {
+        while (true)
+        {
+            try { await LocalGameConfiguration.CheckVersionAsync(token); return; }
+            catch (OperationCanceledException) { throw; }
+            catch (Exception exception)
+            {
+                ALog.LogWarning("登录内容检查失败: " + exception.Message, ALogCategories.Net);
+                if (AChen.Configuration.ContentSession.RestartRequired)
+                {
+                    ContentUpdatePrompt.ShowRestart();
+                    await UniTask.WaitUntil(() => false, cancellationToken: token);
+                }
+                await ContentUpdatePrompt.WaitForRetryAsync(token);
+            }
+        }
+    }
+
     static void OnExitRequested()
     {
         ALog.Log("收到退出请求, 结束游戏.", ALogCategories.UI);
@@ -80,6 +99,7 @@ public static class GameFlow
         EventCenter.Dispatch(GameEvent.LobbyEntering);
         try
         {
+            await CheckContentAsync(SingletonManager.Instance.GetCancellationTokenOnDestroy());
             await GameConfigManager.Instance.InitializeAsync();
             await SceneLoader.LoadScene(AddressKeys.Scene.GameScene);
         }
