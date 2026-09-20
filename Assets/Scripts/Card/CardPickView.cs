@@ -2,7 +2,6 @@ using System;
 using LitMotion;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public enum CardShaderType
 {
@@ -219,7 +218,7 @@ public class CardPickView : MonoBehaviour
     //检测卡牌是否被点击
     void Update()
     {
-        if (Mouse.current == null || !Mouse.current.leftButton.wasPressedThisFrame)
+        if (_controller == null || !_controller.WasPressedThisFrame())
         {
             return;
         }

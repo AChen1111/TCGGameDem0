@@ -95,29 +95,14 @@ namespace AChen.Networking
             string path = "/api/content/manifests/latest?channel=" + Uri.EscapeDataString(ContentSession.Channel)
                 + "&platform=" + Uri.EscapeDataString(ContentSession.Platform) + "&appVersion=" + Uri.EscapeDataString(ContentSession.AppVersion);
             var latest = await new BackendHttpClient().SendAsync<VersionResponse>("GET", path, cancellationToken: token);
-            if (latest.SchemaVersion != 3 || latest.ReleaseId != ContentSession.ReleaseId)
-            {
-                ContentSession.RestartRequired = true;
-                ALog.LogWarning("检测到内容更新, 等待重启. Current=" + ContentSession.ReleaseId + "; Latest=" + latest.ReleaseId, ALogCategories.Net);
-                RequireCurrent();
-            }
             ContentSession.ServerTime = latest.ServerTime;
             ContentSession.ServerTimeReceivedAt = DateTimeOffset.UtcNow;
-            ALog.Log("登录内容版本检查完成. Release=" + latest.ReleaseId, ALogCategories.Net);
+            ALog.Log("登录内容检查完成. Release=" + latest.ReleaseId, ALogCategories.Net);
         }
 
         public static void RequireCurrent()
         {
-            if (ContentSession.UseLocalAssets)
-            {
-                if (!IsReady)
-                    throw new BackendApiException(503, "CONTENT_NOT_READY", "游戏配置未就绪，请重试");
-                return;
-            }
-
-            if (ContentSession.RestartRequired)
-                throw new BackendApiException(409, "CONTENT_UPDATE_REQUIRED", "游戏内容已更新，请重启游戏");
-            if (!IsReady || string.IsNullOrEmpty(ContentSession.ReleaseId))
+            if (!IsReady)
                 throw new BackendApiException(503, "CONTENT_NOT_READY", "游戏配置未就绪，请重试");
         }
 

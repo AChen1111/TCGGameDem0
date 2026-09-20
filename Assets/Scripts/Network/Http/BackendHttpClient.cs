@@ -89,17 +89,13 @@ namespace AChen.Networking
             Func<long, bool> acceptStatus,
             CancellationToken cancellationToken)
         {
-            bool mutation = path == "/api/player/purchase" || path == "/api/player/card-draws" || path == "/api/player/profile";
-            bool localAssets = AChen.Configuration.ContentSession.UseLocalAssets;
-            if (mutation && !localAssets) LocalGameConfiguration.RequireCurrent();
             using (var request = new UnityWebRequest(m_config.BaseUrl + path, method))
             {
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.timeout = m_config.TimeoutSeconds;
                 request.SetRequestHeader("Accept", "application/json");
-                if (!localAssets && !string.IsNullOrEmpty(AChen.Configuration.ContentSession.ReleaseId))
+                if (!string.IsNullOrEmpty(AChen.Configuration.ContentSession.Channel))
                 {
-                    request.SetRequestHeader("X-Content-Release", AChen.Configuration.ContentSession.ReleaseId);
                     request.SetRequestHeader("X-Content-Channel", AChen.Configuration.ContentSession.Channel);
                     request.SetRequestHeader("X-Content-Platform", AChen.Configuration.ContentSession.Platform);
                     request.SetRequestHeader("X-Content-App-Version", AChen.Configuration.ContentSession.AppVersion);
@@ -137,13 +133,7 @@ namespace AChen.Networking
                 }
                 catch (UnityWebRequestException)
                 {
-                    var error = BackendHttpError.FromRequest(request);
-                    if (error.Code == "CONTENT_UPDATE_REQUIRED" && !localAssets)
-                    {
-                        AChen.Configuration.ContentSession.RestartRequired = true;
-                        ContentUpdatePrompt.ShowRestart();
-                    }
-                    throw error;
+                    throw BackendHttpError.FromRequest(request);
                 }
 
                 return new BackendHttpResponse(

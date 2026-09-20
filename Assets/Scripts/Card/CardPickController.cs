@@ -41,6 +41,11 @@ public class CardPickController : MonoBehaviour
         return _pointer.TryGetPointerRay(out ray);
     }
 
+    public bool WasPressedThisFrame()
+    {
+        return _pointer != null && _pointer.WasPressedThisFrame();
+    }
+
     public void Play(IReadOnlyList<CardPickViewData> cards, Action onFinished)
     {
         Clear();

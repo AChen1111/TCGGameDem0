@@ -42,6 +42,8 @@ public class PreGameUIPanel : APanelController
         m_BtnAvatar.onClick.AddListener(OnAvatarClick);
         m_BtnChangeWallpaper.onClick.AddListener(OnChangeWallpaperClick);
         m_BtnSetting.onClick.AddListener(OnSettingClick);
+        m_BtnFriend.onClick.AddListener(OnFriendClick);
+        m_BtnGift.onClick.AddListener(OnGiftClick);
     }
 
     protected override void RemoveListeners()
@@ -53,6 +55,8 @@ public class PreGameUIPanel : APanelController
         m_BtnAvatar.onClick.RemoveListener(OnAvatarClick);
         m_BtnChangeWallpaper.onClick.RemoveListener(OnChangeWallpaperClick);
         m_BtnSetting.onClick.RemoveListener(OnSettingClick);
+        m_BtnFriend.onClick.RemoveListener(OnFriendClick);
+        m_BtnGift.onClick.RemoveListener(OnGiftClick);
     }
 
     protected override void OnOpen()
@@ -92,6 +96,18 @@ public class PreGameUIPanel : APanelController
     {
         ALog.Log("打开设置窗", ALogCategories.UI);
         RequestOpenWindow(AddressKeys.Prefab.SettingWindow);
+    }
+
+    void OnFriendClick()
+    {
+        ALog.Log("打开好友窗", ALogCategories.UI);
+        RequestOpenWindow(AddressKeys.Prefab.FriendWindow);
+    }
+
+    void OnGiftClick()
+    {
+        ALog.Log("打开礼品窗", ALogCategories.UI);
+        RequestOpenWindow(AddressKeys.Prefab.GiftWindow);
     }
 
     void OnChangeWallpaperClick() => SwitchToNextWallpaperAsync().Forget();

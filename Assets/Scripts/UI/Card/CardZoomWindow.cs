@@ -2,7 +2,6 @@ using Cysharp.Threading.Tasks;
 using LitMotion;
 using LitMotion.Extensions;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public sealed class CardZoomWindowProperty : IWindowProperties
@@ -77,7 +76,7 @@ public class CardZoomWindow : AWindowController<CardZoomWindowProperty>
             return;
         }
 
-        if (Mouse.current == null || !Mouse.current.leftButton.wasPressedThisFrame)
+        if (m_Controller == null || !m_Controller.WasPressedThisFrame())
         {
             return;
         }

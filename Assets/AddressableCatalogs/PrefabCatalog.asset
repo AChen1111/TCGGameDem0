@@ -139,3 +139,38 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: FriendWindow
+    reference:
+      m_AssetGUID: 53fc43819c39efb4a8ae68cc93b1c248
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: GiftWindow
+    reference:
+      m_AssetGUID: aff2b5eb56058ae46b3c2562866703c9
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: FriendRowPrefab
+    reference:
+      m_AssetGUID: d3e52d65cd8f20c42be66a9324bcf908
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: FriendApplyRowPrefab
+    reference:
+      m_AssetGUID: a4b0f5358c2eff8499b8cd772e021c16
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: GiftApplyRowPrefab
+    reference:
+      m_AssetGUID: 845babac4a833f047b4b16a546c659a9
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

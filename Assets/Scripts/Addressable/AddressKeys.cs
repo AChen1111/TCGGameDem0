@@ -16,6 +16,11 @@ public static class AddressKeys
         public static readonly string CardZoomWindow = "CardZoomWindow";
         public static readonly string ChangeNameWindow = "ChangeNameWindow";
         public static readonly string ChooseWindow = "ChooseWindow";
+        public static readonly string FriendApplyRowPrefab = "FriendApplyRowPrefab";
+        public static readonly string FriendRowPrefab = "FriendRowPrefab";
+        public static readonly string FriendWindow = "FriendWindow";
+        public static readonly string GiftApplyRowPrefab = "GiftApplyRowPrefab";
+        public static readonly string GiftWindow = "GiftWindow";
         public static readonly string LogInWindow = "LogInWindow";
         public static readonly string MessageWindow = "MessageWindow";
         public static readonly string PreGameUIPanel = "PreGameUIPanel";

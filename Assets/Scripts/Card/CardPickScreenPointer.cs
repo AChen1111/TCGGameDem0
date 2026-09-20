@@ -2,11 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 
 public interface ICardPickPointer
 {
     bool TryGetPointerRay(out Ray ray);
+    bool WasPressedThisFrame();
 }
 
 /// <summary>把 RawImage 上的屏幕点映射成抽卡相机射线. 渲到 RT 时不能用 ScreenPointToRay.</summary>
@@ -28,12 +30,11 @@ public sealed class CardPickScreenPointer : ICardPickPointer
     public bool TryGetPointerRay(out Ray ray)
     {
         ray = default;
-        if (_rawImage == null || _pickCamera == null || Mouse.current == null)
+        if (_rawImage == null || _pickCamera == null || !TryGetScreenPoint(out Vector2 screen))
         {
             return false;
         }
 
-        Vector2 screen = Mouse.current.position.ReadValue();
         if (HitsBlockingControl(screen))
         {
             return false;
@@ -55,6 +56,71 @@ public sealed class CardPickScreenPointer : ICardPickPointer
         float v = (local.y - rect.yMin) / rect.height;
         ray = _pickCamera.ViewportPointToRay(new Vector3(u, v, 0f));
         return true;
+    }
+
+    public bool WasPressedThisFrame()
+    {
+        TouchControl touch = ActiveTouch();
+        if (touch != null)
+        {
+            return touch.press.wasPressedThisFrame;
+        }
+
+        if (Mouse.current != null)
+        {
+            return Mouse.current.leftButton.wasPressedThisFrame;
+        }
+
+        return Pointer.current != null && Pointer.current.press.wasPressedThisFrame;
+    }
+
+    // 手机/模拟器走 Touchscreen; 未按下没有悬停. PC 才用鼠标位置.
+    static bool TryGetScreenPoint(out Vector2 screen)
+    {
+        TouchControl touch = ActiveTouch();
+        if (touch != null)
+        {
+            screen = touch.position.ReadValue();
+            return true;
+        }
+
+        if (Touchscreen.current != null && (Application.isMobilePlatform || Mouse.current == null))
+        {
+            screen = default;
+            return false;
+        }
+
+        if (Mouse.current != null)
+        {
+            screen = Mouse.current.position.ReadValue();
+            return true;
+        }
+
+        if (Pointer.current != null)
+        {
+            screen = Pointer.current.position.ReadValue();
+            return true;
+        }
+
+        screen = default;
+        return false;
+    }
+
+    static TouchControl ActiveTouch()
+    {
+        Touchscreen touchscreen = Touchscreen.current;
+        if (touchscreen == null)
+        {
+            return null;
+        }
+
+        TouchControl primary = touchscreen.primaryTouch;
+        if (primary.press.isPressed || primary.press.wasPressedThisFrame)
+        {
+            return primary;
+        }
+
+        return null;
     }
 
     bool HitsBlockingControl(Vector2 screen)

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using AChen.Events;
 using AChen.Networking;
@@ -127,6 +128,14 @@ public abstract class AUIScreenController : MonoBehaviour, IUIScreenController
     protected void ShowMessage(LocalizedMessage message)
     {
         RequestOpenWindow(AddressKeys.Prefab.MessageWindow, new MessageWindowProperties(message, 2f));
+    }
+
+    protected void Confirm(string key, Action onOk, IReadOnlyDictionary<string, object> arguments = null)
+    {
+        ALog.Log($"打开确认弹窗. Screen={ScreenId}; Key={key}", ALogCategories.UI);
+        RequestOpenWindow(
+            AddressKeys.Prefab.ChooseWindow,
+            new ChooseWindowProperties(new LocalizedMessage(key, arguments), onOk, null));
     }
 
     /// <summary>绑定事件，默认在 Awake 调用。</summary>

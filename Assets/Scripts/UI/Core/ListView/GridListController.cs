@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class GridListController : MonoBehaviour
 {
     [SerializeField] private LoopListView2 loopListView;
+    [SerializeField] bool stretchRowToViewport;
 
     private bool mIsInited;
     private int mSelectedIndex = -1;
@@ -63,7 +64,7 @@ public class GridListController : MonoBehaviour
 
         if (loopListView.GetItemPrefabConfData(prefab.name) == null)
         {
-            // 横向列表的 PosY 由 StartPosOffset 决定,直接用预制体上的值
+            // 横向 PosY 用预制体；竖向保持 0,中心轴心行才能在视口里居中.好友行 pivot.x=0,再靠 FitWidth 拉满.
             float startPosOffset = 0f;
             if (loopListView.ArrangeType is ListItemArrangeType.LeftToRight or ListItemArrangeType.RightToLeft)
             {
@@ -87,6 +88,11 @@ public class GridListController : MonoBehaviour
                 return null;
 
             LoopListViewItem2 item = listView.NewListViewItem(prefabName);
+            if (stretchRowToViewport)
+            {
+                LoopListRowFit.FitWidth(listView, item);
+            }
+
             var row = item.GetComponent<IRowItem<TData>>();
             row.SetRowData(rowIndex, dataList, mSelectedIndex, OnCardSelected);
             return item;
@@ -193,5 +199,15 @@ public class GridListController : MonoBehaviour
         {
             loopListView.RefreshAllShownItem();
         }
+    }
+
+    void OnRectTransformDimensionsChange()
+    {
+        if (!mIsInited || !stretchRowToViewport || loopListView == null)
+        {
+            return;
+        }
+
+        loopListView.RefreshAllShownItem();
     }
 }

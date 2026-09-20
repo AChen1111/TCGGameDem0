@@ -714,7 +714,33 @@ ui.settings.sfx,音效,SFX
 ui.settings.logout,登出,Log Out
 ui.settings.language_en,English,English
 ui.settings.language_zh,中文,中文
+ui.settings.confirm_language,确认切换语言并重新进入大厅?,Switch language and reload the lobby?
+ui.settings.confirm_logout,确认登出并返回登录?,Log out and return to login?
 err.enter_login_failed,返回登录失败，请重启游戏。,"Failed to return to login, please restart the game."
+ui.friends.placeholder,输入昵称搜索,Search nickname
+ui.friends.duel,决斗,Duel
+ui.friends.add,添加,Add
+ui.friends.waiting,等待,Waiting
+ui.friends.confirm_add,确认添加 {name} 为好友?,Add {name} as a friend?
+ui.friends.confirm_duel,确认向 {name} 发起决斗?,Challenge {name} to a duel?
+ui.friends.empty,暂无好友,No friends yet
+ui.friends.search_empty,没有找到玩家,No players found
+ui.gifts.empty,暂无申请或礼品,No requests or gifts
+ui.gifts.system,系统,System
+ui.gifts.pack_gold,金币礼包,Gold Pack
+ui.gifts.pack_card,卡牌礼包,Card Pack
+ui.gifts.pack_mixed,礼包,Gift Pack
+ui.gifts.confirm_claim,确认领取该礼包?,Claim this gift?
+ui.gifts.confirm_accept,确认同意 {name} 的好友申请?,Accept {name}'s friend request?
+ui.gifts.confirm_reject,确认拒绝 {name} 的好友申请?,Reject {name}'s friend request?
+err.friend_not_found,未找到该玩家,Player not found
+err.friend_self,不能添加自己,You cannot add yourself
+err.friend_already,已经是好友,Already friends
+err.friend_pending,已有待处理的申请,A friend request is already pending
+err.friend_request_failed,好友申请失败,Friend request failed
+err.friend_accept_failed,无法同意该申请,Could not accept the request
+err.friend_reject_failed,无法拒绝该申请,Could not reject the request
+err.gift_claim_failed,领取礼品失败,Could not claim the gift
 err.content_update_required,游戏内容已更新，请重启游戏,Game content has changed. Please restart the game.
 err.content_not_ready,游戏配置未就绪，请重试,Game configuration is not ready. Please retry.
 ui.content.restart_required,游戏内容已更新，请退出并重新启动游戏。,Game content has changed. Please quit and restart.

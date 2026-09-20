@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine.Networking;
@@ -120,6 +121,92 @@ namespace AChen.Networking
         public static GachaPoolData ParseGachaPoolJson(string json) =>
             ToPool(BackendJson.DeserializeResponse<GachaPoolDto>(json));
 
+        public static IReadOnlyList<FriendSummaryData> ParseFriendsJson(string json) =>
+            MapFriends(BackendJson.DeserializeResponse<FriendSummaryDto[]>(json));
+
+        public static IReadOnlyList<FriendSearchHitData> ParseFriendSearchJson(string json) =>
+            MapSearch(BackendJson.DeserializeResponse<FriendSearchHitDto[]>(json));
+
+        public static IReadOnlyList<InboxItemData> ParseInboxJson(string json) =>
+            MapInbox(BackendJson.DeserializeResponse<InboxItemDto[]>(json));
+
+        public async UniTask<IReadOnlyList<FriendSummaryData>> GetFriendsAsync(
+            string accessToken,
+            CancellationToken cancellationToken)
+        {
+            FriendSummaryDto[] dto = await m_http.SendAsync<FriendSummaryDto[]>(
+                UnityWebRequest.kHttpVerbGET, "/api/friends", null, accessToken, cancellationToken);
+            return MapFriends(dto);
+        }
+
+        public async UniTask<IReadOnlyList<FriendSearchHitData>> SearchFriendsAsync(
+            string accessToken,
+            string nickname,
+            CancellationToken cancellationToken)
+        {
+            string path = "/api/friends/search?nickname=" + Uri.EscapeDataString(nickname ?? string.Empty);
+            FriendSearchHitDto[] dto = await m_http.SendAsync<FriendSearchHitDto[]>(
+                UnityWebRequest.kHttpVerbGET, path, null, accessToken, cancellationToken);
+            return MapSearch(dto);
+        }
+
+        public UniTask SendFriendRequestAsync(
+            string accessToken,
+            Guid targetPlayerId,
+            CancellationToken cancellationToken) =>
+            m_http.SendAsync(
+                UnityWebRequest.kHttpVerbPOST,
+                "/api/friends/requests",
+                new TargetPlayerRequest(targetPlayerId),
+                accessToken,
+                cancellationToken);
+
+        public UniTask AcceptFriendRequestAsync(
+            string accessToken,
+            Guid requestId,
+            CancellationToken cancellationToken) =>
+            m_http.SendAsync(
+                UnityWebRequest.kHttpVerbPOST,
+                "/api/friends/requests/" + requestId.ToString("D") + "/accept",
+                null,
+                accessToken,
+                cancellationToken);
+
+        public UniTask RejectFriendRequestAsync(
+            string accessToken,
+            Guid requestId,
+            CancellationToken cancellationToken) =>
+            m_http.SendAsync(
+                UnityWebRequest.kHttpVerbPOST,
+                "/api/friends/requests/" + requestId.ToString("D") + "/reject",
+                null,
+                accessToken,
+                cancellationToken);
+
+        public async UniTask<IReadOnlyList<InboxItemData>> GetInboxAsync(
+            string accessToken,
+            CancellationToken cancellationToken)
+        {
+            InboxItemDto[] dto = await m_http.SendAsync<InboxItemDto[]>(
+                UnityWebRequest.kHttpVerbGET, "/api/inbox", null, accessToken, cancellationToken);
+            return MapInbox(dto);
+        }
+
+        public async UniTask<PlayerData> ClaimGiftAsync(
+            string accessToken,
+            Guid giftId,
+            long expectedRevision,
+            CancellationToken cancellationToken)
+        {
+            PlayerDto dto = await m_http.SendAsync<PlayerDto>(
+                UnityWebRequest.kHttpVerbPOST,
+                "/api/gifts/" + giftId.ToString("D") + "/claim",
+                new ClaimGiftRequest(expectedRevision),
+                accessToken,
+                cancellationToken);
+            return ToPlayer(dto);
+        }
+
         async UniTask<AuthSession> PostAuthAsync(string path, object body, CancellationToken cancellationToken)
         {
             AuthResponseDto response = await m_http.SendAsync<AuthResponseDto>(
@@ -200,6 +287,62 @@ namespace AChen.Networking
             return new GachaPoolData(dto.PoolKey, mapped);
         }
 
+        static IReadOnlyList<FriendSummaryData> MapFriends(FriendSummaryDto[] dto)
+        {
+            FriendSummaryDto[] items = dto ?? Array.Empty<FriendSummaryDto>();
+            var mapped = new FriendSummaryData[items.Length];
+            for (int i = 0; i < items.Length; i++)
+            {
+                FriendSummaryDto item = items[i];
+                mapped[i] = new FriendSummaryData(
+                    item != null ? item.Id : Guid.Empty,
+                    item != null ? item.Nickname : null,
+                    item != null ? item.AvatarId : null);
+            }
+
+            return mapped;
+        }
+
+        static IReadOnlyList<FriendSearchHitData> MapSearch(FriendSearchHitDto[] dto)
+        {
+            FriendSearchHitDto[] items = dto ?? Array.Empty<FriendSearchHitDto>();
+            var mapped = new FriendSearchHitData[items.Length];
+            for (int i = 0; i < items.Length; i++)
+            {
+                FriendSearchHitDto item = items[i];
+                mapped[i] = new FriendSearchHitData(
+                    item != null ? item.Id : Guid.Empty,
+                    item != null ? item.Nickname : null,
+                    item != null ? item.AvatarId : null,
+                    item != null && item.IsFriend,
+                    item != null && item.IsPending);
+            }
+
+            return mapped;
+        }
+
+        static IReadOnlyList<InboxItemData> MapInbox(InboxItemDto[] dto)
+        {
+            InboxItemDto[] items = dto ?? Array.Empty<InboxItemDto>();
+            var mapped = new InboxItemData[items.Length];
+            for (int i = 0; i < items.Length; i++)
+            {
+                InboxItemDto item = items[i];
+                mapped[i] = new InboxItemData(
+                    item != null ? item.Kind : null,
+                    item != null ? item.Id : Guid.Empty,
+                    item != null ? item.CreatedAt : default,
+                    item != null ? item.PlayerId : null,
+                    item != null ? item.Nickname : null,
+                    item != null ? item.AvatarId : null,
+                    item != null ? item.Gold : 0,
+                    ToOwnedCards(item != null ? item.Cards : null),
+                    item != null ? item.TitleKey : null);
+            }
+
+            return mapped;
+        }
+
         static OwnedCardData[] ToOwnedCards(OwnedCardDto[] cards)
         {
             if (cards == null || cards.Length == 0)
@@ -268,6 +411,26 @@ namespace AChen.Networking
             {
                 CatalogType = catalogType;
                 ItemId = itemId;
+                ExpectedRevision = expectedRevision;
+            }
+        }
+
+        sealed class TargetPlayerRequest
+        {
+            public Guid TargetPlayerId { get; }
+
+            public TargetPlayerRequest(Guid targetPlayerId)
+            {
+                TargetPlayerId = targetPlayerId;
+            }
+        }
+
+        sealed class ClaimGiftRequest
+        {
+            public long ExpectedRevision { get; }
+
+            public ClaimGiftRequest(long expectedRevision)
+            {
                 ExpectedRevision = expectedRevision;
             }
         }
@@ -372,6 +535,44 @@ namespace AChen.Networking
 
             public string PoolKey { get; set; }
             public GachaPoolCardDto[] Cards { get; set; }
+        }
+
+        [Preserve]
+        sealed class FriendSummaryDto
+        {
+            public FriendSummaryDto() { }
+
+            public Guid Id { get; set; }
+            public string Nickname { get; set; }
+            public int? AvatarId { get; set; }
+        }
+
+        [Preserve]
+        sealed class FriendSearchHitDto
+        {
+            public FriendSearchHitDto() { }
+
+            public Guid Id { get; set; }
+            public string Nickname { get; set; }
+            public int? AvatarId { get; set; }
+            public bool IsFriend { get; set; }
+            public bool IsPending { get; set; }
+        }
+
+        [Preserve]
+        sealed class InboxItemDto
+        {
+            public InboxItemDto() { }
+
+            public string Kind { get; set; }
+            public Guid Id { get; set; }
+            public DateTimeOffset CreatedAt { get; set; }
+            public Guid? PlayerId { get; set; }
+            public string Nickname { get; set; }
+            public int? AvatarId { get; set; }
+            public long Gold { get; set; }
+            public OwnedCardDto[] Cards { get; set; }
+            public string TitleKey { get; set; }
         }
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8016659759456937553}
   - component: {fileID: 1687062849035196668}
   - component: {fileID: 7963571139112534445}
+  - component: {fileID: 9203811127078429976}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -137,6 +138,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &9203811127078429976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658703762413413548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef0499324339894abb6f00cf35fd755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AChen.Shared::LocalizedText
+  key: ui.friends.duel
+  dynamicContent: 1
 --- !u!1 &2155532073347615048
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,13 +161,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7709138339351752449}
+  - component: {fileID: 2156926884365958112}
+  - component: {fileID: 8561667827737722913}
   m_Layer: 5
   m_Name: FriendRowPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7709138339351752449
 RectTransform:
   m_ObjectHideFlags: 0
@@ -173,9 +190,36 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 843.67786, y: -494.31726}
-  m_SizeDelta: {x: 1687.356, y: 271.807}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1600, y: 240}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &2156926884365958112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2155532073347615048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbcbd7952202d4d44a555aea5af2a351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SuperScrollView::SuperScrollView.LoopListViewItem2
+--- !u!114 &8561667827737722913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2155532073347615048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fcf92b87a5259e409000e3575a1fb97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HotUpdate::FriendRowItem
+  m_ImgIcon: {fileID: 3391670103802642589}
+  m_TxtName: {fileID: 3997608905804612242}
+  m_BtnAction: {fileID: 7872018312122920877}
 --- !u!1 &4842497492370014775
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,10 +252,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7709138339351752449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1200, y: 200}
+  m_SizeDelta: {x: -48, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5697228309081756633
 CanvasRenderer:
@@ -428,8 +472,9 @@ GameObject:
   - component: {fileID: 4352979744690265421}
   - component: {fileID: 2336199112582279372}
   - component: {fileID: 7872018312122920877}
+  - component: {fileID: 9055237915174994642}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Btn_Action
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -450,9 +495,9 @@ RectTransform:
   - {fileID: 8016659759456937553}
   m_Father: {fileID: 7709138339351752449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 472, y: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -328, y: 0}
   m_SizeDelta: {x: 188, y: 122}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4352979744690265421
@@ -537,6 +582,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9055237915174994642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7265069852002723286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4e9a1b2d8f46c0a3e5b9176d4f2c81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HotUpdate::ButtonClickTween
+  m_Skip: 0
+  m_Duration: 0.12
+  m_PunchScale: 1.04
+  m_Ease: 8
 --- !u!1 &8429027565616237457
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,10 +630,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7709138339351752449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -352, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -860, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8593379182844545324
 CanvasRenderer:

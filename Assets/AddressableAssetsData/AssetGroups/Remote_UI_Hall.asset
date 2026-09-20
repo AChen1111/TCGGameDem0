@@ -70,6 +70,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: adf5d47108a0d0a4dafd2bb51f95e6cd
+    m_Address: GiftWindow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: be66491d4f67aa84b89c3ba1f34172a2
+    m_Address: FriendWindow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c2a48d32e1aaf41408acf01703d1b723
     m_Address: Avatar
     m_ReadOnly: 0

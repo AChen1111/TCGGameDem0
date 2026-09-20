@@ -16,6 +16,9 @@ public class SettingsWindow : AWindowController
     // --tag_end: 自动生成--
 
     bool m_isBusy;
+    WindowCanvasFade m_fade;
+
+    WindowCanvasFade Fade => m_fade ??= new WindowCanvasFade(this);
 
     protected override void AddListeners()
     {
@@ -34,7 +37,18 @@ public class SettingsWindow : AWindowController
     protected override void OnOpen()
     {
         m_isBusy = false;
+        Fade.PlayOpen();
         RefreshLanguageButton();
+    }
+
+    public override void UI_Close()
+    {
+        Fade.RequestClose(base.UI_Close);
+    }
+
+    protected override void OnClose()
+    {
+        Fade.Reset();
     }
 
     void RefreshLanguageButton()
@@ -45,7 +59,11 @@ public class SettingsWindow : AWindowController
         m_BtnChangeLanguage.GetComponentInChildren<TMP_Text>(true).Localized().SetKey(key);
     }
 
-    void OnChangeLanguageClick() => SwitchLanguageAsync().Forget();
+    void OnChangeLanguageClick()
+    {
+        if (m_isBusy || !IsOpened) return;
+        Confirm("ui.settings.confirm_language", () => SwitchLanguageAsync().Forget());
+    }
 
     async UniTaskVoid SwitchLanguageAsync()
     {
@@ -76,6 +94,12 @@ public class SettingsWindow : AWindowController
     }
 
     void OnExitClick()
+    {
+        if (m_isBusy || !IsOpened) return;
+        Confirm("ui.settings.confirm_logout", Logout);
+    }
+
+    void Logout()
     {
         if (m_isBusy || !IsOpened) return;
         ALog.Log("设置窗请求登出回登录", ALogCategories.UI);

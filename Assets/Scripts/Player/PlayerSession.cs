@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using AChen.Events;
@@ -204,6 +205,48 @@ namespace AChen.Player
                 updated => $"Player={updated.Player.Id}; Count={updated.Results.Count}; Revision={updated.Player.Revision}",
                 cancellationToken);
 
+        public UniTask<IReadOnlyList<FriendSummaryData>> GetFriendsAsync(
+            CancellationToken cancellationToken = default) =>
+            SendAuthenticatedCallAsync(Api.GetFriendsAsync, cancellationToken);
+
+        public UniTask<IReadOnlyList<FriendSearchHitData>> SearchFriendsAsync(
+            string nickname,
+            CancellationToken cancellationToken = default) =>
+            SendAuthenticatedCallAsync(
+                (accessToken, token) => Api.SearchFriendsAsync(accessToken, nickname, token),
+                cancellationToken);
+
+        public UniTask SendFriendRequestAsync(Guid targetPlayerId, CancellationToken cancellationToken = default) =>
+            SendAuthenticatedCallAsync(async (accessToken, token) =>
+            {
+                await Api.SendFriendRequestAsync(accessToken, targetPlayerId, token);
+                return true;
+            }, cancellationToken);
+
+        public UniTask AcceptFriendRequestAsync(Guid requestId, CancellationToken cancellationToken = default) =>
+            SendAuthenticatedCallAsync(async (accessToken, token) =>
+            {
+                await Api.AcceptFriendRequestAsync(accessToken, requestId, token);
+                return true;
+            }, cancellationToken);
+
+        public UniTask RejectFriendRequestAsync(Guid requestId, CancellationToken cancellationToken = default) =>
+            SendAuthenticatedCallAsync(async (accessToken, token) =>
+            {
+                await Api.RejectFriendRequestAsync(accessToken, requestId, token);
+                return true;
+            }, cancellationToken);
+
+        public UniTask<IReadOnlyList<InboxItemData>> GetInboxAsync(
+            CancellationToken cancellationToken = default) =>
+            SendAuthenticatedCallAsync(Api.GetInboxAsync, cancellationToken);
+
+        public UniTask<PlayerData> ClaimGiftAsync(Guid giftId, CancellationToken cancellationToken = default) =>
+            ExecuteMutationAsync("ClaimGift", giftId.ToString("D"), (player, token) =>
+                SendAuthenticatedAsync(
+                    (accessToken, ct) => Api.ClaimGiftAsync(accessToken, giftId, player.Revision, ct),
+                    token), cancellationToken);
+
         public async UniTask<GachaPoolData> GetGachaPoolAsync(string poolKey, CancellationToken cancellationToken = default)
         {
             if (!IsAuthenticated || CurrentPlayer == null)
@@ -290,6 +333,34 @@ namespace AChen.Player
         }
 
         // ---- 鉴权请求与状态提交 ----
+
+        async UniTask<T> SendAuthenticatedCallAsync<T>(
+            Func<string, CancellationToken, UniTask<T>> call,
+            CancellationToken cancellationToken)
+        {
+            if (!IsAuthenticated)
+            {
+                throw new BackendApiException(401, "INVALID_ACCESS_TOKEN", "登录状态已失效，请重新登录");
+            }
+
+            long sessionVersion = SessionVersion;
+            try
+            {
+                T result = await call(m_accessToken, cancellationToken);
+                EnsureSessionVersion(sessionVersion);
+                return result;
+            }
+            catch (BackendApiException exception) when (
+                exception.StatusCode == 401 && SessionVersion == sessionVersion &&
+                !string.IsNullOrEmpty(m_refreshToken))
+            {
+                await RefreshAsync(cancellationToken);
+                EnsureSessionVersion(sessionVersion);
+                T result = await call(m_accessToken, cancellationToken);
+                EnsureSessionVersion(sessionVersion);
+                return result;
+            }
+        }
 
         /// <summary>带访问令牌调用接口; 401 时刷新令牌重试一次, 成功后把返回的玩家资料提交为当前状态.</summary>
         async UniTask<PlayerData> SendAuthenticatedAsync(
