@@ -35,6 +35,7 @@ namespace AChen.Events
         public static readonly EventId LobbyEntered = new EventId("Game.LobbyEntered");
         public static readonly EventId<string> LobbyEntryFailed = new EventId<string>("Game.LobbyEntryFailed");
         public static readonly EventId GameExitRequested = new EventId("Game.ExitRequested");
+        public static readonly EventId LogoutRequested = new EventId("Game.LogoutRequested");
 
         public static readonly EventId<string, LoadSceneMode> SceneLoadStarted = new EventId<string, LoadSceneMode>("Scene.LoadStarted");
         public static readonly EventId<string, Exception> SceneLoadFailed = new EventId<string, Exception>("Scene.LoadFailed");

@@ -709,6 +709,12 @@ ui.lobby.shop,商城,Shop
 ui.lobby.mail,邮件,Mail
 ui.lobby.friend,好友,Friends
 ui.lobby.settings,设置,Settings
+ui.settings.bgm,背景音乐,BGM
+ui.settings.sfx,音效,SFX
+ui.settings.logout,登出,Log Out
+ui.settings.language_en,English,English
+ui.settings.language_zh,中文,中文
+err.enter_login_failed,返回登录失败，请重启游戏。,"Failed to return to login, please restart the game."
 err.content_update_required,游戏内容已更新，请重启游戏,Game content has changed. Please restart the game.
 err.content_not_ready,游戏配置未就绪，请重试,Game configuration is not ready. Please retry.
 ui.content.restart_required,游戏内容已更新，请退出并重新启动游戏。,Game content has changed. Please quit and restart.

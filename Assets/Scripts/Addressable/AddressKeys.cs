@@ -20,6 +20,7 @@ public static class AddressKeys
         public static readonly string MessageWindow = "MessageWindow";
         public static readonly string PreGameUIPanel = "PreGameUIPanel";
         public static readonly string SelfChooseWindow = "SelfChooseWindow";
+        public static readonly string SettingWindow = "SettingWindow";
         public static readonly string ShopWindows = "ShopWindows";
         public static readonly string WallpaperShopItemRowPrefab = "WallpaperShopItemRowPrefab";
     }

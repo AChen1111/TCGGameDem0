@@ -4,6 +4,7 @@ using AChen.Events;
 using AChen.Networking;
 using AChen.Player;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 /// <summary>
 /// 跨场景的游戏流程入口。
@@ -11,20 +12,27 @@ using Cysharp.Threading.Tasks;
 public static class GameFlow
 {
     static bool s_enteringLobby;
+    static bool s_returningToLogin;
 
     public static void Initialize()
     {
         EventCenter.RemoveListener(GameEvent.PlayerLoggedIn, OnAuthenticated);
         EventCenter.RemoveListener(GameEvent.PlayerRegistered, OnAuthenticated);
         EventCenter.RemoveListener(GameEvent.GameExitRequested, OnExitRequested);
+        EventCenter.RemoveListener(GameEvent.LogoutRequested, OnLogoutRequested);
         EventCenter.AddListener(GameEvent.PlayerLoggedIn, OnAuthenticated);
         EventCenter.AddListener(GameEvent.PlayerRegistered, OnAuthenticated);
         EventCenter.AddListener(GameEvent.GameExitRequested, OnExitRequested);
+        EventCenter.AddListener(GameEvent.LogoutRequested, OnLogoutRequested);
         SceneTransitionOverlay.Initialize();
     }
 
     [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.SubsystemRegistration)]
-    static void ResetState() => s_enteringLobby = false;
+    static void ResetState()
+    {
+        s_enteringLobby = false;
+        s_returningToLogin = false;
+    }
 
     static async UniTask CheckContentAsync(CancellationToken token)
     {
@@ -48,7 +56,53 @@ public static class GameFlow
     static void OnExitRequested()
     {
         ALog.Log("收到退出请求, 结束游戏.", ALogCategories.UI);
-        UnityEngine.Application.Quit();
+        Application.Quit();
+    }
+
+    static void OnLogoutRequested() => ReturnToLoginAsync().Forget();
+
+    static async UniTaskVoid ReturnToLoginAsync()
+    {
+        if (s_returningToLogin) return;
+
+        s_returningToLogin = true;
+        ALog.Log("收到登出请求, 返回登录.", ALogCategories.UI);
+        SceneTransitionOverlay.Show();
+        try
+        {
+            await PlayerSession.Instance.LogoutAsync();
+        }
+        catch (Exception exception)
+        {
+            ALog.LogWarning($"登出接口失败, 仍返回登录. Error={exception.Message}", ALogCategories.Net);
+        }
+
+        try
+        {
+            await SceneLoader.LoadScene(AddressKeys.Scene.LogIn);
+            s_returningToLogin = false;
+        }
+        catch (Exception exception)
+        {
+            ALog.LogError($"登出后加载登录场景失败. Error={exception.Message}", ALogCategories.UI);
+            SceneTransitionOverlay.Hide();
+            s_returningToLogin = false;
+            TryShowLoginFailedMessage();
+        }
+    }
+
+    static void TryShowLoginFailedMessage()
+    {
+        UIFrame frame = UnityEngine.Object.FindFirstObjectByType<UIFrame>();
+        if (frame == null)
+        {
+            ALog.LogWarning("返回登录失败且找不到 UIFrame, 无法提示.", ALogCategories.UI);
+            return;
+        }
+
+        frame.OpenWindow(
+            AddressKeys.Prefab.MessageWindow,
+            new MessageWindowProperties(new LocalizedMessage("err.enter_login_failed"), 2f));
     }
 
     static void OnAuthenticated(AuthUser user, PlayerData player)
