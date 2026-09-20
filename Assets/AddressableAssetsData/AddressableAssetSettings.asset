@@ -115,6 +115,8 @@ MonoBehaviour:
     - Scene
     - wallpaper
     - CardDeckShop
+    - GameConfig
+    - GameConfigGenerated
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 88bba1e31a6b8794794d4bbe4784c6cb, type: 2}

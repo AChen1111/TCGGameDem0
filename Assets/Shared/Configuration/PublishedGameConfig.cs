@@ -8,7 +8,7 @@ namespace AChen.Configuration
     [Serializable]
     public sealed class PublishedGameConfig
     {
-        public const string PackagePath = "GameConfig/config.json";
+        public IReadOnlyDictionary<string, IReadOnlyList<IReadOnlyDictionary<string, object>>> Extra { get; internal set; }
         public int SchemaVersion;
         public CatalogData Catalog;
         public PoolEntry[] PoolEntries;
@@ -22,6 +22,7 @@ namespace AChen.Configuration
         {
             if (SchemaVersion != 1 || Catalog == null || CardTable == null || TranslationTable == null)
                 throw new FormatException("配置结构版本或必需数据无效");
+            Unique(Catalog.CardPacks, x => x.Id, "卡包");
             Unique(Catalog.Avatars, x => x.Id, "头像");
             Unique(Catalog.Wallpapers, x => x.Id, "壁纸");
             Unique(Catalog.CardPacks, x => x.Id, "卡包");

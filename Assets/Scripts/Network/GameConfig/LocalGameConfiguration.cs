@@ -1,10 +1,8 @@
 using System;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading;
 using AChen.Configuration;
 using Cysharp.Threading.Tasks;
-using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -18,48 +16,72 @@ namespace AChen.Networking
         static AsyncOperationHandle<LocalizationSettings> s_settings;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void ResetState() { Data = null; s_settings = default; }
-
-        public static async UniTask InitializeAsync()
+        static void ResetState()
         {
-            if (IsReady) return;
-            var dataHandle = Addressables.LoadAssetAsync<TextAsset>("GameConfig/Data");
+            if (s_settings.IsValid()) Addressables.Release(s_settings);
+            Data = null; s_settings = default;
+            LocalizationService.Uninstall();
+            CardCatalog.Uninstall();
+            Application.quitting -= ResetState; Application.quitting += ResetState;
+        }
+
+        public static async UniTask InitializeAsync(Action<float> onProgress = null)
+        {
+            if (IsReady) { onProgress?.Invoke(1f); return; }
+            var locations = Addressables.LoadResourceLocationsAsync(GameConfigTables.Label, typeof(TextAsset));
+            var handles = new System.Collections.Generic.List<AsyncOperationHandle<TextAsset>>();
             s_settings = Addressables.LoadAssetAsync<LocalizationSettings>("GameConfig/LocalizationSettings");
             try
             {
-                var asset = await dataHandle.Task;
-                var settings = await s_settings.Task;
-                if (asset == null || settings == null || settings.chineseFont == null || settings.englishFont == null)
-                    throw new FormatException("统一配置资源或字体映射缺失");
-                using (var sha = SHA256.Create())
+                var found = await locations.Task;
+                if (locations.Status != AsyncOperationStatus.Succeeded) throw new FormatException("配置目录加载失败");
+                var ordered = found.OrderBy(x => x.PrimaryKey, StringComparer.Ordinal).ToArray();
+                foreach (var location in ordered) handles.Add(Addressables.LoadAssetAsync<TextAsset>(location));
+                var files = new System.Collections.Generic.Dictionary<string, byte[]>(StringComparer.Ordinal);
+                for (int i = 0; i < handles.Count; i++)
                 {
-                    string hash = BitConverter.ToString(sha.ComputeHash(asset.bytes)).Replace("-", "").ToLowerInvariant();
-                    if (ContentSession.UseLocalAssets)
-                    {
-                        ContentSession.ConfigHash = hash;
-                    }
-                    else if (hash != ContentSession.ConfigHash)
-                    {
-                        throw new FormatException("客户端配置与发布清单不一致");
-                    }
+                    string address = ordered[i].PrimaryKey;
+                    TextAsset asset;
+                    try { asset = await handles[i].Task; }
+                    catch (Exception ex) { throw new FormatException("配置加载失败: " + address, ex); }
+                    if (asset == null || !address.StartsWith("GameConfig/", StringComparison.Ordinal)) throw new FormatException("配置地址或资产无效: " + address);
+                    string name = address.Substring("GameConfig/".Length);
+                    if (files.ContainsKey(name)) throw new FormatException("配置地址重复: " + name);
+                    files.Add(name, asset.bytes);
+                    onProgress?.Invoke((i + 1f) / (handles.Count + 2f));
                 }
-                var data = JsonConvert.DeserializeObject<PublishedGameConfig>(asset.text);
-                if (data == null) throw new FormatException("统一配置为空");
-                data.Validate();
-                // 所有表先验证, 同步提交后才放行业务场景.
+                var settings = await s_settings.Task;
+                if (settings == null || settings.chineseFont == null || settings.englishFont == null) throw new FormatException("LocalizationSettings: 字体映射缺失");
+                if (!ContentSession.UseLocalAssets) ConfigArtifacts.Verify(files, ContentSession.Configs);
+                var data = GameConfigTables.Assemble(files);
                 var cards = Table.CardRow.LoadBytes(data.CardTable);
                 var translations = Table.TranslationRow.LoadBytes(data.TranslationTable);
-                CardCatalog.Install(cards);
-                LocalizationService.Install(translations, settings);
-                Data = data;
-                ALog.Log("统一配置加载完成. Release=" + ContentSession.ReleaseId, ALogCategories.Net);
+                try
+                {
+                    LocalizationService.Install(translations, settings);
+                    CardCatalog.Install(cards);
+                    Data = data;
+                }
+                catch
+                {
+                    LocalizationService.Uninstall();
+                    CardCatalog.Uninstall();
+                    throw;
+                }
+                onProgress?.Invoke(1f);
+                ALog.Log("全部配置加载完成. Release=" + ContentSession.ReleaseId + "; Tables=" + files.Count, ALogCategories.Net);
             }
-            catch
+            catch (Exception ex)
             {
+                ALog.LogError("配置加载或校验失败. Error=" + ex.Message, ALogCategories.Net);
                 if (s_settings.IsValid()) Addressables.Release(s_settings);
-                throw;
+                s_settings = default; throw;
             }
-            finally { if (dataHandle.IsValid()) Addressables.Release(dataHandle); }
+            finally
+            {
+                foreach (var handle in handles) if (handle.IsValid()) Addressables.Release(handle);
+                if (locations.IsValid()) Addressables.Release(locations);
+            }
         }
 
         public static async UniTask CheckVersionAsync(CancellationToken token = default)
@@ -73,7 +95,7 @@ namespace AChen.Networking
             string path = "/api/content/manifests/latest?channel=" + Uri.EscapeDataString(ContentSession.Channel)
                 + "&platform=" + Uri.EscapeDataString(ContentSession.Platform) + "&appVersion=" + Uri.EscapeDataString(ContentSession.AppVersion);
             var latest = await new BackendHttpClient().SendAsync<VersionResponse>("GET", path, cancellationToken: token);
-            if (latest.SchemaVersion != 2 || latest.ReleaseId != ContentSession.ReleaseId)
+            if (latest.SchemaVersion != 3 || latest.ReleaseId != ContentSession.ReleaseId)
             {
                 ContentSession.RestartRequired = true;
                 ALog.LogWarning("检测到内容更新, 等待重启. Current=" + ContentSession.ReleaseId + "; Latest=" + latest.ReleaseId, ALogCategories.Net);

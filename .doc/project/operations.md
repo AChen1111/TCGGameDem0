@@ -28,8 +28,8 @@ git submodule update --remote Backend
 | 启动后端 | `Tools/后端服务/启动`，或 `dotnet run --project Backend/src/AChen.Backend.Api` |
 | 检查后端 | `http://127.0.0.1:5080/health`；就绪为 `/ready` |
 | 运行游戏 | 唯一构建场景 `Assets/Scenes/PreInit.unity` 进 Play Mode |
-| 发布热更 | 备好发布密钥后，`Tools/热更发布/Build And Publish Release` |
-| 发布配置 | `Tools/配置表/发布窗口`，或浏览器 `/admin/game-config` |
+| 生成配置 | `Tools/AddToBytes`，源表在 `TableData/`，产物在 `Assets/GameConfiguration/` |
+| 发布热更 | 备好发布密钥后，`Tools/热更发布/Build And Publish Release`；构建前会自动调用同一套生成逻辑 |
 | 加金币 | `Tools/运营工具`，或 `POST /api/accounts/admin/gold` |
 | 管理台 | 浏览器 `http://127.0.0.1:5080/admin/content/login` |
 

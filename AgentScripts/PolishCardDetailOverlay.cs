@@ -15,7 +15,7 @@ public static class PolishCardDetailOverlay
     const string PickWindowPath = "Assets/UI/Prefab/Hall/Shop/CardPickWindow.prefab";
     const string ScenePath = "Assets/Scenes/SceneUIRef.unity";
     const string FontPath = "Assets/UI/Fonts/FZZYJW SDF.asset";
-    const string TranslationCsv = "TableData/Localization/Translations.csv";
+    const string TranslationCsv = "TableData/Translations.csv";
     const int UiLayer = 5;
 
     public static string Run()

@@ -11,28 +11,42 @@ public class DownLoadSlider : MonoBehaviour
 
     void Awake()
     {
-        m_retryButton = transform.Find("RetryButton").GetComponent<Button>();
         Set(0f);
+    }
+
+    Button Retry()
+    {
+        if (m_retryButton == null)
+        {
+            var child = transform.Find("RetryButton");
+            if (child != null) m_retryButton = child.GetComponent<Button>();
+        }
+        return m_retryButton;
     }
 
     public void BindRetry(UnityAction retry)
     {
-        m_retryButton.onClick.RemoveAllListeners();
-        m_retryButton.onClick.AddListener(retry);
+        Retry().onClick.RemoveAllListeners();
+        Retry().onClick.AddListener(retry);
     }
 
     public void Set(float progress)
     {
         slider.value = progress;
-        m_retryButton.gameObject.SetActive(false);
+        if (Retry() != null) Retry().gameObject.SetActive(false);
         text.text = "正在更新游戏内容 " + Mathf.RoundToInt(progress * 100f) + "%";
     }
     public void SetError(LocalizedMessage message)
     {
         text.text = message?.Key == "err.content_not_ready"
             ? "游戏内容尚未准备好，请等待更新完成后重试。"
-            : "游戏内容加载失败，请检查网络后重试。";
-        m_retryButton.gameObject.SetActive(true);
-        m_retryButton.Select();
+            : "游戏内容加载失败，请重试。";
+        if (message?.Arguments != null && message.Arguments.TryGetValue("message", out var detail))
+            text.text += "\n" + detail;
+        if (Retry() != null)
+        {
+            Retry().gameObject.SetActive(true);
+            Retry().Select();
+        }
     }
 }

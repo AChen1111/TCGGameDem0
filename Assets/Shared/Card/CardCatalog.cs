@@ -13,13 +13,18 @@ public static class CardCatalog
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     static void ResetState()
     {
-        s_initialized = false;
-        s_table.Clear();
+        Uninstall();
     }
 
     public static void Initialize()
     {
         if (!s_initialized) throw new InvalidOperationException("卡牌配置尚未初始化");
+    }
+
+    public static void Uninstall()
+    {
+        s_initialized = false;
+        s_table.Clear();
     }
 
     public static void Install(System.Collections.Generic.IReadOnlyList<Table.CardRow> rows)

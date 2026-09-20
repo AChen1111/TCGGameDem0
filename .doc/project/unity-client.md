@@ -21,7 +21,7 @@
 | `Player/` | `PlayerSession` 持有令牌与当前玩家；`AuthFlow` 做输入校验和错误提示；`PlayerChangePublisher` 比较前后资料，只派发变化字段 |
 | `Network/Http/` | `BackendHttpClient` 传输；`BackendJson` 序列化；`BackendHttpError` 转问题详情；`BackendConfig` 读地址与超时 |
 | `Network/Auth/` | `AuthApi` 端点与 DTO；`AuthSessionStore` 持久化 Refresh Token |
-| `Network/GameConfig/` | 拉取、ETag 缓存、内存索引；失败时可用本地最后一份快照 |
+| `Network/GameConfig/` | 登录前按标签加载全部配置产物，校验后提交就绪状态 |
 | `UI/Core/` | `UIFrame`、Panel / Window 层、ListView、从预制体生成脚本的 Authoring |
 | `UI/LogIn/`、`UI/PreGameUI/`、`UI/BaseUI/` | 登录、大厅 / 商城 / 头像 / 改名、通用提示与选择窗 |
 | `UI/Widgets/` | 资料、金币、头像、布局小部件；再按 `Player/`、`Layout/` 分子目录 |
@@ -99,7 +99,7 @@ Panel 常驻分层级显示；Window 进栈，带遮罩层。屏幕控制器从 
 | `Assets/Scripts/Editor/LogSystem` | 同上 | ALog 控制台、堆栈图、跳转 |
 | `Assets/Scripts/Editor/UI` | 同上 | UI 框架工具、切图导入 |
 
-菜单按功能挂在 `Tools/后端服务`、`Tools/热更发布`、`Tools/配置表`、`Tools/运营工具`、`Tools/美术资源`、`Tools/UI`。窗口入口同时在 `Window/TCG/`。资产创建菜单用 `TCG/UI`、`TCG/Addressable`。
+菜单按功能挂在 `Tools/后端服务`、`Tools/热更发布`、`Tools/AddToBytes`、`Tools/运营工具`、`Tools/美术资源`、`Tools/UI`。窗口入口同时在 `Window/TCG/`。资产创建菜单用 `TCG/UI`、`TCG/Addressable`。日常配置生成只走 `Tools/AddToBytes`。
 
 `HotUpdate.Editor` 不能引用 `Assets/Editor` 里的类型，菜单字符串与 `EditorMenus` 保持同一分组即可。
 

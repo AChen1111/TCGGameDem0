@@ -1,50 +1,34 @@
-# 游戏配置编辑与发布
+# 游戏配置
 
-## 唯一编辑源
+日常只改 `TableData/` 下的 CSV，然后点 Unity 菜单 **`Tools/AddToBytes`**。不要手改 `Assets/GameConfiguration/` 里的生成文件，也不要再用旧的逐表导出菜单。
 
-- `GameConfig/game-config.csv`: 头像、壁纸和卡包商品。
-- `GameConfig/card-gacha.csv`: 分池卡牌权重和稀有度权重。
-- `GameConfig/all-cards.csv`: CardAll 的卡牌与来源池。
-- `TableData/Card/Cards.csv`: 卡牌属性。
-- `TableData/Localization/Translations.csv`: 游戏多语言文本。
-- `Assets/UI/Prefab/Hall/PreGameUI/WallpaperDisplayConfig.asset`: Inspector 编辑壁纸偏移。
-- `Assets/GameConfiguration/LocalizationSettings.asset`: Inspector 编辑语言字体映射。
+## 目录
 
-`Assets/GameConfiguration/config.json` 是生成产物，不要直接编辑。
-卡牌与语言表先导出为 `TableData/Generated/*.bytes`，发布时嵌入配置 JSON；客户端不再从 Resources 加载这些表。
+| 位置 | 用途 |
+| --- | --- |
+| `TableData/*.csv` | 唯一源表，全部平铺，不要放进子目录 |
+| `Assets/GameConfiguration/*.bytes` | 生成产物 |
+| `Assets/GameConfiguration/LocalizationSettings.asset` | 字体映射，由按钮校验并归组；字体资源仍在原目录 |
 
-## 发布流程
+CSV 第一行是字段名，第二行是字段类型，第三行起是数据。类型必须写明：`string`、`int`、`long`、`float`、`bool` 及其数组，可空标量加 `?`。数组单元格写 JSON 数组。卡牌 ID 用字符串，保留前导零。
 
-继续使用 Unity 现有内容发布窗口。它会自动导表、校验引用和字段、生成配置、构建 Addressables、生成热更新 DLL，并上传完整内容包。
+## 产物
 
-`Remote_GameConfig` 使用远端构建及加载路径，配置 JSON 与语言设置打在同一个 Bundle；卡图和字体实体资源沿用原资源组。壁纸源资产仅用于编辑，运行时读取 JSON 中已发布的偏移。
+每张顶层 CSV 输出同名 `.bytes`（`BinaryTable`）。新加一张表后，再点一次按钮即可生成、归组并在登录前预加载；业务行为仍要另接代码。
 
-内容包清单升级为 schemaVersion 2，必须包含 `GameConfig/config.json`。该文件与 Bundle 中的配置 JSON 来自同一生成文件，清单携带文件大小和 SHA-256。后台校验成功后才允许激活。价格、卡池和资源随同一个 Release 切换和回滚。
+## 按钮做什么
 
-## 客户端与交易
+`Tools/AddToBytes` 只生成配置并同步 Addressables，不构建、不发布。它会：
 
-Editor 默认使用工程内配置，不下载当前 Release。Player 与勾选远程内容的 Editor 仍在启动时下载当前 Release。自动登录复用本次启动的版本检查；手动登录和注册进入大厅时，仅远程内容模式会再查一次活动 Manifest。
+1. 扫描 `TableData/`，子目录中的 CSV 会报路径并要求迁到顶层。
+2. 校验文件名、表头、类型、数据和九个必需类别的跨表引用。
+3. 先在临时目录生成整套产物，成功后再更新 `Assets/GameConfiguration/`；失败则保留上一套。
+4. 地址写成 `GameConfig/<文件主名>`，统一标签 `GameConfig`。字体映射地址是 `GameConfig/LocalizationSettings`。
+5. 清理没有源表的生成产物，保留字体资产和其他手管文件。
+6. 相同内容不重写，保留资产 GUID。
 
-购买、抽卡及配置相关请求仍可携带：
+发布窗口在构建 Addressables 前会调用同一套生成逻辑。内容包是协议版本 3，清单用 `configs[]` 登记类别、地址、格式、路径、大小和 SHA-256。
 
-- `X-Content-Release`: 当前 Release GUID。
-- `X-Content-Channel`: 发布渠道。
-- `X-Content-Platform`: 平台。
-- `X-Content-App-Version`: 安装包版本。
+## 登录前加载
 
-后台按渠道 / 平台 / 安装包版本定位活动配置；头缺失或不匹配时改用当前已激活的 Ready 配置，不再因客户端 Release 返回 `CONTENT_UPDATE_REQUIRED`。没有可用发布配置时仍返回 `CONTENT_NOT_READY`。玩家 Revision 并发校验继续保留。
-
-## 首次部署
-
-1. 这是安装包协议升级：共享 AOT 配置类型、启动逻辑和表结构指纹均发生变化，需要发布新的客户端安装包，不能只替换旧安装包的热更新 DLL。
-2. 部署新版后台。启动时执行 `20260915090000_PublishedConfiguration`，删除旧商品、卡池和配置历史表；账号、金币和背包表保留。该迁移不支持 Down 恢复已删除的数据。
-3. 为新版 AppVersion 构建并发布完整内容包，激活该 Release，再开放新版客户端。
-4. 新版包激活前，交易被阻止。旧内容包没有统一配置，不能在新版后台上重新激活；回滚请选择带 schemaVersion 2 配置的完整发布包。
-
-原后台配置页面、CSV 导入 API 和独立配置发布窗口已移除。玩家管理和内容发布后台继续使用。旧 `Data/game-config-git` 目录不再被读取；历史部署残留目录可在下线旧版本后清理。
-
-## 验收
-
-首次下载、断网重试、无变化不重复下载、配置校验失败不激活、无活动配置时交易失败、完整 Release 回滚、迁移保留账号资产。
-
-本次修改未自动执行构建、编译、数据库迁移或测试；后续按明确的验收或发布指令执行。
+远程模式仍先把 Addressables 全量下到磁盘缓存，再按标签加载全部配置和字体映射。全部解析并校验通过后才进入初始化与登录。失败停在启动页，显示失败原因，可重试。

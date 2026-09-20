@@ -3,18 +3,20 @@ import csv,json,re,sys
 sys.dont_write_bytecode = True
 from inventory import ROOT,documents,inspect,paths
 
-rows=list(csv.DictReader((ROOT/'TableData/Localization/Translations.csv').open(encoding='utf-8')))
-table={r['key']:r for r in rows}
+with (ROOT/'TableData/Translations.csv').open(encoding='utf-8-sig', newline='') as csv_file:
+    header=next(csv.reader(csv_file)); next(csv.reader(csv_file))
+    rows=list(csv.DictReader(csv_file, fieldnames=header))
+table={r['Key']:r for r in rows}
 assert len(table)==len(rows),'Duplicate CSV key'
 for row in rows:
-    assert row['zh-CN'] and row['en'],row['key']
-    assert set(re.findall(r'\{(\w+)\}',row['zh-CN']))==set(re.findall(r'\{(\w+)\}',row['en'])),row['key']
+    assert row['Chinese'] and row['English'],row['Key']
+    assert set(re.findall(r'\{(\w+)\}',row['Chinese']))==set(re.findall(r'\{(\w+)\}',row['English'])),row['Key']
 original=[]
 for line in (ROOT/'映射表.md').read_text(encoding='utf-8-sig').splitlines():
     match=re.match(r'^\| `((?:ui|err|shop|card)\.[^`]+)` \| (.*) \|$',line)
     if not match:continue
     cells=[c.strip().replace(r'\|','|').replace('<br>','\n') for c in re.split(r'(?<!\\)\|',match[2])]
-    assert [table[match[1]]['zh-CN'],table[match[1]]['en']]==cells,match[1]
+    assert [table[match[1]]['Chinese'],table[match[1]]['English']]==cells,match[1]
     original.append(match[1])
 assert len(original)==411
 

@@ -53,5 +53,5 @@ Manifest 里的热更产物带路径、大小、SHA-256。Addressables 产物带
 
 - AOT 只认识 `HotUpdateEntry.Boot(Action<float>, string addressablesBaseUrl, Action<string>)`。
 - 热更层用 `AddressableLoader` 按 `AddressKeys` 取资源，不自己拼 CDN URL。
-- 配置表走 `GameConfig` HTTP，不打进 Addressables 包冒充卡片定义热更。
+- 游戏配置由 `Tools/AddToBytes` 生成 `.bytes`，打进 `Remote_GameConfig`，登录前按标签 `GameConfig` 全量加载。
 - 决斗规则若共享给服务器，用链接的纯 C# 源码，不把整个 `HotUpdate.dll` 丢给 ASP.NET。

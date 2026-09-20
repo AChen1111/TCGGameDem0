@@ -10,6 +10,9 @@ public class DownLoadSliderTests
     {
         var root = new GameObject("bar");
         var slider = root.AddComponent<Slider>();
+        var retry = new GameObject("RetryButton");
+        retry.transform.SetParent(root.transform);
+        retry.AddComponent<Button>();
         var tmp = new GameObject("text").AddComponent<TextMeshProUGUI>();
         tmp.gameObject.SetActive(false);
         tmp.gameObject.AddComponent<LocalizedText>();
@@ -20,11 +23,13 @@ public class DownLoadSliderTests
         {
             bar.Set(0.42f);
             Assert.AreEqual(0.42f, slider.value, 0.0001f);
-            Assert.AreEqual("42%", tmp.text);
+            Assert.AreEqual("正在更新游戏内容 42%", tmp.text);
 
-            var error = new LocalizedMessage("err.content_update_failed");
+            var error = new LocalizedMessage("err.addressables_update_failed",
+                new System.Collections.Generic.Dictionary<string, object> { ["message"] = "配置解析失败: avatars" });
             bar.SetError(error);
-            Assert.AreEqual(error.ToString(), tmp.text);
+            StringAssert.Contains("游戏内容加载失败，请重试。", tmp.text);
+            StringAssert.Contains("配置解析失败: avatars", tmp.text);
         }
         finally
         {

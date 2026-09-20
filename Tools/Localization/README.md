@@ -2,12 +2,12 @@
 
 ## 数据与字体
 
-- `TableData/Localization/Translations.csv` 是后续维护的唯一语言主表, 列为 `key,zh-CN,en`。CSV 使用 UTF-8, 用支持标准 CSV 引号和多行单元格的编辑器维护。
+- `TableData/Translations.csv` 是唯一语言主表，列为 `Key,Chinese,English`，第二行是类型。CSV 使用 UTF-8，用支持标准 CSV 引号和多行单元格的编辑器维护。
 - 初次导入完整 411 条, 另补充加载动画、启动错误及大厅遗漏文案。`card.*` 已收录, 暂不绑定卡牌 UI。
-- `Assets/Resources/Localization/Settings.asset` 配置中英 TMP 字体。字体与导出的 `Translations.bytes` 内置安装包, CSV 不打包, 不通过远端内容更新。
+- `Assets/GameConfiguration/LocalizationSettings.asset` 配置中英 TMP 字体。字体资源保持原位置，随 Addressables 下载。
 - `映射表.md` 仅为初始参考。`import_mapping.py` 拒绝覆盖已存在的 CSV。
 
-修改 CSV 后执行 `powershell.exe -NoProfile -ExecutionPolicy Bypass -File Tools/UnityExcel2BytesCs/Excel2CsBytesTool.ps1`, 或点击 Unity 菜单 **SDGSupporter → Excel → Export Localization CSV**。导出器同时生成 bytes 和 C# 数据类, 无需先编译生成的类。详情见 [导表工具说明](../UnityExcel2BytesCs/README.md)。运行时仅首次读取 bytes 建立字典。
+修改 CSV 后点击 Unity 菜单 **Tools/AddToBytes**，与其他游戏配置一起生成。`Translations.csv` 输出 `Assets/GameConfiguration/Translations.bytes`。运行时在登录前随全部配置加载。
 
 ## UI 组件
 

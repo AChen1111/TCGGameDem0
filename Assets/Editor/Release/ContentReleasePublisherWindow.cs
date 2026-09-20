@@ -392,10 +392,19 @@ public static class ContentReleasePackageBuilder
         var sources = new List<PackageSource>
         {
             new PackageSource(dllPath, HotUpdateRelativePath),
-            new PackageSource(PublishedConfigBuilder.ConfigPath, "GameConfig/config.json"),
             new PackageSource(catalogs[0], "Addressables/" + Path.GetFileName(catalogs[0])),
             new PackageSource(catalogHash, "Addressables/" + Path.GetFileName(catalogHash))
         };
+        var configFiles = Directory.GetFiles(PublishedConfigBuilder.Root)
+            .Where(path =>
+            {
+                string name = Path.GetFileNameWithoutExtension(path);
+                return AChen.Configuration.GameConfigTables.ValidName(name)
+                    && string.Equals(Path.GetFileName(path), AChen.Configuration.GameConfigTables.FileName(name), StringComparison.Ordinal);
+            })
+            .OrderBy(p => p, StringComparer.Ordinal).ToArray();
+        AChen.Configuration.GameConfigTables.Assemble(configFiles.ToDictionary(Path.GetFileNameWithoutExtension, File.ReadAllBytes));
+        sources.AddRange(configFiles.Select(path => new PackageSource(path, "GameConfig/" + Path.GetFileName(path))));
         sources.AddRange(bundles.Select(path => new PackageSource(
             path,
             "Addressables/" + RelativePath(addressablesRoot, path))));
@@ -403,8 +412,18 @@ public static class ContentReleasePackageBuilder
 
         var manifest = new ReleaseManifest
         {
-            schemaVersion = 2,
-            configPath = "GameConfig/config.json",
+            schemaVersion = 3,
+            configs = configFiles.Select(path =>
+            {
+                string name = Path.GetFileNameWithoutExtension(path);
+                return new AChen.Configuration.ConfigArtifact
+                {
+                    category = name,
+                    address = AChen.Configuration.GameConfigTables.Address(name),
+                    format = AChen.Configuration.GameConfigTables.Format(name),
+                    path = "GameConfig/" + Path.GetFileName(path), size = new FileInfo(path).Length, sha256 = Sha256OfFile(path)
+                };
+            }).ToArray(),
             platform = platform,
             appVersion = appVersion,
             contentVersion = contentVersion,
@@ -500,7 +519,7 @@ public static class ContentReleasePackageBuilder
         public string appVersion;
         public string contentVersion;
         public string hotUpdatePath;
-        public string configPath;
+        public AChen.Configuration.ConfigArtifact[] configs;
         public string catalogPath;
         public string catalogHashPath;
         public ReleaseFile[] files;

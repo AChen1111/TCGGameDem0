@@ -4,7 +4,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-target = ROOT / 'TableData/Localization/Translations.csv'
+target = ROOT / 'TableData/Translations.csv'
 if target.exists():
     raise SystemExit('CSV 已存在, 不覆盖后续维护的翻译.')
 rows = []
@@ -26,6 +26,7 @@ rows += [
 target.parent.mkdir(parents=True, exist_ok=True)
 with target.open('w', encoding='utf-8', newline='') as output:
     writer = csv.writer(output)
-    writer.writerow(['key', 'zh-CN', 'en'])
+    writer.writerow(['Key', 'Chinese', 'English'])
+    writer.writerow(['string', 'string', 'string'])
     writer.writerows(rows)
 print(f'Imported {len(rows)} entries, including all 411 original entries.')

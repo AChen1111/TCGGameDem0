@@ -90,7 +90,7 @@
   → 客户端 GameConfigManager 按 ETag 拉新 bootstrap
 ```
 
-Unity：`Tools/配置表/发布窗口`，默认 CSV 为工程根下 `GameConfig/game-config.csv`。流程是解析预览 → 上传草稿 → 发布当前草稿。
+Unity 日常入口是 `Tools/AddToBytes`，源表平铺在 `TableData/`。内容发布窗口构建前会调用同一套生成逻辑，把全部 `.bytes` 打进协议版本 3 的 `configs[]`。浏览器 `/admin/game-config` 不再作为日常导表入口。
 
 浏览器：`/admin/game-config` 可逐条增改头像、壁纸、卡包，或导入不超过 5 MiB 的 CSV。Git 按钮：
 

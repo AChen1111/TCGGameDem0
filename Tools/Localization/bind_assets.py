@@ -7,18 +7,22 @@ from inventory import ROOT, documents, inspect, paths
 def guid(path):
     return re.search(r'^guid: (\w+)',Path(str(path)+'.meta').read_text(),re.M)[1]
 
-csv_path=ROOT/'TableData/Localization/Translations.csv'
-rows=list(csv.DictReader(csv_path.open(encoding='utf-8')))
+csv_path=ROOT/'TableData/Translations.csv'
+with csv_path.open(encoding='utf-8-sig', newline='') as csv_file:
+    header=next(csv.reader(csv_file)); next(csv.reader(csv_file))
+    rows=list(csv.DictReader(csv_file, fieldnames=header))
 extras=[
     ('ui.lobby.deck','卡组','Deck'),('ui.lobby.exit','退出','Exit'),('ui.lobby.shop','商城','Shop'),
     ('ui.lobby.mail','邮件','Mail'),('ui.lobby.friend','好友','Friends'),('ui.lobby.settings','设置','Settings')]
-existing={r['key'] for r in rows}
+existing={r['Key'] for r in rows}
 for key,zh,en in extras:
-    if key not in existing: rows.append({'key':key,'zh-CN':zh,'en':en})
-with csv_path.open('w',encoding='utf-8',newline='') as f:
-    writer=csv.DictWriter(f,fieldnames=['key','zh-CN','en']);writer.writeheader();writer.writerows(rows)
+    if key not in existing: rows.append({'Key':key,'Chinese':zh,'English':en})
+if existing != {r['Key'] for r in rows}:
+    with csv_path.open('w',encoding='utf-8',newline='') as f:
+        writer=csv.DictWriter(f,fieldnames=['Key','Chinese','English'])
+        writer.writeheader(); writer.writerow({'Key':'string','Chinese':'string','English':'string'}); writer.writerows(rows)
 
-lookup={r['zh-CN']:r['key'] for r in rows if r['key'].startswith('ui.')}
+lookup={r['Chinese']:r['Key'] for r in rows if r['Key'].startswith('ui.')}
 lookup.update({en:key for key,zh,en in extras})
 script_guid=guid(ROOT/'Assets/Shared/Localization/LocalizedText.cs')
 component_ids={}

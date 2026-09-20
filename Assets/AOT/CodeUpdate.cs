@@ -18,7 +18,7 @@ public sealed class ContentReleaseManifest
     public string contentVersion;
     public string publishedAt;
     public string serverTime;
-    public HotUpdateArtifact config;
+    public AChen.Configuration.ConfigArtifact[] configs;
     public HotUpdateArtifact hotUpdate;
     public AddressablesArtifact addressables;
 }
@@ -140,7 +140,7 @@ public static class CodeUpdate
         AChen.Configuration.ContentSession.Platform = platform;
         AChen.Configuration.ContentSession.AppVersion = appVersion;
         AChen.Configuration.ContentSession.ReleaseId = EditorLocalReleaseId;
-        AChen.Configuration.ContentSession.ConfigHash = string.Empty;
+        AChen.Configuration.ContentSession.Configs = null;
         AChen.Configuration.ContentSession.CatalogUrl = null;
         AChen.Configuration.ContentSession.ServerTime = now;
         AChen.Configuration.ContentSession.ServerTimeReceivedAt = now;
@@ -257,7 +257,7 @@ public static class CodeUpdate
         AChen.Configuration.ContentSession.Platform = platform;
         AChen.Configuration.ContentSession.AppVersion = appVersion;
         AChen.Configuration.ContentSession.ReleaseId = manifest.releaseId;
-        AChen.Configuration.ContentSession.ConfigHash = manifest.config.sha256;
+        AChen.Configuration.ContentSession.Configs = manifest.configs;
         AChen.Configuration.ContentSession.CatalogUrl = ResolveContentUrl(backendUrl, manifest.addressables.catalogPath);
         AChen.Configuration.ContentSession.ServerTime = DateTimeOffset.Parse(manifest.serverTime);
         AChen.Configuration.ContentSession.ServerTimeReceivedAt = manifestReceivedAt;
@@ -273,7 +273,7 @@ public static class CodeUpdate
         string platform,
         string appVersion)
     {
-        if (manifest == null || manifest.schemaVersion != 2)
+        if (manifest == null || manifest.schemaVersion != 3)
         {
             throw new InvalidDataException("不支持的 schemaVersion。");
         }
@@ -283,9 +283,7 @@ public static class CodeUpdate
             || !string.Equals(manifest.channel, channel, StringComparison.Ordinal)
             || !string.Equals(manifest.platform, platform, StringComparison.Ordinal)
             || !string.Equals(manifest.appVersion, appVersion, StringComparison.Ordinal)
-            || manifest.config == null
-            || manifest.config.size < 1
-            || string.IsNullOrWhiteSpace(manifest.config.sha256)
+            || manifest.configs == null || manifest.configs.Length == 0
             || !DateTimeOffset.TryParse(manifest.serverTime, out _)
             || manifest.hotUpdate == null
             || manifest.addressables == null
@@ -296,8 +294,8 @@ public static class CodeUpdate
         }
 
         string expectedPrefix = "/content/releases/" + releaseId.ToString("D") + "/";
-        if (manifest.config.path != expectedPrefix + "GameConfig/config.json"
-            || !manifest.hotUpdate.path.StartsWith(expectedPrefix, StringComparison.OrdinalIgnoreCase)
+        AChen.Configuration.ConfigArtifacts.Validate(manifest.configs, expectedPrefix);
+        if (!manifest.hotUpdate.path.StartsWith(expectedPrefix, StringComparison.OrdinalIgnoreCase)
             || !manifest.addressables.basePath.StartsWith(expectedPrefix, StringComparison.OrdinalIgnoreCase)
             || !manifest.addressables.catalogPath.StartsWith(expectedPrefix, StringComparison.OrdinalIgnoreCase)
             || !manifest.addressables.catalogHashPath.StartsWith(expectedPrefix, StringComparison.OrdinalIgnoreCase))

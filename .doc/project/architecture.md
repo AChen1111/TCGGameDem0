@@ -176,7 +176,7 @@ ShopWindow → ShopCategory
 | --- | --- | --- |
 | `Tools/后端服务` | `Editor/Backend` | 启动、停止、探活本地 API |
 | `Tools/热更发布` | `Editor/Release` | 构建 DLL / Addressables 并发布 |
-| `Tools/配置表` | `Editor/GameConfig` | 编辑并发布游戏配置 |
+| `Tools/AddToBytes` | `Editor/GameConfig` | 从 `TableData/` 生成全部配置并同步 Addressables |
 | `Tools/运营工具` | `Editor/Ops` | 给账号加金币 |
 | `Tools/美术资源` | `Editor/Art` | Spine 等资源处理 |
 | `Tools/UI`、`Window/TCG` | `Scripts/Editor/UI`、`LogSystem`、`Addressable` | UI 生成、日志、Addressable 目录 |

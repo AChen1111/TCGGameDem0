@@ -25,16 +25,21 @@ public static class LocalizationService
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     static void ResetState()
     {
-        s_initialized = false;
-        s_table.Clear();
-        s_reported.Clear();
-        s_settings = null;
+        Uninstall();
         LanguageChanged = null;
     }
 
     public static void Initialize()
     {
         if (!s_initialized) throw new InvalidOperationException("多语言配置尚未初始化");
+    }
+
+    public static void Uninstall()
+    {
+        s_initialized = false;
+        s_table.Clear();
+        s_reported.Clear();
+        s_settings = null;
     }
 
     public static void Install(IReadOnlyList<Table.TranslationRow> rows, LocalizationSettings settings)

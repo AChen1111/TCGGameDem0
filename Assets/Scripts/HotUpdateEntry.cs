@@ -21,15 +21,16 @@ public static class HotUpdateEntry
         {
             if (string.IsNullOrEmpty(addressablesBaseUrl))
             {
-                await UpdateDetector.InitializeLocalAsync(onProgress);
+                await UpdateDetector.InitializeLocalAsync(value => onProgress?.Invoke(value * 0.8f));
             }
             else
             {
-                await UpdateDetector.DownloadAssets(addressablesBaseUrl, onProgress);
+                await UpdateDetector.DownloadAssets(addressablesBaseUrl, value => onProgress?.Invoke(value * 0.8f));
             }
-            await AChen.Networking.LocalGameConfiguration.InitializeAsync();
+            await AChen.Networking.LocalGameConfiguration.InitializeAsync(value => onProgress?.Invoke(0.8f + value * 0.19f));
             var initScene = Addressables.LoadSceneAsync(InitSceneAddress, LoadSceneMode.Single);
             await initScene.Task;
+            onProgress?.Invoke(1f);
             if (initScene.Status != UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
             {
                 var error = initScene.OperationException;
