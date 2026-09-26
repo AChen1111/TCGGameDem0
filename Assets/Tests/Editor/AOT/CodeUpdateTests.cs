@@ -37,4 +37,32 @@ public class CodeUpdateTests
         Assert.IsFalse(CodeUpdate.IsComplete);
     }
 
+    [Test]
+    public void EditorLocalSession_DoesNotDependOnWorkbenchReceipt()
+    {
+        var fields = typeof(AChen.Configuration.ContentSession).GetFields(
+            System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
+        var previous = fields.Select(field => field.GetValue(null)).ToArray();
+        bool wasComplete = CodeUpdate.IsComplete;
+        try
+        {
+            AChen.Configuration.ContentSession.ConfigHash = "previous-remote-config";
+            AChen.Configuration.ContentSession.CatalogUrl = "https://example.invalid/catalog.bin";
+            CodeUpdate.BindEditorLocalSession("http://127.0.0.1:5080", "development", "Editor", "1.0.0");
+
+            Assert.AreEqual("Editor", AChen.Configuration.ContentSession.Target);
+            Assert.AreEqual(CodeUpdate.EditorLocalReleaseId, AChen.Configuration.ContentSession.ReleaseId);
+            Assert.IsTrue(AChen.Configuration.ContentSession.UseLocalAssets);
+            Assert.IsNull(AChen.Configuration.ContentSession.ConfigHash);
+            Assert.IsNull(AChen.Configuration.ContentSession.Configs);
+            Assert.IsNull(AChen.Configuration.ContentSession.CatalogUrl);
+            Assert.IsTrue(CodeUpdate.IsComplete);
+        }
+        finally
+        {
+            for (int i = 0; i < fields.Length; i++) fields[i].SetValue(null, previous[i]);
+            typeof(CodeUpdate).GetProperty(nameof(CodeUpdate.IsComplete)).SetValue(null, wasComplete);
+        }
+    }
+
 }

@@ -2,17 +2,11 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
 using UnityEditor;
-using UnityEditor.AddressableAssets.Build;
-using UnityEditor.AddressableAssets.Settings;
-using UnityEngine;
 
-/// <summary>Python 运营终端入口及内容构建桥接, 复用现有配置和 Release 构建器.</summary>
+/// <summary>打开 Python 运营终端.</summary>
 public static class PythonOperationsBridge
 {
-    static bool s_Building;
-
     [MenuItem(EditorMenus.Window + "Python 终端")]
     [MenuItem(EditorMenus.Ops + "Python 终端")]
     static void OpenTerminal()
@@ -46,10 +40,5 @@ public static class PythonOperationsBridge
             ALog.LogError("打开 Python 运营终端失败. Error=" + exception.Message, ALogCategories.Default);
             EditorUtility.DisplayDialog("打开运营终端失败", exception.Message, "关闭");
         }
-    }
-
-    public static string BeginBuild(string jobId, string contentVersion)
-    {
-        throw new InvalidOperationException("旧内容发布流程已退出, 请使用 Window/TCG/开发工作台");
     }
 }

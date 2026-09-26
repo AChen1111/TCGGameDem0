@@ -52,13 +52,14 @@ public static class CodeUpdate
         ContentSession.Target = "Editor";
         ContentSession.AppVersion = version;
         ContentSession.ReleaseId = EditorLocalReleaseId;
-#if UNITY_EDITOR
-        var prepared = JsonUtility.FromJson<DevelopmentManifest>(File.ReadAllText("Library/Development/editor-session.json"));
-        ContentSession.ConfigHash = prepared.configHash;
-        ContentSession.ReleaseId = prepared.contentId;
-#endif
+        ContentSession.ConfigHash = null;
+        ContentSession.Configs = null;
+        ContentSession.CatalogUrl = null;
         ContentSession.UseLocalAssets = true;
         ContentSession.RestartRequired = false;
+        CurrentManifest = null;
+        AddressablesBaseUrl = null;
+        LastErrorMessage = null;
         ContentSession.ServerTime = ContentSession.ServerTimeReceivedAt = DateTimeOffset.UtcNow;
         IsComplete = true;
     }
@@ -93,7 +94,7 @@ public static class CodeUpdate
             yield return request.SendWebRequest();
             if (request.result != UnityWebRequest.Result.Success)
             {
-                Fail(request.responseCode == 404 ? "尚未发布此平台内容, 请在开发工作台选择当前平台并上传热更内容" :
+                Fail(request.responseCode == 404 ? "尚未发布此平台内容, 请先发布当前平台的热更内容" :
                     "无法获取后端最新内容, 请检查后端和网络连接 (Android USB 调试需转发 5080). " + request.error);
                 yield break;
             }
@@ -106,6 +107,7 @@ public static class CodeUpdate
         {
             manifest = JsonUtility.FromJson<DevelopmentManifest>(json);
             if (manifest.schemaVersion != DevelopmentProtocol.Version || manifest.platform != platform ||
+                !DevelopmentProtocol.ValidContentVersion(manifest.contentVersion) || manifest.hotUpdatePath != DevelopmentProtocol.HotUpdatePath ||
                 !Guid.TryParse(manifest.contentId, out _) || manifest.files == null || !DateTimeOffset.TryParse(manifest.serverTime, out _)) throw new FormatException("内容协议不一致, 请更新当前平台的完整游戏包");
             ConfigArtifacts.Validate(manifest.configs, "");
             if (manifest.configHash != DevelopmentProtocol.ConfigHash(manifest.configs)) throw new FormatException("配置清单校验失败");
@@ -119,18 +121,6 @@ public static class CodeUpdate
             if (!names.Contains(manifest.hotUpdatePath) || !names.Contains(manifest.catalogPath) || !names.Contains(manifest.catalogHashPath)) throw new FormatException("内容不完整");
         }
         catch (Exception ex) { Fail(ex.Message); yield break; }
-        string compatibility;
-        using (var request = UnityWebRequest.Get(Application.streamingAssetsPath.Contains("://") ?
-            Application.streamingAssetsPath + "/development-apk.txt" : new Uri(Path.Combine(Application.streamingAssetsPath, "development-apk.txt")).AbsoluteUri))
-        {
-            yield return request.SendWebRequest();
-            compatibility = request.result == UnityWebRequest.Result.Success ? request.downloadHandler.text.Trim() : "";
-        }
-        if (compatibility != manifest.apkCompatibility)
-        {
-            Fail("完整游戏包与最新内容不兼容, 请在开发工作台生成并使用当前平台的完整包");
-            yield break;
-        }
         string directoryError = null;
         try { Directory.CreateDirectory(destination); }
         catch (Exception ex) { directoryError = ex.Message; }

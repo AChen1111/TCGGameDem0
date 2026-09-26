@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading;
 using AChen.Configuration;
 using Cysharp.Threading.Tasks;
@@ -54,6 +55,23 @@ namespace AChen.Networking
                 if (settings == null || settings.chineseFont == null || settings.englishFont == null) throw new FormatException("LocalizationSettings: 字体映射缺失");
                 if (!ContentSession.UseLocalAssets) ConfigArtifacts.Verify(files, ContentSession.Configs);
                 var data = GameConfigTables.Assemble(files);
+                if (ContentSession.UseLocalAssets)
+                {
+                    var configs = files.Select(pair =>
+                    {
+                        using (var hash = SHA256.Create())
+                            return new ConfigArtifact
+                            {
+                                category = pair.Key, address = GameConfigTables.Address(pair.Key),
+                                format = GameConfigTables.Format(pair.Key), path = GameConfigTables.PackagePath(pair.Key),
+                                size = pair.Value.LongLength,
+                                sha256 = BitConverter.ToString(hash.ComputeHash(pair.Value)).Replace("-", "").ToLowerInvariant()
+                            };
+                    }).ToArray();
+                    ConfigArtifacts.Validate(configs, "");
+                    ContentSession.Configs = configs;
+                    ContentSession.ConfigHash = DevelopmentProtocol.ConfigHash(configs);
+                }
                 var cards = Table.CardRow.LoadBytes(data.CardTable);
                 var translations = Table.TranslationRow.LoadBytes(data.TranslationTable);
                 try

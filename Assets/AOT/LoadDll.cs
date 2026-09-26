@@ -10,7 +10,7 @@ using UnityEngine.Networking;
 public class LoadDll : MonoBehaviour
 {
     public const string DllDir = "HybridCLR";
-    public const string HotUpdateFile = "HotUpdate.dll.bytes";
+    public const string HotUpdateFile = "HotUpdate.dll";
     public static string[] AotDllNames => AOTGenericReferences.PatchedAOTAssemblyList.ToArray();
 
     [SerializeField] string backendUrl = CodeUpdate.DefaultBackendUrl;

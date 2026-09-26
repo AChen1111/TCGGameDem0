@@ -1,34 +1,23 @@
-"""运营终端的 HTTP、后端进程及 Unity 构建连接."""
+"""运营终端的 HTTP 与后端进程管理."""
 
 from __future__ import annotations
 
-import hashlib
 import http.client
 import json
 import os
 from pathlib import Path
-import re
 import secrets
 import shutil
 import socket
 import subprocess
 import time
-from urllib.parse import quote, urlsplit
-import uuid
-import zipfile
+from urllib.parse import urlsplit
 
 
 ROOT = Path(__file__).resolve().parents[2]
 WORK = ROOT / "Temp" / "OperationsCli"
 DEVELOPMENT = ROOT / "Library" / "Development"
 AUTH_ENV = "ACHEN_BACKEND_AUTH_SIGNING_KEY"
-PLATFORMS = {"StandaloneWindows64", "Android", "iOS"}
-SEMVER = re.compile(
-    r"(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)"
-    r"(?:-((?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*)"
-    r"(?:\.(?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*))*))?"
-    r"(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?"
-)
 NO_WINDOW = getattr(subprocess, "CREATE_NO_WINDOW", 0)
 
 
@@ -53,30 +42,20 @@ class BackendClient:
         self.base_url = validate_url(base_url)
 
     def request(self, method: str, path: str, body=None, *,
-                allow_missing=False, artifact: Path | None = None, sha256="", timeout=15):
+                allow_missing=False, timeout=15):
         parts = urlsplit(self.base_url)
         connection_type = (http.client.HTTPSConnection if parts.scheme == "https"
                            else http.client.HTTPConnection)
-        connection = connection_type(parts.hostname, parts.port, timeout=600 if artifact else timeout)
+        connection = connection_type(parts.hostname, parts.port, timeout=timeout)
         headers = {}
         route = parts.path.rstrip("/") + path
         try:
-            if artifact:
-                headers.update({"Content-Type": "application/zip",
-                                "X-Artifact-Sha256": sha256,
-                                "Content-Length": str(artifact.stat().st_size)})
-                # 直接流式上传, 大型 Addressables ZIP 不整体读入内存.
-                with artifact.open("rb") as stream:
-                    connection.request(method, route, body=stream, headers=headers)
-                    response = connection.getresponse()
-                    raw = response.read()
-            else:
-                data = None if body is None else json.dumps(body, ensure_ascii=False).encode("utf-8")
-                if data is not None:
-                    headers["Content-Type"] = "application/json"
-                connection.request(method, route, body=data, headers=headers)
-                response = connection.getresponse()
-                raw = response.read()
+            data = None if body is None else json.dumps(body, ensure_ascii=False).encode("utf-8")
+            if data is not None:
+                headers["Content-Type"] = "application/json"
+            connection.request(method, route, body=data, headers=headers)
+            response = connection.getresponse()
+            raw = response.read()
             if allow_missing and response.status == 404:
                 return None
             try:
@@ -206,104 +185,3 @@ class LocalBackend:
                 process.wait(timeout=5)
             print(f"本终端启动的后端已停止，PID={process.pid}。")
         self.process = None
-
-
-def build_content(version: str, report=print) -> Path:
-    if not SEMVER.fullmatch(version):
-        raise OperationError("内容版本须为 SemVer，例如 0.2.1 或 1.0.0-beta.1。")
-    configured = os.environ.get("ACHEN_UNITY_CLI")
-    executable = configured or shutil.which("unity")
-    if not executable:
-        candidate = Path(os.environ.get("LOCALAPPDATA", "")) / "Unity" / "bin" / "unity.exe"
-        executable = str(candidate) if candidate.is_file() else None
-    if not executable:
-        raise OperationError("未找到 Unity CLI。请安装或设置 ACHEN_UNITY_CLI。")
-    job_id = uuid.uuid4().hex
-    state_path = WORK / "content" / job_id / "status.json"
-    code = f"return PythonOperationsBridge.BeginBuild({json.dumps(job_id)}, {json.dumps(version)});"
-    report(f"提交 Unity 构建；状态文件：{state_path}")
-    report("Ctrl+C 可停止终端等待；Unity 已开始的构建会继续，但不会自动上传或发布。")
-    command = [executable, "command", "--proxy-disable", "--project-path", str(ROOT),
-               "--format", "json", "--non-interactive", "--no-banner", "--no-pager",
-               "--timeout", "15", "eval", "--code", code]
-    try:
-        response = subprocess.run(command, cwd=ROOT, capture_output=True, encoding="utf-8",
-                                  errors="replace", timeout=25, creationflags=NO_WINDOW)
-        envelope = json.loads(response.stdout) if response.stdout.strip() else {}
-        data = envelope.get("data") or {}
-        result = data.get("result") or {}
-        if not state_path.exists() and (response.returncode or not envelope.get("success")
-                                      or not data.get("success") or not result.get("success")):
-            detail = json.dumps(envelope, ensure_ascii=False)[:1800] if envelope else response.stderr[-1200:]
-            raise OperationError("Unity 未接受构建，请打开项目并启用 Pipeline，检查阻塞对话框。\n" + detail)
-    except subprocess.TimeoutExpired:
-        # 提交超时也可能已执行; 只读取状态, 不重复提交构建.
-        report("提交响应超时，正在读取同一任务的状态；不会重复提交。")
-    except (ValueError, OSError) as error:
-        if not state_path.exists():
-            raise OperationError("无法调用 Unity CLI。请检查可执行路径和 Pipeline 连接。") from error
-    deadline = time.monotonic() + 1800
-    missing_deadline = time.monotonic() + 20
-    previous = None
-    while time.monotonic() < deadline:
-        if state_path.is_file():
-            try:
-                state = json.loads(state_path.read_text(encoding="utf-8-sig"))
-            except (OSError, ValueError):
-                time.sleep(0.5)
-                continue
-            message = state.get("message")
-            if message != previous:
-                report(message or state.get("status", "处理中"))
-                previous = message
-            if state.get("status") == "failed":
-                raise OperationError(message or "Unity 内容构建失败。")
-            if state.get("status") == "completed":
-                return Path(state["zipPath"])
-        elif time.monotonic() > missing_deadline:
-            raise OperationError(f"尚未收到 Unity 构建状态。请检查编辑器，勿重复提交；状态路径：{state_path}")
-        time.sleep(0.5)
-    raise OperationError(f"等待构建超过 30 分钟；未上传或发布。请检查：{state_path}")
-
-
-def package_info(path: Path):
-    try:
-        with zipfile.ZipFile(path) as archive:
-            entry = archive.getinfo("release-manifest.json")
-            if entry.file_size > 8 * 1024 * 1024:
-                raise OperationError("Release 清单超过 8 MB。")
-            manifest = json.loads(archive.read(entry).decode("utf-8-sig"))
-    except (OSError, ValueError, KeyError, zipfile.BadZipFile) as error:
-        raise OperationError("ZIP 不存在或缺少有效的 release-manifest.json。") from error
-    if (not isinstance(manifest, dict) or manifest.get("platform") not in PLATFORMS
-            or not isinstance(manifest.get("contentVersion"), str)
-            or not SEMVER.fullmatch(manifest["contentVersion"])
-            or not isinstance(manifest.get("appVersion"), str) or not manifest["appVersion"].strip()):
-        raise OperationError("Release 清单的平台或版本无效。")
-    return manifest
-
-
-def publish_content(client: BackendClient, path: Path, notes: str, report=print):
-    manifest = package_info(path)
-    active_path = "/api/content/active-releases/development/" + manifest["platform"] + "/" + quote(manifest["appVersion"], safe="")
-    # 在上传前取得并发令牌, 不覆盖其他操作者在上传期间发布的版本.
-    current = client.request("GET", active_path, allow_missing=True)
-    digest = hashlib.sha256()
-    with path.open("rb") as stream:
-        for block in iter(lambda: stream.read(1024 * 1024), b""):
-            digest.update(block)
-    release = client.request("POST", "/api/content/releases", {
-        "platform": manifest["platform"], "appVersion": manifest["appVersion"],
-        "contentVersion": manifest["contentVersion"], "notes": notes.strip() or None})
-    release_id = release["id"]
-    report(f"已创建 Release={release_id}；正在上传 {path.stat().st_size / 1048576:.1f} MB…")
-    try:
-        client.request("PUT", f"/api/content/releases/{quote(release_id, safe='')}/artifact",
-                       artifact=path, sha256=digest.hexdigest())
-        client.request("PUT", active_path, {"releaseId": release_id,
-                       "expectedCurrentReleaseId": current["releaseId"] if current else None})
-    except (OperationError, KeyboardInterrupt):
-        report(f"发布流程未完成，Release={release_id}，ZIP={path}。请先查询 Release 状态，避免重复创建。")
-        raise
-    report(f"内容发布成功：development / {manifest['platform']} / {manifest['contentVersion']}；Release={release_id}")
-    return release_id

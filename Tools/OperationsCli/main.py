@@ -6,13 +6,12 @@ import argparse
 import json
 import logging
 import os
-from pathlib import Path
 import sys
 from urllib.parse import quote
 import webbrowser
 
 from services import (BackendClient, LocalBackend, OperationError, ROOT,
-                      SEMVER, build_content, package_info, publish_content, validate_url)
+                      validate_url)
 
 
 LOGGER = logging.getLogger("TCG.Operations")
@@ -145,37 +144,6 @@ class OperationsConsole:
         LOGGER.info("发放礼品成功. Account=%s; GiftId=%s; Target=%s",
                     self.redact(username), result["giftId"], result["targetPlayerId"])
 
-    def content_menu(self):
-        action = choose("内容发布 · development", ["通过 Unity 构建并发布", "发布已有 Release ZIP", "查询 Release 状态"])
-        if not action:
-            return
-        if action == 3:
-            release_id = text("Release ID（留空查看最近 10 条）")
-            route = ("/api/content/releases/" + quote(release_id, safe="") if release_id
-                     else "/api/content/releases?page=1&pageSize=10")
-            self.report(json.dumps(self.client.request("GET", route), ensure_ascii=False, indent=2))
-            return
-        if action == 1:
-            version = text("内容版本（SemVer）", required=True)
-            if not SEMVER.fullmatch(version):
-                raise OperationError("版本须为 SemVer，例如 0.2.1。")
-            notes = text("发布备注")
-            summary = (f"后端：{self.client.base_url}\n内容版本：{version}\n"
-                       "使用 Unity 当前平台与 App 版本，生成配置、构建 Addressables、编译 HybridCLR DLL，"
-                       "上传并切换 development 活动版本。")
-            if not confirm(summary):
-                return
-            self.client.request("GET", "/api/content/releases?page=1&pageSize=1")
-            path = build_content(version, self.report)
-        else:
-            path = Path(text("Release ZIP 路径", required=True).strip('"')).expanduser().resolve()
-            manifest = package_info(path)
-            notes = text("发布备注")
-            if not confirm(f"后端：{self.client.base_url}\nZIP：{path}\n平台：{manifest['platform']}\n"
-                           f"App：{manifest['appVersion']}\n内容：{manifest['contentVersion']}\n上传并激活到 development。"):
-                return
-        publish_content(self.client, path, notes, self.report)
-
     def run(self):
         self.report(f"项目：{ROOT}\n使用数字选择、回车确认；Ctrl+C 取消当前操作。")
         try:
@@ -197,7 +165,7 @@ class OperationsConsole:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="TCG 后端服务、账号礼品和金币交互终端; 内容开发请使用 Unity 开发工作台")
+    parser = argparse.ArgumentParser(description="TCG 后端服务、账号礼品和金币交互终端")
     parser.add_argument("--backend", default=os.environ.get("ACHEN_BACKEND_URL", "http://127.0.0.1:5080"),
                         help="后端基础地址，默认 http://127.0.0.1:5080")
     args = parser.parse_args()
