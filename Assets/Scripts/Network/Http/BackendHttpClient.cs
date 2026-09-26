@@ -94,12 +94,9 @@ namespace AChen.Networking
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.timeout = m_config.TimeoutSeconds;
                 request.SetRequestHeader("Accept", "application/json");
-                if (!string.IsNullOrEmpty(AChen.Configuration.ContentSession.Channel))
-                {
-                    request.SetRequestHeader("X-Content-Channel", AChen.Configuration.ContentSession.Channel);
-                    request.SetRequestHeader("X-Content-Platform", AChen.Configuration.ContentSession.Platform);
-                    request.SetRequestHeader("X-Content-App-Version", AChen.Configuration.ContentSession.AppVersion);
-                }
+                request.SetRequestHeader("X-Content-Target", AChen.Configuration.ContentSession.Target ?? "Editor");
+                request.SetRequestHeader("X-Config-Hash", AChen.Configuration.ContentSession.ConfigHash ?? "");
+
 
                 if (body != null)
                 {
@@ -133,7 +130,13 @@ namespace AChen.Networking
                 }
                 catch (UnityWebRequestException)
                 {
-                    throw BackendHttpError.FromRequest(request);
+                    var failure = BackendHttpError.FromRequest(request);
+                    if (request.responseCode == 409 && request.downloadHandler.text.Contains("CONTENT_CHANGED"))
+                    {
+                        AChen.Configuration.ContentSession.RestartRequired = true;
+                        ContentUpdatePrompt.ShowRestart();
+                    }
+                    throw failure;
                 }
 
                 return new BackendHttpResponse(

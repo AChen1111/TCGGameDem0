@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 2554234886947921730}
   - component: {fileID: 1439030560080144986}
   - component: {fileID: 4249223924940866679}
+  - component: {fileID: 5711779490207142535}
   m_Layer: 5
   m_Name: MessageWindow
   m_TagString: Untagged
@@ -150,6 +151,18 @@ MonoBehaviour:
   windowPriority: 0
   isPopup: 1
   m_TxtMessage: {fileID: 7249435883062365388}
+--- !u!225 &5711779490207142535
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5414364316487525683}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8042739573809434753
 GameObject:
   m_ObjectHideFlags: 0

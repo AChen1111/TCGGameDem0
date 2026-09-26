@@ -15,6 +15,7 @@
 # [attr]unity-yaml        merge=unityyamlmerge text linguist-language=yaml linguist-generated
 
 # Unity source files
+/运营工具.cmd           text eol=crlf
 *.cginc                 text
 *.compute               text linguist-language=hlsl
 *.cs                    text diff=csharp

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -28,8 +27,7 @@ public class CardPickWindow : AWindowController<CardPickWindowProperty>
     GameObject _stage;
     CardPickController _controller;
     RenderTexture _rt;
-    CanvasGroup _canvasGroup;
-    bool _closing;
+    protected override float TransitionDuration => _fadeDuration;
 
     protected override void AddListeners()
     {
@@ -49,15 +47,6 @@ public class CardPickWindow : AWindowController<CardPickWindowProperty>
 
     protected override void OnOpen()
     {
-        _closing = false;
-        CanvasGroup group = ResolveCanvasGroup();
-        if (group != null)
-        {
-            group.alpha = 0f;
-            group.interactable = false;
-            group.blocksRaycasts = true;
-        }
-
         if (!TrySpawnStage())
         {
             return;
@@ -69,19 +58,12 @@ public class CardPickWindow : AWindowController<CardPickWindowProperty>
         }
 
         _controller.Play(Properties.Cards, UI_Close);
-        FadeInAsync().Forget();
         ALog.Log($"抽卡窗口展示. Count={Properties.Cards.Count}", ALogCategories.UI);
-    }
-
-    public override void UI_Close()
-    {
-        FadeOutThenCloseAsync().Forget();
     }
 
     protected override void OnClose()
     {
         ReleaseStage();
-        ResetCloseVisual();
     }
 
     protected override void OnDestroy()
@@ -176,70 +158,6 @@ public class CardPickWindow : AWindowController<CardPickWindowProperty>
     void OnDetailVisibleChanged(bool visible)
     {
         _controller?.SetInspectEnabled(!visible);
-    }
-
-    async UniTaskVoid FadeInAsync()
-    {
-        CanvasGroup group = ResolveCanvasGroup();
-        if (group == null)
-        {
-            return;
-        }
-
-        await UITween.FadeInAsync(group, _fadeDuration, this);
-        if (this == null || _closing)
-        {
-            return;
-        }
-
-        group.interactable = true;
-        group.blocksRaycasts = true;
-    }
-
-    async UniTaskVoid FadeOutThenCloseAsync()
-    {
-        if (_closing)
-        {
-            return;
-        }
-
-        _closing = true;
-        CanvasGroup group = ResolveCanvasGroup();
-        if (group != null)
-        {
-            await UITween.FadeOutAsync(group, _fadeDuration, this);
-            if (this == null)
-            {
-                return;
-            }
-        }
-
-        ALog.Log("抽卡窗口淡出完成", ALogCategories.UI);
-        base.UI_Close();
-    }
-
-    CanvasGroup ResolveCanvasGroup()
-    {
-        if (_canvasGroup == null)
-        {
-            _canvasGroup = GetComponent<CanvasGroup>();
-        }
-
-        return _canvasGroup;
-    }
-
-    void ResetCloseVisual()
-    {
-        _closing = false;
-        CanvasGroup group = ResolveCanvasGroup();
-        if (group == null)
-        {
-            return;
-        }
-
-        group.alpha = 1f;
-        group.interactable = true;
-        group.blocksRaycasts = true;
     }
 
     void OnRectTransformDimensionsChange()

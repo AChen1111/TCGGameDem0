@@ -8,7 +8,7 @@ public class AvatarItem : MonoBehaviour, IRowItem<ShopOwnedItemData>
 {
     [SerializeField] Button m_BtnAll; // 整行点击热区,回传当前行下标
     [SerializeField] Image m_ImgMain; // 头像图,由 SetRowData 赋 Sprite
-    [SerializeField] Graphic m_Ring; // 已拥有时的环绕光效
+    [SerializeField] Graphic m_Ring; // 已拥有时的静态边框
     [SerializeField] Graphic m_Fog; // 未拥有时的黑色迷雾
     [SerializeField] Color m_OwnedColor = new Color(0.24f, 1f, 0.45f, 1f);
     [SerializeField] Color m_SelectedColor = new Color(1f, 0.84f, 0.16f, 1f);
@@ -31,7 +31,7 @@ public class AvatarItem : MonoBehaviour, IRowItem<ShopOwnedItemData>
         m_Ring.gameObject.SetActive(m_Owned);
         m_Fog.gameObject.SetActive(!m_Owned);
 
-        // 光环颜色只靠顶点色区分绿/黄,两种状态共用同一份材质,避免列表复用时产生材质实例.
+        // 普通边框通过顶点色区分拥有和选中状态.
         if (m_Owned)
         {
             m_Ring.color = rowIndex == selectedIndex ? m_SelectedColor : m_OwnedColor;

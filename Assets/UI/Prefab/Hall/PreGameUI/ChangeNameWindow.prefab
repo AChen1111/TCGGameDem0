@@ -892,6 +892,7 @@ GameObject:
   - component: {fileID: 3489551335268543534}
   - component: {fileID: 7511009111544274657}
   - component: {fileID: 6620922499927955157}
+  - component: {fileID: 8571276074851325181}
   m_Layer: 5
   m_Name: ChangeNameWindow
   m_TagString: Untagged
@@ -1028,3 +1029,15 @@ MonoBehaviour:
   m_InpName: {fileID: 1791339491751014577}
   m_BtnOk: {fileID: 6165965132945338170}
   m_BtnNo: {fileID: 5570381123747339359}
+--- !u!225 &8571276074851325181
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8982316589221043835}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

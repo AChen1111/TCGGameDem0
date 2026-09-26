@@ -810,6 +810,7 @@ GameObject:
   - component: {fileID: 6687531344754662231}
   - component: {fileID: 6987500719885679217}
   - component: {fileID: 1987654321098765432}
+  - component: {fileID: 736675654965455460}
   m_Layer: 5
   m_Name: CardDetailOverlay
   m_TagString: Untagged
@@ -917,6 +918,18 @@ MonoBehaviour:
   windowPriority: 0
   isPopup: 1
   m_View: {fileID: 6987500719885679217}
+--- !u!225 &736675654965455460
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661087778953280470}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1741979828038661433
 GameObject:
   m_ObjectHideFlags: 0

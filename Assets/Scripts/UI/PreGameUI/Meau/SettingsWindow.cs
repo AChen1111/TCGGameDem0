@@ -16,9 +16,6 @@ public class SettingsWindow : AWindowController
     // --tag_end: 自动生成--
 
     bool m_isBusy;
-    WindowCanvasFade m_fade;
-
-    WindowCanvasFade Fade => m_fade ??= new WindowCanvasFade(this);
 
     protected override void AddListeners()
     {
@@ -37,18 +34,7 @@ public class SettingsWindow : AWindowController
     protected override void OnOpen()
     {
         m_isBusy = false;
-        Fade.PlayOpen();
         RefreshLanguageButton();
-    }
-
-    public override void UI_Close()
-    {
-        Fade.RequestClose(base.UI_Close);
-    }
-
-    protected override void OnClose()
-    {
-        Fade.Reset();
     }
 
     void RefreshLanguageButton()

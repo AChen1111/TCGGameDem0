@@ -10,11 +10,11 @@ using UnityEditorInternal;
 public class HybridCLRSetupTests
 {
     [Test]
-    public void PlayerBuild_ContainsOnlyBootstrap()
+    public void PlayerBuild_ContainsOnlyPreInit()
     {
         EditorBuildSettingsScene[] scenes = EditorBuildSettings.scenes;
         Assert.AreEqual(1, scenes.Length);
-        Assert.AreEqual(HybridCLRProjectSetup.BootstrapScenePath, scenes[0].path);
+        Assert.AreEqual("Assets/Scenes/PreInit.unity", scenes[0].path);
         Assert.IsTrue(scenes[0].enabled);
     }
 

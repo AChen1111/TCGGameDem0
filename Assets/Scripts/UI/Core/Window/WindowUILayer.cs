@@ -14,6 +14,8 @@ public class WindowUILayer : AUILayer<IWindowController>
 
     private Queue<WindowHistoryEntry> windowQueue;
     private Stack<WindowHistoryEntry> windowHistory;
+    private bool closingWindow;
+    private int closeVersion;
 
     public override void Initialize() {
         base.Initialize();
@@ -33,7 +35,9 @@ public class WindowUILayer : AUILayer<IWindowController>
     }
 
     public override void ShowScreen<TProperties>(IWindowController screen, TProperties properties) {
-        if (ShouldEnqueue(screen)) {
+        // 关闭完成可能销毁当前实例, 不能把同一个实例再次放入等待队列.
+        if (closingWindow && ReferenceEquals(screen, CurrentWindow)) return;
+        if (closingWindow || ShouldEnqueue(screen)) {
             windowQueue.Enqueue(new WindowHistoryEntry(screen, properties));
         }
         else {
@@ -42,22 +46,22 @@ public class WindowUILayer : AUILayer<IWindowController>
     }
 
     public override void HideScreen(IWindowController screen) {
+        if (closingWindow && screen == CurrentWindow) return;
         if (screen == CurrentWindow) {
             windowHistory.Pop();
-            screen.Close();
-
-            CurrentWindow = null;
-
-            if (screen.IsPopup) {
-                priorityParaLayer.RefreshDarken();
-            }
-
-            if (windowQueue.Count > 0) {
-                DoShow(windowQueue.Dequeue());
-            }
-            else if (windowHistory.Count > 0) {
-                DoShow(windowHistory.Pop());
-            }
+            closingWindow = true;
+            int version = ++closeVersion;
+            CloseWithDarkenRefresh(screen, () => {
+                if (this == null || version != closeVersion) return;
+                closingWindow = false;
+                CurrentWindow = null;
+                if (windowQueue.Count > 0) {
+                    DoShow(windowQueue.Dequeue());
+                }
+                else if (windowHistory.Count > 0) {
+                    DoShow(windowHistory.Pop());
+                }
+            });
         }
         else {
             Debug.LogError(
@@ -68,9 +72,11 @@ public class WindowUILayer : AUILayer<IWindowController>
     }
 
     public override void HideAll() {
+        ++closeVersion;
+        closingWindow = false;
         var screens = new List<IWindowController>(registeredScreens.Values);
         for (int i = 0; i < screens.Count; i++) {
-            screens[i].Close();
+            CloseWithDarkenRefresh(screens[i]);
         }
         CurrentWindow = null;
         priorityParaLayer.RefreshDarken();
@@ -93,6 +99,20 @@ public class WindowUILayer : AUILayer<IWindowController>
         }
 
         base.ReparentScreen(controller, screenTransform);
+    }
+
+    private void CloseWithDarkenRefresh(IWindowController screen, System.Action completed = null) {
+        if (screen is AUIScreenController controller) {
+            controller.Close(() => {
+                if (priorityParaLayer != null) priorityParaLayer.RefreshDarken();
+                completed?.Invoke();
+            });
+        }
+        else {
+            screen.Close();
+            if (priorityParaLayer != null) priorityParaLayer.RefreshDarken();
+            completed?.Invoke();
+        }
     }
 
     private bool ShouldEnqueue(IWindowController controller) {
@@ -125,9 +145,8 @@ public class WindowUILayer : AUILayer<IWindowController>
             priorityParaLayer.DarkenBG();
         }
 
-        windowEntry.Show();
-
         CurrentWindow = windowEntry.Screen;
+        windowEntry.Show();
     }
 
     private void OnCloseRequestedByWindow(IUIScreenController screen) {

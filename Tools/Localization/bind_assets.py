@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: Settings
   m_EditorClassIdentifier: AChen.Shared::LocalizationSettings
   chineseFont: {{fileID: 11400000, guid: {guid(ROOT/'Assets/UI/Fonts/FZZYJW SDF.asset')}, type: 2}}
-  englishFont: {{fileID: 11400000, guid: {guid(ROOT/'Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset')}, type: 2}}
+  englishFont: {{fileID: 11400000, guid: {guid(ROOT/'Assets/UI/Fonts/LiberationSans SDF.asset')}, type: 2}}
 ''',encoding='utf-8')
 
 log_settings=ROOT/'Assets/Scripts/LogSystem/Resources/ALogSettings.asset'

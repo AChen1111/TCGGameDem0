@@ -3,6 +3,8 @@ namespace AChen.Configuration
     public static class ContentSession
     {
         public static string BackendUrl;
+        public static string Target;
+        public static string ConfigHash;
         public static string Channel;
         public static string Platform;
         public static string AppVersion;

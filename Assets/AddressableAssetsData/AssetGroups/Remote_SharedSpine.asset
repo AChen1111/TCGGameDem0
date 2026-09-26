@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Remote_SharedSpine
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Remote_SharedSpine
+  m_GUID: adef84878f54d404c8f5eb8c519e6099
+  m_SerializeEntries:
+  - m_GUID: 6850073e48edaae408d317f9d981d6c4
+    m_Address: Shared/Spine/Sp780007_13JS/Sp780007_13_Material.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 74abb8b2295451d4ca62e3aa20572c99
+    m_Address: Shared/Spine/Sp780007_13JS/Sp780007_13JS.json
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 854a3f6cc13eb21468f37549cc26756f
+    m_Address: Shared/Spine/Sp780007_13JS/Sp780007_13.atlas.txt
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88d8488905c10954f96a3db2e5152fdd
+    m_Address: Shared/Spine/Sp780007_13JS/Sp780007_13JS_SkeletonData.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: caf9788e82f20724fa1e004baea87358
+    m_Address: Shared/Spine/Sp780007_13JS/Sp780007_13_Atlas.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e37aa8b28a825c641a71fea12b9f0f59
+    m_Address: Shared/Spine/Sp780007_13JS/Sp780007_13.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3bb9cee06e4ec4b4e8f8af1c47ad2e29, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f84bc13e9bf23544983e3d7f9dc780ba, type: 2}
+    - {fileID: 11400000, guid: d99378df62440ba48b0fcba50846595f, type: 2}

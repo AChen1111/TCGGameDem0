@@ -16,9 +16,6 @@ public class GiftWindow : AWindowController
     [SerializeField] InboxListController m_ListController;
 
     bool m_busy;
-    WindowCanvasFade m_fade;
-
-    WindowCanvasFade Fade => m_fade ??= new WindowCanvasFade(this);
 
     protected override void AddListeners()
     {
@@ -33,18 +30,7 @@ public class GiftWindow : AWindowController
     protected override void OnOpen()
     {
         m_busy = false;
-        Fade.PlayOpen();
         LoadInboxAsync().Forget();
-    }
-
-    public override void UI_Close()
-    {
-        Fade.RequestClose(base.UI_Close);
-    }
-
-    protected override void OnClose()
-    {
-        Fade.Reset();
     }
 
     public void HandleRowAction(InboxItemData data, InboxRowAction action)

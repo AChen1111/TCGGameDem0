@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using UnityEditor;
 
 /// <summary>
@@ -13,10 +14,18 @@ public static class PublishKeyProvider
     public static string FromEnvironment => Environment.GetEnvironmentVariable(EnvironmentVariable);
 
     public static string FromSession => SessionState.GetString(SessionName, string.Empty);
+    public static string FromLocalFile
+    {
+        get
+        {
+            string path = EditorPaths.FromProjectRoot("Library", "Development", "publish.key");
+            return File.Exists(path) ? File.ReadAllText(path).Trim() : string.Empty;
+        }
+    }
 
     /// <summary>环境变量或后端服务会话中是否已有可用密钥.</summary>
     public static bool HasConfiguredKey =>
-        !string.IsNullOrEmpty(FromEnvironment) || !string.IsNullOrEmpty(FromSession);
+        !string.IsNullOrEmpty(FromEnvironment) || !string.IsNullOrEmpty(FromSession) || !string.IsNullOrEmpty(FromLocalFile);
 
     public static string Resolve(string memoryKey)
     {
@@ -27,6 +36,8 @@ public static class PublishKeyProvider
         }
 
         key = FromSession;
+        if (!string.IsNullOrEmpty(key)) return key;
+        key = FromLocalFile;
         return string.IsNullOrEmpty(key) ? memoryKey : key;
     }
 
@@ -37,7 +48,8 @@ public static class PublishKeyProvider
             return "来自 " + EnvironmentVariable;
         }
 
-        return !string.IsNullOrEmpty(FromSession) ? "来自后端服务窗口会话" : "未配置";
+        return !string.IsNullOrEmpty(FromSession) ? "来自后端服务窗口会话" :
+            !string.IsNullOrEmpty(FromLocalFile) ? "来自本项目本地密钥" : "未配置";
     }
 
     /// <summary>绘制密钥字段: 已配置时只显示来源, 否则显示仅内存的密码框. 返回更新后的内存密钥.</summary>

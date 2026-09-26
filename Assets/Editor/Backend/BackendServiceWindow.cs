@@ -72,7 +72,7 @@ static class BackendServiceController
         EditorApplication.delayCall += RecoverState;
     }
 
-    public static void Start()
+    public static void Start(bool build = true)
     {
         RecoverState();
         if (!CanStart)
@@ -100,6 +100,7 @@ static class BackendServiceController
             s_StopRequested = false;
             LastError = string.Empty;
             s_LogLines.Clear();
+            if (!build && File.Exists(BackendDllPath)) { LaunchBackend(); return; }
             AddLog("开始构建 ASP.NET Core 后端…");
             SetState(BackendServiceState.Building);
             s_BuildProcess = EditorProcessRunner.Create(
@@ -244,10 +245,9 @@ static class BackendServiceController
         int exitCode = EditorProcessRunner.SafeExitCode(process);
         s_MainThreadActions.Enqueue(() =>
         {
-            if (ReferenceEquals(s_BackendProcess, process))
-            {
-                EditorProcessRunner.Dispose(ref s_BackendProcess);
-            }
+            // 重启时旧进程的延迟退出回调不能清除新进程的归属记录.
+            if (!ReferenceEquals(s_BackendProcess, process)) return;
+            EditorProcessRunner.Dispose(ref s_BackendProcess);
 
             ClearOwnershipFile();
             if (s_StopRequested)
@@ -471,13 +471,16 @@ static class BackendServiceController
             return configured;
         }
 
-        string generated = SessionState.GetString(AuthKeySessionName, string.Empty);
+        string keyPath = EditorPaths.FromProjectRoot("Library", "Development", "auth.key");
+        string generated = File.Exists(keyPath) ? File.ReadAllText(keyPath) : SessionState.GetString(AuthKeySessionName, string.Empty);
         if (generated.Length < 32)
         {
             generated = GenerateSecret();
             SessionState.SetString(AuthKeySessionName, generated);
         }
 
+        Directory.CreateDirectory(Path.GetDirectoryName(keyPath));
+        File.WriteAllText(keyPath, generated);
         return generated;
     }
 
@@ -490,13 +493,17 @@ static class BackendServiceController
             return configured;
         }
 
-        string generated = PublishKeyProvider.FromSession;
+        string keyPath = EditorPaths.FromProjectRoot("Library", "Development", "publish.key");
+        string generated = File.Exists(keyPath) ? File.ReadAllText(keyPath) : PublishKeyProvider.FromSession;
         if (generated.Length < 32)
         {
             generated = GenerateSecret();
             SessionState.SetString(PublishKeyProvider.SessionName, generated);
         }
 
+        Directory.CreateDirectory(Path.GetDirectoryName(keyPath));
+        File.WriteAllText(keyPath, generated);
+        SessionState.SetString(PublishKeyProvider.SessionName, generated);
         Environment.SetEnvironmentVariable(
             PublishKeyProvider.EnvironmentVariable,
             generated,
@@ -576,34 +583,28 @@ public sealed class BackendServiceWindow : EditorWindow
 {
     Vector2 m_LogScroll;
 
-    [MenuItem(EditorMenus.Window + "后端服务")]
-    [MenuItem(EditorMenus.Backend + "打开窗口", false, 1)]
     static void Open()
     {
         GetWindow<BackendServiceWindow>("后端服务");
     }
 
-    [MenuItem(EditorMenus.Backend + "启动", false, 10)]
     static void StartFromMenu()
     {
         BackendServiceController.Start();
         Open();
     }
 
-    [MenuItem(EditorMenus.Backend + "启动", true)]
     static bool CanStartFromMenu()
     {
         return BackendServiceController.CanStart;
     }
 
-    [MenuItem(EditorMenus.Backend + "关闭", false, 11)]
     static void StopFromMenu()
     {
         BackendServiceController.Stop();
         Open();
     }
 
-    [MenuItem(EditorMenus.Backend + "关闭", true)]
     static bool CanStopFromMenu()
     {
         return BackendServiceController.CanStop;

@@ -4,6 +4,7 @@ using TMPro;
 using LitMotion;
 using Cysharp.Threading.Tasks;
 using System;
+using System.Threading;
 using AChen.Player;
 using AChen.Events;
 
@@ -23,6 +24,24 @@ public class LogInWindow : AWindowController
     InputFeedback m_nameInputFeedback;
     InputFeedback m_passwordInputFeedback;
     InputFeedback m_passwordAgainInputFeedback;
+    MotionHandle m_intro;
+    int m_introVersion;
+    bool m_introRunning;
+
+    protected override UniTask PlayEnterTransition(CancellationToken cancellationToken)
+    {
+        return IsResuming ? base.PlayEnterTransition(cancellationToken) : DoAnim(cancellationToken);
+    }
+
+    protected override void FinishIntro()
+    {
+        if (!m_introRunning) return;
+        m_introRunning = false;
+        ++m_introVersion;
+        m_intro.TryComplete();
+        SceneTransitionOverlay.Hide();
+        UpdateInteraction();
+    }
 
     protected override void AddListeners()
     {
@@ -150,7 +169,6 @@ public class LogInWindow : AWindowController
         m_InpLogPassWord.text = string.Empty;
         m_InpLogPassWord_Again.text = string.Empty;
         SetAuthMode(AuthMode.Login);
-        DoAnim().Forget();
     }
 
     private void SetAuthMode(AuthMode mode)
@@ -166,8 +184,10 @@ public class LogInWindow : AWindowController
         }
     }
 
-    private async UniTaskVoid DoAnim()
+    private async UniTask DoAnim(CancellationToken cancellationToken)
     {
+        int version = ++m_introVersion;
+        m_introRunning = true;
         m_CanvasGroup.interactable = false;
         var seq = LSequence.Create();
         seq.Append(UITween.DoFadeAnim(0, 1, 0.5f, m_CanvasGroup));
@@ -176,7 +196,11 @@ public class LogInWindow : AWindowController
             seq.Join(overlayFade);
         }
 
-        await seq.Run().AddTo(this);
+        m_intro = seq.Run().AddTo(this);
+        await m_intro.ToUniTask(CancelBehavior.Complete, cancellationToken);
+        cancellationToken.ThrowIfCancellationRequested();
+        if (version != m_introVersion) return;
+        m_introRunning = false;
         SceneTransitionOverlay.Hide();
         UpdateInteraction();
     }

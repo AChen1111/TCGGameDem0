@@ -23,6 +23,9 @@ public class MessageWindow : AWindowController<MessageWindowProperties>
     [SerializeField] TextMeshProUGUI m_TxtMessage;
     // --tag_end: 自动生成--
     CancellationTokenSource m_closeCts;
+    MotionHandle m_openMotion;
+
+    protected override void FinishIntro() => m_openMotion.TryComplete();
 
     protected override void OnOpen()
     {
@@ -32,8 +35,11 @@ public class MessageWindow : AWindowController<MessageWindowProperties>
     async UniTaskVoid PlayOpenAsync()
     {
         ApplyMessage();
-        await UITween.DoScaleAnim(0, 1, 2, transform).AddTo(gameObject);
-        m_closeCts = new CancellationTokenSource();
+        CancellationToken token = ScreenToken;
+        m_openMotion = UITween.DoScaleAnim(0, 1, 2, transform).AddTo(gameObject);
+        await m_openMotion;
+        if (token.IsCancellationRequested) return;
+        m_closeCts = CancellationTokenSource.CreateLinkedTokenSource(token);
         CloseAfterAsync(Properties.Duration, m_closeCts.Token).Forget();
     }
 
@@ -51,8 +57,8 @@ public class MessageWindow : AWindowController<MessageWindowProperties>
 
     protected override void OnClose()
     {
-        m_closeCts.Cancel();
-        m_closeCts.Dispose();
+        m_closeCts?.Cancel();
+        m_closeCts?.Dispose();
         m_closeCts = null;
     }
 

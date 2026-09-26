@@ -92,12 +92,9 @@ namespace AChen.Networking
             }
 
             RequireCurrent();
-            string path = "/api/content/manifests/latest?channel=" + Uri.EscapeDataString(ContentSession.Channel)
-                + "&platform=" + Uri.EscapeDataString(ContentSession.Platform) + "&appVersion=" + Uri.EscapeDataString(ContentSession.AppVersion);
-            var latest = await new BackendHttpClient().SendAsync<VersionResponse>("GET", path, cancellationToken: token);
-            ContentSession.ServerTime = latest.ServerTime;
-            ContentSession.ServerTimeReceivedAt = DateTimeOffset.UtcNow;
-            ALog.Log("登录内容检查完成. Release=" + latest.ReleaseId, ALogCategories.Net);
+            token.ThrowIfCancellationRequested();
+            await UniTask.CompletedTask;
+
         }
 
         public static void RequireCurrent()

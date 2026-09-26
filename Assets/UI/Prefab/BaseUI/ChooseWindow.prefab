@@ -272,6 +272,7 @@ GameObject:
   - component: {fileID: 2554234886947921730}
   - component: {fileID: 1439030560080144986}
   - component: {fileID: 7413544022705800948}
+  - component: {fileID: 473333595327071145}
   m_Layer: 5
   m_Name: ChooseWindow
   m_TagString: Untagged
@@ -343,6 +344,18 @@ MonoBehaviour:
   m_TxtMessage: {fileID: 7249435883062365388}
   m_BtnNo: {fileID: 8395716447765510784}
   m_BtnOk: {fileID: 8470347110549745283}
+--- !u!225 &473333595327071145
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5414364316487525683}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7477356093019054183
 GameObject:
   m_ObjectHideFlags: 0

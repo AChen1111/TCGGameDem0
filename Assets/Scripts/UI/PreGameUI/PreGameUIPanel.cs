@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using AChen.Events;
 using AChen.Player;
 using Cysharp.Threading.Tasks;
@@ -33,6 +34,26 @@ public class PreGameUIPanel : APanelController
     [SerializeField] float m_Distance = 1500f;
 
     bool m_isSwitchingWallpaper;
+    MotionHandle m_intro;
+    int m_introVersion;
+    bool m_introRunning;
+
+    protected override UniTask PlayEnterTransition(CancellationToken cancellationToken)
+    {
+        return IsResuming ? base.PlayEnterTransition(cancellationToken) : PlayIntroAsync(cancellationToken);
+    }
+
+    protected override void FinishIntro()
+    {
+        if (!m_introRunning) return;
+        m_introRunning = false;
+        ++m_introVersion;
+        // 完成位移动画以还原布局, 再由基类从当前透明度淡出.
+        m_intro.TryComplete();
+        m_WallpaperView.RestoreVisible();
+        SceneTransitionOverlay.Hide();
+        m_CanvasGroup.interactable = true;
+    }
 
     protected override void AddListeners()
     {
@@ -65,7 +86,6 @@ public class PreGameUIPanel : APanelController
         EventCenter.AddListener(GameEvent.PlayerBackgroundChanged, OnBackgroundChanged);
         // 先应用当前背景, 后续只订阅背景变化.
         OnBackgroundChanged(PlayerSession.Instance.CurrentPlayer?.BackgroundId);
-        PlayIntroAsync().Forget();
     }
 
     protected override void OnClose()
@@ -130,20 +150,23 @@ public class PreGameUIPanel : APanelController
         m_isSwitchingWallpaper = false;
     }
 
-    async UniTask PlayIntroAsync()
+    async UniTask PlayIntroAsync(CancellationToken cancellationToken)
     {
+        int version = ++m_introVersion;
+        m_introRunning = true;
         m_CanvasGroup.interactable = false;
         m_CanvasGroup.alpha = 0;
         m_WallpaperView.HideForIntro();
 
         try
         {
-            await m_WallpaperView.WaitForReadyAsync(ScreenToken);
+            await m_WallpaperView.WaitForReadyAsync(cancellationToken);
         }
         catch (OperationCanceledException)
         {
             return;
         }
+        if (version != m_introVersion) return;
 
         ALog.Log("大厅资源就绪, 遮挡层淡出并播放入场动画.", ALogCategories.UI);
 
@@ -162,7 +185,11 @@ public class PreGameUIPanel : APanelController
 
         m_WallpaperView.AppendReveal(seq, m_Duration);
 
-        await seq.Run().AddTo(this);
+        m_intro = seq.Run().AddTo(this);
+        await m_intro.ToUniTask(CancelBehavior.Complete, cancellationToken);
+        cancellationToken.ThrowIfCancellationRequested();
+        if (version != m_introVersion) return;
+        m_introRunning = false;
         SceneTransitionOverlay.Hide();
         m_CanvasGroup.interactable = true;
     }

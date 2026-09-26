@@ -14,31 +14,10 @@ using UnityEngine.SceneManagement;
 public static class HybridCLRProjectSetup
 {
     public const string HotUpdateAsmdefPath = "Assets/Scripts/HotUpdate.asmdef";
-    public const string BootstrapScenePath = "Assets/Scenes/Bootstrap.unity";
     const string StreamingDir = "Assets/StreamingAssets/" + LoadDll.DllDir;
 
-    [MenuItem(EditorMenus.Release + "HybridCLR/Configure", false, 100)]
-    public static void Configure()
-    {
-        PlayerSettings.SetScriptingBackend(NamedBuildTarget.Standalone, ScriptingImplementation.IL2CPP);
-        PlayerSettings.SetApiCompatibilityLevel(NamedBuildTarget.Standalone, ApiCompatibilityLevel.NET_Unity_4_8);
+    public static bool WorkbenchOwnsBuild;
 
-        AssemblyDefinitionAsset hotUpdate = AssetDatabase.LoadAssetAtPath<AssemblyDefinitionAsset>(HotUpdateAsmdefPath);
-        HybridCLRSettings settings = HybridCLRSettings.Instance;
-        settings.enable = true;
-        settings.hotUpdateAssemblyDefinitions = new[] { hotUpdate };
-        settings.hotUpdateAssemblies = new string[0];
-        settings.patchAOTAssemblies = LoadDll.AotDllNames;
-        HybridCLRSettings.Save();
-
-        CreateBootstrapScene();
-        AddressableCatalogSetup.EnsureSceneAddressables();
-        InsertBootstrapInBuildSettings();
-        AssetDatabase.SaveAssets();
-        Debug.Log("[HybridCLR] Configure done");
-    }
-
-    [MenuItem(EditorMenus.Release + "HybridCLR/Install Runtime", false, 101)]
     public static void InstallRuntime()
     {
         var installer = new InstallerController();
@@ -79,14 +58,13 @@ public static class HybridCLRProjectSetup
         }
     }
 
-    [MenuItem(EditorMenus.Release + "HybridCLR/Copy Dlls To StreamingAssets", false, 102)]
     public static void CopyDlls()
     {
         CompileDllCommand.CompileDll(EditorUserBuildSettings.activeBuildTarget);
         CopyCompiledDlls();
     }
 
-    public static void CopyCompiledDlls()
+    public static void CopyCompiledDlls(bool requireAot = false)
     {
         BuildTarget target = EditorUserBuildSettings.activeBuildTarget;
         Directory.CreateDirectory(StreamingDir);
@@ -97,6 +75,7 @@ public static class HybridCLRProjectSetup
         foreach (string dll in LoadDll.AotDllNames)
         {
             string src = Path.Combine(aotDir, dll);
+            if (requireAot && !File.Exists(src)) throw new FileNotFoundException("缺少当前平台 AOT 元数据, 请重新生成完整包: " + target, src);
             if (File.Exists(src))
             {
                 File.Copy(src, Path.Combine(StreamingDir, dll + ".bytes"), true);
@@ -106,57 +85,16 @@ public static class HybridCLRProjectSetup
         Debug.Log($"[HybridCLR] copied dlls to {StreamingDir}");
     }
 
-    static void CreateBootstrapScene()
-    {
-        if (File.Exists(BootstrapScenePath))
-        {
-            return;
-        }
 
-        Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
-        var go = new GameObject("LoadDll");
-        SceneManager.MoveGameObjectToScene(go, scene);
-        go.AddComponent<LoadDll>();
-        EditorSceneManager.SaveScene(scene, BootstrapScenePath);
-        EditorSceneManager.CloseScene(scene, true);
-    }
-
-    static void InsertBootstrapInBuildSettings()
-    {
-        EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(BootstrapScenePath, true) };
-    }
 }
 
 class HybridCLRCopyDllsOnBuild : IPreprocessBuildWithReport
 {
     public int callbackOrder => -100;
-    static bool s_Generating;
-
     public void OnPreprocessBuild(BuildReport report)
     {
-        HybridCLRProjectSetup.EnsureZlibHeaders();
-        if (s_Generating || EditorUserBuildSettings.buildScriptsOnly)
-        {
-            return;
-        }
-
-        string unityVersionH = $"{SettingsUtil.LocalIl2CppDir}/libil2cpp/hybridclr/generated/UnityVersion.h";
-        if (!File.Exists(unityVersionH) || !File.ReadAllText(unityVersionH).Contains("HYBRIDCLR_UNITY_VERSION"))
-        {
-            s_Generating = true;
-            try
-            {
-                PrebuildCommand.GenerateAll();
-            }
-            finally
-            {
-                s_Generating = false;
-            }
-
-            HybridCLRProjectSetup.CopyCompiledDlls();
-            return;
-        }
-
-        HybridCLRProjectSetup.CopyDlls();
+        if ((report.summary.platform == BuildTarget.Android || report.summary.platform == BuildTarget.StandaloneWindows64) &&
+            !HybridCLRProjectSetup.WorkbenchOwnsBuild)
+            throw new BuildFailedException("请通过 Window/TCG/开发工作台 → 生成完整包 (当前平台), 保证游戏包与热更内容一致.");
     }
 }

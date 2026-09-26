@@ -14,8 +14,7 @@ public class LoadDll : MonoBehaviour
     public static string[] AotDllNames => AOTGenericReferences.PatchedAOTAssemblyList.ToArray();
 
     [SerializeField] string backendUrl = CodeUpdate.DefaultBackendUrl;
-    [SerializeField] string channel = CodeUpdate.DefaultChannel;
-    [SerializeField] bool useRemoteContentInEditor;
+    const string channel = CodeUpdate.DefaultChannel;
     Action m_retry;
     bool m_failed;
 
@@ -33,37 +32,10 @@ public class LoadDll : MonoBehaviour
         string addressablesBaseUrl;
 
 #if UNITY_EDITOR
-        if (!useRemoteContentInEditor)
-        {
-            hotUpdate = AppDomain.CurrentDomain.GetAssemblies().First(a => a.GetName().Name == "HotUpdate");
-            string platform;
-            try
-            {
-                platform = CodeUpdate.PlatformName();
-            }
-            catch (Exception exception)
-            {
-                Fail(bar, new LocalizedMessage("err.unsupported_platform", new Dictionary<string, object> { ["message"] = exception.Message }));
-                yield break;
-            }
-
-            CodeUpdate.BindEditorLocalSession(backendUrl, channel, platform, Application.version);
-            onAssets = value => SetProgress(bar, value);
-            addressablesBaseUrl = null;
-        }
-        else
-        {
-            yield return FetchRemoteContent(bar);
-            if (!CodeUpdate.IsComplete)
-            {
-                Fail(bar, CodeUpdate.LastErrorMessage);
-                yield break;
-            }
-
-            hotUpdate = Assembly.Load(s_bytes[HotUpdateFile]);
-            onAssets = value => SetProgress(bar, 0.5f + value * 0.5f);
-            addressablesBaseUrl = CodeUpdate.AddressablesBaseUrl;
-        }
+        hotUpdate = AppDomain.CurrentDomain.GetAssemblies().First(a => a.GetName().Name == "HotUpdate");
+        CodeUpdate.BindEditorLocalSession(backendUrl, channel, "Editor", Application.version);
+        onAssets = value => SetProgress(bar, value);
+        addressablesBaseUrl = null;
 #else
         yield return LoadAotMetadataFiles();
         if (m_LoadError != null)

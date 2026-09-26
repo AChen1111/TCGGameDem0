@@ -43,6 +43,8 @@ public class DownLoadSlider : MonoBehaviour
             : "游戏内容加载失败，请重试。";
         if (message?.Arguments != null && message.Arguments.TryGetValue("message", out var detail))
             text.text += "\n" + detail;
+        else if (message?.Arguments != null && message.Arguments.TryGetValue("error", out var error))
+            text.text += "\n" + error;
         if (Retry() != null)
         {
             Retry().gameObject.SetActive(true);

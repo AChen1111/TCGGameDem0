@@ -59,7 +59,7 @@ MonoBehaviour:
   m_ContentStateBuildPathProfileVariableName: 
   m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
-  m_BuildAddressablesWithPlayerBuild: 0
+  m_BuildAddressablesWithPlayerBuild: 2
   m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
   m_GroupAssets:
   - {fileID: 11400000, guid: da1cfb0cf92f71e49b6aa02a30e0f5fc, type: 2}
@@ -67,6 +67,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f7fcb88f2ebe2af48871593b5160a4ce, type: 2}
   - {fileID: 11400000, guid: 761d4f5bb887d744998f40a36d837396, type: 2}
   - {fileID: 11400000, guid: a9ff526e3b21e274b8ea8b6b3bbc9cd0, type: 2}
+  - {fileID: 11400000, guid: c10d72079fcda07488912e25e9f0592a, type: 2}
   - {fileID: 11400000, guid: db37e8ec9969cc14890a5b3f8f333c4e, type: 2}
   - {fileID: 11400000, guid: 009fb027024fe5e4798edea15314f1be, type: 2}
   - {fileID: 11400000, guid: 75b269d49ad7edc4da222dd5181ad9a3, type: 2}

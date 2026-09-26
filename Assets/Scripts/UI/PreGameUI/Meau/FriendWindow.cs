@@ -21,9 +21,6 @@ public class FriendWindow : AWindowController
     bool m_busy;
     bool m_searchMode;
     List<FriendSearchHitData> m_rows;
-    WindowCanvasFade m_fade;
-
-    WindowCanvasFade Fade => m_fade ??= new WindowCanvasFade(this);
 
     protected override void AddListeners()
     {
@@ -41,18 +38,7 @@ public class FriendWindow : AWindowController
     {
         m_busy = false;
         m_searchMode = false;
-        Fade.PlayOpen();
         LoadFriendsAsync().Forget();
-    }
-
-    public override void UI_Close()
-    {
-        Fade.RequestClose(base.UI_Close);
-    }
-
-    protected override void OnClose()
-    {
-        Fade.Reset();
     }
 
     public void HandleRowAction(FriendSearchHitData data)
