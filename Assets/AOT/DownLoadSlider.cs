@@ -18,7 +18,7 @@ public class DownLoadSlider : MonoBehaviour
     {
         if (m_retryButton == null)
         {
-            var child = transform.Find("RetryButton");
+            var child = transform.Find("SafeArea/RetryButton") ?? transform.Find("RetryButton");
             if (child != null) m_retryButton = child.GetComponent<Button>();
         }
         return m_retryButton;

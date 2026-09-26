@@ -1,0 +1,6 @@
+{
+    "name": "UIAdapter",
+    "references": [
+        "UnityEngine.UI"
+    ]
+}

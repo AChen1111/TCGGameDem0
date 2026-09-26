@@ -830,10 +830,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1887455460774762575}
-  - {fileID: 4973200173838482522}
-  - {fileID: 7930368826494140785}
-  - {fileID: 9007931763805046517}
-  - {fileID: 619886854942978767}
+  - {fileID: 4974533726683379922}
   - {fileID: 6272232518182550657}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1647,7 +1644,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6687531344754662231}
+  m_Father: {fileID: 4974533726683379922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.205, y: 0.5}
   m_AnchorMax: {x: 0.205, y: 0.5}
@@ -3201,7 +3198,7 @@ RectTransform:
   - {fileID: 5626239577181323684}
   - {fileID: 4879083268488983947}
   - {fileID: 6809446946766756485}
-  m_Father: {fileID: 6687531344754662231}
+  m_Father: {fileID: 4974533726683379922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.42, y: 0.16}
   m_AnchorMax: {x: 0.97, y: 0.84}
@@ -3414,7 +3411,7 @@ RectTransform:
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6687531344754662231}
+  m_Father: {fileID: 4974533726683379922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.03, y: 0.5}
   m_AnchorMax: {x: 0.03, y: 0.5}
@@ -3777,6 +3774,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: AChen.Shared::LocalizedText
   key: 
   dynamicContent: 1
+--- !u!1 &7120865914024591144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4974533726683379922}
+  - component: {fileID: 550775271051749075}
+  m_Layer: 5
+  m_Name: SafeArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4974533726683379922
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7120865914024591144}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4973200173838482522}
+  - {fileID: 7930368826494140785}
+  - {fileID: 9007931763805046517}
+  - {fileID: 619886854942978767}
+  m_Father: {fileID: 6687531344754662231}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &550775271051749075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7120865914024591144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c3a2db266eedb478649049579f7c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UIAdapter::SafeAreaAdapter
+  CalculateEveryFrame: 1
 --- !u!1 &7323013282990703634
 GameObject:
   m_ObjectHideFlags: 0
@@ -4457,7 +4507,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6687531344754662231}
+  m_Father: {fileID: 4974533726683379922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.97, y: 0.5}
   m_AnchorMax: {x: 0.97, y: 0.5}
