@@ -456,6 +456,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// LitMotion.MotionSettings<float,LitMotion.NoOptions>
 	// System.Action<AChen.Networking.GiftRewardSpec>
 	// System.Action<CardPickViewData>
+	// System.Action<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Action<System.Nullable<System.Guid>,object>
 	// System.Action<System.Nullable<int>>
 	// System.Action<System.Nullable<long>>
@@ -483,6 +484,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Collections.Concurrent.ConcurrentQueue<object>
 	// System.Collections.Generic.ArraySortHelper<AChen.Networking.GiftRewardSpec>
 	// System.Collections.Generic.ArraySortHelper<CardPickViewData>
+	// System.Collections.Generic.ArraySortHelper<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Collections.Generic.ArraySortHelper<UnityEngine.EventSystems.RaycastResult>
 	// System.Collections.Generic.ArraySortHelper<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Collections.Generic.ArraySortHelper<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
@@ -491,6 +493,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Collections.Generic.Comparer<AChen.Networking.GiftRewardSpec>
 	// System.Collections.Generic.Comparer<AChen.Player.AuthResult>
 	// System.Collections.Generic.Comparer<CardPickViewData>
+	// System.Collections.Generic.Comparer<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Collections.Generic.Comparer<System.ValueTuple<byte,AChen.Networking.BackendHttpResponse>>
 	// System.Collections.Generic.Comparer<System.ValueTuple<byte,AChen.Player.AuthResult>>
 	// System.Collections.Generic.Comparer<System.ValueTuple<byte,CardPickViewData>>
@@ -559,6 +562,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Collections.Generic.ComparisonComparer<AChen.Networking.GiftRewardSpec>
 	// System.Collections.Generic.ComparisonComparer<AChen.Player.AuthResult>
 	// System.Collections.Generic.ComparisonComparer<CardPickViewData>
+	// System.Collections.Generic.ComparisonComparer<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Collections.Generic.ComparisonComparer<System.ValueTuple<byte,AChen.Networking.BackendHttpResponse>>
 	// System.Collections.Generic.ComparisonComparer<System.ValueTuple<byte,AChen.Player.AuthResult>>
 	// System.Collections.Generic.ComparisonComparer<System.ValueTuple<byte,CardPickViewData>>
@@ -729,6 +733,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Collections.Generic.ICollection<object>
 	// System.Collections.Generic.IComparer<AChen.Networking.GiftRewardSpec>
 	// System.Collections.Generic.IComparer<CardPickViewData>
+	// System.Collections.Generic.IComparer<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Collections.Generic.IComparer<UnityEngine.EventSystems.RaycastResult>
 	// System.Collections.Generic.IComparer<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Collections.Generic.IComparer<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
@@ -762,6 +767,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Collections.Generic.IEqualityComparer<object>
 	// System.Collections.Generic.IList<AChen.Networking.GiftRewardSpec>
 	// System.Collections.Generic.IList<CardPickViewData>
+	// System.Collections.Generic.IList<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Collections.Generic.IList<UnityEngine.EventSystems.RaycastResult>
 	// System.Collections.Generic.IList<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Collections.Generic.IList<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
@@ -782,12 +788,14 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Collections.Generic.LinkedListNode<object>
 	// System.Collections.Generic.List.Enumerator<AChen.Networking.GiftRewardSpec>
 	// System.Collections.Generic.List.Enumerator<CardPickViewData>
+	// System.Collections.Generic.List.Enumerator<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Collections.Generic.List.Enumerator<UnityEngine.EventSystems.RaycastResult>
 	// System.Collections.Generic.List.Enumerator<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Collections.Generic.List.Enumerator<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
 	// System.Collections.Generic.List.Enumerator<object>
 	// System.Collections.Generic.List<AChen.Networking.GiftRewardSpec>
 	// System.Collections.Generic.List<CardPickViewData>
+	// System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Collections.Generic.List<UnityEngine.EventSystems.RaycastResult>
 	// System.Collections.Generic.List<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Collections.Generic.List<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
@@ -796,6 +804,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Collections.Generic.ObjectComparer<AChen.Networking.GiftRewardSpec>
 	// System.Collections.Generic.ObjectComparer<AChen.Player.AuthResult>
 	// System.Collections.Generic.ObjectComparer<CardPickViewData>
+	// System.Collections.Generic.ObjectComparer<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Collections.Generic.ObjectComparer<System.ValueTuple<byte,AChen.Networking.BackendHttpResponse>>
 	// System.Collections.Generic.ObjectComparer<System.ValueTuple<byte,AChen.Player.AuthResult>>
 	// System.Collections.Generic.ObjectComparer<System.ValueTuple<byte,CardPickViewData>>
@@ -924,6 +933,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Collections.Generic.Stack<object>
 	// System.Collections.ObjectModel.ReadOnlyCollection<AChen.Networking.GiftRewardSpec>
 	// System.Collections.ObjectModel.ReadOnlyCollection<CardPickViewData>
+	// System.Collections.ObjectModel.ReadOnlyCollection<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Collections.ObjectModel.ReadOnlyCollection<UnityEngine.EventSystems.RaycastResult>
 	// System.Collections.ObjectModel.ReadOnlyCollection<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Collections.ObjectModel.ReadOnlyCollection<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
@@ -932,6 +942,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Comparison<AChen.Networking.GiftRewardSpec>
 	// System.Comparison<AChen.Player.AuthResult>
 	// System.Comparison<CardPickViewData>
+	// System.Comparison<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Comparison<System.ValueTuple<byte,AChen.Networking.BackendHttpResponse>>
 	// System.Comparison<System.ValueTuple<byte,AChen.Player.AuthResult>>
 	// System.Comparison<System.ValueTuple<byte,CardPickViewData>>
@@ -985,6 +996,8 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Func<AChen.Networking.BackendHttpResponse>
 	// System.Func<AChen.Player.AuthResult>
 	// System.Func<CardPickViewData>
+	// System.Func<System.Collections.Generic.KeyValuePair<object,object>,byte>
+	// System.Func<System.Collections.Generic.KeyValuePair<object,object>,object>
 	// System.Func<System.Threading.CancellationToken,Cysharp.Threading.Tasks.UniTask>
 	// System.Func<System.ValueTuple<byte,AChen.Networking.BackendHttpResponse>>
 	// System.Func<System.ValueTuple<byte,AChen.Player.AuthResult>>
@@ -1111,16 +1124,20 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.IProgress<float>
 	// System.Linq.Buffer<int>
 	// System.Linq.Buffer<object>
+	// System.Linq.Enumerable.Iterator<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Linq.Enumerable.Iterator<int>
 	// System.Linq.Enumerable.Iterator<object>
 	// System.Linq.Enumerable.WhereArrayIterator<object>
 	// System.Linq.Enumerable.WhereEnumerableIterator<int>
 	// System.Linq.Enumerable.WhereEnumerableIterator<object>
 	// System.Linq.Enumerable.WhereListIterator<object>
+	// System.Linq.Enumerable.WhereSelectArrayIterator<System.Collections.Generic.KeyValuePair<object,object>,object>
 	// System.Linq.Enumerable.WhereSelectArrayIterator<object,int>
 	// System.Linq.Enumerable.WhereSelectArrayIterator<object,object>
+	// System.Linq.Enumerable.WhereSelectEnumerableIterator<System.Collections.Generic.KeyValuePair<object,object>,object>
 	// System.Linq.Enumerable.WhereSelectEnumerableIterator<object,int>
 	// System.Linq.Enumerable.WhereSelectEnumerableIterator<object,object>
+	// System.Linq.Enumerable.WhereSelectListIterator<System.Collections.Generic.KeyValuePair<object,object>,object>
 	// System.Linq.Enumerable.WhereSelectListIterator<object,int>
 	// System.Linq.Enumerable.WhereSelectListIterator<object,object>
 	// System.Linq.EnumerableSorter<int,int>
@@ -1143,6 +1160,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Nullable<long>
 	// System.Predicate<AChen.Networking.GiftRewardSpec>
 	// System.Predicate<CardPickViewData>
+	// System.Predicate<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Predicate<UnityEngine.EventSystems.RaycastResult>
 	// System.Predicate<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Predicate<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
@@ -2220,12 +2238,14 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// System.Linq.IOrderedEnumerable<object> System.Linq.Enumerable.OrderBy<object,object>(System.Collections.Generic.IEnumerable<object>,System.Func<object,object>)
 		// System.Linq.IOrderedEnumerable<object> System.Linq.Enumerable.OrderBy<object,object>(System.Collections.Generic.IEnumerable<object>,System.Func<object,object>,System.Collections.Generic.IComparer<object>)
 		// System.Collections.Generic.IEnumerable<int> System.Linq.Enumerable.Select<object,int>(System.Collections.Generic.IEnumerable<object>,System.Func<object,int>)
+		// System.Collections.Generic.IEnumerable<object> System.Linq.Enumerable.Select<System.Collections.Generic.KeyValuePair<object,object>,object>(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<object,object>>,System.Func<System.Collections.Generic.KeyValuePair<object,object>,object>)
 		// System.Collections.Generic.IEnumerable<object> System.Linq.Enumerable.Select<object,object>(System.Collections.Generic.IEnumerable<object>,System.Func<object,object>)
 		// System.Linq.IOrderedEnumerable<object> System.Linq.Enumerable.ThenBy<object,int>(System.Linq.IOrderedEnumerable<object>,System.Func<object,int>)
 		// int[] System.Linq.Enumerable.ToArray<int>(System.Collections.Generic.IEnumerable<int>)
 		// object[] System.Linq.Enumerable.ToArray<object>(System.Collections.Generic.IEnumerable<object>)
 		// System.Collections.Generic.IEnumerable<object> System.Linq.Enumerable.Where<object>(System.Collections.Generic.IEnumerable<object>,System.Func<object,bool>)
 		// System.Collections.Generic.IEnumerable<int> System.Linq.Enumerable.Iterator<object>.Select<int>(System.Func<object,int>)
+		// System.Collections.Generic.IEnumerable<object> System.Linq.Enumerable.Iterator<System.Collections.Generic.KeyValuePair<object,object>>.Select<object>(System.Func<System.Collections.Generic.KeyValuePair<object,object>,object>)
 		// System.Collections.Generic.IEnumerable<object> System.Linq.Enumerable.Iterator<object>.Select<object>(System.Func<object,object>)
 		// System.Linq.IOrderedEnumerable<object> System.Linq.IOrderedEnumerable<object>.CreateOrderedEnumerable<int>(System.Func<object,int>,System.Collections.Generic.IComparer<int>,bool)
 		// object& System.Runtime.CompilerServices.Unsafe.As<object,object>(object&)
