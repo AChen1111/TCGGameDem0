@@ -78,7 +78,8 @@ public class ShopWindow : AWindowController
             new CosmeticShopCategory("壁纸", ShopCatalogTypes.Wallpaper, AddressKeys.Prefab.WallpaperShopItemRowPrefab),
         };
         m_Workshop.Bind((message, ok) => RequestOpenWindow(AddressKeys.Prefab.ChooseWindow, new ChooseWindowProperties(message, ok, () => { })),
-            message => RequestOpenWindow(AddressKeys.Prefab.UrNoticeWindow, new UrNoticeProperties(message)));
+            message => RequestOpenWindow(AddressKeys.Prefab.UrNoticeWindow, new UrNoticeProperties(message)),
+            entry => RequestOpenWindow(AddressKeys.Prefab.CardDetailOverlay, new CardDetailWindowProperty(new[] { entry }, 0)));
         m_ConfigSnapshot = GameConfigManager.Instance.Store.Snapshot;
         base.Awake();
     }

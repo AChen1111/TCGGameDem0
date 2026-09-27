@@ -26,13 +26,14 @@ public sealed class CardWorkshopPanel : MonoBehaviour
     CancellationTokenSource m_lifetime, m_selection;
     Action<LocalizedMessage, Action> m_confirm;
     Action<LocalizedMessage> m_notice;
+    Action<CardDetailEntry> m_inspect;
     readonly Dictionary<int, long> m_liveRewards = new Dictionary<int, long>();
     long m_liveCraft;
     bool m_dismantle, m_busy;
     int m_selected = -1;
 
-    public void Bind(Action<LocalizedMessage, Action> confirm, Action<LocalizedMessage> notice)
-    { m_confirm = confirm; m_notice = notice; }
+    public void Bind(Action<LocalizedMessage, Action> confirm, Action<LocalizedMessage> notice, Action<CardDetailEntry> inspect)
+    { m_confirm = confirm; m_notice = notice; m_inspect = inspect; }
     void Awake()
     {
         m_CraftTab.onClick.AddListener(() => Switch(false));
@@ -41,6 +42,7 @@ public sealed class CardWorkshopPanel : MonoBehaviour
         m_OnlyCraftable.onValueChanged.AddListener(_ => Refresh());
         m_Detail.Changed += RefreshDetail;
         m_Detail.Submitted += Confirm;
+        m_Detail.Inspected += () => m_inspect(m_Detail.Inspection);
     }
     void OnEnable()
     {
@@ -103,7 +105,7 @@ public sealed class CardWorkshopPanel : MonoBehaviour
         if (m_selected < 0) return;
         var player = PlayerSession.Instance.CurrentPlayer;
         var owned = Enumerable.Range(0, 5).Select(r => player.OwnedCards.Where(x => x.CardId == m_cards[m_selected].CardId && x.Rarity == r).Sum(x => x.Count)).ToArray();
-        m_Detail.Display(m_dismantle, owned, Amount(), m_busy, player.Ur);
+        m_Detail.Display(m_dismantle, owned, Amount(), m_busy);
         m_CraftTab.interactable = m_DismantleTab.interactable = m_Search.interactable = m_OnlyCraftable.interactable = !m_busy;
     }
     void Confirm() => ConfirmAsync().Forget();
@@ -112,6 +114,11 @@ public sealed class CardWorkshopPanel : MonoBehaviour
         string id = m_cards[m_selected].CardId;
         int rarity = m_Detail.Rarity, count = m_dismantle ? m_Detail.Quantity : 1;
         long amount = Amount(); bool dismantle = m_dismantle;
+        if (!dismantle && PlayerSession.Instance.CurrentPlayer.Ur < amount)
+        {
+            m_notice(new LocalizedMessage("err.insufficient_ur"));
+            return;
+        }
         if (dismantle)
         {
             m_busy = true; RefreshDetail();
