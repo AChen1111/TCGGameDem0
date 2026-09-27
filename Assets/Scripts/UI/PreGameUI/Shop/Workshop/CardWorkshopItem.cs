@@ -22,12 +22,22 @@ public sealed class CardWorkshopItem : MonoBehaviour
     [SerializeField] Image m_Dim;
     [SerializeField] GameObject m_Selected;
     [SerializeField] Button m_Select;
-    CancellationTokenSource m_lifetime;
+    CancellationTokenSource m_lifetime = new();
     Action<int> m_onSelected;
     int m_index, m_version;
     void Awake() => m_Select.onClick.AddListener(Select);
-    void OnEnable() => m_lifetime = new CancellationTokenSource();
-    void OnDisable() { m_lifetime.Cancel(); m_lifetime.Dispose(); }
+    // 父物体 OnEnable 会先绑定列表，此时子项本次 OnEnable 还没执行，不能留着已释放的源。
+    void OnDisable()
+    {
+        m_lifetime.Cancel();
+        m_lifetime.Dispose();
+        m_lifetime = new CancellationTokenSource();
+    }
+    void OnDestroy()
+    {
+        m_lifetime.Cancel();
+        m_lifetime.Dispose();
+    }
     void Select() => m_onSelected(m_index);
     public void Bind(WorkshopCardData card, int index, bool selected, Action<int> onSelected)
     {
