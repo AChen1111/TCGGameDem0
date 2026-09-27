@@ -150,22 +150,24 @@ public static class BuildDeckPrefabs
     }
     static void Cell(bool placed)
     {
-        float w=placed?61:80, artW=placed?57:76, artH=placed?83:111;
-        var root=R(placed?"DeckPlacedCardCell":"DeckCardCell",null,0,0,w,placed?102:143);var cell=root.gameObject.AddComponent<DeckCardCell>();
+        var preview=AssetDatabase.LoadAssetAtPath<GameObject>("Assets/UI/Prefab/Hall/Shop/CardInUI.prefab");
+        var artSize=((RectTransform)preview.transform).sizeDelta;
+        float w=artSize.x+4, artW=artSize.x, artH=artSize.y;
+        var root=R(placed?"DeckPlacedCardCell":"DeckCardCell",null,0,0,w,artH+(placed?26:42));var cell=root.gameObject.AddComponent<DeckCardCell>();
         var hit=root.gameObject.AddComponent<Image>();hit.color=new Color(0,0,0,.01f);var button=root.gameObject.AddComponent<Button>();button.targetGraphic=hit;
         var art=Card("Art",root,2,2,artW,artH);var dim=Img("Unowned",root,2,2,artW,artH,null,new Color(.02f,.025f,.04f,.63f));
         var selected=Frame("Selected",root,0,0,w,artH+4,Green);selected.gameObject.SetActive(false);
-        var name=T("Name",root,0,artH+4,w,16,"卡牌名称",placed?9:11);name.alignment=TextAlignmentOptions.Center;name.color=new Color(.79f,.82f,.88f);
+        var name=T("Name",root,0,artH+4,w,22,"卡牌名称",18);name.alignment=TextAlignmentOptions.Center;name.color=new Color(.79f,.82f,.88f);
         name.textWrappingMode=TextWrappingModes.NoWrap;name.overflowMode=TextOverflowModes.Ellipsis;
-        var count=T("Quantity",root,0,131,80,12,"×3",12);count.alignment=TextAlignmentOptions.Center;
+        var count=T("Quantity",root,0,artH+26,w,16,"×3",18);count.alignment=TextAlignmentOptions.Center;count.gameObject.SetActive(!placed);
         Ref(cell,"m_View",art);Ref(cell,"m_Dim",dim);Ref(cell,"m_Selected",selected.gameObject);Ref(cell,"m_Button",button);Ref(cell,"m_Quantity",count);Ref(cell,"m_Rarity",name);
         Save(root.gameObject,placed?"DeckPlacedCardCell":"DeckCardCell");
     }
     static void Row()
     {
-        var root=R("DeckCardRow",null,0,0,520,157);root.gameObject.AddComponent<LoopListViewItem2>();var row=root.gameObject.AddComponent<DeckCardRow>();var items=new DeckCardCell[6];
+        var root=R("DeckCardRow",null,0,0,520,352);root.gameObject.AddComponent<LoopListViewItem2>();var row=root.gameObject.AddComponent<DeckCardRow>();var items=new DeckCardCell[2];
         var prefab=AssetDatabase.LoadAssetAtPath<GameObject>(Folder+"DeckCardCell.prefab");
-        for(int i=0;i<6;i++){var child=(GameObject)PrefabUtility.InstantiatePrefab(prefab,root);((RectTransform)child.transform).anchoredPosition=new Vector2(i*86+2,0);items[i]=All<DeckCardCell>(child).Single();}
+        for(int i=0;i<2;i++){var child=(GameObject)PrefabUtility.InstantiatePrefab(prefab,root);((RectTransform)child.transform).anchoredPosition=new Vector2(i*229+42,0);items[i]=All<DeckCardCell>(child).Single();}
         Refs(row,"m_Items",items);Save(root.gameObject,"DeckCardRow");
     }
     static void ListItem()
@@ -211,11 +213,12 @@ public static class BuildDeckPrefabs
         var box=Img("DeckCase",r,416,122,36,44,S("DeckCase2004_L"),Color.white);box.type=Image.Type.Simple;box.preserveAspect=true;
         T("Txt_Name",r,467,119,530,51,"卡组",27).overflowMode=TextOverflowModes.Ellipsis;B("Btn_Rename",r,1015,125,85,38,"改名");
         Img("NameLine",r,416,172,684,2,null,new Color(.45f,.5f,.55f));
-        Img("MainHeader",r,404,184,710,44,null,new Color(.1f,.14f,.17f));L("MainTitle",r,420,184,180,44,"ui.deck.main",25);T("Txt_MainCount",r,830,184,262,44,"0 / 60",25).alignment=TextAlignmentOptions.MidlineRight;
-        var main=Scroll("MainCards",r,408,231,702,441,true,61,102,10);
-        var empty=L("Go_Empty",r,451,375,610,80,"ui.deck.add_prompt",26);empty.alignment=TextAlignmentOptions.Center;
-        Img("ExtraHeader",r,404,685,710,44,null,new Color(.1f,.14f,.17f));L("ExtraTitle",r,420,685,180,44,"ui.deck.extra",25);T("Txt_ExtraCount",r,830,685,262,44,"0 / 15",25).alignment=TextAlignmentOptions.MidlineRight;
-        var extra=Scroll("ExtraCards",r,408,733,702,190,true,61,102,10);
+        Img("MainHeader",r,404,176,710,34,null,new Color(.1f,.14f,.17f));L("MainTitle",r,420,176,180,34,"ui.deck.main",25);T("Txt_MainCount",r,830,176,262,34,"0 / 60",25).alignment=TextAlignmentOptions.MidlineRight;
+        var main=Scroll("MainCards",r,408,210,702,338,true,207,322,3);
+        var empty=L("Go_Empty",r,451,339,610,80,"ui.deck.add_prompt",26);empty.alignment=TextAlignmentOptions.Center;
+        Img("ExtraHeader",r,404,556,710,34,null,new Color(.1f,.14f,.17f));L("ExtraTitle",r,420,556,180,34,"ui.deck.extra",25);T("Txt_ExtraCount",r,830,556,262,34,"0 / 15",25).alignment=TextAlignmentOptions.MidlineRight;
+        var extra=Scroll("ExtraCards",r,408,590,702,338,true,207,322,3);
+        foreach(var scroll in new[]{main,extra}) { var layout=All<GridLayoutGroup>(scroll.gameObject).Single();layout.spacing=new Vector2(12,12);layout.padding=new RectOffset(28,28,8,8); }
         T("Txt_Status",r,640,119,353,51,"",18).alignment=TextAlignmentOptions.MidlineRight;
         Img("PoolHeader",r,1142,114,538,53,null,Green);L("PoolTitle",r,1160,114,440,53,"ui.deck.cards",30).color=Color.black;
         Input("Inp_Search",r,1151,179,408,49,"ui.deck.search");T("Txt_Results",r,1568,179,102,49,"0",25).alignment=TextAlignmentOptions.Center;
@@ -226,7 +229,7 @@ public static class BuildDeckPrefabs
         foreach(var drop in new[]{dropMain,dropExtra}){var so=new SerializedObject(drop);so.FindProperty("m_IntoDeck").boolValue=true;so.ApplyModifiedPropertiesWithoutUndo();}
         var deckHighlight=Frame("DeckDropHighlight",r,402,182,714,746,Green);deckHighlight.enabled=false;
         var poolHighlight=Frame("PoolDropHighlight",r,1140,235,542,693,Green);poolHighlight.enabled=false;
-        var drag=R("DragGhost",r,0,0,95,139);drag.pivot=new Vector2(.5f,.5f);var dragCard=Card("DragCard",drag,0,0,95,139);drag.gameObject.SetActive(false);
+        var drag=R("DragGhost",r,0,0,203,296);drag.pivot=new Vector2(.5f,.5f);var dragCard=Card("DragCard",drag,0,0,203,296);drag.gameObject.SetActive(false);
         Ref(controller,"m_Pool",grid);Ref(controller,"m_PoolScroll",pool);Ref(controller,"m_MainScroll",main);Ref(controller,"m_ExtraScroll",extra);
         Ref(controller,"m_DeckCellPrefab",All<DeckCardCell>(AssetDatabase.LoadAssetAtPath<GameObject>(Folder+"DeckPlacedCardCell.prefab")).Single());
         Ref(controller,"m_DetailCard",art);Ref(controller,"m_DragCard",dragCard);Ref(controller,"m_DragRoot",drag);Ref(controller,"m_CanvasRect",root.transform);Ref(controller,"m_Controls",All<CanvasGroup>(root).Single());

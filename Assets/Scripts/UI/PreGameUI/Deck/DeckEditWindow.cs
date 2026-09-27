@@ -10,6 +10,8 @@ using AChen.Events;
 using AChen.Networking;
 using AChen.Player;
 using Cysharp.Threading.Tasks;
+using LitMotion;
+using LitMotion.Extensions;
 
 public sealed class DeckEditWindowProperties : IWindowProperties
 {
@@ -61,6 +63,15 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
     DeckCardData m_selected, m_dragged;
     bool m_ready, m_busy, m_dragging;
     Action m_afterUnsaved;
+    readonly List<DeckCardCell> m_mainCells = new(), m_extraCells = new();
+    readonly List<CardMove> m_cardMoves = new();
+    sealed class CardMove
+    {
+        public DeckCardData Data;
+        public int CopyIndex;
+        public DeckCardView View;
+        public MotionHandle Handle;
+    }
     protected override void AddListeners()
     {
         m_BtnBack.onClick.AddListener(Back);
@@ -99,10 +110,10 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
         m_afterUnsaved = null;
         continuation?.Invoke();
     }
-    protected override void OnHide() => EndCardDrag();
+    protected override void OnHide() { StopCardMoves(); EndCardDrag(); }
     protected override void OnClose()
     {
-        EndCardDrag(); m_ready = false;
+        StopCardMoves(); EndCardDrag(); m_ready = false;
         EventCenter.RemoveListener(GameEvent.PlayerOwnedCardsChanged, InventoryChanged);
         LocalizationService.LanguageChanged -= LanguageChanged;
     }
@@ -134,13 +145,15 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
         m_TxtExtraCount.text = deck.ExtraDeck.Sum(x => x.Count) + " / 15";
         m_TxtStatus.text = LocalizationService.GetText(deck.MainDeck.Sum(x => x.Count) < 40 ? "ui.deck.incomplete" : "ui.deck.ready");
         m_GoEmpty.SetActive(deck.MainDeck.Count == 0);
-        Populate(m_MainScroll.content, deck.MainDeck);
-        Populate(m_ExtraScroll.content, deck.ExtraDeck);
+        Populate(m_MainScroll.content, deck.MainDeck, m_mainCells);
+        Populate(m_ExtraScroll.content, deck.ExtraDeck, m_extraCells);
         RefreshPool(); RefreshButtons();
     }
-    void Populate(RectTransform content, IReadOnlyList<DeckCardEntry> entries)
+    void Populate(RectTransform content, IReadOnlyList<DeckCardEntry> entries, List<DeckCardCell> cells)
     {
-        foreach (Transform child in content) Destroy(child.gameObject);
+        // Exclude scheduled-for-destruction children from this frame's grid layout.
+        foreach (Transform child in content) { child.gameObject.SetActive(false); Destroy(child.gameObject); }
+        cells.Clear();
         foreach (var entry in entries.OrderBy(x => x.CardId, StringComparer.Ordinal).ThenBy(x => x.Rarity))
         {
             string pool = LocalGameConfiguration.Data.AllCards.Single(x => x.CardId == entry.CardId).SourcePool;
@@ -149,6 +162,8 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
             {
                 var cell = Instantiate(m_DeckCellPrefab, content);
                 cell.Bind(data, i, false, _ => SelectCard(data));
+                cell.View.SetArtVisible(!m_cardMoves.Any(x => x.Data.CardId == entry.CardId && x.Data.Rarity == entry.Rarity && x.CopyIndex == i));
+                cells.Add(cell);
             }
         }
     }
@@ -213,13 +228,75 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
     }
     void AddSelected() => Change(m_selected, 1);
     void RemoveSelected() => Change(m_selected, -1);
-    void Change(DeckCardData data, int delta)
+    bool Change(DeckCardData data, int delta, bool keepCardMoves = false)
     {
-        if (m_busy) return;
-        if (delta < 0 && m_state.Count(data.CardId, data.Rarity) == 0) return;
+        if (m_busy) return false;
+        if (delta < 0 && m_state.Count(data.CardId, data.Rarity) == 0) return false;
         var result = m_state.TryChange(data.CardId, data.Rarity, delta, LocalGameConfiguration.DeckRules, Inventory());
-        if (!result.IsValid) { ShowIssue(result); return; }
+        if (!result.IsValid) { ShowIssue(result); return false; }
+        if (!keepCardMoves) StopCardMoves();
         Refresh();
+        return true;
+    }
+    public void AddCardFromClick(DeckCardData data, Texture texture, Vector3 worldCenter)
+    {
+        var start = m_CanvasRect.InverseTransformPoint(worldCenter);
+        if (!Change(data, 1, true)) return;
+        var move = new CardMove { Data = data, CopyIndex = m_state.Count(data.CardId, data.Rarity) - 1,
+            View = Instantiate(m_DragCard, m_CanvasRect) };
+        var scroll = ScrollFor(new DeckCardData(data.CardId, data.SourcePool, data.Rarity, 0, true, this));
+        Canvas.ForceUpdateCanvases();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(scroll.content);
+        var landingCell = LandingCard(move);
+        var landing = landingCell.View;
+        RevealCard(scroll, (RectTransform)landingCell.transform);
+        landing.SetArtVisible(false);
+        var rect = move.View.ArtRect;
+        rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(.5f, .5f);
+        rect.sizeDelta = landing.ArtRect.rect.size;
+        rect.localPosition = start;
+        rect.SetAsLastSibling();
+        move.View.SetTexture(texture, data.Rarity);
+        m_cardMoves.Add(move);
+        move.Handle = LMotion.Create(0f, 1f, .35f)
+            .WithEase(Ease.OutCubic)
+            .WithScheduler(MotionScheduler.UpdateIgnoreTimeScale)
+            .WithOnComplete(() =>
+            {
+                LandingCard(move).View.SetArtVisible(true);
+                m_cardMoves.Remove(move);
+                Destroy(move.View.gameObject);
+            })
+            .Bind(progress =>
+            {
+                var target = LandingCard(move).View.ArtRect;
+                var end = m_CanvasRect.InverseTransformPoint(target.TransformPoint(target.rect.center));
+                rect.localPosition = Vector3.LerpUnclamped(start, end, progress);
+            })
+            .AddTo(move.View);
+    }
+    DeckCardCell LandingCard(CardMove move)
+    {
+        LocalGameConfiguration.DeckRules.TryGetSection(move.Data.CardId, out var section);
+        return (section == DeckSection.Main ? m_mainCells : m_extraCells)
+            .Where(x => x.Data.CardId == move.Data.CardId && x.Data.Rarity == move.Data.Rarity).ElementAt(move.CopyIndex);
+    }
+    static void RevealCard(ScrollRect scroll, RectTransform card)
+    {
+        scroll.StopMovement();
+        var bounds = RectTransformUtility.CalculateRelativeRectTransformBounds(scroll.viewport, card);
+        var position = scroll.content.anchoredPosition;
+        if (bounds.min.y < scroll.viewport.rect.yMin) position.y += scroll.viewport.rect.yMin - bounds.min.y;
+        if (bounds.max.y > scroll.viewport.rect.yMax) position.y -= bounds.max.y - scroll.viewport.rect.yMax;
+        position.y = Mathf.Clamp(position.y, 0, Mathf.Max(0, scroll.content.rect.height - scroll.viewport.rect.height));
+        scroll.content.anchoredPosition = position;
+    }
+    void StopCardMoves()
+    {
+        foreach (var move in m_cardMoves) { move.Handle.TryCancel(); Destroy(move.View.gameObject); }
+        m_cardMoves.Clear();
+        foreach (var cell in m_mainCells) cell.View.SetArtVisible(true);
+        foreach (var cell in m_extraCells) cell.View.SetArtVisible(true);
     }
     void ShowIssue(DeckValidationResult result) => ShowMessage("ui.deck.issue." + result.Issues[0].Code);
     void Rename() => RequestOpenWindow(AddressKeys.Prefab.DeckNameWindow, new DeckNameWindowProperties(m_state.Draft.Name, true,
@@ -272,6 +349,7 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
     public void BeginCardDrag(DeckCardData data, Texture texture, Vector2 pointer)
     {
         if (m_busy) return;
+        StopCardMoves();
         m_dragged = data; m_dragging = true;
         m_DragRoot.gameObject.SetActive(true); m_DragCard.SetTexture(texture, data.Rarity);
         m_DropHighlights[data.InDeck ? 1 : 0].enabled = true;

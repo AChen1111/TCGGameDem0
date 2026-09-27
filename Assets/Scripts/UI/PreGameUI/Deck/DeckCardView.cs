@@ -10,6 +10,8 @@ public sealed class DeckCardView : MonoBehaviour
     [SerializeField] Material[] m_Versions;
     int m_version;
     public Texture Texture => m_Art.texture;
+    public RectTransform ArtRect => m_Art.rectTransform;
+    public void SetArtVisible(bool visible) => m_Art.enabled = visible;
     public void SetTexture(Texture texture, int rarity)
     { ++m_version; m_Art.texture = texture; m_Art.material = m_Versions[rarity]; }
     public async UniTask BindAsync(string pool, string id, int rarity, CancellationToken ct)

@@ -140,7 +140,7 @@ public static class VerifyDeckUI
         ((TMP_InputField)Ref(w,"m_InpSearch")).text=LocalizationService.GetText("card."+data.CardId+".name");await Task.Delay(500);
         var cell=Cell(w,data);ExecuteEvents.Execute(cell.gameObject,Event(Point((RectTransform)cell.transform)),ExecuteEvents.pointerClickHandler);
         await Task.Delay(350);
-        await Drag(cell,(ScrollRect)Ref(w,"m_MainScroll"),true);await Drag(Cell(w,data),(ScrollRect)Ref(w,"m_MainScroll"));
+        await Drag(Cell(w,data),(ScrollRect)Ref(w,"m_MainScroll"),true);
         if(EditorModel(w).Count(data.CardId,data.Rarity)!=2)throw new Exception("Drag additions failed");
         var placed=new DeckCardData(data.CardId,data.SourcePool,data.Rarity,0,true,w);
         var main=(ScrollRect)Ref(w,"m_MainScroll");
@@ -151,7 +151,7 @@ public static class VerifyDeckUI
         if(EditorModel(w).Count(data.CardId,data.Rarity)!=1)throw new Exception("Drag removal failed");
         Click(w,"m_BtnPlus");await Task.Delay(350);if(EditorModel(w).Count(data.CardId,data.Rarity)!=2)throw new Exception("Detail +1 failed");
         Click(w,"m_BtnMinus");await Task.Delay(350);if(EditorModel(w).Count(data.CardId,data.Rarity)!=1)throw new Exception("Detail -1 failed");
-        records.Add("Raycast click; pool→deck drag twice; two expanded cells without quantity; deck→pool drag; detail +1/-1 passed");
+        records.Add("Raycast click adds one; pool→deck drag adds one; two expanded cells without quantity; deck→pool drag; detail +1/-1 passed");
         ((TMP_InputField)Ref(w,"m_InpSearch")).text="";await Task.Delay(500);
         pool=(List<DeckCardData>)Value(w,"m_pool");var extra=pool.First(x=>x.Owned>0&&LocalGameConfiguration.DeckRules.GetMaxCopies(x.CardId)>0
             &&LocalGameConfiguration.DeckRules.TryGetSection(x.CardId,out var section)&&section==DeckSection.Extra);
