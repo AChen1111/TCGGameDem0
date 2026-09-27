@@ -47,6 +47,9 @@ public static class AddressKeys
     public static class Sprite
     {
         public static readonly string DeckCase2004_L = "DeckCase2004_L";
+        public static readonly string GUI_T_Icon1_Limit00 = "GUI_T_Icon1_Limit00";
+        public static readonly string GUI_T_Icon1_Limit01 = "GUI_T_Icon1_Limit01";
+        public static readonly string GUI_T_Icon1_Limit02 = "GUI_T_Icon1_Limit02";
         public static readonly string Icon_Rarity_UR = "Icon_Rarity_UR";
         public static readonly string Profile_GUI_ButtonClose = "Profile_GUI_ButtonClose";
         public static readonly string Profile_GUI_CommonButtonM = "Profile_GUI_CommonButtonM";

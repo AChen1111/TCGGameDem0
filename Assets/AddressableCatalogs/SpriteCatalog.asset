@@ -2806,3 +2806,24 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: GUI_T_Icon1_Limit00
+    reference:
+      m_AssetGUID: 7fa7be80fec647b4b99fb7579606a916
+      m_SubObjectName: GUI_T_Icon1_Limit00
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: GUI_T_Icon1_Limit01
+    reference:
+      m_AssetGUID: ce1d3925ac695304d9c84570cdfdafaf
+      m_SubObjectName: GUI_T_Icon1_Limit01
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: GUI_T_Icon1_Limit02
+    reference:
+      m_AssetGUID: 77ca93cdb873d86459ea3f44b870de2d
+      m_SubObjectName: GUI_T_Icon1_Limit02
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

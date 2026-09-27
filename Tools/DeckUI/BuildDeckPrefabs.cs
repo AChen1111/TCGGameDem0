@@ -161,6 +161,9 @@ public static class BuildDeckPrefabs
         name.gameObject.SetActive(false);
         var badge=Img("QuantityBadge",root,artW-18,artH-18,20,20,null,Color.black);badge.gameObject.SetActive(!placed);
         var count=T("Quantity",badge.transform,0,0,20,20,"3",18);count.alignment=TextAlignmentOptions.Center;count.margin=Vector4.zero;count.gameObject.SetActive(!placed);
+        var limit=Img("LimitIcon",root,0,0,placed?24:20,placed?24:20,S("GUI_T_Icon1_Limit00"),Color.white);
+        limit.preserveAspect=true;limit.raycastTarget=false;limit.gameObject.SetActive(false);
+        Ref(cell,"m_LimitIcon",limit);Refs(cell,"m_LimitSprites",Enumerable.Range(0,3).Select(i=>S("GUI_T_Icon1_Limit0"+i)).ToArray());
         Ref(cell,"m_View",art);Ref(cell,"m_Dim",dim);Ref(cell,"m_Selected",selected.gameObject);Ref(cell,"m_Button",button);Ref(cell,"m_Quantity",count);Ref(cell,"m_Rarity",name);
         Save(root.gameObject,placed?"DeckPlacedCardCell":"DeckCardCell");
     }

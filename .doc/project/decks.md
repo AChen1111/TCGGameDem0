@@ -36,7 +36,9 @@ await session.DeleteDeckAsync(saved.Id, saved.Revision, cancellationToken);
 
 `TableData/card-deck-sections.csv`：`CardId,Section` / `string,string`，每张卡恰好一行，`Section` 为 `Main` 或 `Extra`。当前 94 张卡，57 主卡、37 额外。
 
-`TableData/card-banlist.csv`：`CardId,MaxCopies` / `string,int`。0 禁止、1 限制、2 准限制、3 不限；未列出的已知卡默认 3。初始仅表头和类型行，不包含官方禁限数据。此表允许空数据，不允许文件缺失；重复 ID、未知卡、非法数量均失败。
+`TableData/card-banlist.csv`：`CardId,MaxCopies` / `string,int`。0 禁止、1 限制、2 准限制、3 最多三张；未列出的已知卡默认 3。当前为项目示例配置：增殖的 G（23434538）禁止、灰流丽（14558127）限制、假面变化（21143940）准限制，不代表官方赛制的禁限表。此表允许空数据，不允许文件缺失；重复 ID、未知卡、非法数量均失败。
+
+卡组编辑器的右侧列表和中间主卡组、额外卡组缩略图在左上角显示禁限角标；0、1、2 分别使用 `GUI_T_Icon1_Limit00/01/02`，上限 3 不显示角标。`DeckCardCell` 的图片和 Sprite 数组通过 Prefab 序列化绑定，显示与添加校验共用 `DeckRules.GetMaxCopies`。`Tools/DeckUI/AuthorDeckLimits.cs` 负责导入图片、原位绑定 Prefab 并调用配置生成器。
 
 通过 Unity `Tools/AddToBytes` / `PublishedConfigBuilder.Prepare()` 生成，地址为 `GameConfig/card-deck-sections` 和 `GameConfig/card-banlist`，分组 `Remote_GameConfig`，标签 `GameConfig`、`GameConfigGenerated`。不要手写 `.bytes`。
 

@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using AChen.Networking;
 
 public sealed class DeckCardCell : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -13,6 +14,8 @@ public sealed class DeckCardCell : MonoBehaviour, IPointerDownHandler, IBeginDra
     [SerializeField] Image m_Dim;
     [SerializeField] GameObject m_Selected;
     [SerializeField] Button m_Button;
+    [SerializeField] Image m_LimitIcon;
+    [SerializeField] Sprite[] m_LimitSprites;
     DeckCardData m_data;
     Action<int> m_select;
     int m_index;
@@ -39,6 +42,9 @@ public sealed class DeckCardCell : MonoBehaviour, IPointerDownHandler, IBeginDra
         m_Rarity.gameObject.SetActive(false);
         m_Dim.enabled = !data.InDeck && data.Owned == 0;
         m_Selected.SetActive(selected);
+        int limit = LocalGameConfiguration.DeckRules.GetMaxCopies(data.CardId);
+        m_LimitIcon.gameObject.SetActive(limit < 3);
+        if (limit < 3) m_LimitIcon.sprite = m_LimitSprites[limit];
         data.Window.BindCard(m_View, data);
     }
     public void OnBeginDrag(PointerEventData e)
