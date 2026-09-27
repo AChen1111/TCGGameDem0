@@ -35,8 +35,8 @@ public sealed class DeckCardCell : MonoBehaviour, IPointerDownHandler, IBeginDra
     {
         m_data = data; m_index = index; m_select = select;
         m_Quantity.gameObject.SetActive(!data.InDeck);
-        m_Quantity.text = "×" + data.Owned;
-        m_Rarity.text = LocalizationService.GetText("card." + data.CardId + ".name");
+        m_Quantity.text = data.Owned.ToString();
+        m_Rarity.gameObject.SetActive(false);
         m_Dim.enabled = !data.InDeck && data.Owned == 0;
         m_Selected.SetActive(selected);
         data.Window.BindCard(m_View, data);

@@ -5,10 +5,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-// Edit existing prefabs in place so their GUIDs, local IDs and bindings remain stable.
+// Author existing prefabs in place; keep GUIDs, local IDs and controller bindings.
 public static class ResizeDeckCards
 {
     const string Folder = "Assets/UI/Prefab/Hall/Deck/";
+    const int Columns = 8;
+    static readonly Vector2 PoolArt = new Vector2(56, 82);
+    static readonly Vector2 DeckArt = new Vector2(76, 111);
     static T[] All<T>(GameObject root) where T:Component => Resources.FindObjectsOfTypeAll<T>()
         .Where(x => x.transform == root.transform || x.transform.IsChildOf(root.transform)).ToArray();
     static T Ref<T>(UnityEngine.Object host, string field) where T:UnityEngine.Object =>
@@ -27,74 +30,76 @@ public static class ResizeDeckCards
     static void Cell(string name, Vector2 art, bool placed)
     {
         var root = PrefabUtility.LoadPrefabContents(Folder + name + ".prefab");
-        float width = art.x + 4;
-        ((RectTransform)root.transform).sizeDelta = new Vector2(width, art.y + (placed ? 26 : 42));
+        var size = art + new Vector2(4, 4);
+        ((RectTransform)root.transform).sizeDelta = size;
         Rect(root.transform, "Art", 2, 2, art.x, art.y);
         Rect(root.transform, "Unowned", 2, 2, art.x, art.y);
-        Rect(root.transform, "Selected", 0, 0, width, art.y + 4);
-        Rect(root.transform, "Name", 0, art.y + 4, width, 22);
-        Rect(root.transform, "Quantity", 0, art.y + 26, width, 16);
+        Rect(root.transform, "Selected", 0, 0, size.x, size.y);
         var cell = All<DeckCardCell>(root).Single();
-        Ref<TMP_Text>(cell, "m_Rarity").fontSize = 18;
-        Ref<TMP_Text>(cell, "m_Quantity").fontSize = 18;
-        Ref<TMP_Text>(cell, "m_Quantity").gameObject.SetActive(!placed);
+        Ref<TMP_Text>(cell, "m_Rarity").gameObject.SetActive(false);
+        var count = Ref<TMP_Text>(cell, "m_Quantity");
+        count.gameObject.SetActive(!placed);
+        if (!placed)
+        {
+            count.transform.SetParent(root.transform, false);
+            foreach (Transform old in root.transform.Cast<Transform>().Where(x => x.name == "QuantityBadge").ToArray())
+                UnityEngine.Object.DestroyImmediate(old.gameObject);
+            // The badge remains above the dimming and selected overlays.
+            var badge = new GameObject("QuantityBadge", typeof(RectTransform), typeof(CanvasRenderer));
+            var rect = (RectTransform)badge.transform;
+            rect.SetParent(root.transform, false);
+            rect.anchorMin = rect.anchorMax = new Vector2(1, 0);
+            rect.pivot = new Vector2(1, 0);
+            rect.anchoredPosition = new Vector2(-2, 2);
+            rect.sizeDelta = new Vector2(20, 20);
+            var background = badge.AddComponent<Image>();
+            background.color = Color.black; background.raycastTarget = false;
+            count.transform.SetParent(rect, false);
+            count.rectTransform.anchorMin = Vector2.zero;
+            count.rectTransform.anchorMax = Vector2.one;
+            count.rectTransform.offsetMin = count.rectTransform.offsetMax = Vector2.zero;
+            count.fontSize = 18; count.color = Color.white;
+            count.alignment = TextAlignmentOptions.Center;
+            count.margin = Vector4.zero; count.raycastTarget = false;
+            count.text = "3";
+        }
         Save(root, name);
     }
     public static string Main()
     {
         if (EditorApplication.isPlaying) throw new InvalidOperationException("Stop Play before authoring.");
-        var preview = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/UI/Prefab/Hall/Shop/CardInUI.prefab");
-        var art = ((RectTransform)preview.transform).sizeDelta;
-        Cell("DeckCardCell", art, false);
-        Cell("DeckPlacedCardCell", art, true);
+        Cell("DeckCardCell", PoolArt, false);
+        Cell("DeckPlacedCardCell", DeckArt, true);
         var row = PrefabUtility.LoadPrefabContents(Folder + "DeckCardRow.prefab");
-        foreach (Transform child in row.transform.Cast<Transform>().Skip(2).ToArray()) UnityEngine.Object.DestroyImmediate(child.gameObject);
-        ((RectTransform)row.transform).sizeDelta = new Vector2(520, art.y + 56);
-        var items = All<DeckCardCell>(row).OrderBy(x=>x.transform.GetSiblingIndex()).ToArray();
-        for (int i = 0; i < items.Length; i++)
-        {
-            var rect = (RectTransform)items[i].transform;
-            rect.anchoredPosition = new Vector2(42 + i * 229, 0);
-            rect.sizeDelta = new Vector2(art.x + 4, art.y + 42);
-        }
+        foreach (Transform child in row.transform.Cast<Transform>().ToArray()) UnityEngine.Object.DestroyImmediate(child.gameObject);
+        ((RectTransform)row.transform).sizeDelta = new Vector2(520, 94);
+        var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(Folder + "DeckCardCell.prefab");
         var so = new SerializedObject(All<DeckCardRow>(row).Single());
-        var array = so.FindProperty("m_Items");array.arraySize = 2;
-        for (int i = 0; i < 2; i++) array.GetArrayElementAtIndex(i).objectReferenceValue = items[i];
-        so.ApplyModifiedPropertiesWithoutUndo();Save(row, "DeckCardRow");
+        var array = so.FindProperty("m_Items"); array.arraySize = Columns;
+        // 8 * 60 + 7 * 4 + 2 * 6 = 520.
+        for (int i = 0; i < Columns; i++)
+        {
+            var child = (GameObject)PrefabUtility.InstantiatePrefab(prefab, row.transform);
+            var rect = (RectTransform)child.transform;
+            rect.anchoredPosition = new Vector2(6 + i * 64, -4);
+            rect.sizeDelta = PoolArt + new Vector2(4, 4);
+            array.GetArrayElementAtIndex(i).objectReferenceValue = All<DeckCardCell>(child).Single();
+        }
+        so.ApplyModifiedPropertiesWithoutUndo(); Save(row, "DeckCardRow");
         var root = PrefabUtility.LoadPrefabContents(Folder + "DeckEditWindow.prefab");
         var w = All<DeckEditWindow>(root).Single();
-        Rect(root.transform, "MainHeader", 404, 176, 710, 34);
-        Rect(root.transform, "MainTitle", 420, 176, 180, 34);
-        Rect(root.transform, "Txt_MainCount", 830, 176, 262, 34);
-        Rect(root.transform, "ExtraHeader", 404, 556, 710, 34);
-        Rect(root.transform, "ExtraTitle", 420, 556, 180, 34);
-        Rect(root.transform, "Txt_ExtraCount", 830, 556, 262, 34);
-        Rect(root.transform, "Go_Empty", 451, 339, 610, 80);
-        Rect(root.transform, "MainCards", 408, 210, 702, 338);
-        Rect(root.transform, "ExtraCards", 408, 590, 702, 338);
         foreach (var scroll in new[] { Ref<ScrollRect>(w, "m_MainScroll"), Ref<ScrollRect>(w, "m_ExtraScroll") })
         {
-            scroll.viewport.sizeDelta = scroll.content.sizeDelta = new Vector2(702, 338);
             var grid = All<GridLayoutGroup>(root).Single(x => x.transform == scroll.content);
-            grid.cellSize = new Vector2(art.x + 4, art.y + 26);
-            grid.constraintCount = 3;grid.spacing = new Vector2(12, 12);grid.padding = new RectOffset(28, 28, 8, 8);
+            grid.cellSize = DeckArt + new Vector2(4, 4);
+            // 8 * 80 + 7 * 6 + 2 * 10 = 702.
+            grid.constraintCount = Columns; grid.spacing = new Vector2(6, 8);
+            grid.padding = new RectOffset(10, 10, 8, 8);
         }
-        Ref<RectTransform>(w, "m_DragRoot").sizeDelta = art;
+        Ref<RectTransform>(w, "m_DragRoot").sizeDelta = DeckArt;
         var drag = Ref<DeckCardView>(w, "m_DragCard");
-        ((RectTransform)drag.transform).sizeDelta = art;
+        ((RectTransform)drag.transform).sizeDelta = DeckArt;
         Save(root, "DeckEditWindow");
-        return "Matched preview card art " + art + "; deck 3 columns, pool 2 columns; kept existing details and bindings.";
-    }
-    public static string ApplyRowSizes()
-    {
-        var preview = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/UI/Prefab/Hall/Shop/CardInUI.prefab");
-        var art = ((RectTransform)preview.transform).sizeDelta;
-        var size = new Vector2(art.x + 4, art.y + 42);
-        var row = PrefabUtility.LoadPrefabContents(Folder + "DeckCardRow.prefab");
-        foreach (Transform child in row.transform) ((RectTransform)child).sizeDelta = size;
-        Save(row, "DeckCardRow");
-        foreach (var cell in Resources.FindObjectsOfTypeAll<DeckCardCell>().Where(x => x.gameObject.scene.IsValid() && x.Data != null && !x.Data.InDeck))
-            ((RectTransform)cell.transform).sizeDelta = size;
-        return "Updated nested card rectangles and existing pool instances to " + size + ".";
+        return "Authored eight columns in deck and pool; hidden thumbnail names; bottom-right black quantity badges.";
     }
 }
