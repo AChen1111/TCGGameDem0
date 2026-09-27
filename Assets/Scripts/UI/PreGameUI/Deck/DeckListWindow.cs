@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
-using System.Linq;
 using AChen.Decks;
 using AChen.Player;
 using Cysharp.Threading.Tasks;
@@ -26,9 +25,6 @@ public class DeckListWindow : AWindowController
     { m_BtnBack.onClick.RemoveListener(UI_Close); m_BtnNew.onClick.RemoveListener(Create); }
     protected override void OnOpen() => Reload().Forget();
     protected override void OnResume() => Reload().Forget();
-    public string DeckSummary(DeckData deck) => deck.MainDeck.Sum(x => x.Count) + " / 60   ·   "
-        + deck.ExtraDeck.Sum(x => x.Count) + " / 15   "
-        + LocalizationService.GetText(deck.MainDeck.Sum(x => x.Count) >= 40 ? "ui.deck.ready" : "ui.deck.incomplete");
     async UniTask Reload()
     {
         if (m_busy) return;

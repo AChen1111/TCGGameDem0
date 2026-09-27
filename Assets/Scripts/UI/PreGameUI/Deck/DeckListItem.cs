@@ -8,7 +8,6 @@ public sealed class DeckListItem : MonoBehaviour
     [SerializeField] Button m_Open;
     [SerializeField] Button m_Delete;
     [SerializeField] TMP_Text m_DeckName;
-    [SerializeField] TMP_Text m_Count;
     DeckData m_data;
     DeckListWindow m_window;
     void Awake()
@@ -16,6 +15,5 @@ public sealed class DeckListItem : MonoBehaviour
     public void Bind(DeckData data, DeckListWindow window)
     {
         m_data = data; m_window = window; m_DeckName.text = data.Name;
-        m_Count.text = window.DeckSummary(data);
     }
 }

@@ -174,9 +174,8 @@ public static class BuildDeckPrefabs
         Panel(root,0,0,280,255);var button=root.gameObject.AddComponent<Button>();var hit=root.gameObject.AddComponent<Image>();hit.color=new Color(0,0,0,.01f);button.targetGraphic=hit;
         var box=Img("GoldDeckCase",root,86,22,110,142,S("DeckCase2004_L"),Color.white);box.type=Image.Type.Simple;box.preserveAspect=true;
         var name=T("Name",root,14,176,252,35,"卡组",23);name.alignment=TextAlignmentOptions.Center;name.overflowMode=TextOverflowModes.Ellipsis;
-        var count=T("Count",root,14,215,214,28,"0 / 60",15);count.color=new Color(.65f,.7f,.78f);
         var delete=B("Delete",root,235,218,32,28,"×");
-        Ref(view,"m_Open",button);Ref(view,"m_Delete",delete);Ref(view,"m_DeckName",name);Ref(view,"m_Count",count);Save(root.gameObject,"DeckListItem");
+        Ref(view,"m_Open",button);Ref(view,"m_Delete",delete);Ref(view,"m_DeckName",name);Save(root.gameObject,"DeckListItem");
     }
     static void List()
     {
