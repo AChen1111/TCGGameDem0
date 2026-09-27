@@ -25,6 +25,10 @@ namespace AChen.Player
                 EventCenter.Dispatch(GameEvent.PlayerAvatarChanged, current?.AvatarId);
             if (identityChanged || previous?.BackgroundId != current?.BackgroundId)
                 EventCenter.Dispatch(GameEvent.PlayerBackgroundChanged, current?.BackgroundId);
+            if (identityChanged || previous?.AvatarFrameId != current?.AvatarFrameId)
+                EventCenter.Dispatch(GameEvent.PlayerAvatarFrameChanged, current?.AvatarFrameId);
+            if (identityChanged || !SameIds(previous?.OwnedAvatarFrameIds, current?.OwnedAvatarFrameIds))
+                EventCenter.Dispatch(GameEvent.PlayerOwnedAvatarFramesChanged, current);
             if (avatarsChanged)
                 EventCenter.Dispatch(GameEvent.PlayerOwnedAvatarsChanged, current);
             if (wallpapersChanged)

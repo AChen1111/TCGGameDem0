@@ -75,7 +75,9 @@ Panel 常驻分层级显示；Window 进栈，带遮罩层。屏幕控制器从 
 | `Card/` | 卡包图与壁纸 | `Remote_Card` |
 | `Shader/` | UI Shader | `Remote_Shared` |
 
-地址常量写在 `AddressKeys`。头像与壁纸按编号拼地址：`a_{id:D2}`、`w_{id:D2}_Sprite`、`w_{id:D2}_Down`。新增可寻址资源后，用 Addressable 目录工具重新生成 `AddressKeys`，不要手写散落字符串。
+地址常量写在 `AddressKeys`。头像、头像框及其独立遮罩按素材编号寻址：`a_{id:D2}`、`af_{id}`、`af_{id}_Mask`；壁纸使用 `w_{id:D2}_Sprite`、`w_{id:D2}_Down`。新增可寻址资源后，用 Addressable 目录工具重新生成 `AddressKeys`，不要手写散落字符串。
+
+个人资料统一使用 `ProfileEditWindow`，大厅头像入口打开头像页，改名入口打开玩家名页。三个页签分别保留草稿，确认只保存本页；头像与边框列表仅展示已拥有项。`AvatarPortraitView` 和 `AvatarPortrait.prefab` 组合头像、内轮廓 Mask 与框装饰，供大厅、商城、好友和申请列表复用。素材维护与截图步骤见 `Tools/ProfileUI/README.md`。
 
 ## 5. 网络与会话边界
 

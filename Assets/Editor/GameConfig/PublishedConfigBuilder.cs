@@ -134,7 +134,7 @@ public static class PublishedConfigBuilder
         var entries = new SerializedObject(catalog).FindProperty("m_entries");
         var addresses = new HashSet<string>(StringComparer.Ordinal);
         for (int i = 0; i < entries.arraySize; i++) addresses.Add(entries.GetArrayElementAtIndex(i).FindPropertyRelative("assetName").stringValue);
-        foreach (string key in data.Catalog.Avatars.Concat(data.Catalog.Wallpapers).Select(x => x.ResourceKey)
+        foreach (string key in data.Catalog.Avatars.Concat(data.Catalog.Wallpapers).Concat(data.Catalog.AvatarFrames).Select(x => x.ResourceKey).Concat(data.Catalog.AvatarFrames.Select(x => x.MaskResourceKey))
             .Concat(data.Catalog.Wallpapers.SelectMany(x => new[] { $"w_{x.Id:D2}_Down", $"w_{x.Id:D2}_Sprite" }))
             .Concat(data.Catalog.CardPacks.Select(x => x.CoverResourceKey)))
             if (!addresses.Contains(key)) throw new FormatException("配置引用缺少资源: " + key);

@@ -22,6 +22,13 @@ MonoBehaviour:
     - GameConfig
     - GameConfigGenerated
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0f90436fe519f2149a9efdd928b55feb
+    m_Address: GameConfig/avatar-frames
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameConfig
+    - GameConfigGenerated
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 24a77e1f7b35f3046bec4a13448d0aac
     m_Address: GameConfig/Translations
     m_ReadOnly: 0

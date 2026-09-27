@@ -54,12 +54,14 @@ namespace AChen.Networking
         public Guid Id { get; }
         public string Nickname { get; }
         public int? AvatarId { get; }
+        public int AvatarFrameId { get; }
 
-        internal FriendSummaryData(Guid id, string nickname, int? avatarId)
+        internal FriendSummaryData(Guid id, string nickname, int? avatarId, int avatarFrameId)
         {
             Id = id;
             Nickname = nickname ?? string.Empty;
             AvatarId = avatarId;
+            AvatarFrameId = avatarFrameId;
         }
     }
 
@@ -68,23 +70,25 @@ namespace AChen.Networking
         public Guid Id { get; }
         public string Nickname { get; }
         public int? AvatarId { get; }
+        public int AvatarFrameId { get; }
         public bool IsFriend { get; }
         public bool IsPending { get; }
 
-        internal FriendSearchHitData(Guid id, string nickname, int? avatarId, bool isFriend, bool isPending = false)
+        internal FriendSearchHitData(Guid id, string nickname, int? avatarId, bool isFriend, bool isPending, int avatarFrameId)
         {
             Id = id;
             Nickname = nickname ?? string.Empty;
             AvatarId = avatarId;
+            AvatarFrameId = avatarFrameId;
             IsFriend = isFriend;
             IsPending = isPending;
         }
 
         public FriendSearchHitData AsPending() =>
-            new FriendSearchHitData(Id, Nickname, AvatarId, IsFriend, true);
+            new FriendSearchHitData(Id, Nickname, AvatarId, IsFriend, true, AvatarFrameId);
 
         public static FriendSearchHitData FromFriend(FriendSummaryData friend) =>
-            new FriendSearchHitData(friend.Id, friend.Nickname, friend.AvatarId, true);
+            new FriendSearchHitData(friend.Id, friend.Nickname, friend.AvatarId, true, false, friend.AvatarFrameId);
     }
 
     public sealed class InboxItemData
@@ -95,6 +99,7 @@ namespace AChen.Networking
         public Guid? PlayerId { get; }
         public string Nickname { get; }
         public int? AvatarId { get; }
+        public int? AvatarFrameId { get; }
         public long Gold { get; }
         public IReadOnlyList<OwnedCardData> Cards { get; }
         public string TitleKey { get; }
@@ -108,7 +113,7 @@ namespace AChen.Networking
             int? avatarId,
             long gold,
             IReadOnlyList<OwnedCardData> cards,
-            string titleKey)
+            string titleKey, int? avatarFrameId)
         {
             Kind = kind ?? string.Empty;
             Id = id;
@@ -116,6 +121,7 @@ namespace AChen.Networking
             PlayerId = playerId;
             Nickname = nickname ?? string.Empty;
             AvatarId = avatarId;
+            AvatarFrameId = avatarFrameId;
             Gold = gold;
             Cards = cards ?? Array.Empty<OwnedCardData>();
             TitleKey = titleKey ?? string.Empty;

@@ -100,9 +100,9 @@ public class PreGameUIPanel : APanelController
         m_WallpaperView.SetBackground(backgroundId, ScreenToken);
     }
 
-    void OnChangeNameClick() => RequestOpenWindow(AddressKeys.Prefab.ChangeNameWindow);
+    void OnChangeNameClick() => RequestOpenWindow(AddressKeys.Prefab.ProfileEditWindow, new ProfileEditWindowProperties(ProfileEditTab.Name));
 
-    void OnAvatarClick() => RequestOpenWindow(AddressKeys.Prefab.SelfChooseWindow);
+    void OnAvatarClick() => RequestOpenWindow(AddressKeys.Prefab.ProfileEditWindow, new ProfileEditWindowProperties(ProfileEditTab.Avatar));
 
     void OnShopClick()
     {

@@ -149,7 +149,7 @@ namespace AChen.Player
 
                 return value == player.Nickname
                     ? UniTask.FromResult(player)
-                    : UpdateProfileAsync(value, player.AvatarId, player.BackgroundId, player.Revision, token);
+                    : UpdateProfileAsync(value, player.AvatarId, player.BackgroundId, player.AvatarFrameId, player.Revision, token);
             }, cancellationToken);
 
         public UniTask<PlayerData> SetAvatarAsync(int avatarId, CancellationToken cancellationToken = default) =>
@@ -162,7 +162,15 @@ namespace AChen.Player
 
                 return player.AvatarId == avatarId
                     ? UniTask.FromResult(player)
-                    : UpdateProfileAsync(player.Nickname, avatarId, player.BackgroundId, player.Revision, token);
+                    : UpdateProfileAsync(player.Nickname, avatarId, player.BackgroundId, player.AvatarFrameId, player.Revision, token);
+            }, cancellationToken);
+
+        public UniTask<PlayerData> SetAvatarFrameAsync(int frameId, CancellationToken cancellationToken = default) =>
+            ExecuteMutationAsync("SetAvatarFrame", frameId.ToString(), (player, token) =>
+            {
+                if (!player.OwnedAvatarFrameIds.Contains(frameId))
+                    throw new BackendApiException(422, "AVATAR_FRAME_NOT_OWNED", "尚未拥有该头像框");
+                return UpdateProfileAsync(player.Nickname, player.AvatarId, player.BackgroundId, frameId, player.Revision, token);
             }, cancellationToken);
 
         public UniTask<PlayerData> SetBackgroundAsync(int backgroundId, CancellationToken cancellationToken = default) =>
@@ -264,11 +272,11 @@ namespace AChen.Player
         UniTask<PlayerData> UpdateBackgroundAsync(PlayerData player, int backgroundId, CancellationToken token) =>
             player.BackgroundId == backgroundId
                 ? UniTask.FromResult(player)
-                : UpdateProfileAsync(player.Nickname, player.AvatarId, backgroundId, player.Revision, token);
+                : UpdateProfileAsync(player.Nickname, player.AvatarId, backgroundId, player.AvatarFrameId, player.Revision, token);
 
-        UniTask<PlayerData> UpdateProfileAsync(string nickname, int? avatarId, int? backgroundId, long revision, CancellationToken token) =>
+        UniTask<PlayerData> UpdateProfileAsync(string nickname, int? avatarId, int? backgroundId, int avatarFrameId, long revision, CancellationToken token) =>
             SendAuthenticatedAsync(
-                (accessToken, ct) => Api.UpdateProfileAsync(accessToken, nickname, avatarId, backgroundId, revision, ct),
+                (accessToken, ct) => Api.UpdateProfileAsync(accessToken, nickname, avatarId, backgroundId, avatarFrameId, revision, ct),
                 token);
 
         UniTask<PlayerData> ExecuteMutationAsync(

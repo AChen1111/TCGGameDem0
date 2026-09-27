@@ -58,13 +58,14 @@ namespace AChen.Networking
             string nickname,
             int? avatarId,
             int? backgroundId,
+            int avatarFrameId,
             long expectedRevision,
             CancellationToken cancellationToken)
         {
             PlayerDto dto = await m_http.SendAsync<PlayerDto>(
                 "PATCH",
                 "/api/player/profile",
-                new UpdatePlayerProfileRequest(nickname, avatarId, backgroundId, expectedRevision),
+                new UpdatePlayerProfileRequest(nickname, avatarId, backgroundId, expectedRevision, avatarFrameId),
                 accessToken,
                 cancellationToken);
             return ToPlayer(dto);
@@ -244,7 +245,7 @@ namespace AChen.Networking
                 player.Gold,
                 player.Revision,
                 player.CreatedAt,
-                player.UpdatedAt);
+                player.UpdatedAt, player.AvatarFrameId, player.OwnedAvatarFrameIds);
 
         static CardDrawResponse ToDraw(CardDrawResponseDto dto)
         {
@@ -297,7 +298,7 @@ namespace AChen.Networking
                 mapped[i] = new FriendSummaryData(
                     item != null ? item.Id : Guid.Empty,
                     item != null ? item.Nickname : null,
-                    item != null ? item.AvatarId : null);
+                    item != null ? item.AvatarId : null, item.AvatarFrameId);
             }
 
             return mapped;
@@ -315,7 +316,7 @@ namespace AChen.Networking
                     item != null ? item.Nickname : null,
                     item != null ? item.AvatarId : null,
                     item != null && item.IsFriend,
-                    item != null && item.IsPending);
+                    item != null && item.IsPending, item.AvatarFrameId);
             }
 
             return mapped;
@@ -337,7 +338,7 @@ namespace AChen.Networking
                     item != null ? item.AvatarId : null,
                     item != null ? item.Gold : 0,
                     ToOwnedCards(item != null ? item.Cards : null),
-                    item != null ? item.TitleKey : null);
+                    item != null ? item.TitleKey : null, item.AvatarFrameId);
             }
 
             return mapped;
@@ -392,9 +393,12 @@ namespace AChen.Networking
             public int? BackgroundId { get; }
             public long ExpectedRevision { get; }
 
-            public UpdatePlayerProfileRequest(string nickname, int? avatarId, int? backgroundId, long expectedRevision)
+            public int AvatarFrameId { get; }
+
+            public UpdatePlayerProfileRequest(string nickname, int? avatarId, int? backgroundId, long expectedRevision, int avatarFrameId)
             {
                 Nickname = nickname;
+                AvatarFrameId = avatarFrameId;
                 AvatarId = avatarId;
                 BackgroundId = backgroundId;
                 ExpectedRevision = expectedRevision;
@@ -481,6 +485,8 @@ namespace AChen.Networking
             public string Nickname { get; set; }
             public int? AvatarId { get; set; }
             public int[] OwnedAvatarIds { get; set; }
+            public int AvatarFrameId { get; set; }
+            public int[] OwnedAvatarFrameIds { get; set; }
             public int? BackgroundId { get; set; }
             public int[] OwnedBackgroundIds { get; set; }
             public OwnedCardDto[] OwnedCards { get; set; }
@@ -545,6 +551,7 @@ namespace AChen.Networking
             public Guid Id { get; set; }
             public string Nickname { get; set; }
             public int? AvatarId { get; set; }
+            public int AvatarFrameId { get; set; }
         }
 
         [Preserve]
@@ -555,6 +562,7 @@ namespace AChen.Networking
             public Guid Id { get; set; }
             public string Nickname { get; set; }
             public int? AvatarId { get; set; }
+            public int AvatarFrameId { get; set; }
             public bool IsFriend { get; set; }
             public bool IsPending { get; set; }
         }
@@ -570,6 +578,7 @@ namespace AChen.Networking
             public Guid? PlayerId { get; set; }
             public string Nickname { get; set; }
             public int? AvatarId { get; set; }
+            public int? AvatarFrameId { get; set; }
             public long Gold { get; set; }
             public OwnedCardDto[] Cards { get; set; }
             public string TitleKey { get; set; }

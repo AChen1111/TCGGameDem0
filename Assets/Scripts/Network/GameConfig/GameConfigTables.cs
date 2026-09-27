@@ -11,7 +11,7 @@ namespace AChen.Configuration
     {
         public const string Label = "GameConfig";
         public const string GeneratedLabel = "GameConfigGenerated";
-        public static readonly string[] Required = { "avatars", "wallpapers", "card-packs", "pool-entries", "rarity-weights", "all-cards", "Cards", "Translations", "wallpaper-offsets" };
+        public static readonly string[] Required = { "avatar-frames", "avatars", "wallpapers", "card-packs", "pool-entries", "rarity-weights", "all-cards", "Cards", "Translations", "wallpaper-offsets" };
         public static bool IsBinary(string name) => true;
         public static string Format(string name) => "bytes";
         public static string FileName(string name) => name + "." + Format(name);
@@ -41,7 +41,7 @@ namespace AChen.Configuration
             var data = new PublishedGameConfig
             {
                 SchemaVersion = 1,
-                Catalog = new CatalogData { Avatars = Map<CosmeticData>(tables["avatars"]), Wallpapers = Map<CosmeticData>(tables["wallpapers"]), CardPacks = Map<PackData>(tables["card-packs"]) },
+                Catalog = new CatalogData { Avatars = Map<CosmeticData>(tables["avatars"]), AvatarFrames = Map<AvatarFrameData>(tables["avatar-frames"]), Wallpapers = Map<CosmeticData>(tables["wallpapers"]), CardPacks = Map<PackData>(tables["card-packs"]) },
                 PoolEntries = Map<PoolEntry>(tables["pool-entries"]), RarityWeights = Map<RarityWeight>(tables["rarity-weights"]),
                 AllCards = Map<AllCardEntry>(tables["all-cards"]), WallpaperOffsets = Map<WallpaperOffset>(tables["wallpaper-offsets"]),
                 CardTable = files["Cards"], TranslationTable = files["Translations"], Extra = extra

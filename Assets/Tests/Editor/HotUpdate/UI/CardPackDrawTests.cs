@@ -60,7 +60,7 @@ public sealed class CardPackDrawTests
             new[]
             {
                 new CardPackConfig(1, "卡包", "c_00", "", 100, null, null, 0, true)
-            });
+            }, System.Array.Empty<AvatarFrameConfig>());
         GameConfigSnapshotValidator.Validate(emptyPool);
 
         var oversized = new GameConfigSnapshot(
@@ -72,7 +72,7 @@ public sealed class CardPackDrawTests
             new[]
             {
                 new CardPackConfig(1, "卡包", "c_00", new string('x', 33), 100, null, null, 0, true)
-            });
+            }, System.Array.Empty<AvatarFrameConfig>());
         Assert.Throws<GameConfigDataException>(() => GameConfigSnapshotValidator.Validate(oversized));
     }
 

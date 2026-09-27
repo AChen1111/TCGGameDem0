@@ -1,85 +1,33 @@
 using System;
 using AChen.Events;
 using AChen.Player;
-using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-/// <summary>
-/// 显示玩家昵称与头像，跟随玩家数据自动刷新。
-/// </summary>
 public class PlayerProfileView : MonoBehaviour
 {
-    [SerializeField] private TMP_Text m_userName;
-    [SerializeField] private Image m_userIcon;
-    int? m_avatarId;
-    int m_loadVersion;
-    bool m_avatarLoaded;
-
-    private void OnEnable()
+    [SerializeField] TMP_Text m_userName;
+    [SerializeField] AvatarPortraitView m_Portrait;
+    void OnEnable()
     {
         EventCenter.AddListener(GameEvent.PlayerNicknameChanged, OnNicknameChanged);
-        EventCenter.AddListener(GameEvent.PlayerAvatarChanged, OnAvatarChanged);
+        EventCenter.AddListener(GameEvent.PlayerAvatarChanged, OnPortraitChanged);
+        EventCenter.AddListener(GameEvent.PlayerAvatarFrameChanged, OnPortraitChanged);
         var player = PlayerSession.Instance.CurrentPlayer;
-        OnNicknameChanged(player?.Id, player?.Nickname);
-        OnAvatarChanged(player?.AvatarId);
+        OnNicknameChanged(player.Id, player.Nickname);
+        OnPortraitChanged(player.AvatarId);
     }
-
-    private void OnDisable()
+    void OnDisable()
     {
         EventCenter.RemoveListener(GameEvent.PlayerNicknameChanged, OnNicknameChanged);
-        EventCenter.RemoveListener(GameEvent.PlayerAvatarChanged, OnAvatarChanged);
-        m_loadVersion++;
-        m_avatarLoaded = false;
+        EventCenter.RemoveListener(GameEvent.PlayerAvatarChanged, OnPortraitChanged);
+        EventCenter.RemoveListener(GameEvent.PlayerAvatarFrameChanged, OnPortraitChanged);
     }
-
-    void OnNicknameChanged(Guid? playerId, string nickname)
+    void OnNicknameChanged(Guid? id, string nickname) => m_userName.text = nickname;
+    void OnPortraitChanged(int? id)
     {
-        nickname ??= string.Empty;
-        if (m_userName.text != nickname)
-        {
-            m_userName.text = nickname;
-        }
-    }
-
-    void OnAvatarChanged(int? avatarId)
-    {
-        if (avatarId == m_avatarId && m_avatarLoaded)
-        {
-            return;
-        }
-
-        m_avatarId = avatarId;
-        m_avatarLoaded = true;
-        int version = ++m_loadVersion;
-        m_userIcon.sprite = null;
-        if (avatarId is int id)
-        {
-            LoadAvatarAsync(id, version).Forget();
-        }
-    }
-
-    private async UniTask LoadAvatarAsync(int avatarId, int version)
-    {
-        try
-        {
-            Sprite sprite = await AddressableLoader.Instance.LoadSprite(AddressKeys.GetAvatarAddress(avatarId))
-                .AttachExternalCancellation(this.GetCancellationTokenOnDestroy());
-            // 忽略隐藏前或上一张头像的异步结果.
-            if (this != null && isActiveAndEnabled && version == m_loadVersion)
-            {
-                m_userIcon.sprite = sprite;
-            }
-        }
-        catch (OperationCanceledException)
-        {
-        }
-        catch (Exception exception)
-        {
-            if (this == null || version != m_loadVersion) return;
-            m_avatarLoaded = false;
-            ALog.LogError($"加载玩家头像失败. AvatarId={avatarId}; Error={exception.Message}", ALogCategories.UI);
-        }
+        if (!id.HasValue) return; // 清理会话的事件没有可显示的玩家。
+        var player = PlayerSession.Instance.CurrentPlayer;
+        m_Portrait.SetPortrait(player.AvatarId.Value, player.AvatarFrameId);
     }
 }

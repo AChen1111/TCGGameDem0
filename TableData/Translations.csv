@@ -136,20 +136,6 @@ err.hot_update_dll_download_failed,下载热更 DLL 失败：{error},Failed to d
 err.hot_update_dll_checksum_failed,热更 DLL 的长度或 SHA-256 校验失败。,Hot-update DLL size or SHA-256 check failed.
 err.hot_update_cache_write_failed,写入热更缓存失败：{message},Failed to write hot-update cache: {message}
 err.unknown_network,未知网络错误,Unknown network error
-shop.avatar.00,头像00,Avatar 00
-shop.avatar.01,头像01,Avatar 01
-shop.avatar.02,头像02,Avatar 02
-shop.avatar.03,头像03,Avatar 03
-shop.avatar.04,头像04,Avatar 04
-shop.avatar.05,头像05,Avatar 05
-shop.avatar.06,头像06,Avatar 06
-shop.avatar.07,头像07,Avatar 07
-shop.avatar.08,头像08,Avatar 08
-shop.avatar.09,头像09,Avatar 09
-shop.avatar.10,头像10,Avatar 10
-shop.avatar.11,头像11,Avatar 11
-shop.avatar.12,头像12,Avatar 12
-shop.avatar.13,头像13,Avatar 13
 shop.wallpaper.00,壁纸00,Wallpaper 00
 shop.wallpaper.01,壁纸01,Wallpaper 01
 shop.wallpaper.02,壁纸02,Wallpaper 02
@@ -747,3 +733,297 @@ ui.content.restart_required,游戏内容已更新，请退出并重新启动游�
 ui.content.check_failed,检查游戏内容失败，请检查网络后重试。,Unable to check game content. Check your connection and retry.
 ui.content.exit,退出游戏,Quit game
 ui.content.retry,重试,Retry
+shop.avatar.1010001,头像 1010001,Avatar 1010001
+shop.avatar.1010002,头像 1010002,Avatar 1010002
+shop.avatar.1010003,头像 1010003,Avatar 1010003
+shop.avatar.1010004,头像 1010004,Avatar 1010004
+shop.avatar.1010005,头像 1010005,Avatar 1010005
+shop.avatar.1010006,头像 1010006,Avatar 1010006
+shop.avatar.1010007,头像 1010007,Avatar 1010007
+shop.avatar.1010008,头像 1010008,Avatar 1010008
+shop.avatar.1010009,头像 1010009,Avatar 1010009
+shop.avatar.1010010,头像 1010010,Avatar 1010010
+shop.avatar.1010011,头像 1010011,Avatar 1010011
+shop.avatar.1010012,头像 1010012,Avatar 1010012
+shop.avatar.1010013,头像 1010013,Avatar 1010013
+shop.avatar.1010014,头像 1010014,Avatar 1010014
+shop.avatar.1010015,头像 1010015,Avatar 1010015
+shop.avatar.1010016,头像 1010016,Avatar 1010016
+shop.avatar.1010017,头像 1010017,Avatar 1010017
+shop.avatar.1010018,头像 1010018,Avatar 1010018
+shop.avatar.1010019,头像 1010019,Avatar 1010019
+shop.avatar.1010020,头像 1010020,Avatar 1010020
+shop.avatar.1010021,头像 1010021,Avatar 1010021
+shop.avatar.1010022,头像 1010022,Avatar 1010022
+shop.avatar.1010023,头像 1010023,Avatar 1010023
+shop.avatar.1010024,头像 1010024,Avatar 1010024
+shop.avatar.1010025,头像 1010025,Avatar 1010025
+shop.avatar.1010026,头像 1010026,Avatar 1010026
+shop.avatar.1010027,头像 1010027,Avatar 1010027
+shop.avatar.1010028,头像 1010028,Avatar 1010028
+shop.avatar.1010029,头像 1010029,Avatar 1010029
+shop.avatar.1010031,头像 1010031,Avatar 1010031
+shop.avatar.1010032,头像 1010032,Avatar 1010032
+shop.avatar.1010033,头像 1010033,Avatar 1010033
+shop.avatar.1010034,头像 1010034,Avatar 1010034
+shop.avatar.1010035,头像 1010035,Avatar 1010035
+shop.avatar.1010036,头像 1010036,Avatar 1010036
+shop.avatar.1010037,头像 1010037,Avatar 1010037
+shop.avatar.1010038,头像 1010038,Avatar 1010038
+shop.avatar.1010039,头像 1010039,Avatar 1010039
+shop.avatar.1010040,头像 1010040,Avatar 1010040
+shop.avatar.1010041,头像 1010041,Avatar 1010041
+shop.avatar.1010042,头像 1010042,Avatar 1010042
+shop.avatar.1010043,头像 1010043,Avatar 1010043
+shop.avatar.1010044,头像 1010044,Avatar 1010044
+shop.avatar.1010045,头像 1010045,Avatar 1010045
+shop.avatar.1010046,头像 1010046,Avatar 1010046
+shop.avatar.1010047,头像 1010047,Avatar 1010047
+shop.avatar.1010048,头像 1010048,Avatar 1010048
+shop.avatar.1010049,头像 1010049,Avatar 1010049
+shop.avatar.1010050,头像 1010050,Avatar 1010050
+shop.avatar.1010051,头像 1010051,Avatar 1010051
+shop.avatar.1010052,头像 1010052,Avatar 1010052
+shop.avatar.1010053,头像 1010053,Avatar 1010053
+shop.avatar.1010054,头像 1010054,Avatar 1010054
+shop.avatar.1010055,头像 1010055,Avatar 1010055
+shop.avatar.1010056,头像 1010056,Avatar 1010056
+shop.avatar.1010057,头像 1010057,Avatar 1010057
+shop.avatar.1010058,头像 1010058,Avatar 1010058
+shop.avatar.1010059,头像 1010059,Avatar 1010059
+shop.avatar.1010060,头像 1010060,Avatar 1010060
+shop.avatar.1010061,头像 1010061,Avatar 1010061
+shop.avatar.1010062,头像 1010062,Avatar 1010062
+shop.avatar.1010063,头像 1010063,Avatar 1010063
+shop.avatar.1010064,头像 1010064,Avatar 1010064
+shop.avatar.1010065,头像 1010065,Avatar 1010065
+shop.avatar.1010066,头像 1010066,Avatar 1010066
+shop.avatar.1010067,头像 1010067,Avatar 1010067
+shop.avatar.1010068,头像 1010068,Avatar 1010068
+shop.avatar.1010069,头像 1010069,Avatar 1010069
+shop.avatar.1010070,头像 1010070,Avatar 1010070
+shop.avatar.1010071,头像 1010071,Avatar 1010071
+shop.avatar.1010072,头像 1010072,Avatar 1010072
+shop.avatar.1010073,头像 1010073,Avatar 1010073
+shop.avatar.1010074,头像 1010074,Avatar 1010074
+shop.avatar.1010075,头像 1010075,Avatar 1010075
+shop.avatar.1010076,头像 1010076,Avatar 1010076
+shop.avatar.1010077,头像 1010077,Avatar 1010077
+shop.avatar.1010078,头像 1010078,Avatar 1010078
+shop.avatar.1010079,头像 1010079,Avatar 1010079
+shop.avatar.1010080,头像 1010080,Avatar 1010080
+shop.avatar.1010081,头像 1010081,Avatar 1010081
+shop.avatar.1010082,头像 1010082,Avatar 1010082
+shop.avatar.1010083,头像 1010083,Avatar 1010083
+shop.avatar.1010084,头像 1010084,Avatar 1010084
+shop.avatar.1010085,头像 1010085,Avatar 1010085
+shop.avatar.1010086,头像 1010086,Avatar 1010086
+shop.avatar.1010087,头像 1010087,Avatar 1010087
+shop.avatar.1010088,头像 1010088,Avatar 1010088
+shop.avatar.1010089,头像 1010089,Avatar 1010089
+shop.avatar.1010090,头像 1010090,Avatar 1010090
+shop.avatar.1010091,头像 1010091,Avatar 1010091
+shop.avatar.1010092,头像 1010092,Avatar 1010092
+shop.avatar.1010093,头像 1010093,Avatar 1010093
+shop.avatar.1010094,头像 1010094,Avatar 1010094
+shop.avatar.1010095,头像 1010095,Avatar 1010095
+shop.avatar.1010096,头像 1010096,Avatar 1010096
+shop.avatar.1010097,头像 1010097,Avatar 1010097
+shop.avatar.1010098,头像 1010098,Avatar 1010098
+shop.avatar.1010099,头像 1010099,Avatar 1010099
+shop.avatar.1010100,头像 1010100,Avatar 1010100
+shop.avatar.1010101,头像 1010101,Avatar 1010101
+shop.avatar.1010102,头像 1010102,Avatar 1010102
+shop.avatar.1010103,头像 1010103,Avatar 1010103
+shop.avatar.1010107,头像 1010107,Avatar 1010107
+shop.avatar.1010108,头像 1010108,Avatar 1010108
+shop.avatar.1011001,头像 1011001,Avatar 1011001
+shop.avatar.1011002,头像 1011002,Avatar 1011002
+shop.avatar.1011003,头像 1011003,Avatar 1011003
+shop.avatar.1011004,头像 1011004,Avatar 1011004
+shop.avatar.1011005,头像 1011005,Avatar 1011005
+shop.avatar.1011006,头像 1011006,Avatar 1011006
+shop.avatar.1011007,头像 1011007,Avatar 1011007
+shop.avatar.1011008,头像 1011008,Avatar 1011008
+shop.avatar.1011009,头像 1011009,Avatar 1011009
+shop.avatar.1011010,头像 1011010,Avatar 1011010
+shop.avatar.1011011,头像 1011011,Avatar 1011011
+shop.avatar.1011012,头像 1011012,Avatar 1011012
+shop.avatar.1011013,头像 1011013,Avatar 1011013
+shop.avatar.1011014,头像 1011014,Avatar 1011014
+shop.avatar.1011015,头像 1011015,Avatar 1011015
+shop.avatar.1011016,头像 1011016,Avatar 1011016
+shop.avatar.1011017,头像 1011017,Avatar 1011017
+shop.avatar.1011018,头像 1011018,Avatar 1011018
+shop.avatar.1011019,头像 1011019,Avatar 1011019
+shop.avatar.1011020,头像 1011020,Avatar 1011020
+shop.avatar.1011021,头像 1011021,Avatar 1011021
+shop.avatar.1011022,头像 1011022,Avatar 1011022
+shop.avatar.1011023,头像 1011023,Avatar 1011023
+shop.avatar.1011024,头像 1011024,Avatar 1011024
+shop.avatar.1011025,头像 1011025,Avatar 1011025
+shop.avatar.1011026,头像 1011026,Avatar 1011026
+shop.avatar.1011027,头像 1011027,Avatar 1011027
+shop.avatar.1011028,头像 1011028,Avatar 1011028
+shop.avatar.1011029,头像 1011029,Avatar 1011029
+shop.avatar.1011030,头像 1011030,Avatar 1011030
+shop.avatar.1011031,头像 1011031,Avatar 1011031
+shop.avatar.1011032,头像 1011032,Avatar 1011032
+shop.avatar.1011033,头像 1011033,Avatar 1011033
+shop.avatar.1011034,头像 1011034,Avatar 1011034
+shop.avatar.1011035,头像 1011035,Avatar 1011035
+shop.avatar.1011036,头像 1011036,Avatar 1011036
+shop.avatar.1011037,头像 1011037,Avatar 1011037
+shop.avatar.1011038,头像 1011038,Avatar 1011038
+shop.avatar.1011039,头像 1011039,Avatar 1011039
+shop.avatar.1011040,头像 1011040,Avatar 1011040
+shop.avatar.1011041,头像 1011041,Avatar 1011041
+shop.avatar.1011042,头像 1011042,Avatar 1011042
+shop.avatar.1011043,头像 1011043,Avatar 1011043
+shop.avatar.1011044,头像 1011044,Avatar 1011044
+shop.avatar.1011045,头像 1011045,Avatar 1011045
+shop.avatar.1011046,头像 1011046,Avatar 1011046
+shop.avatar.1011047,头像 1011047,Avatar 1011047
+shop.avatar.1011048,头像 1011048,Avatar 1011048
+shop.avatar.1011049,头像 1011049,Avatar 1011049
+shop.avatar.1011050,头像 1011050,Avatar 1011050
+shop.avatar.1011051,头像 1011051,Avatar 1011051
+shop.avatar.1012001,头像 1012001,Avatar 1012001
+shop.avatar.1012002,头像 1012002,Avatar 1012002
+shop.avatar.1012003,头像 1012003,Avatar 1012003
+shop.avatar.1012004,头像 1012004,Avatar 1012004
+shop.avatar.1012005,头像 1012005,Avatar 1012005
+shop.avatar.1012006,头像 1012006,Avatar 1012006
+shop.avatar.1012007,头像 1012007,Avatar 1012007
+shop.avatar.1012008,头像 1012008,Avatar 1012008
+shop.avatar.1012009,头像 1012009,Avatar 1012009
+shop.avatar.1012010,头像 1012010,Avatar 1012010
+shop.avatar.1012011,头像 1012011,Avatar 1012011
+shop.avatar.1012012,头像 1012012,Avatar 1012012
+shop.avatar.1012013,头像 1012013,Avatar 1012013
+shop.avatar.1012014,头像 1012014,Avatar 1012014
+shop.avatar.1012015,头像 1012015,Avatar 1012015
+shop.avatar.1012016,头像 1012016,Avatar 1012016
+shop.avatar.1012017,头像 1012017,Avatar 1012017
+shop.avatar.1012018,头像 1012018,Avatar 1012018
+shop.avatar.1012019,头像 1012019,Avatar 1012019
+shop.avatar.1012020,头像 1012020,Avatar 1012020
+shop.avatar.1012021,头像 1012021,Avatar 1012021
+shop.avatar.1012022,头像 1012022,Avatar 1012022
+shop.avatar.1012023,头像 1012023,Avatar 1012023
+shop.avatar.1012024,头像 1012024,Avatar 1012024
+shop.avatar.1012025,头像 1012025,Avatar 1012025
+shop.avatar.1012026,头像 1012026,Avatar 1012026
+shop.avatar.1012027,头像 1012027,Avatar 1012027
+shop.avatar.1012028,头像 1012028,Avatar 1012028
+shop.avatar.1012029,头像 1012029,Avatar 1012029
+shop.avatar.1012030,头像 1012030,Avatar 1012030
+shop.avatar.1012031,头像 1012031,Avatar 1012031
+shop.avatar.1012032,头像 1012032,Avatar 1012032
+shop.avatar.1012033,头像 1012033,Avatar 1012033
+shop.avatar.1012034,头像 1012034,Avatar 1012034
+shop.avatar.1012035,头像 1012035,Avatar 1012035
+shop.avatar.1012036,头像 1012036,Avatar 1012036
+shop.avatar.1012037,头像 1012037,Avatar 1012037
+shop.avatar.1012038,头像 1012038,Avatar 1012038
+shop.avatar.1012039,头像 1012039,Avatar 1012039
+shop.avatar.1012040,头像 1012040,Avatar 1012040
+shop.avatar.1012041,头像 1012041,Avatar 1012041
+shop.avatar.1012042,头像 1012042,Avatar 1012042
+shop.avatar.1012043,头像 1012043,Avatar 1012043
+shop.avatar.1012044,头像 1012044,Avatar 1012044
+shop.avatar.1012045,头像 1012045,Avatar 1012045
+shop.avatar.1012046,头像 1012046,Avatar 1012046
+shop.avatar.1012047,头像 1012047,Avatar 1012047
+shop.avatar.1012048,头像 1012048,Avatar 1012048
+shop.avatar.1012049,头像 1012049,Avatar 1012049
+shop.avatar.1012050,头像 1012050,Avatar 1012050
+shop.avatar.1012051,头像 1012051,Avatar 1012051
+shop.avatar.1012052,头像 1012052,Avatar 1012052
+shop.avatar.1012053,头像 1012053,Avatar 1012053
+shop.avatar.1012054,头像 1012054,Avatar 1012054
+shop.avatar.1012055,头像 1012055,Avatar 1012055
+shop.avatar.1012056,头像 1012056,Avatar 1012056
+shop.avatar.1012057,头像 1012057,Avatar 1012057
+shop.avatar.1012058,头像 1012058,Avatar 1012058
+shop.avatar.1012060,头像 1012060,Avatar 1012060
+shop.avatar.1012061,头像 1012061,Avatar 1012061
+shop.avatar.1012062,头像 1012062,Avatar 1012062
+shop.avatar.1012063,头像 1012063,Avatar 1012063
+shop.avatar.1012064,头像 1012064,Avatar 1012064
+shop.avatar.1012065,头像 1012065,Avatar 1012065
+shop.avatar.1012066,头像 1012066,Avatar 1012066
+shop.avatar.1012067,头像 1012067,Avatar 1012067
+shop.avatar.1012068,头像 1012068,Avatar 1012068
+shop.avatar.1012069,头像 1012069,Avatar 1012069
+shop.avatar.1012070,头像 1012070,Avatar 1012070
+shop.avatar.1012071,头像 1012071,Avatar 1012071
+shop.avatar.1012072,头像 1012072,Avatar 1012072
+shop.avatar.1013001,头像 1013001,Avatar 1013001
+shop.avatar.1013002,头像 1013002,Avatar 1013002
+shop.avatar.1013003,头像 1013003,Avatar 1013003
+shop.avatar.1013004,头像 1013004,Avatar 1013004
+shop.avatar-frame.1030001,头像框 1030001,Avatar Frame 1030001
+shop.avatar-frame.1030002,头像框 1030002,Avatar Frame 1030002
+shop.avatar-frame.1030003,头像框 1030003,Avatar Frame 1030003
+shop.avatar-frame.1030004,头像框 1030004,Avatar Frame 1030004
+shop.avatar-frame.1030005,头像框 1030005,Avatar Frame 1030005
+shop.avatar-frame.1030006,头像框 1030006,Avatar Frame 1030006
+shop.avatar-frame.1030007,头像框 1030007,Avatar Frame 1030007
+shop.avatar-frame.1030008,头像框 1030008,Avatar Frame 1030008
+shop.avatar-frame.1030009,头像框 1030009,Avatar Frame 1030009
+shop.avatar-frame.1030010,头像框 1030010,Avatar Frame 1030010
+shop.avatar-frame.1030011,头像框 1030011,Avatar Frame 1030011
+shop.avatar-frame.1030012,头像框 1030012,Avatar Frame 1030012
+shop.avatar-frame.1030013,头像框 1030013,Avatar Frame 1030013
+shop.avatar-frame.1030014,头像框 1030014,Avatar Frame 1030014
+shop.avatar-frame.1030015,头像框 1030015,Avatar Frame 1030015
+shop.avatar-frame.1030016,头像框 1030016,Avatar Frame 1030016
+shop.avatar-frame.1030017,头像框 1030017,Avatar Frame 1030017
+shop.avatar-frame.1030018,头像框 1030018,Avatar Frame 1030018
+shop.avatar-frame.1030019,头像框 1030019,Avatar Frame 1030019
+shop.avatar-frame.1030020,头像框 1030020,Avatar Frame 1030020
+shop.avatar-frame.1030021,头像框 1030021,Avatar Frame 1030021
+shop.avatar-frame.1030022,头像框 1030022,Avatar Frame 1030022
+shop.avatar-frame.1030023,头像框 1030023,Avatar Frame 1030023
+shop.avatar-frame.1030024,头像框 1030024,Avatar Frame 1030024
+shop.avatar-frame.1030025,头像框 1030025,Avatar Frame 1030025
+shop.avatar-frame.1030026,头像框 1030026,Avatar Frame 1030026
+shop.avatar-frame.1030027,头像框 1030027,Avatar Frame 1030027
+shop.avatar-frame.1030028,头像框 1030028,Avatar Frame 1030028
+shop.avatar-frame.1030029,头像框 1030029,Avatar Frame 1030029
+shop.avatar-frame.1030030,头像框 1030030,Avatar Frame 1030030
+shop.avatar-frame.1030031,头像框 1030031,Avatar Frame 1030031
+shop.avatar-frame.1030032,头像框 1030032,Avatar Frame 1030032
+shop.avatar-frame.1030033,头像框 1030033,Avatar Frame 1030033
+shop.avatar-frame.1030034,头像框 1030034,Avatar Frame 1030034
+shop.avatar-frame.1031001,头像框 1031001,Avatar Frame 1031001
+shop.avatar-frame.1031002,头像框 1031002,Avatar Frame 1031002
+shop.avatar-frame.1031003,头像框 1031003,Avatar Frame 1031003
+shop.avatar-frame.1031004,头像框 1031004,Avatar Frame 1031004
+shop.avatar-frame.1031005,头像框 1031005,Avatar Frame 1031005
+shop.avatar-frame.1031006,头像框 1031006,Avatar Frame 1031006
+shop.avatar-frame.1031007,头像框 1031007,Avatar Frame 1031007
+shop.avatar-frame.1031008,头像框 1031008,Avatar Frame 1031008
+shop.avatar-frame.1031009,头像框 1031009,Avatar Frame 1031009
+shop.avatar-frame.1031010,头像框 1031010,Avatar Frame 1031010
+shop.avatar-frame.1031011,头像框 1031011,Avatar Frame 1031011
+shop.avatar-frame.1031012,头像框 1031012,Avatar Frame 1031012
+shop.avatar-frame.1031013,头像框 1031013,Avatar Frame 1031013
+shop.avatar-frame.1031014,头像框 1031014,Avatar Frame 1031014
+shop.avatar-frame.1032001,头像框 1032001,Avatar Frame 1032001
+shop.avatar-frame.1032002,头像框 1032002,Avatar Frame 1032002
+shop.avatar-frame.1032003,头像框 1032003,Avatar Frame 1032003
+shop.avatar-frame.1032004,头像框 1032004,Avatar Frame 1032004
+shop.avatar-frame.1032005,头像框 1032005,Avatar Frame 1032005
+shop.avatar-frame.1032006,头像框 1032006,Avatar Frame 1032006
+shop.avatar-frame.1032007,头像框 1032007,Avatar Frame 1032007
+shop.avatar-frame.1032008,头像框 1032008,Avatar Frame 1032008
+shop.avatar-frame.1032009,头像框 1032009,Avatar Frame 1032009
+shop.avatar-frame.1033001,头像框 1033001,Avatar Frame 1033001
+shop.avatar-frame.1033002,头像框 1033002,Avatar Frame 1033002
+shop.avatar-frame.1033003,头像框 1033003,Avatar Frame 1033003
+ui.shop.tab_avatar_frame,头像框,Avatar Frames
+err.avatar_frame_not_owned,尚未拥有该头像框,You do not own this avatar frame
+err.avatar_frame_not_available,该头像框不存在或尚未启用,This avatar frame is unavailable
+err.profile_save_failed,保存资料失败，请稍后重试,"Failed to save profile, please try again"

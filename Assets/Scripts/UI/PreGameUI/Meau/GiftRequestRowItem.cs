@@ -7,12 +7,11 @@ using UnityEngine.UI;
 
 public class GiftRequestRowItem : MonoBehaviour, IRowItem<InboxItemData>
 {
-    [SerializeField] Image m_ImgIcon;
+    [SerializeField] AvatarPortraitView m_Portrait;
     [SerializeField] TMP_Text m_TxtName;
     [SerializeField] Button m_BtnYes;
     [SerializeField] Button m_BtnNo;
 
-    int m_Bind;
     InboxItemData m_Data;
 
     public int RowCardCount => 1;
@@ -21,8 +20,7 @@ public class GiftRequestRowItem : MonoBehaviour, IRowItem<InboxItemData>
     {
         m_Data = allData[rowIndex];
         m_TxtName.text = m_Data.Nickname;
-        int version = ++m_Bind;
-        SocialPortrait.ApplyAsync(m_ImgIcon, m_Data.AvatarId, version, () => m_Bind).Forget();
+        m_Portrait.SetPortrait(m_Data.AvatarId.Value, m_Data.AvatarFrameId.Value);
     }
 
     void Awake()

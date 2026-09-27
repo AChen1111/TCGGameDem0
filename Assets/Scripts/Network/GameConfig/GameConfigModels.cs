@@ -13,6 +13,7 @@ namespace AChen.Networking
         public long Revision { get; }
         public DateTimeOffset PublishedAt { get; }
         public IReadOnlyList<AvatarConfig> Avatars { get; }
+        public IReadOnlyList<AvatarFrameConfig> AvatarFrames { get; }
         public IReadOnlyList<WallpaperConfig> Wallpapers { get; }
         public IReadOnlyList<CardPackConfig> CardPacks { get; }
 
@@ -23,8 +24,10 @@ namespace AChen.Networking
             DateTimeOffset publishedAt,
             IEnumerable<AvatarConfig> avatars,
             IEnumerable<WallpaperConfig> wallpapers,
-            IEnumerable<CardPackConfig> cardPacks)
+            IEnumerable<CardPackConfig> cardPacks,
+            IEnumerable<AvatarFrameConfig> avatarFrames)
         {
+            AvatarFrames = avatarFrames.ToArray();
             SchemaVersion = schemaVersion;
             Revision = revision;
             PublishedAt = publishedAt;
@@ -69,6 +72,16 @@ namespace AChen.Networking
             : base(id, name, resourceKey, priceGold, sortOrder, isEnabled, startsAt, endsAt)
         {
         }
+    }
+
+    [Preserve]
+    public sealed class AvatarFrameConfig : CosmeticConfig
+    {
+        public string MaskResourceKey { get; }
+        [JsonConstructor]
+        public AvatarFrameConfig(int id, string name, string resourceKey, long priceGold, int sortOrder, bool isEnabled, string maskResourceKey, DateTimeOffset? startsAt = null, DateTimeOffset? endsAt = null)
+            : base(id, name, resourceKey, priceGold, sortOrder, isEnabled, startsAt, endsAt)
+        { MaskResourceKey = maskResourceKey; }
     }
 
     [Preserve]
@@ -146,6 +159,7 @@ namespace AChen.Networking
             }
 
             ValidateCosmetics(snapshot.Avatars, "头像");
+            ValidateCosmetics(snapshot.AvatarFrames, "头像框");
             ValidateCosmetics(snapshot.Wallpapers, "壁纸");
             ValidateCardPacks(snapshot.CardPacks);
         }

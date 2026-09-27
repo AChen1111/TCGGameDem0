@@ -40,7 +40,7 @@ public sealed class GameConfigTests
                 new AvatarConfig(1, "B", "Avatar_B", 0, 1, true)
             },
             Array.Empty<WallpaperConfig>(),
-            Array.Empty<CardPackConfig>());
+            Array.Empty<CardPackConfig>(), System.Array.Empty<AvatarFrameConfig>());
 
         Assert.Throws<GameConfigDataException>(() => GameConfigSnapshotValidator.Validate(snapshot));
     }
@@ -175,6 +175,6 @@ public sealed class GameConfigTests
                     null,
                     0,
                     true)
-            });
+            }, System.Array.Empty<AvatarFrameConfig>());
     }
 }

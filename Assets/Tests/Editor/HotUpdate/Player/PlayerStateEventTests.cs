@@ -35,7 +35,7 @@ public sealed class PlayerStateEventTests
     {
         PlayerData first = CreatePlayer(Guid.NewGuid(), 100);
         PlayerData second = CreatePlayer(Guid.NewGuid(), 100);
-        string[] expected = { "gold", "nickname", "avatar", "background", "ownedAvatars", "ownedWallpapers", "ownedCards" };
+        string[] expected = { "gold", "nickname", "avatar", "background", "avatarFrame", "ownedAvatarFrames", "ownedAvatars", "ownedWallpapers", "ownedCards" };
         using (var recorder = new Recorder())
         {
             Publish(first, second);
@@ -57,11 +57,26 @@ public sealed class PlayerStateEventTests
         }
     }
 
-    static PlayerData CreatePlayer(Guid id, long gold, int[] avatars = null)
+    [Test]
+    public void Frame_purchase_and_equipment_notify_separate_subscribers()
+    {
+        Guid id = Guid.NewGuid();
+        using (var recorder = new Recorder())
+        {
+            var purchased = CreatePlayer(id, 500, frames: new[] { 1030001, 1030002 });
+            Publish(CreatePlayer(id, 1000), purchased);
+            CollectionAssert.AreEqual(new[] { "gold", "ownedAvatarFrames" }, recorder.Events);
+            recorder.Events.Clear();
+            Publish(purchased, CreatePlayer(id, 500, frame: 1030002, frames: new[] { 1030001, 1030002 }));
+            CollectionAssert.AreEqual(new[] { "avatarFrame" }, recorder.Events);
+        }
+    }
+
+    static PlayerData CreatePlayer(Guid id, long gold, int[] avatars = null, int frame = 1030001, int[] frames = null)
     {
         DateTimeOffset now = DateTimeOffset.UtcNow;
         return (PlayerData)Activator.CreateInstance(typeof(PlayerData), BindingFlags.Instance | BindingFlags.NonPublic,
-            null, new object[] { id, "player", (int?)1, avatars ?? new[] { 1 }, (int?)10, new[] { 10 }, Array.Empty<OwnedCardData>(), gold, 1L, now, now }, null);
+            null, new object[] { id, "player", (int?)1, avatars ?? new[] { 1 }, (int?)10, new[] { 10 }, Array.Empty<OwnedCardData>(), gold, 1L, now, now, frame, frames ?? new[] { 1030001 } }, null);
     }
 
     static void Publish(PlayerData previous, PlayerData current) =>
@@ -76,6 +91,8 @@ public sealed class PlayerStateEventTests
             EventCenter.AddListener(GameEvent.PlayerGoldChanged, Gold);
             EventCenter.AddListener(GameEvent.PlayerNicknameChanged, Nickname);
             EventCenter.AddListener(GameEvent.PlayerAvatarChanged, Avatar);
+            EventCenter.AddListener(GameEvent.PlayerAvatarFrameChanged, Frame);
+            EventCenter.AddListener(GameEvent.PlayerOwnedAvatarFramesChanged, Frames);
             EventCenter.AddListener(GameEvent.PlayerBackgroundChanged, Background);
             EventCenter.AddListener(GameEvent.PlayerOwnedAvatarsChanged, Avatars);
             EventCenter.AddListener(GameEvent.PlayerOwnedWallpapersChanged, Wallpapers);
@@ -87,6 +104,8 @@ public sealed class PlayerStateEventTests
             EventCenter.RemoveListener(GameEvent.PlayerGoldChanged, Gold);
             EventCenter.RemoveListener(GameEvent.PlayerNicknameChanged, Nickname);
             EventCenter.RemoveListener(GameEvent.PlayerAvatarChanged, Avatar);
+            EventCenter.RemoveListener(GameEvent.PlayerAvatarFrameChanged, Frame);
+            EventCenter.RemoveListener(GameEvent.PlayerOwnedAvatarFramesChanged, Frames);
             EventCenter.RemoveListener(GameEvent.PlayerBackgroundChanged, Background);
             EventCenter.RemoveListener(GameEvent.PlayerOwnedAvatarsChanged, Avatars);
             EventCenter.RemoveListener(GameEvent.PlayerOwnedWallpapersChanged, Wallpapers);
@@ -96,6 +115,8 @@ public sealed class PlayerStateEventTests
         void Gold(long? value) => Events.Add("gold");
         void Nickname(Guid? id, string value) => Events.Add("nickname");
         void Avatar(int? value) => Events.Add("avatar");
+        void Frame(int? value) => Events.Add("avatarFrame");
+        void Frames(PlayerData value) => Events.Add("ownedAvatarFrames");
         void Background(int? value) => Events.Add("background");
         void Avatars(PlayerData value) => Events.Add("ownedAvatars");
         void Wallpapers(PlayerData value) => Events.Add("ownedWallpapers");

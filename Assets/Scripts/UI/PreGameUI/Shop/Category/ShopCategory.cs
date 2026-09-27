@@ -6,6 +6,7 @@ using Cysharp.Threading.Tasks;
 public static class ShopCatalogTypes
 {
     public const string Avatar = "avatar";
+    public const string AvatarFrame = "avatar-frame";
     public const string Wallpaper = "wallpaper";
 }
 

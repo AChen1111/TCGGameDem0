@@ -47,6 +47,8 @@ public static class ShopCatalogQuery
         {
             case ShopCatalogTypes.Avatar:
                 return LoadCosmeticsAsync(catalogType, store, store.Avatars.Values, player.OwnedAvatarIds, visibleOnly, cancellationToken);
+            case ShopCatalogTypes.AvatarFrame:
+                return LoadCosmeticsAsync(catalogType, store, store.AvatarFrames.Values, player.OwnedAvatarFrameIds, visibleOnly, cancellationToken);
             case ShopCatalogTypes.Wallpaper:
                 return LoadCosmeticsAsync(catalogType, store, store.Wallpapers.Values, player.OwnedBackgroundIds, visibleOnly, cancellationToken);
             default:
@@ -68,11 +70,11 @@ public static class ShopCatalogQuery
             .OrderBy(value => value.SortOrder)
             .ThenBy(value => value.Id)
             .ToArray();
-        Sprite[] sprites = await LoadSpritesAsync(
+        Sprite[] sprites = table == ShopCatalogTypes.Wallpaper ? await LoadSpritesAsync(
             table,
             configs.Select(value => value.Id).ToArray(),
             configs.Select(value => value.ResourceKey).ToArray(),
-            cancellationToken);
+            cancellationToken) : new Sprite[configs.Length];
         var owned = new HashSet<int>(ownedIds);
         var result = new List<ShopOwnedItemData>(configs.Length);
         for (int i = 0; i < configs.Length; i++)

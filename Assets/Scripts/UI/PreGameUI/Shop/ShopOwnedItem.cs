@@ -3,9 +3,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>商城可拥有商品的格子数据. 头像与壁纸共用; 头像选择窗也用它展示已拥有状态.</summary>
+/// <summary>商城可拥有商品的格子数据，供头像、头像框与壁纸共用。</summary>
 public class ShopOwnedItemData
 {
+    public string CatalogType { get; }
     public int Id { get; }
     public string Name { get; }
     public string NameKey { get; }
@@ -25,6 +26,7 @@ public class ShopOwnedItemData
         int index,
         string catalogType = ShopCatalogTypes.Avatar)
     {
+        CatalogType = catalogType;
         Id = id;
         Name = name;
         NameKey = "shop." + catalogType + "." + id.ToString("D2");
@@ -36,11 +38,12 @@ public class ShopOwnedItemData
     }
 }
 
-/// <summary>商城可拥有商品格子. 头像与壁纸预制体直接挂本脚本.</summary>
+/// <summary>商城可拥有商品格子，头像和头像框共享带裁剪的头像组合。</summary>
 public class ShopOwnedItem : MonoBehaviour
 {
     [SerializeField] Button m_BtnAll;
     [SerializeField] Image m_ImgMain;
+    [SerializeField] AvatarPortraitView m_Portrait;
     [SerializeField] TextMeshProUGUI m_TxtTitle;
     [SerializeField] TextMeshProUGUI m_TxtRemainTime;
     [SerializeField] TextMeshProUGUI m_TxtValue;
@@ -53,7 +56,15 @@ public class ShopOwnedItem : MonoBehaviour
     {
         m_Data = data;
         m_OnSelected = onSelected;
-        m_ImgMain.sprite = data.Sprite;
+        bool wallpaper = data.CatalogType == ShopCatalogTypes.Wallpaper;
+        m_ImgMain.gameObject.SetActive(wallpaper);
+        if (wallpaper) m_ImgMain.sprite = data.Sprite;
+        else
+        {
+            var player = AChen.Player.PlayerSession.Instance.CurrentPlayer;
+            m_Portrait.SetPortrait(data.CatalogType == ShopCatalogTypes.Avatar ? data.Id : player.AvatarId.Value,
+                data.CatalogType == ShopCatalogTypes.AvatarFrame ? data.Id : player.AvatarFrameId);
+        }
         m_TxtTitle.Localized().SetKey(data.NameKey);
         ShopRemainingTime.Apply(m_TxtRemainTime.Localized(), data.EndsAt);
         m_TxtValue.Localized().SetKey("ui.common.gold_amount", new System.Collections.Generic.Dictionary<string, object> { ["gold"] = data.PriceGold.ToString("N0") });

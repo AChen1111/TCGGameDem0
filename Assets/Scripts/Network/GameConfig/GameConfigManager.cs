@@ -21,7 +21,8 @@ namespace AChen.Networking
                 var snapshot = new GameConfigSnapshot(3, 1, ContentSession.ServerTime,
                     data.Avatars.Select(x => new AvatarConfig(x.Id, x.Name, x.ResourceKey, x.PriceGold, x.SortOrder, x.IsEnabled, x.StartsAt, x.EndsAt)),
                     data.Wallpapers.Select(x => new WallpaperConfig(x.Id, x.Name, x.ResourceKey, x.PriceGold, x.SortOrder, x.IsEnabled, x.StartsAt, x.EndsAt)),
-                    data.CardPacks.Select(x => new CardPackConfig(x.Id, x.Title, x.CoverResourceKey, x.PoolKey, x.PriceGold, x.StartsAt, x.EndsAt, x.SortOrder, x.IsEnabled)));
+                    data.CardPacks.Select(x => new CardPackConfig(x.Id, x.Title, x.CoverResourceKey, x.PoolKey, x.PriceGold, x.StartsAt, x.EndsAt, x.SortOrder, x.IsEnabled)),
+                    data.AvatarFrames.Select(x => new AvatarFrameConfig(x.Id, x.Name, x.ResourceKey, x.PriceGold, x.SortOrder, x.IsEnabled, x.MaskResourceKey, x.StartsAt, x.EndsAt)));
                 m_store.Replace(snapshot, ContentSession.ReleaseId, ContentSession.ServerTime, ContentSession.ServerTimeReceivedAt, false);
             }
             else m_store.MarkChecked(ContentSession.ServerTime, ContentSession.ServerTimeReceivedAt);

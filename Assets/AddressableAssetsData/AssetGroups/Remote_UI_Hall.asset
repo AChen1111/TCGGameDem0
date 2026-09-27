@@ -15,6 +15,21 @@ MonoBehaviour:
   m_GroupName: Remote_UI_Hall
   m_GUID: 372fa8289c74b294bb967291bb9011b2
   m_SerializeEntries:
+  - m_GUID: 081db95b12171274194944caf65800e2
+    m_Address: Sprite/ProfileCustomization/Avatars
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 23c493adc118e0942be1868bdb76c469
+    m_Address: Profile
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 421e6b207733eb64681a4ec27758f160
+    m_Address: Sprite/ProfileCustomization/Common
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4e943d3ff8ff4e729c2f7d8d684cef85
     m_Address: Sprite/Shop
     m_ReadOnly: 0
@@ -27,6 +42,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 595cecafa007c144787c9a3b17e5bef4
     m_Address: Sprite/Misc
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5c59be2f869263d4b9dd75c74f189eae
+    m_Address: Sprite/ProfileCustomization/Frames
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -60,18 +80,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a61f031e6c4d6b141904a677a6e75551
-    m_Address: SelfWindow
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b74944a8a8e84b74388ec1fb2dde5294
     m_Address: UI/LoadIN
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c2a48d32e1aaf41408acf01703d1b723
-    m_Address: Avatar
+  - m_GUID: b82b4d557d5945c48897ac1be4e1fc39
+    m_Address: Sprite/ProfileCustomization/Masks
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

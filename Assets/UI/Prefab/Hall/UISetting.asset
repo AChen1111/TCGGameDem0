@@ -17,8 +17,6 @@ MonoBehaviour:
   - {fileID: 4966124854734445874, guid: 1eac6252ac922024d84a68f7ef795aa4, type: 3}
   - {fileID: 4541537500458132919, guid: 8cf2a4b2edb255f4fa71d39756c20d9a, type: 3}
   - {fileID: 5414364316487525683, guid: a64c074234af9d240aa33eaf8e67d42a, type: 3}
-  - {fileID: 8982316589221043835, guid: afc3ada57acd30545808a4f75dae2ea3, type: 3}
-  - {fileID: 3890384775472734476, guid: 232a381f9091a5b45b781d75776f8311, type: 3}
   - {fileID: 5414364316487525683, guid: 1a75c66ce8c4812448ee3251d08545b7, type: 3}
   - {fileID: 6277717379300900357, guid: 57208fe5bab00e44fb6756c3faa3d5d0, type: 3}
   - {fileID: 5414364316487525683, guid: ac395b48b12afb547a33d09a3c77c1e6, type: 3}
@@ -27,4 +25,5 @@ MonoBehaviour:
   - {fileID: 413813096859204560, guid: 2526152adae99c4498a4cc395ecd5ae4, type: 3}
   - {fileID: 6458001093074311010, guid: 53fc43819c39efb4a8ae68cc93b1c248, type: 3}
   - {fileID: 5783677021794664546, guid: aff2b5eb56058ae46b3c2562866703c9, type: 3}
+  - {fileID: 2941048075907514571, guid: 042b7cda48f8cc243bb91c861b57555d, type: 3}
   deactivateScreenGOs: 1

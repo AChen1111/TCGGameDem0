@@ -24,11 +24,14 @@ namespace AChen.Configuration
                 throw new FormatException("配置结构版本或必需数据无效");
             Unique(Catalog.CardPacks, x => x.Id, "卡包");
             Unique(Catalog.Avatars, x => x.Id, "头像");
+            Unique(Catalog.AvatarFrames, x => x.Id, "头像框");
+            Unique(Catalog.AvatarFrames, x => x.ResourceKey, "头像框资源键");
+            foreach (var frame in Catalog.AvatarFrames) Text(frame.MaskResourceKey, 128);
             Unique(Catalog.Wallpapers, x => x.Id, "壁纸");
             Unique(Catalog.CardPacks, x => x.Id, "卡包");
             Unique(Catalog.Avatars, x => x.ResourceKey, "头像资源键");
             Unique(Catalog.Wallpapers, x => x.ResourceKey, "壁纸资源键");
-            foreach (var item in Catalog.Avatars.Concat(Catalog.Wallpapers))
+            foreach (var item in Catalog.Avatars.Concat(Catalog.Wallpapers).Concat(Catalog.AvatarFrames))
             {
                 if (item.Id < 0) throw new FormatException("外观 ID 无效");
                 Text(item.Name, 64); Text(item.ResourceKey, 128);
@@ -112,10 +115,11 @@ namespace AChen.Configuration
     [Serializable] public sealed class CatalogData
     {
         public CosmeticData[] Avatars;
+        public AvatarFrameData[] AvatarFrames;
         public CosmeticData[] Wallpapers;
         public PackData[] CardPacks;
     }
-    [Serializable] public sealed class CosmeticData
+    [Serializable] public class CosmeticData
     {
         public int Id;
         public string Name;
@@ -126,6 +130,7 @@ namespace AChen.Configuration
         public DateTimeOffset? StartsAt;
         public DateTimeOffset? EndsAt;
     }
+    [Serializable] public sealed class AvatarFrameData : CosmeticData { public string MaskResourceKey; }
     [Serializable] public sealed class PackData
     {
         public int Id;

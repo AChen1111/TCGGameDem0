@@ -23,6 +23,8 @@ namespace AChen.Events
         public static readonly EventId<long?> PlayerGoldChanged = new EventId<long?>("Player.GoldChanged");
         public static readonly EventId<Guid?, string> PlayerNicknameChanged = new EventId<Guid?, string>("Player.NicknameChanged");
         public static readonly EventId<int?> PlayerAvatarChanged = new EventId<int?>("Player.AvatarChanged");
+        public static readonly EventId<int?> PlayerAvatarFrameChanged = new EventId<int?>("Player.AvatarFrameChanged");
+        public static readonly EventId<PlayerData> PlayerOwnedAvatarFramesChanged = new EventId<PlayerData>("Player.OwnedAvatarFramesChanged");
         public static readonly EventId<int?> PlayerBackgroundChanged = new EventId<int?>("Player.BackgroundChanged");
         public static readonly EventId<PlayerData> PlayerOwnedAvatarsChanged = new EventId<PlayerData>("Player.OwnedAvatarsChanged");
         public static readonly EventId<PlayerData> PlayerOwnedWallpapersChanged = new EventId<PlayerData>("Player.OwnedWallpapersChanged");

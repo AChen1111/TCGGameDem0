@@ -7,11 +7,10 @@ using UnityEngine.UI;
 
 public class FriendRowItem : MonoBehaviour, IRowItem<FriendSearchHitData>
 {
-    [SerializeField] Image m_ImgIcon;
+    [SerializeField] AvatarPortraitView m_Portrait;
     [SerializeField] TMP_Text m_TxtName;
     [SerializeField] Button m_BtnAction;
 
-    int m_Bind;
     FriendSearchHitData m_Data;
 
     public int RowCardCount => 1;
@@ -21,8 +20,7 @@ public class FriendRowItem : MonoBehaviour, IRowItem<FriendSearchHitData>
         m_Data = allData[rowIndex];
         m_TxtName.text = m_Data.Nickname;
         ApplyAction();
-        int version = ++m_Bind;
-        SocialPortrait.ApplyAsync(m_ImgIcon, m_Data.AvatarId, version, () => m_Bind).Forget();
+        m_Portrait.SetPortrait(m_Data.AvatarId.Value, m_Data.AvatarFrameId);
     }
 
     void Awake()

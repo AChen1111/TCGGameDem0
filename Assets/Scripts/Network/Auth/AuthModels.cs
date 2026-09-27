@@ -87,6 +87,8 @@ namespace AChen.Networking
         public string Nickname { get; }
         public int? AvatarId { get; }
         public IReadOnlyList<int> OwnedAvatarIds { get; }
+        public int AvatarFrameId { get; }
+        public IReadOnlyList<int> OwnedAvatarFrameIds { get; }
         public int? BackgroundId { get; }
         public IReadOnlyList<int> OwnedBackgroundIds { get; }
         public IReadOnlyList<OwnedCardData> OwnedCards { get; }
@@ -106,8 +108,12 @@ namespace AChen.Networking
             long gold,
             long revision,
             DateTimeOffset createdAt,
-            DateTimeOffset updatedAt)
+            DateTimeOffset updatedAt,
+            int avatarFrameId,
+            IReadOnlyList<int> ownedAvatarFrameIds)
         {
+            AvatarFrameId = avatarFrameId;
+            OwnedAvatarFrameIds = ownedAvatarFrameIds;
             Id = id;
             Nickname = nickname;
             AvatarId = avatarId;

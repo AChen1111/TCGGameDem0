@@ -6,6 +6,8 @@ namespace AChen.Networking
 {
     public sealed class GameConfigStore
     {
+        IReadOnlyDictionary<int, AvatarFrameConfig> m_avatarFrames = new Dictionary<int, AvatarFrameConfig>();
+        public IReadOnlyDictionary<int, AvatarFrameConfig> AvatarFrames => m_avatarFrames;
         IReadOnlyDictionary<int, AvatarConfig> m_avatars = new Dictionary<int, AvatarConfig>();
         IReadOnlyDictionary<int, WallpaperConfig> m_wallpapers = new Dictionary<int, WallpaperConfig>();
         IReadOnlyDictionary<int, CardPackConfig> m_cardPacks = new Dictionary<int, CardPackConfig>();
@@ -53,6 +55,9 @@ namespace AChen.Networking
                 wallpapers.Add(wallpaper.Id, wallpaper);
             }
 
+            var frames = new Dictionary<int, AvatarFrameConfig>();
+            foreach (var frame in snapshot.AvatarFrames) frames.Add(frame.Id, frame);
+            m_avatarFrames = frames;
             m_avatars = avatars;
             m_wallpapers = wallpapers;
             m_cardPacks = cardPacks;

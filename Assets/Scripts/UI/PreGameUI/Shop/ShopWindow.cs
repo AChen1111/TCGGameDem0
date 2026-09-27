@@ -72,6 +72,7 @@ public class ShopWindow : AWindowController
         {
             new CardPackShopCategory(),
             new CosmeticShopCategory("头像", ShopCatalogTypes.Avatar, AddressKeys.Prefab.AvatarShopItemRowPrefab),
+            new CosmeticShopCategory("头像框", ShopCatalogTypes.AvatarFrame, AddressKeys.Prefab.AvatarShopItemRowPrefab),
             new CosmeticShopCategory("壁纸", ShopCatalogTypes.Wallpaper, AddressKeys.Prefab.WallpaperShopItemRowPrefab),
         };
         m_ConfigSnapshot = GameConfigManager.Instance.Store.Snapshot;
@@ -110,6 +111,7 @@ public class ShopWindow : AWindowController
     protected override void AddListeners()
     {
         EventCenter.AddListener(GameEvent.PlayerOwnedAvatarsChanged, OnOwnedAvatarsChanged);
+        EventCenter.AddListener(GameEvent.PlayerOwnedAvatarFramesChanged, OnOwnedFramesChanged);
         EventCenter.AddListener(GameEvent.PlayerOwnedWallpapersChanged, OnOwnedWallpapersChanged);
         EventCenter.AddListener(GameEvent.GameConfigChanged, OnConfigChanged);
         m_CloseButton.onClick.AddListener(UI_Close);
@@ -125,6 +127,7 @@ public class ShopWindow : AWindowController
     protected override void RemoveListeners()
     {
         EventCenter.RemoveListener(GameEvent.PlayerOwnedAvatarsChanged, OnOwnedAvatarsChanged);
+        EventCenter.RemoveListener(GameEvent.PlayerOwnedAvatarFramesChanged, OnOwnedFramesChanged);
         EventCenter.RemoveListener(GameEvent.PlayerOwnedWallpapersChanged, OnOwnedWallpapersChanged);
         EventCenter.RemoveListener(GameEvent.GameConfigChanged, OnConfigChanged);
         PauseRefresh();
@@ -134,6 +137,8 @@ public class ShopWindow : AWindowController
             m_ChooseButtons[i].onClick.RemoveAllListeners();
         }
     }
+
+    void OnOwnedFramesChanged(PlayerData player) => OnOwnedItemsChanged(ShopCatalogTypes.AvatarFrame, player);
 
     void OnOwnedAvatarsChanged(PlayerData player) => OnOwnedItemsChanged(ShopCatalogTypes.Avatar, player);
 

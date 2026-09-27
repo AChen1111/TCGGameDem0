@@ -48,27 +48,6 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
-  - assetName: ChangeNameWindow
-    reference:
-      m_AssetGUID: afc3ada57acd30545808a4f75dae2ea3
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_SubObjectGUID: 
-      m_EditorAssetChanged: 0
-  - assetName: AvatarItemPrefab
-    reference:
-      m_AssetGUID: 01bd24fd410adfc4f94fc25477c9fb35
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_SubObjectGUID: 
-      m_EditorAssetChanged: 0
-  - assetName: SelfChooseWindow
-    reference:
-      m_AssetGUID: 232a381f9091a5b45b781d75776f8311
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_SubObjectGUID: 
-      m_EditorAssetChanged: 0
   - assetName: AvatarShopItemRowPrefab
     reference:
       m_AssetGUID: f393de558fa14e244a55e10d9cba3a99
@@ -170,6 +149,27 @@ MonoBehaviour:
   - assetName: GiftApplyRowPrefab
     reference:
       m_AssetGUID: 845babac4a833f047b4b16a546c659a9
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: ProfileEditWindow
+    reference:
+      m_AssetGUID: 042b7cda48f8cc243bb91c861b57555d
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: ProfileCosmeticRow
+    reference:
+      m_AssetGUID: 2f920b62d45620a4bb5e4fd87ab5c0e9
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: AvatarPortrait
+    reference:
+      m_AssetGUID: da662204122891d4a8b9c2758eeba502
       m_SubObjectName: 
       m_SubObjectType: 
       m_SubObjectGUID: 
