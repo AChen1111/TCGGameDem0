@@ -46,6 +46,7 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
     [SerializeField] ScrollRect m_ExtraScroll;
     [SerializeField] DeckCardCell m_DeckCellPrefab;
     [SerializeField] DeckCardView m_DetailCard;
+    [SerializeField] Button m_BtnDetailCard;
     [SerializeField] DeckCardView m_DragCard;
     [SerializeField] RectTransform m_DragRoot;
     [SerializeField] RectTransform m_CanvasRect;
@@ -67,6 +68,7 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
         m_BtnRename.onClick.AddListener(Rename);
         m_BtnPlus.onClick.AddListener(AddSelected);
         m_BtnMinus.onClick.AddListener(RemoveSelected);
+        m_BtnDetailCard.onClick.AddListener(InspectSelected);
         m_InpSearch.onValueChanged.AddListener(Search);
     }
     protected override void RemoveListeners()
@@ -76,6 +78,7 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
         m_BtnRename.onClick.RemoveListener(Rename);
         m_BtnPlus.onClick.RemoveListener(AddSelected);
         m_BtnMinus.onClick.RemoveListener(RemoveSelected);
+        m_BtnDetailCard.onClick.RemoveListener(InspectSelected);
         m_InpSearch.onValueChanged.RemoveListener(Search);
     }
     protected override void OnOpen()
@@ -192,6 +195,8 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
             : row.Kind == (int)CardKind.Trap ? new Color(.45f,.18f,.38f) : new Color(.5f,.4f,.18f);
         BindCard(m_DetailCard, data); RefreshButtons();
     }
+    void InspectSelected() => RequestOpenWindow(AddressKeys.Prefab.CardDetailOverlay, new CardDetailWindowProperty(
+        new[] { new CardDetailEntry(m_selected.CardId, m_selected.SourcePool, m_DetailCard.Texture) }, 0));
     void RefreshButtons()
     {
         m_BtnSave.interactable = !m_busy;
