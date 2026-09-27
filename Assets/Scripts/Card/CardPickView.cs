@@ -177,6 +177,11 @@ public class CardPickView : MonoBehaviour
         _SwitchStatus(status);
     }
 
+    public void SetTiltEnabled(bool enabled)
+    {
+        _cardMouseTilt.enabled = enabled;
+    }
+
     //切换卡牌状态
     private void _SwitchStatus(CardStatus status)
     {

@@ -231,6 +231,11 @@ public class CardPickController : MonoBehaviour
     public void SetInspectEnabled(bool enabled)
     {
         _inspectEnabled = enabled;
+        // 详情页显示时暂停后方卡牌倾斜，关闭后恢复并重新校准手机姿态。
+        for (int i = 0; i < _cardObjects.Count; i++)
+        {
+            _cardObjects[i].SetTiltEnabled(enabled);
+        }
     }
 
     public void NotifyInspect(int index)
