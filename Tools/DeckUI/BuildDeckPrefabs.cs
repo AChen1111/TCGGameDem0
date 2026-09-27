@@ -74,9 +74,11 @@ public static class BuildDeckPrefabs
     {
         var r=R(name,null,0,0,1706,960);Stretch(r);r.gameObject.AddComponent<CanvasGroup>();
         var controller=r.gameObject.AddComponent(type);var so=new SerializedObject(controller);so.FindProperty("isPopup").boolValue=popup;so.ApplyModifiedPropertiesWithoutUndo();
+        if(name=="DeckListWindow"){so.FindProperty("hideOnForegroundLost").boolValue=false;so.ApplyModifiedPropertiesWithoutUndo();}
         if(!popup)
         { var bg=R("Background",r,0,0,1706,960).gameObject.AddComponent<RawImage>();Stretch(bg.rectTransform);bg.material=background;bg.raycastTarget=true;
-          Img("Header",r,0,0,1706,80,null,new Color(0,0,0,.8f));Img("HeaderLine",r,0,79,1706,1,null,new Color(.4f,.45f,.5f)); }
+          var header=Img("Header",r,0,0,1706,80,null,new Color(0,0,0,.8f));var line=Img("HeaderLine",r,0,79,1706,1,null,new Color(.4f,.45f,.5f));
+          foreach(var image in new[]{header,line}){image.rectTransform.anchorMax=new Vector2(1,1);image.rectTransform.sizeDelta=new Vector2(0,image.rectTransform.sizeDelta.y);} }
         return r.gameObject;
     }
     static DeckCardView Card(string name,Transform p,float x,float y,float w,float h)
