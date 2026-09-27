@@ -12,7 +12,7 @@ namespace AChen.Player
     /// 玩家会话的唯一真相源: 持有令牌与当前玩家资料, 负责登录/恢复/登出, 串行化资料修改与资产操作, 并派发变更事件.
     /// 网络细节交给 AuthApi, 令牌持久化交给 IAuthSessionStore.
     /// </summary>
-    public sealed class PlayerSession : PersistentMonoSingleton<PlayerSession>
+    public sealed partial class PlayerSession : PersistentMonoSingleton<PlayerSession>
     {
         readonly BackendConfig m_config = new BackendConfig();
         readonly SemaphoreSlim m_mutationLock = new(1, 1);

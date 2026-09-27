@@ -40,7 +40,7 @@ public static class EditorBackendHttp
                 request.SetRequestHeader("Content-Type", "application/json");
             }
 
-            request.SetRequestHeader(PublishKeyHeader, publishKey);
+            if (!string.IsNullOrWhiteSpace(publishKey)) request.SetRequestHeader(PublishKeyHeader, publishKey);
             await AwaitAsync(request);
             ThrowIfFailed(request);
             return request.downloadHandler.text;
@@ -65,7 +65,7 @@ public static class EditorBackendHttp
                 request.SetRequestHeader("Content-Type", contentType);
             }
 
-            request.SetRequestHeader(PublishKeyHeader, publishKey);
+            if (!string.IsNullOrWhiteSpace(publishKey)) request.SetRequestHeader(PublishKeyHeader, publishKey);
             await AwaitAsync(request);
             ThrowIfFailed(request);
             return request.downloadHandler.text;
@@ -81,7 +81,7 @@ public static class EditorBackendHttp
     {
         using (var request = UnityWebRequest.Get(BuildUrl(baseUrl, path)))
         {
-            request.SetRequestHeader(PublishKeyHeader, publishKey);
+            if (!string.IsNullOrWhiteSpace(publishKey)) request.SetRequestHeader(PublishKeyHeader, publishKey);
             await AwaitAsync(request);
             if (allowNotFound && request.responseCode == 404)
             {

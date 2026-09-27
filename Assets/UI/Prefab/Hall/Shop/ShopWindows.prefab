@@ -1109,6 +1109,7 @@ MonoBehaviour:
   - {fileID: 1726680169225254930}
   - {fileID: 2305581834146659341}
   - {fileID: 6090742157898381906}
+  m_TransitionSpine: {fileID: 2934755674133936327}
 --- !u!225 &5128900757077753562
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2025,7 +2026,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 7697115848146056474}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

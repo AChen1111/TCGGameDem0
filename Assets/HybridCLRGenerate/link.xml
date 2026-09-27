@@ -16,7 +16,6 @@
     <type fullname="ALog" preserve="all" />
     <type fullname="CardAttribute" preserve="all" />
     <type fullname="CardCatalog" preserve="all" />
-    <type fullname="CardFlags" preserve="all" />
     <type fullname="CardFrame" preserve="all" />
     <type fullname="CardKind" preserve="all" />
     <type fullname="CardSpellTrapType" preserve="all" />
@@ -68,25 +67,6 @@
     <type fullname="SuperScrollView.LoopListView2" preserve="all" />
     <type fullname="SuperScrollView.LoopListViewInitParam" preserve="all" />
     <type fullname="SuperScrollView.LoopListViewItem2" preserve="all" />
-  </assembly>
-  <assembly fullname="System">
-    <type fullname="System.CodeDom.Compiler.GeneratedCodeAttribute" preserve="all" />
-    <type fullname="System.Collections.Generic.Queue`1" preserve="all" />
-    <type fullname="System.Collections.Generic.Stack`1" preserve="all" />
-    <type fullname="System.ComponentModel.EditorBrowsableAttribute" preserve="all" />
-    <type fullname="System.ComponentModel.EditorBrowsableState" preserve="all" />
-    <type fullname="System.Text.RegularExpressions.Capture" preserve="all" />
-    <type fullname="System.Text.RegularExpressions.Match" preserve="all" />
-    <type fullname="System.Text.RegularExpressions.MatchCollection" preserve="all" />
-    <type fullname="System.Text.RegularExpressions.Regex" preserve="all" />
-    <type fullname="System.Text.RegularExpressions.RegexOptions" preserve="all" />
-    <type fullname="System.Uri" preserve="all" />
-    <type fullname="System.UriKind" preserve="all" />
-  </assembly>
-  <assembly fullname="System.Core">
-    <type fullname="System.Collections.Generic.HashSet`1" preserve="all" />
-    <type fullname="System.Linq.Enumerable" preserve="all" />
-    <type fullname="System.Linq.IOrderedEnumerable`1" preserve="all" />
   </assembly>
   <assembly fullname="UniTask">
     <type fullname="Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder" preserve="all" />
@@ -248,7 +228,7 @@
     <type fullname="UnityEngine.Networking.UploadHandler" preserve="all" />
     <type fullname="UnityEngine.Networking.UploadHandlerRaw" preserve="all" />
   </assembly>
-  <assembly fullname="mscorlib">
+  <assembly fullname="netstandard">
     <type fullname="System.Action" preserve="all" />
     <type fullname="System.Action`1" preserve="all" />
     <type fullname="System.Action`2" preserve="all" />
@@ -261,10 +241,12 @@
     <type fullname="System.Boolean" preserve="all" />
     <type fullname="System.Byte" preserve="all" />
     <type fullname="System.Char" preserve="all" />
+    <type fullname="System.CodeDom.Compiler.GeneratedCodeAttribute" preserve="all" />
     <type fullname="System.Collections.Generic.Dictionary`2" preserve="all" />
     <type fullname="System.Collections.Generic.Dictionary`2/Enumerator" preserve="all" />
     <type fullname="System.Collections.Generic.Dictionary`2/ValueCollection" preserve="all" />
     <type fullname="System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator" preserve="all" />
+    <type fullname="System.Collections.Generic.HashSet`1" preserve="all" />
     <type fullname="System.Collections.Generic.ICollection`1" preserve="all" />
     <type fullname="System.Collections.Generic.IComparer`1" preserve="all" />
     <type fullname="System.Collections.Generic.IEnumerable`1" preserve="all" />
@@ -277,17 +259,18 @@
     <type fullname="System.Collections.Generic.KeyValuePair`2" preserve="all" />
     <type fullname="System.Collections.Generic.List`1" preserve="all" />
     <type fullname="System.Collections.Generic.List`1/Enumerator" preserve="all" />
+    <type fullname="System.Collections.Generic.Queue`1" preserve="all" />
+    <type fullname="System.Collections.Generic.Stack`1" preserve="all" />
     <type fullname="System.Collections.IEnumerable" preserve="all" />
     <type fullname="System.Collections.IEnumerator" preserve="all" />
     <type fullname="System.Comparison`1" preserve="all" />
+    <type fullname="System.ComponentModel.EditorBrowsableAttribute" preserve="all" />
+    <type fullname="System.ComponentModel.EditorBrowsableState" preserve="all" />
     <type fullname="System.DateTimeOffset" preserve="all" />
     <type fullname="System.Delegate" preserve="all" />
     <type fullname="System.Diagnostics.DebuggableAttribute" preserve="all" />
     <type fullname="System.Diagnostics.DebuggableAttribute/DebuggingModes" preserve="all" />
-    <type fullname="System.Diagnostics.DebuggerBrowsableAttribute" preserve="all" />
-    <type fullname="System.Diagnostics.DebuggerBrowsableState" preserve="all" />
     <type fullname="System.Diagnostics.DebuggerHiddenAttribute" preserve="all" />
-    <type fullname="System.Diagnostics.DebuggerStepThroughAttribute" preserve="all" />
     <type fullname="System.Diagnostics.StackFrame" preserve="all" />
     <type fullname="System.Diagnostics.StackTrace" preserve="all" />
     <type fullname="System.Double" preserve="all" />
@@ -306,6 +289,8 @@
     <type fullname="System.Int32" preserve="all" />
     <type fullname="System.Int64" preserve="all" />
     <type fullname="System.InvalidOperationException" preserve="all" />
+    <type fullname="System.Linq.Enumerable" preserve="all" />
+    <type fullname="System.Linq.IOrderedEnumerable`1" preserve="all" />
     <type fullname="System.Math" preserve="all" />
     <type fullname="System.NotSupportedException" preserve="all" />
     <type fullname="System.Nullable`1" preserve="all" />
@@ -337,6 +322,11 @@
     <type fullname="System.StringComparer" preserve="all" />
     <type fullname="System.StringComparison" preserve="all" />
     <type fullname="System.Text.Encoding" preserve="all" />
+    <type fullname="System.Text.RegularExpressions.Capture" preserve="all" />
+    <type fullname="System.Text.RegularExpressions.Match" preserve="all" />
+    <type fullname="System.Text.RegularExpressions.MatchCollection" preserve="all" />
+    <type fullname="System.Text.RegularExpressions.Regex" preserve="all" />
+    <type fullname="System.Text.RegularExpressions.RegexOptions" preserve="all" />
     <type fullname="System.Text.StringBuilder" preserve="all" />
     <type fullname="System.Threading.CancellationToken" preserve="all" />
     <type fullname="System.Threading.CancellationTokenSource" preserve="all" />
@@ -346,6 +336,8 @@
     <type fullname="System.Threading.Tasks.Task`1" preserve="all" />
     <type fullname="System.TimeSpan" preserve="all" />
     <type fullname="System.Type" preserve="all" />
+    <type fullname="System.Uri" preserve="all" />
+    <type fullname="System.UriKind" preserve="all" />
     <type fullname="System.ValueTuple`2" preserve="all" />
     <type fullname="System.ValueType" preserve="all" />
   </assembly>

@@ -15,7 +15,6 @@ public sealed class PlayerGiftGrantWindow : EditorWindow
     int m_CardCount = 1;
     int m_CardRarity;
     string m_TitleKey = string.Empty;
-    string m_MemoryPublishKey = string.Empty;
     string m_Status = "等待发放";
     bool m_Busy;
 
@@ -32,7 +31,7 @@ public sealed class PlayerGiftGrantWindow : EditorWindow
     void OnGUI()
     {
         EditorGUILayout.LabelField("发放礼品到玩家收件箱", EditorStyles.boldLabel);
-        EditorGUILayout.HelpBox("金币与卡牌可同时填写，至少提供一种。领取后才会入账。", MessageType.Info);
+        EditorGUILayout.HelpBox("金币与卡牌可同时填写，至少提供一种。领取后才会入账。本地 Development 后端无需发布密钥。", MessageType.Info);
 
         using (new EditorGUI.DisabledScope(m_Busy))
         {
@@ -57,7 +56,6 @@ public sealed class PlayerGiftGrantWindow : EditorWindow
             }
 
             EditorGUILayout.HelpBox("中间标题走本地化 key，空则按内容自动选金币/卡牌/礼包。", MessageType.None);
-            m_MemoryPublishKey = PublishKeyProvider.DrawField(m_MemoryPublishKey);
 
             if (GUILayout.Button("发放礼品", GUILayout.Height(30f)))
             {
@@ -134,7 +132,6 @@ public sealed class PlayerGiftGrantWindow : EditorWindow
         try
         {
             EditorBackendHttp.ValidateBaseUrl(m_BackendUrl);
-            PublishKeyProvider.RequireKey(m_MemoryPublishKey);
             m_Busy = true;
             m_Status = "处理中…";
             Repaint();
@@ -153,7 +150,7 @@ public sealed class PlayerGiftGrantWindow : EditorWindow
     }
 
     Task<string> SendAsync(string method, string path, string json) =>
-        EditorBackendHttp.SendJsonAsync(m_BackendUrl, method, path, json, PublishKeyProvider.Resolve(m_MemoryPublishKey));
+        EditorBackendHttp.SendJsonAsync(m_BackendUrl, method, path, json, PublishKeyProvider.Resolve(string.Empty));
 
     string RequireUsername()
     {

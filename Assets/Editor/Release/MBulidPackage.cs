@@ -122,7 +122,13 @@ public sealed class MBulidPackage
         string directory = DirectoryFor(platform, version);
         string remote = SafePath(directory, "Addressables");
         string prefix = remote + Path.DirectorySeparatorChar;
-        var paths = builtFiles.Select(Path.GetFullPath).Where(x => x.StartsWith(prefix, StringComparison.OrdinalIgnoreCase) &&
+        string[] builtPaths = builtFiles.Select(Path.GetFullPath).Distinct().ToArray();
+        string[] unpublishedBundles = builtPaths.Where(x => x.EndsWith(".bundle", StringComparison.OrdinalIgnoreCase) &&
+            !x.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)).ToArray();
+        if (unpublishedBundles.Length > 0)
+            throw new InvalidOperationException("存在未纳入远程版本目录的 Bundle，禁止完成资源构建。请检查公共包和资源组的构建路径: " +
+                string.Join(", ", unpublishedBundles.Select(Path.GetFileName)));
+        var paths = builtPaths.Where(x => x.StartsWith(prefix, StringComparison.OrdinalIgnoreCase) &&
             (x.EndsWith(".bundle", StringComparison.Ordinal) || x.EndsWith(".bin", StringComparison.Ordinal) || x.EndsWith(".hash", StringComparison.Ordinal)))
             .Select(x => "Addressables/" + x.Substring(prefix.Length).Replace('\\', '/')).Distinct().ToList();
         foreach (string source in Directory.GetFiles(configRoot, "*.bytes"))

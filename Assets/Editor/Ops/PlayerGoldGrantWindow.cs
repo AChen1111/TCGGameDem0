@@ -11,7 +11,6 @@ public sealed class PlayerGoldGrantWindow : EditorWindow
     string m_BackendUrl = BackendServiceController.BaseUrl;
     string m_Username = "AChen1234";
     long m_Amount = 100000;
-    string m_MemoryPublishKey = string.Empty;
     string m_Status = "等待查询";
     string m_CurrentGoldText = "—";
     bool m_Busy;
@@ -29,7 +28,7 @@ public sealed class PlayerGoldGrantWindow : EditorWindow
     void OnGUI()
     {
         EditorGUILayout.LabelField("给账号添加金币", EditorStyles.boldLabel);
-        EditorGUILayout.HelpBox("需后端运行中，并使用与后端一致的内容发布密钥。", MessageType.Info);
+        EditorGUILayout.HelpBox("需后端运行中。本地 Development 后端无需发布密钥。", MessageType.Info);
 
         using (new EditorGUI.DisabledScope(m_Busy))
         {
@@ -43,7 +42,6 @@ public sealed class PlayerGoldGrantWindow : EditorWindow
             m_Username = EditorGUILayout.TextField("账号", m_Username);
             m_Amount = EditorGUILayout.LongField("添加数量", m_Amount);
             EditorGUILayout.LabelField("当前金币", m_CurrentGoldText);
-            m_MemoryPublishKey = PublishKeyProvider.DrawField(m_MemoryPublishKey);
 
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("查询", GUILayout.Height(30f)))
@@ -123,7 +121,6 @@ public sealed class PlayerGoldGrantWindow : EditorWindow
         try
         {
             EditorBackendHttp.ValidateBaseUrl(m_BackendUrl);
-            PublishKeyProvider.RequireKey(m_MemoryPublishKey);
             m_Busy = true;
             m_Status = "处理中…";
             Repaint();
@@ -142,7 +139,7 @@ public sealed class PlayerGoldGrantWindow : EditorWindow
     }
 
     Task<string> SendAsync(string method, string path, string json) =>
-        EditorBackendHttp.SendJsonAsync(m_BackendUrl, method, path, json, PublishKeyProvider.Resolve(m_MemoryPublishKey));
+        EditorBackendHttp.SendJsonAsync(m_BackendUrl, method, path, json, PublishKeyProvider.Resolve(string.Empty));
 
     string RequireUsername()
     {

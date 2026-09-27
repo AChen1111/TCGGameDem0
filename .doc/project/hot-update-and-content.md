@@ -21,14 +21,20 @@ Editor 不读取 `Library/Development/editor-session.json`，本地配置哈希�
 
 热更新程序集为 `Assets/Scripts/HotUpdate.asmdef`。`mBulid/构建 DLL` 使用 HybridCLR 官方 `CompileDllCommand.CompileDll(临时目录, target, developmentBuild)`，按当前平台及 Development 设置在新的 `Temp/mBulid/<任务>/Compile/` 编译 Player 脚本。确认 HotUpdate.dll 存在、非空且程序集名称正确后，复制到当前版本目录，从最终文件计算 SHA-256。不要发布 `Library/ScriptAssemblies` 中的 Editor DLL。
 
-完整主包构建前使用 HybridCLR 官方 `Generate/All` 准备防裁剪配置、AOT 元数据与桥接代码，再用 Unity 构建 Player，并将该平台裁剪后的 AOT 补充元数据按 `LoadDll.AotDllNames` 放入主包的 `StreamingAssets/HybridCLR/<程序集>.dll.bytes`。mBulid 四项操作不构建主包，也不替换主包中的 AOT 元数据。协议从 4 升至 5，需要更新一次主包；删除了 `development-apk.txt` 的随机标识检查，AOT 与热更接口兼容性仍需 Player 实测。
+完整主包构建前使用 HybridCLR 官方 `Generate/All` 准备防裁剪配置、AOT 元数据与桥接代码，生成和打包必须保持相同平台及 Development 设置，再用 Unity 构建 Player。`PlayerAotMetadata` 在主包构建前，按 `LoadDll.AotDllNames` 将该平台 `HybridCLRData/AssembliesPostIl2CppStrip/<平台>/` 中的文件同步到 `StreamingAssets/HybridCLR/<程序集>.dll.bytes`；源文件缺失或程序集名称不匹配时停止构建。该同步先于 HybridCLR 清空裁剪输出，跳过官方生成元数据的临时 Player 构建；也可手动执行 `HybridCLR/Copy AOT Metadata to StreamingAssets`。同步仅复制已有生成产物，不代替 Generate/All；切换 Development、升级 AOT 依赖后必须重新生成。不要继续沿用之前手工复制的 `.bytes`，否则可能出现 UniTask 异步状态机 `.ctor` 的 MethodNotFind。mBulid 四项操作不构建主包，也不替换主包中的 AOT 元数据。协议从 4 升至 5，需要更新一次主包；删除了 `development-apk.txt` 的随机标识检查，AOT 与热更接口兼容性仍需 Player 实测。
 
 ### mBulid 操作顺序
+
+完整 Player 主包必须包含 Addressables 初始化产物（Android APK 中的 `assets/aa/settings.json` 和本地启动 catalog）。工程设置 `BuildAddressablesWithPlayerBuild = BuildWithPlayer`，使用 Packed Mode 在构建主包时自动生成并加入这些文件；不依赖之前 mBulid 构建留下的 Library 缓存。若已安装主包缺少这些文件，需重新构建并安装主包。mBulid 发布目录中的远程 catalog/bundles 不替代主包的初始化文件，主包构建也不会自动发布后端内容。
+
+Addressables 的 `Shared Bundle Settings` 使用 `CustomGroup → Remote_Shared`，使自动生成的 `monoscripts` 与 `unitybuiltinassets` 包随远程资源一起构建和发布。默认本地组即使为空也可能承载这些公共包，不能只检查业务组是否为 Remote。mBulid 构建前检查公共组的远程路径，构建后拒绝版本目录外的 Bundle，避免 catalog 引用 APK 中不存在的旧包名。`monoscripts` 是资源的脚本类型信息包，不是 `HotUpdate.dll` 或 AOT 补充元数据。
 
 1. **设置版本号**：保存当前平台内容版本到 `UserSettings/mBulid.json`，创建 `Version/<版本>_安卓` 或 `Version/<版本>_win`。同名目录删除重建，其他版本保留。内容版本不得包含路径或非法字符，不修改 `PlayerSettings.bundleVersion`。
 2. **构建 DLL**：输出 `HybridCLR/HotUpdate.dll`、`HybridCLR/HotUpdate.dll.sha256`，更新 `build-info.json` 的代码完成标记。失败后不能复用旧 DLL。
 3. **构建 Addressables**：先生成工程配置，再完整构建当前平台资源。临时将远程输出设为版本目录下的 `Addressables/`，catalog 用内容版本命名。依据本次 FileRegistry 记录 catalog、hash、bundles，并导出 `GameConfig/*.bytes`；完成后恢复设置。重建清空该版本资源和完成标记，保留 DLL。
-4. **发布版本**：核对两个完成标记、配置和全部文件大小/SHA-256，生成 `manifest.json` 和 `Temp/mBulid/<任务>/Content.zip`。仅上传已构建版本，不隐式构建。密钥沿用 `ACHEN_CONTENT_PUBLISH_KEY` / 后端服务窗口本地密钥，地址采用 `ACHEN_BACKEND_URL` 或 `http://127.0.0.1:5080`。发布状态记录在 `Temp/mBulid/status.json`。
+4. **发布版本**：核对两个完成标记、配置和全部文件大小/SHA-256，生成 `manifest.json` 和 `Temp/mBulid/<任务>/Content.zip`。仅上传已构建版本，不隐式构建。本地 Development 后端允许无发布密钥请求，mBulid 和账号金币/礼品窗口不再提前拦截；其他环境仍由后端鉴权，配置过的 `ACHEN_CONTENT_PUBLISH_KEY` / 后端服务窗口本地密钥会随请求发送。地址采用 `ACHEN_BACKEND_URL` 或 `http://127.0.0.1:5080`。发布状态记录在 `Temp/mBulid/status.json`。
+
+后端服务窗口入口为 `Tools/后端服务/打开窗口` 或 `Window/TCG/后端服务`，同一 Tools 子菜单提供启动与停止操作。
 
 `Version/`、`Temp/`、`UserSettings/` 不纳入 Git。编译、播放、主包构建或已有 mBulid 任务进行时禁用操作。未选择当前平台版本时不能构建或发布。
 

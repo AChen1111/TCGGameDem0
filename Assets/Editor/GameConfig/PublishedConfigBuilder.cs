@@ -119,6 +119,7 @@ public static class PublishedConfigBuilder
             files.Add(name, BinaryTableCsv.Compile(path));
         }
         GameConfigTables.Assemble(files);
+        DeckRulesConfiguration.Load(files);
         return files;
     }
 

@@ -583,28 +583,34 @@ public sealed class BackendServiceWindow : EditorWindow
 {
     Vector2 m_LogScroll;
 
+    [MenuItem(EditorMenus.Backend + "打开窗口")]
+    [MenuItem(EditorMenus.Window + "后端服务")]
     static void Open()
     {
         GetWindow<BackendServiceWindow>("后端服务");
     }
 
+    [MenuItem(EditorMenus.Backend + "启动")]
     static void StartFromMenu()
     {
         BackendServiceController.Start();
         Open();
     }
 
+    [MenuItem(EditorMenus.Backend + "启动", true)]
     static bool CanStartFromMenu()
     {
         return BackendServiceController.CanStart;
     }
 
+    [MenuItem(EditorMenus.Backend + "停止")]
     static void StopFromMenu()
     {
         BackendServiceController.Stop();
         Open();
     }
 
+    [MenuItem(EditorMenus.Backend + "停止", true)]
     static bool CanStopFromMenu()
     {
         return BackendServiceController.CanStop;

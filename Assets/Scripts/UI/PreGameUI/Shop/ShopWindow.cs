@@ -5,6 +5,7 @@ using AChen.Events;
 using AChen.Networking;
 using AChen.Player;
 using Cysharp.Threading.Tasks;
+using Spine.Unity;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,7 @@ public class ShopWindow : AWindowController
     [SerializeField] GridListController m_ListController;
     [SerializeField] Button m_CloseButton;
     [SerializeField] Button[] m_ChooseButtons;
+    [SerializeField] SkeletonGraphic m_TransitionSpine;
 
     ShopCategory[] m_Categories;
     int m_SelectedChooseIndex;
@@ -28,6 +30,40 @@ public class ShopWindow : AWindowController
     bool m_AreItemsCurrent;
     CancellationTokenSource m_RefreshCancellation;
     GameConfigSnapshot m_ConfigSnapshot;
+    bool m_RestoreSpineAfterTransition;
+    bool m_SpinesHiddenForTransition;
+
+    protected override UniTask PlayEnterTransition(CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        // 入场开始就恢复上次退出时隐藏的 Spine，整个渐入期间正常显示。
+        RestoreSpinesAfterTransition();
+        return base.PlayEnterTransition(cancellationToken);
+    }
+
+    protected override UniTask PlayExitTransition(CancellationToken cancellationToken)
+    {
+        HideSpinesForTransition();
+        // 退出后保持隐藏，下次入场开始时恢复，避免关闭前闪现。
+        return base.PlayExitTransition(cancellationToken);
+    }
+
+    void HideSpinesForTransition()
+    {
+        if (m_SpinesHiddenForTransition) return;
+        m_SpinesHiddenForTransition = true;
+        m_RestoreSpineAfterTransition = m_TransitionSpine != null && m_TransitionSpine.gameObject.activeSelf;
+        // 关闭已绑定的节点，连同 Spine 的子 CanvasRenderer 和点击响应一起隐藏。
+        if (m_RestoreSpineAfterTransition) m_TransitionSpine.gameObject.SetActive(false);
+    }
+
+    void RestoreSpinesAfterTransition()
+    {
+        if (m_RestoreSpineAfterTransition && m_TransitionSpine != null)
+            m_TransitionSpine.gameObject.SetActive(true);
+        m_RestoreSpineAfterTransition = false;
+        m_SpinesHiddenForTransition = false;
+    }
 
     protected override void Awake()
     {

@@ -23,28 +23,232 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// }} 
 
 	// {{ AOT generic types
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<object,AChen.Networking.BackendHttpResponse>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<object,AChen.Player.AuthResult>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<object,CardPickViewData>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<object,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<object,byte>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<object,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<object,AChen.Networking.BackendHttpResponse>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<object,AChen.Player.AuthResult>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<object,CardPickViewData>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<object,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<object,byte>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<object,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.AuthApi.<ClaimGiftAsync>d__23,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.AuthApi.<DrawCardsAsync>d__9,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.AuthApi.<GetFriendsAsync>d__17,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.AuthApi.<GetGachaPoolAsync>d__10,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.AuthApi.<GetInboxAsync>d__22,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.AuthApi.<GetPlayerAsync>d__6,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.AuthApi.<PostAuthAsync>d__24,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.AuthApi.<PurchaseShopItemAsync>d__8,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.AuthApi.<SearchFriendsAsync>d__18,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.AuthApi.<UpdateProfileAsync>d__7,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.BackendHttpClient.<SendAsync>d__4,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.BackendHttpClient.<SendAsync>d__5<object>,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.BackendHttpClient.<SendRawAsync>d__6,AChen.Networking.BackendHttpResponse>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.ContentUpdatePrompt.<WaitForRetryAsync>d__10>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.LocalGameConfiguration.<CheckVersionAsync>d__9>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.LocalGameConfiguration.<InitializeAsync>d__8>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.AuthFlow.<AuthenticateAsync>d__3,AChen.Player.AuthResult>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<>c__DisplayClass38_0.<<SendFriendRequestAsync>b__0>d,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<>c__DisplayClass39_0.<<AcceptFriendRequestAsync>b__0>d,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<>c__DisplayClass40_0.<<RejectFriendRequestAsync>b__0>d,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<ExecuteLockedAsync>d__47<object>,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<GetGachaPoolAsync>d__43,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<LoginAsync>d__25,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<LogoutAsync>d__28>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<RefreshAsync>d__27>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<RegisterAsync>d__24,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__49,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<object>,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__51,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__50,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<TryRestoreSessionAsync>d__26,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AUIScreenController.<RunGuardedAsync>d__46,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AUIScreenController.<RunTransitionAsync>d__70>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AddressableLoader.<AwaitScene>d__29,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AddressableLoader.<LoadAsset>d__28<object,object>,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AddressableLoader.<LoadScene>d__21,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AddressableLoader.<ReloadScene>d__22,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AddressableLoader.<UnloadScene>d__26>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AvatarSelectWindow.<BindListAsync>d__24>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<CardPackShopCategory.<BindAsync>d__3>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<CardPickController.<DoEndShow>d__30>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<CardPoolAddress.<LoadAddressAsync>d__7,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<CardPoolAddress.<LoadCardTextureAsync>d__6,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<CardPoolAddress.<TryLoadAddressAsync>d__8,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<CardPreviewWindow.<LoadCardImageAsync>d__16,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<CardPreviewWindow.<LoadCardImagesAsync>d__15,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<CardZoomWindow.<AnimateBowAsync>d__31>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<CardZoomWindow.<PlayCloseBowAsync>d__30>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<CardZoomWindow.<PlayOpenBowAsync>d__29>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<CosmeticShopCategory.<BindAsync>d__9>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<FriendWindow.<<LoadFriendsAsync>b__14_0>d>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<FriendWindow.<>c__DisplayClass15_0.<<SearchAsync>b__0>d>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<FriendWindow.<>c__DisplayClass16_0.<<SendRequestAsync>b__0>d>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<FriendWindow.<BindRowsAsync>d__17>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<GameFlow.<CheckContentAsync>d__4>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<GameFlow.<GetStartupSceneAsync>d__10,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<GiftWindow.<<LoadInboxAsync>b__9_0>d>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<GiftWindow.<>c__DisplayClass10_0.<<AcceptAsync>b__0>d>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<GiftWindow.<>c__DisplayClass11_0.<<RejectAsync>b__0>d>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<GiftWindow.<>c__DisplayClass12_0.<<ClaimAsync>b__0>d>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<GiftWindow.<RefreshInboxAsync>d__13>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<GridListController.<LoadRowPrefabAsync>d__13,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<InboxListController.<BindAsync>d__6>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<LobbyWallpaperView.<LoadAsync>d__16>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<LobbyWallpaperView.<PlayRevealAsync>d__15>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<LobbyWallpaperView.<WaitForReadyAsync>d__10>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<LogInWindow.<DoAnim>d__32>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<PlayerProfileView.<LoadAvatarAsync>d__9>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<PreGameUIPanel.<<SwitchToNextWallpaperAsync>b__38_0>d>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<PreGameUIPanel.<PlayIntroAsync>d__39>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<SceneLoader.<LoadScene>d__1,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<SceneLoader.<ReloadScene>d__2,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<ShopCatalogQuery.<LoadCardPacksAsync>d__0,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<ShopCatalogQuery.<LoadCosmeticsAsync>d__2<object>,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<ShopCatalogQuery.<LoadSpriteAsync>d__6,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<ShopCatalogQuery.<LoadSpritesAsync>d__5,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<ShopWindow.<LoadDrawCardAsync>d__36,CardPickViewData>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<ShopWindow.<LoadDrawCardsAsync>d__35,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<UITween.<RunAsync>d__7>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<UpdateDetector.<DownloadAssets>d__5>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<UpdateDetector.<InitializeLocalAsync>d__4>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.AuthApi.<ClaimGiftAsync>d__23,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.AuthApi.<DrawCardsAsync>d__9,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.AuthApi.<GetFriendsAsync>d__17,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.AuthApi.<GetGachaPoolAsync>d__10,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.AuthApi.<GetInboxAsync>d__22,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.AuthApi.<GetPlayerAsync>d__6,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.AuthApi.<PostAuthAsync>d__24,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.AuthApi.<PurchaseShopItemAsync>d__8,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.AuthApi.<SearchFriendsAsync>d__18,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.AuthApi.<UpdateProfileAsync>d__7,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.BackendHttpClient.<SendAsync>d__4,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.BackendHttpClient.<SendAsync>d__5<object>,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.BackendHttpClient.<SendRawAsync>d__6,AChen.Networking.BackendHttpResponse>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.ContentUpdatePrompt.<WaitForRetryAsync>d__10>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.LocalGameConfiguration.<CheckVersionAsync>d__9>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.LocalGameConfiguration.<InitializeAsync>d__8>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.AuthFlow.<AuthenticateAsync>d__3,AChen.Player.AuthResult>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<>c__DisplayClass38_0.<<SendFriendRequestAsync>b__0>d,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<>c__DisplayClass39_0.<<AcceptFriendRequestAsync>b__0>d,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<>c__DisplayClass40_0.<<RejectFriendRequestAsync>b__0>d,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<ExecuteLockedAsync>d__47<object>,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<GetGachaPoolAsync>d__43,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<LoginAsync>d__25,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<LogoutAsync>d__28>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<RefreshAsync>d__27>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<RegisterAsync>d__24,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__49,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<object>,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__51,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__50,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<TryRestoreSessionAsync>d__26,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AUIScreenController.<RunGuardedAsync>d__46,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AUIScreenController.<RunTransitionAsync>d__70>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AddressableLoader.<AwaitScene>d__29,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AddressableLoader.<LoadAsset>d__28<object,object>,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AddressableLoader.<LoadScene>d__21,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AddressableLoader.<ReloadScene>d__22,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AddressableLoader.<UnloadScene>d__26>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AvatarSelectWindow.<BindListAsync>d__24>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<CardPackShopCategory.<BindAsync>d__3>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<CardPickController.<DoEndShow>d__30>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<CardPoolAddress.<LoadAddressAsync>d__7,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<CardPoolAddress.<LoadCardTextureAsync>d__6,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<CardPoolAddress.<TryLoadAddressAsync>d__8,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<CardPreviewWindow.<LoadCardImageAsync>d__16,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<CardPreviewWindow.<LoadCardImagesAsync>d__15,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<CardZoomWindow.<AnimateBowAsync>d__31>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<CardZoomWindow.<PlayCloseBowAsync>d__30>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<CardZoomWindow.<PlayOpenBowAsync>d__29>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<CosmeticShopCategory.<BindAsync>d__9>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<FriendWindow.<<LoadFriendsAsync>b__14_0>d>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<FriendWindow.<>c__DisplayClass15_0.<<SearchAsync>b__0>d>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<FriendWindow.<>c__DisplayClass16_0.<<SendRequestAsync>b__0>d>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<FriendWindow.<BindRowsAsync>d__17>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<GameFlow.<CheckContentAsync>d__4>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<GameFlow.<GetStartupSceneAsync>d__10,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<GiftWindow.<<LoadInboxAsync>b__9_0>d>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<GiftWindow.<>c__DisplayClass10_0.<<AcceptAsync>b__0>d>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<GiftWindow.<>c__DisplayClass11_0.<<RejectAsync>b__0>d>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<GiftWindow.<>c__DisplayClass12_0.<<ClaimAsync>b__0>d>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<GiftWindow.<RefreshInboxAsync>d__13>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<GridListController.<LoadRowPrefabAsync>d__13,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<InboxListController.<BindAsync>d__6>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<LobbyWallpaperView.<LoadAsync>d__16>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<LobbyWallpaperView.<PlayRevealAsync>d__15>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<LobbyWallpaperView.<WaitForReadyAsync>d__10>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<LogInWindow.<DoAnim>d__32>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<PlayerProfileView.<LoadAvatarAsync>d__9>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<PreGameUIPanel.<<SwitchToNextWallpaperAsync>b__38_0>d>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<PreGameUIPanel.<PlayIntroAsync>d__39>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<SceneLoader.<LoadScene>d__1,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<SceneLoader.<ReloadScene>d__2,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<ShopCatalogQuery.<LoadCardPacksAsync>d__0,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<ShopCatalogQuery.<LoadCosmeticsAsync>d__2<object>,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<ShopCatalogQuery.<LoadSpriteAsync>d__6,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<ShopCatalogQuery.<LoadSpritesAsync>d__5,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<ShopWindow.<LoadDrawCardAsync>d__36,CardPickViewData>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<ShopWindow.<LoadDrawCardsAsync>d__35,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<UITween.<RunAsync>d__7>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<UpdateDetector.<DownloadAssets>d__5>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<UpdateDetector.<InitializeLocalAsync>d__4>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<AChen.Networking.BackendHttpResponse>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<AChen.Player.AuthResult>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<CardPickViewData>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<AddressableLoader.<LoadCatalogsAsync>d__17>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<AvatarSelectWindow.<SubmitAsync>d__29>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<CardPreviewWindow.<LoadPoolAsync>d__14>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<CardZoomWindow.<PlayCloseAsync>d__28>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<CardZoomWindow.<PlayOpenAsync>d__27>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<ChangeNameWindow.<SubmitAsync>d__12>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<FriendWindow.<LoadFriendsAsync>d__14>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<FriendWindow.<SearchAsync>d__15>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<FriendWindow.<SendRequestAsync>d__16>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<GameFlow.<EnterLobbyAsync>d__11>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<GameFlow.<ReturnToLoginAsync>d__7>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<GiftRewardItem.<LoadArtAsync>d__6>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<GiftWindow.<AcceptAsync>d__10>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<GiftWindow.<ClaimAsync>d__12>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<GiftWindow.<LoadInboxAsync>d__9>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<GiftWindow.<RejectAsync>d__11>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<HotUpdateEntry.<BootAsync>d__2>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<LogInWindow.<AuthenticateAsync>d__20>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<LogInWindow.InputFeedback.<PlayAsync>d__6>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<MessageWindow.<CloseAfterAsync>d__9>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<MessageWindow.<PlayOpenAsync>d__5>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<PreGameUIPanel.<SwitchToNextWallpaperAsync>d__38>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<SceneEntry.<Start>d__3>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<SettingsWindow.<SwitchLanguageAsync>d__11>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<ShopWindow.<DrawPackAsync>d__34>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<ShopWindow.<PurchaseAsync>d__33>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<ShopWindow.<RefreshCurrentCategoryAsync>d__30>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<SingletonManager.<Start>d__2>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<SocialPortrait.<ApplyAsync>d__0>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<AddressableLoader.<LoadCatalogsAsync>d__17>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<AvatarSelectWindow.<SubmitAsync>d__29>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<CardPreviewWindow.<LoadPoolAsync>d__14>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<CardZoomWindow.<PlayCloseAsync>d__28>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<CardZoomWindow.<PlayOpenAsync>d__27>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<ChangeNameWindow.<SubmitAsync>d__12>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<FriendWindow.<LoadFriendsAsync>d__14>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<FriendWindow.<SearchAsync>d__15>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<FriendWindow.<SendRequestAsync>d__16>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<GameFlow.<EnterLobbyAsync>d__11>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<GameFlow.<ReturnToLoginAsync>d__7>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<GiftRewardItem.<LoadArtAsync>d__6>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<GiftWindow.<AcceptAsync>d__10>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<GiftWindow.<ClaimAsync>d__12>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<GiftWindow.<LoadInboxAsync>d__9>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<GiftWindow.<RejectAsync>d__11>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<HotUpdateEntry.<BootAsync>d__2>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<LogInWindow.<AuthenticateAsync>d__20>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<LogInWindow.InputFeedback.<PlayAsync>d__6>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<MessageWindow.<CloseAfterAsync>d__9>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<MessageWindow.<PlayOpenAsync>d__5>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<PreGameUIPanel.<SwitchToNextWallpaperAsync>d__38>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<SceneEntry.<Start>d__3>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<SettingsWindow.<SwitchLanguageAsync>d__11>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<ShopWindow.<DrawPackAsync>d__34>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<ShopWindow.<PurchaseAsync>d__33>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<ShopWindow.<RefreshCurrentCategoryAsync>d__30>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<SingletonManager.<Start>d__2>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<SocialPortrait.<ApplyAsync>d__0>
 	// Cysharp.Threading.Tasks.CompilerServices.IStateMachineRunnerPromise<AChen.Networking.BackendHttpResponse>
 	// Cysharp.Threading.Tasks.CompilerServices.IStateMachineRunnerPromise<AChen.Player.AuthResult>
 	// Cysharp.Threading.Tasks.CompilerServices.IStateMachineRunnerPromise<CardPickViewData>
@@ -431,9 +635,6 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// Cysharp.Threading.Tasks.UniTaskCompletionSourceCore<object>
 	// Cysharp.Threading.Tasks.UniTaskExtensions.<>c__51<System.ValueTuple<object,object>>
 	// Cysharp.Threading.Tasks.UniTaskExtensions.<>c__51<object>
-	// Cysharp.Threading.Tasks.UniTaskExtensions.<ContinueWith>d__54<object>
-	// Cysharp.Threading.Tasks.UniTaskExtensions.AttachExternalCancellationSource.<RunTask>d__5<System.ValueTuple<object,object>>
-	// Cysharp.Threading.Tasks.UniTaskExtensions.AttachExternalCancellationSource.<RunTask>d__5<object>
 	// Cysharp.Threading.Tasks.UniTaskExtensions.AttachExternalCancellationSource<System.ValueTuple<object,object>>
 	// Cysharp.Threading.Tasks.UniTaskExtensions.AttachExternalCancellationSource<object>
 	// DelegateList<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>
@@ -2161,45 +2362,255 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 
 	public void RefMethods()
 	{
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,object>(Cysharp.Threading.Tasks.UniTask.Awaiter&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<System.ValueTuple<object,object>>,object>(Cysharp.Threading.Tasks.UniTask.Awaiter<System.ValueTuple<object,object>>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,object>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.YieldAwaitable.Awaiter,object>(Cysharp.Threading.Tasks.YieldAwaitable.Awaiter&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<LitMotion.MotionAwaiter,object>(LitMotion.MotionAwaiter&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,object>(System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<long>,object>(System.Runtime.CompilerServices.TaskAwaiter<long>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<object>,object>(System.Runtime.CompilerServices.TaskAwaiter<object>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<AChen.Networking.BackendHttpResponse>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,object>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<AChen.Player.AuthResult>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,object>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<CardPickViewData>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,object>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,object>(Cysharp.Threading.Tasks.UniTask.Awaiter&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,object>(Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.YieldAwaitable.Awaiter,object>(Cysharp.Threading.Tasks.YieldAwaitable.Awaiter&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,object>(System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,object>(Cysharp.Threading.Tasks.UniTask.Awaiter&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,object>(Cysharp.Threading.Tasks.UniTask.Awaiter&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<AChen.Networking.BackendHttpResponse>,object>(Cysharp.Threading.Tasks.UniTask.Awaiter<AChen.Networking.BackendHttpResponse>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,object>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,object>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter,object>(System.Runtime.CompilerServices.TaskAwaiter&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<object>,object>(System.Runtime.CompilerServices.TaskAwaiter<object>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<object>(object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<AChen.Networking.BackendHttpResponse>.Start<object>(object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<AChen.Player.AuthResult>.Start<object>(object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<CardPickViewData>.Start<object>(object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.Start<object>(object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<object>(object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<object>(object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,object>(Cysharp.Threading.Tasks.UniTask.Awaiter&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<AChen.Player.AuthResult>,object>(Cysharp.Threading.Tasks.UniTask.Awaiter<AChen.Player.AuthResult>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,object>(Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,object>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,object>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.YieldAwaitable.Awaiter,object>(Cysharp.Threading.Tasks.YieldAwaitable.Awaiter&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<LitMotion.MotionAwaiter,object>(LitMotion.MotionAwaiter&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,object>(System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<object>,object>(System.Runtime.CompilerServices.TaskAwaiter<object>&,object&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<object>(object&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Networking.ContentUpdatePrompt.<WaitForRetryAsync>d__10>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Networking.ContentUpdatePrompt.<WaitForRetryAsync>d__10&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Networking.LocalGameConfiguration.<CheckVersionAsync>d__9>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Networking.LocalGameConfiguration.<CheckVersionAsync>d__9&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<LogoutAsync>d__28>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<LogoutAsync>d__28&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AUIScreenController.<RunTransitionAsync>d__70>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AUIScreenController.<RunTransitionAsync>d__70&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AvatarSelectWindow.<BindListAsync>d__24>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AvatarSelectWindow.<BindListAsync>d__24&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,CardPackShopCategory.<BindAsync>d__3>(Cysharp.Threading.Tasks.UniTask.Awaiter&,CardPackShopCategory.<BindAsync>d__3&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,CardPickController.<DoEndShow>d__30>(Cysharp.Threading.Tasks.UniTask.Awaiter&,CardPickController.<DoEndShow>d__30&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,CardZoomWindow.<PlayCloseBowAsync>d__30>(Cysharp.Threading.Tasks.UniTask.Awaiter&,CardZoomWindow.<PlayCloseBowAsync>d__30&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,CardZoomWindow.<PlayOpenBowAsync>d__29>(Cysharp.Threading.Tasks.UniTask.Awaiter&,CardZoomWindow.<PlayOpenBowAsync>d__29&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,CosmeticShopCategory.<BindAsync>d__9>(Cysharp.Threading.Tasks.UniTask.Awaiter&,CosmeticShopCategory.<BindAsync>d__9&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,FriendWindow.<<LoadFriendsAsync>b__14_0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter&,FriendWindow.<<LoadFriendsAsync>b__14_0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,FriendWindow.<>c__DisplayClass15_0.<<SearchAsync>b__0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter&,FriendWindow.<>c__DisplayClass15_0.<<SearchAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,FriendWindow.<>c__DisplayClass16_0.<<SendRequestAsync>b__0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter&,FriendWindow.<>c__DisplayClass16_0.<<SendRequestAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,FriendWindow.<BindRowsAsync>d__17>(Cysharp.Threading.Tasks.UniTask.Awaiter&,FriendWindow.<BindRowsAsync>d__17&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,GameFlow.<CheckContentAsync>d__4>(Cysharp.Threading.Tasks.UniTask.Awaiter&,GameFlow.<CheckContentAsync>d__4&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,GiftWindow.<<LoadInboxAsync>b__9_0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter&,GiftWindow.<<LoadInboxAsync>b__9_0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,GiftWindow.<>c__DisplayClass10_0.<<AcceptAsync>b__0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter&,GiftWindow.<>c__DisplayClass10_0.<<AcceptAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,GiftWindow.<>c__DisplayClass11_0.<<RejectAsync>b__0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter&,GiftWindow.<>c__DisplayClass11_0.<<RejectAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,GiftWindow.<>c__DisplayClass12_0.<<ClaimAsync>b__0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter&,GiftWindow.<>c__DisplayClass12_0.<<ClaimAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,GiftWindow.<RefreshInboxAsync>d__13>(Cysharp.Threading.Tasks.UniTask.Awaiter&,GiftWindow.<RefreshInboxAsync>d__13&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,LobbyWallpaperView.<WaitForReadyAsync>d__10>(Cysharp.Threading.Tasks.UniTask.Awaiter&,LobbyWallpaperView.<WaitForReadyAsync>d__10&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,LogInWindow.<DoAnim>d__32>(Cysharp.Threading.Tasks.UniTask.Awaiter&,LogInWindow.<DoAnim>d__32&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,PreGameUIPanel.<<SwitchToNextWallpaperAsync>b__38_0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter&,PreGameUIPanel.<<SwitchToNextWallpaperAsync>b__38_0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,PreGameUIPanel.<PlayIntroAsync>d__39>(Cysharp.Threading.Tasks.UniTask.Awaiter&,PreGameUIPanel.<PlayIntroAsync>d__39&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<System.ValueTuple<object,object>>,LobbyWallpaperView.<LoadAsync>d__16>(Cysharp.Threading.Tasks.UniTask.Awaiter<System.ValueTuple<object,object>>&,LobbyWallpaperView.<LoadAsync>d__16&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<RefreshAsync>d__27>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<RefreshAsync>d__27&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AvatarSelectWindow.<BindListAsync>d__24>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AvatarSelectWindow.<BindListAsync>d__24&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,CardPackShopCategory.<BindAsync>d__3>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,CardPackShopCategory.<BindAsync>d__3&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,CosmeticShopCategory.<BindAsync>d__9>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,CosmeticShopCategory.<BindAsync>d__9&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,FriendWindow.<<LoadFriendsAsync>b__14_0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,FriendWindow.<<LoadFriendsAsync>b__14_0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,FriendWindow.<>c__DisplayClass15_0.<<SearchAsync>b__0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,FriendWindow.<>c__DisplayClass15_0.<<SearchAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,GiftWindow.<<LoadInboxAsync>b__9_0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,GiftWindow.<<LoadInboxAsync>b__9_0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,GiftWindow.<>c__DisplayClass12_0.<<ClaimAsync>b__0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,GiftWindow.<>c__DisplayClass12_0.<<ClaimAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,GiftWindow.<RefreshInboxAsync>d__13>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,GiftWindow.<RefreshInboxAsync>d__13&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,InboxListController.<BindAsync>d__6>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,InboxListController.<BindAsync>d__6&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,PlayerProfileView.<LoadAvatarAsync>d__9>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,PlayerProfileView.<LoadAvatarAsync>d__9&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,PreGameUIPanel.<<SwitchToNextWallpaperAsync>b__38_0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,PreGameUIPanel.<<SwitchToNextWallpaperAsync>b__38_0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.YieldAwaitable.Awaiter,UpdateDetector.<DownloadAssets>d__5>(Cysharp.Threading.Tasks.YieldAwaitable.Awaiter&,UpdateDetector.<DownloadAssets>d__5&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<LitMotion.MotionAwaiter,CardZoomWindow.<AnimateBowAsync>d__31>(LitMotion.MotionAwaiter&,CardZoomWindow.<AnimateBowAsync>d__31&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<LitMotion.MotionAwaiter,LobbyWallpaperView.<PlayRevealAsync>d__15>(LitMotion.MotionAwaiter&,LobbyWallpaperView.<PlayRevealAsync>d__15&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<LitMotion.MotionAwaiter,UITween.<RunAsync>d__7>(LitMotion.MotionAwaiter&,UITween.<RunAsync>d__7&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,AddressableLoader.<UnloadScene>d__26>(System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,AddressableLoader.<UnloadScene>d__26&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<long>,UpdateDetector.<DownloadAssets>d__5>(System.Runtime.CompilerServices.TaskAwaiter<long>&,UpdateDetector.<DownloadAssets>d__5&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<object>,AChen.Networking.LocalGameConfiguration.<InitializeAsync>d__8>(System.Runtime.CompilerServices.TaskAwaiter<object>&,AChen.Networking.LocalGameConfiguration.<InitializeAsync>d__8&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<object>,UpdateDetector.<DownloadAssets>d__5>(System.Runtime.CompilerServices.TaskAwaiter<object>&,UpdateDetector.<DownloadAssets>d__5&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<object>,UpdateDetector.<InitializeLocalAsync>d__4>(System.Runtime.CompilerServices.TaskAwaiter<object>&,UpdateDetector.<InitializeLocalAsync>d__4&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<AChen.Networking.BackendHttpResponse>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.BackendHttpClient.<SendRawAsync>d__6>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.BackendHttpClient.<SendRawAsync>d__6&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<AChen.Player.AuthResult>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.AuthFlow.<AuthenticateAsync>d__3>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.AuthFlow.<AuthenticateAsync>d__3&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<CardPickViewData>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,ShopWindow.<LoadDrawCardAsync>d__36>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,ShopWindow.<LoadDrawCardAsync>d__36&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,SceneLoader.<LoadScene>d__1>(Cysharp.Threading.Tasks.UniTask.Awaiter&,SceneLoader.<LoadScene>d__1&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,SceneLoader.<ReloadScene>d__2>(Cysharp.Threading.Tasks.UniTask.Awaiter&,SceneLoader.<ReloadScene>d__2&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,AddressableLoader.<LoadScene>d__21>(Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,AddressableLoader.<LoadScene>d__21&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,AddressableLoader.<ReloadScene>d__22>(Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,AddressableLoader.<ReloadScene>d__22&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,SceneLoader.<LoadScene>d__1>(Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,SceneLoader.<LoadScene>d__1&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,SceneLoader.<ReloadScene>d__2>(Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,SceneLoader.<ReloadScene>d__2&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.YieldAwaitable.Awaiter,AddressableLoader.<AwaitScene>d__29>(Cysharp.Threading.Tasks.YieldAwaitable.Awaiter&,AddressableLoader.<AwaitScene>d__29&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,AddressableLoader.<AwaitScene>d__29>(System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,AddressableLoader.<AwaitScene>d__29&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<>c__DisplayClass38_0.<<SendFriendRequestAsync>b__0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<>c__DisplayClass38_0.<<SendFriendRequestAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<>c__DisplayClass39_0.<<AcceptFriendRequestAsync>b__0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<>c__DisplayClass39_0.<<AcceptFriendRequestAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<>c__DisplayClass40_0.<<RejectFriendRequestAsync>b__0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<>c__DisplayClass40_0.<<RejectFriendRequestAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<TryRestoreSessionAsync>d__26>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<TryRestoreSessionAsync>d__26&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AUIScreenController.<RunGuardedAsync>d__46>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AUIScreenController.<RunGuardedAsync>d__46&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__49>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__49&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<object>>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<object>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__51>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__51&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__50>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__50&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,GameFlow.<GetStartupSceneAsync>d__10>(Cysharp.Threading.Tasks.UniTask.Awaiter&,GameFlow.<GetStartupSceneAsync>d__10&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<AChen.Networking.BackendHttpResponse>,AChen.Networking.BackendHttpClient.<SendAsync>d__4>(Cysharp.Threading.Tasks.UniTask.Awaiter<AChen.Networking.BackendHttpResponse>&,AChen.Networking.BackendHttpClient.<SendAsync>d__4&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,GameFlow.<GetStartupSceneAsync>d__10>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,GameFlow.<GetStartupSceneAsync>d__10&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.AuthApi.<ClaimGiftAsync>d__23>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.AuthApi.<ClaimGiftAsync>d__23&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.AuthApi.<DrawCardsAsync>d__9>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.AuthApi.<DrawCardsAsync>d__9&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.AuthApi.<GetFriendsAsync>d__17>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.AuthApi.<GetFriendsAsync>d__17&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.AuthApi.<GetGachaPoolAsync>d__10>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.AuthApi.<GetGachaPoolAsync>d__10&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.AuthApi.<GetInboxAsync>d__22>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.AuthApi.<GetInboxAsync>d__22&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.AuthApi.<GetPlayerAsync>d__6>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.AuthApi.<GetPlayerAsync>d__6&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.AuthApi.<PostAuthAsync>d__24>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.AuthApi.<PostAuthAsync>d__24&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.AuthApi.<PurchaseShopItemAsync>d__8>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.AuthApi.<PurchaseShopItemAsync>d__8&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.AuthApi.<SearchFriendsAsync>d__18>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.AuthApi.<SearchFriendsAsync>d__18&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.AuthApi.<UpdateProfileAsync>d__7>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.AuthApi.<UpdateProfileAsync>d__7&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.BackendHttpClient.<SendAsync>d__5<object>>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.BackendHttpClient.<SendAsync>d__5<object>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<ExecuteLockedAsync>d__47<object>>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<ExecuteLockedAsync>d__47<object>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<GetGachaPoolAsync>d__43>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<GetGachaPoolAsync>d__43&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<LoginAsync>d__25>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<LoginAsync>d__25&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<RegisterAsync>d__24>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<RegisterAsync>d__24&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__49>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__49&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<object>>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<object>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__51>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__51&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__50>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__50&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,CardPoolAddress.<LoadAddressAsync>d__7>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,CardPoolAddress.<LoadAddressAsync>d__7&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,CardPoolAddress.<LoadCardTextureAsync>d__6>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,CardPoolAddress.<LoadCardTextureAsync>d__6&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,CardPreviewWindow.<LoadCardImageAsync>d__16>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,CardPreviewWindow.<LoadCardImageAsync>d__16&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,CardPreviewWindow.<LoadCardImagesAsync>d__15>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,CardPreviewWindow.<LoadCardImagesAsync>d__15&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,GridListController.<LoadRowPrefabAsync>d__13>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,GridListController.<LoadRowPrefabAsync>d__13&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,ShopCatalogQuery.<LoadCardPacksAsync>d__0>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,ShopCatalogQuery.<LoadCardPacksAsync>d__0&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,ShopCatalogQuery.<LoadCosmeticsAsync>d__2<object>>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,ShopCatalogQuery.<LoadCosmeticsAsync>d__2<object>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,ShopCatalogQuery.<LoadSpriteAsync>d__6>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,ShopCatalogQuery.<LoadSpriteAsync>d__6&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,ShopCatalogQuery.<LoadSpritesAsync>d__5>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,ShopCatalogQuery.<LoadSpritesAsync>d__5&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,ShopWindow.<LoadDrawCardsAsync>d__35>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,ShopWindow.<LoadDrawCardsAsync>d__35&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter,AChen.Player.PlayerSession.<ExecuteLockedAsync>d__47<object>>(System.Runtime.CompilerServices.TaskAwaiter&,AChen.Player.PlayerSession.<ExecuteLockedAsync>d__47<object>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<object>,AddressableLoader.<LoadAsset>d__28<object,object>>(System.Runtime.CompilerServices.TaskAwaiter<object>&,AddressableLoader.<LoadAsset>d__28<object,object>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<object>,CardPoolAddress.<TryLoadAddressAsync>d__8>(System.Runtime.CompilerServices.TaskAwaiter<object>&,CardPoolAddress.<TryLoadAddressAsync>d__8&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AChen.Networking.ContentUpdatePrompt.<WaitForRetryAsync>d__10>(AChen.Networking.ContentUpdatePrompt.<WaitForRetryAsync>d__10&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AChen.Networking.LocalGameConfiguration.<CheckVersionAsync>d__9>(AChen.Networking.LocalGameConfiguration.<CheckVersionAsync>d__9&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AChen.Networking.LocalGameConfiguration.<InitializeAsync>d__8>(AChen.Networking.LocalGameConfiguration.<InitializeAsync>d__8&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AChen.Player.PlayerSession.<LogoutAsync>d__28>(AChen.Player.PlayerSession.<LogoutAsync>d__28&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AChen.Player.PlayerSession.<RefreshAsync>d__27>(AChen.Player.PlayerSession.<RefreshAsync>d__27&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AUIScreenController.<RunTransitionAsync>d__70>(AUIScreenController.<RunTransitionAsync>d__70&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AddressableLoader.<UnloadScene>d__26>(AddressableLoader.<UnloadScene>d__26&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AvatarSelectWindow.<BindListAsync>d__24>(AvatarSelectWindow.<BindListAsync>d__24&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<CardPackShopCategory.<BindAsync>d__3>(CardPackShopCategory.<BindAsync>d__3&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<CardPickController.<DoEndShow>d__30>(CardPickController.<DoEndShow>d__30&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<CardZoomWindow.<AnimateBowAsync>d__31>(CardZoomWindow.<AnimateBowAsync>d__31&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<CardZoomWindow.<PlayCloseBowAsync>d__30>(CardZoomWindow.<PlayCloseBowAsync>d__30&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<CardZoomWindow.<PlayOpenBowAsync>d__29>(CardZoomWindow.<PlayOpenBowAsync>d__29&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<CosmeticShopCategory.<BindAsync>d__9>(CosmeticShopCategory.<BindAsync>d__9&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<Cysharp.Threading.Tasks.UniTaskExtensions.<ContinueWith>d__54<object>>(Cysharp.Threading.Tasks.UniTaskExtensions.<ContinueWith>d__54<object>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<FriendWindow.<<LoadFriendsAsync>b__14_0>d>(FriendWindow.<<LoadFriendsAsync>b__14_0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<FriendWindow.<>c__DisplayClass15_0.<<SearchAsync>b__0>d>(FriendWindow.<>c__DisplayClass15_0.<<SearchAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<FriendWindow.<>c__DisplayClass16_0.<<SendRequestAsync>b__0>d>(FriendWindow.<>c__DisplayClass16_0.<<SendRequestAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<FriendWindow.<BindRowsAsync>d__17>(FriendWindow.<BindRowsAsync>d__17&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<GameFlow.<CheckContentAsync>d__4>(GameFlow.<CheckContentAsync>d__4&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<GiftWindow.<<LoadInboxAsync>b__9_0>d>(GiftWindow.<<LoadInboxAsync>b__9_0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<GiftWindow.<>c__DisplayClass10_0.<<AcceptAsync>b__0>d>(GiftWindow.<>c__DisplayClass10_0.<<AcceptAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<GiftWindow.<>c__DisplayClass11_0.<<RejectAsync>b__0>d>(GiftWindow.<>c__DisplayClass11_0.<<RejectAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<GiftWindow.<>c__DisplayClass12_0.<<ClaimAsync>b__0>d>(GiftWindow.<>c__DisplayClass12_0.<<ClaimAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<GiftWindow.<RefreshInboxAsync>d__13>(GiftWindow.<RefreshInboxAsync>d__13&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<InboxListController.<BindAsync>d__6>(InboxListController.<BindAsync>d__6&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<LobbyWallpaperView.<LoadAsync>d__16>(LobbyWallpaperView.<LoadAsync>d__16&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<LobbyWallpaperView.<PlayRevealAsync>d__15>(LobbyWallpaperView.<PlayRevealAsync>d__15&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<LobbyWallpaperView.<WaitForReadyAsync>d__10>(LobbyWallpaperView.<WaitForReadyAsync>d__10&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<LogInWindow.<DoAnim>d__32>(LogInWindow.<DoAnim>d__32&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<PlayerProfileView.<LoadAvatarAsync>d__9>(PlayerProfileView.<LoadAvatarAsync>d__9&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<PreGameUIPanel.<<SwitchToNextWallpaperAsync>b__38_0>d>(PreGameUIPanel.<<SwitchToNextWallpaperAsync>b__38_0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<PreGameUIPanel.<PlayIntroAsync>d__39>(PreGameUIPanel.<PlayIntroAsync>d__39&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<UITween.<RunAsync>d__7>(UITween.<RunAsync>d__7&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<UpdateDetector.<DownloadAssets>d__5>(UpdateDetector.<DownloadAssets>d__5&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<UpdateDetector.<InitializeLocalAsync>d__4>(UpdateDetector.<InitializeLocalAsync>d__4&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<AChen.Networking.BackendHttpResponse>.Start<AChen.Networking.BackendHttpClient.<SendRawAsync>d__6>(AChen.Networking.BackendHttpClient.<SendRawAsync>d__6&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<AChen.Player.AuthResult>.Start<AChen.Player.AuthFlow.<AuthenticateAsync>d__3>(AChen.Player.AuthFlow.<AuthenticateAsync>d__3&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<CardPickViewData>.Start<ShopWindow.<LoadDrawCardAsync>d__36>(ShopWindow.<LoadDrawCardAsync>d__36&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.Start<AddressableLoader.<AwaitScene>d__29>(AddressableLoader.<AwaitScene>d__29&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.Start<AddressableLoader.<LoadScene>d__21>(AddressableLoader.<LoadScene>d__21&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.Start<AddressableLoader.<ReloadScene>d__22>(AddressableLoader.<ReloadScene>d__22&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.Start<SceneLoader.<LoadScene>d__1>(SceneLoader.<LoadScene>d__1&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.Start<SceneLoader.<ReloadScene>d__2>(SceneLoader.<ReloadScene>d__2&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<AChen.Player.PlayerSession.<>c__DisplayClass38_0.<<SendFriendRequestAsync>b__0>d>(AChen.Player.PlayerSession.<>c__DisplayClass38_0.<<SendFriendRequestAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<AChen.Player.PlayerSession.<>c__DisplayClass39_0.<<AcceptFriendRequestAsync>b__0>d>(AChen.Player.PlayerSession.<>c__DisplayClass39_0.<<AcceptFriendRequestAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<AChen.Player.PlayerSession.<>c__DisplayClass40_0.<<RejectFriendRequestAsync>b__0>d>(AChen.Player.PlayerSession.<>c__DisplayClass40_0.<<RejectFriendRequestAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<byte>>(AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<byte>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<AChen.Player.PlayerSession.<TryRestoreSessionAsync>d__26>(AChen.Player.PlayerSession.<TryRestoreSessionAsync>d__26&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<AUIScreenController.<RunGuardedAsync>d__46>(AUIScreenController.<RunGuardedAsync>d__46&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.AuthApi.<ClaimGiftAsync>d__23>(AChen.Networking.AuthApi.<ClaimGiftAsync>d__23&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.AuthApi.<DrawCardsAsync>d__9>(AChen.Networking.AuthApi.<DrawCardsAsync>d__9&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.AuthApi.<GetFriendsAsync>d__17>(AChen.Networking.AuthApi.<GetFriendsAsync>d__17&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.AuthApi.<GetGachaPoolAsync>d__10>(AChen.Networking.AuthApi.<GetGachaPoolAsync>d__10&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.AuthApi.<GetInboxAsync>d__22>(AChen.Networking.AuthApi.<GetInboxAsync>d__22&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.AuthApi.<GetPlayerAsync>d__6>(AChen.Networking.AuthApi.<GetPlayerAsync>d__6&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.AuthApi.<PostAuthAsync>d__24>(AChen.Networking.AuthApi.<PostAuthAsync>d__24&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.AuthApi.<PurchaseShopItemAsync>d__8>(AChen.Networking.AuthApi.<PurchaseShopItemAsync>d__8&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.AuthApi.<SearchFriendsAsync>d__18>(AChen.Networking.AuthApi.<SearchFriendsAsync>d__18&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.AuthApi.<UpdateProfileAsync>d__7>(AChen.Networking.AuthApi.<UpdateProfileAsync>d__7&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.BackendHttpClient.<SendAsync>d__4>(AChen.Networking.BackendHttpClient.<SendAsync>d__4&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.BackendHttpClient.<SendAsync>d__5<object>>(AChen.Networking.BackendHttpClient.<SendAsync>d__5<object>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<ExecuteLockedAsync>d__47<object>>(AChen.Player.PlayerSession.<ExecuteLockedAsync>d__47<object>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<GetGachaPoolAsync>d__43>(AChen.Player.PlayerSession.<GetGachaPoolAsync>d__43&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<LoginAsync>d__25>(AChen.Player.PlayerSession.<LoginAsync>d__25&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<RegisterAsync>d__24>(AChen.Player.PlayerSession.<RegisterAsync>d__24&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__49>(AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__49&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<object>>(AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<object>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__51>(AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__51&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__50>(AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__50&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AddressableLoader.<LoadAsset>d__28<object,object>>(AddressableLoader.<LoadAsset>d__28<object,object>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<CardPoolAddress.<LoadAddressAsync>d__7>(CardPoolAddress.<LoadAddressAsync>d__7&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<CardPoolAddress.<LoadCardTextureAsync>d__6>(CardPoolAddress.<LoadCardTextureAsync>d__6&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<CardPoolAddress.<TryLoadAddressAsync>d__8>(CardPoolAddress.<TryLoadAddressAsync>d__8&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<CardPreviewWindow.<LoadCardImageAsync>d__16>(CardPreviewWindow.<LoadCardImageAsync>d__16&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<CardPreviewWindow.<LoadCardImagesAsync>d__15>(CardPreviewWindow.<LoadCardImagesAsync>d__15&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<GameFlow.<GetStartupSceneAsync>d__10>(GameFlow.<GetStartupSceneAsync>d__10&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<GridListController.<LoadRowPrefabAsync>d__13>(GridListController.<LoadRowPrefabAsync>d__13&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<ShopCatalogQuery.<LoadCardPacksAsync>d__0>(ShopCatalogQuery.<LoadCardPacksAsync>d__0&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<ShopCatalogQuery.<LoadCosmeticsAsync>d__2<object>>(ShopCatalogQuery.<LoadCosmeticsAsync>d__2<object>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<ShopCatalogQuery.<LoadSpriteAsync>d__6>(ShopCatalogQuery.<LoadSpriteAsync>d__6&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<ShopCatalogQuery.<LoadSpritesAsync>d__5>(ShopCatalogQuery.<LoadSpritesAsync>d__5&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<ShopWindow.<LoadDrawCardsAsync>d__35>(ShopWindow.<LoadDrawCardsAsync>d__35&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,CardPreviewWindow.<LoadPoolAsync>d__14>(Cysharp.Threading.Tasks.UniTask.Awaiter&,CardPreviewWindow.<LoadPoolAsync>d__14&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,CardZoomWindow.<PlayCloseAsync>d__28>(Cysharp.Threading.Tasks.UniTask.Awaiter&,CardZoomWindow.<PlayCloseAsync>d__28&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,CardZoomWindow.<PlayOpenAsync>d__27>(Cysharp.Threading.Tasks.UniTask.Awaiter&,CardZoomWindow.<PlayOpenAsync>d__27&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,GameFlow.<EnterLobbyAsync>d__11>(Cysharp.Threading.Tasks.UniTask.Awaiter&,GameFlow.<EnterLobbyAsync>d__11&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,GameFlow.<ReturnToLoginAsync>d__7>(Cysharp.Threading.Tasks.UniTask.Awaiter&,GameFlow.<ReturnToLoginAsync>d__7&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,HotUpdateEntry.<BootAsync>d__2>(Cysharp.Threading.Tasks.UniTask.Awaiter&,HotUpdateEntry.<BootAsync>d__2&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,LogInWindow.InputFeedback.<PlayAsync>d__6>(Cysharp.Threading.Tasks.UniTask.Awaiter&,LogInWindow.InputFeedback.<PlayAsync>d__6&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,MessageWindow.<CloseAfterAsync>d__9>(Cysharp.Threading.Tasks.UniTask.Awaiter&,MessageWindow.<CloseAfterAsync>d__9&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,ShopWindow.<RefreshCurrentCategoryAsync>d__30>(Cysharp.Threading.Tasks.UniTask.Awaiter&,ShopWindow.<RefreshCurrentCategoryAsync>d__30&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,SingletonManager.<Start>d__2>(Cysharp.Threading.Tasks.UniTask.Awaiter&,SingletonManager.<Start>d__2&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<AChen.Player.AuthResult>,LogInWindow.<AuthenticateAsync>d__20>(Cysharp.Threading.Tasks.UniTask.Awaiter<AChen.Player.AuthResult>&,LogInWindow.<AuthenticateAsync>d__20&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,GameFlow.<EnterLobbyAsync>d__11>(Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,GameFlow.<EnterLobbyAsync>d__11&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,GameFlow.<ReturnToLoginAsync>d__7>(Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,GameFlow.<ReturnToLoginAsync>d__7&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,SettingsWindow.<SwitchLanguageAsync>d__11>(Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,SettingsWindow.<SwitchLanguageAsync>d__11&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,SingletonManager.<Start>d__2>(Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,SingletonManager.<Start>d__2&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,AvatarSelectWindow.<SubmitAsync>d__29>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,AvatarSelectWindow.<SubmitAsync>d__29&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,ChangeNameWindow.<SubmitAsync>d__12>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,ChangeNameWindow.<SubmitAsync>d__12&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,FriendWindow.<LoadFriendsAsync>d__14>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,FriendWindow.<LoadFriendsAsync>d__14&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,FriendWindow.<SearchAsync>d__15>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,FriendWindow.<SearchAsync>d__15&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,FriendWindow.<SendRequestAsync>d__16>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,FriendWindow.<SendRequestAsync>d__16&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,GiftWindow.<AcceptAsync>d__10>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,GiftWindow.<AcceptAsync>d__10&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,GiftWindow.<ClaimAsync>d__12>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,GiftWindow.<ClaimAsync>d__12&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,GiftWindow.<LoadInboxAsync>d__9>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,GiftWindow.<LoadInboxAsync>d__9&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,GiftWindow.<RejectAsync>d__11>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,GiftWindow.<RejectAsync>d__11&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,PreGameUIPanel.<SwitchToNextWallpaperAsync>d__38>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,PreGameUIPanel.<SwitchToNextWallpaperAsync>d__38&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,ShopWindow.<PurchaseAsync>d__33>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,ShopWindow.<PurchaseAsync>d__33&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,CardPreviewWindow.<LoadPoolAsync>d__14>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,CardPreviewWindow.<LoadPoolAsync>d__14&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,GiftRewardItem.<LoadArtAsync>d__6>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,GiftRewardItem.<LoadArtAsync>d__6&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,SceneEntry.<Start>d__3>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,SceneEntry.<Start>d__3&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,ShopWindow.<DrawPackAsync>d__34>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,ShopWindow.<DrawPackAsync>d__34&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,SingletonManager.<Start>d__2>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,SingletonManager.<Start>d__2&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,SocialPortrait.<ApplyAsync>d__0>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,SocialPortrait.<ApplyAsync>d__0&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.YieldAwaitable.Awaiter,CardZoomWindow.<PlayOpenAsync>d__27>(Cysharp.Threading.Tasks.YieldAwaitable.Awaiter&,CardZoomWindow.<PlayOpenAsync>d__27&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<LitMotion.MotionAwaiter,MessageWindow.<PlayOpenAsync>d__5>(LitMotion.MotionAwaiter&,MessageWindow.<PlayOpenAsync>d__5&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,HotUpdateEntry.<BootAsync>d__2>(System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,HotUpdateEntry.<BootAsync>d__2&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<object>,AddressableLoader.<LoadCatalogsAsync>d__17>(System.Runtime.CompilerServices.TaskAwaiter<object>&,AddressableLoader.<LoadCatalogsAsync>d__17&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<AddressableLoader.<LoadCatalogsAsync>d__17>(AddressableLoader.<LoadCatalogsAsync>d__17&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<AvatarSelectWindow.<SubmitAsync>d__29>(AvatarSelectWindow.<SubmitAsync>d__29&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<CardPreviewWindow.<LoadPoolAsync>d__14>(CardPreviewWindow.<LoadPoolAsync>d__14&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<CardZoomWindow.<PlayCloseAsync>d__28>(CardZoomWindow.<PlayCloseAsync>d__28&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<CardZoomWindow.<PlayOpenAsync>d__27>(CardZoomWindow.<PlayOpenAsync>d__27&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<ChangeNameWindow.<SubmitAsync>d__12>(ChangeNameWindow.<SubmitAsync>d__12&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<FriendWindow.<LoadFriendsAsync>d__14>(FriendWindow.<LoadFriendsAsync>d__14&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<FriendWindow.<SearchAsync>d__15>(FriendWindow.<SearchAsync>d__15&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<FriendWindow.<SendRequestAsync>d__16>(FriendWindow.<SendRequestAsync>d__16&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<GameFlow.<EnterLobbyAsync>d__11>(GameFlow.<EnterLobbyAsync>d__11&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<GameFlow.<ReturnToLoginAsync>d__7>(GameFlow.<ReturnToLoginAsync>d__7&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<GiftRewardItem.<LoadArtAsync>d__6>(GiftRewardItem.<LoadArtAsync>d__6&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<GiftWindow.<AcceptAsync>d__10>(GiftWindow.<AcceptAsync>d__10&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<GiftWindow.<ClaimAsync>d__12>(GiftWindow.<ClaimAsync>d__12&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<GiftWindow.<LoadInboxAsync>d__9>(GiftWindow.<LoadInboxAsync>d__9&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<GiftWindow.<RejectAsync>d__11>(GiftWindow.<RejectAsync>d__11&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<HotUpdateEntry.<BootAsync>d__2>(HotUpdateEntry.<BootAsync>d__2&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<LogInWindow.<AuthenticateAsync>d__20>(LogInWindow.<AuthenticateAsync>d__20&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<LogInWindow.InputFeedback.<PlayAsync>d__6>(LogInWindow.InputFeedback.<PlayAsync>d__6&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<MessageWindow.<CloseAfterAsync>d__9>(MessageWindow.<CloseAfterAsync>d__9&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<MessageWindow.<PlayOpenAsync>d__5>(MessageWindow.<PlayOpenAsync>d__5&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<PreGameUIPanel.<SwitchToNextWallpaperAsync>d__38>(PreGameUIPanel.<SwitchToNextWallpaperAsync>d__38&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<SceneEntry.<Start>d__3>(SceneEntry.<Start>d__3&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<SettingsWindow.<SwitchLanguageAsync>d__11>(SettingsWindow.<SwitchLanguageAsync>d__11&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<ShopWindow.<DrawPackAsync>d__34>(ShopWindow.<DrawPackAsync>d__34&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<ShopWindow.<PurchaseAsync>d__33>(ShopWindow.<PurchaseAsync>d__33&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<ShopWindow.<RefreshCurrentCategoryAsync>d__30>(ShopWindow.<RefreshCurrentCategoryAsync>d__30&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<SingletonManager.<Start>d__2>(SingletonManager.<Start>d__2&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<SocialPortrait.<ApplyAsync>d__0>(SocialPortrait.<ApplyAsync>d__0&)
 		// Cysharp.Threading.Tasks.Internal.StateTuple<Cysharp.Threading.Tasks.UniTask.Awaiter<System.ValueTuple<object,object>>> Cysharp.Threading.Tasks.Internal.StateTuple.Create<Cysharp.Threading.Tasks.UniTask.Awaiter<System.ValueTuple<object,object>>>(Cysharp.Threading.Tasks.UniTask.Awaiter<System.ValueTuple<object,object>>)
 		// Cysharp.Threading.Tasks.Internal.StateTuple<Cysharp.Threading.Tasks.UniTask.Awaiter<object>> Cysharp.Threading.Tasks.Internal.StateTuple.Create<Cysharp.Threading.Tasks.UniTask.Awaiter<object>>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>)
 		// Cysharp.Threading.Tasks.UniTask<System.ValueTuple<object,object>> Cysharp.Threading.Tasks.UniTask.FromCanceled<System.ValueTuple<object,object>>(System.Threading.CancellationToken)

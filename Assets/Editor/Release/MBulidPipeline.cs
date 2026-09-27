@@ -9,6 +9,7 @@ using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Build;
 using UnityEditor.AddressableAssets.Build.DataBuilders;
+using UnityEditor.AddressableAssets.Settings.GroupSchemas;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -120,6 +121,11 @@ public static class MBulidPipeline
         Package.BeginResources(target.ToString(), version);
         PublishedConfigBuilder.Prepare();
         var settings = AddressableAssetSettingsDefaultObject.Settings ?? throw new InvalidOperationException("缺少 Addressables 设置");
+        var sharedGroup = settings.GetSharedBundleGroup();
+        var sharedSchema = sharedGroup != null ? sharedGroup.GetSchema<BundledAssetGroupSchema>() : null;
+        if (sharedSchema == null || sharedSchema.BuildPath.GetName(settings) != "Remote.BuildPath" ||
+            sharedSchema.LoadPath.GetName(settings) != "Remote.LoadPath")
+            throw new InvalidOperationException("Addressables 公共包必须使用 Remote.BuildPath / Remote.LoadPath。请将 Shared Bundle Settings 指向 Remote_Shared，否则 monoscripts 等依赖会错误地从 APK 读取。");
         string profile = settings.activeProfileId;
         string previousPath = settings.profileSettings.GetValueByName(profile, "Remote.BuildPath");
         string previousVersion = settings.OverridePlayerVersion;
@@ -152,13 +158,13 @@ public static class MBulidPipeline
         try
         {
             string key = PublishKeyProvider.Resolve("");
-            if (string.IsNullOrWhiteSpace(key)) throw new InvalidOperationException("缺少发布密钥, 请设置 ACHEN_CONTENT_PUBLISH_KEY 或在后端服务窗口准备密钥");
             var backend = new Uri(BackendUrl);
             if (backend.Scheme != "http" && backend.Scheme != "https") throw new FormatException("后端地址必须是 HTTP/HTTPS 地址");
             string zip = Package.CreateArchive(operation.target.ToString(), operation.version, out var expected);
             using (var check = UnityWebRequest.Get(BackendUrl + "/api/dev/status"))
             {
-                check.SetRequestHeader("X-Content-Publish-Key", key); check.timeout = 15;
+                if (!string.IsNullOrWhiteSpace(key)) check.SetRequestHeader("X-Content-Publish-Key", key);
+                check.timeout = 15;
                 await Send(check);
                 var identity = JsonUtility.FromJson<BackendIdentity>(check.downloadHandler.text);
                 if (identity == null || identity.project != DevelopmentProtocol.Project || identity.protocol != DevelopmentProtocol.Version)
@@ -168,7 +174,8 @@ public static class MBulidPipeline
             using (var request = new UnityWebRequest(BackendUrl + "/api/dev/content/" + operation.target, "PUT"))
             {
                 request.downloadHandler = new DownloadHandlerBuffer(); request.uploadHandler = new UploadHandlerFile(zip);
-                request.SetRequestHeader("Content-Type", "application/zip"); request.SetRequestHeader("X-Content-Publish-Key", key);
+                request.SetRequestHeader("Content-Type", "application/zip");
+                if (!string.IsNullOrWhiteSpace(key)) request.SetRequestHeader("X-Content-Publish-Key", key);
                 request.SetRequestHeader("X-Artifact-Sha256", MBulidPackage.HashFile(zip)); request.timeout = 600;
                 Report(operation.target, operation.version, "发布版本", "running", "正在发布 " + operation.version + "; 后端将先删除此平台旧版本");
                 try { await Send(request); }

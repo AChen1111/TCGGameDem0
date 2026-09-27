@@ -2,6 +2,17 @@
 
 记录已定位的疑难故障：现象、排查证据链、根因和修复。新故障按同样结构追加。
 
+## Android SDK Platform Tools 被识别成 0.0
+
+日期：2026-09-27　环境：Unity `6000.5.2f1`、Unity Version Control `2.12.4`、Windows
+
+- 现象：已安装 Platform Tools `37.0.1`，仍提示 `0.0 < 36.0.0`；点击更新还可能报找不到 `powershell`。重启 Editor 后复发。
+- 根因：`com.unity.collab-proxy` 的 `Editor/Tool/FindTool.cs` 使用 `string.Concat(plasticInstallDir, Path.PathSeparator, processPaths)` 拼接路径列表，把 Unity 进程的 PATH 覆盖成 `C:\Program Files\PlasticSCM5\client;System.Collections.Generic.List` 类型名。Windows 系统目录丢失，`sdkmanager.bat` 无法调用 `findstr`，版本查询没有正常输出。
+- 证据：Unity Hub 和系统 PATH 正常，只有 Editor PATH 损坏；同一 SDK 查询在损坏 PATH 下报找不到 `findstr`，恢复 PATH 后正确列出 `37.0.1`。官方对应问题为 [UUM-147589](https://issuetracker.unity.com/issues/23557/unity-process-path-environment-variable-is-corrupted-when-using-unity-version-control-with-plasticscm-desktop-app-installed)。
+- 修复：本工程使用 Git、未配置 Plastic 工作区，通过 Package Manager API 移除 `com.unity.collab-proxy`；恢复当前 Editor 进程的 PATH，并清除 Android SDK 检测缓存。系统和用户 PATH 无需修改，也无需重装 SDK。
+- 确认结果：包移除请求成功；通过 Unity 自身 `SDKManager.HighestVersionInstalled(PlatformTools)` 重新查询得到 `37.0.1`，Editor PATH 已不含损坏的列表类型名。本次没有运行完整 Player 构建。
+- 若今后重新启用 Unity Version Control，先确认所用版本已修复该问题，避免再次引入。
+
 ## 编辑器导入 Spine 资源后持续卡顿、点击无响应
 
 日期：2026-09-05　环境：Unity `6000.5.2f1`　Windows 11

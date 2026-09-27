@@ -13,14 +13,15 @@ namespace AChen.Networking
     public static class LocalGameConfiguration
     {
         public static PublishedGameConfig Data { get; private set; }
-        public static bool IsReady => Data != null;
+        public static DeckRulesConfiguration DeckRules { get; private set; }
+        public static bool IsReady => Data != null && DeckRules != null;
         static AsyncOperationHandle<LocalizationSettings> s_settings;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void ResetState()
         {
             if (s_settings.IsValid()) Addressables.Release(s_settings);
-            Data = null; s_settings = default;
+            Data = null; DeckRules = null; s_settings = default;
             LocalizationService.Uninstall();
             CardCatalog.Uninstall();
             Application.quitting -= ResetState; Application.quitting += ResetState;
@@ -55,6 +56,7 @@ namespace AChen.Networking
                 if (settings == null || settings.chineseFont == null || settings.englishFont == null) throw new FormatException("LocalizationSettings: 字体映射缺失");
                 if (!ContentSession.UseLocalAssets) ConfigArtifacts.Verify(files, ContentSession.Configs);
                 var data = GameConfigTables.Assemble(files);
+                var deckRules = DeckRulesConfiguration.Load(files);
                 if (ContentSession.UseLocalAssets)
                 {
                     var configs = files.Select(pair =>
@@ -78,10 +80,12 @@ namespace AChen.Networking
                 {
                     LocalizationService.Install(translations, settings);
                     CardCatalog.Install(cards);
+                    DeckRules = deckRules;
                     Data = data;
                 }
                 catch
                 {
+                    Data = null; DeckRules = null;
                     LocalizationService.Uninstall();
                     CardCatalog.Uninstall();
                     throw;
