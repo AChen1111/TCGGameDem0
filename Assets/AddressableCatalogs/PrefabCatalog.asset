@@ -174,3 +174,52 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: CardOverflowBadge
+    reference:
+      m_AssetGUID: 9e863e8d41eaecf40ab16291dd380cb3
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: CardWorkshopDetail
+    reference:
+      m_AssetGUID: cbc2dcf6046e5ba4aa8201b2b37d924d
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: CardWorkshopItem
+    reference:
+      m_AssetGUID: 2cf6507c85e4f5e41ae7fd70fdee41bd
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: CardWorkshopPanel
+    reference:
+      m_AssetGUID: 7d567e6a71521714290b237da1147b2e
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: CardWorkshopRow
+    reference:
+      m_AssetGUID: 5b3fbd99e61c82547a9dfdc6e95d8853
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: UrBalance
+    reference:
+      m_AssetGUID: e62f6847a1721f742a354acf2eaf61aa
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: UrNoticeWindow
+    reference:
+      m_AssetGUID: 41720ce010b405f4396d25c7114f27da
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

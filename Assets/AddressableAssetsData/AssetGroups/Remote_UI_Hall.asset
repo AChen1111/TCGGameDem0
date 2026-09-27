@@ -100,6 +100,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d97debdc5f8deaf4e8fa38f32beb3baf
+    m_Address: Workshop
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: de840955f09b2324aaa3febe7afe6ed0
     m_Address: Hall
     m_ReadOnly: 0

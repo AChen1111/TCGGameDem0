@@ -14,7 +14,8 @@ namespace AChen.Networking
     {
         public static PublishedGameConfig Data { get; private set; }
         public static DeckRulesConfiguration DeckRules { get; private set; }
-        public static bool IsReady => Data != null && DeckRules != null;
+        public static CardEconomyConfiguration CardEconomy { get; private set; }
+        public static bool IsReady => Data != null && DeckRules != null && CardEconomy != null;
         static AsyncOperationHandle<LocalizationSettings> s_settings;
         static AsyncOperationHandle<ALogSettings> s_logSettings;
 
@@ -25,7 +26,7 @@ namespace AChen.Networking
             if (s_logSettings.IsValid()) Addressables.Release(s_logSettings);
             s_logSettings = default;
             ALogSettings.ResetState();
-            Data = null; DeckRules = null; s_settings = default;
+            Data = null; DeckRules = null; CardEconomy = null; s_settings = default;
             LocalizationService.Uninstall();
             CardCatalog.Uninstall();
             Application.quitting -= ResetState; Application.quitting += ResetState;
@@ -71,6 +72,7 @@ namespace AChen.Networking
                 }
                 var data = GameConfigTables.Assemble(files);
                 var deckRules = DeckRulesConfiguration.Load(files);
+                var economy = CardEconomyConfiguration.Load(files);
                 if (ContentSession.UseLocalAssets)
                 {
                     var configs = files.Select(pair =>
@@ -95,11 +97,12 @@ namespace AChen.Networking
                     LocalizationService.Install(translations, settings);
                     CardCatalog.Install(cards);
                     DeckRules = deckRules;
+                    CardEconomy = economy;
                     Data = data;
                 }
                 catch
                 {
-                    Data = null; DeckRules = null;
+                    Data = null; DeckRules = null; CardEconomy = null;
                     LocalizationService.Uninstall();
                     CardCatalog.Uninstall();
                     throw;

@@ -26,6 +26,7 @@ public struct CardPickViewData
     public string cardId;
     public CardShaderType cardShaderType;
     public Texture cardTexture;
+    public long overflowUr;
 }
 
 //抽卡界面的卡牌视图
@@ -36,6 +37,7 @@ public class CardPickView : MonoBehaviour
     [SerializeField] private CardShaderType _cardShaderType;
     [SerializeField] private MeshRenderer _meshFrontRenderer;
     [SerializeField] private MeshRenderer _meshBackRenderer;
+    [SerializeField] private CardOverflowBadge _overflowBadge;
     [SerializeField] private Material _matFront;
     [SerializeField] private Material _matBack;
     [SerializeField] private CardStatus _cardStatus = CardStatus.None;
@@ -186,6 +188,7 @@ public class CardPickView : MonoBehaviour
     private void _SwitchStatus(CardStatus status)
     {
         _cardStatus = status;
+        _overflowBadge.Show(status == CardStatus.CanInspect ? _data.overflowUr : 0);
 
         switch(_cardStatus)
         {

@@ -249,12 +249,6 @@ namespace AChen.Player
             CancellationToken cancellationToken = default) =>
             SendAuthenticatedCallAsync(Api.GetInboxAsync, cancellationToken);
 
-        public UniTask<PlayerData> ClaimGiftAsync(Guid giftId, CancellationToken cancellationToken = default) =>
-            ExecuteMutationAsync("ClaimGift", giftId.ToString("D"), (player, token) =>
-                SendAuthenticatedAsync(
-                    (accessToken, ct) => Api.ClaimGiftAsync(accessToken, giftId, player.Revision, ct),
-                    token), cancellationToken);
-
         public async UniTask<GachaPoolData> GetGachaPoolAsync(string poolKey, CancellationToken cancellationToken = default)
         {
             if (!IsAuthenticated || CurrentPlayer == null)

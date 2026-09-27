@@ -112,9 +112,11 @@ public class GiftWindow : AWindowController
         m_busy = true;
         bool succeeded = await RunGuardedAsync(async token =>
         {
-            PlayerData player = await PlayerSession.Instance.ClaimGiftAsync(data.Id, token);
+            GiftClaimResult result = await PlayerSession.Instance.ClaimGiftAsync(data.Id, token);
+            PlayerData player = result.Player;
             ALog.Log($"已领取礼品. Gift={data.Id}; Gold={player.Gold}; Revision={player.Revision}", ALogCategories.UI);
             await RefreshInboxAsync(token);
+            if (result.UrGained > 0) RequestOpenWindow(AddressKeys.Prefab.UrNoticeWindow, new UrNoticeProperties(new LocalizedMessage("ui.workshop.gift_overflow", new Dictionary<string, object> { ["amount"] = result.UrGained })));
         }, "领取礼品", "err.gift_claim_failed");
         if (this == null || !IsOpened) return;
         m_busy = false;

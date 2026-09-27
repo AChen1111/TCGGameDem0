@@ -20,6 +20,7 @@ namespace AChen.Events
         public static readonly EventId<AuthUser> PlayerLoggedOut = new EventId<AuthUser>("Player.LoggedOut");
 
         // 字段级变更事件: 切换玩家时即使字段值相同也通知; null 表示清空会话显示.
+        public static readonly EventId<long?> PlayerUrChanged = new EventId<long?>("Player.UrChanged");
         public static readonly EventId<long?> PlayerGoldChanged = new EventId<long?>("Player.GoldChanged");
         public static readonly EventId<Guid?, string> PlayerNicknameChanged = new EventId<Guid?, string>("Player.NicknameChanged");
         public static readonly EventId<int?> PlayerAvatarChanged = new EventId<int?>("Player.AvatarChanged");

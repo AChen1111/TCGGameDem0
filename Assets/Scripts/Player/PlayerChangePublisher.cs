@@ -17,6 +17,8 @@ namespace AChen.Player
             bool wallpapersChanged = identityChanged || !SameIds(previous?.OwnedBackgroundIds, current?.OwnedBackgroundIds);
             bool cardsChanged = identityChanged || !SameCards(previous?.OwnedCards, current?.OwnedCards);
 
+            if (identityChanged || previous?.Ur != current?.Ur)
+                EventCenter.Dispatch(GameEvent.PlayerUrChanged, current?.Ur);
             if (identityChanged || previous?.Gold != current?.Gold)
                 EventCenter.Dispatch(GameEvent.PlayerGoldChanged, current?.Gold);
             if (identityChanged || previous?.Nickname != current?.Nickname)

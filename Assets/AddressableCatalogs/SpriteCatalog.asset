@@ -2792,3 +2792,10 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: Icon_Rarity_UR
+    reference:
+      m_AssetGUID: f021a448e21950b47ac0d01f6eaa6a46
+      m_SubObjectName: Icon_Rarity_UR
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

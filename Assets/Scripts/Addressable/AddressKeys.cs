@@ -9,10 +9,15 @@ public static class AddressKeys
         public static readonly string AvatarShopItemPrefab = "AvatarShopItemPrefab";
         public static readonly string AvatarShopItemRowPrefab = "AvatarShopItemRowPrefab";
         public static readonly string CardDetailOverlay = "CardDetailOverlay";
+        public static readonly string CardOverflowBadge = "CardOverflowBadge";
         public static readonly string CardPackRowPrefab = "CardPackRowPrefab";
         public static readonly string CardPickWindow = "CardPickWindow";
         public static readonly string CardPreviewRowPrefab = "CardPreviewRowPrefab";
         public static readonly string CardPreviewWindow = "CardPreviewWindow";
+        public static readonly string CardWorkshopDetail = "CardWorkshopDetail";
+        public static readonly string CardWorkshopItem = "CardWorkshopItem";
+        public static readonly string CardWorkshopPanel = "CardWorkshopPanel";
+        public static readonly string CardWorkshopRow = "CardWorkshopRow";
         public static readonly string CardZoomWindow = "CardZoomWindow";
         public static readonly string ChooseWindow = "ChooseWindow";
         public static readonly string FriendApplyRowPrefab = "FriendApplyRowPrefab";
@@ -27,10 +32,13 @@ public static class AddressKeys
         public static readonly string ProfileEditWindow = "ProfileEditWindow";
         public static readonly string SettingWindow = "SettingWindow";
         public static readonly string ShopWindows = "ShopWindows";
+        public static readonly string UrBalance = "UrBalance";
+        public static readonly string UrNoticeWindow = "UrNoticeWindow";
         public static readonly string WallpaperShopItemRowPrefab = "WallpaperShopItemRowPrefab";
     }
     public static class Sprite
     {
+        public static readonly string Icon_Rarity_UR = "Icon_Rarity_UR";
         public static readonly string Profile_GUI_ButtonClose = "Profile_GUI_ButtonClose";
         public static readonly string Profile_GUI_CommonButtonM = "Profile_GUI_CommonButtonM";
         public static readonly string Profile_GUI_CommonButtonM_Over = "Profile_GUI_CommonButtonM_Over";

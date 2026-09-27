@@ -49,7 +49,7 @@ namespace AChen.Configuration
             data.Validate(); return data;
         }
 
-        static IReadOnlyList<IReadOnlyDictionary<string, object>> ToRows(BinaryTable table)
+        internal static IReadOnlyList<IReadOnlyDictionary<string, object>> ToRows(BinaryTable table)
         {
             return table.Rows.Select(row =>
             {

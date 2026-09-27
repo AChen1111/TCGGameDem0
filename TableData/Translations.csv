@@ -1027,3 +1027,38 @@ ui.shop.tab_avatar_frame,头像框,Avatar Frames
 err.avatar_frame_not_owned,尚未拥有该头像框,You do not own this avatar frame
 err.avatar_frame_not_available,该头像框不存在或尚未启用,This avatar frame is unavailable
 err.profile_save_failed,保存资料失败，请稍后重试,"Failed to save profile, please try again"
+ui.shop.tab_workshop,卡牌工坊,Card Workshop
+ui.workshop.craft,合成,Craft
+ui.workshop.dismantle,分解,Dismantle
+ui.workshop.search,搜索卡名或 ID,Search name or ID
+ui.workshop.only_craftable,仅可合成,Craftable only
+ui.workshop.empty,没有符合条件的卡牌,No matching cards
+ui.workshop.owned_total,总持有 ×{count},Owned ×{count}
+ui.workshop.owned_normal,普通版 ×{count},Normal ×{count}
+ui.workshop.owned_version,{version} · 持有 {count} 张,{version} · Owned {count}
+ui.workshop.cost,消耗 {amount} UR,Cost: {amount} UR
+ui.workshop.reward,获得 {amount} UR,Gain: {amount} UR
+ui.workshop.confirm_craft,"花费 {amount} UR 合成「{name}」普通版 ×{count}？
+UR 余额：{balance} → {after}","Craft {count} normal copy of {name} for {amount} UR?
+UR balance: {balance} → {after}"
+ui.workshop.confirm_dismantle,"分解「{name}」{version} ×{count}，获得 {amount} UR？
+UR 余额：{balance} → {after}","Dismantle {count} {version} copies of {name} for {amount} UR?
+UR balance: {balance} → {after}"
+ui.workshop.deck_blocked,"无法分解：剩余卡牌不足以满足以下已保存卡组：
+{decks}
+请先编辑卡组后再试。","Cannot dismantle: these saved decks need the selected copies:
+{decks}
+Edit the decks first."
+ui.workshop.gift_overflow,重复卡已转化，获得 {amount} UR,Duplicate cards converted into {amount} UR
+ui.rarity.0,普通,Normal
+ui.rarity.1,炫彩,Colorful
+ui.rarity.2,镜碎,Mirror
+ui.rarity.3,描边,Outline
+ui.rarity.4,金沙,Gold
+err.insufficient_ur,UR 不足,Not enough UR
+err.normal_card_already_owned,已拥有这张卡的普通版,You already own the normal version
+err.card_price_changed,价格已更新，请查看最新价格后重新确认,Price updated. Review the new price and confirm again
+err.card_in_deck,卡牌正在被已保存卡组使用,Saved decks need these copies
+err.invalid_dismantle_count,分解版本或数量无效,Invalid version or quantity
+err.card_not_owned,持有卡牌数量不足,Not enough copies owned
+err.ur_overflow,UR 数量超出可保存范围,UR amount exceeds the supported range

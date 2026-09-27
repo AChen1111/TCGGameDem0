@@ -78,6 +78,13 @@ MonoBehaviour:
     - GameConfig
     - GameConfigGenerated
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e8d204a0b14e59428f92ae0336c64ff
+    m_Address: GameConfig/card-recycling
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameConfig
+    - GameConfigGenerated
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8a25c626abd25e84b9089ead7cf8c4e2
     m_Address: GameConfig/card-banlist
     m_ReadOnly: 0
@@ -104,6 +111,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameConfig
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e591b79a114e16f41b080d849ae0eb76
+    m_Address: GameConfig/card-crafting
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameConfig
+    - GameConfigGenerated
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f147cc786a23c284dbb56c8cbbb44cac
     m_Address: GameConfig/ALogSettings

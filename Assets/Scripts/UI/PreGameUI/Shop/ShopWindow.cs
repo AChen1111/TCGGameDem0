@@ -16,6 +16,8 @@ public class ShopWindow : AWindowController
     static readonly Color s_tabSelectedColor = Color.yellow;
 
     [SerializeField] GridListController m_ListController;
+    [SerializeField] CardWorkshopPanel m_Workshop;
+    [SerializeField] GameObject m_RegularContent;
     [SerializeField] Button m_CloseButton;
     [SerializeField] Button[] m_ChooseButtons;
     [SerializeField] SkeletonGraphic m_TransitionSpine;
@@ -75,6 +77,8 @@ public class ShopWindow : AWindowController
             new CosmeticShopCategory("头像框", ShopCatalogTypes.AvatarFrame, AddressKeys.Prefab.AvatarShopItemRowPrefab),
             new CosmeticShopCategory("壁纸", ShopCatalogTypes.Wallpaper, AddressKeys.Prefab.WallpaperShopItemRowPrefab),
         };
+        m_Workshop.Bind((message, ok) => RequestOpenWindow(AddressKeys.Prefab.ChooseWindow, new ChooseWindowProperties(message, ok, () => { })),
+            message => RequestOpenWindow(AddressKeys.Prefab.UrNoticeWindow, new UrNoticeProperties(message)));
         m_ConfigSnapshot = GameConfigManager.Instance.Store.Snapshot;
         base.Awake();
     }
@@ -146,7 +150,7 @@ public class ShopWindow : AWindowController
 
     void OnOwnedItemsChanged(string catalogType, PlayerData player)
     {
-        if (player == null || m_Categories[m_SelectedChooseIndex].CatalogType == catalogType) RequestRefresh();
+        if (m_SelectedChooseIndex < m_Categories.Length && (player == null || m_Categories[m_SelectedChooseIndex].CatalogType == catalogType)) RequestRefresh();
     }
 
     void OnConfigChanged(GameConfigSnapshot snapshot, bool isStale)
@@ -162,11 +166,17 @@ public class ShopWindow : AWindowController
     {
         m_SelectedChooseIndex = index;
         ApplyChooseHighlight(index);
+        bool workshop = index == m_Categories.Length;
+        m_TransitionSpine.gameObject.SetActive(!workshop);
+        m_RegularContent.SetActive(!workshop);
+        m_Workshop.gameObject.SetActive(workshop);
+        if (workshop) { PauseRefresh(); m_IsShown = true; return; }
         RequestRefresh();
     }
 
     void RequestRefresh()
     {
+        if (m_SelectedChooseIndex == m_Categories.Length) return;
         m_RefreshPending = true;
         m_AreItemsCurrent = false;
         m_RefreshCancellation?.Cancel();
@@ -425,7 +435,8 @@ public class ShopWindow : AWindowController
         {
             cardId = result.CardId,
             cardShaderType = CardPickController.ToShaderType(result.Rarity),
-            cardTexture = texture
+            cardTexture = texture,
+            overflowUr = result.UrGained
         };
     }
 }

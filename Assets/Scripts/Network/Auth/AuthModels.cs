@@ -36,12 +36,15 @@ namespace AChen.Networking
         public string CardId { get; }//卡牌ID
         public int Rarity { get; }//卡牌稀有度
         public string SourcePool { get; }//卡牌来源池
+        public bool IsOverflow { get; }
+        public long UrGained { get; }
 
-        internal CardDrawResult(string cardId, int rarity, string sourcePool)
+        internal CardDrawResult(string cardId, int rarity, string sourcePool, bool isOverflow = false, long urGained = 0)
         {
             CardId = cardId ?? string.Empty;
             Rarity = rarity;
             SourcePool = sourcePool ?? string.Empty;
+            IsOverflow = isOverflow; UrGained = urGained;
         }
     }
 
@@ -93,6 +96,7 @@ namespace AChen.Networking
         public IReadOnlyList<int> OwnedBackgroundIds { get; }
         public IReadOnlyList<OwnedCardData> OwnedCards { get; }
         public long Gold { get; }
+        public long Ur { get; }
         public long Revision { get; }
         public DateTimeOffset CreatedAt { get; }
         public DateTimeOffset UpdatedAt { get; }
@@ -110,7 +114,7 @@ namespace AChen.Networking
             DateTimeOffset createdAt,
             DateTimeOffset updatedAt,
             int avatarFrameId,
-            IReadOnlyList<int> ownedAvatarFrameIds)
+            IReadOnlyList<int> ownedAvatarFrameIds, long ur = 0)
         {
             AvatarFrameId = avatarFrameId;
             OwnedAvatarFrameIds = ownedAvatarFrameIds;
@@ -122,6 +126,7 @@ namespace AChen.Networking
             OwnedBackgroundIds = ownedBackgroundIds ?? Array.Empty<int>();
             OwnedCards = ownedCards ?? Array.Empty<OwnedCardData>();
             Gold = gold;
+            Ur = ur;
             Revision = revision;
             CreatedAt = createdAt;
             UpdatedAt = updatedAt;

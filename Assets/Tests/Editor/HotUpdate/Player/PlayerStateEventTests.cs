@@ -35,7 +35,7 @@ public sealed class PlayerStateEventTests
     {
         PlayerData first = CreatePlayer(Guid.NewGuid(), 100);
         PlayerData second = CreatePlayer(Guid.NewGuid(), 100);
-        string[] expected = { "gold", "nickname", "avatar", "background", "avatarFrame", "ownedAvatarFrames", "ownedAvatars", "ownedWallpapers", "ownedCards" };
+        string[] expected = { "ur", "gold", "nickname", "avatar", "background", "avatarFrame", "ownedAvatarFrames", "ownedAvatars", "ownedWallpapers", "ownedCards" };
         using (var recorder = new Recorder())
         {
             Publish(first, second);
@@ -72,11 +72,22 @@ public sealed class PlayerStateEventTests
         }
     }
 
-    static PlayerData CreatePlayer(Guid id, long gold, int[] avatars = null, int frame = 1030001, int[] frames = null)
+    [Test]
+    public void Ur_change_only_refreshes_ur_subscribers()
+    {
+        Guid id = Guid.NewGuid();
+        using (var recorder = new Recorder())
+        {
+            Publish(CreatePlayer(id, 100, ur: 30), CreatePlayer(id, 100, ur: 40));
+            CollectionAssert.AreEqual(new[] { "ur" }, recorder.Events);
+        }
+    }
+
+    static PlayerData CreatePlayer(Guid id, long gold, int[] avatars = null, int frame = 1030001, int[] frames = null, long ur = 0)
     {
         DateTimeOffset now = DateTimeOffset.UtcNow;
         return (PlayerData)Activator.CreateInstance(typeof(PlayerData), BindingFlags.Instance | BindingFlags.NonPublic,
-            null, new object[] { id, "player", (int?)1, avatars ?? new[] { 1 }, (int?)10, new[] { 10 }, Array.Empty<OwnedCardData>(), gold, 1L, now, now, frame, frames ?? new[] { 1030001 } }, null);
+            null, new object[] { id, "player", (int?)1, avatars ?? new[] { 1 }, (int?)10, new[] { 10 }, Array.Empty<OwnedCardData>(), gold, 1L, now, now, frame, frames ?? new[] { 1030001 }, ur }, null);
     }
 
     static void Publish(PlayerData previous, PlayerData current) =>
@@ -88,6 +99,7 @@ public sealed class PlayerStateEventTests
 
         public Recorder()
         {
+            EventCenter.AddListener(GameEvent.PlayerUrChanged, Ur);
             EventCenter.AddListener(GameEvent.PlayerGoldChanged, Gold);
             EventCenter.AddListener(GameEvent.PlayerNicknameChanged, Nickname);
             EventCenter.AddListener(GameEvent.PlayerAvatarChanged, Avatar);
@@ -101,6 +113,7 @@ public sealed class PlayerStateEventTests
 
         public void Dispose()
         {
+            EventCenter.RemoveListener(GameEvent.PlayerUrChanged, Ur);
             EventCenter.RemoveListener(GameEvent.PlayerGoldChanged, Gold);
             EventCenter.RemoveListener(GameEvent.PlayerNicknameChanged, Nickname);
             EventCenter.RemoveListener(GameEvent.PlayerAvatarChanged, Avatar);
@@ -112,6 +125,7 @@ public sealed class PlayerStateEventTests
             EventCenter.RemoveListener(GameEvent.PlayerOwnedCardsChanged, Cards);
         }
 
+        void Ur(long? value) => Events.Add("ur");
         void Gold(long? value) => Events.Add("gold");
         void Nickname(Guid? id, string value) => Events.Add("nickname");
         void Avatar(int? value) => Events.Add("avatar");

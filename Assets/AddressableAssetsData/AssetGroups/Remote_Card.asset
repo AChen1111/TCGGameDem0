@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3139d015bc7176f408462ab492a9c193
+    m_Address: CardWorkshop
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3202e95fff771e4458f474c1e9337f0e
     m_Address: CardShopItem
     m_ReadOnly: 0

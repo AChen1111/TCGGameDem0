@@ -122,6 +122,7 @@ public static class PublishedConfigBuilder
         }
         GameConfigTables.Assemble(files);
         DeckRulesConfiguration.Load(files);
+        CardEconomyConfiguration.Load(files);
         return files;
     }
 

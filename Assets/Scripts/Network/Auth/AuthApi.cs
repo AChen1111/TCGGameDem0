@@ -25,7 +25,7 @@ namespace AChen.Networking
     }
 
     /// <summary>账号与玩家资料相关的后端接口. 无状态, 令牌由调用方(PlayerSession)持有并传入.</summary>
-    public sealed class AuthApi
+    public sealed partial class AuthApi
     {
         readonly BackendHttpClient m_http;
 
@@ -193,19 +193,11 @@ namespace AChen.Networking
             return MapInbox(dto);
         }
 
-        public async UniTask<PlayerData> ClaimGiftAsync(
-            string accessToken,
-            Guid giftId,
-            long expectedRevision,
-            CancellationToken cancellationToken)
+        public async UniTask<GiftClaimResult> ClaimGiftAsync(string accessToken, Guid giftId, long expectedRevision, CancellationToken cancellationToken)
         {
-            PlayerDto dto = await m_http.SendAsync<PlayerDto>(
-                UnityWebRequest.kHttpVerbPOST,
-                "/api/gifts/" + giftId.ToString("D") + "/claim",
-                new ClaimGiftRequest(expectedRevision),
-                accessToken,
-                cancellationToken);
-            return ToPlayer(dto);
+            var dto = await m_http.SendAsync<GiftClaimDto>("POST", "/api/gifts/" + giftId.ToString("D") + "/claim",
+                new ClaimGiftRequest(expectedRevision), accessToken, cancellationToken);
+            return new GiftClaimResult(ToPlayer(dto.Player), dto.UrGained);
         }
 
         async UniTask<AuthSession> PostAuthAsync(string path, object body, CancellationToken cancellationToken)
@@ -245,7 +237,7 @@ namespace AChen.Networking
                 player.Gold,
                 player.Revision,
                 player.CreatedAt,
-                player.UpdatedAt, player.AvatarFrameId, player.OwnedAvatarFrameIds);
+                player.UpdatedAt, player.AvatarFrameId, player.OwnedAvatarFrameIds, player.Ur);
 
         static CardDrawResponse ToDraw(CardDrawResponseDto dto)
         {
@@ -262,7 +254,7 @@ namespace AChen.Networking
                 mapped[i] = new CardDrawResult(
                     result != null ? result.CardId : null,
                     result != null ? result.Rarity : 0,
-                    result != null ? result.SourcePool : null);
+                    result != null ? result.SourcePool : null, result.IsOverflow, result.UrGained);
             }
 
             return new CardDrawResponse(mapped, ToPlayer(dto.Player));
@@ -491,6 +483,7 @@ namespace AChen.Networking
             public int[] OwnedBackgroundIds { get; set; }
             public OwnedCardDto[] OwnedCards { get; set; }
             public long Gold { get; set; }
+            public long Ur { get; set; }
             public long Revision { get; set; }
             public DateTimeOffset CreatedAt { get; set; }
             public DateTimeOffset UpdatedAt { get; set; }
@@ -514,6 +507,8 @@ namespace AChen.Networking
             public string CardId { get; set; }
             public int Rarity { get; set; }
             public string SourcePool { get; set; }
+            public bool IsOverflow { get; set; }
+            public long UrGained { get; set; }
         }
 
         [Preserve]
@@ -580,6 +575,7 @@ namespace AChen.Networking
             public int? AvatarId { get; set; }
             public int? AvatarFrameId { get; set; }
             public long Gold { get; set; }
+            public long Ur { get; set; }
             public OwnedCardDto[] Cards { get; set; }
             public string TitleKey { get; set; }
         }
