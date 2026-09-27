@@ -121,7 +121,7 @@ public class AddressableCatalogTests
         UpdateDetector.ConfigureContentBaseUrl("https://cdn.example.test/release/Addressables/");
         Assert.AreEqual(
             "https://cdn.example.test/release/Addressables",
-            AddressablesRuntimeProperties.EvaluateProperty("{AChen.ContentBaseUrl}"));
+            AddressablesRuntimeProperties.EvaluateString("{AChen.ContentBaseUrl}"));
     }
 
     [Test]
@@ -161,15 +161,13 @@ public class AddressableCatalogTests
         AddressableAssetGroup card = settings.FindGroup(AddressableCatalogSetup.RemoteCardGroup);
         AddressableAssetGroup scene = settings.FindGroup(AddressableCatalogSetup.RemoteSceneGroup);
 
-        Assert.IsNotNull(boot);
+        Assert.IsNull(boot, "Only PreInit belongs to the player; Init loads after the hot-update DLL.");
         Assert.IsNotNull(catalog);
         Assert.IsNotNull(shared);
         Assert.IsNotNull(hall);
         Assert.IsNotNull(eventUi);
         Assert.IsNotNull(card);
         Assert.IsNotNull(scene);
-        Assert.AreEqual(BundledAssetGroupSchema.BundlePackingMode.PackTogether,
-            boot.GetSchema<BundledAssetGroupSchema>().BundleMode);
         Assert.AreEqual(BundledAssetGroupSchema.BundlePackingMode.PackTogether,
             catalog.GetSchema<BundledAssetGroupSchema>().BundleMode);
         Assert.AreEqual(BundledAssetGroupSchema.BundlePackingMode.PackTogether,
@@ -178,7 +176,6 @@ public class AddressableCatalogTests
             hall.GetSchema<BundledAssetGroupSchema>().BundleMode);
         Assert.AreEqual(BundledAssetGroupSchema.BundlePackingMode.PackSeparately,
             scene.GetSchema<BundledAssetGroupSchema>().BundleMode);
-        Assert.AreEqual(AddressableAssetSettings.kLocalBuildPath, boot.GetSchema<BundledAssetGroupSchema>().BuildPath.GetName(settings));
         Assert.AreEqual(AddressableAssetSettings.kRemoteBuildPath, catalog.GetSchema<BundledAssetGroupSchema>().BuildPath.GetName(settings));
         Assert.AreEqual(AddressableAssetSettings.kRemoteLoadPath, hall.GetSchema<BundledAssetGroupSchema>().LoadPath.GetName(settings));
         Assert.AreEqual(AddressableAssetSettings.kRemoteBuildPath, scene.GetSchema<BundledAssetGroupSchema>().BuildPath.GetName(settings));
@@ -194,7 +191,7 @@ public class AddressableCatalogTests
         AddressableAssetGroup catalog = settings.FindGroup(AddressableCatalogSetup.RemoteCatalogGroup);
         AddressableAssetEntry folder = catalog.GetAssetEntry(AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.CatalogsFolder));
         Assert.IsNotNull(folder);
-        Assert.IsTrue(folder.IsFolder);
+        Assert.IsTrue(AssetDatabase.IsValidFolder(folder.AssetPath));
         Assert.IsFalse(AddressableCatalogSetup.IsDirectEntry(catalog, AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.PrefabPath)));
         Assert.IsNull(settings.FindGroup("Catalogs"));
     }
@@ -273,12 +270,11 @@ public class AddressableCatalogTests
         Assert.IsNotNull(gameScene);
         Assert.AreEqual("GameScene", gameScene.address);
 
-        AddressableAssetGroup boot = settings.FindGroup(AddressableCatalogSetup.LocalBootGroup);
-        AddressableAssetEntry init = boot.GetAssetEntry(
+        AddressableAssetEntry init = remoteScene.GetAssetEntry(
             AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.InitScenePath));
         Assert.IsNotNull(init);
         Assert.AreEqual("Init", init.address);
-        Assert.IsFalse(AddressableCatalogSetup.IsDirectEntry(
+        Assert.IsTrue(AddressableCatalogSetup.IsDirectEntry(
             remoteScene, AssetDatabase.AssetPathToGUID(AddressableCatalogSetup.InitScenePath)));
 
         var catalog = AssetDatabase.LoadAssetAtPath<SceneAddressableCatalog>(AddressableCatalogSetup.ScenePath);

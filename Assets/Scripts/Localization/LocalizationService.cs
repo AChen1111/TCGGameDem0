@@ -23,7 +23,7 @@ public static class LocalizationService
     public static GameLanguage CurrentLanguage { get { Initialize(); return s_language; } }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    static void ResetState()
+    public static void ResetState()
     {
         Uninstall();
         LanguageChanged = null;

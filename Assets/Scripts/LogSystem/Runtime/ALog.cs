@@ -8,6 +8,8 @@ using Debug = UnityEngine.Debug;
 /// </summary>
 public static class ALog
 {
+    public static string PolicyRevision => "migration-b";
+
     /// <summary>Editor始终启用;正式包看 ALogSettings.EnableInPlayer</summary>
     public static bool Enabled {
         get {

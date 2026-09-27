@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using HybridCLR;
+using AChen.Configuration;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -20,6 +21,14 @@ public class LoadDll : MonoBehaviour
 
     static readonly Dictionary<string, byte[]> s_bytes = new Dictionary<string, byte[]>();
 
+    void Awake()
+    {
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR
+        string overrideUrl = Environment.GetEnvironmentVariable("ACHEN_BACKEND_URL");
+        if (!string.IsNullOrWhiteSpace(overrideUrl)) backendUrl = overrideUrl.Trim().TrimEnd('/');
+#endif
+    }
+
     IEnumerator Start()
     {
         m_failed = false;
@@ -29,13 +38,11 @@ public class LoadDll : MonoBehaviour
         bar.Set(0f);
         Assembly hotUpdate;
         Action<float> onAssets;
-        string addressablesBaseUrl;
 
 #if UNITY_EDITOR
         hotUpdate = AppDomain.CurrentDomain.GetAssemblies().First(a => a.GetName().Name == "HotUpdate");
         CodeUpdate.BindEditorLocalSession(backendUrl, channel, "Editor", Application.version);
         onAssets = value => SetProgress(bar, value);
-        addressablesBaseUrl = null;
 #else
         yield return LoadAotMetadataFiles();
         if (m_LoadError != null)
@@ -51,29 +58,74 @@ public class LoadDll : MonoBehaviour
             yield break;
         }
 
-        LoadMetadataForAOTAssemblies();
-        hotUpdate = Assembly.Load(s_bytes[HotUpdateFile]);
+        hotUpdate = null;
+        Exception loadError = null;
+        try
+        {
+            LoadMetadataForAOTAssemblies();
+            hotUpdate = Assembly.Load(s_bytes[HotUpdateFile]);
+        }
+        catch (Exception exception) { loadError = exception; }
+        if (loadError != null)
+        {
+            Fail(bar, new LocalizedMessage("err.hot_update_load_failed",
+                new Dictionary<string, object> { ["message"] = loadError.ToString() }));
+            yield break;
+        }
         onAssets = value => SetProgress(bar, 0.5f + value * 0.5f);
-        addressablesBaseUrl = CodeUpdate.AddressablesBaseUrl;
 #endif
 
         Type entry = hotUpdate.GetType("HotUpdateEntry");
         MethodInfo boot = entry == null
             ? null
-            : entry.GetMethod("Boot", new[] { typeof(Action<float>), typeof(string), typeof(Action<LocalizedMessage>) });
+            : entry.GetMethod("Boot", new[] { typeof(Action<float>), typeof(StartupContext), typeof(Action<LocalizedMessage>) });
         if (boot == null)
         {
             Fail(bar, new LocalizedMessage("err.hot_update_boot_missing"));
             yield break;
         }
 
-        m_retry = () => { m_failed = false; boot.Invoke(null, new object[]
+        Action startBusiness = () =>
         {
-            onAssets,
-            addressablesBaseUrl,
-            new Action<LocalizedMessage>(message => Fail(bar, message))
-        }); };
-        m_retry();
+            m_failed = false;
+            try
+            {
+                boot.Invoke(null, new object[]
+                {
+                    onAssets, CodeUpdate.Context,
+                    new Action<LocalizedMessage>(message => Fail(bar, message))
+                });
+            }
+            catch (Exception exception)
+            {
+                Fail(bar, new LocalizedMessage("err.hot_update_boot_failed",
+                    new Dictionary<string, object> { ["message"] = (exception.InnerException ?? exception).ToString() }));
+            }
+        };
+#if UNITY_EDITOR
+        m_retry = startBusiness;
+#else
+        string loadedDllHash = CodeUpdate.Sha256Of(s_bytes[HotUpdateFile]);
+        m_retry = () => StartCoroutine(RetryBusinessContent(bar, loadedDllHash, startBusiness));
+#endif
+        startBusiness();
+    }
+
+    IEnumerator RetryBusinessContent(DownLoadSlider bar, string loadedDllHash, Action startBusiness)
+    {
+        yield return FetchRemoteContent(bar);
+        if (!CodeUpdate.IsComplete)
+        {
+            Fail(bar, CodeUpdate.LastErrorMessage);
+            yield break;
+        }
+        if (!CodeUpdate.HasExpectedSha256(s_bytes[HotUpdateFile], loadedDllHash))
+        {
+            Fail(bar, new LocalizedMessage("err.hot_update_restart_required",
+                new Dictionary<string, object> { ["message"] = "热更代码已更新，请关闭游戏后重新进入。" }));
+            yield break;
+        }
+        startBusiness();
     }
 
     IEnumerator FetchRemoteContent(DownLoadSlider bar)
@@ -143,7 +195,7 @@ public class LoadDll : MonoBehaviour
         if (!m_failed) return;
         m_failed = false;
         FindAnyObjectByType<DownLoadSlider>().Set(0f);
-        ALog.Log("重试启动内容更新", ALogCategories.Localization);
+        Debug.Log("[Bootstrap] 重试启动内容更新");
         m_retry?.Invoke();
     }
 
@@ -159,7 +211,7 @@ public class LoadDll : MonoBehaviour
     {
         m_failed = true;
         LocalizedMessage detail = message ?? new LocalizedMessage("err.content_update_failed");
-        ALog.LogError("启动内容更新失败. Key=" + detail.Key, ALogCategories.Localization);
+        Debug.LogError("[Bootstrap] 启动内容更新失败. " + detail);
         if (bar != null)
         {
             bar.SetError(detail);

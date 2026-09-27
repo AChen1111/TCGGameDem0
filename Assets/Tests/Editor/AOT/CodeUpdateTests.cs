@@ -49,6 +49,7 @@ public class CodeUpdateTests
             AChen.Configuration.ContentSession.ConfigHash = "previous-remote-config";
             AChen.Configuration.ContentSession.CatalogUrl = "https://example.invalid/catalog.bin";
             CodeUpdate.BindEditorLocalSession("http://127.0.0.1:5080", "development", "Editor", "1.0.0");
+            AChen.Configuration.ContentSession.Bind(CodeUpdate.Context);
 
             Assert.AreEqual("Editor", AChen.Configuration.ContentSession.Target);
             Assert.AreEqual(CodeUpdate.EditorLocalReleaseId, AChen.Configuration.ContentSession.ReleaseId);

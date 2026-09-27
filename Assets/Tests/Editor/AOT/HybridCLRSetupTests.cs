@@ -29,7 +29,7 @@ public class HybridCLRSetupTests
     [Test]
     public void LoadDll_LivesInAotAssembly()
     {
-        Assert.AreEqual("Assembly-CSharp", typeof(LoadDll).Assembly.GetName().Name);
+        Assert.AreEqual("TCG.Bootstrap", typeof(LoadDll).Assembly.GetName().Name);
     }
 
     [Test]
@@ -54,7 +54,7 @@ public class HybridCLRSetupTests
         Assert.IsTrue(File.Exists("Unused~/Assets/XLua/XLua.Runtime.asmdef"));
         Assert.IsTrue(File.Exists("Unused~/Assets/Scripts/LuaRaw/Main.lua"));
         Assert.IsTrue(File.Exists("Unused~/Assets/Resources/LuaBundle.bytes"));
-        Assert.IsTrue(File.Exists("Assets/Scripts/UI/ImageAspectLayoutElement.cs"));
+        Assert.IsTrue(File.Exists("Assets/Scripts/UI/Widgets/Layout/ImageAspectLayoutElement.cs"));
     }
 
     [Test]

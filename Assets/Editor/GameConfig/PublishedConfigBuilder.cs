@@ -72,6 +72,8 @@ public static class PublishedConfigBuilder
                 }
                 var font = settings.CreateOrMoveEntry(AssetDatabase.AssetPathToGUID(SettingsPath), group);
                 font.SetAddress("GameConfig/LocalizationSettings"); font.SetLabel(GameConfigTables.Label, true);
+                var logging = settings.CreateOrMoveEntry(AssetDatabase.AssetPathToGUID(ALogSettings.AssetPath), group);
+                logging.SetAddress(ALogSettings.Address); logging.SetLabel(GameConfigTables.Label, true);
                 foreach (var entry in group.entries.Where(e => e.address == "GameConfig/Data").ToArray()) settings.RemoveAssetEntry(entry.guid);
                 foreach (string path in stale)
                 {

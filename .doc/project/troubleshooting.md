@@ -86,3 +86,11 @@ Spine 侧的问题只影响导入过程本身的耗时和整洁度，不会在�
 | 采样进程 `TotalProcessorTime` | 确认编辑器空闲时是否真在烧 CPU |
 
 编辑器 Profiler 抓帧要拆成两次 `run_script` 调用（开启、转储），中间等待若干秒。主线程被严重阻塞时，单次调用会超过 Pipeline 的 30 秒超时。
+
+## Android 退出后快速重新进入闪退（2026-09-27）
+
+魅族 21 / Android 16 / Unity 6000.5.2f1 的日志显示：12:59:46.980 游戏请求结束 Activity，12:59:48.072 系统仍复用后台 PID 6870；新 GameActivity 在 `UnityPlayer.initialize` 再次调用 `UnityFoldingFeaturesWrapper.init`，抛出“只能初始化一次”并退出。退出约一秒后立即重进时，Unity 的退出与新 Activity 创建发生了冲突。
+
+普通退出按钮由 `GameFlow.OnExitRequested` 在 Android Player 中调用 `currentActivity.moveTaskToBack(true)`，让游戏回到桌面，重进时恢复同一个 Activity。做法依据 [Unity 6.5 官方 Android 退出说明](https://docs.unity3d.com/6000.5/Documentation/Manual/android-quit.html)。桌面端继续使用 `Application.Quit`。内容更新要求的进程重启不能复用这个后台退出分支，`ContentUpdatePrompt` 的重启退出需单独验证。
+
+本次 Editor 编译与 Android Release Player 脚本编译通过。尚未发布或进行改后真机验证；生效后应连续检查“退出 → 立即重进”和“退出 → 等待几秒 → 重进”，确认没有新的 `UnityFoldingFeaturesWrapper` 异常。这个改动不解决自动恢复登录时的 JSON / HybridCLR 原生崩溃。

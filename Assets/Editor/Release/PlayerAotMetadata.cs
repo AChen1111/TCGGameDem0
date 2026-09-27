@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using HybridCLR.Editor;
+using HybridCLR.Editor.Settings;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
@@ -52,8 +53,15 @@ public sealed class PlayerAotMetadata : IPreprocessBuildWithReport
         }
 
         Directory.CreateDirectory(destination);
+        // 热更 DLL 由 Manifest 下载；清理旧工具留下的主包副本。
+        string legacyHotUpdate = Path.Combine(destination, LoadDll.HotUpdateFile + ".bytes");
+        if (File.Exists(legacyHotUpdate)) File.Delete(legacyHotUpdate);
+        if (File.Exists(legacyHotUpdate + ".meta")) File.Delete(legacyHotUpdate + ".meta");
         foreach (string name in names)
             File.Copy(Path.Combine(source, name), Path.Combine(destination, name + ".bytes"), true);
+
+        HybridCLRSettings.Instance.patchAOTAssemblies = names;
+        HybridCLRSettings.Save();
 
         Debug.Log($"[HybridCLR] 已同步主包 AOT 元数据. Target={target}; Count={names.Length}; Source={source}");
     }

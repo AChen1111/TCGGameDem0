@@ -16,11 +16,15 @@ namespace AChen.Networking
         public static DeckRulesConfiguration DeckRules { get; private set; }
         public static bool IsReady => Data != null && DeckRules != null;
         static AsyncOperationHandle<LocalizationSettings> s_settings;
+        static AsyncOperationHandle<ALogSettings> s_logSettings;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void ResetState()
+        public static void ResetState()
         {
             if (s_settings.IsValid()) Addressables.Release(s_settings);
+            if (s_logSettings.IsValid()) Addressables.Release(s_logSettings);
+            s_logSettings = default;
+            ALogSettings.ResetState();
             Data = null; DeckRules = null; s_settings = default;
             LocalizationService.Uninstall();
             CardCatalog.Uninstall();
@@ -33,6 +37,7 @@ namespace AChen.Networking
             var locations = Addressables.LoadResourceLocationsAsync(GameConfigTables.Label, typeof(TextAsset));
             var handles = new System.Collections.Generic.List<AsyncOperationHandle<TextAsset>>();
             s_settings = Addressables.LoadAssetAsync<LocalizationSettings>("GameConfig/LocalizationSettings");
+            s_logSettings = Addressables.LoadAssetAsync<ALogSettings>(ALogSettings.Address);
             try
             {
                 var found = await locations.Task;
@@ -53,8 +58,17 @@ namespace AChen.Networking
                     onProgress?.Invoke((i + 1f) / (handles.Count + 2f));
                 }
                 var settings = await s_settings.Task;
+                var logging = await s_logSettings.Task;
+                if (logging == null) throw new FormatException("ALogSettings: 日志配置缺失");
+                ALogSettings.SetEditorInstance(logging);
                 if (settings == null || settings.chineseFont == null || settings.englishFont == null) throw new FormatException("LocalizationSettings: 字体映射缺失");
-                if (!ContentSession.UseLocalAssets) ConfigArtifacts.Verify(files, ContentSession.Configs);
+                if (!ContentSession.UseLocalAssets)
+                {
+                    ConfigArtifacts.Validate(ContentSession.Configs, "");
+                    if (ContentSession.ConfigHash != DevelopmentProtocol.ConfigHash(ContentSession.Configs))
+                        throw new FormatException("配置清单校验失败");
+                    ConfigArtifacts.Verify(files, ContentSession.Configs);
+                }
                 var data = GameConfigTables.Assemble(files);
                 var deckRules = DeckRulesConfiguration.Load(files);
                 if (ContentSession.UseLocalAssets)
@@ -97,6 +111,9 @@ namespace AChen.Networking
             {
                 ALog.LogError("配置加载或校验失败. Error=" + ex.Message, ALogCategories.Net);
                 if (s_settings.IsValid()) Addressables.Release(s_settings);
+                if (s_logSettings.IsValid()) Addressables.Release(s_logSettings);
+                s_logSettings = default;
+                ALogSettings.ResetState();
                 s_settings = default; throw;
             }
             finally

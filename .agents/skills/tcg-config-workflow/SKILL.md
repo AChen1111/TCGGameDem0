@@ -12,8 +12,8 @@ description: 修改 TCGCardDem0 的 TableData 配置源表、二进制配置生�
 按改动需要读取以下入口，不一次加载所有表：
 
 - [PublishedConfigBuilder](../../../Assets/Editor/GameConfig/PublishedConfigBuilder.cs)：`TableData` 源目录、`Assets/GameConfiguration` 产物目录、`Prepare()` 与 `CompileDirectory()`。
-- [BinaryTableCsv](../../../Assets/Editor/GameConfig/BinaryTableCsv.cs)、[BinaryTable](../../../Assets/Shared/Configuration/BinaryTable.cs)：CSV 字段、类型和二进制格式。
-- [GameConfigTables](../../../Assets/Shared/Configuration/GameConfigTables.cs)、[PublishedGameConfig](../../../Assets/Shared/Configuration/PublishedGameConfig.cs)：表命名、地址、关联校验及共享数据结构。
+- [BinaryTableCsv](../../../Assets/Editor/GameConfig/BinaryTableCsv.cs)、[BinaryTable](../../../Assets/Scripts/Network/GameConfig/BinaryTable.cs)：CSV 字段、类型和二进制格式。
+- [GameConfigTables](../../../Assets/Scripts/Network/GameConfig/GameConfigTables.cs)、[PublishedGameConfig](../../../Assets/Scripts/Network/GameConfig/PublishedGameConfig.cs)：表命名、地址、关联校验及共享数据结构。
 - [LocalGameConfiguration](../../../Assets/Scripts/Network/GameConfig/LocalGameConfiguration.cs)、[GameConfigStore](../../../Assets/Scripts/Network/GameConfig/GameConfigStore.cs)：加载、就绪状态与业务读取。
 - 涉及服务端消费时，查找 `Backend/src` 对应调用方并读 [后端 API 入口](../../../Backend/docs/api/README.md)。Backend 是独立子模块，变更与验证分别说明。
 

@@ -980,7 +980,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 970469418}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59c3a2db266eedb478649049579f7c42, type: 3}
+  m_Script: {fileID: 11500000, guid: 32477db6f0e54dabadac52b65b5459fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UIAdapter::SafeAreaAdapter
   CalculateEveryFrame: 1

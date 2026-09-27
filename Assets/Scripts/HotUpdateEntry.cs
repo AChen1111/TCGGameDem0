@@ -1,4 +1,5 @@
 using System;
+using AChen.Configuration;
 using Cysharp.Threading.Tasks;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
@@ -6,19 +7,29 @@ using UnityEngine.SceneManagement;
 public static class HotUpdateEntry
 {
     public const string InitSceneAddress = "Init";
+    public const string StartupRevision = "migration-b";
 
-    public static void Boot(Action<float> onProgress, string addressablesBaseUrl, Action<LocalizedMessage> onError)
+    public static void Boot(Action<float> onProgress, StartupContext context, Action<LocalizedMessage> onError)
     {
-        BootAsync(onProgress, addressablesBaseUrl, onError).Forget();
+        BootAsync(onProgress, context, onError).Forget();
     }
 
     static async UniTaskVoid BootAsync(
         Action<float> onProgress,
-        string addressablesBaseUrl,
+        StartupContext context,
         Action<LocalizedMessage> onError)
     {
         try
         {
+            ALogSettings.ResetState();
+            AChen.Events.EventCenter.ResetState();
+            GameFlow.ResetState();
+            SceneTransitionOverlay.ResetState();
+            Spine.Unity.AttachmentTools.AtlasUtilities.ClearCache();
+            AChen.Networking.LocalGameConfiguration.ResetState();
+            LocalizationService.ResetState();
+            ContentSession.Bind(context);
+            string addressablesBaseUrl = context.AddressablesBaseUrl;
             if (string.IsNullOrEmpty(addressablesBaseUrl))
             {
                 await UpdateDetector.InitializeLocalAsync(value => onProgress?.Invoke(value * 0.8f));
@@ -28,6 +39,8 @@ public static class HotUpdateEntry
                 await UpdateDetector.DownloadAssets(addressablesBaseUrl, value => onProgress?.Invoke(value * 0.8f));
             }
             await AChen.Networking.LocalGameConfiguration.InitializeAsync(value => onProgress?.Invoke(0.8f + value * 0.19f));
+            await SceneTransitionOverlay.PreloadAsync();
+            ALog.Log("业务配置已就绪. HotUpdate=" + StartupRevision + "; LogPolicy=" + ALog.PolicyRevision + "; Content=" + context.ReleaseId, ALogCategories.Net);
             var initScene = Addressables.LoadSceneAsync(InitSceneAddress, LoadSceneMode.Single);
             await initScene.Task;
             onProgress?.Invoke(1f);

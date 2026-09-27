@@ -1,0 +1,10 @@
+{
+    "name": "TCG.Bootstrap",
+    "references": [
+        "AChen.Shared",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI",
+        "HybridCLR.Runtime"
+    ],
+    "autoReferenced": true
+}

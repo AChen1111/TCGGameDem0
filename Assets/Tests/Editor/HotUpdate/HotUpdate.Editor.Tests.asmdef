@@ -13,7 +13,10 @@
         "UnityEngine.UI",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "AChen.Shared"
+        "AChen.Shared",
+        "TCG.Bootstrap",
+        "HybridCLR.Editor",
+        "HybridCLR.Runtime"
     ],
     "includePlatforms": [
         "Editor"

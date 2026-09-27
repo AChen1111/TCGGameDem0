@@ -4,16 +4,47 @@ using AChen.Events;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Cysharp.Threading.Tasks;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 /// <summary>
 /// 跨场景加载界面.切场景前显示 LoadIN,目标界面就绪后淡出并隐藏。
 /// </summary>
 public static class SceneTransitionOverlay
 {
+    public const string Address = "UI/LoadIN";
     const int SortingOrder = 32767;
 
     static GameObject s_root;
     static CanvasGroup s_canvasGroup;
+    static AsyncOperationHandle<GameObject> s_prefab;
+
+    public static void ResetState()
+    {
+        if (s_root != null) UnityEngine.Object.Destroy(s_root);
+        s_root = null;
+        s_canvasGroup = null;
+        if (s_prefab.IsValid()) Addressables.Release(s_prefab);
+        s_prefab = default;
+    }
+
+    public static async UniTask PreloadAsync()
+    {
+        s_prefab = Addressables.LoadAssetAsync<GameObject>(Address);
+        try
+        {
+            await s_prefab.Task;
+            if (s_prefab.Status != AsyncOperationStatus.Succeeded || s_prefab.Result == null)
+                throw new InvalidOperationException("跨场景加载窗口加载失败", s_prefab.OperationException);
+        }
+        catch
+        {
+            if (s_prefab.IsValid()) Addressables.Release(s_prefab);
+            s_prefab = default;
+            throw;
+        }
+    }
 
     public static bool IsVisible => s_root != null && s_root.activeSelf;
 
@@ -80,11 +111,10 @@ public static class SceneTransitionOverlay
             return;
         }
 
-        GameObject prefab = Resources.Load<GameObject>("LoadIN");
+        GameObject prefab = s_prefab.IsValid() ? s_prefab.Result : null;
         if (prefab == null)
         {
-            ALog.LogError("打开跨场景加载界面失败: Resources/LoadIN.prefab 不存在.", ALogCategories.UI);
-            throw new InvalidOperationException("Resources/LoadIN.prefab does not exist.");
+            throw new InvalidOperationException("跨场景加载窗口尚未预加载: " + Address);
         }
 
         s_root = UnityEngine.Object.Instantiate(prefab);

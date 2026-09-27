@@ -11,7 +11,11 @@
         "Unity.InputSystem",
         "Unity.TextMeshPro",
         "UnityEngine.UI",
-        "AChen.Shared"
+        "AChen.Shared",
+        "TCG.Bootstrap",
+        "HybridCLR.Editor",
+        "HybridCLR.Runtime",
+        "spine-unity-editor"
     ],
     "includePlatforms": [
         "Editor"

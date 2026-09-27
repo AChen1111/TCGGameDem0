@@ -14,6 +14,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		"Unity.Addressables.dll",
 		"Unity.InputSystem.dll",
 		"Unity.ResourceManager.dll",
+		"UnityEngine.AndroidJNIModule.dll",
 		"UnityEngine.CoreModule.dll",
 		"mscorlib.dll",
 	};
@@ -37,23 +38,30 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.BackendHttpClient.<SendAsync>d__5<object>,object>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.BackendHttpClient.<SendRawAsync>d__6,AChen.Networking.BackendHttpResponse>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.ContentUpdatePrompt.<WaitForRetryAsync>d__10>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.LocalGameConfiguration.<CheckVersionAsync>d__9>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.LocalGameConfiguration.<InitializeAsync>d__8>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.DeckApi.<CreateAsync>d__3,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.DeckApi.<DeleteAsync>d__7>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.DeckApi.<GetAsync>d__5,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.DeckApi.<ListAsync>d__4,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.DeckApi.<SaveAsync>d__6,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.LocalGameConfiguration.<CheckVersionAsync>d__14>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Networking.LocalGameConfiguration.<InitializeAsync>d__13>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.AuthFlow.<AuthenticateAsync>d__3,AChen.Player.AuthResult>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<>c__DisplayClass38_0.<<SendFriendRequestAsync>b__0>d,byte>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<>c__DisplayClass39_0.<<AcceptFriendRequestAsync>b__0>d,byte>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<>c__DisplayClass40_0.<<RejectFriendRequestAsync>b__0>d,byte>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<ExecuteLockedAsync>d__47<object>,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<GetGachaPoolAsync>d__43,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<LoginAsync>d__25,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<LogoutAsync>d__28>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<RefreshAsync>d__27>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<RegisterAsync>d__24,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__49,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<object>,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__51,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__50,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<TryRestoreSessionAsync>d__26,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<>c__DisplayClass49_0.<<SendFriendRequestAsync>b__0>d,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<>c__DisplayClass50_0.<<AcceptFriendRequestAsync>b__0>d,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<>c__DisplayClass51_0.<<RejectFriendRequestAsync>b__0>d,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<>c__DisplayClass7_0.<<DeleteDeckAsync>b__2>d,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<DeleteDeckAsync>d__7>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<ExecuteLockedAsync>d__58<object>,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<GetGachaPoolAsync>d__54,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<LoginAsync>d__36,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<LogoutAsync>d__39>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<RefreshAsync>d__38>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<RegisterAsync>d__35,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__60,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__59<object>,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__62,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__61,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AChen.Player.PlayerSession.<TryRestoreSessionAsync>d__37,byte>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AUIScreenController.<RunGuardedAsync>d__46,byte>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AUIScreenController.<RunTransitionAsync>d__70>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<AddressableLoader.<AwaitScene>d__29,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
@@ -95,12 +103,13 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<PreGameUIPanel.<PlayIntroAsync>d__39>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<SceneLoader.<LoadScene>d__1,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<SceneLoader.<ReloadScene>d__2,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<SceneTransitionOverlay.<PreloadAsync>d__6>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<ShopCatalogQuery.<LoadCardPacksAsync>d__0,object>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<ShopCatalogQuery.<LoadCosmeticsAsync>d__2<object>,object>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<ShopCatalogQuery.<LoadSpriteAsync>d__6,object>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<ShopCatalogQuery.<LoadSpritesAsync>d__5,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<ShopWindow.<LoadDrawCardAsync>d__36,CardPickViewData>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<ShopWindow.<LoadDrawCardsAsync>d__35,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<ShopWindow.<LoadDrawCardAsync>d__43,CardPickViewData>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<ShopWindow.<LoadDrawCardsAsync>d__42,object>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<UITween.<RunAsync>d__7>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<UpdateDetector.<DownloadAssets>d__5>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask.<>c<UpdateDetector.<InitializeLocalAsync>d__4>
@@ -118,23 +127,30 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.BackendHttpClient.<SendAsync>d__5<object>,object>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.BackendHttpClient.<SendRawAsync>d__6,AChen.Networking.BackendHttpResponse>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.ContentUpdatePrompt.<WaitForRetryAsync>d__10>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.LocalGameConfiguration.<CheckVersionAsync>d__9>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.LocalGameConfiguration.<InitializeAsync>d__8>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.DeckApi.<CreateAsync>d__3,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.DeckApi.<DeleteAsync>d__7>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.DeckApi.<GetAsync>d__5,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.DeckApi.<ListAsync>d__4,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.DeckApi.<SaveAsync>d__6,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.LocalGameConfiguration.<CheckVersionAsync>d__14>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Networking.LocalGameConfiguration.<InitializeAsync>d__13>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.AuthFlow.<AuthenticateAsync>d__3,AChen.Player.AuthResult>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<>c__DisplayClass38_0.<<SendFriendRequestAsync>b__0>d,byte>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<>c__DisplayClass39_0.<<AcceptFriendRequestAsync>b__0>d,byte>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<>c__DisplayClass40_0.<<RejectFriendRequestAsync>b__0>d,byte>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<ExecuteLockedAsync>d__47<object>,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<GetGachaPoolAsync>d__43,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<LoginAsync>d__25,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<LogoutAsync>d__28>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<RefreshAsync>d__27>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<RegisterAsync>d__24,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__49,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<object>,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__51,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__50,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<TryRestoreSessionAsync>d__26,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<>c__DisplayClass49_0.<<SendFriendRequestAsync>b__0>d,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<>c__DisplayClass50_0.<<AcceptFriendRequestAsync>b__0>d,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<>c__DisplayClass51_0.<<RejectFriendRequestAsync>b__0>d,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<>c__DisplayClass7_0.<<DeleteDeckAsync>b__2>d,byte>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<DeleteDeckAsync>d__7>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<ExecuteLockedAsync>d__58<object>,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<GetGachaPoolAsync>d__54,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<LoginAsync>d__36,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<LogoutAsync>d__39>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<RefreshAsync>d__38>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<RegisterAsync>d__35,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__60,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__59<object>,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__62,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__61,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AChen.Player.PlayerSession.<TryRestoreSessionAsync>d__37,byte>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AUIScreenController.<RunGuardedAsync>d__46,byte>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AUIScreenController.<RunTransitionAsync>d__70>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<AddressableLoader.<AwaitScene>d__29,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
@@ -176,12 +192,13 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<PreGameUIPanel.<PlayIntroAsync>d__39>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<SceneLoader.<LoadScene>d__1,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<SceneLoader.<ReloadScene>d__2,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<SceneTransitionOverlay.<PreloadAsync>d__6>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<ShopCatalogQuery.<LoadCardPacksAsync>d__0,object>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<ShopCatalogQuery.<LoadCosmeticsAsync>d__2<object>,object>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<ShopCatalogQuery.<LoadSpriteAsync>d__6,object>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<ShopCatalogQuery.<LoadSpritesAsync>d__5,object>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<ShopWindow.<LoadDrawCardAsync>d__36,CardPickViewData>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<ShopWindow.<LoadDrawCardsAsync>d__35,object>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<ShopWindow.<LoadDrawCardAsync>d__43,CardPickViewData>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<ShopWindow.<LoadDrawCardsAsync>d__42,object>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<UITween.<RunAsync>d__7>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<UpdateDetector.<DownloadAssets>d__5>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTask<UpdateDetector.<InitializeLocalAsync>d__4>
@@ -207,7 +224,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<GiftWindow.<ClaimAsync>d__12>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<GiftWindow.<LoadInboxAsync>d__9>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<GiftWindow.<RejectAsync>d__11>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<HotUpdateEntry.<BootAsync>d__2>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<HotUpdateEntry.<BootAsync>d__3>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<LogInWindow.<AuthenticateAsync>d__20>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<LogInWindow.InputFeedback.<PlayAsync>d__6>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<MessageWindow.<CloseAfterAsync>d__9>
@@ -215,9 +232,9 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<PreGameUIPanel.<SwitchToNextWallpaperAsync>d__38>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<SceneEntry.<Start>d__3>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<SettingsWindow.<SwitchLanguageAsync>d__11>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<ShopWindow.<DrawPackAsync>d__34>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<ShopWindow.<PurchaseAsync>d__33>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<ShopWindow.<RefreshCurrentCategoryAsync>d__30>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<ShopWindow.<DrawPackAsync>d__41>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<ShopWindow.<PurchaseAsync>d__40>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<ShopWindow.<RefreshCurrentCategoryAsync>d__37>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<SingletonManager.<Start>d__2>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid.<>c<SocialPortrait.<ApplyAsync>d__0>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<AddressableLoader.<LoadCatalogsAsync>d__17>
@@ -236,7 +253,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<GiftWindow.<ClaimAsync>d__12>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<GiftWindow.<LoadInboxAsync>d__9>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<GiftWindow.<RejectAsync>d__11>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<HotUpdateEntry.<BootAsync>d__2>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<HotUpdateEntry.<BootAsync>d__3>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<LogInWindow.<AuthenticateAsync>d__20>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<LogInWindow.InputFeedback.<PlayAsync>d__6>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<MessageWindow.<CloseAfterAsync>d__9>
@@ -244,9 +261,9 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<PreGameUIPanel.<SwitchToNextWallpaperAsync>d__38>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<SceneEntry.<Start>d__3>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<SettingsWindow.<SwitchLanguageAsync>d__11>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<ShopWindow.<DrawPackAsync>d__34>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<ShopWindow.<PurchaseAsync>d__33>
-	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<ShopWindow.<RefreshCurrentCategoryAsync>d__30>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<ShopWindow.<DrawPackAsync>d__41>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<ShopWindow.<PurchaseAsync>d__40>
+	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<ShopWindow.<RefreshCurrentCategoryAsync>d__37>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<SingletonManager.<Start>d__2>
 	// Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoid<SocialPortrait.<ApplyAsync>d__0>
 	// Cysharp.Threading.Tasks.CompilerServices.IStateMachineRunnerPromise<AChen.Networking.BackendHttpResponse>
@@ -657,10 +674,19 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// LitMotion.MotionSettings<float,LitMotion.NoOptions>
 	// System.Action<AChen.Networking.GiftRewardSpec>
 	// System.Action<CardPickViewData>
+	// System.Action<Spine.EventQueue.EventQueueEntry>
+	// System.Action<Spine.Skin.SkinEntry>
+	// System.Action<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasMaterialOverride>
+	// System.Action<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasTextureOverride>
+	// System.Action<Spine.Unity.SkeletonRendererCustomMaterials.AtlasMaterialOverride>
+	// System.Action<Spine.Unity.SkeletonRendererCustomMaterials.SlotMaterialOverride>
+	// System.Action<Spine.Unity.SubmeshInstruction>
 	// System.Action<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Action<System.Nullable<System.Guid>,object>
 	// System.Action<System.Nullable<int>>
 	// System.Action<System.Nullable<long>>
+	// System.Action<UnityEngine.AnimatorClipInfo>
+	// System.Action<UnityEngine.Color32>
 	// System.Action<UnityEngine.EventSystems.RaycastResult>
 	// System.Action<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle,object>
 	// System.Action<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>
@@ -668,7 +694,9 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Action<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Action<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
 	// System.Action<UnityEngine.Vector2,object>
+	// System.Action<UnityEngine.Vector2>
 	// System.Action<UnityEngine.Vector3,object>
+	// System.Action<UnityEngine.Vector3>
 	// System.Action<byte>
 	// System.Action<float,object>
 	// System.Action<float>
@@ -676,24 +704,45 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Action<int>
 	// System.Action<object,WindowOpenRequest>
 	// System.Action<object,byte>
+	// System.Action<object,int,float>
 	// System.Action<object,int>
 	// System.Action<object,object,object>
 	// System.Action<object,object>
 	// System.Action<object>
+	// System.ByReference<UnityEngine.jvalue>
 	// System.Collections.Concurrent.ConcurrentQueue.<Enumerate>d__28<object>
 	// System.Collections.Concurrent.ConcurrentQueue.Segment<object>
 	// System.Collections.Concurrent.ConcurrentQueue<object>
 	// System.Collections.Generic.ArraySortHelper<AChen.Networking.GiftRewardSpec>
 	// System.Collections.Generic.ArraySortHelper<CardPickViewData>
+	// System.Collections.Generic.ArraySortHelper<Spine.EventQueue.EventQueueEntry>
+	// System.Collections.Generic.ArraySortHelper<Spine.Skin.SkinEntry>
+	// System.Collections.Generic.ArraySortHelper<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.ArraySortHelper<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasTextureOverride>
+	// System.Collections.Generic.ArraySortHelper<Spine.Unity.SkeletonRendererCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.ArraySortHelper<Spine.Unity.SkeletonRendererCustomMaterials.SlotMaterialOverride>
 	// System.Collections.Generic.ArraySortHelper<System.Collections.Generic.KeyValuePair<object,object>>
+	// System.Collections.Generic.ArraySortHelper<UnityEngine.AnimatorClipInfo>
+	// System.Collections.Generic.ArraySortHelper<UnityEngine.Color32>
 	// System.Collections.Generic.ArraySortHelper<UnityEngine.EventSystems.RaycastResult>
 	// System.Collections.Generic.ArraySortHelper<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Collections.Generic.ArraySortHelper<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
+	// System.Collections.Generic.ArraySortHelper<UnityEngine.Vector2>
+	// System.Collections.Generic.ArraySortHelper<UnityEngine.Vector3>
+	// System.Collections.Generic.ArraySortHelper<float>
+	// System.Collections.Generic.ArraySortHelper<int>
 	// System.Collections.Generic.ArraySortHelper<object>
 	// System.Collections.Generic.Comparer<AChen.Networking.BackendHttpResponse>
 	// System.Collections.Generic.Comparer<AChen.Networking.GiftRewardSpec>
 	// System.Collections.Generic.Comparer<AChen.Player.AuthResult>
 	// System.Collections.Generic.Comparer<CardPickViewData>
+	// System.Collections.Generic.Comparer<Spine.EventQueue.EventQueueEntry>
+	// System.Collections.Generic.Comparer<Spine.Skin.SkinEntry>
+	// System.Collections.Generic.Comparer<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.Comparer<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasTextureOverride>
+	// System.Collections.Generic.Comparer<Spine.Unity.SkeletonRendererCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.Comparer<Spine.Unity.SkeletonRendererCustomMaterials.SlotMaterialOverride>
+	// System.Collections.Generic.Comparer<Spine.Unity.SubmeshInstruction>
 	// System.Collections.Generic.Comparer<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Collections.Generic.Comparer<System.ValueTuple<byte,AChen.Networking.BackendHttpResponse>>
 	// System.Collections.Generic.Comparer<System.ValueTuple<byte,AChen.Player.AuthResult>>
@@ -752,17 +801,29 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Collections.Generic.Comparer<System.ValueTuple<byte,byte>>
 	// System.Collections.Generic.Comparer<System.ValueTuple<byte,object>>
 	// System.Collections.Generic.Comparer<System.ValueTuple<object,object>>
+	// System.Collections.Generic.Comparer<UnityEngine.AnimatorClipInfo>
+	// System.Collections.Generic.Comparer<UnityEngine.Color32>
 	// System.Collections.Generic.Comparer<UnityEngine.EventSystems.RaycastResult>
 	// System.Collections.Generic.Comparer<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Collections.Generic.Comparer<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
 	// System.Collections.Generic.Comparer<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
+	// System.Collections.Generic.Comparer<UnityEngine.Vector2>
+	// System.Collections.Generic.Comparer<UnityEngine.Vector3>
 	// System.Collections.Generic.Comparer<byte>
+	// System.Collections.Generic.Comparer<float>
 	// System.Collections.Generic.Comparer<int>
 	// System.Collections.Generic.Comparer<object>
 	// System.Collections.Generic.ComparisonComparer<AChen.Networking.BackendHttpResponse>
 	// System.Collections.Generic.ComparisonComparer<AChen.Networking.GiftRewardSpec>
 	// System.Collections.Generic.ComparisonComparer<AChen.Player.AuthResult>
 	// System.Collections.Generic.ComparisonComparer<CardPickViewData>
+	// System.Collections.Generic.ComparisonComparer<Spine.EventQueue.EventQueueEntry>
+	// System.Collections.Generic.ComparisonComparer<Spine.Skin.SkinEntry>
+	// System.Collections.Generic.ComparisonComparer<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.ComparisonComparer<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasTextureOverride>
+	// System.Collections.Generic.ComparisonComparer<Spine.Unity.SkeletonRendererCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.ComparisonComparer<Spine.Unity.SkeletonRendererCustomMaterials.SlotMaterialOverride>
+	// System.Collections.Generic.ComparisonComparer<Spine.Unity.SubmeshInstruction>
 	// System.Collections.Generic.ComparisonComparer<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Collections.Generic.ComparisonComparer<System.ValueTuple<byte,AChen.Networking.BackendHttpResponse>>
 	// System.Collections.Generic.ComparisonComparer<System.ValueTuple<byte,AChen.Player.AuthResult>>
@@ -814,41 +875,87 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Collections.Generic.ComparisonComparer<System.ValueTuple<byte,byte>>
 	// System.Collections.Generic.ComparisonComparer<System.ValueTuple<byte,object>>
 	// System.Collections.Generic.ComparisonComparer<System.ValueTuple<object,object>>
+	// System.Collections.Generic.ComparisonComparer<UnityEngine.AnimatorClipInfo>
+	// System.Collections.Generic.ComparisonComparer<UnityEngine.Color32>
 	// System.Collections.Generic.ComparisonComparer<UnityEngine.EventSystems.RaycastResult>
 	// System.Collections.Generic.ComparisonComparer<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Collections.Generic.ComparisonComparer<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
 	// System.Collections.Generic.ComparisonComparer<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
+	// System.Collections.Generic.ComparisonComparer<UnityEngine.Vector2>
+	// System.Collections.Generic.ComparisonComparer<UnityEngine.Vector3>
 	// System.Collections.Generic.ComparisonComparer<byte>
+	// System.Collections.Generic.ComparisonComparer<float>
 	// System.Collections.Generic.ComparisonComparer<int>
 	// System.Collections.Generic.ComparisonComparer<object>
+	// System.Collections.Generic.Dictionary.Enumerator<Spine.AnimationStateData.AnimationPair,float>
+	// System.Collections.Generic.Dictionary.Enumerator<Spine.Skin.SkinKey,Spine.Skin.SkinEntry>
+	// System.Collections.Generic.Dictionary.Enumerator<Spine.Unity.AttachmentTools.AtlasUtilities.IntAndAtlasRegionKey,object>
+	// System.Collections.Generic.Dictionary.Enumerator<System.Collections.Generic.KeyValuePair<object,object>,object>
+	// System.Collections.Generic.Dictionary.Enumerator<System.ValueTuple<object,int>,long>
 	// System.Collections.Generic.Dictionary.Enumerator<int,object>
 	// System.Collections.Generic.Dictionary.Enumerator<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>
 	// System.Collections.Generic.Dictionary.Enumerator<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
+	// System.Collections.Generic.Dictionary.Enumerator<object,int>
 	// System.Collections.Generic.Dictionary.Enumerator<object,object>
+	// System.Collections.Generic.Dictionary.KeyCollection.Enumerator<Spine.AnimationStateData.AnimationPair,float>
+	// System.Collections.Generic.Dictionary.KeyCollection.Enumerator<Spine.Skin.SkinKey,Spine.Skin.SkinEntry>
+	// System.Collections.Generic.Dictionary.KeyCollection.Enumerator<Spine.Unity.AttachmentTools.AtlasUtilities.IntAndAtlasRegionKey,object>
+	// System.Collections.Generic.Dictionary.KeyCollection.Enumerator<System.Collections.Generic.KeyValuePair<object,object>,object>
+	// System.Collections.Generic.Dictionary.KeyCollection.Enumerator<System.ValueTuple<object,int>,long>
 	// System.Collections.Generic.Dictionary.KeyCollection.Enumerator<int,object>
 	// System.Collections.Generic.Dictionary.KeyCollection.Enumerator<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>
 	// System.Collections.Generic.Dictionary.KeyCollection.Enumerator<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
+	// System.Collections.Generic.Dictionary.KeyCollection.Enumerator<object,int>
 	// System.Collections.Generic.Dictionary.KeyCollection.Enumerator<object,object>
+	// System.Collections.Generic.Dictionary.KeyCollection<Spine.AnimationStateData.AnimationPair,float>
+	// System.Collections.Generic.Dictionary.KeyCollection<Spine.Skin.SkinKey,Spine.Skin.SkinEntry>
+	// System.Collections.Generic.Dictionary.KeyCollection<Spine.Unity.AttachmentTools.AtlasUtilities.IntAndAtlasRegionKey,object>
+	// System.Collections.Generic.Dictionary.KeyCollection<System.Collections.Generic.KeyValuePair<object,object>,object>
+	// System.Collections.Generic.Dictionary.KeyCollection<System.ValueTuple<object,int>,long>
 	// System.Collections.Generic.Dictionary.KeyCollection<int,object>
 	// System.Collections.Generic.Dictionary.KeyCollection<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>
 	// System.Collections.Generic.Dictionary.KeyCollection<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
+	// System.Collections.Generic.Dictionary.KeyCollection<object,int>
 	// System.Collections.Generic.Dictionary.KeyCollection<object,object>
+	// System.Collections.Generic.Dictionary.ValueCollection.Enumerator<Spine.AnimationStateData.AnimationPair,float>
+	// System.Collections.Generic.Dictionary.ValueCollection.Enumerator<Spine.Skin.SkinKey,Spine.Skin.SkinEntry>
+	// System.Collections.Generic.Dictionary.ValueCollection.Enumerator<Spine.Unity.AttachmentTools.AtlasUtilities.IntAndAtlasRegionKey,object>
+	// System.Collections.Generic.Dictionary.ValueCollection.Enumerator<System.Collections.Generic.KeyValuePair<object,object>,object>
+	// System.Collections.Generic.Dictionary.ValueCollection.Enumerator<System.ValueTuple<object,int>,long>
 	// System.Collections.Generic.Dictionary.ValueCollection.Enumerator<int,object>
 	// System.Collections.Generic.Dictionary.ValueCollection.Enumerator<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>
 	// System.Collections.Generic.Dictionary.ValueCollection.Enumerator<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
+	// System.Collections.Generic.Dictionary.ValueCollection.Enumerator<object,int>
 	// System.Collections.Generic.Dictionary.ValueCollection.Enumerator<object,object>
+	// System.Collections.Generic.Dictionary.ValueCollection<Spine.AnimationStateData.AnimationPair,float>
+	// System.Collections.Generic.Dictionary.ValueCollection<Spine.Skin.SkinKey,Spine.Skin.SkinEntry>
+	// System.Collections.Generic.Dictionary.ValueCollection<Spine.Unity.AttachmentTools.AtlasUtilities.IntAndAtlasRegionKey,object>
+	// System.Collections.Generic.Dictionary.ValueCollection<System.Collections.Generic.KeyValuePair<object,object>,object>
+	// System.Collections.Generic.Dictionary.ValueCollection<System.ValueTuple<object,int>,long>
 	// System.Collections.Generic.Dictionary.ValueCollection<int,object>
 	// System.Collections.Generic.Dictionary.ValueCollection<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>
 	// System.Collections.Generic.Dictionary.ValueCollection<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
+	// System.Collections.Generic.Dictionary.ValueCollection<object,int>
 	// System.Collections.Generic.Dictionary.ValueCollection<object,object>
+	// System.Collections.Generic.Dictionary<Spine.AnimationStateData.AnimationPair,float>
+	// System.Collections.Generic.Dictionary<Spine.Skin.SkinKey,Spine.Skin.SkinEntry>
+	// System.Collections.Generic.Dictionary<Spine.Unity.AttachmentTools.AtlasUtilities.IntAndAtlasRegionKey,object>
+	// System.Collections.Generic.Dictionary<System.Collections.Generic.KeyValuePair<object,object>,object>
+	// System.Collections.Generic.Dictionary<System.ValueTuple<object,int>,long>
 	// System.Collections.Generic.Dictionary<int,object>
 	// System.Collections.Generic.Dictionary<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>
 	// System.Collections.Generic.Dictionary<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
+	// System.Collections.Generic.Dictionary<object,int>
 	// System.Collections.Generic.Dictionary<object,object>
 	// System.Collections.Generic.EqualityComparer<AChen.Networking.BackendHttpResponse>
 	// System.Collections.Generic.EqualityComparer<AChen.Player.AuthResult>
 	// System.Collections.Generic.EqualityComparer<CardPickViewData>
 	// System.Collections.Generic.EqualityComparer<LitMotion.NoOptions>
+	// System.Collections.Generic.EqualityComparer<Spine.AnimationStateData.AnimationPair>
+	// System.Collections.Generic.EqualityComparer<Spine.Skin.SkinEntry>
+	// System.Collections.Generic.EqualityComparer<Spine.Skin.SkinKey>
+	// System.Collections.Generic.EqualityComparer<Spine.Unity.AttachmentTools.AtlasUtilities.IntAndAtlasRegionKey>
+	// System.Collections.Generic.EqualityComparer<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Collections.Generic.EqualityComparer<System.ValueTuple<byte,AChen.Networking.BackendHttpResponse>>
 	// System.Collections.Generic.EqualityComparer<System.ValueTuple<byte,AChen.Player.AuthResult>>
 	// System.Collections.Generic.EqualityComparer<System.ValueTuple<byte,CardPickViewData>>
@@ -905,6 +1012,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Collections.Generic.EqualityComparer<System.ValueTuple<byte,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>
 	// System.Collections.Generic.EqualityComparer<System.ValueTuple<byte,byte>>
 	// System.Collections.Generic.EqualityComparer<System.ValueTuple<byte,object>>
+	// System.Collections.Generic.EqualityComparer<System.ValueTuple<object,int>>
 	// System.Collections.Generic.EqualityComparer<System.ValueTuple<object,object>>
 	// System.Collections.Generic.EqualityComparer<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>
 	// System.Collections.Generic.EqualityComparer<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
@@ -914,6 +1022,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Collections.Generic.EqualityComparer<byte>
 	// System.Collections.Generic.EqualityComparer<float>
 	// System.Collections.Generic.EqualityComparer<int>
+	// System.Collections.Generic.EqualityComparer<long>
 	// System.Collections.Generic.EqualityComparer<object>
 	// System.Collections.Generic.HashSet.Enumerator<int>
 	// System.Collections.Generic.HashSet.Enumerator<object>
@@ -923,88 +1032,215 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Collections.Generic.HashSetEqualityComparer<object>
 	// System.Collections.Generic.ICollection<AChen.Networking.GiftRewardSpec>
 	// System.Collections.Generic.ICollection<CardPickViewData>
+	// System.Collections.Generic.ICollection<Spine.EventQueue.EventQueueEntry>
+	// System.Collections.Generic.ICollection<Spine.Skin.SkinEntry>
+	// System.Collections.Generic.ICollection<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.ICollection<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasTextureOverride>
+	// System.Collections.Generic.ICollection<Spine.Unity.SkeletonRendererCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.ICollection<Spine.Unity.SkeletonRendererCustomMaterials.SlotMaterialOverride>
+	// System.Collections.Generic.ICollection<Spine.Unity.SubmeshInstruction>
+	// System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<Spine.AnimationStateData.AnimationPair,float>>
+	// System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<Spine.Skin.SkinKey,Spine.Skin.SkinEntry>>
+	// System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<Spine.Unity.AttachmentTools.AtlasUtilities.IntAndAtlasRegionKey,object>>
+	// System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair<object,object>,object>>
+	// System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<System.ValueTuple<object,int>,long>>
 	// System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<int,object>>
 	// System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>>
 	// System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>>
+	// System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<object,int>>
 	// System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<object,object>>
+	// System.Collections.Generic.ICollection<UnityEngine.AnimatorClipInfo>
+	// System.Collections.Generic.ICollection<UnityEngine.Color32>
 	// System.Collections.Generic.ICollection<UnityEngine.EventSystems.RaycastResult>
 	// System.Collections.Generic.ICollection<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Collections.Generic.ICollection<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
+	// System.Collections.Generic.ICollection<UnityEngine.Vector2>
+	// System.Collections.Generic.ICollection<UnityEngine.Vector3>
+	// System.Collections.Generic.ICollection<byte>
+	// System.Collections.Generic.ICollection<float>
 	// System.Collections.Generic.ICollection<int>
 	// System.Collections.Generic.ICollection<object>
 	// System.Collections.Generic.IComparer<AChen.Networking.GiftRewardSpec>
 	// System.Collections.Generic.IComparer<CardPickViewData>
+	// System.Collections.Generic.IComparer<Spine.EventQueue.EventQueueEntry>
+	// System.Collections.Generic.IComparer<Spine.Skin.SkinEntry>
+	// System.Collections.Generic.IComparer<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.IComparer<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasTextureOverride>
+	// System.Collections.Generic.IComparer<Spine.Unity.SkeletonRendererCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.IComparer<Spine.Unity.SkeletonRendererCustomMaterials.SlotMaterialOverride>
 	// System.Collections.Generic.IComparer<System.Collections.Generic.KeyValuePair<object,object>>
+	// System.Collections.Generic.IComparer<UnityEngine.AnimatorClipInfo>
+	// System.Collections.Generic.IComparer<UnityEngine.Color32>
 	// System.Collections.Generic.IComparer<UnityEngine.EventSystems.RaycastResult>
 	// System.Collections.Generic.IComparer<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Collections.Generic.IComparer<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
+	// System.Collections.Generic.IComparer<UnityEngine.Vector2>
+	// System.Collections.Generic.IComparer<UnityEngine.Vector3>
+	// System.Collections.Generic.IComparer<float>
 	// System.Collections.Generic.IComparer<int>
 	// System.Collections.Generic.IComparer<object>
 	// System.Collections.Generic.IEnumerable<AChen.Networking.GiftRewardSpec>
 	// System.Collections.Generic.IEnumerable<CardPickViewData>
+	// System.Collections.Generic.IEnumerable<Spine.EventQueue.EventQueueEntry>
+	// System.Collections.Generic.IEnumerable<Spine.Skin.SkinEntry>
+	// System.Collections.Generic.IEnumerable<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.IEnumerable<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasTextureOverride>
+	// System.Collections.Generic.IEnumerable<Spine.Unity.SkeletonRendererCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.IEnumerable<Spine.Unity.SkeletonRendererCustomMaterials.SlotMaterialOverride>
+	// System.Collections.Generic.IEnumerable<Spine.Unity.SubmeshInstruction>
+	// System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<Spine.AnimationStateData.AnimationPair,float>>
+	// System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<Spine.Skin.SkinKey,Spine.Skin.SkinEntry>>
+	// System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<Spine.Unity.AttachmentTools.AtlasUtilities.IntAndAtlasRegionKey,object>>
+	// System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair<object,object>,object>>
+	// System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<System.ValueTuple<object,int>,long>>
 	// System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<int,object>>
 	// System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>>
 	// System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>>
+	// System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<object,int>>
 	// System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<object,object>>
+	// System.Collections.Generic.IEnumerable<UnityEngine.AnimatorClipInfo>
+	// System.Collections.Generic.IEnumerable<UnityEngine.Color32>
 	// System.Collections.Generic.IEnumerable<UnityEngine.EventSystems.RaycastResult>
 	// System.Collections.Generic.IEnumerable<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Collections.Generic.IEnumerable<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
+	// System.Collections.Generic.IEnumerable<UnityEngine.Vector2>
+	// System.Collections.Generic.IEnumerable<UnityEngine.Vector3>
+	// System.Collections.Generic.IEnumerable<byte>
+	// System.Collections.Generic.IEnumerable<float>
 	// System.Collections.Generic.IEnumerable<int>
+	// System.Collections.Generic.IEnumerable<long>
 	// System.Collections.Generic.IEnumerable<object>
 	// System.Collections.Generic.IEnumerable<ushort>
 	// System.Collections.Generic.IEnumerator<AChen.Networking.GiftRewardSpec>
 	// System.Collections.Generic.IEnumerator<CardPickViewData>
+	// System.Collections.Generic.IEnumerator<Spine.EventQueue.EventQueueEntry>
+	// System.Collections.Generic.IEnumerator<Spine.Skin.SkinEntry>
+	// System.Collections.Generic.IEnumerator<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.IEnumerator<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasTextureOverride>
+	// System.Collections.Generic.IEnumerator<Spine.Unity.SkeletonRendererCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.IEnumerator<Spine.Unity.SkeletonRendererCustomMaterials.SlotMaterialOverride>
+	// System.Collections.Generic.IEnumerator<Spine.Unity.SubmeshInstruction>
+	// System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<Spine.AnimationStateData.AnimationPair,float>>
+	// System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<Spine.Skin.SkinKey,Spine.Skin.SkinEntry>>
+	// System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<Spine.Unity.AttachmentTools.AtlasUtilities.IntAndAtlasRegionKey,object>>
+	// System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair<object,object>,object>>
+	// System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<System.ValueTuple<object,int>,long>>
 	// System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<int,object>>
 	// System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>>
 	// System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>>
+	// System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<object,int>>
 	// System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<object,object>>
+	// System.Collections.Generic.IEnumerator<UnityEngine.AnimatorClipInfo>
+	// System.Collections.Generic.IEnumerator<UnityEngine.Color32>
 	// System.Collections.Generic.IEnumerator<UnityEngine.EventSystems.RaycastResult>
 	// System.Collections.Generic.IEnumerator<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Collections.Generic.IEnumerator<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
+	// System.Collections.Generic.IEnumerator<UnityEngine.Vector2>
+	// System.Collections.Generic.IEnumerator<UnityEngine.Vector3>
+	// System.Collections.Generic.IEnumerator<byte>
+	// System.Collections.Generic.IEnumerator<float>
 	// System.Collections.Generic.IEnumerator<int>
+	// System.Collections.Generic.IEnumerator<long>
 	// System.Collections.Generic.IEnumerator<object>
 	// System.Collections.Generic.IEnumerator<ushort>
+	// System.Collections.Generic.IEqualityComparer<Spine.AnimationStateData.AnimationPair>
+	// System.Collections.Generic.IEqualityComparer<Spine.Skin.SkinKey>
+	// System.Collections.Generic.IEqualityComparer<Spine.Unity.AttachmentTools.AtlasUtilities.IntAndAtlasRegionKey>
+	// System.Collections.Generic.IEqualityComparer<System.Collections.Generic.KeyValuePair<object,object>>
+	// System.Collections.Generic.IEqualityComparer<System.ValueTuple<object,int>>
 	// System.Collections.Generic.IEqualityComparer<int>
 	// System.Collections.Generic.IEqualityComparer<object>
 	// System.Collections.Generic.IList<AChen.Networking.GiftRewardSpec>
 	// System.Collections.Generic.IList<CardPickViewData>
+	// System.Collections.Generic.IList<Spine.EventQueue.EventQueueEntry>
+	// System.Collections.Generic.IList<Spine.Skin.SkinEntry>
+	// System.Collections.Generic.IList<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.IList<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasTextureOverride>
+	// System.Collections.Generic.IList<Spine.Unity.SkeletonRendererCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.IList<Spine.Unity.SkeletonRendererCustomMaterials.SlotMaterialOverride>
 	// System.Collections.Generic.IList<System.Collections.Generic.KeyValuePair<object,object>>
+	// System.Collections.Generic.IList<UnityEngine.AnimatorClipInfo>
+	// System.Collections.Generic.IList<UnityEngine.Color32>
 	// System.Collections.Generic.IList<UnityEngine.EventSystems.RaycastResult>
 	// System.Collections.Generic.IList<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Collections.Generic.IList<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
+	// System.Collections.Generic.IList<UnityEngine.Vector2>
+	// System.Collections.Generic.IList<UnityEngine.Vector3>
+	// System.Collections.Generic.IList<float>
+	// System.Collections.Generic.IList<int>
 	// System.Collections.Generic.IList<object>
 	// System.Collections.Generic.IReadOnlyCollection<CardDetailEntry>
 	// System.Collections.Generic.IReadOnlyCollection<CardPickViewData>
+	// System.Collections.Generic.IReadOnlyCollection<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Collections.Generic.IReadOnlyCollection<object>
 	// System.Collections.Generic.IReadOnlyDictionary<int,object>
+	// System.Collections.Generic.IReadOnlyDictionary<object,object>
 	// System.Collections.Generic.IReadOnlyList<CardDetailEntry>
 	// System.Collections.Generic.IReadOnlyList<CardPickViewData>
 	// System.Collections.Generic.IReadOnlyList<object>
+	// System.Collections.Generic.KeyValuePair<Spine.AnimationStateData.AnimationPair,float>
+	// System.Collections.Generic.KeyValuePair<Spine.Skin.SkinKey,Spine.Skin.SkinEntry>
+	// System.Collections.Generic.KeyValuePair<Spine.Unity.AttachmentTools.AtlasUtilities.IntAndAtlasRegionKey,object>
+	// System.Collections.Generic.KeyValuePair<System.Collections.Generic.KeyValuePair<object,object>,object>
+	// System.Collections.Generic.KeyValuePair<System.ValueTuple<object,int>,long>
 	// System.Collections.Generic.KeyValuePair<int,object>
 	// System.Collections.Generic.KeyValuePair<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>
 	// System.Collections.Generic.KeyValuePair<object,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
+	// System.Collections.Generic.KeyValuePair<object,float>
+	// System.Collections.Generic.KeyValuePair<object,int>
 	// System.Collections.Generic.KeyValuePair<object,object>
 	// System.Collections.Generic.LinkedList.Enumerator<object>
 	// System.Collections.Generic.LinkedList<object>
 	// System.Collections.Generic.LinkedListNode<object>
 	// System.Collections.Generic.List.Enumerator<AChen.Networking.GiftRewardSpec>
 	// System.Collections.Generic.List.Enumerator<CardPickViewData>
+	// System.Collections.Generic.List.Enumerator<Spine.EventQueue.EventQueueEntry>
+	// System.Collections.Generic.List.Enumerator<Spine.Skin.SkinEntry>
+	// System.Collections.Generic.List.Enumerator<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.List.Enumerator<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasTextureOverride>
+	// System.Collections.Generic.List.Enumerator<Spine.Unity.SkeletonRendererCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.List.Enumerator<Spine.Unity.SkeletonRendererCustomMaterials.SlotMaterialOverride>
 	// System.Collections.Generic.List.Enumerator<System.Collections.Generic.KeyValuePair<object,object>>
+	// System.Collections.Generic.List.Enumerator<UnityEngine.AnimatorClipInfo>
+	// System.Collections.Generic.List.Enumerator<UnityEngine.Color32>
 	// System.Collections.Generic.List.Enumerator<UnityEngine.EventSystems.RaycastResult>
 	// System.Collections.Generic.List.Enumerator<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Collections.Generic.List.Enumerator<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
+	// System.Collections.Generic.List.Enumerator<UnityEngine.Vector2>
+	// System.Collections.Generic.List.Enumerator<UnityEngine.Vector3>
+	// System.Collections.Generic.List.Enumerator<float>
+	// System.Collections.Generic.List.Enumerator<int>
 	// System.Collections.Generic.List.Enumerator<object>
 	// System.Collections.Generic.List<AChen.Networking.GiftRewardSpec>
 	// System.Collections.Generic.List<CardPickViewData>
+	// System.Collections.Generic.List<Spine.EventQueue.EventQueueEntry>
+	// System.Collections.Generic.List<Spine.Skin.SkinEntry>
+	// System.Collections.Generic.List<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.List<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasTextureOverride>
+	// System.Collections.Generic.List<Spine.Unity.SkeletonRendererCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.List<Spine.Unity.SkeletonRendererCustomMaterials.SlotMaterialOverride>
 	// System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<object,object>>
+	// System.Collections.Generic.List<UnityEngine.AnimatorClipInfo>
+	// System.Collections.Generic.List<UnityEngine.Color32>
 	// System.Collections.Generic.List<UnityEngine.EventSystems.RaycastResult>
 	// System.Collections.Generic.List<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Collections.Generic.List<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
+	// System.Collections.Generic.List<UnityEngine.Vector2>
+	// System.Collections.Generic.List<UnityEngine.Vector3>
+	// System.Collections.Generic.List<float>
+	// System.Collections.Generic.List<int>
 	// System.Collections.Generic.List<object>
 	// System.Collections.Generic.ObjectComparer<AChen.Networking.BackendHttpResponse>
 	// System.Collections.Generic.ObjectComparer<AChen.Networking.GiftRewardSpec>
 	// System.Collections.Generic.ObjectComparer<AChen.Player.AuthResult>
 	// System.Collections.Generic.ObjectComparer<CardPickViewData>
+	// System.Collections.Generic.ObjectComparer<Spine.EventQueue.EventQueueEntry>
+	// System.Collections.Generic.ObjectComparer<Spine.Skin.SkinEntry>
+	// System.Collections.Generic.ObjectComparer<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.ObjectComparer<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasTextureOverride>
+	// System.Collections.Generic.ObjectComparer<Spine.Unity.SkeletonRendererCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.Generic.ObjectComparer<Spine.Unity.SkeletonRendererCustomMaterials.SlotMaterialOverride>
+	// System.Collections.Generic.ObjectComparer<Spine.Unity.SubmeshInstruction>
 	// System.Collections.Generic.ObjectComparer<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Collections.Generic.ObjectComparer<System.ValueTuple<byte,AChen.Networking.BackendHttpResponse>>
 	// System.Collections.Generic.ObjectComparer<System.ValueTuple<byte,AChen.Player.AuthResult>>
@@ -1056,17 +1292,27 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Collections.Generic.ObjectComparer<System.ValueTuple<byte,byte>>
 	// System.Collections.Generic.ObjectComparer<System.ValueTuple<byte,object>>
 	// System.Collections.Generic.ObjectComparer<System.ValueTuple<object,object>>
+	// System.Collections.Generic.ObjectComparer<UnityEngine.AnimatorClipInfo>
+	// System.Collections.Generic.ObjectComparer<UnityEngine.Color32>
 	// System.Collections.Generic.ObjectComparer<UnityEngine.EventSystems.RaycastResult>
 	// System.Collections.Generic.ObjectComparer<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Collections.Generic.ObjectComparer<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
 	// System.Collections.Generic.ObjectComparer<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
+	// System.Collections.Generic.ObjectComparer<UnityEngine.Vector2>
+	// System.Collections.Generic.ObjectComparer<UnityEngine.Vector3>
 	// System.Collections.Generic.ObjectComparer<byte>
+	// System.Collections.Generic.ObjectComparer<float>
 	// System.Collections.Generic.ObjectComparer<int>
 	// System.Collections.Generic.ObjectComparer<object>
 	// System.Collections.Generic.ObjectEqualityComparer<AChen.Networking.BackendHttpResponse>
 	// System.Collections.Generic.ObjectEqualityComparer<AChen.Player.AuthResult>
 	// System.Collections.Generic.ObjectEqualityComparer<CardPickViewData>
 	// System.Collections.Generic.ObjectEqualityComparer<LitMotion.NoOptions>
+	// System.Collections.Generic.ObjectEqualityComparer<Spine.AnimationStateData.AnimationPair>
+	// System.Collections.Generic.ObjectEqualityComparer<Spine.Skin.SkinEntry>
+	// System.Collections.Generic.ObjectEqualityComparer<Spine.Skin.SkinKey>
+	// System.Collections.Generic.ObjectEqualityComparer<Spine.Unity.AttachmentTools.AtlasUtilities.IntAndAtlasRegionKey>
+	// System.Collections.Generic.ObjectEqualityComparer<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Collections.Generic.ObjectEqualityComparer<System.ValueTuple<byte,AChen.Networking.BackendHttpResponse>>
 	// System.Collections.Generic.ObjectEqualityComparer<System.ValueTuple<byte,AChen.Player.AuthResult>>
 	// System.Collections.Generic.ObjectEqualityComparer<System.ValueTuple<byte,CardPickViewData>>
@@ -1116,6 +1362,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Collections.Generic.ObjectEqualityComparer<System.ValueTuple<byte,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>
 	// System.Collections.Generic.ObjectEqualityComparer<System.ValueTuple<byte,byte>>
 	// System.Collections.Generic.ObjectEqualityComparer<System.ValueTuple<byte,object>>
+	// System.Collections.Generic.ObjectEqualityComparer<System.ValueTuple<object,int>>
 	// System.Collections.Generic.ObjectEqualityComparer<System.ValueTuple<object,object>>
 	// System.Collections.Generic.ObjectEqualityComparer<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>
 	// System.Collections.Generic.ObjectEqualityComparer<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
@@ -1125,6 +1372,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Collections.Generic.ObjectEqualityComparer<byte>
 	// System.Collections.Generic.ObjectEqualityComparer<float>
 	// System.Collections.Generic.ObjectEqualityComparer<int>
+	// System.Collections.Generic.ObjectEqualityComparer<long>
 	// System.Collections.Generic.ObjectEqualityComparer<object>
 	// System.Collections.Generic.Queue.Enumerator<WindowHistoryEntry>
 	// System.Collections.Generic.Queue<WindowHistoryEntry>
@@ -1134,15 +1382,34 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Collections.Generic.Stack<object>
 	// System.Collections.ObjectModel.ReadOnlyCollection<AChen.Networking.GiftRewardSpec>
 	// System.Collections.ObjectModel.ReadOnlyCollection<CardPickViewData>
+	// System.Collections.ObjectModel.ReadOnlyCollection<Spine.EventQueue.EventQueueEntry>
+	// System.Collections.ObjectModel.ReadOnlyCollection<Spine.Skin.SkinEntry>
+	// System.Collections.ObjectModel.ReadOnlyCollection<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.ObjectModel.ReadOnlyCollection<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasTextureOverride>
+	// System.Collections.ObjectModel.ReadOnlyCollection<Spine.Unity.SkeletonRendererCustomMaterials.AtlasMaterialOverride>
+	// System.Collections.ObjectModel.ReadOnlyCollection<Spine.Unity.SkeletonRendererCustomMaterials.SlotMaterialOverride>
 	// System.Collections.ObjectModel.ReadOnlyCollection<System.Collections.Generic.KeyValuePair<object,object>>
+	// System.Collections.ObjectModel.ReadOnlyCollection<UnityEngine.AnimatorClipInfo>
+	// System.Collections.ObjectModel.ReadOnlyCollection<UnityEngine.Color32>
 	// System.Collections.ObjectModel.ReadOnlyCollection<UnityEngine.EventSystems.RaycastResult>
 	// System.Collections.ObjectModel.ReadOnlyCollection<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Collections.ObjectModel.ReadOnlyCollection<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
+	// System.Collections.ObjectModel.ReadOnlyCollection<UnityEngine.Vector2>
+	// System.Collections.ObjectModel.ReadOnlyCollection<UnityEngine.Vector3>
+	// System.Collections.ObjectModel.ReadOnlyCollection<float>
+	// System.Collections.ObjectModel.ReadOnlyCollection<int>
 	// System.Collections.ObjectModel.ReadOnlyCollection<object>
 	// System.Comparison<AChen.Networking.BackendHttpResponse>
 	// System.Comparison<AChen.Networking.GiftRewardSpec>
 	// System.Comparison<AChen.Player.AuthResult>
 	// System.Comparison<CardPickViewData>
+	// System.Comparison<Spine.EventQueue.EventQueueEntry>
+	// System.Comparison<Spine.Skin.SkinEntry>
+	// System.Comparison<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasMaterialOverride>
+	// System.Comparison<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasTextureOverride>
+	// System.Comparison<Spine.Unity.SkeletonRendererCustomMaterials.AtlasMaterialOverride>
+	// System.Comparison<Spine.Unity.SkeletonRendererCustomMaterials.SlotMaterialOverride>
+	// System.Comparison<Spine.Unity.SubmeshInstruction>
 	// System.Comparison<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Comparison<System.ValueTuple<byte,AChen.Networking.BackendHttpResponse>>
 	// System.Comparison<System.ValueTuple<byte,AChen.Player.AuthResult>>
@@ -1187,13 +1454,19 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Comparison<System.ValueTuple<byte,byte>>
 	// System.Comparison<System.ValueTuple<byte,object>>
 	// System.Comparison<System.ValueTuple<object,object>>
+	// System.Comparison<UnityEngine.AnimatorClipInfo>
+	// System.Comparison<UnityEngine.Color32>
 	// System.Comparison<UnityEngine.EventSystems.RaycastResult>
 	// System.Comparison<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Comparison<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
 	// System.Comparison<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
+	// System.Comparison<UnityEngine.Vector2>
+	// System.Comparison<UnityEngine.Vector3>
 	// System.Comparison<byte>
+	// System.Comparison<float>
 	// System.Comparison<int>
 	// System.Comparison<object>
+	// System.Converter<object,object>
 	// System.Func<AChen.Networking.BackendHttpResponse>
 	// System.Func<AChen.Player.AuthResult>
 	// System.Func<CardPickViewData>
@@ -1252,8 +1525,12 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Func<System.ValueTuple<object,object>>
 	// System.Func<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Func<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
+	// System.Func<byte,object>
 	// System.Func<byte>
+	// System.Func<float,byte>
+	// System.Func<int,System.ValueTuple<float,float>>
 	// System.Func<int,byte>
+	// System.Func<int,int,object>
 	// System.Func<int,int>
 	// System.Func<int>
 	// System.Func<long,byte>
@@ -1312,9 +1589,11 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Func<object,System.ValueTuple<byte,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>
 	// System.Func<object,System.ValueTuple<byte,byte>>
 	// System.Func<object,System.ValueTuple<byte,object>>
+	// System.Func<object,System.ValueTuple<object,int>>
 	// System.Func<object,System.ValueTuple<object,object>>
 	// System.Func<object,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
 	// System.Func<object,byte>
+	// System.Func<object,int,int,int,object>
 	// System.Func<object,int,object>
 	// System.Func<object,int>
 	// System.Func<object,long>
@@ -1322,31 +1601,58 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Func<object,object>
 	// System.Func<object>
 	// System.Func<ushort,byte>
+	// System.IEquatable<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasMaterialOverride>
+	// System.IEquatable<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasTextureOverride>
+	// System.IEquatable<Spine.Unity.SkeletonRendererCustomMaterials.AtlasMaterialOverride>
+	// System.IEquatable<Spine.Unity.SkeletonRendererCustomMaterials.SlotMaterialOverride>
 	// System.IProgress<float>
 	// System.Linq.Buffer<int>
 	// System.Linq.Buffer<object>
+	// System.Linq.Enumerable.<ConcatIterator>d__59<float>
+	// System.Linq.Enumerable.<ConcatIterator>d__59<object>
+	// System.Linq.Enumerable.<DistinctIterator>d__68<object>
+	// System.Linq.Enumerable.<ExceptIterator>d__77<object>
 	// System.Linq.Enumerable.Iterator<System.Collections.Generic.KeyValuePair<object,object>>
 	// System.Linq.Enumerable.Iterator<int>
+	// System.Linq.Enumerable.Iterator<long>
 	// System.Linq.Enumerable.Iterator<object>
 	// System.Linq.Enumerable.WhereArrayIterator<object>
 	// System.Linq.Enumerable.WhereEnumerableIterator<int>
+	// System.Linq.Enumerable.WhereEnumerableIterator<long>
 	// System.Linq.Enumerable.WhereEnumerableIterator<object>
 	// System.Linq.Enumerable.WhereListIterator<object>
 	// System.Linq.Enumerable.WhereSelectArrayIterator<System.Collections.Generic.KeyValuePair<object,object>,object>
 	// System.Linq.Enumerable.WhereSelectArrayIterator<object,int>
+	// System.Linq.Enumerable.WhereSelectArrayIterator<object,long>
 	// System.Linq.Enumerable.WhereSelectArrayIterator<object,object>
 	// System.Linq.Enumerable.WhereSelectEnumerableIterator<System.Collections.Generic.KeyValuePair<object,object>,object>
 	// System.Linq.Enumerable.WhereSelectEnumerableIterator<object,int>
+	// System.Linq.Enumerable.WhereSelectEnumerableIterator<object,long>
 	// System.Linq.Enumerable.WhereSelectEnumerableIterator<object,object>
 	// System.Linq.Enumerable.WhereSelectListIterator<System.Collections.Generic.KeyValuePair<object,object>,object>
 	// System.Linq.Enumerable.WhereSelectListIterator<object,int>
+	// System.Linq.Enumerable.WhereSelectListIterator<object,long>
 	// System.Linq.Enumerable.WhereSelectListIterator<object,object>
 	// System.Linq.EnumerableSorter<int,int>
 	// System.Linq.EnumerableSorter<int>
 	// System.Linq.EnumerableSorter<object,int>
 	// System.Linq.EnumerableSorter<object,object>
 	// System.Linq.EnumerableSorter<object>
+	// System.Linq.GroupedEnumerable<object,System.ValueTuple<object,int>,object>
+	// System.Linq.GroupedEnumerable<object,object,object>
+	// System.Linq.IGrouping<System.ValueTuple<object,int>,object>
+	// System.Linq.IGrouping<object,object>
 	// System.Linq.IOrderedEnumerable<object>
+	// System.Linq.IdentityFunction.<>c<object>
+	// System.Linq.IdentityFunction<object>
+	// System.Linq.Lookup.<GetEnumerator>d__12<System.ValueTuple<object,int>,object>
+	// System.Linq.Lookup.<GetEnumerator>d__12<object,object>
+	// System.Linq.Lookup.Grouping.<GetEnumerator>d__7<System.ValueTuple<object,int>,object>
+	// System.Linq.Lookup.Grouping.<GetEnumerator>d__7<object,object>
+	// System.Linq.Lookup.Grouping<System.ValueTuple<object,int>,object>
+	// System.Linq.Lookup.Grouping<object,object>
+	// System.Linq.Lookup<System.ValueTuple<object,int>,object>
+	// System.Linq.Lookup<object,object>
 	// System.Linq.OrderedEnumerable.<GetEnumerator>d__1<int>
 	// System.Linq.OrderedEnumerable.<GetEnumerator>d__1<object>
 	// System.Linq.OrderedEnumerable<int,int>
@@ -1354,6 +1660,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Linq.OrderedEnumerable<object,int>
 	// System.Linq.OrderedEnumerable<object,object>
 	// System.Linq.OrderedEnumerable<object>
+	// System.Linq.Set<object>
 	// System.Nullable<AChen.Events.EventId<object,object>>
 	// System.Nullable<System.DateTimeOffset>
 	// System.Nullable<System.Guid>
@@ -1361,12 +1668,26 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Nullable<long>
 	// System.Predicate<AChen.Networking.GiftRewardSpec>
 	// System.Predicate<CardPickViewData>
+	// System.Predicate<Spine.EventQueue.EventQueueEntry>
+	// System.Predicate<Spine.Skin.SkinEntry>
+	// System.Predicate<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasMaterialOverride>
+	// System.Predicate<Spine.Unity.SkeletonGraphicCustomMaterials.AtlasTextureOverride>
+	// System.Predicate<Spine.Unity.SkeletonRendererCustomMaterials.AtlasMaterialOverride>
+	// System.Predicate<Spine.Unity.SkeletonRendererCustomMaterials.SlotMaterialOverride>
+	// System.Predicate<Spine.Unity.SubmeshInstruction>
 	// System.Predicate<System.Collections.Generic.KeyValuePair<object,object>>
+	// System.Predicate<UnityEngine.AnimatorClipInfo>
+	// System.Predicate<UnityEngine.Color32>
 	// System.Predicate<UnityEngine.EventSystems.RaycastResult>
 	// System.Predicate<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>
 	// System.Predicate<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
+	// System.Predicate<UnityEngine.Vector2>
+	// System.Predicate<UnityEngine.Vector3>
+	// System.Predicate<byte>
+	// System.Predicate<float>
 	// System.Predicate<int>
 	// System.Predicate<object>
+	// System.ReadOnlySpan<UnityEngine.jvalue>
 	// System.Runtime.CompilerServices.AsyncTaskMethodBuilder<AChen.Networking.BackendHttpResponse>
 	// System.Runtime.CompilerServices.AsyncTaskMethodBuilder<AChen.Player.AuthResult>
 	// System.Runtime.CompilerServices.AsyncTaskMethodBuilder<CardPickViewData>
@@ -1776,6 +2097,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Runtime.CompilerServices.ValueTaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
 	// System.Runtime.CompilerServices.ValueTaskAwaiter<byte>
 	// System.Runtime.CompilerServices.ValueTaskAwaiter<object>
+	// System.Span<UnityEngine.jvalue>
 	// System.Threading.Tasks.ContinuationTaskFromResultTask<AChen.Networking.BackendHttpResponse>
 	// System.Threading.Tasks.ContinuationTaskFromResultTask<AChen.Player.AuthResult>
 	// System.Threading.Tasks.ContinuationTaskFromResultTask<CardPickViewData>
@@ -2329,16 +2651,26 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.ValueTuple<byte,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
 	// System.ValueTuple<byte,byte>
 	// System.ValueTuple<byte,object>
+	// System.ValueTuple<float,float>
+	// System.ValueTuple<object,int>
 	// System.ValueTuple<object,object>
 	// UnityEngine.AddressableAssets.AddressablesImpl.<>c__DisplayClass78_0<object>
 	// UnityEngine.AddressableAssets.AddressablesImpl.<>c__DisplayClass79_0<object>
 	// UnityEngine.AddressableAssets.AssetReferenceT<object>
+	// UnityEngine.Events.InvokableCall<byte>
+	// UnityEngine.Events.InvokableCall<float>
 	// UnityEngine.Events.InvokableCall<object>
+	// UnityEngine.Events.UnityAction<byte>
+	// UnityEngine.Events.UnityAction<float>
 	// UnityEngine.Events.UnityAction<object>
+	// UnityEngine.Events.UnityEvent<byte>
+	// UnityEngine.Events.UnityEvent<float>
 	// UnityEngine.Events.UnityEvent<object>
 	// UnityEngine.InputSystem.InputControl<UnityEngine.Vector2>
 	// UnityEngine.InputSystem.InputProcessor<UnityEngine.Vector2>
 	// UnityEngine.InputSystem.Utilities.InlinedArray<object>
+	// UnityEngine.Pool.CollectionPool.<>c<object,object>
+	// UnityEngine.Pool.CollectionPool<object,object>
 	// UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationBase.<>c__DisplayClass60_0<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
 	// UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationBase.<>c__DisplayClass60_0<long>
 	// UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationBase.<>c__DisplayClass60_0<object>
@@ -2363,8 +2695,8 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	public void RefMethods()
 	{
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Networking.ContentUpdatePrompt.<WaitForRetryAsync>d__10>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Networking.ContentUpdatePrompt.<WaitForRetryAsync>d__10&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Networking.LocalGameConfiguration.<CheckVersionAsync>d__9>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Networking.LocalGameConfiguration.<CheckVersionAsync>d__9&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<LogoutAsync>d__28>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<LogoutAsync>d__28&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Networking.LocalGameConfiguration.<CheckVersionAsync>d__14>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Networking.LocalGameConfiguration.<CheckVersionAsync>d__14&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<LogoutAsync>d__39>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<LogoutAsync>d__39&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AUIScreenController.<RunTransitionAsync>d__70>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AUIScreenController.<RunTransitionAsync>d__70&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AvatarSelectWindow.<BindListAsync>d__24>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AvatarSelectWindow.<BindListAsync>d__24&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,CardPackShopCategory.<BindAsync>d__3>(Cysharp.Threading.Tasks.UniTask.Awaiter&,CardPackShopCategory.<BindAsync>d__3&)
@@ -2387,7 +2719,9 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,PreGameUIPanel.<<SwitchToNextWallpaperAsync>b__38_0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter&,PreGameUIPanel.<<SwitchToNextWallpaperAsync>b__38_0>d&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,PreGameUIPanel.<PlayIntroAsync>d__39>(Cysharp.Threading.Tasks.UniTask.Awaiter&,PreGameUIPanel.<PlayIntroAsync>d__39&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<System.ValueTuple<object,object>>,LobbyWallpaperView.<LoadAsync>d__16>(Cysharp.Threading.Tasks.UniTask.Awaiter<System.ValueTuple<object,object>>&,LobbyWallpaperView.<LoadAsync>d__16&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<RefreshAsync>d__27>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<RefreshAsync>d__27&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,AChen.Player.PlayerSession.<DeleteDeckAsync>d__7>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,AChen.Player.PlayerSession.<DeleteDeckAsync>d__7&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.DeckApi.<DeleteAsync>d__7>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.DeckApi.<DeleteAsync>d__7&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<RefreshAsync>d__38>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<RefreshAsync>d__38&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AvatarSelectWindow.<BindListAsync>d__24>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AvatarSelectWindow.<BindListAsync>d__24&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,CardPackShopCategory.<BindAsync>d__3>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,CardPackShopCategory.<BindAsync>d__3&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,CosmeticShopCategory.<BindAsync>d__9>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,CosmeticShopCategory.<BindAsync>d__9&)
@@ -2405,12 +2739,13 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<LitMotion.MotionAwaiter,UITween.<RunAsync>d__7>(LitMotion.MotionAwaiter&,UITween.<RunAsync>d__7&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,AddressableLoader.<UnloadScene>d__26>(System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,AddressableLoader.<UnloadScene>d__26&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<long>,UpdateDetector.<DownloadAssets>d__5>(System.Runtime.CompilerServices.TaskAwaiter<long>&,UpdateDetector.<DownloadAssets>d__5&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<object>,AChen.Networking.LocalGameConfiguration.<InitializeAsync>d__8>(System.Runtime.CompilerServices.TaskAwaiter<object>&,AChen.Networking.LocalGameConfiguration.<InitializeAsync>d__8&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<object>,AChen.Networking.LocalGameConfiguration.<InitializeAsync>d__13>(System.Runtime.CompilerServices.TaskAwaiter<object>&,AChen.Networking.LocalGameConfiguration.<InitializeAsync>d__13&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<object>,SceneTransitionOverlay.<PreloadAsync>d__6>(System.Runtime.CompilerServices.TaskAwaiter<object>&,SceneTransitionOverlay.<PreloadAsync>d__6&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<object>,UpdateDetector.<DownloadAssets>d__5>(System.Runtime.CompilerServices.TaskAwaiter<object>&,UpdateDetector.<DownloadAssets>d__5&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<object>,UpdateDetector.<InitializeLocalAsync>d__4>(System.Runtime.CompilerServices.TaskAwaiter<object>&,UpdateDetector.<InitializeLocalAsync>d__4&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<AChen.Networking.BackendHttpResponse>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.BackendHttpClient.<SendRawAsync>d__6>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.BackendHttpClient.<SendRawAsync>d__6&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<AChen.Player.AuthResult>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.AuthFlow.<AuthenticateAsync>d__3>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.AuthFlow.<AuthenticateAsync>d__3&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<CardPickViewData>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,ShopWindow.<LoadDrawCardAsync>d__36>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,ShopWindow.<LoadDrawCardAsync>d__36&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<CardPickViewData>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,ShopWindow.<LoadDrawCardAsync>d__43>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,ShopWindow.<LoadDrawCardAsync>d__43&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,SceneLoader.<LoadScene>d__1>(Cysharp.Threading.Tasks.UniTask.Awaiter&,SceneLoader.<LoadScene>d__1&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,SceneLoader.<ReloadScene>d__2>(Cysharp.Threading.Tasks.UniTask.Awaiter&,SceneLoader.<ReloadScene>d__2&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,AddressableLoader.<LoadScene>d__21>(Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,AddressableLoader.<LoadScene>d__21&)
@@ -2419,15 +2754,16 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,SceneLoader.<ReloadScene>d__2>(Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,SceneLoader.<ReloadScene>d__2&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.YieldAwaitable.Awaiter,AddressableLoader.<AwaitScene>d__29>(Cysharp.Threading.Tasks.YieldAwaitable.Awaiter&,AddressableLoader.<AwaitScene>d__29&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,AddressableLoader.<AwaitScene>d__29>(System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,AddressableLoader.<AwaitScene>d__29&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<>c__DisplayClass38_0.<<SendFriendRequestAsync>b__0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<>c__DisplayClass38_0.<<SendFriendRequestAsync>b__0>d&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<>c__DisplayClass39_0.<<AcceptFriendRequestAsync>b__0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<>c__DisplayClass39_0.<<AcceptFriendRequestAsync>b__0>d&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<>c__DisplayClass40_0.<<RejectFriendRequestAsync>b__0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<>c__DisplayClass40_0.<<RejectFriendRequestAsync>b__0>d&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<TryRestoreSessionAsync>d__26>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<TryRestoreSessionAsync>d__26&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<>c__DisplayClass49_0.<<SendFriendRequestAsync>b__0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<>c__DisplayClass49_0.<<SendFriendRequestAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<>c__DisplayClass50_0.<<AcceptFriendRequestAsync>b__0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<>c__DisplayClass50_0.<<AcceptFriendRequestAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<>c__DisplayClass51_0.<<RejectFriendRequestAsync>b__0>d>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<>c__DisplayClass51_0.<<RejectFriendRequestAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<>c__DisplayClass7_0.<<DeleteDeckAsync>b__2>d>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<>c__DisplayClass7_0.<<DeleteDeckAsync>b__2>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<TryRestoreSessionAsync>d__37>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<TryRestoreSessionAsync>d__37&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AUIScreenController.<RunGuardedAsync>d__46>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AUIScreenController.<RunGuardedAsync>d__46&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__49>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__49&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<object>>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<object>&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__51>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__51&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__50>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__50&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__60>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__60&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__59<object>>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__59<object>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__62>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__62&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__61>(Cysharp.Threading.Tasks.UniTask.Awaiter&,AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__61&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,GameFlow.<GetStartupSceneAsync>d__10>(Cysharp.Threading.Tasks.UniTask.Awaiter&,GameFlow.<GetStartupSceneAsync>d__10&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<AChen.Networking.BackendHttpResponse>,AChen.Networking.BackendHttpClient.<SendAsync>d__4>(Cysharp.Threading.Tasks.UniTask.Awaiter<AChen.Networking.BackendHttpResponse>&,AChen.Networking.BackendHttpClient.<SendAsync>d__4&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,GameFlow.<GetStartupSceneAsync>d__10>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,GameFlow.<GetStartupSceneAsync>d__10&)
@@ -2442,14 +2778,18 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.AuthApi.<SearchFriendsAsync>d__18>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.AuthApi.<SearchFriendsAsync>d__18&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.AuthApi.<UpdateProfileAsync>d__7>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.AuthApi.<UpdateProfileAsync>d__7&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.BackendHttpClient.<SendAsync>d__5<object>>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.BackendHttpClient.<SendAsync>d__5<object>&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<ExecuteLockedAsync>d__47<object>>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<ExecuteLockedAsync>d__47<object>&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<GetGachaPoolAsync>d__43>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<GetGachaPoolAsync>d__43&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<LoginAsync>d__25>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<LoginAsync>d__25&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<RegisterAsync>d__24>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<RegisterAsync>d__24&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__49>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__49&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<object>>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<object>&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__51>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__51&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__50>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__50&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.DeckApi.<CreateAsync>d__3>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.DeckApi.<CreateAsync>d__3&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.DeckApi.<GetAsync>d__5>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.DeckApi.<GetAsync>d__5&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.DeckApi.<ListAsync>d__4>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.DeckApi.<ListAsync>d__4&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Networking.DeckApi.<SaveAsync>d__6>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Networking.DeckApi.<SaveAsync>d__6&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<ExecuteLockedAsync>d__58<object>>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<ExecuteLockedAsync>d__58<object>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<GetGachaPoolAsync>d__54>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<GetGachaPoolAsync>d__54&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<LoginAsync>d__36>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<LoginAsync>d__36&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<RegisterAsync>d__35>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<RegisterAsync>d__35&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__60>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__60&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__59<object>>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__59<object>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__62>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__62&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__61>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__61&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,CardPoolAddress.<LoadAddressAsync>d__7>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,CardPoolAddress.<LoadAddressAsync>d__7&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,CardPoolAddress.<LoadCardTextureAsync>d__6>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,CardPoolAddress.<LoadCardTextureAsync>d__6&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,CardPreviewWindow.<LoadCardImageAsync>d__16>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,CardPreviewWindow.<LoadCardImageAsync>d__16&)
@@ -2459,15 +2799,17 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,ShopCatalogQuery.<LoadCosmeticsAsync>d__2<object>>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,ShopCatalogQuery.<LoadCosmeticsAsync>d__2<object>&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,ShopCatalogQuery.<LoadSpriteAsync>d__6>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,ShopCatalogQuery.<LoadSpriteAsync>d__6&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,ShopCatalogQuery.<LoadSpritesAsync>d__5>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,ShopCatalogQuery.<LoadSpritesAsync>d__5&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,ShopWindow.<LoadDrawCardsAsync>d__35>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,ShopWindow.<LoadDrawCardsAsync>d__35&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter,AChen.Player.PlayerSession.<ExecuteLockedAsync>d__47<object>>(System.Runtime.CompilerServices.TaskAwaiter&,AChen.Player.PlayerSession.<ExecuteLockedAsync>d__47<object>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,ShopWindow.<LoadDrawCardsAsync>d__42>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,ShopWindow.<LoadDrawCardsAsync>d__42&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter,AChen.Player.PlayerSession.<ExecuteLockedAsync>d__58<object>>(System.Runtime.CompilerServices.TaskAwaiter&,AChen.Player.PlayerSession.<ExecuteLockedAsync>d__58<object>&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<object>,AddressableLoader.<LoadAsset>d__28<object,object>>(System.Runtime.CompilerServices.TaskAwaiter<object>&,AddressableLoader.<LoadAsset>d__28<object,object>&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<object>,CardPoolAddress.<TryLoadAddressAsync>d__8>(System.Runtime.CompilerServices.TaskAwaiter<object>&,CardPoolAddress.<TryLoadAddressAsync>d__8&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AChen.Networking.ContentUpdatePrompt.<WaitForRetryAsync>d__10>(AChen.Networking.ContentUpdatePrompt.<WaitForRetryAsync>d__10&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AChen.Networking.LocalGameConfiguration.<CheckVersionAsync>d__9>(AChen.Networking.LocalGameConfiguration.<CheckVersionAsync>d__9&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AChen.Networking.LocalGameConfiguration.<InitializeAsync>d__8>(AChen.Networking.LocalGameConfiguration.<InitializeAsync>d__8&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AChen.Player.PlayerSession.<LogoutAsync>d__28>(AChen.Player.PlayerSession.<LogoutAsync>d__28&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AChen.Player.PlayerSession.<RefreshAsync>d__27>(AChen.Player.PlayerSession.<RefreshAsync>d__27&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AChen.Networking.DeckApi.<DeleteAsync>d__7>(AChen.Networking.DeckApi.<DeleteAsync>d__7&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AChen.Networking.LocalGameConfiguration.<CheckVersionAsync>d__14>(AChen.Networking.LocalGameConfiguration.<CheckVersionAsync>d__14&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AChen.Networking.LocalGameConfiguration.<InitializeAsync>d__13>(AChen.Networking.LocalGameConfiguration.<InitializeAsync>d__13&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AChen.Player.PlayerSession.<DeleteDeckAsync>d__7>(AChen.Player.PlayerSession.<DeleteDeckAsync>d__7&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AChen.Player.PlayerSession.<LogoutAsync>d__39>(AChen.Player.PlayerSession.<LogoutAsync>d__39&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AChen.Player.PlayerSession.<RefreshAsync>d__38>(AChen.Player.PlayerSession.<RefreshAsync>d__38&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AUIScreenController.<RunTransitionAsync>d__70>(AUIScreenController.<RunTransitionAsync>d__70&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AddressableLoader.<UnloadScene>d__26>(AddressableLoader.<UnloadScene>d__26&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<AvatarSelectWindow.<BindListAsync>d__24>(AvatarSelectWindow.<BindListAsync>d__24&)
@@ -2496,22 +2838,25 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<PlayerProfileView.<LoadAvatarAsync>d__9>(PlayerProfileView.<LoadAvatarAsync>d__9&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<PreGameUIPanel.<<SwitchToNextWallpaperAsync>b__38_0>d>(PreGameUIPanel.<<SwitchToNextWallpaperAsync>b__38_0>d&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<PreGameUIPanel.<PlayIntroAsync>d__39>(PreGameUIPanel.<PlayIntroAsync>d__39&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<SceneTransitionOverlay.<PreloadAsync>d__6>(SceneTransitionOverlay.<PreloadAsync>d__6&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<UITween.<RunAsync>d__7>(UITween.<RunAsync>d__7&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<UpdateDetector.<DownloadAssets>d__5>(UpdateDetector.<DownloadAssets>d__5&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder.Start<UpdateDetector.<InitializeLocalAsync>d__4>(UpdateDetector.<InitializeLocalAsync>d__4&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<AChen.Networking.BackendHttpResponse>.Start<AChen.Networking.BackendHttpClient.<SendRawAsync>d__6>(AChen.Networking.BackendHttpClient.<SendRawAsync>d__6&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<AChen.Player.AuthResult>.Start<AChen.Player.AuthFlow.<AuthenticateAsync>d__3>(AChen.Player.AuthFlow.<AuthenticateAsync>d__3&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<CardPickViewData>.Start<ShopWindow.<LoadDrawCardAsync>d__36>(ShopWindow.<LoadDrawCardAsync>d__36&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<CardPickViewData>.Start<ShopWindow.<LoadDrawCardAsync>d__43>(ShopWindow.<LoadDrawCardAsync>d__43&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.Start<AddressableLoader.<AwaitScene>d__29>(AddressableLoader.<AwaitScene>d__29&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.Start<AddressableLoader.<LoadScene>d__21>(AddressableLoader.<LoadScene>d__21&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.Start<AddressableLoader.<ReloadScene>d__22>(AddressableLoader.<ReloadScene>d__22&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.Start<SceneLoader.<LoadScene>d__1>(SceneLoader.<LoadScene>d__1&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>.Start<SceneLoader.<ReloadScene>d__2>(SceneLoader.<ReloadScene>d__2&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<AChen.Player.PlayerSession.<>c__DisplayClass38_0.<<SendFriendRequestAsync>b__0>d>(AChen.Player.PlayerSession.<>c__DisplayClass38_0.<<SendFriendRequestAsync>b__0>d&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<AChen.Player.PlayerSession.<>c__DisplayClass39_0.<<AcceptFriendRequestAsync>b__0>d>(AChen.Player.PlayerSession.<>c__DisplayClass39_0.<<AcceptFriendRequestAsync>b__0>d&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<AChen.Player.PlayerSession.<>c__DisplayClass40_0.<<RejectFriendRequestAsync>b__0>d>(AChen.Player.PlayerSession.<>c__DisplayClass40_0.<<RejectFriendRequestAsync>b__0>d&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<byte>>(AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<byte>&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<AChen.Player.PlayerSession.<TryRestoreSessionAsync>d__26>(AChen.Player.PlayerSession.<TryRestoreSessionAsync>d__26&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<AChen.Player.PlayerSession.<>c__DisplayClass49_0.<<SendFriendRequestAsync>b__0>d>(AChen.Player.PlayerSession.<>c__DisplayClass49_0.<<SendFriendRequestAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<AChen.Player.PlayerSession.<>c__DisplayClass50_0.<<AcceptFriendRequestAsync>b__0>d>(AChen.Player.PlayerSession.<>c__DisplayClass50_0.<<AcceptFriendRequestAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<AChen.Player.PlayerSession.<>c__DisplayClass51_0.<<RejectFriendRequestAsync>b__0>d>(AChen.Player.PlayerSession.<>c__DisplayClass51_0.<<RejectFriendRequestAsync>b__0>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<AChen.Player.PlayerSession.<>c__DisplayClass7_0.<<DeleteDeckAsync>b__2>d>(AChen.Player.PlayerSession.<>c__DisplayClass7_0.<<DeleteDeckAsync>b__2>d&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<AChen.Player.PlayerSession.<ExecuteLockedAsync>d__58<byte>>(AChen.Player.PlayerSession.<ExecuteLockedAsync>d__58<byte>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__59<byte>>(AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__59<byte>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<AChen.Player.PlayerSession.<TryRestoreSessionAsync>d__37>(AChen.Player.PlayerSession.<TryRestoreSessionAsync>d__37&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<byte>.Start<AUIScreenController.<RunGuardedAsync>d__46>(AUIScreenController.<RunGuardedAsync>d__46&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.AuthApi.<ClaimGiftAsync>d__23>(AChen.Networking.AuthApi.<ClaimGiftAsync>d__23&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.AuthApi.<DrawCardsAsync>d__9>(AChen.Networking.AuthApi.<DrawCardsAsync>d__9&)
@@ -2525,14 +2870,18 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.AuthApi.<UpdateProfileAsync>d__7>(AChen.Networking.AuthApi.<UpdateProfileAsync>d__7&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.BackendHttpClient.<SendAsync>d__4>(AChen.Networking.BackendHttpClient.<SendAsync>d__4&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.BackendHttpClient.<SendAsync>d__5<object>>(AChen.Networking.BackendHttpClient.<SendAsync>d__5<object>&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<ExecuteLockedAsync>d__47<object>>(AChen.Player.PlayerSession.<ExecuteLockedAsync>d__47<object>&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<GetGachaPoolAsync>d__43>(AChen.Player.PlayerSession.<GetGachaPoolAsync>d__43&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<LoginAsync>d__25>(AChen.Player.PlayerSession.<LoginAsync>d__25&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<RegisterAsync>d__24>(AChen.Player.PlayerSession.<RegisterAsync>d__24&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__49>(AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__49&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<object>>(AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__48<object>&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__51>(AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__51&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__50>(AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__50&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.DeckApi.<CreateAsync>d__3>(AChen.Networking.DeckApi.<CreateAsync>d__3&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.DeckApi.<GetAsync>d__5>(AChen.Networking.DeckApi.<GetAsync>d__5&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.DeckApi.<ListAsync>d__4>(AChen.Networking.DeckApi.<ListAsync>d__4&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Networking.DeckApi.<SaveAsync>d__6>(AChen.Networking.DeckApi.<SaveAsync>d__6&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<ExecuteLockedAsync>d__58<object>>(AChen.Player.PlayerSession.<ExecuteLockedAsync>d__58<object>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<GetGachaPoolAsync>d__54>(AChen.Player.PlayerSession.<GetGachaPoolAsync>d__54&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<LoginAsync>d__36>(AChen.Player.PlayerSession.<LoginAsync>d__36&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<RegisterAsync>d__35>(AChen.Player.PlayerSession.<RegisterAsync>d__35&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__60>(AChen.Player.PlayerSession.<SendAuthenticatedAsync>d__60&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__59<object>>(AChen.Player.PlayerSession.<SendAuthenticatedCallAsync>d__59<object>&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__62>(AChen.Player.PlayerSession.<SendAuthenticatedDrawAsync>d__62&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__61>(AChen.Player.PlayerSession.<SendAuthenticatedPoolAsync>d__61&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<AddressableLoader.<LoadAsset>d__28<object,object>>(AddressableLoader.<LoadAsset>d__28<object,object>&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<CardPoolAddress.<LoadAddressAsync>d__7>(CardPoolAddress.<LoadAddressAsync>d__7&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<CardPoolAddress.<LoadCardTextureAsync>d__6>(CardPoolAddress.<LoadCardTextureAsync>d__6&)
@@ -2545,16 +2894,16 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<ShopCatalogQuery.<LoadCosmeticsAsync>d__2<object>>(ShopCatalogQuery.<LoadCosmeticsAsync>d__2<object>&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<ShopCatalogQuery.<LoadSpriteAsync>d__6>(ShopCatalogQuery.<LoadSpriteAsync>d__6&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<ShopCatalogQuery.<LoadSpritesAsync>d__5>(ShopCatalogQuery.<LoadSpritesAsync>d__5&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<ShopWindow.<LoadDrawCardsAsync>d__35>(ShopWindow.<LoadDrawCardsAsync>d__35&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder<object>.Start<ShopWindow.<LoadDrawCardsAsync>d__42>(ShopWindow.<LoadDrawCardsAsync>d__42&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,CardPreviewWindow.<LoadPoolAsync>d__14>(Cysharp.Threading.Tasks.UniTask.Awaiter&,CardPreviewWindow.<LoadPoolAsync>d__14&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,CardZoomWindow.<PlayCloseAsync>d__28>(Cysharp.Threading.Tasks.UniTask.Awaiter&,CardZoomWindow.<PlayCloseAsync>d__28&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,CardZoomWindow.<PlayOpenAsync>d__27>(Cysharp.Threading.Tasks.UniTask.Awaiter&,CardZoomWindow.<PlayOpenAsync>d__27&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,GameFlow.<EnterLobbyAsync>d__11>(Cysharp.Threading.Tasks.UniTask.Awaiter&,GameFlow.<EnterLobbyAsync>d__11&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,GameFlow.<ReturnToLoginAsync>d__7>(Cysharp.Threading.Tasks.UniTask.Awaiter&,GameFlow.<ReturnToLoginAsync>d__7&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,HotUpdateEntry.<BootAsync>d__2>(Cysharp.Threading.Tasks.UniTask.Awaiter&,HotUpdateEntry.<BootAsync>d__2&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,HotUpdateEntry.<BootAsync>d__3>(Cysharp.Threading.Tasks.UniTask.Awaiter&,HotUpdateEntry.<BootAsync>d__3&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,LogInWindow.InputFeedback.<PlayAsync>d__6>(Cysharp.Threading.Tasks.UniTask.Awaiter&,LogInWindow.InputFeedback.<PlayAsync>d__6&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,MessageWindow.<CloseAfterAsync>d__9>(Cysharp.Threading.Tasks.UniTask.Awaiter&,MessageWindow.<CloseAfterAsync>d__9&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,ShopWindow.<RefreshCurrentCategoryAsync>d__30>(Cysharp.Threading.Tasks.UniTask.Awaiter&,ShopWindow.<RefreshCurrentCategoryAsync>d__30&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,ShopWindow.<RefreshCurrentCategoryAsync>d__37>(Cysharp.Threading.Tasks.UniTask.Awaiter&,ShopWindow.<RefreshCurrentCategoryAsync>d__37&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter,SingletonManager.<Start>d__2>(Cysharp.Threading.Tasks.UniTask.Awaiter&,SingletonManager.<Start>d__2&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<AChen.Player.AuthResult>,LogInWindow.<AuthenticateAsync>d__20>(Cysharp.Threading.Tasks.UniTask.Awaiter<AChen.Player.AuthResult>&,LogInWindow.<AuthenticateAsync>d__20&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,GameFlow.<EnterLobbyAsync>d__11>(Cysharp.Threading.Tasks.UniTask.Awaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,GameFlow.<EnterLobbyAsync>d__11&)
@@ -2571,16 +2920,16 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,GiftWindow.<LoadInboxAsync>d__9>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,GiftWindow.<LoadInboxAsync>d__9&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,GiftWindow.<RejectAsync>d__11>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,GiftWindow.<RejectAsync>d__11&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,PreGameUIPanel.<SwitchToNextWallpaperAsync>d__38>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,PreGameUIPanel.<SwitchToNextWallpaperAsync>d__38&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,ShopWindow.<PurchaseAsync>d__33>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,ShopWindow.<PurchaseAsync>d__33&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<byte>,ShopWindow.<PurchaseAsync>d__40>(Cysharp.Threading.Tasks.UniTask.Awaiter<byte>&,ShopWindow.<PurchaseAsync>d__40&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,CardPreviewWindow.<LoadPoolAsync>d__14>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,CardPreviewWindow.<LoadPoolAsync>d__14&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,GiftRewardItem.<LoadArtAsync>d__6>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,GiftRewardItem.<LoadArtAsync>d__6&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,SceneEntry.<Start>d__3>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,SceneEntry.<Start>d__3&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,ShopWindow.<DrawPackAsync>d__34>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,ShopWindow.<DrawPackAsync>d__34&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,ShopWindow.<DrawPackAsync>d__41>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,ShopWindow.<DrawPackAsync>d__41&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,SingletonManager.<Start>d__2>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,SingletonManager.<Start>d__2&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.UniTask.Awaiter<object>,SocialPortrait.<ApplyAsync>d__0>(Cysharp.Threading.Tasks.UniTask.Awaiter<object>&,SocialPortrait.<ApplyAsync>d__0&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<Cysharp.Threading.Tasks.YieldAwaitable.Awaiter,CardZoomWindow.<PlayOpenAsync>d__27>(Cysharp.Threading.Tasks.YieldAwaitable.Awaiter&,CardZoomWindow.<PlayOpenAsync>d__27&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<LitMotion.MotionAwaiter,MessageWindow.<PlayOpenAsync>d__5>(LitMotion.MotionAwaiter&,MessageWindow.<PlayOpenAsync>d__5&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,HotUpdateEntry.<BootAsync>d__2>(System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,HotUpdateEntry.<BootAsync>d__2&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>,HotUpdateEntry.<BootAsync>d__3>(System.Runtime.CompilerServices.TaskAwaiter<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>&,HotUpdateEntry.<BootAsync>d__3&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter<object>,AddressableLoader.<LoadCatalogsAsync>d__17>(System.Runtime.CompilerServices.TaskAwaiter<object>&,AddressableLoader.<LoadCatalogsAsync>d__17&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<AddressableLoader.<LoadCatalogsAsync>d__17>(AddressableLoader.<LoadCatalogsAsync>d__17&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<AvatarSelectWindow.<SubmitAsync>d__29>(AvatarSelectWindow.<SubmitAsync>d__29&)
@@ -2598,7 +2947,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<GiftWindow.<ClaimAsync>d__12>(GiftWindow.<ClaimAsync>d__12&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<GiftWindow.<LoadInboxAsync>d__9>(GiftWindow.<LoadInboxAsync>d__9&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<GiftWindow.<RejectAsync>d__11>(GiftWindow.<RejectAsync>d__11&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<HotUpdateEntry.<BootAsync>d__2>(HotUpdateEntry.<BootAsync>d__2&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<HotUpdateEntry.<BootAsync>d__3>(HotUpdateEntry.<BootAsync>d__3&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<LogInWindow.<AuthenticateAsync>d__20>(LogInWindow.<AuthenticateAsync>d__20&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<LogInWindow.InputFeedback.<PlayAsync>d__6>(LogInWindow.InputFeedback.<PlayAsync>d__6&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<MessageWindow.<CloseAfterAsync>d__9>(MessageWindow.<CloseAfterAsync>d__9&)
@@ -2606,9 +2955,9 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<PreGameUIPanel.<SwitchToNextWallpaperAsync>d__38>(PreGameUIPanel.<SwitchToNextWallpaperAsync>d__38&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<SceneEntry.<Start>d__3>(SceneEntry.<Start>d__3&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<SettingsWindow.<SwitchLanguageAsync>d__11>(SettingsWindow.<SwitchLanguageAsync>d__11&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<ShopWindow.<DrawPackAsync>d__34>(ShopWindow.<DrawPackAsync>d__34&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<ShopWindow.<PurchaseAsync>d__33>(ShopWindow.<PurchaseAsync>d__33&)
-		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<ShopWindow.<RefreshCurrentCategoryAsync>d__30>(ShopWindow.<RefreshCurrentCategoryAsync>d__30&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<ShopWindow.<DrawPackAsync>d__41>(ShopWindow.<DrawPackAsync>d__41&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<ShopWindow.<PurchaseAsync>d__40>(ShopWindow.<PurchaseAsync>d__40&)
+		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<ShopWindow.<RefreshCurrentCategoryAsync>d__37>(ShopWindow.<RefreshCurrentCategoryAsync>d__37&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<SingletonManager.<Start>d__2>(SingletonManager.<Start>d__2&)
 		// System.Void Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder.Start<SocialPortrait.<ApplyAsync>d__0>(SocialPortrait.<ApplyAsync>d__0&)
 		// Cysharp.Threading.Tasks.Internal.StateTuple<Cysharp.Threading.Tasks.UniTask.Awaiter<System.ValueTuple<object,object>>> Cysharp.Threading.Tasks.Internal.StateTuple.Create<Cysharp.Threading.Tasks.UniTask.Awaiter<System.ValueTuple<object,object>>>(Cysharp.Threading.Tasks.UniTask.Awaiter<System.ValueTuple<object,object>>)
@@ -2636,31 +2985,76 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// System.Void LitMotion.MotionBuilder<UnityEngine.Vector3,LitMotion.NoOptions,LitMotion.Adapters.Vector3MotionAdapter>.SetCallbackData<object>(object,System.Action<UnityEngine.Vector3,object>)
 		// System.Void LitMotion.MotionBuilder<float,LitMotion.NoOptions,LitMotion.Adapters.FloatMotionAdapter>.SetCallbackData<object>(object,System.Action<float,object>)
 		// object Newtonsoft.Json.JsonConvert.DeserializeObject<object>(string,Newtonsoft.Json.JsonSerializerSettings)
+		// object System.Activator.CreateInstance<object>()
+		// System.Collections.ObjectModel.ReadOnlyCollection<object> System.Array.AsReadOnly<object>(object[])
+		// int System.Array.BinarySearch<object>(object[],int,int,object)
+		// int System.Array.BinarySearch<object>(object[],int,int,object,System.Collections.Generic.IComparer<object>)
 		// CardPickViewData[] System.Array.Empty<CardPickViewData>()
 		// int[] System.Array.Empty<int>()
 		// object[] System.Array.Empty<object>()
 		// int System.Array.IndexOf<int>(int[],int)
+		// int System.Array.IndexOf<object>(object[],object)
+		// int System.Array.IndexOf<object>(object[],object,int,int)
 		// int System.Array.IndexOfImpl<int>(int[],int,int,int)
+		// int System.Array.IndexOfImpl<object>(object[],object,int,int)
+		// int System.Array.LastIndexOf<object>(object[],object,int,int)
+		// int System.Array.LastIndexOfImpl<object>(object[],object,int,int)
+		// System.Void System.Array.Resize<UnityEngine.Color32>(UnityEngine.Color32[]&,int)
+		// System.Void System.Array.Resize<UnityEngine.Vector2>(UnityEngine.Vector2[]&,int)
+		// System.Void System.Array.Resize<UnityEngine.Vector3>(UnityEngine.Vector3[]&,int)
+		// System.Void System.Array.Resize<UnityEngine.Vector4>(UnityEngine.Vector4[]&,int)
+		// System.Void System.Array.Resize<float>(float[]&,int)
+		// System.Void System.Array.Resize<int>(int[]&,int)
+		// System.Void System.Array.Resize<object>(object[]&,int)
+		// System.Void System.Array.Reverse<object>(object[],int,int)
+		// System.Void System.Array.Sort<object>(object[],System.Comparison<object>)
+		// System.Void System.Array.Sort<object>(object[],int,int,System.Collections.Generic.IComparer<object>)
+		// bool System.Linq.Enumerable.Any<float>(System.Collections.Generic.IEnumerable<float>,System.Func<float,bool>)
+		// bool System.Linq.Enumerable.Any<object>(System.Collections.Generic.IEnumerable<object>,System.Func<object,bool>)
 		// bool System.Linq.Enumerable.Any<ushort>(System.Collections.Generic.IEnumerable<ushort>,System.Func<ushort,bool>)
+		// System.Collections.Generic.IEnumerable<float> System.Linq.Enumerable.Concat<float>(System.Collections.Generic.IEnumerable<float>,System.Collections.Generic.IEnumerable<float>)
+		// System.Collections.Generic.IEnumerable<object> System.Linq.Enumerable.Concat<object>(System.Collections.Generic.IEnumerable<object>,System.Collections.Generic.IEnumerable<object>)
+		// System.Collections.Generic.IEnumerable<float> System.Linq.Enumerable.ConcatIterator<float>(System.Collections.Generic.IEnumerable<float>,System.Collections.Generic.IEnumerable<float>)
+		// System.Collections.Generic.IEnumerable<object> System.Linq.Enumerable.ConcatIterator<object>(System.Collections.Generic.IEnumerable<object>,System.Collections.Generic.IEnumerable<object>)
 		// bool System.Linq.Enumerable.Contains<int>(System.Collections.Generic.IEnumerable<int>,int)
 		// bool System.Linq.Enumerable.Contains<int>(System.Collections.Generic.IEnumerable<int>,int,System.Collections.Generic.IEqualityComparer<int>)
+		// bool System.Linq.Enumerable.Contains<object>(System.Collections.Generic.IEnumerable<object>,object)
+		// bool System.Linq.Enumerable.Contains<object>(System.Collections.Generic.IEnumerable<object>,object,System.Collections.Generic.IEqualityComparer<object>)
+		// int System.Linq.Enumerable.Count<object>(System.Collections.Generic.IEnumerable<object>)
+		// System.Collections.Generic.IEnumerable<object> System.Linq.Enumerable.Distinct<object>(System.Collections.Generic.IEnumerable<object>,System.Collections.Generic.IEqualityComparer<object>)
+		// System.Collections.Generic.IEnumerable<object> System.Linq.Enumerable.DistinctIterator<object>(System.Collections.Generic.IEnumerable<object>,System.Collections.Generic.IEqualityComparer<object>)
+		// System.Collections.Generic.IEnumerable<object> System.Linq.Enumerable.Except<object>(System.Collections.Generic.IEnumerable<object>,System.Collections.Generic.IEnumerable<object>)
+		// System.Collections.Generic.IEnumerable<object> System.Linq.Enumerable.ExceptIterator<object>(System.Collections.Generic.IEnumerable<object>,System.Collections.Generic.IEnumerable<object>,System.Collections.Generic.IEqualityComparer<object>)
+		// System.Collections.Generic.IEnumerable<System.Linq.IGrouping<System.ValueTuple<object,int>,object>> System.Linq.Enumerable.GroupBy<object,System.ValueTuple<object,int>>(System.Collections.Generic.IEnumerable<object>,System.Func<object,System.ValueTuple<object,int>>)
+		// System.Collections.Generic.IEnumerable<System.Linq.IGrouping<object,object>> System.Linq.Enumerable.GroupBy<object,object>(System.Collections.Generic.IEnumerable<object>,System.Func<object,object>)
+		// System.Collections.Generic.IEnumerable<System.Linq.IGrouping<object,object>> System.Linq.Enumerable.GroupBy<object,object>(System.Collections.Generic.IEnumerable<object>,System.Func<object,object>,System.Collections.Generic.IEqualityComparer<object>)
 		// System.Linq.IOrderedEnumerable<int> System.Linq.Enumerable.OrderBy<int,int>(System.Collections.Generic.IEnumerable<int>,System.Func<int,int>)
 		// System.Linq.IOrderedEnumerable<object> System.Linq.Enumerable.OrderBy<object,int>(System.Collections.Generic.IEnumerable<object>,System.Func<object,int>)
 		// System.Linq.IOrderedEnumerable<object> System.Linq.Enumerable.OrderBy<object,object>(System.Collections.Generic.IEnumerable<object>,System.Func<object,object>)
 		// System.Linq.IOrderedEnumerable<object> System.Linq.Enumerable.OrderBy<object,object>(System.Collections.Generic.IEnumerable<object>,System.Func<object,object>,System.Collections.Generic.IComparer<object>)
 		// System.Collections.Generic.IEnumerable<int> System.Linq.Enumerable.Select<object,int>(System.Collections.Generic.IEnumerable<object>,System.Func<object,int>)
+		// System.Collections.Generic.IEnumerable<long> System.Linq.Enumerable.Select<object,long>(System.Collections.Generic.IEnumerable<object>,System.Func<object,long>)
 		// System.Collections.Generic.IEnumerable<object> System.Linq.Enumerable.Select<System.Collections.Generic.KeyValuePair<object,object>,object>(System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<object,object>>,System.Func<System.Collections.Generic.KeyValuePair<object,object>,object>)
 		// System.Collections.Generic.IEnumerable<object> System.Linq.Enumerable.Select<object,object>(System.Collections.Generic.IEnumerable<object>,System.Func<object,object>)
+		// int System.Linq.Enumerable.Sum<object>(System.Collections.Generic.IEnumerable<object>,System.Func<object,int>)
+		// long System.Linq.Enumerable.Sum<object>(System.Collections.Generic.IEnumerable<object>,System.Func<object,long>)
 		// System.Linq.IOrderedEnumerable<object> System.Linq.Enumerable.ThenBy<object,int>(System.Linq.IOrderedEnumerable<object>,System.Func<object,int>)
 		// int[] System.Linq.Enumerable.ToArray<int>(System.Collections.Generic.IEnumerable<int>)
 		// object[] System.Linq.Enumerable.ToArray<object>(System.Collections.Generic.IEnumerable<object>)
+		// System.Collections.Generic.Dictionary<System.ValueTuple<object,int>,long> System.Linq.Enumerable.ToDictionary<object,System.ValueTuple<object,int>,long>(System.Collections.Generic.IEnumerable<object>,System.Func<object,System.ValueTuple<object,int>>,System.Func<object,long>)
+		// System.Collections.Generic.Dictionary<System.ValueTuple<object,int>,long> System.Linq.Enumerable.ToDictionary<object,System.ValueTuple<object,int>,long>(System.Collections.Generic.IEnumerable<object>,System.Func<object,System.ValueTuple<object,int>>,System.Func<object,long>,System.Collections.Generic.IEqualityComparer<System.ValueTuple<object,int>>)
+		// System.Collections.Generic.List<object> System.Linq.Enumerable.ToList<object>(System.Collections.Generic.IEnumerable<object>)
 		// System.Collections.Generic.IEnumerable<object> System.Linq.Enumerable.Where<object>(System.Collections.Generic.IEnumerable<object>,System.Func<object,bool>)
 		// System.Collections.Generic.IEnumerable<int> System.Linq.Enumerable.Iterator<object>.Select<int>(System.Func<object,int>)
+		// System.Collections.Generic.IEnumerable<long> System.Linq.Enumerable.Iterator<object>.Select<long>(System.Func<object,long>)
 		// System.Collections.Generic.IEnumerable<object> System.Linq.Enumerable.Iterator<System.Collections.Generic.KeyValuePair<object,object>>.Select<object>(System.Func<System.Collections.Generic.KeyValuePair<object,object>,object>)
 		// System.Collections.Generic.IEnumerable<object> System.Linq.Enumerable.Iterator<object>.Select<object>(System.Func<object,object>)
 		// System.Linq.IOrderedEnumerable<object> System.Linq.IOrderedEnumerable<object>.CreateOrderedEnumerable<int>(System.Func<object,int>,System.Collections.Generic.IComparer<int>,bool)
+		// object& System.Runtime.CompilerServices.Unsafe.Add<object>(object&,int)
+		// object& System.Runtime.CompilerServices.Unsafe.As<byte,object>(byte&)
 		// object& System.Runtime.CompilerServices.Unsafe.As<object,object>(object&)
 		// System.Void* System.Runtime.CompilerServices.Unsafe.AsPointer<object>(object&)
+		// bool System.Runtime.CompilerServices.Unsafe.IsAddressLessThan<object>(object&,object&)
 		// object& Unity.Collections.LowLevel.Unsafe.UnsafeUtility.As<object,object>(object&)
 		// UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object> UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<object>(UnityEngine.ResourceManagement.ResourceLocations.IResourceLocation)
 		// UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object> UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<object>(object)
@@ -2672,19 +3066,37 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object> UnityEngine.AddressableAssets.AddressablesImpl.LoadAssetWithChain<object>(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle,UnityEngine.ResourceManagement.ResourceLocations.IResourceLocation)
 		// UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object> UnityEngine.AddressableAssets.AddressablesImpl.LoadAssetWithChain<object>(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle,object)
 		// UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object> UnityEngine.AddressableAssets.AddressablesImpl.TrackHandle<object>(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>)
+		// byte UnityEngine.AndroidJNIHelper.ConvertFromJNIArray<byte>(System.IntPtr)
+		// object UnityEngine.AndroidJNIHelper.ConvertFromJNIArray<object>(System.IntPtr)
+		// System.IntPtr UnityEngine.AndroidJNIHelper.GetFieldID<object>(System.IntPtr,string,bool)
+		// System.IntPtr UnityEngine.AndroidJNIHelper.GetMethodID<byte>(System.IntPtr,string,object[],bool)
+		// byte UnityEngine.AndroidJavaObject.Call<byte>(string,object[])
+		// byte UnityEngine.AndroidJavaObject.FromJavaArray<byte>(System.IntPtr)
+		// object UnityEngine.AndroidJavaObject.FromJavaArrayDeleteLocalRef<object>(System.IntPtr)
+		// object UnityEngine.AndroidJavaObject.GetStatic<object>(string)
+		// byte UnityEngine.AndroidJavaObject._Call<byte>(System.IntPtr,object[])
+		// byte UnityEngine.AndroidJavaObject._Call<byte>(string,object[])
+		// object UnityEngine.AndroidJavaObject._GetStatic<object>(System.IntPtr)
+		// object UnityEngine.AndroidJavaObject._GetStatic<object>(string)
 		// object UnityEngine.Component.GetComponent<object>()
 		// object UnityEngine.Component.GetComponentInChildren<object>()
 		// object UnityEngine.Component.GetComponentInChildren<object>(bool)
 		// object UnityEngine.Component.GetComponentInParent<object>()
+		// System.Void UnityEngine.Component.GetComponents<object>(System.Collections.Generic.List<object>)
+		// object[] UnityEngine.Component.GetComponents<object>()
 		// object[] UnityEngine.Component.GetComponentsInChildren<object>(bool)
+		// object UnityEngine.GameObject.AddComponent<object>()
 		// object UnityEngine.GameObject.GetComponent<object>()
 		// object UnityEngine.GameObject.GetComponentInChildren<object>(bool)
+		// object[] UnityEngine.GameObject.GetComponents<object>()
+		// object[] UnityEngine.GameObject.GetComponentsInChildren<object>()
 		// object[] UnityEngine.GameObject.GetComponentsInChildren<object>(bool)
 		// System.Array UnityEngine.GameObject.GetComponentsInternal<object>(bool,bool,bool,bool,System.Collections.Generic.List<object>)
 		// object UnityEngine.Object.FindFirstObjectByType<object>()
 		// object UnityEngine.Object.Instantiate<object>(object)
 		// object UnityEngine.Object.Instantiate<object>(object,UnityEngine.Transform)
 		// object UnityEngine.Object.Instantiate<object>(object,UnityEngine.Transform,bool)
+		// object UnityEngine.Object.Instantiate<object>(object,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Transform)
 		// UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object> UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle.Convert<object>()
 		// UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object> UnityEngine.ResourceManagement.ResourceManager.CreateChainOperation<object>(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle,System.Func<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object>>)
 		// UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object> UnityEngine.ResourceManagement.ResourceManager.CreateCompletedOperationInternal<object>(object,bool,System.Exception,bool)
@@ -2692,6 +3104,11 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// object UnityEngine.ResourceManagement.ResourceManager.CreateOperation<object>(System.Type,int,UnityEngine.ResourceManagement.Util.IOperationCacheKey,System.Action<UnityEngine.ResourceManagement.AsyncOperations.IAsyncOperation>)
 		// UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object> UnityEngine.ResourceManagement.ResourceManager.ProvideResource<object>(UnityEngine.ResourceManagement.ResourceLocations.IResourceLocation)
 		// UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<object> UnityEngine.ResourceManagement.ResourceManager.StartOperation<object>(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationBase<object>,UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle)
-		// object UnityEngine.Resources.Load<object>(string)
+		// object UnityEngine.ScriptableObject.CreateInstance<object>()
+		// byte UnityEngine._AndroidJNIHelper.ConvertFromJNIArray<byte>(System.IntPtr)
+		// object UnityEngine._AndroidJNIHelper.ConvertFromJNIArray<object>(System.IntPtr)
+		// System.IntPtr UnityEngine._AndroidJNIHelper.GetFieldID<object>(System.IntPtr,string,bool)
+		// System.IntPtr UnityEngine._AndroidJNIHelper.GetMethodID<byte>(System.IntPtr,string,object[],bool)
+		// string UnityEngine._AndroidJNIHelper.GetSignature<byte>(object[])
 	}
 }

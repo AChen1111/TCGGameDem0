@@ -17,7 +17,8 @@ public static class CodeUpdate
     public static LocalizedMessage LastErrorMessage { get; private set; }
     public static string LastError => LastErrorMessage?.ToString();
     public static DevelopmentManifest CurrentManifest { get; private set; }
-    public static string AddressablesBaseUrl { get; private set; }
+    public static StartupContext Context { get; private set; } = new StartupContext();
+    public static string AddressablesBaseUrl => Context.AddressablesBaseUrl;
     public static string Sha256Of(byte[] bytes)
     {
         using (var hash = SHA256.Create()) return BitConverter.ToString(hash.ComputeHash(bytes)).Replace("-", "").ToLowerInvariant();
@@ -47,26 +48,28 @@ public static class CodeUpdate
     public static string CachePathFor(string id) => Path.Combine(Application.persistentDataPath, "DevelopmentContent", id, LoadDll.DllDir, LoadDll.HotUpdateFile);
     public static void BindEditorLocalSession(string backend, string channel, string platform, string version)
     {
-        ContentSession.BackendUrl = backend;
-        ContentSession.Platform = "Editor";
-        ContentSession.Target = "Editor";
-        ContentSession.AppVersion = version;
-        ContentSession.ReleaseId = EditorLocalReleaseId;
-        ContentSession.ConfigHash = null;
-        ContentSession.Configs = null;
-        ContentSession.CatalogUrl = null;
-        ContentSession.UseLocalAssets = true;
-        ContentSession.RestartRequired = false;
+        Context = new StartupContext();
+        Context.Channel = channel;
+        Context.BackendUrl = backend;
+        Context.Platform = "Editor";
+        Context.Target = "Editor";
+        Context.AppVersion = version;
+        Context.ReleaseId = EditorLocalReleaseId;
+        Context.ConfigHash = null;
+        Context.Configs = null;
+        Context.CatalogUrl = null;
+        Context.UseLocalAssets = true;
+
         CurrentManifest = null;
-        AddressablesBaseUrl = null;
+        Context.AddressablesBaseUrl = null;
         LastErrorMessage = null;
-        ContentSession.ServerTime = ContentSession.ServerTimeReceivedAt = DateTimeOffset.UtcNow;
+        Context.ServerTime = Context.ServerTimeReceivedAt = DateTimeOffset.UtcNow;
         IsComplete = true;
     }
     static void Fail(string error)
     {
         LastErrorMessage = new LocalizedMessage("err.content_version_failed", new Dictionary<string, object> { ["error"] = error });
-        ALog.LogError("启动内容准备失败. Error=" + error, ALogCategories.Net);
+        Debug.LogError("[Bootstrap] 启动内容准备失败. Error=" + error);
     }
     static string SafeFile(string root, string relative)
     {
@@ -86,7 +89,7 @@ public static class CodeUpdate
     public static IEnumerator FetchInto(Dictionary<string, byte[]> bytes, string backend, string channel,
         string platform, string version, Action<float> progress = null)
     {
-        IsComplete = false; LastErrorMessage = null; CurrentManifest = null;
+        IsComplete = false; LastErrorMessage = null; CurrentManifest = null; Context = new StartupContext();
         string json;
         using (var request = UnityWebRequest.Get(ManifestUrl(backend, channel, platform, version)))
         {
@@ -109,14 +112,12 @@ public static class CodeUpdate
             if (manifest.schemaVersion != DevelopmentProtocol.Version || manifest.platform != platform ||
                 !DevelopmentProtocol.ValidContentVersion(manifest.contentVersion) || manifest.hotUpdatePath != DevelopmentProtocol.HotUpdatePath ||
                 !Guid.TryParse(manifest.contentId, out _) || manifest.files == null || !DateTimeOffset.TryParse(manifest.serverTime, out _)) throw new FormatException("内容协议不一致, 请更新当前平台的完整游戏包");
-            ConfigArtifacts.Validate(manifest.configs, "");
-            if (manifest.configHash != DevelopmentProtocol.ConfigHash(manifest.configs)) throw new FormatException("配置清单校验失败");
             destination = Path.Combine(cacheRoot, manifest.contentId);
             var names = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             foreach (var file in manifest.files)
             {
                 SafeFile(destination, file.path);
-                if (!names.Add(file.path) || file.size < 0 || string.IsNullOrEmpty(file.sha256)) throw new FormatException("文件清单无效");
+                if (!names.Add(file.path) || file.size < 0 || file.sha256 == null || !System.Text.RegularExpressions.Regex.IsMatch(file.sha256, "^[0-9a-fA-F]{64}$")) throw new FormatException("文件清单无效");
             }
             if (!names.Contains(manifest.hotUpdatePath) || !names.Contains(manifest.catalogPath) || !names.Contains(manifest.catalogHashPath)) throw new FormatException("内容不完整");
         }
@@ -170,18 +171,15 @@ public static class CodeUpdate
         }
         try
         {
-            var configs = manifest.configs.ToDictionary(x => x.category, x => File.ReadAllBytes(SafeFile(destination, x.path)));
-            ConfigArtifacts.Verify(configs, manifest.configs);
-            GameConfigTables.Assemble(configs);
             bytes[LoadDll.HotUpdateFile] = File.ReadAllBytes(SafeFile(destination, manifest.hotUpdatePath));
-            ContentSession.BackendUrl = backend; ContentSession.Target = platform; ContentSession.Platform = platform;
-            ContentSession.AppVersion = version; ContentSession.ReleaseId = manifest.contentId;
-            ContentSession.ConfigHash = manifest.configHash; ContentSession.Configs = manifest.configs;
-            ContentSession.CatalogUrl = new Uri(SafeFile(destination, manifest.catalogPath)).AbsoluteUri;
-            ContentSession.ServerTime = DateTimeOffset.Parse(manifest.serverTime);
-            ContentSession.ServerTimeReceivedAt = DateTimeOffset.UtcNow;
-            ContentSession.UseLocalAssets = false; ContentSession.RestartRequired = false;
-            AddressablesBaseUrl = new Uri(Path.Combine(destination, "Addressables") + Path.DirectorySeparatorChar).AbsoluteUri.TrimEnd('/');
+            Context.BackendUrl = backend; Context.Target = platform; Context.Platform = platform;
+            Context.Channel = channel; Context.AppVersion = version; Context.ReleaseId = manifest.contentId;
+            Context.ConfigHash = manifest.configHash; Context.Configs = manifest.configs;
+            Context.CatalogUrl = new Uri(SafeFile(destination, manifest.catalogPath)).AbsoluteUri;
+            Context.ServerTime = DateTimeOffset.Parse(manifest.serverTime);
+            Context.ServerTimeReceivedAt = DateTimeOffset.UtcNow;
+            Context.UseLocalAssets = false;
+            Context.AddressablesBaseUrl = new Uri(Path.Combine(destination, "Addressables") + Path.DirectorySeparatorChar).AbsoluteUri.TrimEnd('/');
             CurrentManifest = manifest;
             // 只清除应用专用内容目录, 保留登录和玩家数据.
             foreach (var previous in Directory.GetDirectories(cacheRoot))
@@ -189,7 +187,7 @@ public static class CodeUpdate
             string legacy = Path.Combine(Application.persistentDataPath, "Content");
             if (Directory.Exists(legacy)) Directory.Delete(legacy, true);
             IsComplete = true;
-            ALog.Log("内容准备完成. Target=" + platform + "; Content=" + manifest.contentId, ALogCategories.Net);
+            Debug.Log("[Bootstrap] 内容准备完成. Target=" + platform + "; Content=" + manifest.contentId);
         }
         catch (Exception ex) { Fail(ex.Message); }
     }

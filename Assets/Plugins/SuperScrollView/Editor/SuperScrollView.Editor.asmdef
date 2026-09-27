@@ -2,8 +2,8 @@
     "name": "SuperScrollView.Editor",
     "rootNamespace": "SuperScrollView",
     "references": [
-        "SuperScrollView",
-        "UnityEngine.UI"
+        "UnityEngine.UI",
+        "HotUpdate"
     ],
     "includePlatforms": [
         "Editor"

@@ -13,7 +13,7 @@ namespace AChen.Events
         static readonly Dictionary<string, Type> s_signatures = new Dictionary<string, Type>();
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void ResetState()
+        public static void ResetState()
         {
             s_listeners.Clear();
             s_signatures.Clear();

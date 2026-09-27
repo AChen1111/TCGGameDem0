@@ -3,7 +3,11 @@ using System;
 /// <summary>商城商品剩余时间文案.</summary>
 public static class ShopRemainingTime
 {
-    public static string Format(DateTimeOffset? endsAt) => Message(endsAt)?.ToString() ?? string.Empty;
+    public static string Format(DateTimeOffset? endsAt)
+    {
+        var message = Message(endsAt);
+        return message == null ? string.Empty : LocalizationService.GetText(message.Key, message.Arguments);
+    }
 
     public static void Apply(LocalizedText text, DateTimeOffset? endsAt)
     {

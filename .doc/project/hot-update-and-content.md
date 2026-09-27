@@ -63,6 +63,9 @@ Player 每次启动请求当前平台最新 Manifest，校验协议、平台、�
 
 ## 5. 业务边界
 
-- AOT 通过 `HotUpdateEntry.Boot(Action<float>, string, Action<LocalizedMessage>)` 进入热更层。
+- AOT 通过 `HotUpdateEntry.Boot(Action<float>, StartupContext, Action<LocalizedMessage>)` 进入热更层。
 - 热更层通过 Addressables 加载资源，配置在登录前按 `GameConfig` 标签加载。
 - 共享配置和决斗规则仍使用纯 C# 共享代码，后端不会执行客户端 HotUpdate.dll。
+- 客户端组卡配置解析器 `DeckRulesConfiguration` 与 `DeckSection` 位于 `Assets/Scripts/Network/GameConfig/`，编译进 `HotUpdate.dll`，可随热更更新。命名空间仍为 `AChen.Configuration`；不要将其移回主包 `AChen.Shared`。通用二进制表及客户端/后端共用协议仍位于 `Assets/Shared`。
+
+主包/热更边界与第三方审查见 [最小启动层迁移](hot-update-migration.md)。业务配置、本地化、日志和卡牌代码已迁入 HotUpdate，后端链接相同源码；AChen.Shared 只保留启动接口。

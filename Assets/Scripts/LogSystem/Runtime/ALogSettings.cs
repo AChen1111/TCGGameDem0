@@ -4,26 +4,23 @@ using UnityEngine;
 public class ALogSettings : ScriptableObject
 {
     public const string ResourceName = "ALogSettings";
-    public const string AssetPath = "Assets/Scripts/LogSystem/Resources/ALogSettings.asset";
+    public const string AssetPath = "Assets/GameConfiguration/ALogSettings.asset";
+    public const string Address = "GameConfig/ALogSettings";
 
     [Tooltip("Enable ALog output in release players.")]
     public bool EnableInPlayer = true;
 
     private static ALogSettings s_instance;
 
+    public static void ResetState() => s_instance = null;
+
     public static ALogSettings Instance {
         get {
-            if (s_instance == null)
-            {
-                s_instance = Resources.Load<ALogSettings>(ResourceName);
-            }
             return s_instance;
         }
     }
 
-#if UNITY_EDITOR
     public static void SetEditorInstance(ALogSettings settings) {
         s_instance = settings;
     }
-#endif
 }

@@ -28,7 +28,7 @@ public static class GameFlow
     }
 
     [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.SubsystemRegistration)]
-    static void ResetState()
+    public static void ResetState()
     {
         s_enteringLobby = false;
         s_returningToLogin = false;
@@ -55,8 +55,29 @@ public static class GameFlow
 
     static void OnExitRequested()
     {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        // 按 Android 生命周期回到桌面，保留 Activity，避免重进时重复初始化 Unity。
+        // 内容更新要求的进程重启由 ContentUpdatePrompt 单独处理。
+        try
+        {
+            using var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            using var activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+            if (activity == null || !activity.Call<bool>("moveTaskToBack", true))
+            {
+                ALog.LogWarning("退出请求未能将 Android 游戏移至后台，请重试.", ALogCategories.UI);
+                return;
+            }
+
+            ALog.Log("收到退出请求, 已将 Android 游戏移至后台.", ALogCategories.UI);
+        }
+        catch (Exception exception)
+        {
+            ALog.LogError("Android 游戏返回桌面失败: " + exception.Message, ALogCategories.UI);
+        }
+#else
         ALog.Log("收到退出请求, 结束游戏.", ALogCategories.UI);
         Application.Quit();
+#endif
     }
 
     static void OnLogoutRequested() => ReturnToLoginAsync().Forget();

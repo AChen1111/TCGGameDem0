@@ -262,7 +262,7 @@ public static class AddressableCatalogSetup
     public static void EnsureSceneAddressables()
     {
         EnsureRemoteSceneGroup();
-        MarkInGroup(LocalBootGroup, InitScenePath, "Init");
+        MarkInGroup(RemoteSceneGroup, InitScenePath, "Init");
         AddressableCatalogMenu.AddScene(GameScenePath);
     }
 
