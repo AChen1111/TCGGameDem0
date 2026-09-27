@@ -1062,3 +1062,40 @@ err.card_in_deck,卡牌正在被已保存卡组使用,Saved decks need these cop
 err.invalid_dismantle_count,分解版本或数量无效,Invalid version or quantity
 err.card_not_owned,持有卡牌数量不足,Not enough copies owned
 err.ur_overflow,UR 数量超出可保存范围,UR amount exceeds the supported range
+ui.deck.list,编辑卡组,Decks
+ui.deck.edit,编辑卡组,Edit Deck
+ui.deck.save,保存,Save
+ui.deck.main,主卡组,Main Deck
+ui.deck.extra,额外卡组,Extra Deck
+ui.deck.cards,卡片列表,Card List
+ui.deck.search,搜索卡名,Search card name
+ui.deck.name_prompt,请输入卡组名。,Enter a deck name.
+ui.deck.name_placeholder,卡组名,Deck name
+ui.deck.rename,修改卡组名,Rename Deck
+ui.deck.confirm,确认,Confirm
+ui.deck.cancel,取消,Cancel
+ui.deck.empty,点击＋创建你的第一个卡组,Click + to create your first deck
+ui.deck.add_prompt,可以向卡组中添加卡片,Drag cards here to build your deck
+ui.deck.ready,可用,Ready
+ui.deck.incomplete,未完成,Incomplete
+ui.deck.saved,卡组已保存到服务器,Deck saved to the server
+ui.deck.unsaved,卡组有未保存的改动。请选择如何返回。,This deck has unsaved changes. How would you like to return?
+ui.deck.save_back,保存并返回,Save and Return
+ui.deck.discard,放弃改动,Discard Changes
+ui.deck.continue,继续编辑,Keep Editing
+ui.deck.delete_confirm,确定删除卡组「{name}」吗？,"Delete deck ""{name}""?"
+ui.deck.conflict,服务器上的卡组已经改变。重新读取将放弃当前改动；取消可保留草稿。,The server deck has changed. Reloading discards your edits; cancel to keep your draft.
+err.deck.load,读取卡组失败，请重新打开。,Could not load the deck. Please reopen it.
+err.deck.save,保存卡组失败，请重试。,Could not save the deck. Please try again.
+err.deck.delete,删除卡组失败，请重试。,Could not delete the deck. Please try again.
+ui.deck.issue.MainTooSmall,主卡组至少需要40张卡牌。,The main deck needs at least 40 cards.
+ui.deck.issue.MainTooLarge,主卡组最多放入60张卡牌。,The main deck can hold up to 60 cards.
+ui.deck.issue.ExtraTooLarge,额外卡组最多放入15张卡牌。,The extra deck can hold up to 15 cards.
+ui.deck.issue.CopyLimitExceeded,已达到这张同名卡的数量限制。,This card has reached its copy limit.
+ui.deck.issue.InvalidName,请输入有效的卡组名。,Enter a valid deck name.
+ui.deck.issue.InvalidEntry,卡牌条目无效。,Invalid card entry.
+ui.deck.issue.UnknownCard,这张卡牌已不在当前卡池中。,This card is no longer in the current catalog.
+ui.deck.issue.WrongSection,这张卡牌不能放入当前分区。,This card belongs in a different deck section.
+ui.deck.issue.NotOwned,已达到该版本的拥有数量。,You have used all owned copies of this version.
+ui.deck.issue.ConfigNotReady,组卡配置尚未就绪。,Deck configuration is not ready.
+ui.deck.issue.InventoryNotReady,卡牌收藏尚未就绪。,Card inventory is not ready.

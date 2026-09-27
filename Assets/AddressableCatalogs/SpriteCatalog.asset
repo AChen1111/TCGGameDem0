@@ -2799,3 +2799,10 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: DeckCase2004_L
+    reference:
+      m_AssetGUID: 7e4d3b666a8de7e4ab0b8e1200128718
+      m_SubObjectName: DeckCase2004_L
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

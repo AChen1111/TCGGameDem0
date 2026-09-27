@@ -1,0 +1,7 @@
+Fuzzy name search=4; empty result state passed; clear restored=124
+Raycast click; pool→deck drag twice; two expanded cells without quantity; deck→pool drag; detail +1/-1 passed
+Extra monster routed to extra deck
+Server confirmed deck=1696cf88-58d6-434d-89d3-375529baba6e revision=1 main=1 extra=1
+Reopened: Server confirmed deck=1696cf88-58d6-434d-89d3-375529baba6e revision=1 main=1 extra=1
+Rename, continue, discard, save/back and reopen passed; final revision=2
+Delete cancel/confirm passed; temporary test deck removed

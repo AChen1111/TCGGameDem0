@@ -223,3 +223,59 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: DeckListWindow
+    reference:
+      m_AssetGUID: 5e0f0582af86b1a47a152ae03d4d2c7a
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: DeckEditWindow
+    reference:
+      m_AssetGUID: 43868488cf58d7d43b2cf10dd48c1cf2
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: DeckNameWindow
+    reference:
+      m_AssetGUID: b9e312be0c14cef4ebd795e85ae42b93
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: DeckUnsavedWindow
+    reference:
+      m_AssetGUID: 216e98f60891c5d48ad9ec272369e8d1
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: DeckCardRow
+    reference:
+      m_AssetGUID: 8e719cfbb888f5e459886812c16c11f6
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: DeckCardCell
+    reference:
+      m_AssetGUID: 863d009ec7b79b94abe407aa27987269
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: DeckListItem
+    reference:
+      m_AssetGUID: ff56dbd9a6806404b99c4742c594e75d
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: DeckPlacedCardCell
+    reference:
+      m_AssetGUID: 0ddf1a8e5dd9daf4596003ab5b5180c8
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

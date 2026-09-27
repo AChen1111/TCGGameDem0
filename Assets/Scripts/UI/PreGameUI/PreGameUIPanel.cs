@@ -65,6 +65,7 @@ public class PreGameUIPanel : APanelController
         m_BtnSetting.onClick.AddListener(OnSettingClick);
         m_BtnFriend.onClick.AddListener(OnFriendClick);
         m_BtnGift.onClick.AddListener(OnGiftClick);
+        m_BtnDeck.onClick.AddListener(OnDeckClick);
     }
 
     protected override void RemoveListeners()
@@ -78,6 +79,7 @@ public class PreGameUIPanel : APanelController
         m_BtnSetting.onClick.RemoveListener(OnSettingClick);
         m_BtnFriend.onClick.RemoveListener(OnFriendClick);
         m_BtnGift.onClick.RemoveListener(OnGiftClick);
+        m_BtnDeck.onClick.RemoveListener(OnDeckClick);
     }
 
     protected override void OnOpen()
@@ -109,6 +111,8 @@ public class PreGameUIPanel : APanelController
         ALog.Log("打开商城窗", ALogCategories.UI);
         RequestOpenWindow(AddressKeys.Prefab.ShopWindows);
     }
+
+    void OnDeckClick() => RequestOpenWindow(AddressKeys.Prefab.DeckListWindow);
 
     void OnExitClick() => EventCenter.Dispatch(GameEvent.GameExitRequested);
 

@@ -20,6 +20,14 @@ public static class AddressKeys
         public static readonly string CardWorkshopRow = "CardWorkshopRow";
         public static readonly string CardZoomWindow = "CardZoomWindow";
         public static readonly string ChooseWindow = "ChooseWindow";
+        public static readonly string DeckCardCell = "DeckCardCell";
+        public static readonly string DeckCardRow = "DeckCardRow";
+        public static readonly string DeckEditWindow = "DeckEditWindow";
+        public static readonly string DeckListItem = "DeckListItem";
+        public static readonly string DeckListWindow = "DeckListWindow";
+        public static readonly string DeckNameWindow = "DeckNameWindow";
+        public static readonly string DeckPlacedCardCell = "DeckPlacedCardCell";
+        public static readonly string DeckUnsavedWindow = "DeckUnsavedWindow";
         public static readonly string FriendApplyRowPrefab = "FriendApplyRowPrefab";
         public static readonly string FriendRowPrefab = "FriendRowPrefab";
         public static readonly string FriendWindow = "FriendWindow";
@@ -38,6 +46,7 @@ public static class AddressKeys
     }
     public static class Sprite
     {
+        public static readonly string DeckCase2004_L = "DeckCase2004_L";
         public static readonly string Icon_Rarity_UR = "Icon_Rarity_UR";
         public static readonly string Profile_GUI_ButtonClose = "Profile_GUI_ButtonClose";
         public static readonly string Profile_GUI_CommonButtonM = "Profile_GUI_CommonButtonM";

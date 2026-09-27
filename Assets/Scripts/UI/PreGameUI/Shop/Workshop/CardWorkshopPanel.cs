@@ -74,7 +74,7 @@ public sealed class CardWorkshopPanel : MonoBehaviour
                 player.OwnedCards.Where(c => c.CardId == x.CardId).Sum(c => c.Count), m_dismantle))
             .Where(x => m_dismantle ? x.TotalOwned > 0 : !m_OnlyCraftable.isOn || x.NormalOwned == 0)
             .Where(x => x.CardId.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                LocalizationService.GetText("card." + x.CardId + ".name").IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+                CardNameSearch.Matches(x.CardId, search)).ToList();
         m_OnlyCraftable.gameObject.SetActive(!m_dismantle);
         m_CraftLabel.color = !m_dismantle ? new Color(.86f, 1f, .35f) : Color.white;
         m_DismantleLabel.color = m_dismantle ? new Color(.86f, 1f, .35f) : Color.white;
