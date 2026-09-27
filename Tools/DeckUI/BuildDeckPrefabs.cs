@@ -174,7 +174,7 @@ public static class BuildDeckPrefabs
         var root=R("DeckCardRow",null,0,0,520,94);root.gameObject.AddComponent<LoopListViewItem2>();var row=root.gameObject.AddComponent<DeckCardRow>();var items=new DeckCardCell[8];
         var prefab=AssetDatabase.LoadAssetAtPath<GameObject>(Folder+"DeckCardCell.prefab");
         for(int i=0;i<8;i++){var child=(GameObject)PrefabUtility.InstantiatePrefab(prefab,root);((RectTransform)child.transform).anchoredPosition=new Vector2(i*64+6,-4);items[i]=All<DeckCardCell>(child).Single();}
-        Refs(row,"m_Items",items);Save(root.gameObject,"DeckCardRow");
+        Refs(row,"m_Items",items);Ref(row,"m_Rect",root);Save(root.gameObject,"DeckCardRow");
     }
     static void ListItem()
     {
@@ -227,7 +227,7 @@ public static class BuildDeckPrefabs
         foreach(var scroll in new[]{main,extra}) { var layout=All<GridLayoutGroup>(scroll.gameObject).Single();layout.spacing=new Vector2(6,8);layout.padding=new RectOffset(10,10,8,8); }
         T("Txt_Status",r,640,119,353,51,"",18).alignment=TextAlignmentOptions.MidlineRight;
         Img("PoolHeader",r,1142,114,538,53,null,Green);L("PoolTitle",r,1160,114,440,53,"ui.deck.cards",30).color=Color.black;
-        Input("Inp_Search",r,1151,179,408,49,"ui.deck.search");T("Txt_Results",r,1568,179,102,49,"0",25).alignment=TextAlignmentOptions.Center;
+        var poolSearch=Input("Inp_Search",r,1151,179,408,49,"ui.deck.search");T("Txt_Results",r,1568,179,102,49,"0",25).alignment=TextAlignmentOptions.Center;
         var pool=Scroll("CardPool",r,1150,245,522,675);var loop=pool.gameObject.AddComponent<LoopListView2>();var grid=pool.gameObject.AddComponent<GridListController>();Ref(grid,"loopListView",loop);
         var poolEmpty=L("NoResults",r,1170,480,482,80,"ui.workshop.empty",25);poolEmpty.alignment=TextAlignmentOptions.Center;
         var dropMain=main.gameObject.AddComponent<DeckDropArea>();var dropExtra=extra.gameObject.AddComponent<DeckDropArea>();var dropPool=pool.gameObject.AddComponent<DeckDropArea>();
@@ -235,6 +235,18 @@ public static class BuildDeckPrefabs
         foreach(var drop in new[]{dropMain,dropExtra}){var so=new SerializedObject(drop);so.FindProperty("m_IntoDeck").boolValue=true;so.ApplyModifiedPropertiesWithoutUndo();}
         var deckHighlight=Frame("DeckDropHighlight",r,402,182,714,746,Green);deckHighlight.enabled=false;
         var poolHighlight=Frame("PoolDropHighlight",r,1140,235,542,693,Green);poolHighlight.enabled=false;
+        // Right-side panel expands with the canvas; virtual rows retain eight columns.
+        foreach(RectTransform rect in r)
+        {
+            if(rect.anchoredPosition.x<1140||rect.anchoredPosition.y>-100)continue;
+            if(rect.name=="Txt_Results"){rect.anchorMin=rect.anchorMax=new Vector2(1,1);rect.anchoredPosition+=new Vector2(-1706,0);}
+            else{rect.anchorMax=new Vector2(1,1);rect.sizeDelta+=new Vector2(-1706,0);}
+        }
+        pool.viewport.anchorMax=new Vector2(1,1);pool.viewport.sizeDelta=new Vector2(0,pool.viewport.sizeDelta.y);
+        pool.content.anchorMax=new Vector2(1,1);pool.content.sizeDelta=new Vector2(0,pool.content.sizeDelta.y);
+        var poolSettings=new SerializedObject(grid);poolSettings.FindProperty("stretchRowToViewport").boolValue=true;poolSettings.ApplyModifiedPropertiesWithoutUndo();
+        poolSearch.textViewport.anchorMax=new Vector2(1,1);poolSearch.textViewport.sizeDelta=new Vector2(-24,poolSearch.textViewport.sizeDelta.y);
+        foreach(var text in new[]{poolSearch.textComponent,(TMP_Text)poolSearch.placeholder}){text.rectTransform.anchorMax=new Vector2(1,1);text.rectTransform.sizeDelta=new Vector2(0,text.rectTransform.sizeDelta.y);}
         var drag=R("DragGhost",r,0,0,76,111);drag.pivot=new Vector2(.5f,.5f);var dragCard=Card("DragCard",drag,0,0,76,111);drag.gameObject.SetActive(false);
         Ref(controller,"m_Pool",grid);Ref(controller,"m_PoolScroll",pool);Ref(controller,"m_MainScroll",main);Ref(controller,"m_ExtraScroll",extra);
         Ref(controller,"m_DeckCellPrefab",All<DeckCardCell>(AssetDatabase.LoadAssetAtPath<GameObject>(Folder+"DeckPlacedCardCell.prefab")).Single());
