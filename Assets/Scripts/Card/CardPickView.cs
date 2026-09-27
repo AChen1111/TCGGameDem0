@@ -181,8 +181,11 @@ public class CardPickView : MonoBehaviour
 
     public void SetTiltEnabled(bool enabled)
     {
-        _cardMouseTilt.enabled = enabled;
+        _cardMouseTilt.enabled = enabled && !ShowsDismantleEffect;
     }
+
+    // 分解得到的 UR 数量已经叠在卡面上。
+    bool ShowsDismantleEffect => _cardStatus == CardStatus.CanInspect && _data.overflowUr > 0;
 
     //切换卡牌状态
     private void _SwitchStatus(CardStatus status)
@@ -210,7 +213,7 @@ public class CardPickView : MonoBehaviour
                 break;
             case CardStatus.CanInspect:
                 _cardFlip.SetShowBack(false);
-                _cardMouseTilt.enabled = true;
+                _cardMouseTilt.enabled = !ShowsDismantleEffect;
                 _cardFlip.enabled = false;
                 break;
         }
@@ -245,6 +248,11 @@ public class CardPickView : MonoBehaviour
         {
             if (_cardStatus == CardStatus.CanInspect)
             {
+                if (ShowsDismantleEffect)
+                {
+                    return;
+                }
+
                 _controller?.NotifyInspect(_index);
                 return;
             }
