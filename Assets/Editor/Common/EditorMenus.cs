@@ -7,6 +7,7 @@ public static class EditorMenus
     public const string Backend = "Tools/后端服务/";
     public const string Release = "Tools/热更发布/";
     public const string Config = "Tools/配置表/";
+    public const string SyncEditorConfig = "Tools/同步编辑器配置";
     public const string Ops = "Tools/运营工具/";
     public const string Art = "Tools/美术资源/";
     public const string Window = "Window/TCG/";
