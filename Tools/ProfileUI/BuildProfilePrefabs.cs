@@ -135,7 +135,15 @@ public static class BuildProfilePrefabs
     static void UpdateExisting()
     {
         string hall="Assets/UI/Prefab/Hall/PreGameUI/PreGameUIPanel.prefab";
-        var root=PrefabUtility.LoadPrefabContents(hall);ReplacePortrait(root,All<PlayerProfileView>(root).Single(),"AvatarImg");PrefabUtility.SaveAsPrefabAsset(root,hall);PrefabUtility.UnloadPrefabContents(root);
+        var root=PrefabUtility.LoadPrefabContents(hall);ReplacePortrait(root,All<PlayerProfileView>(root).Single(),"AvatarImg");
+        var hallPortrait=All<AvatarPortraitView>(root).Single();
+        var avatarButton=All<Button>(root).Single(x=>x.name=="Btn_Avatar");
+        var hallRect=(RectTransform)hallPortrait.transform;hallRect.SetParent(avatarButton.transform,false);
+        hallRect.anchorMin=hallRect.anchorMax=hallRect.pivot=new Vector2(.5f,.5f);hallRect.anchoredPosition=new Vector2(3,2.85f);hallRect.sizeDelta=new Vector2(96,96);hallRect.localScale=Vector3.one;
+        foreach(var image in All<Image>(hallPortrait.gameObject).Where(x=>x.name=="ClipMask"||x.name=="FrameImage"))Stretch(image.rectTransform);
+        foreach(var image in All<Image>(root).Where(x=>x.name=="AvatarBG"||x.name=="AvatarBG (1)"))UnityEngine.Object.DestroyImmediate(image.gameObject);
+        var hallFrame=All<Image>(hallPortrait.gameObject).Single(x=>x.name=="FrameImage");hallFrame.raycastTarget=true;avatarButton.targetGraphic=hallFrame;
+        PrefabUtility.SaveAsPrefabAsset(root,hall);PrefabUtility.UnloadPrefabContents(root);
         foreach(string path in new[]{"Assets/UI/Prefab/Hall/PreGameUI/Meau/FriendWindow/FriendRowPrefab.prefab","Assets/UI/Prefab/Hall/PreGameUI/Meau/GiftWindow/FriendApplyRowPrefab.prefab"})
         {
             root=PrefabUtility.LoadPrefabContents(path); Component ctl=path.Contains("FriendRowPrefab")?(Component)All<FriendRowItem>(root).Single():All<GiftRequestRowItem>(root).Single();

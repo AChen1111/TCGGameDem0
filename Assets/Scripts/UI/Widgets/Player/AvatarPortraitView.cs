@@ -17,6 +17,7 @@ public sealed class AvatarPortraitView : MonoBehaviour
 
     async UniTask LoadAsync(int avatarId, int frameId, int version)
     {
+        var lifetime = destroyCancellationToken;
         m_ImgAvatar.enabled = m_ImgFrame.enabled = false;
         try
         {
@@ -26,12 +27,13 @@ public sealed class AvatarPortraitView : MonoBehaviour
                 AddressableLoader.Instance.LoadSprite(store.Avatars[avatarId].ResourceKey),
                 AddressableLoader.Instance.LoadSprite(frame.ResourceKey),
                 AddressableLoader.Instance.LoadSprite(frame.MaskResourceKey) });
-            if (version != m_version) return;
+            if (version != m_version || lifetime.IsCancellationRequested) return;
             Apply(sprites[0], sprites[1], sprites[2]);
         }
         catch (Exception e)
         {
-            if (version == m_version) ALog.LogError($"头像组合加载失败: Avatar={avatarId}; Frame={frameId}; {e.Message}", ALogCategories.UI);
+            if (version == m_version && !lifetime.IsCancellationRequested)
+                ALog.LogError($"头像组合加载失败: Avatar={avatarId}; Frame={frameId}; {e.Message}", ALogCategories.UI);
         }
     }
 

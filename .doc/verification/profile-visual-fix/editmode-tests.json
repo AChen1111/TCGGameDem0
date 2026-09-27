@@ -1,0 +1,41 @@
+{
+  "status": "completed",
+  "duration": 1.42,
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "ProfileCustomizationTests.Lobby_portrait_has_no_legacy_frames_or_inherited_shrink",
+      "Status": "Passed",
+      "Duration": 0.0396049,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ProfileCustomizationTests.Published_catalog_has_exact_assets_prices_and_individual_masks",
+      "Status": "Passed",
+      "Duration": 0.0670729,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ProfileCustomizationTests.Shop_portrait_has_transparent_click_surface_outside_hidden_legacy_image",
+      "Status": "Passed",
+      "Duration": 0.0096924,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "ProfileCustomizationTests.Window_keeps_separate_drafts_shows_only_owned_and_resets_on_reopen",
+      "Status": "Passed",
+      "Duration": 1.1016963,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

@@ -87,9 +87,13 @@ public sealed class ProfileEditWindow : AWindowController<ProfileEditWindowPrope
         m_tab = tab;
         m_GoNamePage.SetActive(tab == ProfileEditTab.Name);
         m_GoCosmetics.SetActive(tab != ProfileEditTab.Name);
+        Button[] tabs = { m_BtnName, m_BtnAvatar, m_BtnFrame };
         for (int i = 0; i < m_TabImages.Length; i++)
         {
+            // 当前页的底图由页签状态决定，避免 Selectable 用普通图覆盖绿色选中图。
+            tabs[i].transition = i == (int)tab ? Selectable.Transition.None : Selectable.Transition.SpriteSwap;
             m_TabImages[i].sprite = i == (int)tab ? m_TabSelected : m_TabNormal;
+            m_TabImages[i].overrideSprite = null;
             m_TabImages[i].color = i == (int)tab ? Color.white : new Color(.12f, .23f, .29f);
             m_TabLabels[i].color = i == (int)tab ? Color.black : Color.white;
         }
