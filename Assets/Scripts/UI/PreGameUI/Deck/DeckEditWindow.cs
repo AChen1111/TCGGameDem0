@@ -140,14 +140,18 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
     void Refresh()
     {
         var deck = m_state.Draft.ToData();
+        RefreshDeckHeader(deck);
+        Populate(m_MainScroll.content, deck.MainDeck, m_mainCells);
+        Populate(m_ExtraScroll.content, deck.ExtraDeck, m_extraCells);
+        RefreshPool(); RefreshButtons();
+    }
+    void RefreshDeckHeader(DeckData deck)
+    {
         m_TxtName.text = deck.Name + (m_state.IsDirty ? " *" : string.Empty);
         m_TxtMainCount.text = deck.MainDeck.Sum(x => x.Count) + " / 60";
         m_TxtExtraCount.text = deck.ExtraDeck.Sum(x => x.Count) + " / 15";
         m_TxtStatus.text = LocalizationService.GetText(deck.MainDeck.Sum(x => x.Count) < 40 ? "ui.deck.incomplete" : "ui.deck.ready");
         m_GoEmpty.SetActive(deck.MainDeck.Count == 0);
-        Populate(m_MainScroll.content, deck.MainDeck, m_mainCells);
-        Populate(m_ExtraScroll.content, deck.ExtraDeck, m_extraCells);
-        RefreshPool(); RefreshButtons();
     }
     void Populate(RectTransform content, IReadOnlyList<DeckCardEntry> entries, List<DeckCardCell> cells)
     {
@@ -235,8 +239,35 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
         var result = m_state.TryChange(data.CardId, data.Rarity, delta, LocalGameConfiguration.DeckRules, Inventory());
         if (!result.IsValid) { ShowIssue(result); return false; }
         if (!keepCardMoves) StopCardMoves();
-        Refresh();
+        UpdateDeckCell(data, delta);
+        RefreshDeckHeader(m_state.Draft.ToData());
+        RefreshButtons();
         return true;
+    }
+    void UpdateDeckCell(DeckCardData data, int delta)
+    {
+        var scroll = DeckScrollFor(data.CardId);
+        var cells = scroll == m_MainScroll ? m_mainCells : m_extraCells;
+        if (delta > 0)
+        {
+            int copyIndex = cells.Count(x => x.Data.CardId == data.CardId && x.Data.Rarity == data.Rarity);
+            var card = new DeckCardData(data.CardId, data.SourcePool, data.Rarity, 0, true, this);
+            var cell = Instantiate(m_DeckCellPrefab, scroll.content);
+            cell.Bind(card, copyIndex, false, _ => SelectCard(card));
+            int index = cells.FindIndex(x => string.CompareOrdinal(x.Data.CardId, data.CardId) > 0
+                || (x.Data.CardId == data.CardId && x.Data.Rarity > data.Rarity));
+            if (index < 0) index = cells.Count;
+            if (index < cells.Count) cell.transform.SetSiblingIndex(cells[index].transform.GetSiblingIndex());
+            cells.Insert(index, cell);
+        }
+        else
+        {
+            int index = cells.FindLastIndex(x => x.Data.CardId == data.CardId && x.Data.Rarity == data.Rarity);
+            var cell = cells[index];
+            cell.gameObject.SetActive(false);
+            Destroy(cell.gameObject);
+            cells.RemoveAt(index);
+        }
     }
     public void AddCardFromClick(DeckCardData data, Texture texture, Vector3 worldCenter)
     {
@@ -244,8 +275,7 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
         if (!Change(data, 1, true)) return;
         var move = new CardMove { Data = data, CopyIndex = m_state.Count(data.CardId, data.Rarity) - 1,
             View = Instantiate(m_DragCard, m_CanvasRect) };
-        var scroll = ScrollFor(new DeckCardData(data.CardId, data.SourcePool, data.Rarity, 0, true, this));
-        Canvas.ForceUpdateCanvases();
+        var scroll = DeckScrollFor(data.CardId);
         LayoutRebuilder.ForceRebuildLayoutImmediate(scroll.content);
         var landingCell = LandingCard(move);
         var landing = landingCell.View;
@@ -343,7 +373,11 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
     public ScrollRect ScrollFor(DeckCardData data)
     {
         if (!data.InDeck) return m_PoolScroll;
-        LocalGameConfiguration.DeckRules.TryGetSection(data.CardId, out var section);
+        return DeckScrollFor(data.CardId);
+    }
+    ScrollRect DeckScrollFor(string cardId)
+    {
+        LocalGameConfiguration.DeckRules.TryGetSection(cardId, out var section);
         return section == DeckSection.Main ? m_MainScroll : m_ExtraScroll;
     }
     public void BeginCardDrag(DeckCardData data, Texture texture, Vector2 pointer)
