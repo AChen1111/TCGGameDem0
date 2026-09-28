@@ -1,6 +1,7 @@
 using System;
 using AChen.Configuration;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,9 @@ public static class HotUpdateEntry
 
     public static void Boot(Action<float> onProgress, StartupContext context, Action<LocalizedMessage> onError)
     {
+#if UNITY_ANDROID || UNITY_IOS
+        Application.targetFrameRate = (int)Math.Ceiling(Screen.currentResolution.refreshRateRatio.value);
+#endif
         BootAsync(onProgress, context, onError).Forget();
     }
 
