@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public sealed class CardWorkshopDetail : MonoBehaviour
 {
     [SerializeField] RawImage m_Card;
+    [SerializeField] Material[] m_Materials;
     [SerializeField] LocalizedText m_Title;
     [SerializeField] LocalizedText m_Owned;
     [SerializeField] LocalizedText m_Price;
@@ -34,13 +35,13 @@ public sealed class CardWorkshopDetail : MonoBehaviour
     void Awake()
     {
         for (int i = 0; i < m_Versions.Length; i++)
-        { int version = i; m_Versions[i].onClick.AddListener(() => { Rarity = version; Quantity = 1; Changed(); }); }
+        { int version = i; m_Versions[i].onClick.AddListener(() => { Rarity = version; Quantity = 1; m_Card.material = m_Materials[Rarity]; Changed(); }); }
         m_Minus.onClick.AddListener(() => { Quantity = Math.Max(1, Quantity - 1); Changed(); });
         m_Plus.onClick.AddListener(() => { Quantity = Math.Min(m_available, Quantity + 1); Changed(); });
         m_Action.onClick.AddListener(() => Submitted());
         m_Inspect.onClick.AddListener(() => Inspected());
     }
-    public void ResetSelection(int rarity) { Rarity = rarity; Quantity = 1; }
+    public void ResetSelection(int rarity) { Rarity = rarity; Quantity = 1; m_Card.material = m_Materials[Rarity]; }
     public async UniTask SetCardAsync(WorkshopCardData card, CancellationToken ct)
     {
         m_cardId = card.CardId;
@@ -57,7 +58,7 @@ public sealed class CardWorkshopDetail : MonoBehaviour
         Quantity = Math.Max(1, Math.Min(Quantity, m_available));
         for (int i = 0; i < m_Versions.Length; i++)
         {
-            m_Versions[i].interactable = !busy && owned[i] > 0;
+            m_Versions[i].interactable = !busy;
             m_VersionLabels[i].text = LocalizationService.GetText("ui.rarity." + i) + " ×" + owned[i];
             m_VersionLabels[i].color = Rarity == i ? new Color(.86f, 1f, .35f) : Color.white;
         }

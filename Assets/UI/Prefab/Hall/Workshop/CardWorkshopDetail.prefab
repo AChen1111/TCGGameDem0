@@ -2414,6 +2414,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: HotUpdate::CardWorkshopDetail
   m_Card: {fileID: 5499430167293862667}
+  m_Materials:
+  - {fileID: 2100000, guid: 5bc5e18be570db94ca79952a7d5b234f, type: 2}
+  - {fileID: 2100000, guid: 8c508bc93b437ba49ace2bef87dd5615, type: 2}
+  - {fileID: 2100000, guid: c5cc29e866aab374e86789714cee3667, type: 2}
+  - {fileID: 2100000, guid: e0acf6e226c821e4eab08a29e8774ddd, type: 2}
+  - {fileID: 2100000, guid: 40a20d7a16004954e950a0ebcc3cfcb4, type: 2}
   m_Title: {fileID: 3211651252779347518}
   m_Owned: {fileID: 2677488432994809513}
   m_Price: {fileID: 3257321763587904956}
