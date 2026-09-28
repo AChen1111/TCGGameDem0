@@ -19,6 +19,7 @@ public sealed class UIHoverScale : MonoBehaviour, IPointerEnterHandler, IPointer
     int m_originSiblingIndex;
     LayoutGroup m_parentLayout;
     bool m_raised;
+    bool m_restoreSibling;
 
     void Awake()
     {
@@ -33,7 +34,23 @@ public sealed class UIHoverScale : MonoBehaviour, IPointerEnterHandler, IPointer
     {
         m_handle.TryCancel();
         transform.localScale = m_originScale;
-        SetRaised(false);
+        // 父物体停用期间不能修改同级顺序，等重新启用后再恢复。
+        m_restoreSibling |= m_raised;
+        m_raised = false;
+        if (m_parentLayout != null)
+        {
+            m_parentLayout.enabled = true;
+            m_parentLayout = null;
+        }
+    }
+
+    void LateUpdate() => RestoreSibling();
+
+    void RestoreSibling()
+    {
+        if (!m_restoreSibling) return;
+        m_restoreSibling = false;
+        transform.SetSiblingIndex(m_originSiblingIndex);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -43,6 +60,7 @@ public sealed class UIHoverScale : MonoBehaviour, IPointerEnterHandler, IPointer
             return;
         }
 
+        RestoreSibling();
         SetRaised(true);
         AnimateTo(m_originScale * m_scaleMultiplier);
     }
@@ -73,7 +91,7 @@ public sealed class UIHoverScale : MonoBehaviour, IPointerEnterHandler, IPointer
             return;
         }
 
-        transform.SetSiblingIndex(m_originSiblingIndex);
+        m_restoreSibling = true;
         if (m_parentLayout != null)
         {
             m_parentLayout.enabled = true;
