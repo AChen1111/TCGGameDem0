@@ -23,7 +23,7 @@ public sealed class DeckPackagedConfigTests
             files.Add(name, File.ReadAllBytes("Assets/GameConfiguration/" + name + ".bytes"));
         }
         var rules = DeckRulesConfiguration.Load(files);
-        Assert.AreEqual(92, rules.CardCount);
+        Assert.AreEqual(91, rules.CardCount);
         Assert.IsTrue(rules.TryGetSection("01639384", out var section));
         Assert.AreEqual(DeckSection.Extra, section);
         Assert.AreEqual(3, rules.GetMaxCopies("01639384"));

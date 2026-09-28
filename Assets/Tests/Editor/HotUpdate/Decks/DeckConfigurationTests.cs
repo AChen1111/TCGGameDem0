@@ -31,9 +31,10 @@ public sealed class DeckConfigurationTests
         int id = sections.Column("CardId", "string");
         int section = sections.Column("Section", "string");
         CollectionAssert.AreEquivalent(cards.Rows.Select(x => x[0]), sections.Rows.Select(x => x[id]));
-        Assert.AreEqual(92, sections.Rows.Length);
+        Assert.AreEqual(91, sections.Rows.Length);
         Assert.AreEqual(55, sections.Rows.Count(x => (string)x[section] == "Main"));
-        Assert.AreEqual(37, sections.Rows.Count(x => (string)x[section] == "Extra"));
+        Assert.AreEqual(36, sections.Rows.Count(x => (string)x[section] == "Extra"));
+        Assert.IsFalse(sections.Rows.Any(x => (string)x[id] == "19222426"));
         Assert.IsTrue(sections.Rows.Any(x => (string)x[id] == "01639384" && (string)x[section] == "Extra"));
         var bans = BinaryTable.Decode(BinaryTableCsv.Compile("TableData/card-banlist.csv"));
         bans.Column("CardId", "string");
@@ -85,7 +86,7 @@ public sealed class DeckConfigurationTests
         File.WriteAllText(Path.Combine(m_root, "card-banlist.csv"), "CardId,MaxCopies\nstring,int\n01639384,1\n");
         var files = PublishedConfigBuilder.CompileDirectory(m_root);
         var rules = DeckRulesConfiguration.Load(files);
-        Assert.AreEqual(92, rules.CardCount);
+        Assert.AreEqual(91, rules.CardCount);
         Assert.AreEqual(1, rules.GetMaxCopies("01639384"));
         Assert.AreEqual(3, rules.GetMaxCopies("00213326"));
         Assert.IsTrue(rules.TryGetSection("01639384", out var section));

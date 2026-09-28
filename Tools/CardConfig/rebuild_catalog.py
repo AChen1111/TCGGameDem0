@@ -10,13 +10,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2] / "TableData"
 VARIANTS = {"14558128": ("14558127", "Card03"), "94145022": ("94145021", "Card03")}
+REMOVED = {"19222426"}
 BLUE = {
     "02129638", "08240199", "38517737", "40908371", "45467446",
     "59822133", "71039903", "79814787", "89631139",
 }
 HERO = {
     "00213326", "01948619", "08949584", "09411399", "10186633",
-    "17955766", "19222426", "19324993", "21143940", "22908820",
+    "17955766", "19324993", "21143940", "22908820",
     "23204029", "27780618", "32828466", "40044918", "45906428",
     "50720316", "55171412", "56733747", "58004362", "58481572",
     "60461804", "63060238", "75047173", "89943723", "93347961",
@@ -49,13 +50,13 @@ def write(name, header, rows):
 assert not (BLUE & HERO or BLUE & SKY or HERO & SKY)
 header, all_cards = read("all-cards")
 original = {row[0]: row[1] for row in all_cards}
-canonical = {card_id: pool for card_id, pool in original.items() if card_id not in VARIANTS}
+canonical = {card_id: pool for card_id, pool in original.items() if card_id not in VARIANTS and card_id not in REMOVED}
 assert (BLUE | HERO | SKY | POPULAR) <= canonical.keys()
 write("all-cards", header, [row for row in all_cards if row[0] in canonical])
 
 for name in ("Cards", "card-deck-sections", "card-banlist"):
     header, rows = read(name)
-    write(name, header, [row for row in rows if row[0] not in VARIANTS])
+    write(name, header, [row for row in rows if row[0] not in VARIANTS and row[0] not in REMOVED])
 
 header, rows = read("pool-entries")
 pool_rows = []
@@ -78,7 +79,7 @@ write("card-special-materials", [["CardId", "AllowColorful", "AllowGoldOutline"]
 write("rarity-weights", [["Rarity", "Weight"], ["int", "int"]], [["0", "60"], ["1", "10"], ["3", "20"]])
 
 header, translations = read("Translations")
-translations = [row for row in translations if not any(row[0].startswith("card." + art_id + ".") for art_id in VARIANTS)]
+translations = [row for row in translations if not any(row[0].startswith("card." + art_id + ".") for art_id in VARIANTS.keys() | REMOVED)]
 for row in translations:
     if row[0].startswith("shop.pack."):
         pack_number = int(row[0].rsplit(".", 1)[1]) - 1

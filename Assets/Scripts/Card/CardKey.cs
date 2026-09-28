@@ -104,8 +104,6 @@ public static class CardKey
         public static readonly string ElementalHEROStratos = "40044918";
         /// <summary>元素英雄 日出侠</summary>
         public static readonly string ElementalHEROSunrise = "22908820";
-        /// <summary>元素英雄 雷霆巨人-伏特轰雷</summary>
-        public static readonly string ElementalHEROThunderGiantVolticThunder = "19222426";
         /// <summary>至爱接触</summary>
         public static readonly string FavoriteContact = "75047173";
         /// <summary>愚蠢的埋葬</summary>
