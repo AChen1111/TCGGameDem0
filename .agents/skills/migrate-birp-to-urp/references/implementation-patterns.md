@@ -398,7 +398,7 @@ static bool EnableReflectionProbeSettings(UniversalRenderPipelineAsset urpAsset)
 }
 ```
 
-This does not prove reflection probes were re-rendered. It only proves the URP asset is allowed to use blending and box projection. Report probe refresh separately, based on successful render output, changed probe assets, or visual acceptance.
+This does not prove reflection probes were re-rendered. It only proves the URP asset is allowed to use blending and box projection. Report probe refresh separately, based on successful render output or changed probe assets.
 
 ## Lighting And Probe Claim Rules
 
@@ -414,7 +414,7 @@ If the final answer includes "Rebake Lighting", "refresh probes", or similar rou
 
 If you start a bake with `Lightmapping.BakeAsync()`, poll `Lightmapping.isRunning` while the tool budget allows. If it is still running when you must stop, report a phase boundary/partial migration and do not say the scene has been rebaked. Before claiming that new lighting settings are active, save the scene and verify the saved scene no longer points at the old `.lighting` GUID or a non-zero old `m_LightingDataAsset`.
 
-Never say "reflection probes refreshed" from intent alone. If the saved EXR files are unchanged and no successful probe-render evidence exists, say they were preserved and still need refresh or visual acceptance.
+Never say "reflection probes refreshed" from intent alone. If the saved EXR files are unchanged and no successful probe-render evidence exists, say they were preserved and still need refresh.
 
 ## Visual Exposure Balance Pattern
 

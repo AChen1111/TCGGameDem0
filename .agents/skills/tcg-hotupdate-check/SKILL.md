@@ -35,10 +35,6 @@ description: 检查或修复 TCGCardDem0 的 AOT 启动、HybridCLR 热更代码
 - “检查、诊断、打包前检查”只读取证据；修复请求允许修改相关实现并验证，但不隐含发布。
 - 用户要求本地打包时区分 Player、Code、Resources。mBulid 四项操作不运行 Generate/All 或构建主包；内容发布只上传已校验产物。远端上传仅在任务包含上传时执行，已有授权不反复确认。后端 Player 发布先删除目标平台旧目录/记录再接收新包，失败后无当前版本且不恢复旧版；其他平台与 Editor 配置保留。
 - Editor Play Mode 不再由项目工作台自动准备后端或同步配置；检查其他运行入口与运营脚本时仍以实际代码为准。
-- 使用 [Pipeline 构建与测试命令](../../../.doc/unity-pipeline/commands/build-and-compilation.md) 前核对工程和实时参数。重载或超时后读取状态与日志，确认任务终态再决定下一步；不重复提交未知结果的构建或上传。
+- 使用 [Pipeline 构建命令](../../../.doc/unity-pipeline/commands/build-and-compilation.md) 前核对工程和实时参数。重载或超时后读取状态与日志，确认任务终态再决定下一步；不重复提交未知结果的构建或上传。
 
-## 验收
-
-按修改范围运行 [CodeUpdateTests](../../../Assets/Tests/Editor/AOT/CodeUpdateTests.cs)、[MBulidPackageTests](../../../Assets/Tests/Editor/AOT/MBulidPackageTests.cs)、[HybridCLRSetupTests](../../../Assets/Tests/Editor/AOT/HybridCLRSetupTests.cs) 和后端分发测试。需要 Player 验证时记录实际平台、内容版本与 GUID，检查错误提示及重试行为。
-
-报告要分清：静态检查通过、编译通过、测试通过、本地包生成、Player 实测、服务器内容更新。未执行的层次不能用前一层结果代替。服务器状态不确定时先查询实际状态，保留任务标识与错误，不自动重发上传。
+服务器状态不确定时先查询实际状态，保留任务标识与错误，不自动重发上传。

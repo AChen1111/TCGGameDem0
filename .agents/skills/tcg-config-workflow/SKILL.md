@@ -28,10 +28,9 @@ description: 修改 TCGCardDem0 的 TableData 配置源表、二进制配置生�
 5. 检查生成结果及差异：`Remote_GameConfig` 分组、`GameConfig` 标签、地址、LocalizationSettings 字体映射、SpriteCatalog 引用以及过期产物清理是否符合本次输入。
 6. 跟踪客户端加载到组装和安装成功后的就绪状态。配置未就绪不能用空数据伪装加载成功；失败路径应保留可定位的表名或资源信息。
 
-## 验证与交付
+## 交付与发布边界
 
-- 修改解析或格式时运行 [GameConfigCsvEditorParserTests](../../../Assets/Tests/Editor/Tools/GameConfigCsvEditorParserTests.cs) 及对应覆盖；共享组装和读取变化检查 [GameConfigTests](../../../Assets/Tests/Editor/HotUpdate/Network/GameConfigTests.cs)。新增语义需有正常和无效输入案例，普通调值不机械增加测试。
-- 触及服务端时核对 Backend 中实际测试项目，运行相关范围；不要自动更新子模块远端版本。
-- 核对生成前后数量、字段和相关游戏显示或业务读取。Editor 不可用时可以完成源表与代码检查，但必须明确“尚未生成/导入/运行验证”，不要伪造 `.bytes` 产物。
+- 不要自动更新 Backend 子模块远端版本。
+- Editor 不可用时可以完成源表与代码检查，但不要伪造 `.bytes` 产物。
 - 配置生成与远端上传分开。用户只要求改表或本地验证时不上传、不激活内容、不修改真实账号；`mBulid/构建 Addressables` 会先生成配置并导出到版本目录，`mBulid/发布版本` 仅发布当前平台产物，不上传 Editor 配置。旧工作台已删除，按既有授权执行发布。
-- 交付列明源表、生成产物、共享或服务端变更、验证结果，以及是否存在尚未执行的生成或发布步骤。
+- 交付列明源表、生成产物、共享或服务端变更，以及是否存在尚未执行的生成或发布步骤。

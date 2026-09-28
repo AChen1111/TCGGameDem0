@@ -22,10 +22,7 @@ description: 为 TCGCardDem0 新增或修改 uGUI 窗口、面板、Prefab 引�
 5. 按 [UISettings](../../../Assets/Scripts/UI/Core/UISettings.cs) 的现有注册方式接入，用 `UIFrame.ShowPanel` / `OpenWindow` 打开。需要地址时使用 [Catalog 工具](../../../Assets/Scripts/Editor/Addressable/AddressableCatalogMenu.cs) 更新生成常量，不另造地址字符串。
 6. 会话写操作走当前 `PlayerSession` 方法；异步结果、取消、事件解绑和窗口关闭行为参考相邻实现。不要在 UI 复制金币、令牌或交易真相，也不要顺手增加未请求的购买能力。
 
-## 验收与失败处理
+## 失败处理
 
-- 等待编译结束，区分新增报错与修改前已有报错；检查 Missing Script、空引用、UISettings 注册和地址解析。
-- 对视觉改动，在实际界面检查目标分辨率下的布局、文字、遮罩及点击区域，并保留截图。对交互改动检查打开、关闭、再次打开，以及相关失败路径。
-- 改生成器或生命周期时，选择 [UiScreenGeneratorTests](../../../Assets/Tests/Editor/HotUpdate/UI/UiScreenGeneratorTests.cs)、[UiDestroyOnCloseTests](../../../Assets/Tests/Editor/HotUpdate/UI/UiDestroyOnCloseTests.cs) 等相关 EditMode 测试；单纯位置或颜色调整不强制全量测试。
-- 开发工作台及其 Play Mode 接管钩子已删除；进入 Play Mode 前检查现有启动脚本的副作用。用户只要求检查时不触发运行、构建或上传。编辑器不可用时明确列出未完成的视觉、绑定或运行验证。
-- 交付说明改了哪个界面、如何打开、做过哪些验证以及剩余问题。工具请求失败后先读取对象现状，避免重复添加组件、注册项或按钮监听。
+- 开发工作台及其 Play Mode 接管钩子已删除；进入 Play Mode 前检查现有启动脚本的副作用。用户只要求检查时不触发运行、构建或上传。
+- 交付说明改了哪个界面、如何打开以及剩余问题。工具请求失败后先读取对象现状，避免重复添加组件、注册项或按钮监听。
