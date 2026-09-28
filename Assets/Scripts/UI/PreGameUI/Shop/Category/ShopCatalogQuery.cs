@@ -88,7 +88,7 @@ public static class ShopCatalogQuery
                 config.EndsAt,
                 owned.Contains(config.Id),
                 i,
-                table));
+                table, config.NameKey));
         }
 
         return result;

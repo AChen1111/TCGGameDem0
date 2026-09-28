@@ -13,6 +13,7 @@ public sealed class CardPackDrawTests
         Assert.IsTrue(CardPoolAddress.IsKnownDrawPool("Card01"));
         Assert.IsTrue(CardPoolAddress.IsKnownDrawPool("Card02"));
         Assert.IsTrue(CardPoolAddress.IsKnownDrawPool("Card03"));
+        Assert.IsTrue(CardPoolAddress.IsKnownDrawPool("CardGeneric"));
         Assert.IsTrue(CardPoolAddress.IsKnownDrawPool("CardAll"));
         Assert.IsFalse(CardPoolAddress.IsKnownDrawPool(null));
         Assert.IsFalse(CardPoolAddress.IsKnownDrawPool(""));

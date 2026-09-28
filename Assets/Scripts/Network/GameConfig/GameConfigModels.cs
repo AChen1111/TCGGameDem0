@@ -43,6 +43,7 @@ namespace AChen.Networking
     {
         public int Id { get; }
         public string Name { get; }
+        public string NameKey { get; }
         public string ResourceKey { get; }
         public long PriceGold { get; }
         public int SortOrder { get; }
@@ -51,10 +52,11 @@ namespace AChen.Networking
         public DateTimeOffset? StartsAt { get; }
         public DateTimeOffset? EndsAt { get; }
 
-        protected CosmeticConfig(int id, string name, string resourceKey, long priceGold, int sortOrder, bool isEnabled, DateTimeOffset? startsAt, DateTimeOffset? endsAt)
+        protected CosmeticConfig(int id, string name, string resourceKey, long priceGold, int sortOrder, bool isEnabled, DateTimeOffset? startsAt, DateTimeOffset? endsAt, string nameKey = null)
         {
             Id = id;
             Name = name;
+            NameKey = nameKey;
             ResourceKey = resourceKey;
             PriceGold = priceGold;
             SortOrder = sortOrder;
@@ -68,8 +70,8 @@ namespace AChen.Networking
     public sealed class AvatarConfig : CosmeticConfig
     {
         [JsonConstructor]
-        public AvatarConfig(int id, string name, string resourceKey, long priceGold, int sortOrder, bool isEnabled, DateTimeOffset? startsAt = null, DateTimeOffset? endsAt = null)
-            : base(id, name, resourceKey, priceGold, sortOrder, isEnabled, startsAt, endsAt)
+        public AvatarConfig(int id, string name, string resourceKey, long priceGold, int sortOrder, bool isEnabled, DateTimeOffset? startsAt = null, DateTimeOffset? endsAt = null, string nameKey = null)
+            : base(id, name, resourceKey, priceGold, sortOrder, isEnabled, startsAt, endsAt, nameKey)
         {
         }
     }
@@ -79,8 +81,8 @@ namespace AChen.Networking
     {
         public string MaskResourceKey { get; }
         [JsonConstructor]
-        public AvatarFrameConfig(int id, string name, string resourceKey, long priceGold, int sortOrder, bool isEnabled, string maskResourceKey, DateTimeOffset? startsAt = null, DateTimeOffset? endsAt = null)
-            : base(id, name, resourceKey, priceGold, sortOrder, isEnabled, startsAt, endsAt)
+        public AvatarFrameConfig(int id, string name, string resourceKey, long priceGold, int sortOrder, bool isEnabled, string maskResourceKey, DateTimeOffset? startsAt = null, DateTimeOffset? endsAt = null, string nameKey = null)
+            : base(id, name, resourceKey, priceGold, sortOrder, isEnabled, startsAt, endsAt, nameKey)
         { MaskResourceKey = maskResourceKey; }
     }
 

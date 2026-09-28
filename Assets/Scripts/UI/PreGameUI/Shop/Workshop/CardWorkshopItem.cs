@@ -1,5 +1,7 @@
 using System;
 using System.Threading;
+using AChen.Configuration;
+using AChen.Networking;
 using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -43,9 +45,11 @@ public sealed class CardWorkshopItem : MonoBehaviour
     {
         m_index = index; m_onSelected = onSelected;
         m_CardName.SetKey("card." + card.CardId + ".name");
-        m_Owned.SetKey(card.Dismantle ? "ui.workshop.owned_total" : "ui.workshop.owned_normal",
-            new System.Collections.Generic.Dictionary<string, object> { ["count"] = card.Dismantle ? card.TotalOwned : card.NormalOwned });
-        m_Dim.enabled = !card.Dismantle && card.NormalOwned > 0;
+        int limit = LocalGameConfiguration.DeckRules.GetMaxCopies(card.CardId);
+        m_Owned.SetKey("ui.workshop.owned_and_limit",
+            new System.Collections.Generic.Dictionary<string, object> { ["count"] = card.Dismantle ? card.TotalOwned : card.NormalOwned,
+                ["limit"] = new LocalizedMessage("ui.workshop.limit." + limit) });
+        m_Dim.enabled = false;
         m_Selected.SetActive(selected);
         Load(card, ++m_version, m_lifetime.Token).Forget();
     }

@@ -12,7 +12,7 @@ public static class CardPoolAddress
 
     public static bool IsKnownDrawPool(string poolKey)
     {
-        return poolKey is "Card01" or "Card02" or "Card03" or "CardAll";
+        return poolKey is "Card01" or "Card02" or "Card03" or "CardGeneric" or "CardAll";
     }
 
     public static bool TryGetBagFolder(string poolKey, out string folder)

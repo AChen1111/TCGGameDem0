@@ -147,7 +147,8 @@ public class CardPickWindow : AWindowController<CardPickWindowProperty>
         for (int i = 0; i < cards.Count; i++)
         {
             CardPickViewData card = cards[i];
-            entries[i] = new CardDetailEntry(card.cardId, string.Empty, card.cardTexture);
+            entries[i] = new CardDetailEntry(card.cardId, string.Empty, card.cardTexture,
+                (int)card.cardShaderType, card.artId);
         }
 
         RequestOpenWindow(

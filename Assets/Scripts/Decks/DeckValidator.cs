@@ -38,12 +38,13 @@ namespace AChen.Decks
         {
             var result = Validate(deck, rules, ownedCards);
             if (!result.IsValid) throw new DeckValidationException(result);
-            return new DeckData(deck.Id, deck.Name.Trim(), Normalize(deck.MainDeck), Normalize(deck.ExtraDeck),
+            return new DeckData(deck.Id, deck.Name.Trim(), Normalize(deck.MainDeck, rules), Normalize(deck.ExtraDeck, rules),
                 deck.Revision, deck.CreatedAt, deck.UpdatedAt);
         }
 
-        static IEnumerable<DeckCardEntry> Normalize(IReadOnlyList<DeckCardEntry> cards) => cards
-            .GroupBy(x => (x.CardId, x.Rarity)).Select(x => new DeckCardEntry(x.Key.CardId, x.Key.Rarity, x.Sum(card => card.Count)));
+        static IEnumerable<DeckCardEntry> Normalize(IReadOnlyList<DeckCardEntry> cards, DeckRulesConfiguration rules) => cards
+            .GroupBy(x => (CardId: rules.ResolveCardId(x.CardId), x.Rarity))
+            .Select(x => new DeckCardEntry(x.Key.CardId, x.Key.Rarity, x.Sum(card => card.Count)));
 
         public static DeckValidationResult Validate(DeckData deck, DeckRulesConfiguration rules,
             IReadOnlyList<DeckCardEntry> ownedCards, DeckValidationMode mode = DeckValidationMode.Draft)
@@ -64,7 +65,7 @@ namespace AChen.Decks
             if (main > 60) issues.Add(new DeckValidationIssue(DeckIssueCode.MainTooLarge, main, 60, section: DeckSection.Main));
             if (extra > 15) issues.Add(new DeckValidationIssue(DeckIssueCode.ExtraTooLarge, extra, 15, section: DeckSection.Extra));
             var cards = deck.MainDeck.Concat(deck.ExtraDeck).Where(ValidEntry).ToArray();
-            foreach (var group in cards.GroupBy(x => x.CardId, StringComparer.Ordinal))
+            foreach (var group in cards.GroupBy(x => rules?.ResolveCardId(x.CardId), StringComparer.Ordinal))
             {
                 if (rules == null || !rules.TryGetSection(group.Key, out _)) continue;
                 long count = group.Sum(x => (long)x.Count);
@@ -74,9 +75,9 @@ namespace AChen.Decks
             }
             if (ownedCards != null)
             {
-                var inventory = ownedCards.Where(ValidEntry).GroupBy(x => (x.CardId, x.Rarity))
+                var inventory = ownedCards.Where(ValidEntry).GroupBy(x => (CardId: rules?.ResolveCardId(x.CardId), x.Rarity))
                     .ToDictionary(x => x.Key, x => x.Sum(card => (long)card.Count));
-                foreach (var group in cards.GroupBy(x => (x.CardId, x.Rarity)))
+                foreach (var group in cards.GroupBy(x => (CardId: rules?.ResolveCardId(x.CardId), x.Rarity)))
                 {
                     inventory.TryGetValue(group.Key, out long available);
                     long used = group.Sum(x => (long)x.Count);

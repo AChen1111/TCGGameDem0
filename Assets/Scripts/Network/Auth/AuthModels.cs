@@ -36,14 +36,16 @@ namespace AChen.Networking
         public string CardId { get; }//卡牌ID
         public int Rarity { get; }//卡牌稀有度
         public string SourcePool { get; }//卡牌来源池
+        public string ArtId { get; }//具体插画资源编号
         public bool IsOverflow { get; }
         public long UrGained { get; }
 
-        internal CardDrawResult(string cardId, int rarity, string sourcePool, bool isOverflow = false, long urGained = 0)
+        internal CardDrawResult(string cardId, int rarity, string sourcePool, bool isOverflow = false, long urGained = 0, string artId = null)
         {
             CardId = cardId ?? string.Empty;
             Rarity = rarity;
             SourcePool = sourcePool ?? string.Empty;
+            ArtId = artId ?? cardId ?? string.Empty;
             IsOverflow = isOverflow; UrGained = urGained;
         }
     }
@@ -95,6 +97,7 @@ namespace AChen.Networking
         public int? BackgroundId { get; }
         public IReadOnlyList<int> OwnedBackgroundIds { get; }
         public IReadOnlyList<OwnedCardData> OwnedCards { get; }
+        public IReadOnlyList<string> OwnedArtIds { get; }
         public long Gold { get; }
         public long Ur { get; }
         public long Revision { get; }
@@ -114,7 +117,7 @@ namespace AChen.Networking
             DateTimeOffset createdAt,
             DateTimeOffset updatedAt,
             int avatarFrameId,
-            IReadOnlyList<int> ownedAvatarFrameIds, long ur = 0)
+            IReadOnlyList<int> ownedAvatarFrameIds, long ur = 0, IReadOnlyList<string> ownedArtIds = null)
         {
             AvatarFrameId = avatarFrameId;
             OwnedAvatarFrameIds = ownedAvatarFrameIds;
@@ -125,6 +128,7 @@ namespace AChen.Networking
             BackgroundId = backgroundId;
             OwnedBackgroundIds = ownedBackgroundIds ?? Array.Empty<int>();
             OwnedCards = ownedCards ?? Array.Empty<OwnedCardData>();
+            OwnedArtIds = ownedArtIds ?? Array.Empty<string>();
             Gold = gold;
             Ur = ur;
             Revision = revision;

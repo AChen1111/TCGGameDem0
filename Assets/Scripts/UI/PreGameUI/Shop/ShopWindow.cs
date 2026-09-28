@@ -431,10 +431,11 @@ public class ShopWindow : AWindowController
     static async UniTask<CardPickViewData> LoadDrawCardAsync(string requestPoolKey, CardDrawResult result)
     {
         string poolKey = string.IsNullOrEmpty(result.SourcePool) ? requestPoolKey : result.SourcePool;
-        Texture texture = await CardPoolAddress.LoadCardTextureAsync(poolKey, result.CardId);
+        Texture texture = await CardPoolAddress.LoadCardTextureAsync(poolKey, result.ArtId);
         return new CardPickViewData
         {
             cardId = result.CardId,
+            artId = result.ArtId,
             cardShaderType = CardPickController.ToShaderType(result.Rarity),
             cardTexture = texture,
             overflowUr = result.UrGained

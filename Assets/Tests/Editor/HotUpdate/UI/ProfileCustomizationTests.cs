@@ -102,12 +102,15 @@ public class ProfileCustomizationTests
         loaderObject=new GameObject("TestLoader");var loader=loaderObject.AddComponent<AddressableLoader>();Singleton(loader);
         Set(loader,"m_spriteCatalog",AssetDatabase.LoadAssetAtPath<SpriteAddressableCatalog>("Assets/AddressableCatalogs/SpriteCatalog.asset"));
         Set(loader,"m_prefabCatalog",AssetDatabase.LoadAssetAtPath<PrefabAddressableCatalog>("Assets/AddressableCatalogs/PrefabCatalog.asset"));
-        var data=GameConfigTables.Assemble(Directory.GetFiles("Assets/GameConfiguration","*.bytes").ToDictionary(Path.GetFileNameWithoutExtension,File.ReadAllBytes)).Catalog;
+        var published=GameConfigTables.Assemble(Directory.GetFiles("Assets/GameConfiguration","*.bytes").ToDictionary(Path.GetFileNameWithoutExtension,File.ReadAllBytes));
+        LocalizationService.Install(Table.TranslationRow.LoadBytes(published.TranslationTable),
+            AssetDatabase.LoadAssetAtPath<LocalizationSettings>("Assets/GameConfiguration/LocalizationSettings.asset"));
+        var data=published.Catalog;
         var now=DateTimeOffset.UtcNow;
         var snapshot=new GameConfigSnapshot(3,1,now,
-            data.Avatars.Select(x=>new AvatarConfig(x.Id,x.Name,x.ResourceKey,x.PriceGold,x.SortOrder,x.IsEnabled,x.StartsAt,x.EndsAt)),
+            data.Avatars.Select(x=>new AvatarConfig(x.Id,x.Name,x.ResourceKey,x.PriceGold,x.SortOrder,x.IsEnabled,x.StartsAt,x.EndsAt,x.NameKey)),
             Array.Empty<WallpaperConfig>(),Array.Empty<CardPackConfig>(),
-            data.AvatarFrames.Select(x=>new AvatarFrameConfig(x.Id,x.Name,x.ResourceKey,x.PriceGold,x.SortOrder,x.IsEnabled,x.MaskResourceKey,x.StartsAt,x.EndsAt)));
+            data.AvatarFrames.Select(x=>new AvatarFrameConfig(x.Id,x.Name,x.ResourceKey,x.PriceGold,x.SortOrder,x.IsEnabled,x.MaskResourceKey,x.StartsAt,x.EndsAt,x.NameKey)));
         manager.Store.Replace(snapshot,"test",now,now,false);
         var player=CreatePlayer(Guid.NewGuid(),"原名字",(int?)1010001,new[]{1010001,1010002},(int?)1,new[]{1},Array.Empty<OwnedCardData>(),0L,0L,now,now,1030001,new[]{1030001,1031013});
         typeof(PlayerSession).GetProperty("CurrentPlayer").SetValue(session,player);
@@ -181,5 +184,6 @@ public class ProfileCustomizationTests
         if(configObject!=null)Object.DestroyImmediate(configObject);
         if(sessionObject!=null)Object.DestroyImmediate(sessionObject);
         Singleton<PlayerSession>(null);Singleton<GameConfigManager>(null);Singleton<AddressableLoader>(null);
+        LocalizationService.Uninstall();
     }
 }

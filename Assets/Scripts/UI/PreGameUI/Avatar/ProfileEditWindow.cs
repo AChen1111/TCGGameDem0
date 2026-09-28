@@ -119,7 +119,7 @@ public sealed class ProfileEditWindow : AWindowController<ProfileEditWindowPrope
         int draft = avatars ? m_avatarDraft : m_frameDraft;
         int selected = m_items.FindIndex(x => x.Id == draft);
         m_List.InitList(AddressKeys.Prefab.ProfileCosmeticRow, m_items, Select, selected, ScreenToken).Forget();
-        m_TxtSelected.text = avatars ? store.Avatars[draft].Name : store.AvatarFrames[draft].Name;
+        m_TxtSelected.text = LocalizationService.GetText(avatars ? store.Avatars[draft].NameKey : store.AvatarFrames[draft].NameKey);
         m_Preview.SetPortrait(avatars ? draft : player.AvatarId.Value, avatars ? player.AvatarFrameId : draft);
     }
     void Select(int index)

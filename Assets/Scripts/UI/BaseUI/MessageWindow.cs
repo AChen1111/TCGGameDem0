@@ -4,6 +4,7 @@ using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using LitMotion;
+using UnityEngine.EventSystems;
 
 public sealed class MessageWindowProperties : IWindowProperties
 {
@@ -17,18 +18,35 @@ public sealed class MessageWindowProperties : IWindowProperties
     }
 }
 
-public class MessageWindow : AWindowController<MessageWindowProperties>
+public class MessageWindow : AWindowController<MessageWindowProperties>, IPointerClickHandler
 {
     // --tag_start: 自动生成--
     [SerializeField] TextMeshProUGUI m_TxtMessage;
     // --tag_end: 自动生成--
     CancellationTokenSource m_closeCts;
     MotionHandle m_openMotion;
+    bool m_clicked;
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        eventData.Use();
+        m_clicked = true;
+        m_openMotion.TryComplete();
+        UI_Close();
+    }
+
+    protected override UniTask PlayExitTransition(CancellationToken cancellationToken)
+    {
+        if (!m_clicked) return base.PlayExitTransition(cancellationToken);
+        TransitionCanvasGroup.alpha = 0f;
+        return UniTask.CompletedTask;
+    }
 
     protected override void FinishIntro() => m_openMotion.TryComplete();
 
     protected override void OnOpen()
     {
+        m_clicked = false;
         PlayOpenAsync().Forget();
     }
 
@@ -38,7 +56,7 @@ public class MessageWindow : AWindowController<MessageWindowProperties>
         CancellationToken token = ScreenToken;
         m_openMotion = UITween.DoScaleAnim(0, 1, 2, transform).AddTo(gameObject);
         await m_openMotion;
-        if (token.IsCancellationRequested) return;
+        if (token.IsCancellationRequested || m_clicked) return;
         m_closeCts = CancellationTokenSource.CreateLinkedTokenSource(token);
         CloseAfterAsync(Properties.Duration, m_closeCts.Token).Forget();
     }

@@ -25,7 +25,7 @@ public sealed class CardWorkshopDetail : MonoBehaviour
     [SerializeField] GameObject m_VersionControls;
     public int Rarity { get; private set; }
     public int Quantity { get; private set; } = 1;
-    public CardDetailEntry Inspection => new CardDetailEntry(m_cardId, m_pool, m_Card.texture);
+    public CardDetailEntry Inspection => new CardDetailEntry(m_cardId, m_pool, m_Card.texture, Rarity);
     public event Action Changed;
     public event Action Submitted;
     public event Action Inspected;
@@ -64,10 +64,11 @@ public sealed class CardWorkshopDetail : MonoBehaviour
         m_VersionControls.SetActive(dismantle);
         m_QuantityControls.SetActive(dismantle);
         m_Quantity.text = Quantity.ToString();
-        m_Owned.SetKey("ui.workshop.owned_version", new Dictionary<string, object> { ["version"] = new LocalizedMessage("ui.rarity." + Rarity), ["count"] = m_available });
+        m_Owned.SetKey("ui.workshop.owned_version_and_limit", new Dictionary<string, object> { ["version"] = new LocalizedMessage("ui.rarity." + Rarity), ["count"] = m_available,
+            ["limit"] = new LocalizedMessage("ui.workshop.limit." + LocalGameConfiguration.DeckRules.GetMaxCopies(m_cardId)) });
         m_Price.SetKey(dismantle ? "ui.workshop.reward" : "ui.workshop.cost", new Dictionary<string, object> { ["amount"] = amount });
         m_ActionLabel.SetKey(dismantle ? "ui.workshop.dismantle" : "ui.workshop.craft");
-        m_Action.interactable = !busy && (dismantle ? m_available > 0 : owned[0] == 0);
+        m_Action.interactable = !busy && (!dismantle || m_available > 0);
         m_Plus.interactable = !busy && Quantity < m_available;
         m_Minus.interactable = !busy && Quantity > 1;
     }

@@ -13,31 +13,38 @@ namespace AChen.Configuration
         public const string BanlistTable = "card-banlist";
         readonly Dictionary<string, DeckSection> m_sections;
         readonly Dictionary<string, int> m_limits;
+        readonly Dictionary<string, string> m_artIds;
 
-        DeckRulesConfiguration(Dictionary<string, DeckSection> sections, Dictionary<string, int> limits)
+        DeckRulesConfiguration(Dictionary<string, DeckSection> sections, Dictionary<string, int> limits, Dictionary<string, string> artIds)
         {
             m_sections = sections;
             m_limits = limits;
+            m_artIds = artIds;
         }
 
         public int CardCount => m_sections.Count;
         public bool TryGetSection(string cardId, out DeckSection section)
         {
             section = default;
-            return cardId != null && m_sections.TryGetValue(cardId, out section);
+            return cardId != null && m_sections.TryGetValue(ResolveCardId(cardId), out section);
         }
+
+        public string ResolveCardId(string cardId) => cardId != null && m_artIds.TryGetValue(cardId, out string canonical) ? canonical : cardId;
 
         public int GetMaxCopies(string cardId)
         {
             if (!TryGetSection(cardId, out _)) throw new ArgumentException("未知卡牌: " + cardId, nameof(cardId));
-            return m_limits.TryGetValue(cardId, out int limit) ? limit : 3;
+            return m_limits.TryGetValue(ResolveCardId(cardId), out int limit) ? limit : 3;
         }
 
         public static DeckRulesConfiguration Load(IReadOnlyDictionary<string, byte[]> files) =>
             Create(Table.CardRow.LoadBytes(Required(files, "Cards")).Select(x => x.CardId),
-                Decode(files, SectionsTable), Decode(files, BanlistTable));
+                Decode(files, SectionsTable), Decode(files, BanlistTable),
+                files.TryGetValue("card-art-variants", out var artTable)
+                    ? GameConfigTables.Map<CardArtVariant>(BinaryTable.Decode(artTable)) : Array.Empty<CardArtVariant>());
 
-        public static DeckRulesConfiguration Create(IEnumerable<string> cardIds, BinaryTable sectionTable, BinaryTable banlist)
+        public static DeckRulesConfiguration Create(IEnumerable<string> cardIds, BinaryTable sectionTable, BinaryTable banlist,
+            IEnumerable<CardArtVariant> artVariants = null)
         {
             var ids = new HashSet<string>(cardIds, StringComparer.Ordinal);
             var sections = new Dictionary<string, DeckSection>(StringComparer.Ordinal);
@@ -75,7 +82,9 @@ namespace AChen.Configuration
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentException || ex is InvalidCastException)
             { throw new FormatException(BanlistTable + ": " + ex.Message, ex); }
-            return new DeckRulesConfiguration(sections, limits);
+            var artIds = (artVariants ?? Array.Empty<CardArtVariant>()).ToDictionary(x => x.ArtId, x => x.CardId, StringComparer.Ordinal);
+            if (artIds.Values.Any(x => !sections.ContainsKey(x))) throw new FormatException("异画关联不存在的规则卡");
+            return new DeckRulesConfiguration(sections, limits, artIds);
         }
 
         static byte[] Required(IReadOnlyDictionary<string, byte[]> files, string name) =>

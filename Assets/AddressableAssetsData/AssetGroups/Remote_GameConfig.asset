@@ -106,6 +106,13 @@ MonoBehaviour:
     - GameConfig
     - GameConfigGenerated
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf6e632b9dda6ce4eb27efceed2d73c9
+    m_Address: GameConfig/card-art-variants
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameConfig
+    - GameConfigGenerated
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d45aa9698aa74208bc4d48c532f62357
     m_Address: GameConfig/LocalizationSettings
     m_ReadOnly: 0
@@ -114,6 +121,13 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e591b79a114e16f41b080d849ae0eb76
     m_Address: GameConfig/card-crafting
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameConfig
+    - GameConfigGenerated
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ef3f7379198a63d4ab80b0a54182d2b5
+    m_Address: GameConfig/card-special-materials
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameConfig

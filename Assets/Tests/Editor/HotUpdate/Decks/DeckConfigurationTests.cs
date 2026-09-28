@@ -24,21 +24,24 @@ public sealed class DeckConfigurationTests
     public void TearDown() => Directory.Delete(m_root, true);
 
     [Test]
-    public void Source_tables_classify_every_card_and_start_with_no_bans()
+    public void Source_tables_classify_every_card_and_keep_forbidden_limited_and_semi_limited_rules()
     {
         var sections = BinaryTableCsv.Load("TableData/card-deck-sections.csv");
         var cards = BinaryTableCsv.Load("TableData/Cards.csv");
         int id = sections.Column("CardId", "string");
         int section = sections.Column("Section", "string");
         CollectionAssert.AreEquivalent(cards.Rows.Select(x => x[0]), sections.Rows.Select(x => x[id]));
-        Assert.AreEqual(94, sections.Rows.Length);
-        Assert.AreEqual(57, sections.Rows.Count(x => (string)x[section] == "Main"));
+        Assert.AreEqual(92, sections.Rows.Length);
+        Assert.AreEqual(55, sections.Rows.Count(x => (string)x[section] == "Main"));
         Assert.AreEqual(37, sections.Rows.Count(x => (string)x[section] == "Extra"));
         Assert.IsTrue(sections.Rows.Any(x => (string)x[id] == "01639384" && (string)x[section] == "Extra"));
         var bans = BinaryTable.Decode(BinaryTableCsv.Compile("TableData/card-banlist.csv"));
         bans.Column("CardId", "string");
         bans.Column("MaxCopies", "int");
-        Assert.IsEmpty(bans.Rows);
+        Assert.AreEqual(3, bans.Rows.Length);
+        Assert.AreEqual(0, bans.Rows.Single(x => (string)x[0] == "23434538")[1]);
+        Assert.AreEqual(1, bans.Rows.Single(x => (string)x[0] == "14558127")[1]);
+        Assert.AreEqual(2, bans.Rows.Single(x => (string)x[0] == "21143940")[1]);
     }
 
     [TestCase(null)]
@@ -82,7 +85,7 @@ public sealed class DeckConfigurationTests
         File.WriteAllText(Path.Combine(m_root, "card-banlist.csv"), "CardId,MaxCopies\nstring,int\n01639384,1\n");
         var files = PublishedConfigBuilder.CompileDirectory(m_root);
         var rules = DeckRulesConfiguration.Load(files);
-        Assert.AreEqual(94, rules.CardCount);
+        Assert.AreEqual(92, rules.CardCount);
         Assert.AreEqual(1, rules.GetMaxCopies("01639384"));
         Assert.AreEqual(3, rules.GetMaxCopies("00213326"));
         Assert.IsTrue(rules.TryGetSection("01639384", out var section));

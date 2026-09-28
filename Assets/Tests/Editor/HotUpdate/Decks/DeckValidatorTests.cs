@@ -52,6 +52,19 @@ public sealed class DeckValidatorTests
         Assert.AreEqual(3, issue.Allowed);
     }
 
+    [Test]
+    public void Alternate_art_uses_one_rule_id_for_limits_inventory_and_saved_deck()
+    {
+        var rules = Rules(2, new CardArtVariant { CardId = "M00", ArtId = "ALT00", SourcePool = "Card03" });
+        var owned = new[] { new DeckCardEntry("M00", 0, 1), new DeckCardEntry("ALT00", 0, 2) };
+        var valid = new DeckData(Guid.NewGuid(), "Deck", new[] { new DeckCardEntry("M00", 0, 1), new DeckCardEntry("ALT00", 0, 1) }, Array.Empty<DeckCardEntry>());
+        var prepared = DeckValidator.PrepareSave(valid, rules, owned);
+        Assert.AreEqual(2, prepared.MainDeck.Single().Count);
+        Assert.AreEqual("M00", prepared.MainDeck.Single().CardId);
+        var invalid = new DeckData(Guid.NewGuid(), "Deck", new[] { new DeckCardEntry("M00", 0, 1), new DeckCardEntry("ALT00", 0, 2) }, Array.Empty<DeckCardEntry>());
+        Assert.IsTrue(DeckValidator.Validate(invalid, rules, owned).Issues.Any(x => x.Code == DeckIssueCode.CopyLimitExceeded));
+    }
+
     [TestCase("M00", 0, 1, true, DeckIssueCode.WrongSection)]
     [TestCase("E00", 0, 1, false, DeckIssueCode.WrongSection)]
     [TestCase("unknown", 0, 1, false, DeckIssueCode.UnknownCard)]
@@ -97,7 +110,7 @@ public sealed class DeckValidatorTests
     internal static DeckCardEntry[] Entries(string prefix, int count) => Enumerable.Range(0, (count + 2) / 3)
         .Select(i => new DeckCardEntry(prefix + i.ToString("D2"), 0, Math.Min(3, count - i * 3))).ToArray();
 
-    internal static DeckRulesConfiguration Rules(int maxCopies = 3)
+    internal static DeckRulesConfiguration Rules(int maxCopies = 3, CardArtVariant art = null)
     {
         var ids = Enumerable.Range(0, 30).Select(i => "M" + i.ToString("D2"))
             .Concat(Enumerable.Range(0, 10).Select(i => "E" + i.ToString("D2"))).ToArray();
@@ -105,7 +118,8 @@ public sealed class DeckValidatorTests
             new BinaryTable { Names = new[] { "CardId", "Section" }, Types = new[] { "string", "string" },
                 Rows = ids.Select(id => new object[] { id, id.StartsWith("M") ? "Main" : "Extra" }).ToArray() },
             new BinaryTable { Names = new[] { "CardId", "MaxCopies" }, Types = new[] { "string", "int" },
-                Rows = new[] { new object[] { "M00", maxCopies } } });
+                Rows = new[] { new object[] { "M00", maxCopies } } },
+            art == null ? Array.Empty<CardArtVariant>() : new[] { art });
     }
 
     internal static DeckCardEntry[] Inventory() => Entries("M", 90).Concat(Entries("E", 30))

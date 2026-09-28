@@ -136,6 +136,11 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
     }
     DeckCardEntry[] Inventory() => PlayerSession.Instance.CurrentPlayer.OwnedCards
         .Select(x => new DeckCardEntry(x.CardId, x.Rarity, x.Count)).ToArray();
+    string PreferredArt(string cardId)
+    {
+        var arts = PlayerSession.Instance.CurrentPlayer.OwnedArtIds;
+        return arts.Contains(cardId) ? cardId : arts.FirstOrDefault(x => LocalGameConfiguration.Data.ResolveCardId(x) == cardId) ?? cardId;
+    }
     void Search(string _) { if (m_ready) RefreshPool(); }
     void Refresh()
     {
@@ -160,8 +165,8 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
         cells.Clear();
         foreach (var entry in entries.OrderBy(x => x.CardId, StringComparer.Ordinal).ThenBy(x => x.Rarity))
         {
-            string pool = LocalGameConfiguration.Data.AllCards.Single(x => x.CardId == entry.CardId).SourcePool;
-            var data = new DeckCardData(entry.CardId, pool, entry.Rarity, 0, true, this);
+            var artId = PreferredArt(entry.CardId);
+            var data = new DeckCardData(entry.CardId, LocalGameConfiguration.Data.SourcePoolForArt(artId), entry.Rarity, 0, true, this, artId);
             for (int i = 0; i < entry.Count; i++)
             {
                 var cell = Instantiate(m_DeckCellPrefab, content);
@@ -180,11 +185,18 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
             if (!CardNameSearch.Matches(card.CardId, m_InpSearch.text)) continue;
             var versions = inventory.Where(x => x.CardId == card.CardId && x.Count > 0).OrderBy(x => x.Rarity).ToArray();
             if (versions.Length == 0) m_pool.Add(new DeckCardData(card.CardId, card.SourcePool, 0, 0, false, this));
-            foreach (var version in versions) m_pool.Add(new DeckCardData(card.CardId, card.SourcePool, version.Rarity, version.Count, false, this));
+            foreach (var version in versions)
+            {
+                var artIds = PlayerSession.Instance.CurrentPlayer.OwnedArtIds
+                    .Where(id => LocalGameConfiguration.Data.ResolveCardId(id) == card.CardId).ToArray();
+                foreach (var artId in artIds)
+                    m_pool.Add(new DeckCardData(card.CardId, LocalGameConfiguration.Data.SourcePoolForArt(artId),
+                        version.Rarity, version.Count, false, this, artId));
+            }
         }
         m_TxtResults.text = m_pool.Count.ToString();
         m_PoolEmpty.SetActive(m_pool.Count == 0);
-        int selected = m_selected == null ? -1 : m_pool.FindIndex(x => x.CardId == m_selected.CardId && x.Rarity == m_selected.Rarity);
+        int selected = m_selected == null ? -1 : m_pool.FindIndex(x => x.CardId == m_selected.CardId && x.Rarity == m_selected.Rarity && x.ArtId == m_selected.ArtId);
         BindPool(selected).Forget();
     }
     async UniTask BindPool(int selected)
@@ -195,7 +207,7 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
     public void BindCard(DeckCardView view, DeckCardData data) => BindCardAsync(view, data).Forget();
     async UniTask BindCardAsync(DeckCardView view, DeckCardData data)
     {
-        try { await view.BindAsync(data.SourcePool, data.CardId, data.Rarity, ScreenToken); }
+        try { await view.BindAsync(data.SourcePool, data.ArtId, data.Rarity, ScreenToken); }
         catch (OperationCanceledException) { }
     }
     public void SelectCard(DeckCardData data)
@@ -215,7 +227,7 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
         BindCard(m_DetailCard, data); RefreshButtons();
     }
     void InspectSelected() => RequestOpenWindow(AddressKeys.Prefab.CardDetailOverlay, new CardDetailWindowProperty(
-        new[] { new CardDetailEntry(m_selected.CardId, m_selected.SourcePool, m_DetailCard.Texture) }, 0));
+        new[] { new CardDetailEntry(m_selected.CardId, m_selected.SourcePool, m_DetailCard.Texture, m_selected.Rarity, m_selected.ArtId) }, 0));
     void RefreshButtons()
     {
         m_BtnSave.interactable = !m_busy;
@@ -251,7 +263,7 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
         if (delta > 0)
         {
             int copyIndex = cells.Count(x => x.Data.CardId == data.CardId && x.Data.Rarity == data.Rarity);
-            var card = new DeckCardData(data.CardId, data.SourcePool, data.Rarity, 0, true, this);
+            var card = new DeckCardData(data.CardId, data.SourcePool, data.Rarity, 0, true, this, data.ArtId);
             var cell = Instantiate(m_DeckCellPrefab, scroll.content);
             cell.Bind(card, copyIndex, false, _ => SelectCard(card));
             int index = cells.FindIndex(x => string.CompareOrdinal(x.Data.CardId, data.CardId) > 0

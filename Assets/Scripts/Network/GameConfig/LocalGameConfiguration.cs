@@ -150,7 +150,8 @@ namespace AChen.Networking
             RequireCurrent();
             var cards = key == "CardAll"
                 ? Data.AllCards.Select(x => new GachaPoolCard(x.CardId, x.SourcePool))
-                : Data.PoolEntries.Where(x => x.PoolKey == key).Select(x => new GachaPoolCard(x.CardId, key));
+                : Data.PoolEntries.Where(x => x.PoolKey == key)
+                    .Select(x => new GachaPoolCard(x.CardId, Data.SourcePoolForArt(x.CardId)));
             var result = cards.OrderBy(x => x.CardId).ToArray();
             if (result.Length == 0) throw new BackendApiException(422, "GACHA_POOL_NOT_FOUND", "卡池不存在");
             return new GachaPoolData(key, result);

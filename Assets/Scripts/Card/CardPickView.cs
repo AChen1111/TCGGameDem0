@@ -24,6 +24,7 @@ public enum CardStatus
 public struct CardPickViewData
 {
     public string cardId;
+    public string artId;
     public CardShaderType cardShaderType;
     public Texture cardTexture;
     public long overflowUr;

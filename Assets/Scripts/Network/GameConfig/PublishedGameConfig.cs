@@ -13,10 +13,19 @@ namespace AChen.Configuration
         public CatalogData Catalog;
         public PoolEntry[] PoolEntries;
         public RarityWeight[] RarityWeights;
+        public CardArtVariant[] ArtVariants;
+        public CardSpecialMaterial[] SpecialMaterials;
         public AllCardEntry[] AllCards;
         public byte[] CardTable;
         public byte[] TranslationTable;
         public WallpaperOffset[] WallpaperOffsets;
+
+        public string ResolveCardId(string cardOrArtId) =>
+            ArtVariants.FirstOrDefault(x => x.ArtId == cardOrArtId)?.CardId ?? cardOrArtId;
+
+        public string SourcePoolForArt(string artId) =>
+            ArtVariants.FirstOrDefault(x => x.ArtId == artId)?.SourcePool
+            ?? AllCards.First(x => x.CardId == artId).SourcePool;
 
         public void Validate()
         {
@@ -35,15 +44,27 @@ namespace AChen.Configuration
             {
                 if (item.Id < 0) throw new FormatException("外观 ID 无效");
                 Text(item.Name, 64); Text(item.ResourceKey, 128);
+                if (item is CosmeticData && item.NameKey != null) Text(item.NameKey, 128);
                 Sale(item.PriceGold, item.StartsAt, item.EndsAt);
             }
             Unique(PoolEntries, x => x.PoolKey + "/" + x.CardId, "卡池条目");
             Unique(RarityWeights, x => x.Rarity, "稀有度");
+            Unique(ArtVariants, x => x.ArtId, "异画资源");
+            Unique(SpecialMaterials, x => x.CardId, "特殊材质卡牌");
             Unique(AllCards, x => x.CardId, "全卡清单");
             if ((long)AllCards.Length * 100 > int.MaxValue) throw new FormatException("全卡池总权重超限");
             var cards = Table.CardRow.LoadBytes(CardTable);
             Unique(cards.ToArray(), x => x.CardId, "卡牌属性");
             var ids = new HashSet<string>(cards.Select(x => x.CardId), StringComparer.Ordinal);
+            foreach (var art in ArtVariants)
+            {
+                Text(art.ArtId, 128); Text(art.SourcePool, 32);
+                if (!ids.Contains(art.CardId) || ids.Contains(art.ArtId))
+                    throw new FormatException("异画关联无效: " + art.ArtId);
+            }
+            foreach (var material in SpecialMaterials)
+                if (!ids.Contains(material.CardId) || !material.AllowColorful && !material.AllowGoldOutline)
+                    throw new FormatException("特殊材质卡牌无效: " + material.CardId);
             foreach (var card in AllCards)
             {
                 Text(card.SourcePool, 32);
@@ -57,7 +78,7 @@ namespace AChen.Configuration
             }
             foreach (var group in PoolEntries.GroupBy(x => x.PoolKey))
                 if (group.Sum(x => (long)x.Weight) > int.MaxValue) throw new FormatException("卡池总权重超限");
-            if (RarityWeights.Length == 0 || RarityWeights.Any(x => x.Rarity < 0 || x.Rarity > 4 || x.Weight <= 0)
+            if (RarityWeights.Length == 0 || RarityWeights.Any(x => x.Rarity is not (0 or 1 or 3) || x.Weight <= 0)
                 || RarityWeights.Sum(x => (long)x.Weight) > int.MaxValue)
                 throw new FormatException("稀有度权重无效");
             foreach (var pack in Catalog.CardPacks)
@@ -123,6 +144,7 @@ namespace AChen.Configuration
     {
         public int Id;
         public string Name;
+        public string NameKey;
         public string ResourceKey;
         public long PriceGold;
         public int SortOrder;
@@ -145,6 +167,8 @@ namespace AChen.Configuration
     }
     [Serializable] public sealed class PoolEntry { public string PoolKey; public string CardId; public int Weight; }
     [Serializable] public sealed class RarityWeight { public int Rarity; public int Weight; }
+    [Serializable] public sealed class CardArtVariant { public string CardId; public string ArtId; public string SourcePool; }
+    [Serializable] public sealed class CardSpecialMaterial { public string CardId; public bool AllowColorful; public bool AllowGoldOutline; }
     [Serializable] public sealed class AllCardEntry { public string CardId; public string SourcePool; }
     [Serializable] public sealed class WallpaperOffset { public int Id; public float[] Sprite; public float[] Down; }
 }

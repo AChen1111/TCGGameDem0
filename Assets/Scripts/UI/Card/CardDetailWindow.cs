@@ -50,7 +50,7 @@ public class CardDetailWindow : AWindowController<CardDetailWindowProperty>
         ALog.Log("卡牌详情窗口关闭", ALogCategories.UI);
     }
 
-    void OpenZoom(Texture texture)
+    void OpenZoom(Texture texture, int rarity)
     {
         if (texture == null)
         {
@@ -58,6 +58,6 @@ public class CardDetailWindow : AWindowController<CardDetailWindowProperty>
             return;
         }
 
-        RequestOpenWindow(AddressKeys.Prefab.CardZoomWindow, new CardZoomWindowProperty(texture));
+        RequestOpenWindow(AddressKeys.Prefab.CardZoomWindow, new CardZoomWindowProperty(texture, rarity));
     }
 }

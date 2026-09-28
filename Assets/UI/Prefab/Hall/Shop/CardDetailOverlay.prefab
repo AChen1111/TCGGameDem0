@@ -854,6 +854,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: HotUpdate::CardDetailView
   m_BtnDim: {fileID: 3120310554499927442}
   m_RawCard: {fileID: 8846703554945733228}
+  m_Versions:
+  - {fileID: 2100000, guid: 5bc5e18be570db94ca79952a7d5b234f, type: 2}
+  - {fileID: 2100000, guid: 8c508bc93b437ba49ace2bef87dd5615, type: 2}
+  - {fileID: 2100000, guid: c5cc29e866aab374e86789714cee3667, type: 2}
+  - {fileID: 2100000, guid: e0acf6e226c821e4eab08a29e8774ddd, type: 2}
+  - {fileID: 2100000, guid: 40a20d7a16004954e950a0ebcc3cfcb4, type: 2}
   m_BtnCard: {fileID: 0}
   m_ImgNameBase: {fileID: 2643175608583776429}
   m_TxtName: {fileID: 5645179364803611465}

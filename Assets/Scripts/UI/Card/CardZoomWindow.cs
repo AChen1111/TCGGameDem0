@@ -7,10 +7,12 @@ using UnityEngine.UI;
 public sealed class CardZoomWindowProperty : IWindowProperties
 {
     public Texture Texture { get; }
+    public int Rarity { get; }
 
-    public CardZoomWindowProperty(Texture texture)
+    public CardZoomWindowProperty(Texture texture, int rarity = 0)
     {
         Texture = texture;
+        Rarity = rarity;
     }
 }
 
@@ -167,7 +169,7 @@ public class CardZoomWindow : AWindowController<CardZoomWindowProperty>
         m_Card.Init(new CardPickViewData
         {
             cardId = string.Empty,
-            cardShaderType = CardShaderType.None,
+            cardShaderType = CardPickController.ToShaderType(Properties.Rarity),
             cardTexture = texture
         });
         if (flip != null)

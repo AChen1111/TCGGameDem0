@@ -140,7 +140,8 @@ public static class PublishedConfigBuilder
             .Concat(data.Catalog.CardPacks.Select(x => x.CoverResourceKey)))
             if (!addresses.Contains(key)) throw new FormatException("配置引用缺少资源: " + key);
         var folders = new Dictionary<string, string> { ["Card01"] = "CardBag01_BlueEyes", ["Card02"] = "CardBag02_Hero", ["Card03"] = "CardBag03_SkyStriker" };
-        foreach (var card in data.AllCards.Select(x => (x.CardId, x.SourcePool)).Concat(data.PoolEntries.Select(x => (x.CardId, x.PoolKey))))
+        foreach (var card in data.AllCards.Select(x => (x.CardId, x.SourcePool))
+            .Concat(data.ArtVariants.Select(x => (CardId: x.ArtId, x.SourcePool))))
             if (!folders.TryGetValue(card.Item2, out string folder) || !File.Exists("Assets/UI/Card/" + folder + "/" + card.Item1 + ".jpg"))
                 throw new FormatException("卡图引用无效: " + card.Item2 + "/" + card.Item1);
     }

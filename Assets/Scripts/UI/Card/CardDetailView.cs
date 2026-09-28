@@ -9,12 +9,16 @@ public readonly struct CardDetailEntry
     public string CardId { get; }
     public string SourcePool { get; }
     public Texture Texture { get; }
+    public int Rarity { get; }
+    public string ArtId { get; }
 
-    public CardDetailEntry(string cardId, string sourcePool, Texture texture)
+    public CardDetailEntry(string cardId, string sourcePool, Texture texture, int rarity = 0, string artId = null)
     {
         CardId = cardId ?? string.Empty;
         SourcePool = sourcePool ?? string.Empty;
         Texture = texture;
+        Rarity = rarity;
+        ArtId = artId ?? cardId ?? string.Empty;
     }
 }
 
@@ -22,6 +26,7 @@ public class CardDetailView : MonoBehaviour
 {
     [SerializeField] Button m_BtnDim;
     [SerializeField] RawImage m_RawCard;
+    [SerializeField] Material[] m_Versions;
     [SerializeField] Button m_BtnCard;
     [SerializeField] Image m_ImgNameBase;
     [SerializeField] TextMeshProUGUI m_TxtName;
@@ -70,7 +75,7 @@ public class CardDetailView : MonoBehaviour
     int m_Index = -1;
     Action m_OnClosed;
     Action<bool> m_OnVisibleChanged;
-    Action<Texture> m_OnCardClicked;
+    Action<Texture, int> m_OnCardClicked;
 
     public bool IsShowing => gameObject.activeSelf;
 
@@ -87,7 +92,7 @@ public class CardDetailView : MonoBehaviour
         }
     }
 
-    public void SetCallbacks(Action onClosed, Action<bool> onVisibleChanged, Action<Texture> onCardClicked = null)
+    public void SetCallbacks(Action onClosed, Action<bool> onVisibleChanged, Action<Texture, int> onCardClicked = null)
     {
         m_OnClosed = onClosed;
         m_OnVisibleChanged = onVisibleChanged;
@@ -216,7 +221,7 @@ public class CardDetailView : MonoBehaviour
             return;
         }
 
-        m_OnCardClicked?.Invoke(texture);
+        m_OnCardClicked?.Invoke(texture, m_Cards[m_Index].Rarity);
     }
 
     void RefreshCurrent()
@@ -242,6 +247,7 @@ public class CardDetailView : MonoBehaviour
         if (m_RawCard != null)
         {
             m_RawCard.texture = entry.Texture;
+            m_RawCard.material = m_Versions[entry.Rarity];
             m_RawCard.enabled = hasTexture;
             m_RawCard.color = Color.white;
         }

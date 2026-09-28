@@ -237,7 +237,7 @@ namespace AChen.Networking
                 player.Gold,
                 player.Revision,
                 player.CreatedAt,
-                player.UpdatedAt, player.AvatarFrameId, player.OwnedAvatarFrameIds, player.Ur);
+                player.UpdatedAt, player.AvatarFrameId, player.OwnedAvatarFrameIds, player.Ur, player.OwnedArtIds);
 
         static CardDrawResponse ToDraw(CardDrawResponseDto dto)
         {
@@ -254,7 +254,8 @@ namespace AChen.Networking
                 mapped[i] = new CardDrawResult(
                     result != null ? result.CardId : null,
                     result != null ? result.Rarity : 0,
-                    result != null ? result.SourcePool : null, result.IsOverflow, result.UrGained);
+                    result != null ? result.SourcePool : null, result.IsOverflow, result.UrGained,
+                    result.ArtId);
             }
 
             return new CardDrawResponse(mapped, ToPlayer(dto.Player));
@@ -482,6 +483,7 @@ namespace AChen.Networking
             public int? BackgroundId { get; set; }
             public int[] OwnedBackgroundIds { get; set; }
             public OwnedCardDto[] OwnedCards { get; set; }
+            public string[] OwnedArtIds { get; set; }
             public long Gold { get; set; }
             public long Ur { get; set; }
             public long Revision { get; set; }
@@ -507,6 +509,7 @@ namespace AChen.Networking
             public string CardId { get; set; }
             public int Rarity { get; set; }
             public string SourcePool { get; set; }
+            public string ArtId { get; set; }
             public bool IsOverflow { get; set; }
             public long UrGained { get; set; }
         }

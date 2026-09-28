@@ -24,12 +24,12 @@ public class ShopOwnedItemData
         DateTimeOffset? endsAt,
         bool owned,
         int index,
-        string catalogType = ShopCatalogTypes.Avatar)
+        string catalogType = ShopCatalogTypes.Avatar, string nameKey = null)
     {
         CatalogType = catalogType;
         Id = id;
         Name = name;
-        NameKey = "shop." + catalogType + "." + id.ToString("D2");
+        NameKey = nameKey ?? "shop." + catalogType + "." + id.ToString("D2");
         Sprite = sprite;
         PriceGold = priceGold;
         EndsAt = endsAt;
