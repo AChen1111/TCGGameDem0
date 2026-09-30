@@ -117,6 +117,7 @@ namespace AChen.Player
             AuthUser previousUser = CurrentUser;
             PlayerData previousPlayer = CurrentPlayer;
             SessionVersion++;
+            m_activities?.Reset();
             m_accessToken = null;
             m_refreshToken = null;
             CurrentUser = null;

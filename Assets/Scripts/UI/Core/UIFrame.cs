@@ -18,6 +18,9 @@ public class UIFrame : MonoBehaviour
 
     private Canvas mainCanvas;
 
+    // Activity scheduling waits until the existing layer has released its current window.
+    public bool IsWindowBusy => windowLayer.CurrentWindow != null;
+
     /// <summary>主 Canvas。</summary>
     public Canvas MainCanvas {
         get {

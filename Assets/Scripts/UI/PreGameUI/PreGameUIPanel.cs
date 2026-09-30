@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using AChen.Events;
 using AChen.Player;
+using AChen.Activities;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using UnityEngine;
@@ -29,6 +30,7 @@ public class PreGameUIPanel : APanelController
     [SerializeField] RectTransform m_DownLayOut;
     [SerializeField] CanvasGroup m_CanvasGroup;
     [SerializeField] LobbyWallpaperView m_WallpaperView;
+    [SerializeField] GameObject m_ActivityRedDot;
 
     [SerializeField] float m_Duration = 1f;
     [SerializeField] float m_Distance = 1500f;
@@ -65,6 +67,7 @@ public class PreGameUIPanel : APanelController
         m_BtnSetting.onClick.AddListener(OnSettingClick);
         m_BtnFriend.onClick.AddListener(OnFriendClick);
         m_BtnGift.onClick.AddListener(OnGiftClick);
+        m_BtnMail.onClick.AddListener(OnMailClick);
         m_BtnDeck.onClick.AddListener(OnDeckClick);
     }
 
@@ -79,6 +82,7 @@ public class PreGameUIPanel : APanelController
         m_BtnSetting.onClick.RemoveListener(OnSettingClick);
         m_BtnFriend.onClick.RemoveListener(OnFriendClick);
         m_BtnGift.onClick.RemoveListener(OnGiftClick);
+        m_BtnMail.onClick.RemoveListener(OnMailClick);
         m_BtnDeck.onClick.RemoveListener(OnDeckClick);
     }
 
@@ -86,6 +90,8 @@ public class PreGameUIPanel : APanelController
     {
         m_isSwitchingWallpaper = false;
         EventCenter.AddListener(GameEvent.PlayerBackgroundChanged, OnBackgroundChanged);
+        PlayerSession.Instance.Activities.Changed += UpdateActivityRedDot;
+        UpdateActivityRedDot();
         // 先应用当前背景, 后续只订阅背景变化.
         OnBackgroundChanged(PlayerSession.Instance.CurrentPlayer?.BackgroundId);
     }
@@ -93,7 +99,14 @@ public class PreGameUIPanel : APanelController
     protected override void OnClose()
     {
         EventCenter.RemoveListener(GameEvent.PlayerBackgroundChanged, OnBackgroundChanged);
+        PlayerSession.Instance.Activities.Changed -= UpdateActivityRedDot;
         m_WallpaperView.Clear();
+    }
+
+    protected override void OnDestroy()
+    {
+        PlayerSession.Instance.Activities.Changed -= UpdateActivityRedDot;
+        base.OnDestroy();
     }
 
     void OnBackgroundChanged(int? backgroundId)
@@ -130,9 +143,11 @@ public class PreGameUIPanel : APanelController
 
     void OnGiftClick()
     {
-        ALog.Log("打开礼品窗", ALogCategories.UI);
-        RequestOpenWindow(AddressKeys.Prefab.GiftWindow);
+        RequestOpenWindow(AddressKeys.Prefab.ActivityWindow);
     }
+
+    void OnMailClick() => RequestOpenWindow(AddressKeys.Prefab.GiftWindow);
+    void UpdateActivityRedDot() => m_ActivityRedDot.SetActive(PlayerSession.Instance.Activities.ClaimableCount > 0);
 
     void OnChangeWallpaperClick() => SwitchToNextWallpaperAsync().Forget();
 
@@ -196,5 +211,13 @@ public class PreGameUIPanel : APanelController
         m_introRunning = false;
         SceneTransitionOverlay.Hide();
         m_CanvasGroup.interactable = true;
+        RunActivities().Forget();
+    }
+
+    async UniTaskVoid RunActivities()
+    {
+        var scheduler = new ActivityPopupScheduler(PlayerSession.Instance.Activities, m_UIFrame, ScreenToken);
+        try { await scheduler.RunAsync(); }
+        catch (OperationCanceledException) { }
     }
 }

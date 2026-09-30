@@ -5,6 +5,11 @@ public static class AddressKeys
     //--tag:auto-generated
     public static class Prefab
     {
+        public static readonly string ActivityDetailView = "ActivityDetailView";
+        public static readonly string ActivityListItem = "ActivityListItem";
+        public static readonly string ActivityPopupWindow = "ActivityPopupWindow";
+        public static readonly string ActivityRewardItem = "ActivityRewardItem";
+        public static readonly string ActivityWindow = "ActivityWindow";
         public static readonly string AvatarPortrait = "AvatarPortrait";
         public static readonly string AvatarShopItemPrefab = "AvatarShopItemPrefab";
         public static readonly string AvatarShopItemRowPrefab = "AvatarShopItemRowPrefab";
@@ -295,6 +300,22 @@ public static class AddressKeys
         public static readonly string a_1013002 = "a_1013002";
         public static readonly string a_1013003 = "a_1013003";
         public static readonly string a_1013004 = "a_1013004";
+        public static readonly string activity_button = "activity_button";
+        public static readonly string activity_button_hover = "activity_button_hover";
+        public static readonly string activity_card = "activity_card";
+        public static readonly string activity_checked = "activity_checked";
+        public static readonly string activity_close = "activity_close";
+        public static readonly string activity_gift = "activity_gift";
+        public static readonly string activity_gold = "activity_gold";
+        public static readonly string activity_item_base = "activity_item_base";
+        public static readonly string activity_item_frame = "activity_item_frame";
+        public static readonly string activity_item_hover = "activity_item_hover";
+        public static readonly string activity_notice = "activity_notice";
+        public static readonly string activity_tab = "activity_tab";
+        public static readonly string activity_topic_base = "activity_topic_base";
+        public static readonly string activity_topic_frame = "activity_topic_frame";
+        public static readonly string activity_topic_hover = "activity_topic_hover";
+        public static readonly string activity_window = "activity_window";
         public static readonly string af_1030001 = "af_1030001";
         public static readonly string af_1030001_Mask = "af_1030001_Mask";
         public static readonly string af_1030002 = "af_1030002";

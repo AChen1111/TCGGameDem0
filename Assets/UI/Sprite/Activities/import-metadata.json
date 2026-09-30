@@ -1,0 +1,258 @@
+[
+  {
+    "name": "activity_window",
+    "source": "Sprites/CommonUI/GUI_CommonWindowS.png",
+    "sha256": "a4b4e838710e3a018294d02ef52c30a4b2d524ecafed5a3e88edc514ae77accf",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 16.0,
+      "y": 16.0,
+      "z": 16.0,
+      "w": 16.0
+    },
+    "pixelsPerUnit": 100.0
+  },
+  {
+    "name": "activity_button",
+    "source": "Sprites/CommonUI/GUI_CommonButtonM.png",
+    "sha256": "adf17f644112be0d8b90bb5270a0aaf959dc4934119516d7dc9932967a56e69a",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 22.0,
+      "y": 22.0,
+      "z": 22.0,
+      "w": 22.0
+    },
+    "pixelsPerUnit": 100.0
+  },
+  {
+    "name": "activity_button_hover",
+    "source": "Sprites/CommonUI/GUI_CommonButtonM_Over.png",
+    "sha256": "64362e91fe24c4ccd383828072e394b2bb48a61727b16deae9b08ed26bdb6bd3",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 30.0,
+      "y": 30.0,
+      "z": 30.0,
+      "w": 30.0
+    },
+    "pixelsPerUnit": 100.0
+  },
+  {
+    "name": "activity_close",
+    "source": "Sprites/CommonUI/GUI_ButtonClose.png",
+    "sha256": "256891dbb85bfc28d25714f688e0234a732321c13e32af88ad142688d907c9e7",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0
+  },
+  {
+    "name": "activity_checked",
+    "source": "Sprites/CommonUI/GUI_CommonButtonPlof_Check_On.png",
+    "sha256": "23c9bda8d22b3daeea068d5a0abfa66c4e520d25a0f5c7e69ca25a9fe389b3e1",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0
+  },
+  {
+    "name": "activity_item_base",
+    "source": "Sprites/CommonUI/GUI_CommonItemFrameS_Base.png",
+    "sha256": "c2f99767297feb81a606f85696b36228eba18e345fc6a4753bd19cea9d817b4f",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 15.0,
+      "y": 15.0,
+      "z": 15.0,
+      "w": 15.0
+    },
+    "pixelsPerUnit": 100.0
+  },
+  {
+    "name": "activity_item_frame",
+    "source": "Sprites/CommonUI/GUI_CommonItemFrameS_Frame.png",
+    "sha256": "5fa3d3fe232e4656c9b05d8cd3ff25c0bc36087bf870b3cb3da6912d97e38303",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 15.0,
+      "y": 15.0,
+      "z": 15.0,
+      "w": 15.0
+    },
+    "pixelsPerUnit": 100.0
+  },
+  {
+    "name": "activity_item_hover",
+    "source": "Sprites/CommonUI/GUI_CommonItemFrameS_Over.png",
+    "sha256": "0d969ec23476cf0ce77e02d3bb4c43a668496f4b018eb799e6785614a925017f",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 23.0,
+      "y": 23.0,
+      "z": 23.0,
+      "w": 23.0
+    },
+    "pixelsPerUnit": 100.0
+  },
+  {
+    "name": "activity_topic_base",
+    "source": "Sprites/Menus/servantui/GUI_Home_TopicsItemFrameS_Base.png",
+    "sha256": "a929ca7eac524de5b466a3d6caafce3275c331df9e96df72c517d3395ef1367a",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 15.0,
+      "y": 15.0,
+      "z": 15.0,
+      "w": 15.0
+    },
+    "pixelsPerUnit": 100.0
+  },
+  {
+    "name": "activity_topic_frame",
+    "source": "Sprites/Menus/servantui/GUI_Home_TopicsItemFrameS_Frame.png",
+    "sha256": "3d51c12ad94dad896cb3520b90357374e429ae9cf854a17ee6812f47cea2f553",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 15.0,
+      "y": 15.0,
+      "z": 15.0,
+      "w": 15.0
+    },
+    "pixelsPerUnit": 100.0
+  },
+  {
+    "name": "activity_topic_hover",
+    "source": "Sprites/Menus/servantui/GUI_Home_TopicsItemFrameS_Over.png",
+    "sha256": "31d7a907c3edf3b8eaedd9703bb7a4a32c9e4ca221444218e4a3ed6319a73e72",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 23.0,
+      "y": 23.0,
+      "z": 23.0,
+      "w": 23.0
+    },
+    "pixelsPerUnit": 100.0
+  },
+  {
+    "name": "activity_tab",
+    "source": "Sprites/CommonUI/GUI_Home_TopicsTab_Base.png",
+    "sha256": "50303b547b83a7a45c94419e253b552a6ef2665941de1b0dca8451db3af5cfea",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 46.0,
+      "y": 0.0,
+      "z": 11.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0
+  },
+  {
+    "name": "activity_gold",
+    "source": "Sprites/Builtin/coins.png",
+    "sha256": "2c6e888bd1fa69a63e3c82b22daf31ad5b5f2787c6e8f16f3ca89298290471d3",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0
+  },
+  {
+    "name": "activity_gift",
+    "source": "Sprites/Builtin/cta_icon_mystery_chest_gold.png",
+    "sha256": "cddc0c460b9fa713dcb74ea485e17c252ea8223b1fcd041b174dc525c25389c1",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0
+  },
+  {
+    "name": "activity_notice",
+    "source": "Sprites/Menus/popup/GUI_CommonIcon_DialogAlert.png",
+    "sha256": "8f734d1e6124114d5207de6a9e41e8439c67f8a25fa16fba1d4030f9a0a488d1",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0
+  },
+  {
+    "name": "activity_card",
+    "source": "Sprites/CommonUI/GUI_DeckEdit_Icon_InfoSwitching0.png",
+    "sha256": "b45fb02be75272c321eea6ed6b585785b6a2189bda318ecf058ede5828ec51d7",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0
+  }
+]

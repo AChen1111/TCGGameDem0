@@ -2827,3 +2827,115 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: activity_button
+    reference:
+      m_AssetGUID: e4242e2c243437040b354ae66024a799
+      m_SubObjectName: activity_button
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: activity_button_hover
+    reference:
+      m_AssetGUID: 6b6cb3ed9a439524780eca103c1ccd49
+      m_SubObjectName: activity_button_hover
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: activity_card
+    reference:
+      m_AssetGUID: ee89cc3bb3a58e4488c188cbfaafa4ac
+      m_SubObjectName: activity_card
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: activity_checked
+    reference:
+      m_AssetGUID: 9c037a7d2cfb31048b20041b9f94e595
+      m_SubObjectName: activity_checked
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: activity_close
+    reference:
+      m_AssetGUID: a0fdcc45889a3b441928772f65374ce5
+      m_SubObjectName: activity_close
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: activity_gift
+    reference:
+      m_AssetGUID: b6bb3da1bc53dcc49905c62e4435e8ec
+      m_SubObjectName: activity_gift
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: activity_gold
+    reference:
+      m_AssetGUID: 0eb4752bb749d984196b6fbcca5d8710
+      m_SubObjectName: activity_gold
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: activity_item_base
+    reference:
+      m_AssetGUID: 9f15eca71ea8f22478a93b23d56d1123
+      m_SubObjectName: activity_item_base
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: activity_item_frame
+    reference:
+      m_AssetGUID: 4cec2e7327313804aa90300e3bce4507
+      m_SubObjectName: activity_item_frame
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: activity_item_hover
+    reference:
+      m_AssetGUID: 52557a50c47ca6f4489f198d5b0136c4
+      m_SubObjectName: activity_item_hover
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: activity_notice
+    reference:
+      m_AssetGUID: d93f7179570a13842bbef68d5d0f4e34
+      m_SubObjectName: activity_notice
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: activity_tab
+    reference:
+      m_AssetGUID: a98d4996370033b41b89165b092cd813
+      m_SubObjectName: activity_tab
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: activity_topic_base
+    reference:
+      m_AssetGUID: 811fbeb90eb4e9d418c687c42571b120
+      m_SubObjectName: activity_topic_base
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: activity_topic_frame
+    reference:
+      m_AssetGUID: 507af69cc16f76048b7828e527eb6f00
+      m_SubObjectName: activity_topic_frame
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: activity_topic_hover
+    reference:
+      m_AssetGUID: 2a0b25df878ceba438cb4abfb127b09e
+      m_SubObjectName: activity_topic_hover
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: activity_window
+    reference:
+      m_AssetGUID: 99c10f75e3aaf3741b2596e82451d80e
+      m_SubObjectName: activity_window
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

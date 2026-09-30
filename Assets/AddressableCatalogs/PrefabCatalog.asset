@@ -279,3 +279,38 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: ActivityDetailView
+    reference:
+      m_AssetGUID: 9d874f9e255a7cc4290e3ffc2f36c7c6
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: ActivityListItem
+    reference:
+      m_AssetGUID: e989c81d0b2404f4dadd582efb90b4a6
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: ActivityPopupWindow
+    reference:
+      m_AssetGUID: 1762225eda522db469155d9cada68bfd
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: ActivityRewardItem
+    reference:
+      m_AssetGUID: 77446dbae36a7c84aa21ed6b02e33afb
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: ActivityWindow
+    reference:
+      m_AssetGUID: 837d2f5d381d88a4daefd5d93214ea48
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
