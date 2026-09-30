@@ -13,7 +13,9 @@ public static class ActivityPrefabBuilder
     const string Folder = "Assets/UI/Prefab/Hall/Activities/";
     const string Sprites = "Assets/UI/Sprite/Activities/";
     static TMP_FontAsset s_font;
-    static Sprite S(string name) => AssetDatabase.LoadAssetAtPath<Sprite>(Sprites + "activity_" + name + ".png");
+    static Sprite S(string name) => AssetDatabase.LoadAssetAtPath<Sprite>(name == "gold"
+        ? "Assets/UI/Sprite/Shop/GUI_GemShopIcon03.png"
+        : Sprites + "activity_" + name + ".png");
     static T[] All<T>(GameObject root) where T : Component => Resources.FindObjectsOfTypeAll<T>()
         .Where(x => x.transform == root.transform || x.transform.IsChildOf(root.transform)).ToArray();
     static void Ref(UnityEngine.Object host, string name, UnityEngine.Object value)

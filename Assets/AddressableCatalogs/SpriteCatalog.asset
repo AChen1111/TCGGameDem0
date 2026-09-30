@@ -2871,8 +2871,8 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
   - assetName: activity_gold
     reference:
-      m_AssetGUID: 0eb4752bb749d984196b6fbcca5d8710
-      m_SubObjectName: activity_gold
+      m_AssetGUID: 30aa2c10b1f9b0a4298b64274880e844
+      m_SubObjectName: GUI_GemShopIcon03
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0

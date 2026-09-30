@@ -1094,7 +1094,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d93f7179570a13842bbef68d5d0f4e34, type: 3}
   - {fileID: 21300000, guid: b6bb3da1bc53dcc49905c62e4435e8ec, type: 3}
   - {fileID: 21300000, guid: 9c037a7d2cfb31048b20041b9f94e595, type: 3}
-  - {fileID: 21300000, guid: 0eb4752bb749d984196b6fbcca5d8710, type: 3}
+  - {fileID: 21300000, guid: 30aa2c10b1f9b0a4298b64274880e844, type: 3}
   - {fileID: 21300000, guid: ee89cc3bb3a58e4488c188cbfaafa4ac, type: 3}
   m_Content: {fileID: 4444930706588545714}
   m_RewardPrefab: {fileID: 9178959280567029446, guid: 77446dbae36a7c84aa21ed6b02e33afb, type: 3}
