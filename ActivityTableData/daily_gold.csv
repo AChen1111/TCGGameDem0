@@ -1,0 +1,3 @@
+EntryId,NameKey,Description,PeriodKind,LimitPerPeriod,TotalLimit,SortOrder,RewardTypes,RewardIds,Amounts,CardVariants
+string,string,string,int,int,int?,int,int[],string[],long[],int[]
+daily,gift.gold_200.name,,1,1,,0,[1],"[""gold""]",[200],[0]

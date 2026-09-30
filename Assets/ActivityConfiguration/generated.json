@@ -1,0 +1,52 @@
+{
+  "SchemaVersion": 2,
+  "ReleaseId": "",
+  "SourceHash": "4a41a0a0f2c89b158ef1c4ca80525be76110ac74d96dfc4ee496107c7882d90d",
+  "ReferenceTarget": "Editor",
+  "ReferenceConfigHash": "",
+  "ExpectedRevision": 0,
+  "Files": [
+    {
+      "Table": "activities",
+      "Sha256": "9d72bc70fe41dc5f328d51f0e66f9d86a15b9f14ee684ba5acc128ad61aec5dd",
+      "Url": "",
+      "Size": 1622
+    },
+    {
+      "Table": "daily_card_exchange",
+      "Sha256": "a1039c0a6fd21b6e0df5ddf1c0166bcb0bcaa7b6b095f7491d7acd3bdd1ef1c3",
+      "Url": "",
+      "Size": 321
+    },
+    {
+      "Table": "daily_gold",
+      "Sha256": "e1c66b3973b09bb3b8ebf69634af7b706a9765c478425d61cac1800ed2b5567a",
+      "Url": "",
+      "Size": 276
+    },
+    {
+      "Table": "draw_ten_reward_2026",
+      "Sha256": "205a6ed3457052b013efe4e88cd2486e1fe74bb4184b533c8aacee6a7f0a7826",
+      "Url": "",
+      "Size": 327
+    },
+    {
+      "Table": "login_three_days_2026",
+      "Sha256": "d8324dc2f8315fed0ad6c7584b14c73ff297cfec77bba1015d2fed422290244b",
+      "Url": "",
+      "Size": 492
+    },
+    {
+      "Table": "national_day_gift_2026",
+      "Sha256": "65e6871044b96b7491b2b65997f8cdf9957e0e9d6c9418b681d3a36a4068ca51",
+      "Url": "",
+      "Size": 283
+    },
+    {
+      "Table": "notice_national_day_2026",
+      "Sha256": "f38359c2d6456a9ee94b1556b2b49718d89fd5cc5eefa16173b9ea8c13f56ab7",
+      "Url": "",
+      "Size": 211
+    }
+  ]
+}

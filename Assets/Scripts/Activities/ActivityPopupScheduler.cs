@@ -19,18 +19,14 @@ namespace AChen.Activities
         { m_manager = manager; m_frame = frame; m_token = token; }
         public async UniTask RunAsync()
         {
-            float refreshAt = UnityEngine.Time.realtimeSinceStartup;
+            string visitedDay = "";
             while (!m_token.IsCancellationRequested)
             {
-                bool crossedBoundary = m_manager.IsReady && !m_manager.IsStale && (m_manager.Clock.Now >= m_manager.Snapshot.NextResetAt ||
-                    m_manager.Items.Any(x => x.Definition.ScheduleMode == ActivityScheduleMode.Timed &&
-                        (x.Status == "upcoming" && m_manager.Clock.Now >= x.Definition.StartsAt || x.Status == "running" && m_manager.Clock.Now >= x.Definition.EndsAt)));
-                if (UnityEngine.Time.realtimeSinceStartup >= refreshAt || crossedBoundary)
+                // 调度器只负责实际大厅访问与弹窗，全局同步由会话管理器负责。
+                if (m_manager.IsReady && !m_manager.IsStale && visitedDay != m_manager.Snapshot.ServerDay)
                 {
-                    refreshAt = UnityEngine.Time.realtimeSinceStartup + 60f;
-                    try { await m_manager.RefreshAsync(true, m_token); }
+                    try { await m_manager.RefreshAsync(true, m_token); visitedDay = m_manager.Snapshot.ServerDay; }
                     catch (OperationCanceledException) { break; }
-                    catch (Exception error) { ALog.LogWarning("活动同步失败: " + error.Message, ALogCategories.Net); }
                 }
                 if (!m_frame.IsWindowBusy && m_active == null)
                 {

@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 202ac5e51660ac6458ca419c2df30c0e
   m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 1e8d5ba5645f17a131a040b5887501b9
   m_ExtractTypeTreeData: 0
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
@@ -67,6 +67,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f7fcb88f2ebe2af48871593b5160a4ce, type: 2}
   - {fileID: 11400000, guid: 761d4f5bb887d744998f40a36d837396, type: 2}
   - {fileID: 11400000, guid: a9ff526e3b21e274b8ea8b6b3bbc9cd0, type: 2}
+  - {fileID: 11400000, guid: 3dc214b6ca5ba98409e04c14c6790ce2, type: 2}
   - {fileID: 11400000, guid: c10d72079fcda07488912e25e9f0592a, type: 2}
   - {fileID: 11400000, guid: db37e8ec9969cc14890a5b3f8f333c4e, type: 2}
   - {fileID: 11400000, guid: 009fb027024fe5e4798edea15314f1be, type: 2}
@@ -118,6 +119,8 @@ MonoBehaviour:
     - CardDeckShop
     - GameConfig
     - GameConfigGenerated
+    - ActivityConfig
+    - ActivityConfig.Generated
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 88bba1e31a6b8794794d4bbe4784c6cb, type: 2}

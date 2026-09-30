@@ -1,0 +1,8 @@
+ActivityId,Type,DetailTable,IsEnabled,ScheduleMode,StartsAt,EndsAt,NameKey,Description,DescriptionKey,SortOrder,DisplayMode,BannerResourceKey,ShowLocked,HideWhenCompleted,PopupTrigger,PopupFrequency,PopupPriority,PopupPolicyVersion,StopWhenCompleted,ConditionTypes,ConditionValues,ConditionActivityIds,ConditionTimes
+string,int,string,bool,int,string?,string?,string,string,string,int,int,string,bool,bool,string,string,int,long,bool,string[],long[],string[],string[]
+national_day_gift_2026,1,national_day_gift_2026,True,1,2026-10-01T00:00:00+08:00,2026-10-08T00:00:00+08:00,activity.national_day_gift_2026.name,,,0,2,,True,False,lobbyReady,oncePerActivity,90,1,True,[],[],[],[]
+daily_gold,1,daily_gold,True,0,,,activity.daily_gold.name,,,0,0,,True,False,lobbyReady,oncePerActivity,0,1,True,[],[],[],[]
+login_three_days_2026,2,login_three_days_2026,True,1,2026-10-01T00:00:00+08:00,2026-10-08T00:00:00+08:00,activity.login_three_days_2026.name,,,0,2,,True,False,lobbyReady,oncePerActivity,80,1,True,[],[],[],[]
+daily_card_exchange,3,daily_card_exchange,True,0,,,activity.daily_card_exchange.name,,,0,0,,True,False,lobbyReady,oncePerActivity,0,1,True,[],[],[],[]
+draw_ten_reward_2026,4,draw_ten_reward_2026,True,1,2026-10-01T00:00:00+08:00,2026-10-08T00:00:00+08:00,activity.draw_ten_reward_2026.name,,,0,0,,True,False,lobbyReady,oncePerActivity,0,1,True,[],[],[],[]
+notice_national_day_2026,0,notice_national_day_2026,True,1,2026-10-01T00:00:00+08:00,2026-10-08T00:00:00+08:00,activity.notice_national_day_2026.name,,,0,1,,True,False,lobbyReady,oncePerActivity,100,1,True,[],[],[],[]

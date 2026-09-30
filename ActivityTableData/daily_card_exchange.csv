@@ -1,0 +1,3 @@
+EntryId,NameKey,Description,PeriodKind,LimitPerPeriod,TotalLimit,SortOrder,RewardTypes,RewardIds,Amounts,CardVariants,CostGold
+string,string,string,int,int,int?,int,int[],string[],long[],int[],long
+exchange_offer_001,exchange.daily_card.name,,1,1,,0,[2],"[""00213326""]",[1],[0],800

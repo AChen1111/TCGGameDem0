@@ -1,0 +1,3 @@
+EntryId,NameKey,Description,PeriodKind,LimitPerPeriod,TotalLimit,SortOrder,RewardTypes,RewardIds,Amounts,CardVariants,Threshold,PackIds
+string,string,string,int,int,int?,int,int[],string[],long[],int[],long,int[]
+draw_10,gift.gold_500.name,,0,1,1,0,[1],"[""gold""]",[500],[0],10,[1]

@@ -69,13 +69,15 @@ public class ActivityWindow : AWindowController
         var definition = state.Definition.Entries.Single(x => x.Id == entry);
         string id = m_selected;
         if (definition.CostGold > 0)
-            Confirm("ui.activities.exchange_confirm", () => ClaimAsync(id, entry).Forget(), new Dictionary<string, object> { ["amount"] = definition.CostGold });
-        else ClaimAsync(id, entry).Forget();
+            Confirm("ui.activities.exchange_confirm", () => ClaimAsync(id, entry, state.Definition.DefinitionVersion).Forget(), new Dictionary<string, object> { ["amount"] = definition.CostGold });
+        else ClaimAsync(id, entry, state.Definition.DefinitionVersion).Forget();
     }
-    async UniTaskVoid ClaimAsync(string id, string entry)
+    async UniTaskVoid ClaimAsync(string id, string entry, long confirmedVersion)
     {
         await RunGuardedAsync(async ct =>
         {
+            if (!Manager.TryGet(id, out var current) || current.Definition.DefinitionVersion != confirmedVersion)
+                throw new InvalidOperationException("活动配置已更新，请重新确认奖励与兑换成本");
             var result = await Manager.ClaimAsync(id, entry, ct);
             if (result.UrGained > 0) RequestOpenWindow(AddressKeys.Prefab.UrNoticeWindow, new UrNoticeProperties(new LocalizedMessage("ui.workshop.gift_overflow", new Dictionary<string, object> { ["amount"] = result.UrGained })));
         }, "领取活动奖励", "ui.activities.claim_failed");

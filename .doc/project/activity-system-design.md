@@ -1,3 +1,5 @@
+> 此文保留最初的界面与玩法设计。配置来源及发布、加载协议已由 [活动 CSV 配置与独立发布](activity-system-implementation.md) 替代；旧 JSON 草稿、后台礼包编辑与协议 1 描述不再适用。
+
 # TCG 活动系统详细设计方案
 
 适用仓库：`TCGGameDem0`（Unity 客户端）与 `TCGCardDem0-Backend`（后端）

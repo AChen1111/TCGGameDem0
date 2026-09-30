@@ -14,17 +14,32 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public static class SceneTransitionOverlay
 {
     public const string Address = "UI/LoadIN";
-    const int SortingOrder = 32767;
 
     static GameObject s_root;
     static CanvasGroup s_canvasGroup;
+    static SceneTransitionOverlayView s_view;
+    static bool s_activityGate, s_wasVisible, s_hideRequested;
+    public static bool IsActivityBlocking => s_activityGate;
+    public static void Bind(SceneTransitionOverlayView view) { s_view = view; s_canvasGroup = view.Group; }
+    public static void ActivityProgress(string text, float value)
+    {
+        if (!s_activityGate) { s_wasVisible = IsVisible; s_hideRequested = false; s_activityGate = true; }
+        Show(); s_view.Progress(text, value);
+    }
+    public static UniTask ActivityRetryAsync(string reason, System.Threading.CancellationToken token)
+    { ActivityProgress("活动配置加载失败", 0); return s_view.WaitForRetryAsync(reason, token); }
+    public static void EndActivities()
+    {
+        bool hide = s_activityGate && (!s_wasVisible || s_hideRequested); s_activityGate = false;
+        if (hide) Hide();
+    }
     static AsyncOperationHandle<GameObject> s_prefab;
 
     public static void ResetState()
     {
         if (s_root != null) UnityEngine.Object.Destroy(s_root);
         s_root = null;
-        s_canvasGroup = null;
+        s_canvasGroup = null; s_view = null; s_activityGate = false;
         if (s_prefab.IsValid()) Addressables.Release(s_prefab);
         s_prefab = default;
     }
@@ -82,6 +97,7 @@ public static class SceneTransitionOverlay
 
     public static void Hide()
     {
+        if (s_activityGate) { s_hideRequested = true; return; }
         if (s_root == null || !s_root.activeSelf)
         {
             return;
@@ -93,7 +109,7 @@ public static class SceneTransitionOverlay
 
     public static bool TryFadeOut(float duration, out MotionHandle handle)
     {
-        if (!IsVisible)
+        if (s_activityGate || !IsVisible)
         {
             handle = default;
             return false;
@@ -121,19 +137,6 @@ public static class SceneTransitionOverlay
         s_root.name = "SceneTransitionOverlay";
         s_root.transform.localScale = Vector3.one;
         UnityEngine.Object.DontDestroyOnLoad(s_root);
-
-        Canvas canvas = s_root.GetComponent<Canvas>();
-        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvas.sortingOrder = SortingOrder;
-
-        s_canvasGroup = s_root.GetComponent<CanvasGroup>();
-
-        Image background = s_root.GetComponentInChildren<Image>(true);
-        RectTransform rect = background.rectTransform;
-        rect.anchorMin = Vector2.zero;
-        rect.anchorMax = Vector2.one;
-        rect.offsetMin = Vector2.zero;
-        rect.offsetMax = Vector2.zero;
 
         s_root.SetActive(false);
     }

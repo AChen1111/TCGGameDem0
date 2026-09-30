@@ -1,0 +1,5 @@
+EntryId,NameKey,Description,PeriodKind,LimitPerPeriod,TotalLimit,SortOrder,RewardTypes,RewardIds,Amounts,CardVariants,DayIndex,AllowCatchUpClaims
+string,string,string,int,int,int?,int,int[],string[],long[],int[],int,bool
+day_1,gift.gold_100.name,,0,1,1,1,[1],"[""gold""]",[100],[0],1,True
+day_2,gift.gold_200.name,,0,1,1,2,[1],"[""gold""]",[200],[0],2,True
+day_3,gift.gold_500.name,,0,1,1,3,[1],"[""gold""]",[500],[0],3,True

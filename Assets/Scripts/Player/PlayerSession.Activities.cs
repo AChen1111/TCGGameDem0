@@ -10,13 +10,16 @@ namespace AChen.Player
     {
         ActivityManager m_activities;
         public ActivityManager Activities => m_activities ??= new ActivityManager(this);
-        internal async UniTask<ActivityListResponse> LoadActivitiesAsync(bool visit, CancellationToken token)
+        internal string ActivityBackendAddress => Api.ActivityBackendAddress;
+        internal UniTask<byte[]> DownloadActivityAsync(string path, CancellationToken token) =>
+            SendAuthenticatedCallAsync((access, ct) => Api.DownloadActivityAsync(access, path, ct), token);
+        internal async UniTask<ActivityIndexResponse> LoadActivitiesAsync(bool visit, CancellationToken token)
         {
             // Refresh also recovers inventory after a claim whose response was lost.
             await SendAuthenticatedAsync(Api.GetPlayerAsync, token);
             return await SendAuthenticatedCallAsync((access, ct) => Api.GetActivitiesAsync(access, visit, ct), token);
         }
-        internal UniTask<ActivityListResponse> ReportActivityPopupAsync(string id, ActivityPopupShownRequest request, CancellationToken token) =>
+        internal UniTask<ActivityIndexResponse> ReportActivityPopupAsync(string id, ActivityPopupShownRequest request, CancellationToken token) =>
             SendAuthenticatedCallAsync((access, ct) => Api.ReportActivityPopupAsync(access, id, request, ct), token);
         internal UniTask<ActivityClaimResult> ClaimActivityAsync(string id, ActivityClaimRequest request, bool exchange, CancellationToken token) =>
             ExecuteLockedAsync("ActivityClaim", id + "/" + request.EntryId, async (player, ct) =>

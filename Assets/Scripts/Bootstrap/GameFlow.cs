@@ -138,6 +138,7 @@ public static class GameFlow
             if (await PlayerSession.Instance.TryRestoreSessionAsync(cancellationToken))
             {
                 await GameConfigManager.Instance.InitializeAsync(cancellationToken: cancellationToken);
+                await AChen.Activities.ActivityConfiguration.WaitUntilReadyAsync(cancellationToken);
                 ALog.Log("Init 恢复玩家会话成功, 进入 GameScene.", ALogCategories.Net);
                 return AddressKeys.Scene.GameScene;
             }
@@ -176,6 +177,7 @@ public static class GameFlow
         {
             await CheckContentAsync(SingletonManager.Instance.GetCancellationTokenOnDestroy());
             await GameConfigManager.Instance.InitializeAsync();
+            await AChen.Activities.ActivityConfiguration.WaitUntilReadyAsync(SingletonManager.Instance.GetCancellationTokenOnDestroy());
             await SceneLoader.LoadScene(AddressKeys.Scene.GameScene);
         }
         catch (Exception exception)

@@ -36,6 +36,8 @@ namespace AChen.Activities
         readonly Dictionary<string, ActivityClaimRequest> m_requests = new Dictionary<string, ActivityClaimRequest>();
         readonly Dictionary<string, (string id, ActivityPopupShownRequest request)> m_receipts = new Dictionary<string, (string, ActivityPopupShownRequest)>();
         Dictionary<string, Activity> m_items = new Dictionary<string, Activity>();
+        ActivityConfiguration m_configuration;
+        bool m_watching;
         long m_version = -1;
         CancellationTokenSource m_lifetime = new CancellationTokenSource();
         public readonly ActivityClock Clock = new ActivityClock();
@@ -48,11 +50,12 @@ namespace AChen.Activities
         public int PopupSessionCount;
         public readonly HashSet<string> PopupShownKeys = new HashSet<string>();
         public event Action Changed;
-        public ActivityManager(PlayerSession session) { m_session = session; }
+        public ActivityManager(PlayerSession session) { m_session = session; m_configuration = new ActivityConfiguration(session); }
 
         public void Reset()
         {
             m_lifetime.Cancel(); m_lifetime.Dispose(); m_lifetime = new CancellationTokenSource();
+            m_configuration = new ActivityConfiguration(m_session); m_watching = false; SceneTransitionOverlay.EndActivities();
             foreach (var item in m_items.Values) item.Dispose();
             m_items.Clear(); m_requests.Clear(); m_receipts.Clear(); Snapshot = new ActivityListResponse();
             PopupSessionCount = 0; PopupShownKeys.Clear();
@@ -69,21 +72,72 @@ namespace AChen.Activities
             IsLoading = true; Changed?.Invoke();
             try
             {
-                await FlushReceiptsAsync(ct);
-                var response = await m_session.LoadActivitiesAsync(visit, ct);
-                ct.ThrowIfCancellationRequested();
-                if (version != m_session.SessionVersion) throw new OperationCanceledException();
-                Install(response);
+                while (true)
+                {
+                    try
+                    {
+                        await FlushReceiptsAsync(ct);
+                        var index = await m_session.LoadActivitiesAsync(visit, ct);
+                        long received = Stopwatch.GetTimestamp();
+                        ct.ThrowIfCancellationRequested();
+                        if (version != m_session.SessionVersion) throw new OperationCanceledException();
+                        bool gate = !IsReady || IsStale || m_configuration.RequiresLoading(index);
+                        if (gate) { IsStale = true; SceneTransitionOverlay.ActivityProgress("正在准备活动配置", 0); Changed?.Invoke(); }
+                        var response = await m_configuration.PrepareAsync(index,
+                            (text, value) => { if (gate) SceneTransitionOverlay.ActivityProgress(text, value); }, ct);
+                        ct.ThrowIfCancellationRequested();
+                        var preparedTime = index.ServerTime.AddSeconds((Stopwatch.GetTimestamp() - received) / (double)Stopwatch.Frequency);
+                        if (index.Activities.Any(x => x.Master.IsOpen(preparedTime) != x.Master.IsOpen(index.ServerTime)) || preparedTime >= index.NextResetAt)
+                            continue; // 下载跨过排期或日切边界，重新读取状态后再安装。
+                        Install(response); Clock.Synchronize(preparedTime); m_configuration.Commit(index); SceneTransitionOverlay.EndActivities();
+                        return;
+                    }
+                    catch (OperationCanceledException) { throw; }
+                    catch (Exception error)
+                    {
+                        IsStale = true; Changed?.Invoke();
+                        if (ContentSession.RestartRequired)
+                        {
+                            SceneTransitionOverlay.EndActivities(); ContentUpdatePrompt.ShowRestart();
+                            await UniTask.WaitUntil(() => false, cancellationToken: ct);
+                        }
+                        await SceneTransitionOverlay.ActivityRetryAsync(error.Message, ct);
+                    }
+                }
             }
             catch (OperationCanceledException) { throw; }
             catch { IsStale = true; Changed?.Invoke(); throw; }
             finally { IsLoading = false; m_sync.Release(); Changed?.Invoke(); }
         }
+        public async UniTask WaitUntilReadyAsync(CancellationToken token)
+        {
+            await RefreshAsync(false, token);
+            if (!m_watching) { m_watching = true; WatchAsync(m_lifetime.Token).Forget(); }
+        }
+        async UniTaskVoid WatchAsync(CancellationToken token)
+        {
+            try
+            {
+                float refresh = UnityEngine.Time.realtimeSinceStartup + 60;
+                while (true)
+                {
+                    await UniTask.Delay(250, ignoreTimeScale: true, cancellationToken: token);
+                    var now = Clock.Now;
+                    bool boundary = m_configuration.Index.Activities.Any(x => x.Master.IsOpen(now) != x.Master.IsOpen(m_configuration.Index.ServerTime)) || now >= Snapshot.NextResetAt;
+                    if (UnityEngine.Time.realtimeSinceStartup >= refresh || boundary)
+                    {
+                        if (boundary) { IsStale = true; SceneTransitionOverlay.ActivityProgress("正在更新活动配置", 0); Changed?.Invoke(); }
+                        await RefreshAsync(false, token); refresh = UnityEngine.Time.realtimeSinceStartup + 60;
+                    }
+                }
+            }
+            catch (OperationCanceledException) { }
+        }
         void Install(ActivityListResponse snapshot)
         {
             // A delayed response must not replace a newer complete snapshot.
             if (IsReady && snapshot.ServerTime < Snapshot.ServerTime) return;
-            if (snapshot.SchemaVersion != 1 || snapshot.Activities.Select(x => x.Definition.Id).Distinct().Count() != snapshot.Activities.Count)
+            if (snapshot.SchemaVersion != 2 || snapshot.Activities.Select(x => x.Definition.Id).Distinct().Count() != snapshot.Activities.Count)
                 throw new FormatException("活动快照协议无效");
             var next = new Dictionary<string, Activity>();
             foreach (var state in snapshot.Activities)
@@ -116,7 +170,7 @@ namespace AChen.Activities
         public bool CanClaim(ActivitySnapshot state, string entry) => IsReady && !IsStale && !IsBusy && Clock.Now < Snapshot.NextResetAt && !ContentSession.RestartRequired && Running(state) &&
             state.Eligible && (state.PlayerState.EntryStates.Single(x => x.EntryId == entry).CanClaim || HasPendingRequest(state.Definition.Id, entry));
         public bool HasPendingRequest(string id, string entry) => m_requests.ContainsKey(id + "/" + entry);
-        public IEnumerable<ActivitySnapshot> PageItems => Items.Where(x => x.Definition.DisplayMode != ActivityDisplayMode.Popup)
+        public IEnumerable<ActivitySnapshot> PageItems => Items.Where(x => x.Definition.DisplayMode != ActivityDisplayMode.Popup && (x.Eligible || x.Definition.ShowLocked) && (!x.PlayerState.Completed || !x.Definition.HideWhenCompleted))
             .OrderBy(x => x.Definition.SortOrder).ThenBy(x => x.Definition.Id, StringComparer.Ordinal);
         public int ClaimableCount => PageItems.Count(x => x.PlayerState.EntryStates.Any(e => CanClaim(x, e.EntryId)));
         public async UniTask<ActivityClaimResult> ClaimAsync(string id, string entryId, CancellationToken token)
@@ -131,7 +185,7 @@ namespace AChen.Activities
             try
             {
                 var response = await m_session.ClaimActivityAsync(id, request, state.Definition.Type == ActivityType.Exchange, token);
-                m_requests.Remove(operation); Install(response.Activities);
+                m_requests.Remove(operation);
                 try { await RefreshAsync(false, token); }
                 catch (OperationCanceledException) { throw; }
                 catch (Exception error) { ALog.LogWarning("奖励已领取，活动刷新暂未完成: " + error.Message, ALogCategories.Net); }
@@ -141,7 +195,9 @@ namespace AChen.Activities
             {
                 // A transport timeout is unknown: retain its request for idempotent manual retry.
                 if (exception.StatusCode > 0) m_requests.Remove(operation);
-                IsStale = true; throw;
+                IsStale = true;
+                if (exception.Code == "ACTIVITY_VERSION_CHANGED") await RefreshAsync(false, token);
+                throw;
             }
             catch { IsStale = true; throw; }
             finally { IsBusy = false; Changed?.Invoke(); }

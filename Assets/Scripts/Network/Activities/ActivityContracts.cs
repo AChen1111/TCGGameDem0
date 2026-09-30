@@ -24,17 +24,9 @@ namespace AChen.Configuration
         public long Amount;
         public int CardVariant;
     }
-    [Serializable] public sealed class ActivityGiftDefinition
-    {
-        public string Id = "";
-        public string NameKey = "";
-        public string Description = "";
-        public List<ActivityReward> Rewards = new List<ActivityReward>();
-    }
     [Serializable] public sealed class ActivityEntryDefinition
     {
         public string Id = "";
-        public string GiftId = "";
         public string NameKey = "";
         public string Description = "";
         public ActivityPeriodKind PeriodKind;
@@ -114,7 +106,7 @@ namespace AChen.Configuration
     }
     [Serializable] public sealed class ActivityListResponse
     {
-        public int SchemaVersion = 1;
+        public int SchemaVersion = 2;
         public long DefinitionsRevision;
         public long PlayerStateRevision;
         public DateTimeOffset ServerTime;
@@ -134,12 +126,5 @@ namespace AChen.Configuration
     {
         public long PolicyVersion;
         public string PeriodKey = "all";
-    }
-    [Serializable] public sealed class ActivityDraftRequest
-    {
-        public string Target = "Editor";
-        public string ConfigHash = "";
-        public long ExpectedVersion;
-        public ActivityDefinition Definition = new ActivityDefinition();
     }
 }

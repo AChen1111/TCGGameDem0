@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: ActivityConfiguration
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: ActivityConfiguration
+  m_GUID: a025e092f78b9664ca30aabba0bf4728
+  m_SerializeEntries:
+  - m_GUID: 06988d2ca33adb64db7869a7c2a557f8
+    m_Address: ActivityConfig/national_day_gift_2026
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ActivityConfig
+    - ActivityConfig.Generated
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 107ee218f56e6384ab458f23ff545c07
+    m_Address: ActivityConfig/daily_gold
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ActivityConfig
+    - ActivityConfig.Generated
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4501b2e3908cea34e9600e8b60999ac5
+    m_Address: ActivityConfig/notice_national_day_2026
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ActivityConfig
+    - ActivityConfig.Generated
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a2ff8740e53352438c7a740a9b1eda5
+    m_Address: ActivityConfig/draw_ten_reward_2026
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ActivityConfig
+    - ActivityConfig.Generated
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ecccde064b7c844b96c1f1727dc8080
+    m_Address: ActivityConfig/login_three_days_2026
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ActivityConfig
+    - ActivityConfig.Generated
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e443f5ee7490c5f48821f670f1cad98a
+    m_Address: ActivityConfig/daily_card_exchange
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ActivityConfig
+    - ActivityConfig.Generated
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e465f8f42da43734bb6c0ba7840e06b0
+    m_Address: ActivityConfig/activities
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ActivityConfig
+    - ActivityConfig.Generated
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3bb9cee06e4ec4b4e8f8af1c47ad2e29, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 062dd26564502da4cb248b967b74ec46, type: 2}

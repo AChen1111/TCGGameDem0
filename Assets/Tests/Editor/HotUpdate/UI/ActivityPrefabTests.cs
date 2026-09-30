@@ -49,6 +49,31 @@ public sealed class ActivityPrefabTests
         }
     }
     [Test]
+    public void Existing_loading_prefab_binds_activity_controls()
+    {
+        var root = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/UI/Prefab/Common/LoadIN.prefab");
+        var view = All<SceneTransitionOverlayView>(root).Single();
+        AssertReferences(view);
+        var fields = new SerializedObject(view);
+        Assert.That(fields.FindProperty("m_retry").objectReferenceValue, Is.Not.Null);
+        Assert.That(fields.FindProperty("m_progress").objectReferenceValue, Is.Not.Null);
+        Assert.That(fields.FindProperty("m_status").objectReferenceValue, Is.Not.Null);
+    }
+    [Test]
+    public void Started_activity_requires_loading_even_when_personal_condition_is_locked()
+    {
+        var now = DateTimeOffset.Parse("2026-10-01T00:00:00+08:00");
+        var config = new ActivityConfiguration(null);
+        var master = new ActivityMasterRow { ActivityId = "future", IsEnabled = true, ScheduleMode = 1, StartsAt = now, EndsAt = now.AddDays(1) };
+        var before = new ActivityIndexResponse { ReleaseId = "same", ServerTime = now.AddSeconds(-1), Activities = { new ActivityIndexItem { Master = master, Eligible = false } } };
+        config.Commit(before);
+        var after = new ActivityIndexResponse { ReleaseId = "same", ServerTime = now, Activities = before.Activities };
+        Assert.That(config.RequiresLoading(after), Is.True);
+        master.IsEnabled = false;
+        Assert.That(master.IsOpen(now), Is.False);
+        Assert.That(config.RequiresLoading(after), Is.False);
+    }
+    [Test]
     public void Invalid_snapshot_does_not_partially_replace_existing_activities()
     {
         var manager = new ActivityManager(null); var first = Snapshot("first", ActivityType.Gift); Install(manager, first);

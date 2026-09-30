@@ -44,9 +44,34 @@ notice = activity("notice_national_day_2026", 0, 1, True, 100)
 notice["notice"] = {"content": "国庆活动开放：领取见面礼，累计登录三天获得各档金币奖励。", "imageResourceKey": "",
     "actionKind": "activity", "actionTarget": welcome["id"]}
 examples = {"gifts": gifts, "activities": [welcome, daily, login, exchange, milestone, notice]}
-text = json.dumps(examples, ensure_ascii=False, indent=2) + "\n"
-(root / "Tools/Activities/examples.json").write_text(text, encoding="utf-8")
-public = root / "Backend/AdminWeb/public"
-public.mkdir(parents=True, exist_ok=True)
-(public / "activity-examples.json").write_text(text, encoding="utf-8")
-print("Generated six activity drafts with published source identifiers")
+
+# CSV 是唯一可编辑来源。礼品模板只用于一次性构造这六个示例，不单独发布。
+source = root / "ActivityTableData"
+source.mkdir(exist_ok=True)
+def write_table(name, fields, types, rows):
+    with (source / (name + ".csv")).open("w", encoding="utf-8", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(fields); writer.writerow(types)
+        for row in rows:
+            writer.writerow([json.dumps(row[k], ensure_ascii=False, separators=(",", ":")) if isinstance(row[k], list) else "" if row[k] is None else str(row[k]) for k in fields])
+master_fields = "ActivityId Type DetailTable IsEnabled ScheduleMode StartsAt EndsAt NameKey Description DescriptionKey SortOrder DisplayMode BannerResourceKey ShowLocked HideWhenCompleted PopupTrigger PopupFrequency PopupPriority PopupPolicyVersion StopWhenCompleted ConditionTypes ConditionValues ConditionActivityIds ConditionTimes".split()
+master_types = "string int string bool int string? string? string string string int int string bool bool string string int long bool string[] long[] string[] string[]".split()
+master = []
+common_fields = "EntryId NameKey Description PeriodKind LimitPerPeriod TotalLimit SortOrder RewardTypes RewardIds Amounts CardVariants".split()
+common_types = "string string string int int int? int int[] string[] long[] int[]".split()
+for a in examples["activities"]:
+    master.append(dict(zip(master_fields, [a["id"], a["type"], a["id"], True, a["scheduleMode"], a["startsAt"], a["endsAt"], a["nameKey"], "", "", a["sortOrder"], a["displayMode"], a["bannerResourceKey"], a["showLocked"], a["hideWhenCompleted"], a["popup"]["trigger"], a["popup"]["frequency"], a["popup"]["priority"], 1, True, [], [], [], []])))
+    if a["type"] == 0:
+        n=a["notice"]
+        write_table(a["id"], ["Content", "ImageResourceKey", "ActionKind", "ActionTarget"], ["string"]*4, [dict(Content=n["content"], ImageResourceKey=n["imageResourceKey"], ActionKind=n["actionKind"], ActionTarget=n["actionTarget"])])
+        continue
+    extras = {1: ([], []), 2: (["DayIndex", "AllowCatchUpClaims"], ["int", "bool"]), 3: (["CostGold"], ["long"]), 4: (["Threshold", "PackIds"], ["long", "int[]"])}[a["type"]]
+    rows=[]
+    for e in a["entries"]:
+        reward = next(g["rewards"] for g in gifts if g["id"] == e["giftId"])
+        row=dict(zip(common_fields, [e["id"], e["nameKey"], "", e["periodKind"], e["limitPerPeriod"], e["totalLimit"], e["sortOrder"], [r["rewardType"] for r in reward], [r["rewardId"] for r in reward], [r["amount"] for r in reward], [r["cardVariant"] for r in reward]]))
+        row.update(DayIndex=e.get("dayIndex", 0), AllowCatchUpClaims=a.get("allowCatchUpClaims", True), CostGold=e["costGold"], Threshold=e.get("threshold", 0), PackIds=a.get("packIds", []))
+        rows.append(row)
+    write_table(a["id"], common_fields+extras[0], common_types+extras[1], rows)
+write_table("activities", master_fields, master_types, master)
+print("Generated ActivityTableData/activities.csv and six detail CSVs")

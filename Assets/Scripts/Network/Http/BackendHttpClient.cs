@@ -54,6 +54,17 @@ namespace AChen.Networking
             m_config = config ?? new BackendConfig();
         }
 
+        public async UniTask<byte[]> DownloadAsync(string path, string access, IReadOnlyDictionary<string, string> headers, CancellationToken token)
+        {
+            using var request = UnityWebRequest.Get(m_config.BaseUrl + path);
+            request.timeout = m_config.TimeoutSeconds;
+            request.SetRequestHeader("Authorization", "Bearer " + access);
+            foreach (var header in headers) request.SetRequestHeader(header.Key, header.Value);
+            try { await request.SendWebRequest().ToUniTask(cancellationToken: token, cancelImmediately: true); }
+            catch (UnityWebRequestException) { throw BackendHttpError.FromRequest(request); }
+            return request.downloadHandler.data;
+        }
+
         /// <summary>发送请求并返回响应正文; 非成功状态转为 BackendApiException.</summary>
         public async UniTask<string> SendAsync(
             string method,
