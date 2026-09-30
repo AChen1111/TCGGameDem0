@@ -65,6 +65,8 @@ await SceneLoader.LoadScene(AddressKeys.Scene.GameScene);
 
 会话内每 60 秒同步，并在开始/结束和北京时间午夜边界重新计算。发现新发布版本或边界变化时显示现有 LoadIN，遮挡全部 UI，清除旧键盘焦点；全部当前开启子表与状态准备完毕后统一替换。加载失败显示具体原因和重试按钮，保持遮挡；重试获取最新总表，不使用旧配置继续交互。子表缓存按后端地址和文件哈希隔离，每次先由服务端总表确认哈希再复用缓存。切换账号/登出取消旧会话加载及定时同步。
 
+本地 Development 后端可通过未纳入 Git 的 `Backend/src/AChen.Backend.Api/Data/activity-clock.json` 设置活动测试日期，例如 `{"Activities":{"DevelopmentTime":"2026-10-01T12:00:00+08:00"}}`。重启后端后活动时间从该时刻继续走动；删除文件并重启恢复真实时间。客户端仍使用后端返回的 ServerTime，登录令牌和账号创建时间使用真实时间。当前活动时间可查询后台总表接口的 serverTime。
+
 `Assets/UI/Prefab/Common/LoadIN.prefab` 已增加 ActivityStatus、ActivityProgress、ActivityRetry；SceneTransitionOverlayView 的 Canvas、CanvasGroup、背景、状态、进度、按钮及标签均通过序列化字段绑定。重建这些引用可通过 unity-cli 执行 `Tools/Activities/ConfigureLoadingPrefab.cs` 的 Main。
 
 签到仍仅在实际大厅入场后访问 visit 接口，弹窗在入场动画结束后按优先级调度；每次登录最多三次真实展示，回执按策略版本与周期保留。原金币、卡牌、异画及溢出 UR 结算和玩家 Revision 规则继续复用。
