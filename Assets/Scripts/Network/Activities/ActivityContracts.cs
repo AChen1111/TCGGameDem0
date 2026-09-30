@@ -48,10 +48,10 @@ namespace AChen.Configuration
     [Serializable] public sealed class ActivityPopupDefinition
     {
         public string Trigger = "lobbyReady";
-        public string Frequency = "oncePerActivity";
+        public string Frequency = "oncePerLogin";
         public int Priority;
         public long PolicyVersion = 1;
-        public bool StopWhenCompleted = true;
+        public bool StopWhenCompleted;
         public bool ShouldShow;
     }
     [Serializable] public sealed class ActivityDefinition

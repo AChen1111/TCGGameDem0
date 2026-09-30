@@ -69,7 +69,15 @@ await SceneLoader.LoadScene(AddressKeys.Scene.GameScene);
 
 `Assets/UI/Prefab/Common/LoadIN.prefab` 已增加 ActivityStatus、ActivityProgress、ActivityRetry；SceneTransitionOverlayView 的 Canvas、CanvasGroup、背景、状态、进度、按钮及标签均通过序列化字段绑定。重建这些引用可通过 unity-cli 执行 `Tools/Activities/ConfigureLoadingPrefab.cs` 的 Main。
 
-签到仍仅在实际大厅入场后访问 visit 接口，弹窗在入场动画结束后按优先级调度；每次登录最多三次真实展示，回执按策略版本与周期保留。原金币、卡牌、异画及溢出 UR 结算和玩家 Revision 规则继续复用。
+签到仍仅在实际大厅入场后访问 visit 接口。弹窗默认使用 `oncePerLogin`，在每次大厅入场动画结束后按优先级依次展示，无三个弹窗的数量上限；领取完成、暂无可领奖励与历史展示回执均不阻止下次入场弹出。调度器只在本次入场内按活动 ID 去重，关闭弹窗后不会循环打开，普通窗口关闭也不会重新触发一轮入场弹窗。活动仍须启用、处于有效期内、满足开放条件且显示方式含弹窗。
+
+```csv
+PopupTrigger,PopupFrequency,StopWhenCompleted
+string,string,bool
+lobbyReady,oncePerLogin,False
+```
+
+当前六个示例已采用上述策略，其中公告、国庆礼包、三日签到包含弹窗，其余活动仍使用页面入口。回执继续按策略版本与周期保存，但 `oncePerLogin` 不使用历史回执或完成状态限制展示；显式配置 `oncePerActivity`、`oncePerDay` 时仍遵守原频率规则。新增示例默认不因领取完成而停止提醒。原金币、卡牌、异画及溢出 UR 结算、领取次数和玩家 Revision 规则继续复用。
 
 ## 示例与工具
 

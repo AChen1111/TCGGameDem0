@@ -1,14 +1,14 @@
 {
   "SchemaVersion": 2,
   "ReleaseId": "",
-  "SourceHash": "4a41a0a0f2c89b158ef1c4ca80525be76110ac74d96dfc4ee496107c7882d90d",
+  "SourceHash": "656a347ef399c00e13f6c6f3d4ee97ad813312ce18df2539c4ae84f015117d58",
   "ExpectedRevision": 0,
   "Files": [
     {
       "Table": "activities",
-      "Sha256": "9d72bc70fe41dc5f328d51f0e66f9d86a15b9f14ee684ba5acc128ad61aec5dd",
+      "Sha256": "75d1f8c3f676160e12b959478bc226a951251c0a2e04e46af592352c9e74c752",
       "Url": "",
-      "Size": 1622
+      "Size": 1604
     },
     {
       "Table": "daily_card_exchange",

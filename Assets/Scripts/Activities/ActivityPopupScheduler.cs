@@ -13,6 +13,8 @@ namespace AChen.Activities
         readonly ActivityManager m_manager;
         readonly UIFrame m_frame;
         readonly CancellationToken m_token;
+        // 每次大厅入场创建新调度器，关闭过的弹窗仅在本次入场内去重。
+        readonly HashSet<string> m_shownKeys = new HashSet<string>();
         string m_active;
         string m_navigation;
         public ActivityPopupScheduler(ActivityManager manager, UIFrame frame, CancellationToken token)
@@ -35,7 +37,7 @@ namespace AChen.Activities
                         var id = m_navigation; m_navigation = null;
                         m_frame.OpenWindow(AddressKeys.Prefab.ActivityWindow, new ActivityWindowProperties(id));
                     }
-                    else if (m_manager.IsReady && !m_manager.IsStale && !m_manager.IsBusy && m_manager.PopupSessionCount < 3)
+                    else if (m_manager.IsReady && !m_manager.IsStale && !m_manager.IsBusy)
                     {
                         var state = m_manager.Items.Where(IsCandidate).OrderByDescending(x => x.Definition.Popup.Priority)
                             .ThenBy(x => x.Definition.SortOrder).ThenBy(x => x.Definition.Id, StringComparer.Ordinal).FirstOrDefault();
@@ -51,17 +53,17 @@ namespace AChen.Activities
             }
         }
         string Period(ActivitySnapshot state) => state.Definition.Popup.Frequency == "oncePerDay" ? m_manager.Snapshot.ServerDay : "all";
-        string Key(ActivitySnapshot state) => state.Definition.Id + "/" + state.Definition.Popup.PolicyVersion + "/" + Period(state);
+        string Key(ActivitySnapshot state) => state.Definition.Popup.Frequency == "oncePerLogin" ? state.Definition.Id :
+            state.Definition.Id + "/" + state.Definition.Popup.PolicyVersion + "/" + Period(state);
         bool IsCandidate(ActivitySnapshot state) => m_manager.IsReady && !m_manager.IsStale && !m_manager.IsBusy &&
             m_manager.Clock.Now < m_manager.Snapshot.NextResetAt && !ContentSession.RestartRequired && state.Definition.Popup.ShouldShow && m_manager.Running(state) &&
-            !m_manager.PopupShownKeys.Contains(Key(state));
+            !m_shownKeys.Contains(Key(state));
         public bool IsValid(ActivityPopupProperties context) => !m_token.IsCancellationRequested && context.SessionVersion == PlayerSession.Instance.SessionVersion &&
             m_manager.TryGet(context.ActivityId, out var state) && state.Definition.Popup.PolicyVersion == context.PolicyVersion && Period(state) == context.PeriodKey && IsCandidate(state);
         public void Visible(ActivityPopupProperties context)
         {
-            string key = context.ActivityId + "/" + context.PolicyVersion + "/" + context.PeriodKey;
-            if (!m_manager.PopupShownKeys.Add(key)) return;
-            m_manager.PopupSessionCount++;
+            m_manager.TryGet(context.ActivityId, out var state);
+            if (!m_shownKeys.Add(Key(state))) return;
             Report(context).Forget();
         }
         async UniTaskVoid Report(ActivityPopupProperties context)

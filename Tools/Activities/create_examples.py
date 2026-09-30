@@ -21,7 +21,7 @@ def activity(id, type, display=0, timed=False, priority=0):
         "scheduleMode": int(timed), "startsAt": "2026-10-01T00:00:00+08:00" if timed else None,
         "endsAt": "2026-10-08T00:00:00+08:00" if timed else None, "displayMode": display, "sortOrder": 0,
         "showBeforeStart": timed, "showLocked": True, "hideWhenCompleted": False, "bannerResourceKey": "",
-        "popup": {"trigger": "lobbyReady", "frequency": "oncePerActivity", "priority": priority, "policyVersion": 1, "stopWhenCompleted": True},
+        "popup": {"trigger": "lobbyReady", "frequency": "oncePerLogin", "priority": priority, "policyVersion": 2, "stopWhenCompleted": False},
         "openConditions": {"allOf": []}, "entries": []}
 
 def entry(id, gold, **kwargs):
@@ -60,7 +60,7 @@ master = []
 common_fields = "EntryId NameKey Description PeriodKind LimitPerPeriod TotalLimit SortOrder RewardTypes RewardIds Amounts CardVariants".split()
 common_types = "string string string int int int? int int[] string[] long[] int[]".split()
 for a in examples["activities"]:
-    master.append(dict(zip(master_fields, [a["id"], a["type"], a["id"], True, a["scheduleMode"], a["startsAt"], a["endsAt"], a["nameKey"], "", "", a["sortOrder"], a["displayMode"], a["bannerResourceKey"], a["showLocked"], a["hideWhenCompleted"], a["popup"]["trigger"], a["popup"]["frequency"], a["popup"]["priority"], 1, True, [], [], [], []])))
+    master.append(dict(zip(master_fields, [a["id"], a["type"], a["id"], True, a["scheduleMode"], a["startsAt"], a["endsAt"], a["nameKey"], "", "", a["sortOrder"], a["displayMode"], a["bannerResourceKey"], a["showLocked"], a["hideWhenCompleted"], a["popup"]["trigger"], a["popup"]["frequency"], a["popup"]["priority"], a["popup"]["policyVersion"], a["popup"]["stopWhenCompleted"], [], [], [], []])))
     if a["type"] == 0:
         n=a["notice"]
         write_table(a["id"], ["Content", "ImageResourceKey", "ActionKind", "ActionTarget"], ["string"]*4, [dict(Content=n["content"], ImageResourceKey=n["imageResourceKey"], ActionKind=n["actionKind"], ActionTarget=n["actionTarget"])])

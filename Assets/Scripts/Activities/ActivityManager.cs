@@ -47,8 +47,6 @@ namespace AChen.Activities
         public bool IsStale { get; private set; } = true;
         public bool IsBusy { get; private set; }
         public bool IsLoading { get; private set; }
-        public int PopupSessionCount;
-        public readonly HashSet<string> PopupShownKeys = new HashSet<string>();
         public event Action Changed;
         public ActivityManager(PlayerSession session) { m_session = session; m_configuration = new ActivityConfiguration(session); }
 
@@ -58,7 +56,6 @@ namespace AChen.Activities
             m_configuration = new ActivityConfiguration(m_session); m_watching = false; SceneTransitionOverlay.EndActivities();
             foreach (var item in m_items.Values) item.Dispose();
             m_items.Clear(); m_requests.Clear(); m_receipts.Clear(); Snapshot = new ActivityListResponse();
-            PopupSessionCount = 0; PopupShownKeys.Clear();
             IsReady = false; IsStale = true; IsBusy = false; IsLoading = false; m_version = m_session.SessionVersion;
             Changed?.Invoke();
         }

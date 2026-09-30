@@ -19,10 +19,10 @@ namespace AChen.Configuration
         public int SortOrder, DisplayMode;
         public string BannerResourceKey = "";
         public bool ShowLocked = true, HideWhenCompleted;
-        public string PopupTrigger = "lobbyReady", PopupFrequency = "oncePerActivity";
+        public string PopupTrigger = "lobbyReady", PopupFrequency = "oncePerLogin";
         public int PopupPriority;
         public long PopupPolicyVersion = 1;
-        public bool StopWhenCompleted = true;
+        public bool StopWhenCompleted;
         public string[] ConditionTypes = Array.Empty<string>();
         public long[] ConditionValues = Array.Empty<long>();
         public string[] ConditionActivityIds = Array.Empty<string>(), ConditionTimes = Array.Empty<string>();
@@ -131,7 +131,7 @@ namespace AChen.Configuration
                     "activities", field + "/StartsAt,EndsAt", "限时活动须有有效起止时间，长期活动留空");
                 Check(r.NameKey.Length > 0 && (r.Type == 0 || r.DisplayMode != 1), "activities", field + "/NameKey,DisplayMode", "名称不能为空，奖励活动须保留页面入口");
                 Check(r.PopupPolicyVersion > 0 && (r.PopupTrigger == "lobbyReady" || r.PopupTrigger == "rewardClaimable") &&
-                    (r.PopupFrequency == "oncePerActivity" || r.PopupFrequency == "oncePerDay"), "activities", field + "/Popup", "提醒策略无效");
+                    (r.PopupFrequency == "oncePerLogin" || r.PopupFrequency == "oncePerActivity" || r.PopupFrequency == "oncePerDay"), "activities", field + "/Popup", "提醒策略无效");
                 Check(r.ConditionTypes.Length == r.ConditionValues.Length && r.ConditionTypes.Length == r.ConditionActivityIds.Length && r.ConditionTypes.Length == r.ConditionTimes.Length,
                     "activities", field + "/ConditionTypes,ConditionValues,ConditionActivityIds,ConditionTimes", "条件数组必须等长");
                 foreach (var c in r.Definition(0).OpenConditions.AllOf)
