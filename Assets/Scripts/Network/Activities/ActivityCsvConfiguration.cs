@@ -68,7 +68,7 @@ namespace AChen.Configuration
     [Serializable] public sealed class ActivityPackageManifest
     {
         public int SchemaVersion = 2;
-        public string ReleaseId = "", SourceHash = "", ReferenceTarget = "Editor", ReferenceConfigHash = "";
+        public string ReleaseId = "", SourceHash = "";
         public long ExpectedRevision;
         public List<ActivityFileInfo> Files = new List<ActivityFileInfo>();
     }
@@ -222,22 +222,6 @@ namespace AChen.Configuration
                 }
             }
             return result;
-        }
-        public static void Resources(ActivityDefinition d, PublishedGameConfig config)
-        {
-            var texts = Table.TranslationRow.LoadBytes(config.TranslationTable).ToDictionary(x => x.Key);
-            var resources = config.Extra.TryGetValue("activity-resources", out var data) ? data.Select(x => (string)x["ResourceKey"]).ToArray() : Array.Empty<string>();
-            void Text(string key) => Check(texts.TryGetValue(key, out var t) && t.Chinese.Length > 0 && t.English.Length > 0, d.Id, "NameKey/DescriptionKey", "文案尚未准备: " + key);
-            void Image(string key) => Check(key.Length == 0 || resources.Contains(key), d.Id, "图片", "图片尚未准备: " + key);
-            Text(d.NameKey); if (d.DescriptionKey.Length > 0) Text(d.DescriptionKey);
-            Image(d.BannerResourceKey); Image(d.Notice.ImageResourceKey);
-            foreach (var e in d.Entries)
-            {
-                Text(e.NameKey);
-                foreach (var reward in e.Rewards.Where(x => x.RewardType == ActivityRewardType.Card))
-                    Check(config.AllCards.Any(x => x.CardId == config.ResolveCardId(reward.RewardId)), d.Id, e.Id + "/RewardIds", "卡牌尚未准备: " + reward.RewardId);
-            }
-            Check(d.PackIds.All(id => config.Catalog.CardPacks.Any(p => p.Id == id)), d.Id, "PackIds", "参与卡包不存在");
         }
         // 首次发布便固定业务身份；奖励、成本与排期不参与这个签名。
         public static string Identity(ActivityDefinition d) => string.Join("|", new[] { ((int)d.Type).ToString(), d.AllowCatchUpClaims.ToString(),

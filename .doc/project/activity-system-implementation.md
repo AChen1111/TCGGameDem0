@@ -29,15 +29,15 @@ int[],string[],long[],int[]
 "[1,2]","[""gold"",""00213326""]","[200,1]","[0,0]"
 ```
 
-执行 `Tools/AddToActBytes` 只生成活动配置到 `Assets/ActivityConfiguration/`，沿用 BinaryTable 编码，并检查引用、结构、数组、文案、卡牌、卡包与 SpriteCatalog 引用。生成器读取已经生成的普通配置检查资源，不重新生成普通 CSV。`Tools/AddToBytes` 继续只处理 `TableData/` 和 `Assets/GameConfiguration/`。活动标签为 ActivityConfig/ActivityConfig.Generated，独立分组不参与普通 Addressables 构建；generated.json 是生成记录，不是编辑来源。
+执行 `Tools/AddToActBytes` 只生成活动配置到 `Assets/ActivityConfiguration/`，沿用 BinaryTable 编码，检查活动表结构、数组和活动之间的引用。不读取普通配置，不检查文案、图片、卡牌或卡包是否已发布。`Tools/AddToBytes` 继续只处理 `TableData/` 和 `Assets/GameConfiguration/`。活动标签为 ActivityConfig/ActivityConfig.Generated，独立分组不参与普通 Addressables 构建；generated.json 是生成记录，不是编辑来源。
 
-总表历史行由人工保留。停止活动时设 IsEnabled=False 或调整 EndsAt。没有自动删行管理工具。新增图片、文案与卡牌先走现有普通内容生成和发布流程，所有已经发布的平台都须准备它引用的资源。
+总表历史行由人工保留。停止活动时设 IsEnabled=False 或调整 EndsAt。没有自动删行管理工具。新增图片、文案与卡牌仍由现有普通内容流程准备，活动生成、发布及加载均不检查普通资源引用，不要求重新发布所有平台。实际显示使用客户端现有资源，卡牌奖励沿用服务端现有卡牌结算数据。
 
 ## 发布
 
 打开 `Tools/活动配置/发布活动`，使用现有内容发布密钥及后端地址，点击发布已生成活动包。工具读取最近生成清单，核对全部文件大小/SHA-256及源 CSV 哈希。CSV 有变化时必须先执行 AddToActBytes；发布按钮不会隐式生成。总表和全部引用子表一次上传，全平台共用同一发布版本。
 
-发布包是平铺 ZIP：manifest.json、activities.bytes、全部子表.bytes。清单包含 SchemaVersion=2、ReleaseId（新的 UUID）、ExpectedRevision（当前发布版本）、SourceHash、ReferenceTarget/ReferenceConfigHash（用于核对普通内容），以及 Files 中每个文件的 Table/Size/Sha256。
+发布包是平铺 ZIP：manifest.json、activities.bytes、全部子表.bytes。清单包含 SchemaVersion=2、ReleaseId（新的 UUID）、ExpectedRevision（当前活动发布修订）、SourceHash，以及 Files 中每个文件的 Table/Size/Sha256。工具只查询当前活动修订并上传活动包，不请求普通内容版本、平台或配置哈希。
 
 ```csharp
 // 当前项目实现：发布前先检查生成后是否改过 CSV
@@ -46,6 +46,8 @@ if (SourceHash() != manifest.SourceHash)
 ```
 
 后端完整解析、校验引用与固定规则，先保存不可变版本文件，再在事务中更新当前版本指针。失败时保留当前发布版本。数据库保存总表、每活动定义版本、文件签名、发布历史和玩家记录；子表正文只保存在内容存储根目录的 activities/版本ID/表名.bytes 中。玩家领取的奖励快照及幂等响应仍正常保留。
+
+活动列表、签到访问、弹窗回执和纯金币领取不读取普通配置。只有实际发放卡牌时，结算器读取请求对应的卡牌数据和溢出 UR 配置；活动发布不会提前遍历或校验任何平台的普通版本。
 
 同 ID 首次发布后固定玩法、EntryId 集合、签到日/阈值、参与卡包、补领开关、周期及次数上限。奖励、兑换成本、文案、图片、展示与排期可更新。总表或子表变化时只递增该活动的 DefinitionVersion，未变化活动不递增；全球发布 Revision 每次成功发布递增。进度与次数按活动 ID 保留。同 RequestId 的原结果在时间、定义版本和玩家 Revision 检查之前识别，旧超时请求重试不会重复发奖。兑换确认期间版本变化要求重新确认成本。
 

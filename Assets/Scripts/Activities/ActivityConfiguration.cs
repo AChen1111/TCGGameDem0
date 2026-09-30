@@ -44,7 +44,6 @@ namespace AChen.Activities
                 if (bytes.LongLength != file.Size || ActivityCsvConfiguration.Hash(bytes) != file.Sha256)
                 { if (File.Exists(path)) File.Delete(path); throw new FormatException(file.Table + ".bytes: 文件大小或 SHA-256 不匹配，请重试"); }
                 var d = ActivityCsvConfiguration.Detail(item.Master, bytes, item.DefinitionVersion);
-                AChen.Configuration.ActivityCsvConfiguration.Resources(d, AChen.Networking.LocalGameConfiguration.Data);
                 token.ThrowIfCancellationRequested();
                 if (!File.Exists(path)) File.WriteAllBytes(path, bytes);
                 d.Popup.ShouldShow = item.ShouldShow;

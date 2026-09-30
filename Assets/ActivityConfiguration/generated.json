@@ -2,8 +2,6 @@
   "SchemaVersion": 2,
   "ReleaseId": "",
   "SourceHash": "4a41a0a0f2c89b158ef1c4ca80525be76110ac74d96dfc4ee496107c7882d90d",
-  "ReferenceTarget": "Editor",
-  "ReferenceConfigHash": "",
   "ExpectedRevision": 0,
   "Files": [
     {

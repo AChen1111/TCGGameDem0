@@ -36,25 +36,8 @@ public static class ActivityConfigBuilder
             try { files.Add(name, BinaryTableCsv.Load(path).Encode()); }
             catch (Exception e) { throw new FormatException(path + ": " + e.Message, e); }
         }
-        var definitions = ActivityCsvConfiguration.Package(files);
-        var ordinary = Directory.GetFiles(PublishedConfigBuilder.Root, "*.bytes").ToDictionary(Path.GetFileNameWithoutExtension, File.ReadAllBytes);
-        var config = GameConfigTables.Assemble(ordinary);
-        foreach (var d in definitions.Values) ActivityCsvConfiguration.Resources(d, config);
+        ActivityCsvConfiguration.Package(files);
         var settings = AddressableAssetSettingsDefaultObject.Settings;
-        var catalog = new SerializedObject(AssetDatabase.LoadAssetAtPath<ScriptableObject>("Assets/AddressableCatalogs/SpriteCatalog.asset"));
-        var entries = catalog.FindProperty("m_entries");
-        var images = new HashSet<string>();
-        for (int i = 0; i < entries.arraySize; i++)
-        {
-            var item = entries.GetArrayElementAtIndex(i);
-            string guid = item.FindPropertyRelative("reference").FindPropertyRelative("m_AssetGUID").stringValue;
-            string sub = item.FindPropertyRelative("reference").FindPropertyRelative("m_SubObjectName").stringValue;
-            if (settings.FindAssetEntry(guid) != null && AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GUIDToAssetPath(guid)).OfType<Sprite>().Any(x => x.name == sub))
-                images.Add(item.FindPropertyRelative("assetName").stringValue);
-        }
-        foreach (var d in definitions.Values)
-            foreach (var key in new[] { d.BannerResourceKey, d.Notice.ImageResourceKey }.Where(x => x.Length > 0))
-                if (!images.Contains(key)) throw new FormatException(d.Id + ".csv / 图片: 缺少已绑定 SpriteCatalog 资源 " + key);
         var manifest = new ActivityPackageManifest { SourceHash = SourceHash(), Files = files.OrderBy(x => x.Key, StringComparer.Ordinal)
             .Select(x => new ActivityFileInfo { Table = x.Key, Size = x.Value.LongLength, Sha256 = ActivityCsvConfiguration.Hash(x.Value) }).ToList() };
         Directory.CreateDirectory(Root);
@@ -113,7 +96,7 @@ public sealed class ActivityPublishWindow : EditorWindow
     void OnGUI()
     {
         m_url = EditorGUILayout.TextField("后端地址", m_url); m_key = PublishKeyProvider.DrawField(m_key);
-        EditorGUILayout.HelpBox("上传最近生成的总表与全部子表；全平台使用同一版本。请先通过普通内容发布准备新增文案、图片与卡牌。", MessageType.Info);
+        EditorGUILayout.HelpBox("上传最近生成的总表与全部子表；全平台共用。不检查游戏版本、普通配置哈希或资源引用。修改 CSV 后先执行 Tools/AddToActBytes。", MessageType.Info);
         using (new EditorGUI.DisabledScope(m_busy))
             if (GUILayout.Button("发布已生成活动包")) Publish();
         EditorGUILayout.LabelField(m_status, EditorStyles.wordWrappedLabel);
@@ -128,8 +111,7 @@ public sealed class ActivityPublishWindow : EditorWindow
             // 生成和发布分开，读取发布版本用于乐观并发检查。
             var current = JObject.Parse(await EditorBackendHttp.GetAsync(m_url, "/api/admin/activities", PublishKeyProvider.Resolve(m_key)));
             manifest.ExpectedRevision = current["current"]?.Type == JTokenType.Null ? 0 : current["current"]?["revision"]?.Value<long>() ?? 0;
-            var content = JObject.Parse(await EditorBackendHttp.GetAsync(m_url, "/api/content/latest/Editor", PublishKeyProvider.Resolve(m_key)));
-            manifest.ReferenceTarget = "Editor"; manifest.ReferenceConfigHash = content["configHash"].Value<string>(); manifest.ReleaseId = Guid.NewGuid().ToString("D");
+            manifest.ReleaseId = Guid.NewGuid().ToString("D");
             byte[] package = ActivityConfigBuilder.Package(manifest);
             m_status = "正在上传活动包…"; Repaint();
             var result = JObject.Parse(await EditorBackendHttp.SendRawAsync(m_url, "PUT", "/api/admin/activities/config", package, "application/zip", PublishKeyProvider.Resolve(m_key)));

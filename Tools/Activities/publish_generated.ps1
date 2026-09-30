@@ -1,6 +1,5 @@
 param(
     [string]$ApiBase = 'http://127.0.0.1:5080',
-    [string]$ReferenceTarget = 'Editor',
     [string]$PublishKey = $env:ACHEN_CONTENT_PUBLISH_KEY
 )
 $ErrorActionPreference = 'Stop'
@@ -29,10 +28,7 @@ if ($sourceHash -ne $manifest.SourceHash) { throw '活动 CSV 自生成后已变
 $headers = @{ 'X-Content-Publish-Key' = $PublishKey }
 $endpoint = $ApiBase.TrimEnd('/') + '/api/admin/activities'
 $current = Invoke-RestMethod -Uri $endpoint -Headers $headers
-$content = Invoke-RestMethod -Uri ($ApiBase.TrimEnd('/') + '/api/content/latest/' + $ReferenceTarget) -Headers $headers
 $manifest.ExpectedRevision = if ($null -eq $current.current) { 0 } else { $current.current.revision }
-$manifest.ReferenceTarget = $ReferenceTarget
-$manifest.ReferenceConfigHash = $content.configHash
 $manifest.ReleaseId = [Guid]::NewGuid().ToString('D')
 $memory = [IO.MemoryStream]::new()
 try {
