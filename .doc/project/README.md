@@ -9,6 +9,7 @@
 | [热更新与内容分发](hot-update-and-content.md) | 启动链、三种运行方式、发布链 |
 | [后端](backend.md) | 模块、存储、鉴权、管理台与配置发布 |
 | [卡组逻辑](decks.md) | 草稿、禁限与库存校验、配置表、卡组存储接口 |
+| [活动系统详细方案](activity-system-design.md) | 活动表、礼包奖励、开启条件、页面与弹窗、客户端调度及后台接口（设计方案） |
 | [日常操作](operations.md) | 环境变量、管理台、启后端、进 Play Mode、发版、测试 |
 | [决斗系统架构](duel-architecture.md) | UDP 确定性帧同步设计（尚未实现） |
 | [英雄卡组手册](hero-card-modeling.md) | 19 种卡的定义、发动步骤与案例 |
