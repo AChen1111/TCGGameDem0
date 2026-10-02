@@ -115,15 +115,103 @@ GEMINI.md
 /.github/instructions/
 /.github/copilot-instructions.md
 
+# Documentation files and Unity metadata
+*.md
+*.md.meta
+*.markdown
+*.markdown.meta
+*.mdx
+*.mdx.meta
+*.rst
+*.rst.meta
+*.adoc
+*.adoc.meta
+*.asciidoc
+*.asciidoc.meta
+*.pdf
+*.pdf.meta
+*.doc
+*.doc.meta
+*.docx
+*.docx.meta
+*.docm
+*.docm.meta
+*.dot
+*.dot.meta
+*.dotx
+*.dotx.meta
+*.dotm
+*.dotm.meta
+*.odt
+*.odt.meta
+*.rtf
+*.rtf.meta
+*.ppt
+*.ppt.meta
+*.pptx
+*.pptx.meta
+*.pptm
+*.pptm.meta
+*.pps
+*.pps.meta
+*.ppsx
+*.ppsx.meta
+*.odp
+*.odp.meta
+*.xls
+*.xls.meta
+*.xlsx
+*.xlsx.meta
+*.xlsm
+*.xlsm.meta
+*.xlsb
+*.xlsb.meta
+*.ods
+*.ods.meta
+*.pages
+*.pages.meta
+*.key
+*.key.meta
+*.numbers
+*.numbers.meta
+*.epub
+*.epub.meta
+*.chm
+*.chm.meta
+*.tex
+*.tex.meta
+*.bib
+*.bib.meta
+
+# Plain-text documentation (other .txt files can be Unity resources or configuration)
+[Rr][Ee][Aa][Dd][Mm][Ee]*.txt
+[Rr][Ee][Aa][Dd][Mm][Ee]*.txt.meta
+[Rr][Ee][Aa][Dd] [Mm][Ee]*.txt
+[Rr][Ee][Aa][Dd] [Mm][Ee]*.txt.meta
+*[Ll][Ii][Cc][Ee][Nn][Ss][Ee]*.txt
+*[Ll][Ii][Cc][Ee][Nn][Ss][Ee]*.txt.meta
+*[Nn][Oo][Tt][Ii][Cc][Ee]*.txt
+*[Nn][Oo][Tt][Ii][Cc][Ee]*.txt.meta
+*[Cc][Hh][Aa][Nn][Gg][Ee][Ll][Oo][Gg]*.txt
+*[Cc][Hh][Aa][Nn][Gg][Ee][Ll][Oo][Gg]*.txt.meta
+*[Dd][Oo][Cc][Uu][Mm][Ee][Nn][Tt][Aa][Tt][Ii][Oo][Nn]*.txt
+*[Dd][Oo][Cc][Uu][Mm][Ee][Nn][Tt][Aa][Tt][Ii][Oo][Nn]*.txt.meta
+[Hh][Oo][Ww][Tt][Oo][Bb][Uu][Ii][Ll][Dd].txt
+[Hh][Oo][Ww][Tt][Oo][Bb][Uu][Ii][Ll][Dd].txt.meta
+* - [Oo][Ff][Ll].txt
+* - [Oo][Ff][Ll].txt.meta
+
 # Local project documentation and agent work records
 .doc/
-/doc/
-/docs/
-/Docs/
-/GameConfig/*.md
-/Tools/**/*.md
-/Unused~/*.md
-/映射表.md
+.doc.meta
+[Dd]oc/
+[Dd]oc.meta
+[Dd]ocs/
+[Dd]ocs.meta
+[Dd]ocumentation/
+[Dd]ocumentation.meta
+[Dd]ocumentation~/
+[Dd]ocumentation~.meta
 
 # Local agent scripts, authoring helpers and downloaded tooling
 /AgentScripts/
