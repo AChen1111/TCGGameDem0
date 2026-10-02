@@ -13,6 +13,11 @@ public static class AddressKeys
         public static readonly string AvatarPortrait = "AvatarPortrait";
         public static readonly string AvatarShopItemPrefab = "AvatarShopItemPrefab";
         public static readonly string AvatarShopItemRowPrefab = "AvatarShopItemRowPrefab";
+        public static readonly string BattleCardRow = "BattleCardRow";
+        public static readonly string BattleCardView = "BattleCardView";
+        public static readonly string BattleChoiceWindow = "BattleChoiceWindow";
+        public static readonly string BattleHudPanel = "BattleHudPanel";
+        public static readonly string BattleZoneWindow = "BattleZoneWindow";
         public static readonly string CardDetailOverlay = "CardDetailOverlay";
         public static readonly string CardOverflowBadge = "CardOverflowBadge";
         public static readonly string CardPackRowPrefab = "CardPackRowPrefab";
@@ -472,11 +477,13 @@ public static class AddressKeys
     }
     public static class Scene
     {
+        public static readonly string BattleScene = "BattleScene";
         public static readonly string GameScene = "GameScene";
         public static readonly string LogIn = "LogIn";
     }
     public static class UISettings
     {
+        public static readonly string BattleUISetting = "BattleUISetting";
         public static readonly string LogInSetting = "LogInSetting";
         public static readonly string PreGameSceneUI = "PreGameSceneUI";
         public static readonly string UISetting = "UISetting";

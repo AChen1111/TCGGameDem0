@@ -50,6 +50,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 526d3b9e3edcc234b8505ce5547fc74d
+    m_Address: Battle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 595cecafa007c144787c9a3b17e5bef4
     m_Address: Sprite/Misc
     m_ReadOnly: 0
@@ -122,6 +127,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e08db0a81d6a4ca47a3192e0118ac559
     m_Address: Sprite/Badge
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e0b7e4fb5b2b7e54da1502a08e9021cf
+    m_Address: Battle
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

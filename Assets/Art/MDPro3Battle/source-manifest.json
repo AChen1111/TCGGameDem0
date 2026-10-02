@@ -1,0 +1,2797 @@
+{
+  "source_game": "D:/Game/MDPro3",
+  "item_map": {
+    "1090001": "Mat_002",
+    "1100001": "Grave_002",
+    "1110001": "AvatarStand_002"
+  },
+  "prefabs": [
+    "Resources/duel/bg/mat/mat_002/Mat_002_near.prefab",
+    "Resources/duel/bg/mat/mat_002/Mat_002_far.prefab",
+    "Resources/duel/bg/grave/grave_002/Grave_002_near.prefab",
+    "Resources/duel/bg/grave/grave_002/Grave_002_far.prefab",
+    "resourcesassetbundle/duel/bg/avatarstand/avatarstand_002/sd/AvatarStand_002_near.prefab",
+    "resourcesassetbundle/duel/bg/avatarstand/avatarstand_002/sd/AvatarStand_002_far.prefab",
+    "Resources/duel/bg/timer/timer_c001/Timer_c001.prefab",
+    "Resources/duel/bg/timer/timer_c001/PhaseButton_c001.prefab",
+    "GameObject/CardModelWrapper.prefab",
+    "Resources/duel/effects/other/fxp_target_arrow/fxp_target_arrow_001.prefab",
+    "GameObject/DuelBattlePhase_far.prefab",
+    "GameObject/DuelBattlePhase_near.prefab",
+    "GameObject/DuelDrawPhase_far.prefab",
+    "GameObject/DuelDrawPhase_near.prefab",
+    "GameObject/DuelEndPhase_far.prefab",
+    "GameObject/DuelEndPhase_near.prefab",
+    "GameObject/DuelStandbyPhase_far.prefab",
+    "GameObject/DuelStandbyPhase_near.prefab",
+    "GameObject/DuelTurnChange00.prefab",
+    "GameObject/DuelTurnChange01.prefab",
+    "OriginalAdditions/Guide/resourcesassetbundle/duel/bg/timer/playableguide_c001/PlayableGuide_c001_far_mat13.prefab",
+    "OriginalAdditions/Guide/resourcesassetbundle/duel/bg/timer/playableguide_c001/PlayableGuide_c001_near_mat13.prefab",
+    "OriginalAdditions/Deck/resources/duel/timeline/duel/universal/dueldeckappearance/DuelDeckAppearance.prefab",
+    "GameObject/DuelLogNewPhase.prefab",
+    "GameObject/DuelMainPhase1_far.prefab",
+    "GameObject/DuelMainPhase1_near.prefab",
+    "GameObject/DuelMainPhase2_far.prefab",
+    "GameObject/DuelMainPhase2_near.prefab"
+  ],
+  "files": [
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/Ani_Closeup Loop.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/Ani_Closeup Loop.anim",
+      "sha256": "a1611d70e18946c7485db9c680ffe28f38699a82b3009ec0e5de4a27c89db405"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/Ani_HideFaceDownCard.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/Ani_HideFaceDownCard.anim",
+      "sha256": "354ad7d1af75c40cf8468379142fc49a0b6a7e93268ec7a96c4d001df8193875"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/Ani_ShowFaceDownCard.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/Ani_ShowFaceDownCard.anim",
+      "sha256": "5af3b27db9cc730a51466984fc700bd769394c7b3cca890d4ec431fd5ffed5e3"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/Appear_0.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/Appear_0.anim",
+      "sha256": "8783c6e029bc5ab3864f9f2d0a4d4a7f3a868d5814b402154efbbe01cba5183f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/Appear_0_0.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/Appear_0_0.anim",
+      "sha256": "8783c6e029bc5ab3864f9f2d0a4d4a7f3a868d5814b402154efbbe01cba5183f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/Appear_3.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/Appear_3.anim",
+      "sha256": "dc068dfe2559c409c2adc33915290370f094dc7f6bfb3b1b821ca7509b3cb216"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/DamagePhase1ToPhase2.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/DamagePhase1ToPhase2.anim",
+      "sha256": "84cabe979a958fd49108575afa7af0395a23385e8e611abeb63d7743830badfd"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/DamagePhase1ToPhase2_0.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/DamagePhase1ToPhase2_0.anim",
+      "sha256": "181d40f6488b940dc050ae007af95e6cacaa8df2e3fc67087ef96b7fbf059744"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/DamagePhase2ToPhase3.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/DamagePhase2ToPhase3.anim",
+      "sha256": "f3c282ce2fc6539ce44f71f939baacd239f3fa59ffba16db62495bbb970f745e"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/DamagePhase2ToPhase3_0.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/DamagePhase2ToPhase3_0.anim",
+      "sha256": "0b70318192cedf4a097003ca44817ca44aa8116b25e766779013a9527b18984c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/DamagePhase3ToPhase4.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/DamagePhase3ToPhase4.anim",
+      "sha256": "6748c5d31c5a2740b5f56f90326f7d020ca18da6933694f97e79640048fcef98"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/DamagePhase3ToPhase4_0.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/DamagePhase3ToPhase4_0.anim",
+      "sha256": "072979f8faa5a25173b5cba6b0afa6e82d6e13c3a2338b99780651252ac54f10"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/DamagePhase4ToEnd.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/DamagePhase4ToEnd.anim",
+      "sha256": "a8dae98b2740132d0e7d42727bdfde117d06138af11414d5caedd179e72343ce"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/DamagePhase4ToEnd_0.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/DamagePhase4ToEnd_0.anim",
+      "sha256": "372e83d13659f1c3d96c2c0a78068c6ccdc971496d83763bc25f3133a18bf131"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/DamagePhaseAll.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/DamagePhaseAll.anim",
+      "sha256": "51d77a1a6cbc1e465f5c712e52fee67249068de021cff68fb68546d28e76c440"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/DamagePhaseAll_0.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/DamagePhaseAll_0.anim",
+      "sha256": "076ce5f5fdcf3d3c6786b1c0f4088b7a61193dd303da0eef1825a1c1337449be"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/Off_0.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/Off_0.anim",
+      "sha256": "87d901e82b58eba9488f3dd3a3b273b5c5b0d4890469898c1e5555aacceec073"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/Off_0_0.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/Off_0_0.anim",
+      "sha256": "87d901e82b58eba9488f3dd3a3b273b5c5b0d4890469898c1e5555aacceec073"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/Off_3.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/Off_3.anim",
+      "sha256": "048733ccf1a32e4d30084fe88ddc6dfe2e21bad21751b57fb17745185629ffa8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/On_0.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/On_0.anim",
+      "sha256": "379acaa093ccf51b4f207eafac380c6f468c14f095d5875c74ee04d9aeaf2353"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/On_0_0.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/On_0_0.anim",
+      "sha256": "379acaa093ccf51b4f207eafac380c6f468c14f095d5875c74ee04d9aeaf2353"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/On_3.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/On_3.anim",
+      "sha256": "7fe1812c91ad82888ff68d5d3a713c20a2ca1a09766e3670c46af88b74edbbd7"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/Phase1.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/Phase1.anim",
+      "sha256": "6f890250104030b33a8828d6c2985509b0e29d005a532855cd912dd7803a2839"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/Phase1_0.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/Phase1_0.anim",
+      "sha256": "fdd95986d16d6804d87b87d3af5820c3fbcbc94833022ccdadff5c175f1a661d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/Phase2.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/Phase2.anim",
+      "sha256": "c1130c090b0ff2cd1f66f053ade36ee6496121803b05cd9f96c82f0d1ef91cf6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/Phase2_0.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/Phase2_0.anim",
+      "sha256": "c40a694c1ef536f8d64babe59c55541a65854134480d283d2975ff3af77dd9ba"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/Phase3.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/Phase3.anim",
+      "sha256": "dd61993d3ae36ea44231f19d08211345d7e365bd22066aad1606056d04988c3e"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/Phase3_0.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/Phase3_0.anim",
+      "sha256": "8eb899540d53760c4bd68caad2bbb0735649b629e091120057756572e2d4a94f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/Phase4.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/Phase4.anim",
+      "sha256": "97326ad9062ca40fa0f4e46e8030b543d01a3b52e69cec44bbebc9cc2f1fec19"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/Phase4_0.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/Phase4_0.anim",
+      "sha256": "32316963faf71a80997f34925302155522a8b19644006234d2770c7ba76a1266"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/PhaseAll_0.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/PhaseAll_0.anim",
+      "sha256": "0ab6e5b1500c84cfca205f3b016dbcb111ce3c9ad251a18ec8bd394995153680"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/PhaseAll_1.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/PhaseAll_1.anim",
+      "sha256": "2b5fd7b914c5fbb1aaab66b106a5fc275e1a58c544e353b617b8b5c660ad53f7"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/TapAll.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/TapAll.anim",
+      "sha256": "ecb873efd298ea62f365384ba28435a282a3c66c5ab98410f176d728105ae6fb"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/TapAll_0.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/TapAll_0.anim",
+      "sha256": "45095d3b78b58b0c875605a9614c25c91bb0a12a16707c71514cbc2474e0a08d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimatorController/AC_Closeup.controller",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimatorController/AC_Closeup.controller",
+      "sha256": "91231718bdbd19181b78316fb05268a8323aed9c2cdaa56bf0e1a52d7322834d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimatorController/AC_ShowFaceDownCard.controller",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimatorController/AC_ShowFaceDownCard.controller",
+      "sha256": "719e7a51fdf2bd8b94afcdcb3db1f76afde7f59430c4b8d4f70582b192371dfc"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimatorController/fxa_HL_som_exclude_001_far_0.controller",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimatorController/fxa_HL_som_exclude_001_far_0.controller",
+      "sha256": "18c8243d08afcc48b1243452e0bc3bd4951e3ea332689b0f1c2416839a34d9e8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimatorController/fxa_HL_som_exclude_001_near_0.controller",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimatorController/fxa_HL_som_exclude_001_near_0.controller",
+      "sha256": "0b0cbb2443f748c117a922d3919965add306f4fb17e9fdd9d9cd4b40bda15225"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimatorController/fxa_HL_som_grave_001_far_0.controller",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimatorController/fxa_HL_som_grave_001_far_0.controller",
+      "sha256": "26d6b363ab6eb6be76396b0239daa1bd66f6392212d2cd24fce74bf42960350f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimatorController/fxa_HL_som_grave_001_near_0.controller",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimatorController/fxa_HL_som_grave_001_near_0.controller",
+      "sha256": "e49375013555b8f30a3552235833da1a9029f742955e0de9cc80b9bf9201ce43"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimatorController/Mat_002_far.controller",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimatorController/Mat_002_far.controller",
+      "sha256": "5cd5653f2d96f6a4d54d7b271dd3f0783d31c80f66565907bb661cc093d5e7f1"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimatorController/Mat_002_near.controller",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimatorController/Mat_002_near.controller",
+      "sha256": "79b848c54f1778b67451689229a9c2d5f59393adb5307151b3d463c518b8dbcb"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Avatar/CardModelAvatar.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Avatar/CardModelAvatar.asset",
+      "sha256": "87b9ba1fb2c0d5082089b14b013e77ba5aa77d3e42a694b5942ceb96972f083c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/GameObject/CardModelWrapper.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/GameObject/CardModelWrapper.prefab",
+      "sha256": "896cf5fcce594e2782052454b51278fc6ed51235fe1e402442c4ef5661aac7f9"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/CardModelFront.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/CardModelFront.mat",
+      "sha256": "96ba237ff6b58a9d97564787be48742254a0fc8a578aacb0ee14d0ab13baeba9"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/CloseUp.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/CloseUp.mat",
+      "sha256": "2c9e8c9758fcc1be890c828a69a4d3fe2e91b019a336e49cc379c9dfd1b53e14"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/FieldCardPendulum.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/FieldCardPendulum.mat",
+      "sha256": "7636bb07c0c272c21302aa54b2ecb99747fb16445a8fe467c7436796826ba4b8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/FOT-KafuTechnoStd-H_timer_SDF Material.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/FOT-KafuTechnoStd-H_timer_SDF Material.mat",
+      "sha256": "4b22e17397a16317554bfbffe4a4c51b7ecc3e5e4a49b520e199a1a3e48e2957"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_anime_circle_01.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_anime_circle_01.mat",
+      "sha256": "a75231d0a3ab55d71566085fedb55f10cc3959f3e2a46639680c9e7744c84615"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_bg_godray_001.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_bg_godray_001.mat",
+      "sha256": "69fe698921399846de9e1068faad37c16b69923196cd27c0e09f930fa7c61352"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_bg_godray_001_0.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_bg_godray_001_0.mat",
+      "sha256": "c1c84e44fedded236d5bc7d739e03c7e3d7277ffe5ba34896ca1b97baabd2b68"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_BG_leafShadow_01.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_BG_leafShadow_01.mat",
+      "sha256": "54d935d987c49767ad7df2e4003ba01cb29d50e4e55becf3f29e2f6b50d87dd3"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_BG_leafShadow_01_0.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_BG_leafShadow_01_0.mat",
+      "sha256": "83980072ae3006c228d8de70182963dd3899c3eb7e79c951f984d1e4d0a10e16"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_BG_leafShadow_02.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_BG_leafShadow_02.mat",
+      "sha256": "10277c1fc7cc13aabde1865ab0ef2103d0ae087dab3d837b4ca21d6503988352"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_BG_leafShadow_02_0.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_BG_leafShadow_02_0.mat",
+      "sha256": "34500f0fd58504f9d4432992a9bd4d4e63f02a50d4c40fc52d648081e6f842e2"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_bg_lef_001.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_bg_lef_001.mat",
+      "sha256": "0b5f83a4d827cdf92a98bb1eecacb7e52a6852f244937c03876dae84911c63d9"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_bg_lef_001_0.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_bg_lef_001_0.mat",
+      "sha256": "cbcd545eb34016dbf995b5a5eeabbda8cc9dbd6011a215d5ef87a6e15ca3a0c7"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_bg_mud_001_b.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_bg_mud_001_b.mat",
+      "sha256": "f7ec3f63880dbece415238f9e042c9ed2f8af24f56262ab9d660cd76c5676a74"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_bg_mud_001_b_0.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_bg_mud_001_b_0.mat",
+      "sha256": "c97bcd3f98e29da2c08d7ed2f676ad10f57d778d75d0cac213f50c8afb437112"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_bg_sand_001_b.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_bg_sand_001_b.mat",
+      "sha256": "a477a8af6924be1449af318bb45c67c696ffb3a70fe813a66fe630d175058596"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_bg_sand_001_b_0.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_bg_sand_001_b_0.mat",
+      "sha256": "ff74da7215fb558fbc1575178f862ddd816dc5b448477f0f79b4fba516874e9b"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_bg_smoke_001_b.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_bg_smoke_001_b.mat",
+      "sha256": "9c1b301dbd363b64dadc510baaaaee25de6d03ae430aa39c1a6dea78b4de8eea"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_bg_smoke_001_b_0.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_bg_smoke_001_b_0.mat",
+      "sha256": "a8308ee098ee79fb4cec74246b5a829c0e894a8778287ca72cad43532842e154"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_bg_stone_001_b.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_bg_stone_001_b.mat",
+      "sha256": "2b728826f2b15f49782308785984b8bdda351410030e99cd1f394fe9e942b0fe"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_bg_stone_001_b_0.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_bg_stone_001_b_0.mat",
+      "sha256": "e20a293fee618d22fae981b40f559724d88a47aa4e2ecc6e1bf759f39ce107c5"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_aura_001_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_aura_001_1.mat",
+      "sha256": "3df8f2a2ca677d8eaace5c77843ce27a3ce5b7b1af2f74eb16256891362f797b"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_aura_001_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_aura_001_2.mat",
+      "sha256": "7748b19d901b5837a61e4044e2a5f9ece2fa008462c779f7a55e239952915203"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_aura_002_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_aura_002_1.mat",
+      "sha256": "a712598feae58249b28d1bd3f1112fe27c72b494bb2af4d795168cc19b7ac8a7"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_aura_002_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_aura_002_2.mat",
+      "sha256": "95a546ae167e5c02bc3581354e900a3bdeb0b69b920806fb621b3948d4914c74"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_aura_003_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_aura_003_1.mat",
+      "sha256": "964e6f56dab2ebad94fc449a14198db09c5bcfb25c2950acb59fe8526ce64088"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_aura_003_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_aura_003_2.mat",
+      "sha256": "6ce3cf219662518b6c5ea0fc5fce303e991428aa1dcae77d4af0b471bd741c86"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_base_001_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_base_001_1.mat",
+      "sha256": "620406681d8dc63053b4e88be301552d4aaf1e0bf4df04a3ce923380cb2357b4"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_base_001_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_base_001_2.mat",
+      "sha256": "feeba70e4a1ce5fbd309065d6bb5f6c51d3d32b605182255b6a4048bb084b036"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_base_brack_001_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_base_brack_001_1.mat",
+      "sha256": "8487316600933706ca054194a1c85806164d7835527e921df3c01d022f46df79"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_base_brack_001_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_base_brack_001_2.mat",
+      "sha256": "df79c01737e783214ba51cc0324cb3842aac60535fd6961b0c1ae1c9b35c187e"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_base_light_001_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_base_light_001_1.mat",
+      "sha256": "c291f9a4ec8b803305992c48efabea302e8a78502f917099064395d25fa05e0d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_base_light_001_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_base_light_001_2.mat",
+      "sha256": "402819aa2566a2686e790a515af4cdd0767b163ff7ea8c150f832e5259bef23f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_mesh_001_b_test_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_mesh_001_b_test_1.mat",
+      "sha256": "22c9c40708120c32e7de6cb911c0b201c227502b5d53d4b3ba38ce5591160855"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_mesh_001_b_test_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_mesh_001_b_test_2.mat",
+      "sha256": "c78721c067ea8f764e349620d5ea4c1179c5276c52a1a46959c302fd386ff807"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_mesh_001_k_test_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_mesh_001_k_test_1.mat",
+      "sha256": "81f37f8434dac39b36fb7fbb67a59335de5274d47d8d565d6ea35c70d437a2a9"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_mesh_001_k_test_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_mesh_001_k_test_2.mat",
+      "sha256": "f11c9d8d4811add6654a52003e7556aae58377c1a851741c21943eed055e4966"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_mesh_002_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_mesh_002_1.mat",
+      "sha256": "432434d79e725d595faeac4a03f12bcc6d2905fd91322cfad1dd1d3ab81930aa"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_mesh_002_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_mesh_002_2.mat",
+      "sha256": "1cc3ab570f0b37ad75a42dff725f05da14939862878e16e75a69f5d70a41f407"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_soul_001_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_soul_001_1.mat",
+      "sha256": "5e23f56243bdeb39b70c08733144e4aee748e87b673170686abf7f8a0c48d341"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_soul_001_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_soul_001_2.mat",
+      "sha256": "6f18c9a1cabcaa582af15a1595f3cb7c9c266e73b07f8330fba92037ab2c3d71"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_soul_002_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_soul_002_1.mat",
+      "sha256": "d1fabe7342cb1fef4c5b71e632e610636576465fa250854abcdc6e2c16e088c4"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_soul_002_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_soul_002_2.mat",
+      "sha256": "0399d6ad29b476e87681790290aa1787e6e1b69060a41ca3c7148bfd42a75209"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_soul_Brack_001_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_soul_Brack_001_1.mat",
+      "sha256": "e01665e25b2ac3f2cb9649a95b187797dc643224a3bd6dfa605b9525ea0c9a2d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_soul_Brack_001_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_soul_Brack_001_2.mat",
+      "sha256": "b7432a5cf4ceecb8741308a525318f6b8ec5b881b5d2363c16b6e123659b5ffd"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_soul_ple_001_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_soul_ple_001_1.mat",
+      "sha256": "50c74ff63c0e3aaf360d8020dcf06d78522448d9a68d1175dcf3cc76cb199f0b"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_exclude_soul_ple_001_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_exclude_soul_ple_001_2.mat",
+      "sha256": "354e84a5e5c79686dc3f7800c71a298c8884add784b169b966f9f139e6210c0c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_excludeidl_base_001_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_excludeidl_base_001_1.mat",
+      "sha256": "c24f7550cad6ff4ed9d11133438fd9ba28c196675cb52da8737f93810ed477ad"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_excludeidl_base_001_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_excludeidl_base_001_2.mat",
+      "sha256": "a4b26f0bf455cc9ea4ae12e51d3df9bd5ff9ecfb89329aea24f0df0b720a96d9"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_excludeidl_base_002_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_excludeidl_base_002_1.mat",
+      "sha256": "f925705b92bc0170040ce4f6c64cd423175f9b3194c657f2528a0e526853919c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_excludeidl_base_002_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_excludeidl_base_002_2.mat",
+      "sha256": "a7c329798f7e56ca4d908b378e6aab090da2ba919b9860d805e06bad59ebb659"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_excludeidl_ple_002_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_excludeidl_ple_002_1.mat",
+      "sha256": "59a2cef735ca08b6dc200e46e189102ed6213feb149c213a27f699ee505e9535"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_excludeidl_ple_002_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_excludeidl_ple_002_2.mat",
+      "sha256": "69227153bcb0bafa43a96b67800e10291fa7e901539c9fa8edc310b8cafaba10"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_excludeidl_soul_001_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_excludeidl_soul_001_1.mat",
+      "sha256": "aa5e5dbeb6a3f0e4b69aa5cd5d28250bb349ac0da99841fbe87daa71ddf0014a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_excludeidl_soul_001_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_excludeidl_soul_001_2.mat",
+      "sha256": "3285fe5b8e3b2ab7fe5ece52937bc384e1f8ccc6c92bac73a52caa580b141e1d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_flare_01.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_flare_01.mat",
+      "sha256": "82e997f488a9e5bbcfe9b7b4ea34ac80de600f4e9bb62516486fb4f033a74e70"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_base_001_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_base_001_1.mat",
+      "sha256": "faca0382d146db357f5241b654968e96e77d0673e8c98840f4fc3c880c608981"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_base_001_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_base_001_2.mat",
+      "sha256": "3fa501349647b9c2e801df7b45fbd0b9a2caecf4249dfe937d402dfc1325e69a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_base_002_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_base_002_1.mat",
+      "sha256": "19ea935c05f9ea0b5b70280f27569be84740f5b780a2501a9731035892a7f7a0"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_base_002_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_base_002_2.mat",
+      "sha256": "57733988593e11f62db213bac8c215048eca0f5e5174e5b768334e99499e160d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_flare_003_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_flare_003_1.mat",
+      "sha256": "cb87d09db460345464f67a946c5475b67a2121a5e534b21718be540ebf781415"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_flare_003_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_flare_003_2.mat",
+      "sha256": "28fd3afe707dccd8fbb8b9754a01de06dee37a29a629cfe37f12ec6e3c95c507"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_ghost_001_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_ghost_001_1.mat",
+      "sha256": "f2ce537451938927dc6dab47cf3a745b211f256f66d020dceaa83e2e2809ba64"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_ghost_001_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_ghost_001_2.mat",
+      "sha256": "4dee5c5d499d205057fe74399ce3014cbbb86e496be504134d79aa378670ee7f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_ghost_002_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_ghost_002_1.mat",
+      "sha256": "c0a6eabb21d93ac87258e5bfc698dba28aaaad488f6339441dbdeab9d11e6ba0"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_ghost_002_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_ghost_002_2.mat",
+      "sha256": "dd0f2930ef8d7906e5d645c7cf722f19ef18151b83bdc8e3af504823c54a9c36"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_godray_001_k_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_godray_001_k_1.mat",
+      "sha256": "0e40c7a8e6a49a8210b1ad63c0c10a2b192b65e448c29cf30669ad078a271994"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_godray_001_k_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_godray_001_k_2.mat",
+      "sha256": "3269d6cc0751d9d5039d299454ad37d146d62599f962ce81b6caae65fad6d2f5"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_lightring_001_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_lightring_001_1.mat",
+      "sha256": "fe657f82e880cc034f7ecd755656a4542d9e74773b7780fa9bd90bd306024c1a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_lightring_001_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_lightring_001_2.mat",
+      "sha256": "eec41f2d2ab33b4f353b71c95029ab69041c7a80d31143f33377b75f86a8a64e"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_lightring_002_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_lightring_002_1.mat",
+      "sha256": "772c003db0005e17c7df3c4d33c71620a1d5063d1fe28455727486276d9155ce"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_lightring_002_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_lightring_002_2.mat",
+      "sha256": "dcd5d23e174e9d69cdab7c72fa99817198529c96527bf600578d3e0b1610ef60"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_meshlight_001_k_test_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_meshlight_001_k_test_1.mat",
+      "sha256": "0d933b1f1d5eeeade6736b17157035a89fd0d176345bfccef3988430c65ea059"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_meshlight_001_k_test_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_meshlight_001_k_test_2.mat",
+      "sha256": "bca9057772b63c8cb9fea004c2e2a46a90e43545b050d70c0109fc17fcdccf89"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_particle_001_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_particle_001_1.mat",
+      "sha256": "e6ada821724b492c573bbe75037658617b585c500e83b115cd7c21a7b4ec92c1"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_particle_001_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_particle_001_2.mat",
+      "sha256": "64c31a34894ec75a67e2aeba677c2ff1fed30d53f0d8be41e1b45381c25fa0e1"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_smoke_001_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_smoke_001_1.mat",
+      "sha256": "0393a18a2e201a1aedd1c6cd4a29f1ada1eb5208a33c540cc2be114704407e0e"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_smoke_001_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_smoke_001_2.mat",
+      "sha256": "ef6357c0ff81076ee7bc909191ade544e0563ca27e44eb67d8e7856ff929debd"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_soul_001_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_soul_001_1.mat",
+      "sha256": "3081af5495343d12c3cb23739212e5e14806e5cbd3dd1c39b51035ba082bf992"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_soul_001_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_soul_001_2.mat",
+      "sha256": "61403ab147a7b77dc1f24ebd04fcd2f7c71190e640c4396127ce292de4e8bff7"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_soul_002_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_soul_002_1.mat",
+      "sha256": "8e097a088eec8ce80db7b2a3dbfb514a181c2fd62b0ae452fd63c8dd5ef88850"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_grave_soul_002_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_grave_soul_002_2.mat",
+      "sha256": "8940fcab5d9957dda1ae5f600872943bf71ac47f8b6ff7de79d3a7afed2c216b"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_graveidl_base_001_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_graveidl_base_001_1.mat",
+      "sha256": "9a40c5170f8d4225d7cab6aaa08acf5feeb9a41f7ff9c1cc4604632fd432ddce"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_graveidl_base_001_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_graveidl_base_001_2.mat",
+      "sha256": "159489f350e4456ce9273e5519a2dc064926029ae7cf6afcac3a306fb2909453"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_graveidl_base_002_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_graveidl_base_002_1.mat",
+      "sha256": "03eb1a8f0e0a3684b48bfc7bf5b009f045b51f0bc2e397ab4892b436f91a925d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_graveidl_base_002_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_graveidl_base_002_2.mat",
+      "sha256": "d8be83d21e16702439110e74afd5d419016e025304031252cf5656414d27b3b2"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_graveidl_ple_002_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_graveidl_ple_002_1.mat",
+      "sha256": "f7269d441c95ac906e8e412c81677b4183ef034f9cf077200c062e37234ecea3"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_graveidl_ple_002_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_graveidl_ple_002_2.mat",
+      "sha256": "02d8fad47368153ae97d3db72079a6f2539f947b8f6e223f23b15349566bbe6d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_graveidl_soul_001_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_graveidl_soul_001_1.mat",
+      "sha256": "cee0b7821f26cb0eb86614ffce209c9549c6c302cccd1a61c1cb4501ae46c959"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_graveidl_soul_001_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_graveidl_soul_001_2.mat",
+      "sha256": "0562157b2cb2efc1b534785522fd2139c30a833a120c61b916de4ab39cb65fd8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_HL_som_grave_001_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_HL_som_grave_001_1.mat",
+      "sha256": "62ccd5abf76f3c6fcb786bd1d1175182951d63ef2fd8164ded1043be6f1b896d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_HL_som_grave_001_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_HL_som_grave_001_2.mat",
+      "sha256": "a214a6380072589f55bbc36ce94812b776b92d6270b0dd3f3dc05023658e83b8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_HL_som_grave_002_1.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_HL_som_grave_002_1.mat",
+      "sha256": "1d032a6d1a3466fbc815035fcabf70b44328356120e874dc9cebf2759d738b4a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_HL_som_grave_002_2.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_HL_som_grave_002_2.mat",
+      "sha256": "6661495c0af83faac2adb3914e57ca16daf348c2bd9909fdb415961692ed8272"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_imp_circle_01.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_imp_circle_01.mat",
+      "sha256": "70c955e2e6f7be0b4a8f146dcdeadcc21a6fab935f30fec8b6ecdd80f164d920"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_star_circle_01.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_star_circle_01.mat",
+      "sha256": "41031ec1ccfd78a05eec809a36430e207b56cdc2ac23150d401b77728261e951"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_Timer_flare_01_k.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_Timer_flare_01_k.mat",
+      "sha256": "c4c698acb1be27a13cb3cd8d2899166130e882d05f1a1f7c17753a68b55415cf"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_Timer_flare_02_b.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_Timer_flare_02_b.mat",
+      "sha256": "85339ce9476bf43c8db8a4b6c2c83bcd30409e7a0141b40fbafc56b1daa18e53"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_Timer_line_01_k.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_Timer_line_01_k.mat",
+      "sha256": "2ae7b3351b835f42d54aa0ee230765378bbfb6db5fd6a4e4b28a788f230e5150"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_Timer_par_01_b.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_Timer_par_01_b.mat",
+      "sha256": "88e34333f5de1540aba463d592cc4b7250837ea3f8c3889735b37989c71f56c4"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxm_Timer_star_01_k.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxm_Timer_star_01_k.mat",
+      "sha256": "4a282e5218f83bed46e3075011f917b6ad1fe1a423be2863ef37d80d60865be5"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/fxp_target_arrow_001_b.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/fxp_target_arrow_001_b.mat",
+      "sha256": "ccfeeaf604e4618f3c7585b8ec338eec890e3cbadd09b3a718e61cccedb9d99e"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/LinkMarkerMat.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/LinkMarkerMat.mat",
+      "sha256": "9cf6ca69bf7cb5207b3ee7a63a0997890596e3087c3cdf28dd13276868612142"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/Lit.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/Lit.mat",
+      "sha256": "2bc51486e7aade03bd88ab688b2afe1851c63a2a4fd795d3e2b1e22440541851"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/Lit_0.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/Lit_0.mat",
+      "sha256": "c4546a454627351cdd9d96c8b419d43cd5da680771caba4247af675b0acd588b"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_AvatarStand_002_01_far.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_AvatarStand_002_01_far.mat",
+      "sha256": "7ebbfe79caf78055111d87357ede7aae1b91c3ffd4b5ed2be6183201b092f78c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_AvatarStand_002_01_near.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_AvatarStand_002_01_near.mat",
+      "sha256": "b43b93b895f847aa48113e61b376c39594abede0ace19159ce526828996152fe"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_AvatarStand_002_02_far.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_AvatarStand_002_02_far.mat",
+      "sha256": "d17c715b77800126a2a4423ec31023ab113adf7b370befe8743076db8310915a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_AvatarStand_002_02_near.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_AvatarStand_002_02_near.mat",
+      "sha256": "aee8d6ef60edc0dfa46df85af00309fdffeb961fbe454004944ad404c4935ad9"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_AvatarStand_002_03_far.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_AvatarStand_002_03_far.mat",
+      "sha256": "f86416acd2506b2cfe3112794c42c9cf258e0ce5cda6f7db50076acf036c1baf"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_AvatarStand_002_03_near.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_AvatarStand_002_03_near.mat",
+      "sha256": "89dfab22f7e38ccc864539a9fe54894f68caa28626b214b25d9788fb201abd39"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Grave_002_01_far.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Grave_002_01_far.mat",
+      "sha256": "369e66ba810507d7b607d786adcd595f84d6b0bb26d0868f673c98a1291d51a6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Grave_002_01_near.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Grave_002_01_near.mat",
+      "sha256": "598de7d424ce921769a6f3bd398de7c8cd750a9f61f805a5cd6ded9adff01d9c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Grave_002_02.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Grave_002_02.mat",
+      "sha256": "a2bd95b66c14372c0d3f6a371eb5d9365372d0a196c2b7f587531534be6c6861"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Grave_002_02_0.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Grave_002_02_0.mat",
+      "sha256": "863028b158d7945e52ba4552cb6ee2bf8b52b53211caabbe66681b8b64878de3"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_01_far.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Mat_002_01_far.mat",
+      "sha256": "020b2186bf28c6fa95b3796a933628b88fca6f50b36e4119600e43de747d9fc6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_01_near.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Mat_002_01_near.mat",
+      "sha256": "cb4d8f3a7cabaf08fd59d926d67c0ee03ea460ec6abef86b816c80ddfed2dbec"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_02_far.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Mat_002_02_far.mat",
+      "sha256": "7a1f41c01a1773a528313351795f0fec4b271b89771f0fb86662271d59c6c971"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_02_near.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Mat_002_02_near.mat",
+      "sha256": "fa5ffe3311f9099ea6cb6218ae15cdbbe47dd882447e2628d78116364d382107"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_03_02_far.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Mat_002_03_02_far.mat",
+      "sha256": "bee11ff930761ca0e9f283c6f03aed614b6a880a4c760282bf5a2c0a34f06af8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_03_02_near.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Mat_002_03_02_near.mat",
+      "sha256": "8dff7a6a4bf4004669bb1d954db75cf4b78ee759c3cd8b40e63eaf192beb2525"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_03_far.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Mat_002_03_far.mat",
+      "sha256": "388fc20ed5002bef10f4ccc5daaf9af22ef5d5b915b9aa8c77bf9b7caeffa405"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_03_near.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Mat_002_03_near.mat",
+      "sha256": "390fe7bcf00eb31ec4a8ad7c83710ae33163d09114d48fde5cafa7381060ffa0"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_04_far.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Mat_002_04_far.mat",
+      "sha256": "8b0652981c3ec9de4f2329df85afa3740926eb2fb8760f93c0f6858147bc99f0"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_04_near.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Mat_002_04_near.mat",
+      "sha256": "572db1dc67d60d7341fcf77e1458884009c8e9f66f2ee589732e2c965f8a1270"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_05_far.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Mat_002_05_far.mat",
+      "sha256": "457b23df88c6ac028de7e1100059a87ae052fe27b1f7021308389cfca29da9a4"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_05_near.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Mat_002_05_near.mat",
+      "sha256": "1f539c03a6d2c1c3c8cb20fd8347b057bb8f48f59c003388af49fb5d27377a9a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Timer_c001_01.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Timer_c001_01.mat",
+      "sha256": "db030c92f4425f7c3f1b49af0def986da236fcbb00146a15650e8f0da8a2fefa"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Timer_c001_01_0.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Timer_c001_01_0.mat",
+      "sha256": "e18500fb206dbeda4ae086ebbd74b59987aec43680cd3239f847ba268a8a6fdd"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Timer_c001_02.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Timer_c001_02.mat",
+      "sha256": "3acd6e6a1752edf019b401bda9d237e7d198f20ff949794cc34468686ba2422a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Timer_c001_03.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Timer_c001_03.mat",
+      "sha256": "c86b609094f656143a754dd3f0c775579a29601b2954aeb4c4cda4f106b81990"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/MT_Timer_c001_03_0.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/MT_Timer_c001_03_0.mat",
+      "sha256": "88db501716af3cf0ad5b5e0485be6d728a067878cfe558f480add0d1db0a6846"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/ParticlesUnlit.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/ParticlesUnlit.mat",
+      "sha256": "c8dc7abdd720e854b06fd602e0977f10152b6889985280cb5ae0247d41208056"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/ParticlesUnlit_0.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/ParticlesUnlit_0.mat",
+      "sha256": "16ceffb07e30cf82dc3127e7eef808929e0b786196070715b7e2de05d7ae75f8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Material/YGOMD-TestFont1 SDF Material.mat",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Material/YGOMD-TestFont1 SDF Material.mat",
+      "sha256": "060149a9a208640512fe7b366b2ceb56830a5d4a66c03ad6c3e84246e5b6d8fd"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/AvatarStand_002_far.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/AvatarStand_002_far.asset",
+      "sha256": "658aa29140a2a3cb317d13f7f4f5e0fa41072b72d76a4d806a943aa618434120"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/AvatarStand_002_near.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/AvatarStand_002_near.asset",
+      "sha256": "f2d1b5d66048352814206c6825944195cc862d778d8ab62f743288d8d7643c1c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/base_0_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/base_0_0.asset",
+      "sha256": "40355526ba7df7521260b7301bb2fa7438e307763d090c17a8f3cb8c855eb095"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/base_1.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/base_1.asset",
+      "sha256": "9fe2bcc9001306b3ffe591343155949a9e876ff48730fc87e913a4506f8eb576"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/CardModel_back.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/CardModel_back.asset",
+      "sha256": "32842849244760fa54d80e298dd26d37b440e7759ae678966016c1d2cc77fb19"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/CardModel_front.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/CardModel_front.asset",
+      "sha256": "0d7996b163fe63b82aefb2cc13d5a6447225a16d9c3b55929fbdbb87dc302476"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/CardModel_side.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/CardModel_side.asset",
+      "sha256": "253a2f7e623b3d77d66ae0dbf9d94ad94934e4f4cc52854e19cd889215310490"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/EF_ExcludeHighlight01_1.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/EF_ExcludeHighlight01_1.asset",
+      "sha256": "bb06b5c286ed7fba0ebb1030f48efa91bcbeec9458b766d8bcd9ad7cdb47192c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/EF_ExcludeHighlight01_2.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/EF_ExcludeHighlight01_2.asset",
+      "sha256": "bb06b5c286ed7fba0ebb1030f48efa91bcbeec9458b766d8bcd9ad7cdb47192c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/EF_GraveHighlight01_1.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/EF_GraveHighlight01_1.asset",
+      "sha256": "0c8b10e19142cf21640ef4de6822a01fbac247802ce1b125338b16156508e401"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/EF_GraveHighlight01_2.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/EF_GraveHighlight01_2.asset",
+      "sha256": "0c8b10e19142cf21640ef4de6822a01fbac247802ce1b125338b16156508e401"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_base_02.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_base_02.asset",
+      "sha256": "154192765654527d4dac69b5ed1f4898cb6e049ba2337551fdc87830d1d6230d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_l_04_01.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_l_04_01.asset",
+      "sha256": "abfb0f2f942538d105a9b6791bc77d537a3cd8f3644986d3cd8c6744a0a8b082"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_l_04_01_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_l_04_01_destroy.asset",
+      "sha256": "75b1b85ba3cb1e499541b156bff83caa1747a9f8bbbe4a1649370fd0baa28d57"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_l_04_02.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_l_04_02.asset",
+      "sha256": "d14d565e5281912562dbe0ed1dde61d512ef4116e05727451d2dbacf187ffaca"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_l_04_02_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_l_04_02_destroy.asset",
+      "sha256": "ab25cede22250e546ed529cef9003d542b1820f33232e477dd5a55a973a2faee"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_l_04_03.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_l_04_03.asset",
+      "sha256": "f46cb2343271a26724dc794083254c272c651efdd24d2ed85574779e4cfd6e87"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_l_04_03_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_l_04_03_destroy.asset",
+      "sha256": "cedefbae1f1f422682e511b8cf62ba7cf680ad5c86cd8d74da617c8e0430880d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_l_04_04_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_l_04_04_destroy.asset",
+      "sha256": "f74ca2657df48c383e21458c803576dd964cb995a1497aef919310a7f16251e3"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_l_05_01.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_l_05_01.asset",
+      "sha256": "435efda9ecf11d61a871222b539ceadb3b13408b3ac0068f32e835512283c00a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_l_05_01_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_l_05_01_destroy.asset",
+      "sha256": "38523dda95d7d983393add74049f6ee0ef67656d3a3445f3a086df2d566d6159"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_l_05_02.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_l_05_02.asset",
+      "sha256": "8741fc12f0a7ca511b1796a51f45b304aab7c6218a47684979d4d5996c50cfa8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_l_05_02_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_l_05_02_destroy.asset",
+      "sha256": "983a50bfe478026bd9531160f085408f09fea60245379204c91696ab97bbbadf"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_l_05_03.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_l_05_03.asset",
+      "sha256": "97c548505329bbedcb45a0a3e4d5c014f23f564e5ed0ee128b457cb465201e77"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_l_05_03_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_l_05_03_destroy.asset",
+      "sha256": "9f7c96c44521af54384efcc9d57abe39cefb013cb6e1fb6f81d058bc7498dfb8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_l_07_01_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_l_07_01_destroy.asset",
+      "sha256": "9eb2d7e43b2ed0a6b1128783dd2d1e2b531dbd13846725055d1714b630491b0c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_l_base_01.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_l_base_01.asset",
+      "sha256": "1dbca49a1332f439f2b2b538b68e80b394e84f7a1753c387d67c1179b32b0f34"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_r_01_01.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_r_01_01.asset",
+      "sha256": "6b2d9874622cc70eb372a2bb04628a29e34aeb61283fc7d3c7847fab47cdcbaa"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_r_01_01_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_r_01_01_destroy.asset",
+      "sha256": "db1939c87bdc38caf95d6850006671ed0777b999d131127588457b0dcfbc643e"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_r_01_02.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_r_01_02.asset",
+      "sha256": "81f5a1275194d280ee5cff4941e8d2f8763327bbe3463ee79a577d4e130fcc08"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_r_01_02_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_r_01_02_destroy.asset",
+      "sha256": "9503e7c0e1203e471fff34e4d979c54018f8035a447417769519fb02caa671be"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_r_01_03.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_r_01_03.asset",
+      "sha256": "bf3e47e14c247b5111ff5c3d0d6c35d3e4e9855dd5452f9a36efb6f3c473dddd"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_r_01_03_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_r_01_03_destroy.asset",
+      "sha256": "5fdbd76957b459120f9aea38f50c17d22c467a108cbbb2cdf753474c2281e8e3"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_r_01_04_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_r_01_04_destroy.asset",
+      "sha256": "a53072662a33671acf809cfc7b7a6a4381486839286d9aabacbbc9d6e82a991f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_r_02_01.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_r_02_01.asset",
+      "sha256": "c560e8e7e0fc3ef3d7490a853be3627809b4cfea5889df4eee8a1a434e21a7bf"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_r_02_01_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_r_02_01_destroy.asset",
+      "sha256": "c81bf38bb7e87b52782e01f5a75e9880976cb607d33a5354d2c0e182120188b4"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_r_02_02.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_r_02_02.asset",
+      "sha256": "6b39365be15bf60ee0875176717574b742eb310e076c929b1aad1fc2b24bfd77"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_r_02_02_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_r_02_02_destroy.asset",
+      "sha256": "f7a60be7b50476254c8fa31853c2524915f77b75aacf37b33bb42a89a2573ab8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_r_02_03_destroy1.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_r_02_03_destroy1.asset",
+      "sha256": "8a62937052317a23b113facc45c37b01a6468632ee4480ff90ee19112d43f40e"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_r_03_01.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_r_03_01.asset",
+      "sha256": "af9ca4b320c460f145d4438b34f439fc1b1345531dfd97268252cb93b364e52d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_r_03_01_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_r_03_01_destroy.asset",
+      "sha256": "7d448acd632f3f93db05fc9f8cd3328d143f132f491d6af06e96adbce4ce845a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_r_03_02.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_r_03_02.asset",
+      "sha256": "f7a8f034b1c519e9797523a5e8d86bf670b50bed986f888527d4ef2bfa709262"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_r_03_02_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_r_03_02_destroy.asset",
+      "sha256": "eed2d56129b8bd8939859759f2181005ac7398bf4fe1b4246f503c6fc9b03856"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_r_03_03_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_r_03_03_destroy.asset",
+      "sha256": "2255b90664f0ed7af97dfdfee08e0d82b1df9cb6c9bb497263774e884a387713"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/f_r_08_01_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/f_r_08_01_destroy.asset",
+      "sha256": "2fb34da1217ce650d95b067fec10f889ac2cf50ccf5b3e8031323833e99497a7"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fl__08_01_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fl__08_01_destroy.asset",
+      "sha256": "9de50cb1627a3417f6db6f43dfcf31d08384ccd45edf87a68bb680774e478e28"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/frame01.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/frame01.asset",
+      "sha256": "3497bf0b076ec27e2a893917628d57cb3ba8fffcef6383abad9f2ec8e052a9c8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/frame01_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/frame01_0.asset",
+      "sha256": "3399fd371dbf68d58f12f0497ea84c85f6c953606333a0c12512a2508dce7746"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fxl_Circle__001_1.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fxl_Circle__001_1.asset",
+      "sha256": "0ade73b8b72d63bdadce79aa5c7c5759bc0b0e423d57e8831ad5cda16b58a6c6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fxl_Circle__001_2.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fxl_Circle__001_2.asset",
+      "sha256": "0ade73b8b72d63bdadce79aa5c7c5759bc0b0e423d57e8831ad5cda16b58a6c6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fxl_Circle_alp_001_1.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fxl_Circle_alp_001_1.asset",
+      "sha256": "67089b24e70b299ec5c2e8cc9d96c00fb7c34b111bbaa9b789c0b26d6a992323"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fxl_Circle_alp_001_2.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fxl_Circle_alp_001_2.asset",
+      "sha256": "67089b24e70b299ec5c2e8cc9d96c00fb7c34b111bbaa9b789c0b26d6a992323"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fxl_Circle_cmn_002.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fxl_Circle_cmn_002.asset",
+      "sha256": "a6c67eb074f3bc3bd402b7ff6e431c3ee6abb44dbf36c8e56577f6b084820a12"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fxl_Circle_ple_Zup_001_1.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fxl_Circle_ple_Zup_001_1.asset",
+      "sha256": "22915d5e272de9ef2929e3fe429b4bc9f375de84a634e685cafcac382d30601d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fxl_Circle_ple_Zup_001_2.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fxl_Circle_ple_Zup_001_2.asset",
+      "sha256": "22915d5e272de9ef2929e3fe429b4bc9f375de84a634e685cafcac382d30601d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fxl_Cylinder_002_Mesh_1.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fxl_Cylinder_002_Mesh_1.asset",
+      "sha256": "f47ea8857d4fbcfa20ac353313f95819b4eb1805d895c8bb9e2ed6d55f3a7eb5"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fxl_Cylinder_002_Mesh_2.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fxl_Cylinder_002_Mesh_2.asset",
+      "sha256": "f47ea8857d4fbcfa20ac353313f95819b4eb1805d895c8bb9e2ed6d55f3a7eb5"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fxl_Cylinder_003_1.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fxl_Cylinder_003_1.asset",
+      "sha256": "6ca40ce412b9b5869b94b6e2440f7eec9a0415a6d45bb2e463a06dd5042144cd"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fxl_Cylinder_003_2.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fxl_Cylinder_003_2.asset",
+      "sha256": "6ca40ce412b9b5869b94b6e2440f7eec9a0415a6d45bb2e463a06dd5042144cd"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fxl_Mesh_qtr_alp_001_1.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fxl_Mesh_qtr_alp_001_1.asset",
+      "sha256": "400e27fe4b32d92be5919f373cdaf92b8a754500f7ee05d446824be6d661f0df"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fxl_Mesh_qtr_alp_001_2.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fxl_Mesh_qtr_alp_001_2.asset",
+      "sha256": "400e27fe4b32d92be5919f373cdaf92b8a754500f7ee05d446824be6d661f0df"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fxl_Quad_cmn_001.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fxl_Quad_cmn_001.asset",
+      "sha256": "2dd9f0d3af8dc533aa3effa039347a6bb1e8a4ff3a1ca7752a94031e28a09aa3"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fxl_Quad_cmn_001_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fxl_Quad_cmn_001_0.asset",
+      "sha256": "2dd9f0d3af8dc533aa3effa039347a6bb1e8a4ff3a1ca7752a94031e28a09aa3"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fxl_Spiral_alp_002_1.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fxl_Spiral_alp_002_1.asset",
+      "sha256": "9c9e422dd2f99c1a872b73726b04f6d6fc0726d46842bbce5d745fb9092614e0"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fxl_Spiral_alp_002_2.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fxl_Spiral_alp_002_2.asset",
+      "sha256": "9c9e422dd2f99c1a872b73726b04f6d6fc0726d46842bbce5d745fb9092614e0"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fxl_Warp_lef_001.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fxl_Warp_lef_001.asset",
+      "sha256": "1fd046f671bcaa3b9afbbae8f13517d771298e012e9d48d23e33c5d63d3e7e00"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/fxl_Warp_lef_001_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/fxl_Warp_lef_001_0.asset",
+      "sha256": "1fd046f671bcaa3b9afbbae8f13517d771298e012e9d48d23e33c5d63d3e7e00"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/grasses.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/grasses.asset",
+      "sha256": "9ec0a8ce0c82995efd76af18e691b2072b51fc176cc7aff60cac399a89c8ed25"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/grasses_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/grasses_0.asset",
+      "sha256": "d2a950afc7368a7289099927681f5620027a19303862d6cff77ddcea01c8f778"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/ground_boundary.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/ground_boundary.asset",
+      "sha256": "07eb3a9c138d8faea92bbf9439b58a1dd41297f17ea927941277c4b18d2c2fef"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/ground_boundary_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/ground_boundary_0.asset",
+      "sha256": "981ed39698780856f7bd051c255843f7be5fd99ca2e4b246dd2165220c0d748f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf01.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf01.asset",
+      "sha256": "bb2dd2ee56a8db6136e6b8b59445b3b5fa23d3f10e24780dcf084f485468672a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf01_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf01_0.asset",
+      "sha256": "c21ee3d42d5171101da8404e79e2539878de182e85737043ba4537a07ad4490f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_l_01.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_l_01.asset",
+      "sha256": "7780befbe2fae38a409266fc035b756bae9116e586a3cf6e223045184358ed5b"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_l_01_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_l_01_0.asset",
+      "sha256": "1503ae4e685c7cf50b2557c95b29b7857361810b95190453377cb0dfb9309292"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_l_02.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_l_02.asset",
+      "sha256": "49e813d9551d7fd40d1291d2fe555121ba101ade426f442cc036bd27e9d0185b"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_l_02_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_l_02_0.asset",
+      "sha256": "27454fc471e5ab42b18fcf45bfe0b1de4ee079a162128c99d3ef7d467a77a594"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_l_03.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_l_03.asset",
+      "sha256": "c53ed0bf17a4320483acf2ba97d69b2072fe6d41079a3133fd49b93aea390982"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_l_03_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_l_03_0.asset",
+      "sha256": "dc3f53a1c95199a9e0742f0fbda9eff3214e4fcdf94d7ea46dcc8cd05bb214a7"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_l_04.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_l_04.asset",
+      "sha256": "b57dedca749dd4214940b22af5aa3aeb4b50831fe654da80542f3c50e6e9bfa8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_l_04_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_l_04_0.asset",
+      "sha256": "75a4e7e68b0b5f77259d90dbcf6cd78d3839a5448cbea751a061de55fe1a8f7b"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_l_05.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_l_05.asset",
+      "sha256": "d2d57ad1857a3215c3c5e8e30dffa5682f7992829d4d38302088d73bdaec190b"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_l_05_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_l_05_0.asset",
+      "sha256": "8ea0bf0cdbc8665acd662e5d8578e87404cbd493787810bb1fb4148d54071d1c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_l_06.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_l_06.asset",
+      "sha256": "73dbde948dc7447161f747eb5347687bb40393978350a7d831291293c597ec67"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_l_06_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_l_06_0.asset",
+      "sha256": "2b1d1e89faa4f845fa9633b4c8e1baee3978d1fc95ff0fcab316b51943b89d80"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_l_07.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_l_07.asset",
+      "sha256": "f5fe8297813481ebe9b297dad92cd2c3a614be6f26de1224b329086c5d93bd35"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_l_07_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_l_07_0.asset",
+      "sha256": "3cc21a4b50a28e53c44a4a0ba35737d4652ab00f1c6ce6a13bcbb73a4e504205"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_l_08.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_l_08.asset",
+      "sha256": "7e83d8c220b89ac9947f406bc5195fdc84b7d21fd0a3f652a6e23d237c6839a8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_l_08_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_l_08_0.asset",
+      "sha256": "bbb5e87ab5adcfbbc1b77b70d47383d28dacd3669fe99173c31e6a19b1905932"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_r_01.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_r_01.asset",
+      "sha256": "3253d11585a05e2fe890c4bf1b2ef70f126eed80879bf2fc73372bb8481046ee"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_r_01_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_r_01_0.asset",
+      "sha256": "106fa99d1628a6998232bdb68bf0ca92c365026337b785c7e0b8c9b8e90418a5"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_r_02.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_r_02.asset",
+      "sha256": "9c9970ad49b9daabef30bbc745277ff99ea0801b32c7916879c2b93d07b5bcba"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_r_02_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_r_02_0.asset",
+      "sha256": "17e5654bf0cf84dbf70809690487b8e904f01d3330586b11ed8c3ab98a351846"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_r_03.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_r_03.asset",
+      "sha256": "81f0f2d2199a3734ac67d9f44bb20cb7f728428a315a78a9e5590a4bb7af8786"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_r_03_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_r_03_0.asset",
+      "sha256": "677d325e89dbd5222df00c681c6b58df4f2d3cce2f7562d38d3b00d9a9dcb0ab"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_r_04.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_r_04.asset",
+      "sha256": "a208d5b8022a609d9ca46fbf4c3308f7bb69f49e030eefe59135316958cf23be"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_r_04_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_r_04_0.asset",
+      "sha256": "dbf93cbaf52649402beec14f91650f15405059bb046aff6a7acc90a4638f1da7"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_r_05.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_r_05.asset",
+      "sha256": "b32b4f499fbcc368050ed7a61d9c8c70ff82d5fbe05d01419de6f58a03dbe7c8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_r_05_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_r_05_0.asset",
+      "sha256": "da9107cba1e6ea165d383deed60afa45a9b0e5dc22d81bef0682b3b531e45e0f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_r_06.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_r_06.asset",
+      "sha256": "6b3d9a66de99312ca5fa1f034b7b33766bf2d9faccb30d8f3d2ba421215e09eb"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_r_06_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_r_06_0.asset",
+      "sha256": "b3743227c013eba28915ec86a9972972d79416ad639ef5c59a79595003a2f011"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_r_07.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_r_07.asset",
+      "sha256": "6b648a72f673022287d2d6cd59e242b16846fa85c61fd2f3bbb771ef6fdfb69d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_r_07_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_r_07_0.asset",
+      "sha256": "f20a3575dab33a9e140baca2be40571b92876ab55423ddb35eaff2fc3e761fa5"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_r_08.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_r_08.asset",
+      "sha256": "86cda55af19cd19992f09be8218d0fb83ec429978e9774c1e2245e2eed584aa3"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leaf02_r_08_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leaf02_r_08_0.asset",
+      "sha256": "925bfebf8d87ee1c0217ad0522273b3ff3af4fc2862227960ce09100a25d1b12"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leafShadow.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leafShadow.asset",
+      "sha256": "71bccc433dc2705182f8a48b6cf883d9d4727bea386c87779e684b609c72f287"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leafShadow02.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leafShadow02.asset",
+      "sha256": "541cf395ff71a17932da18cb96d8523485624af5d454d604768924ed9a10bfb9"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leafShadow02_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leafShadow02_0.asset",
+      "sha256": "54bcbb39ec0020fe6bf4e19cc12d839188d4d9f13aad3cd78f4411e4597b592a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/leafShadow_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/leafShadow_0.asset",
+      "sha256": "b8a15f9310e44c9bd94419209dc06e222d0eb260fea0dd9782e9a5ada79d5649"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/mos_boundary.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/mos_boundary.asset",
+      "sha256": "5c402997ba6394b4dff3321a48c65f4a9d5511dc7ff25b6858c4157441fa7723"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/mos_boundary_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/mos_boundary_0.asset",
+      "sha256": "3b45f1d26aebb6938c689a43f9c2686df5d90cb7b0be7c961e5da7fa0f375dc9"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/mos_far.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/mos_far.asset",
+      "sha256": "a6ca792d76120774b773ffa267e15e53bbc387d1283c0f23613637cc5279b075"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/mos_near.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/mos_near.asset",
+      "sha256": "d013de22b297b154dc96661153bb3da568def89322b5a6e1cc160615b0d27229"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_02_01.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_02_01.asset",
+      "sha256": "43274bb2104595f37bd4585e5c1b5393578ad32cfd5500e9f9c1e5e28874850e"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_02_01_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_02_01_destroy.asset",
+      "sha256": "34484d3f58fff65889f8bc780f767e729413d00df04b62b450121810109cc4ab"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_02_02.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_02_02.asset",
+      "sha256": "820973196a2ae9f244ab36260c940b127aaa681f89b1e40f3434cb3673181ed2"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_02_02_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_02_02_destroy.asset",
+      "sha256": "36d8558dba4c48330951a7d7fad911e5d695d1ffaa0cbbf2dc646a923861bba4"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_02_03.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_02_03.asset",
+      "sha256": "5d7d95d16773b73ae93fb0bc8ac20e07a3013725808a8088ea837edfef3d58a1"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_02_03_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_02_03_destroy.asset",
+      "sha256": "d3853b2135bcae6e66531cbde6fb7c3c3b96d1c10a08476ea0d7e05a9c353abe"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_02_04_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_02_04_destroy.asset",
+      "sha256": "279a76e49e4b002f7f856e1efe302005902caae2b6b307ce55db8b74d255d03a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_03_01.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_03_01.asset",
+      "sha256": "77bd0ba6277fcf3c6f800d53c90020a79e1245ff911e585706871e96e67ca76d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_03_01_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_03_01_destroy.asset",
+      "sha256": "d74b0ef208c920c09fb7a20bae0cda534515f7b5653b6b71ec81ff67aafa2c6c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_03_02.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_03_02.asset",
+      "sha256": "af704893ebb5112c82a4728f88cd0906e12b8afb3b10c13e452a04ce45f17d21"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_03_02_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_03_02_destroy.asset",
+      "sha256": "45ffdf6b5bc1660a231ec178f609c538143acf644ddd5533fc64f3eea57ede95"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_03_03.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_03_03.asset",
+      "sha256": "ecf128e0c92ba470e6832582fefab3d5bb18829b3e91a5b3c997b80d292d0daf"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_03_03_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_03_03_destroy.asset",
+      "sha256": "b15c2684bd91779e895736a7931793ddc10cd1e85bca6b181954317b79f27b0d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_03_04.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_03_04.asset",
+      "sha256": "20f40d8a6e2af6b9647baa50ceba9a27ce3a0ecd1bde890ba368b3f8fa0dc649"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_03_04_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_03_04_destroy.asset",
+      "sha256": "d4ca6fabc04d20c1aaca80e39add446ac06f94f6a7188971dfeb94fcbfc6f333"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_03_05_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_03_05_destroy.asset",
+      "sha256": "c914bbccc4383a314c5151c74a10c9d75b9117604108121c22c3ee2a0d072ead"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_04_01.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_04_01.asset",
+      "sha256": "8917aafae7999402605999c3986c4a33807abe074d479247852bcb4c13efedba"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_04_01_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_04_01_destroy.asset",
+      "sha256": "0e0a7e40e010238806208fe70afe1a48cd07e12e0d1ac84e459c33601ba95fa6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_04_02.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_04_02.asset",
+      "sha256": "d36b48613491dafd0c0dc4a4c28d72c705d45770e0976fd3041f345c06224eda"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_04_02_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_04_02_destroy.asset",
+      "sha256": "fd2a4d57d71ff9dba1257b3070f59db6ac86d42ef0fb66f1435ea8db88837e61"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_05_01.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_05_01.asset",
+      "sha256": "ab0ef34808916ace3dbde4edc8b7b702266f13ed0aa517383681583428213800"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_05_01_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_05_01_destroy.asset",
+      "sha256": "4fd79ee3e4605568ee20c275569829aedc0dbf9b6012d392b0f11209a2e961e8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_05_02.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_05_02.asset",
+      "sha256": "8da17263c0a5b51e60294edf5630c4e4f2c191133e6be60b41cd6fd753f9e688"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_05_02_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_05_02_destroy.asset",
+      "sha256": "5eac5fa44890b35a035eb8f00ade43969d8a055caa6ad9cc76dbb1d3abe11bc2"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_05_03_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_05_03_destroy.asset",
+      "sha256": "c69f3a6931839221e79bb79eeb184c90076f9f094564dbc8fe2063e032561322"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_08_01_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_08_01_destroy.asset",
+      "sha256": "73c5b376e10f08c2d5ef58ab4755b1124fe97963fa13d49735261541d3b8e3d3"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_08_02_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_08_02_destroy.asset",
+      "sha256": "fa1bc6406f530cdeedf84a5f7c8ceaa2f09e5798c37c0a794ae8a4a5cfb16b95"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_l_base_01.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_l_base_01.asset",
+      "sha256": "a3e2f3f12a06ad892893caed769400ca49e4e50361dbc4c4fbf4e94139cffd3b"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_r_01_01.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_r_01_01.asset",
+      "sha256": "83edd630f80811376ab26f98c8888b5a14af0c12ca9aad503cd96fc43a5adae6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_r_01_01_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_r_01_01_destroy.asset",
+      "sha256": "8f0b4da04bd7573cbbcd96ff57e7e8578f4732497bda12f6bfb4bb5984799901"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_r_01_02.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_r_01_02.asset",
+      "sha256": "a397f0e36b1d540c6b5c96d67154a2c102b328c8d396eee309cb4a94bf4ab690"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_r_01_02_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_r_01_02_destroy.asset",
+      "sha256": "4a7ec54687fd8ff9aa9faf38c4af509324178921ca430888623025196767b53f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_r_01_03.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_r_01_03.asset",
+      "sha256": "dcb4ce3d3d2040debf70006b728b4d5eebdceef27b83ea104218664cbd6ec949"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_r_01_03_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_r_01_03_destroy.asset",
+      "sha256": "9679a9f19472eb562d9e2695a0ecbdd2fe9aa5e31440adbfbbae11d0845037b6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_r_01_04_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_r_01_04_destroy.asset",
+      "sha256": "828798174eda2e2cdad958a765ce3263ad9d0eec82f2143365f66f726cac3c33"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_r_06_01_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_r_06_01_destroy.asset",
+      "sha256": "86b11bd582074ec6038de55fafc2beb48d32bfc3630809d15b5220b9fffe4c74"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_r_08_02_destroy.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_r_08_02_destroy.asset",
+      "sha256": "5c1f37abde26b8418d09089773046707c422e0f3c51177bffae33b0d97c7211e"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/n_r_base_02.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/n_r_base_02.asset",
+      "sha256": "abbace9d7030314185180cb46962055ba160b885ee1e2ee7a44e3021dabf0985"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/OpponentPart.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/OpponentPart.asset",
+      "sha256": "9a3253da7476259e20fdecd6b7e5dce28ec7ff8b82525e4c44dadb77fd3e9405"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/PendulumLeft.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/PendulumLeft.asset",
+      "sha256": "4e5cbf20e1fdf2a66b0f50c98a5cfb9ca7c65295b0311c4a8afebc556969cf26"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/PendulumRight.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/PendulumRight.asset",
+      "sha256": "a7fbd8b314940184e11bf540ad42f53e0f639c4821d4cd87d108c56c118b42c9"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/PlayerPart.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/PlayerPart.asset",
+      "sha256": "b6dae387ed3e4675e8187049bb8f29b1be24cd638ddf5061d4753fd6e9c60ec0"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/shadow.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/shadow.asset",
+      "sha256": "c884ddd3bbc850fd31c034df3977e3d05ea7a29bb6891b67c7fe5bb870d65662"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/shadow_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/shadow_0.asset",
+      "sha256": "4f798654ab21fa42d0b0675c3ac9d52c35ce21ace4cb8f52f613c936965f7925"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/shadow_1.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/shadow_1.asset",
+      "sha256": "b2c34a337b442ab747aec671654dd910867100b4f98dab109a7c911d576bb2bd"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/shadow_7.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/shadow_7.asset",
+      "sha256": "f74b38f7e8238142da8fe5a947b5618be373b91a3d1a4dca87eb71183fbc1a6d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/shadow_8.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/shadow_8.asset",
+      "sha256": "44d73be573b2c3cdc719251c8608df9c8e609d8d0c32e8805fefc17aa1639fe4"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/stoneDebri01.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/stoneDebri01.asset",
+      "sha256": "b6631f06575e24e380f601e7273dd2fc245ff50b296f1a7bb806ffdf5baefef6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/stoneDebri01_2.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/stoneDebri01_2.asset",
+      "sha256": "a63a060c0a5cc20bba319d30fb0bd4c61c50ac99117756860ad51a58305debc3"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/stoneDebri01_3.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/stoneDebri01_3.asset",
+      "sha256": "b6631f06575e24e380f601e7273dd2fc245ff50b296f1a7bb806ffdf5baefef6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/stoneDebri01_4.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/stoneDebri01_4.asset",
+      "sha256": "a63a060c0a5cc20bba319d30fb0bd4c61c50ac99117756860ad51a58305debc3"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/surface.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/surface.asset",
+      "sha256": "cfa967e8971317c66f8a2f99fea16a382708fcfb54fa2a5d429d376c67526e44"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/surface_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/surface_0.asset",
+      "sha256": "47551d688bb6380f5620e891e36420729caec1132e4f315b9ab74f3413a47f13"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/surface_0_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/surface_0_0.asset",
+      "sha256": "754ea5d2d578546dfab0dc0bb159a096dced257239787c443ee5d9c7ed50e8a5"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/surface_4.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/surface_4.asset",
+      "sha256": "63f197582b6e19357e3b01f6040fea002738ead90b35798fb763b2f986477f3c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/Timer.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/Timer.asset",
+      "sha256": "4e2e2bde7886fa64d71c7fc7790f7a9a1397c2ae172a314705caf23eb2055fe9"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/woods01_lr.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/woods01_lr.asset",
+      "sha256": "109ca06eed8cbdef861457d18150943a32db28cfa2e7ff7ab9bc25c003252b2b"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/woods01_lr_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/woods01_lr_0.asset",
+      "sha256": "c3db7b2d40b31d5a71ce9b31b48d16dec355e07f18d299daf26f9d675c1731ff"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/woods02_l.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/woods02_l.asset",
+      "sha256": "43540080668b0a584c24b73778895925f93841dcd7dae22c4b8e80e28bb00436"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/woods02_l_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/woods02_l_0.asset",
+      "sha256": "e6600d8d6d73a34093f42403474a48c852d7665dc2135e04d18e311d24ccf74d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/woods03_l.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/woods03_l.asset",
+      "sha256": "f8652077926395c686fdd2da31789700763ad5757c72403dc61af3fca3c91d32"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/woods03_l_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/woods03_l_0.asset",
+      "sha256": "6ba5c34d5e727e555db3b8228ac8b65c170aa853d3326a3fcbabddeb84d47bc0"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/woods04_l.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/woods04_l.asset",
+      "sha256": "1269890964d0c290a0fca90fbcfd5df6f45769682b00b762bdd7a0d30f76208e"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/woods04_l_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/woods04_l_0.asset",
+      "sha256": "e0566e6623ba95aca1625695c675a36d9d2ca3c40691bfc1345fd04d04ceb644"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/woods05_r.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/woods05_r.asset",
+      "sha256": "099ea9f8cc75a6b614af6d5e0b299980f1da34cf2f665bec0424afc8e18472b9"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/woods05_r_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/woods05_r_0.asset",
+      "sha256": "5fab1a2f4fac281336aff8c37c292b51cfd046e5e0f4e1e71f5481cf2be9ade5"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/woods06_r.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/woods06_r.asset",
+      "sha256": "c6fdb6d4862d5a5d13b7f090a77bbd0e8670546a9f291f074b374562bbb935d5"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/woods06_r_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/woods06_r_0.asset",
+      "sha256": "447b1c26c5d025a0478bece740fe62539da4066ad862f7966e77730d92fc69b0"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/woods07_r.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/woods07_r.asset",
+      "sha256": "c9dfe91aac0b4e8162142901dd2cb74379c2d7e72fa64e10deec1e240ee53b51"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Mesh/woods07_r_0.asset",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Mesh/woods07_r_0.asset",
+      "sha256": "76b398a60f60428980f09d1193da24d1d66ad47363b41f0cb443a06bbd083331"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Resources/duel/bg/grave/grave_002/Grave_002_far.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Resources/duel/bg/grave/grave_002/Grave_002_far.prefab",
+      "sha256": "937c6bf9d24fa7b4d555e40191f7b94eca993cc5c01b84254fb2f3578d61ac7e"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Resources/duel/bg/grave/grave_002/Grave_002_near.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Resources/duel/bg/grave/grave_002/Grave_002_near.prefab",
+      "sha256": "7ff75b654f8174207ee848e3b13fc3b9f0d1e54d67b71cd9bf8bce168e7fde55"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Resources/duel/bg/mat/mat_002/Mat_002_far.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Resources/duel/bg/mat/mat_002/Mat_002_far.prefab",
+      "sha256": "7825a25badb45958c05e1a16d3ba728bd25c036f1a94a14bb49b8aac4ad5bf50"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Resources/duel/bg/mat/mat_002/Mat_002_near.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Resources/duel/bg/mat/mat_002/Mat_002_near.prefab",
+      "sha256": "e1da35b35cf4b3055a6d1a8633ba7178c8aa1c519fa234cb8b592fd2423c48ec"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Resources/duel/bg/timer/timer_c001/PhaseButton_c001.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Resources/duel/bg/timer/timer_c001/PhaseButton_c001.prefab",
+      "sha256": "869f844e28e877c5d5742dce413bd4466bc35f765bfa11ba466b0673ae60e8d9"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Resources/duel/bg/timer/timer_c001/Timer_c001.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Resources/duel/bg/timer/timer_c001/Timer_c001.prefab",
+      "sha256": "942843f2e5b10656eea20a2a64862a057718dbbdeebbf8e1cab48deb67963829"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Resources/duel/effects/other/fxp_target_arrow/fxp_target_arrow_001.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Resources/duel/effects/other/fxp_target_arrow/fxp_target_arrow_001.prefab",
+      "sha256": "ddb1aa2e10bcb724cf1a6dc5a4d8ad7cf2e642a8e566126fa879351dceca1c0b"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/resourcesassetbundle/duel/bg/avatarstand/avatarstand_002/sd/AvatarStand_002_far.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/resourcesassetbundle/duel/bg/avatarstand/avatarstand_002/sd/AvatarStand_002_far.prefab",
+      "sha256": "340525a9e0a4674e23b3f9c884bde89edec4318cc513d8b0887877386da98a88"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/resourcesassetbundle/duel/bg/avatarstand/avatarstand_002/sd/AvatarStand_002_near.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/resourcesassetbundle/duel/bg/avatarstand/avatarstand_002/sd/AvatarStand_002_near.prefab",
+      "sha256": "e77eb7a485f196a54925895f467d72a2bce65f321099b19eb9726c27aee3eccd"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/AvatarStand_002_01_BaseColor_far.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/AvatarStand_002_01_BaseColor_far.png",
+      "sha256": "84669773481216e38a26014fac2e297fe024e268f0175cd469cd89a2ba8c685a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/AvatarStand_002_01_BaseColor_near.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/AvatarStand_002_01_BaseColor_near.png",
+      "sha256": "54324a4e1bbfbf497fcc115a5490cb08febed1fe81b4c0d442ca60de1249e06a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/AvatarStand_002_02_BaseColor_far.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/AvatarStand_002_02_BaseColor_far.png",
+      "sha256": "582eacec9c95a4348a5d9e8b4d824c7fe0095837bd5eb2ed1085fb8c9aff005f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/AvatarStand_002_02_BaseColor_near.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/AvatarStand_002_02_BaseColor_near.png",
+      "sha256": "9bc7f35220ddd040b9628211b62335fcd6a0ee11145fe9ab26944b9d63b69801"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/FOT-KafuTechnoStd-H_timer_SDF Atlas.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/FOT-KafuTechnoStd-H_timer_SDF Atlas.png",
+      "sha256": "594951f12b8a9a57a31056024d5f867b71d68b1ab89a5bf69dfea7e4a9eaf94a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_Arrow.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_Arrow.png",
+      "sha256": "cf7c58c8454ddce6ce7255b5f6c455c8c1174d73e309d4de4fc00f0e07490490"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_Arrow_004.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_Arrow_004.png",
+      "sha256": "a332df4f74f80d99965ac3f5b7d817643874a232e3a84d164647a6598838df73"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_cmn_004.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_cmn_004.png",
+      "sha256": "9d705f87e834095860e5b7a172fa043816307ba8312d63d48c2cdc6bb9f67b3e"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_cmn_004_2.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_cmn_004_2.png",
+      "sha256": "9d705f87e834095860e5b7a172fa043816307ba8312d63d48c2cdc6bb9f67b3e"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_cmn_004_5.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_cmn_004_5.png",
+      "sha256": "9d705f87e834095860e5b7a172fa043816307ba8312d63d48c2cdc6bb9f67b3e"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_cmn_004_6.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_cmn_004_6.png",
+      "sha256": "9d705f87e834095860e5b7a172fa043816307ba8312d63d48c2cdc6bb9f67b3e"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_colormap_001.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_colormap_001.png",
+      "sha256": "50bf1720bee121e295eb116256016a08c9b72e9f2d44a5a958b083e60538933a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_dst_001.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_dst_001.png",
+      "sha256": "c05fbc3d8b9ead447f4e1cf59933af104c0ee89c0869c5aef80d37da76c0835f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_dst_001_0.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_dst_001_0.png",
+      "sha256": "c05fbc3d8b9ead447f4e1cf59933af104c0ee89c0869c5aef80d37da76c0835f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_gdt_001_1.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_gdt_001_1.png",
+      "sha256": "ad3fa2accf5c8bc83423cc102e13c79e9d44e4d0badd21f0d9f72ec4ab7d7c8c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_gdt_001_2.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_gdt_001_2.png",
+      "sha256": "ad3fa2accf5c8bc83423cc102e13c79e9d44e4d0badd21f0d9f72ec4ab7d7c8c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_Grave_Soul_001_1.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_Grave_Soul_001_1.png",
+      "sha256": "38a0bc5f79534943b22638e4fce5eac6e80b8a4da7b0165eab21b9e6d5eed79a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_Grave_Soul_001_2.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_Grave_Soul_001_2.png",
+      "sha256": "38a0bc5f79534943b22638e4fce5eac6e80b8a4da7b0165eab21b9e6d5eed79a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_HL_som_grave_001_1.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_HL_som_grave_001_1.png",
+      "sha256": "42230fb2f0fb6384dfaeae08e14cc068db5648906902ac582ddd4c551f086e85"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_HL_som_grave_001_2.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_HL_som_grave_001_2.png",
+      "sha256": "42230fb2f0fb6384dfaeae08e14cc068db5648906902ac582ddd4c551f086e85"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_HL_som_grave_002_1.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_HL_som_grave_002_1.png",
+      "sha256": "e8ceb31de08f957ca4ee812d7d6dcbf38524d1428f6396a29d8e6a052a1f1fe0"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_HL_som_grave_002_2.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_HL_som_grave_002_2.png",
+      "sha256": "e8ceb31de08f957ca4ee812d7d6dcbf38524d1428f6396a29d8e6a052a1f1fe0"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_imp_002.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_imp_002.png",
+      "sha256": "801b4df7b9e411c0c66e623a491be6c3fa51da383b857dc96dc5d7d1f5fd1b86"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_leafShadow_01.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_leafShadow_01.png",
+      "sha256": "75f05545834c098c5ee59090869dca0039eb20dbb53df5b3305bcb4eaee4583d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_leafShadow_01_0.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_leafShadow_01_0.png",
+      "sha256": "75f05545834c098c5ee59090869dca0039eb20dbb53df5b3305bcb4eaee4583d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_lef_001.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_lef_001.png",
+      "sha256": "3f45d13a3d8d1406c1fe2266fa1b51db722a61ef88c69449ee61a0108cb5f2d6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_lef_001_0.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_lef_001_0.png",
+      "sha256": "3f45d13a3d8d1406c1fe2266fa1b51db722a61ef88c69449ee61a0108cb5f2d6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_msk_001.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_msk_001.png",
+      "sha256": "e8104daf88a4a69f9d2fb4a107b110ea70e0390a5af0160e9668d9a2bad83c52"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_msk_001_0.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_msk_001_0.png",
+      "sha256": "e8104daf88a4a69f9d2fb4a107b110ea70e0390a5af0160e9668d9a2bad83c52"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_msk_003_1.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_msk_003_1.png",
+      "sha256": "09c88cbd544e8d62bfa5399b5078bba18b7c347b94579d7a5a5c47a9cf91effd"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_msk_003_2.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_msk_003_2.png",
+      "sha256": "09c88cbd544e8d62bfa5399b5078bba18b7c347b94579d7a5a5c47a9cf91effd"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_msk_004_1.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_msk_004_1.png",
+      "sha256": "af84eb7cded1aa479a513f9614f05813a174f80c0f34dcc296cc9f34284419e8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_msk_004_2.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_msk_004_2.png",
+      "sha256": "af84eb7cded1aa479a513f9614f05813a174f80c0f34dcc296cc9f34284419e8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_nis_002_1.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_nis_002_1.png",
+      "sha256": "c66ff062600d3bd7ed46f8fac4993e6f5741acf85d2f4af4b26575e12c6bafa6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_nis_002_2.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_nis_002_2.png",
+      "sha256": "c66ff062600d3bd7ed46f8fac4993e6f5741acf85d2f4af4b26575e12c6bafa6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_nis_010.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_nis_010.png",
+      "sha256": "e404e1046afcdf925dbf59bf337c210a77d9dc667b47f76d6d8db95120f8a2a6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_nis_010_0.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_nis_010_0.png",
+      "sha256": "e404e1046afcdf925dbf59bf337c210a77d9dc667b47f76d6d8db95120f8a2a6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_nis_010_3.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_nis_010_3.png",
+      "sha256": "e404e1046afcdf925dbf59bf337c210a77d9dc667b47f76d6d8db95120f8a2a6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_nis_010_4.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_nis_010_4.png",
+      "sha256": "e404e1046afcdf925dbf59bf337c210a77d9dc667b47f76d6d8db95120f8a2a6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_ple_001_1.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_ple_001_1.png",
+      "sha256": "ef26c4a8214b3049323b5ee62ccdea3dbf6920f676beb20a1c8bd13e395276c8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_ple_001_2.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_ple_001_2.png",
+      "sha256": "ef26c4a8214b3049323b5ee62ccdea3dbf6920f676beb20a1c8bd13e395276c8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_ple_002_1.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_ple_002_1.png",
+      "sha256": "ab92a8df40c2c2e91ab048c0552b0ec6d287e90b9cac26057feeb3c3cc5f011f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_ple_002_2.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_ple_002_2.png",
+      "sha256": "ab92a8df40c2c2e91ab048c0552b0ec6d287e90b9cac26057feeb3c3cc5f011f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_ple_010.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_ple_010.png",
+      "sha256": "03c5df95649adc97f3ae7d973f4e2cdba1adf37bdc7b332bd2cf08112c4e5707"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_rck_clp_Mat002_001.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_rck_clp_Mat002_001.png",
+      "sha256": "2d33d261dbc8784f63e9204cd22eb0d70b8c822c3ab6b7e4a8b1520da6c407b5"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_rck_clp_Mat002_001_0.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_rck_clp_Mat002_001_0.png",
+      "sha256": "2d33d261dbc8784f63e9204cd22eb0d70b8c822c3ab6b7e4a8b1520da6c407b5"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_smk_001_1.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_smk_001_1.png",
+      "sha256": "c4cdd5e83c0849251edfa7cd4627ee1c57b6b124626aa374be50809ae40acfa1"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_smk_001_2.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_smk_001_2.png",
+      "sha256": "c4cdd5e83c0849251edfa7cd4627ee1c57b6b124626aa374be50809ae40acfa1"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_spl_4x4_001.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_spl_4x4_001.png",
+      "sha256": "8bbd05d15171c8a5bba572a2834f9cea2f453ba30409b36c4c8f80281dd8960f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_spl_4x4_001_0.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_spl_4x4_001_0.png",
+      "sha256": "8bbd05d15171c8a5bba572a2834f9cea2f453ba30409b36c4c8f80281dd8960f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_star_001.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_star_001.png",
+      "sha256": "4efd5252080066b6fe1007e4e421ef734fef8ebc3151ada752baba042e9623f1"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_UI_msk_002.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_UI_msk_002.png",
+      "sha256": "d202697c24083e12e32782c0fa54dec3cd4e8c36fed062ed5e673de0167834bc"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/Grave_002_02_BaseColor.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/Grave_002_02_BaseColor.png",
+      "sha256": "01feb8a8c0263d419571a7a4168b086ae1a0d9cb602b05e087011dc94092cb17"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/Grave_002_02_BaseColor_0.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/Grave_002_02_BaseColor_0.png",
+      "sha256": "01feb8a8c0263d419571a7a4168b086ae1a0d9cb602b05e087011dc94092cb17"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/Grave_002_BaseColor_far.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/Grave_002_BaseColor_far.png",
+      "sha256": "37e9805029f508d1742163a430c60669933a568ea7fb9662f72ab1882b65650f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/Grave_002_BaseColor_near.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/Grave_002_BaseColor_near.png",
+      "sha256": "0c3bf3333ead5766f49bf1dbddc2fb26b0553aa5f5391dfea737f431b3a4baae"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/Grave_002_BaseColor_near_0.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/Grave_002_BaseColor_near_0.png",
+      "sha256": "0c3bf3333ead5766f49bf1dbddc2fb26b0553aa5f5391dfea737f431b3a4baae"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/Mat_002_01_BaseColor_far.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/Mat_002_01_BaseColor_far.png",
+      "sha256": "c2ff232ebede1d6bd2ac7e60cb71b7fb94c591f94c81081bb9d0c5acc666d497"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/Mat_002_01_BaseColor_near.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/Mat_002_01_BaseColor_near.png",
+      "sha256": "9975aabc021c9cbb26295d1d307cee44b06940293058d2f92d0e7c1bf929f58f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/Mat_002_02_BaseColor_far.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/Mat_002_02_BaseColor_far.png",
+      "sha256": "468087d004d5ebcedbd8902189f27036dee45527b8f6994de8a97ed322f076cb"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/Mat_002_02_BaseColor_near.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/Mat_002_02_BaseColor_near.png",
+      "sha256": "f0937fd6d7ae75a0c0e6be5c7c685b7fd2f274efea19e326234a0a2cc409fe43"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/Mat_002_03_BaseColor.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/Mat_002_03_BaseColor.png",
+      "sha256": "e6010749aa8890290fd28bf5b05c1cdb37a0c0140290e50efa896d7a37d577c4"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/Mat_002_03_BaseColor_0.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/Mat_002_03_BaseColor_0.png",
+      "sha256": "e6010749aa8890290fd28bf5b05c1cdb37a0c0140290e50efa896d7a37d577c4"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/Mat_002_05_BaseColor_far.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/Mat_002_05_BaseColor_far.png",
+      "sha256": "e7d095570c2905b0f6e4f02038a9bd2486e77c97ad847b246105cf9c27ef343e"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/Mat_002_05_BaseColor_near.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/Mat_002_05_BaseColor_near.png",
+      "sha256": "de38fe1bdcadf8557be85be7278239aef2f869275136e3f50e6f9ef95832af1c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/sf_noise_clouds_02_1.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/sf_noise_clouds_02_1.png",
+      "sha256": "24cabf757da7b501e2a18df65d7df8a43f5b562c0cee7cd1d0a7633e8a9a1cb3"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/sf_noise_clouds_02_2.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/sf_noise_clouds_02_2.png",
+      "sha256": "24cabf757da7b501e2a18df65d7df8a43f5b562c0cee7cd1d0a7633e8a9a1cb3"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/Timer_c001_BaseColor.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/Timer_c001_BaseColor.png",
+      "sha256": "a17e80fbffb0e3587a678faefc018cf2140956c060721badb06e12e3e5ecfb99"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/Timer_c001_BaseColor_0.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/Timer_c001_BaseColor_0.png",
+      "sha256": "c6a4b69bf22bb514db2e0f9a3d1cef10b6e94e7fac8bd43be579bee4bcbfc2df"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/YGOMD-TestFont1 SDF Atlas.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/YGOMD-TestFont1 SDF Atlas.png",
+      "sha256": "417401659dcb3c7d690bb933bf9663dfff779558caef73d1511903034d2d45ed"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/GameObject/DuelBattlePhase_far.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/GameObject/DuelBattlePhase_far.prefab",
+      "sha256": "ad9a4ac661ef7c3b724d23f579980b92535a00f62cb732c6581d5de07c9d5328"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/GameObject/DuelBattlePhase_near.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/GameObject/DuelBattlePhase_near.prefab",
+      "sha256": "e150e6348d9d45e9f91c455b6c870d5feb7b7e20c5f93991482b172ee9fe8c8a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/GameObject/DuelDrawPhase_far.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/GameObject/DuelDrawPhase_far.prefab",
+      "sha256": "615a153b8abcf04f899048bbf97a4e1fb2199a4a2dcdabf5174f98a4fa6bafb3"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/GameObject/DuelDrawPhase_near.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/GameObject/DuelDrawPhase_near.prefab",
+      "sha256": "aee0b0a1ffc2fae509461fadce4337c6628cffcd87daa5aba1f9db410d311d31"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/GameObject/DuelEndPhase_far.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/GameObject/DuelEndPhase_far.prefab",
+      "sha256": "6542b19c908dbeef6da0443d7b7a578fc9ae98da1f43fd294877bbefcdab4f3b"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/GameObject/DuelEndPhase_near.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/GameObject/DuelEndPhase_near.prefab",
+      "sha256": "dd5a12191f3141e46c03e89b0557b94be608d28cbe213202c63993c073bd8d64"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/GameObject/DuelStandbyPhase_far.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/GameObject/DuelStandbyPhase_far.prefab",
+      "sha256": "0dd555264ea401ef8df20f822946095d8884a04e4ffa488e0c6f75895994a90a"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/GameObject/DuelStandbyPhase_near.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/GameObject/DuelStandbyPhase_near.prefab",
+      "sha256": "9f8664da28a8eb528abb5e1ae88be879e1113d37f8d03440358066172a5bb6f0"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/GameObject/DuelTurnChange00.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/GameObject/DuelTurnChange00.prefab",
+      "sha256": "a8903c37565dc1a95849c11f7a94038d0e5b2eec276b95deb32d206e879c63aa"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/GameObject/DuelTurnChange01.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/GameObject/DuelTurnChange01.prefab",
+      "sha256": "2ccf070b0bdd9aba787afa21d06d71d513e23c6176e1a7d2b622da8186e23218"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_smk_8×8_003.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_smk_8×8_003.png",
+      "sha256": "b1ffed15d3c2f47d8c3264a5779a56458017a25d549f7efcd4aeb6c967b84a13"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/Texture2D/fxt_smk_8×8_003_0.png",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/Texture2D/fxt_smk_8×8_003_0.png",
+      "sha256": "b1ffed15d3c2f47d8c3264a5779a56458017a25d549f7efcd4aeb6c967b84a13"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/AnimationClip/Appear.anim",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/AnimationClip/Appear.anim",
+      "sha256": "4484a08b2d3837720a1d307aba351a48b1790a512f7b08fe27ae1446951f45fc"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/AnimationClip/Appear_0.anim",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/AnimationClip/Appear_0.anim",
+      "sha256": "4484a08b2d3837720a1d307aba351a48b1790a512f7b08fe27ae1446951f45fc"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/AnimationClip/Change.anim",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/AnimationClip/Change.anim",
+      "sha256": "2599a0892eefb249d20c44f854bf54c41c767d7cce5a27e0d079471d1f1e7148"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/AnimationClip/Change_0.anim",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/AnimationClip/Change_0.anim",
+      "sha256": "2599a0892eefb249d20c44f854bf54c41c767d7cce5a27e0d079471d1f1e7148"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/AnimationClip/Change_2.anim",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/AnimationClip/Change_2.anim",
+      "sha256": "0d0233a9b6fe204f5e011b3c534250eac7d64147d4ef6ce21f1ce5d0ee9f0d68"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/AnimationClip/Change_2_0.anim",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/AnimationClip/Change_2_0.anim",
+      "sha256": "0d0233a9b6fe204f5e011b3c534250eac7d64147d4ef6ce21f1ce5d0ee9f0d68"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/AnimationClip/Disappear.anim",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/AnimationClip/Disappear.anim",
+      "sha256": "bf6cd156e5a803d0c46c5cc67919947d9be6afaa3bd87e2960ccd64c80026308"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/AnimationClip/Disappear_0.anim",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/AnimationClip/Disappear_0.anim",
+      "sha256": "bf6cd156e5a803d0c46c5cc67919947d9be6afaa3bd87e2960ccd64c80026308"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/AnimationClip/In.anim",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/AnimationClip/In.anim",
+      "sha256": "22dd3b1a2efdfa972b0f4ab2f3719596692a5d0cca05e836037a21129d861c12"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/AnimationClip/In_0.anim",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/AnimationClip/In_0.anim",
+      "sha256": "22dd3b1a2efdfa972b0f4ab2f3719596692a5d0cca05e836037a21129d861c12"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/AnimationClip/Notice.anim",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/AnimationClip/Notice.anim",
+      "sha256": "c53bab609fd68b9041af612170e8f9978f985c09eed7065f7d60a407c1581cc2"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/AnimationClip/Notice_0.anim",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/AnimationClip/Notice_0.anim",
+      "sha256": "c53bab609fd68b9041af612170e8f9978f985c09eed7065f7d60a407c1581cc2"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/AnimationClip/Out.anim",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/AnimationClip/Out.anim",
+      "sha256": "ef8dc88354565e4b47c7da015dc5e8d94b0b056e317b44a25656ecc14f2cf305"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/AnimationClip/Out_0.anim",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/AnimationClip/Out_0.anim",
+      "sha256": "ef8dc88354565e4b47c7da015dc5e8d94b0b056e317b44a25656ecc14f2cf305"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/AnimatorController/PlayableGuide_c001.controller",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/AnimatorController/PlayableGuide_c001.controller",
+      "sha256": "afcec8db07f88636be3b1ef4b8e995008fa11e32c9c363b3dc7c1ad4e8ae6a4c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/AnimatorController/PlayableGuide_c001_0.controller",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/AnimatorController/PlayableGuide_c001_0.controller",
+      "sha256": "c80e7e2d651c1f3fe1186f7cef752c18cc9a21b23434b8dbcc117bffb5482ca5"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Material/MT_PlayableGuide_c001_ Luminous_far.mat",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/Material/MT_PlayableGuide_c001_ Luminous_far.mat",
+      "sha256": "42d0f049b8b1899593a68e476e36cc7950b55da45fc0a814c2335ec6cb008de2"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Material/MT_PlayableGuide_c001_ Luminous_near.mat",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/Material/MT_PlayableGuide_c001_ Luminous_near.mat",
+      "sha256": "7a44a04987c587b096d36af9c5000ac5269219813edafe6ef9ad71b0c9be57e6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Material/MT_PlayableGuide_c001_change_far.mat",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/Material/MT_PlayableGuide_c001_change_far.mat",
+      "sha256": "b4d93a4521b3c413b3f14e0b264a9e03e7954152c89e3d732456031bf2fa0059"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Material/MT_PlayableGuide_c001_change_near.mat",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/Material/MT_PlayableGuide_c001_change_near.mat",
+      "sha256": "71b91272cb3941cceb20c5077417e4518bbab2c52d9cd3bdaaedc6dd97c53ad7"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Material/MT_PlayableGuide_c001_far_mat13.mat",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/Material/MT_PlayableGuide_c001_far_mat13.mat",
+      "sha256": "1d8c094fa30a970005dd453c6796455dd12e9f8ebce1f9b81d55fc072306c55d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Material/MT_PlayableGuide_c001_near_mat13.mat",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/Material/MT_PlayableGuide_c001_near_mat13.mat",
+      "sha256": "4c4f9007262f090d1daad7512454b775a39b5529cd2578c9062c29bbbac6fe18"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Mesh/PlayableGuide_c001_change.asset",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/Mesh/PlayableGuide_c001_change.asset",
+      "sha256": "8df4947049316d48dd0ae884d90207dbaa1fdd13fb786bec1bd9cc06e18e1d74"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Mesh/PlayableGuide_c001_change_0.asset",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/Mesh/PlayableGuide_c001_change_0.asset",
+      "sha256": "8df4947049316d48dd0ae884d90207dbaa1fdd13fb786bec1bd9cc06e18e1d74"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Mesh/PlayableGuide_c001_Luminous.asset",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/Mesh/PlayableGuide_c001_Luminous.asset",
+      "sha256": "bc6c28fc4624c8c3b7c2aa5fe33d5f313cf3af15b699d96867f28f149fc82279"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Mesh/PlayableGuide_c001_Luminous_0.asset",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/Mesh/PlayableGuide_c001_Luminous_0.asset",
+      "sha256": "bc6c28fc4624c8c3b7c2aa5fe33d5f313cf3af15b699d96867f28f149fc82279"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Mesh/PlayableGuide_c001_near.asset",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/Mesh/PlayableGuide_c001_near.asset",
+      "sha256": "1f400c4f5d01d9664329a3ec17a8784d1e1fc252f9daca2b0ebd3acbc77dd606"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Mesh/PlayableGuide_c001_near_0.asset",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/Mesh/PlayableGuide_c001_near_0.asset",
+      "sha256": "1f400c4f5d01d9664329a3ec17a8784d1e1fc252f9daca2b0ebd3acbc77dd606"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/resourcesassetbundle/duel/bg/timer/playableguide_c001/PlayableGuide_c001_far_mat13.prefab",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/resourcesassetbundle/duel/bg/timer/playableguide_c001/PlayableGuide_c001_far_mat13.prefab",
+      "sha256": "f872a6ee349c8a4af2e7b7dfac88eef1abc44a9ac9d256f8c37087356b71543d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/resourcesassetbundle/duel/bg/timer/playableguide_c001/PlayableGuide_c001_near_mat13.prefab",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/resourcesassetbundle/duel/bg/timer/playableguide_c001/PlayableGuide_c001_near_mat13.prefab",
+      "sha256": "f9ba4b6d844a353c33915cff4d367d6fdd2aee5f52b76f55c0f8b831c86e840b"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Texture2D/EF_PlaybleGuide 01_01.png",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/Texture2D/EF_PlaybleGuide 01_01.png",
+      "sha256": "5e3886c573d719fe664288572417e4a8cbf3456de580b4b3402d0268e31ba3eb"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Texture2D/EF_PlaybleGuide 01_01_0.png",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/Texture2D/EF_PlaybleGuide 01_01_0.png",
+      "sha256": "5e3886c573d719fe664288572417e4a8cbf3456de580b4b3402d0268e31ba3eb"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Texture2D/EF_PlaybleGuide 01_change.png",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/Texture2D/EF_PlaybleGuide 01_change.png",
+      "sha256": "7720beb7d6990ab71d9a06eadff39fd378231a7cf2ab62b4b67d612feabf195c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Texture2D/EF_PlaybleGuide 01_change_0.png",
+      "exported_source": "Logs/MDPro3Research/ExtraExport/ExportedProject/Assets/Texture2D/EF_PlaybleGuide 01_change_0.png",
+      "sha256": "7720beb7d6990ab71d9a06eadff39fd378231a7cf2ab62b4b67d612feabf195c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/AnimationClip/Take 001.anim",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/AnimationClip/Take 001.anim",
+      "sha256": "f61483b821d535a400e4bfa6abc5b1d36a71beea5d52a2f8759b801fe4c4fd34"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/AnimatorController/card_shuffle.controller",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/AnimatorController/card_shuffle.controller",
+      "sha256": "9c414ffee03c1eec7dce70d829c9dcb68e07a34c015f0b39cf8b3aeed806ffda"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Avatar/card_shuffleAvatar.asset",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Avatar/card_shuffleAvatar.asset",
+      "sha256": "78cc1ae127d5d101bd7d7e578b5bcdaafe92247e753b3c3dc85ca1759511c608"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/CardModel_white1.mat",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Material/CardModel_white1.mat",
+      "sha256": "c96eece1cbe4368b65d18f7bb3ada6bc4ccea5ef5afcfb027669cebdc299110d"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/DeckWhite.mat",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Material/DeckWhite.mat",
+      "sha256": "4922c7c933a84e4a13f4487db719825dd8c0c5f3bee087e598c70402d95bd614"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/EfDrop.mat",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Material/EfDrop.mat",
+      "sha256": "1e5807141de8a70a50e55286a08665950434ecac70c5e149ed215b28731c54c3"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/EFF_flrcmn_01_MAT.mat",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Material/EFF_flrcmn_01_MAT.mat",
+      "sha256": "d51555acee3977276bc154893dd68480efe80d6ddfd090357c6b13a1f54f0944"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/EFF_flrstr_03_TEX.mat",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Material/EFF_flrstr_03_TEX.mat",
+      "sha256": "9fa700ecef44b75a45be3f1cab165871cda8b046a894768e0bac0e35e94c4b51"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/FlareSet.mat",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Material/FlareSet.mat",
+      "sha256": "6810f69104dded580a4112c7c97b5b1dce6492a9340d0b72d5431a2460728c99"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/flashSphere.mat",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Material/flashSphere.mat",
+      "sha256": "57aa2a2a6863537a95561682e7e77ab4ad0fd51e4a4e10036e2850a86aa03c3b"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/flashSqure.mat",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Material/flashSqure.mat",
+      "sha256": "fd056e388b98468f8d9000e379a81a61f44fa0be7b1aaa548a451f830287d876"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/flashSqureBl.mat",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Material/flashSqureBl.mat",
+      "sha256": "4318afff7d5928bbb4c7faa2472e51e5c54439e9bd353b667c8b79be37a97d04"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/mt_Particle_k.mat",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Material/mt_Particle_k.mat",
+      "sha256": "021d27b7b4dc06020862e119474440ae2a3561b529dc8fa726275f08cc98b46e"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/mt_smoke_b.mat",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Material/mt_smoke_b.mat",
+      "sha256": "24a429f0c25fe80853fddc1a0c61fcb82ef351a621c033acba81111be8da41e8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Mesh/CardModel01_back.asset",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Mesh/CardModel01_back.asset",
+      "sha256": "8c8b58968a752c8fbd55c00b73a4ee7dff84e06115da8a394838d9489b504685"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Mesh/CardModel01_front.asset",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Mesh/CardModel01_front.asset",
+      "sha256": "8c94a94f9f472ca81774631492f8e48ed1cffcfbe3d830005d013e7f2969d323"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Mesh/CardModel01_side.asset",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Mesh/CardModel01_side.asset",
+      "sha256": "c23524eb093a042708a9d72015c58a0460bc64ee64f8fc66486bb8b7f227f7ae"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Mesh/CardModel02_back.asset",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Mesh/CardModel02_back.asset",
+      "sha256": "f94b56f6150e6bdfdfbfad4380e54eff087781aeddc4d35e779363b224058af0"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Mesh/CardModel02_front.asset",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Mesh/CardModel02_front.asset",
+      "sha256": "94f23819c705fa81c95eb46e02efa03a9804788a95ab532f45a52c8fb942d9c8"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Mesh/CardModel02_side.asset",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Mesh/CardModel02_side.asset",
+      "sha256": "b3cd60e4307cec1b643bff61adf8246e680c0810d1bfe7a620f3ac6f78e368ba"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Mesh/CardModel03_back.asset",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Mesh/CardModel03_back.asset",
+      "sha256": "3ea82cd31b6692badebcaf9bfbf2a37e4b6dd5793cfab7c2a4519e9b3fe9d5d3"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Mesh/CardModel03_front.asset",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Mesh/CardModel03_front.asset",
+      "sha256": "3186104ac98af685fcef87e9892160ddeac4d931eed5176d11ff9e4199e67972"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Mesh/CardModel03_side.asset",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Mesh/CardModel03_side.asset",
+      "sha256": "0962da55d684c3319037fb66750a5b3a006c1dd91dca07f5de28e4c04024ddd6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Mesh/CardModel04_back.asset",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Mesh/CardModel04_back.asset",
+      "sha256": "2009660cdf6bb0b9555d32d03a8b07ed95252a832603c47800ee81c317d7be4c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Mesh/CardModel04_front.asset",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Mesh/CardModel04_front.asset",
+      "sha256": "b171c526312ffb359c1b5778edf4954884366ea964465d33b8bac130a385eee6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Mesh/CardModel04_side.asset",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Mesh/CardModel04_side.asset",
+      "sha256": "1c833a6d6735e5196da6ebd61c4985ebe56c945ab60850ff76be00607554dc12"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Mesh/CardModel_back.asset",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Mesh/CardModel_back.asset",
+      "sha256": "5221ccf2b9c27abec4acaac90b44b33f119131236fc75b0ae199272d0156e868"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Mesh/CardModel_front.asset",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Mesh/CardModel_front.asset",
+      "sha256": "887ac93839f2b4e38a4b65979da6600ea22ed85f15b01decf450a6892fbc0ae3"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Mesh/CardModel_side.asset",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Mesh/CardModel_side.asset",
+      "sha256": "c40dfce32965b8b440b1ea119548465b38fad1f7a8f0f86aa5bde113d267d697"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Mesh/fxl_CardFlare_Bk_001.asset",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Mesh/fxl_CardFlare_Bk_001.asset",
+      "sha256": "52d7a3d6fe962f91b061139d9518506176f390592ab2f136e74a61de61877fb9"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Mesh/fxl_CardFlare_Fr_001.asset",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Mesh/fxl_CardFlare_Fr_001.asset",
+      "sha256": "09a09eba1a8dee13ec43628aad8e8b5037c19979c20a39b472b1b2f125bdf3cf"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/resources/duel/timeline/duel/universal/dueldeckappearance/DuelDeckAppearance.prefab",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/resources/duel/timeline/duel/universal/dueldeckappearance/DuelDeckAppearance.prefab",
+      "sha256": "fb488bd7c1ad2c9d6a7f5a5242be1cabdd7c0c4313116f21e1f49f00d2cd8274"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Texture2D/card_deck_side_normal.png",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Texture2D/card_deck_side_normal.png",
+      "sha256": "a57c6980f460e2b7d88fc79211bea26160b8228bd7c88ae6cc8b272f7440b4a5"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Texture2D/EFF_flrcmn_01_TEX.png",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Texture2D/EFF_flrcmn_01_TEX.png",
+      "sha256": "ffe2e0a9ffed9e32580a25129a79a39e812b85967f67944356d8e8ab8fc2d2cc"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Texture2D/EFF_flrstr_03_TEX.png",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Texture2D/EFF_flrstr_03_TEX.png",
+      "sha256": "555961cd7a2c2121692f6834f2fdb81b4a630312f3bdb35b8752cd46a6c455ff"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Texture2D/efShock01.png",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Texture2D/efShock01.png",
+      "sha256": "88b47fb452f15c244ac3d8440b31c571e04ba00caea5d0688a63b442f4d4ad7b"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Texture2D/fxt_imp_001.png",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Texture2D/fxt_imp_001.png",
+      "sha256": "ed518a87675d4c0d9a013164ec43431dbf3a61ed66969439ee5dec7d21c8fc23"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Texture2D/fxt_msk_001.png",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Texture2D/fxt_msk_001.png",
+      "sha256": "e8104daf88a4a69f9d2fb4a107b110ea70e0390a5af0160e9668d9a2bad83c52"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Texture2D/fxt_msk_012.png",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Texture2D/fxt_msk_012.png",
+      "sha256": "d4f2459f566acb93f2412e09da4131be1cff41ef7ff6f0d68d895d79e57c0087"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Texture2D/fxt_nis_002.png",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Texture2D/fxt_nis_002.png",
+      "sha256": "c66ff062600d3bd7ed46f8fac4993e6f5741acf85d2f4af4b26575e12c6bafa6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Texture2D/fxt_ple_003.png",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Texture2D/fxt_ple_003.png",
+      "sha256": "877b81619de2a2043e6e96d0336f5f727b1e3a2eb272128d01b37eca605c3c64"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Texture2D/fxt_up_sqr_001.png",
+      "exported_source": "Logs/MDPro3Research/DeckExport/ExportedProject/Assets/Texture2D/fxt_up_sqr_001.png",
+      "sha256": "ca6b3465ad8197b39b854b906d1d9d700d87eca0dcded4dc0d371ad98c470217"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/GameObject/DuelLogNewPhase.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/GameObject/DuelLogNewPhase.prefab",
+      "sha256": "83d9a0f425bde4775343c3b97def9aaaa3126af4b120f7f1dda9d746d6a0b110"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/GameObject/DuelMainPhase1_far.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/GameObject/DuelMainPhase1_far.prefab",
+      "sha256": "253fb9a43dc7352255adad983fac677c62e018e0a43517e1d1df853c6990be8f"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/GameObject/DuelMainPhase1_near.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/GameObject/DuelMainPhase1_near.prefab",
+      "sha256": "23b3db101e2ac40c49bc0868fc1a04d9b0cee33ac7690c722d6d8d33ab0de3e9"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/GameObject/DuelMainPhase2_far.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/GameObject/DuelMainPhase2_far.prefab",
+      "sha256": "a4c2b2311d3d771c78bef730684b2d9c1c5d5b937e735128e8bdcb24a7658ec7"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/GameObject/DuelMainPhase2_near.prefab",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/GameObject/DuelMainPhase2_near.prefab",
+      "sha256": "619169bf5c457224e6f75dd0a6da9af4e64703a5226c5db2de41800de8232431"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/TextFace.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/TextFace.anim",
+      "sha256": "f62939ddec891552a37403514701e28cb627c88f93b8b1f3de0f5a0edae52c85"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/center.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/center.anim",
+      "sha256": "0095f60941ffcecba7d6e089c86715af77d20173a836cab2f862e22b873c1162"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/Text_Battle.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/Text_Battle.anim",
+      "sha256": "8c986065d4ad3f3323bec34cd516530cbaccb88b7c99b1c2f3db77d3a8307b44"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/TextGroup_Battle.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/TextGroup_Battle.anim",
+      "sha256": "6ab3486089890b4e591caaa4fe6355e0287d54e3098eaa52b8cc0b9347b194e6"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/img_Phase.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/img_Phase.anim",
+      "sha256": "3f74e058dc2b0795b35a310f205f289caa4bed9095b4b0ff2ea6c44a0e666e48"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/TextLine.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/TextLine.anim",
+      "sha256": "13ade0994f3c530f3974df119ef81f7bd48ae5c74aea6b93585ca76f2e72d67c"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/Text.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/Text.anim",
+      "sha256": "5ae4a9872b8f0164778399bb31de74170b2fb99b9108ea1aec52284a8c8d0c67"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/TextGroup.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/TextGroup.anim",
+      "sha256": "69ef817667bee4dab8cad2cc2048362361f9ef563e41c85dad9c930a0c0c5cb4"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/img_TunChange_bg00.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/img_TunChange_bg00.anim",
+      "sha256": "5983f3f74c90a8f8241937732f6a737024dd65eb2ff18e936a676ab38031dabe"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/GameObject_near.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/GameObject_near.anim",
+      "sha256": "836632e1d87e870adaba9234d9eb4a74a62ad3fd0d9e447f68734f3a183eddd0"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/TextFade.anim",
+      "sha256": "2e8f6d56427343dab3f775a3ed29720a989a61e811140d210026f01c62bdfe1b"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/GameObject_far.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/GameObject_far.anim",
+      "sha256": "862862b48a353305a98656f031afab263536540f2304385267af4350d130f0b2"
+    },
+    {
+      "file": "Assets/Art/MDPro3Battle/AnimationClip/img_TunChange_bg01.anim",
+      "exported_source": "Logs/MDPro3Research/Exported/ExportedProject/Assets/AnimationClip/img_TunChange_bg01.anim",
+      "sha256": "509bde62660abf2d98d84aefa05a0e687621e77936f0ccf853d2fd4351192eb8"
+    }
+  ],
+  "additional_bundles": [
+    "MasterDuel/Timeline/DuelDeckAppearance",
+    "MasterDuel/BG/Timer/PlayableGuide_C001_Near",
+    "MasterDuel/BG/Timer/PlayableGuide_C001_Far"
+  ],
+  "phase_sprite_bindings": {
+    "img_Phase_near": "Desktop/UI/Sprites/CommonUI/img_Phase_near.png",
+    "img_Phase_far": "Desktop/UI/Sprites/CommonUI/img_Phase_far.png",
+    "DuelTurnChange00/img_TunChange_bg00": "Desktop/UI/Sprites/CommonUI/img_TunChange_bg01.png",
+    "DuelTurnChange01/img_TunChange_bg01": "Desktop/UI/Sprites/CommonUI/img_TunChange_bg02.png"
+  },
+  "timeline_adaptation": {
+    "source": "Original serialized AnimationTrack, AnimationPlayableAsset and AnimationClip data",
+    "target": "Current Unity Timeline native wrappers, original curves and timing preserved",
+    "tmp_hash_restore": {
+      "F973B4AB": "m_fontColor.a",
+      "7DCDF575": "m_fontColor.r",
+      "1010119E": "m_fontColor.g",
+      "607AE511": "m_fontColor.b"
+    },
+    "excluded": "Original custom SoundTrack and missing old runtime scripts"
+  }
+}
