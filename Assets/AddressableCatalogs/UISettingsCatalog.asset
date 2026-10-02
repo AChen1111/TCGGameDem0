@@ -34,3 +34,10 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: BattleUISetting
+    reference:
+      m_AssetGUID: ecd1166a6e2c97246acdcb8aedaa3123
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

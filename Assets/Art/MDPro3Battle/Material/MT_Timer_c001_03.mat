@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MT_Timer_c001_03
+  m_Shader: {fileID: 4800000, guid: 1a0fa00f78eebdd4483311de58d64aa0, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Texture2D:
+        m_Texture: {fileID: 2800000, guid: bc138bce0c740764e8a6710baac22605, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Active: 1
+    - _InactiveIntensityFar: 0.5
+    - _InactiveIntensityNear: 0.5
+    - _MouseOver: 0
+    - _PressButton: 0
+    - _SwitchTurn: 0
+    m_Colors:
+    - _ColorMouseOverFar: {r: 0.9, g: 0.02, b: 0.02, a: 1}
+    - _ColorMouseOverNear: {r: 0, g: 0.675, b: 1, a: 1}
+    - _ColorP1: {r: 0.1745283, g: 0.7428502, b: 1, a: 0}
+    - _ColorP2: {r: 1, g: 0.08018869, b: 0.17268333, a: 0}
+    - _ColorPlayFar: {r: 0.11399997, g: 0.039, b: 0.039, a: 0}
+    - _ColorPlayNear: {r: 0, g: 0.35999998, b: 1, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

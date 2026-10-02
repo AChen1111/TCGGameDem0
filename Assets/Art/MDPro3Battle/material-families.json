@@ -1,0 +1,3784 @@
+{
+  "materials": [
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/CardModelFront.mat",
+      "originalShader": "Shader Graph EX/NormalStyle",
+      "properties": [
+        "_ZWrite",
+        "_StencilComp",
+        "_Stencil",
+        "_StencilOp",
+        "_StencilWriteMask",
+        "_StencilReadMask",
+        "_MainTex",
+        "_LoadingTex",
+        "_LoadingBlend",
+        "_AmbientColor",
+        "_AddColor",
+        "_Monochrome",
+        "_DirectionalLightAmp",
+        "_FakeLightColor",
+        "_FakeLightDirection",
+        "_FakeViewDirection",
+        "_FakeNormalDirection",
+        "_FakeBlend",
+        "_TintColor",
+        "_Texture2DAsset_90c6e35ef4304f289c279037152a03b7_Out_0"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/CloseUp.mat",
+      "originalShader": "ShaderGraph_CloseUp",
+      "properties": [
+        "_MainTex",
+        "_Color"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/FieldCardPendulum.mat",
+      "originalShader": "Unavailable",
+      "properties": [],
+      "textures": [
+        "_BaseMap",
+        "_MainTex"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/FOT-KafuTechnoStd-H_timer_SDF Material.mat",
+      "originalShader": "TextMeshPro/Distance Field",
+      "properties": [
+        "_FaceTex",
+        "_FaceUVSpeedX",
+        "_FaceUVSpeedY",
+        "_FaceColor",
+        "_FaceDilate",
+        "_OutlineColor",
+        "_OutlineTex",
+        "_OutlineUVSpeedX",
+        "_OutlineUVSpeedY",
+        "_OutlineWidth",
+        "_OutlineSoftness",
+        "_Bevel",
+        "_BevelOffset",
+        "_BevelWidth",
+        "_BevelClamp",
+        "_BevelRoundness",
+        "_LightAngle",
+        "_SpecularColor",
+        "_SpecularPower",
+        "_Reflectivity",
+        "_Diffuse",
+        "_Ambient",
+        "_BumpMap",
+        "_BumpOutline",
+        "_BumpFace",
+        "_ReflectFaceColor",
+        "_ReflectOutlineColor",
+        "_Cube",
+        "_EnvMatrixRotation",
+        "_UnderlayColor",
+        "_UnderlayOffsetX",
+        "_UnderlayOffsetY",
+        "_UnderlayDilate",
+        "_UnderlaySoftness",
+        "_GlowColor",
+        "_GlowOffset",
+        "_GlowInner",
+        "_GlowOuter",
+        "_GlowPower",
+        "_WeightNormal",
+        "_WeightBold",
+        "_ShaderFlags",
+        "_ScaleRatioA",
+        "_ScaleRatioB",
+        "_ScaleRatioC",
+        "_MainTex",
+        "_TextureWidth",
+        "_TextureHeight",
+        "_GradientScale",
+        "_ScaleX",
+        "_ScaleY",
+        "_PerspectiveFilter",
+        "_Sharpness",
+        "_VertexOffsetX",
+        "_VertexOffsetY",
+        "_MaskCoord",
+        "_ClipRect",
+        "_MaskSoftnessX",
+        "_MaskSoftnessY",
+        "_StencilComp",
+        "_Stencil",
+        "_StencilOp",
+        "_StencilWriteMask",
+        "_StencilReadMask",
+        "_ColorMask"
+      ],
+      "textures": [
+        "_MainTex"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_anime_circle_01.mat",
+      "originalShader": "VFX_Shader/Exclusive/fxs_TutorialUI_TC_001_b",
+      "properties": [
+        "_Emissive",
+        "_Texture_Channel_Select",
+        "_use_TEXCOORD",
+        "_Main_Texture",
+        "_use_SmoothStep",
+        "_SmoothStep",
+        "_SmoothStep_Bler"
+      ],
+      "textures": [
+        "_Main_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_bg_godray_001.mat",
+      "originalShader": "VFX_Shader/Mask/fxs_MASKNoiseScroll_TC_001_k",
+      "properties": [
+        "_Animation_Alpha",
+        "_Emissive",
+        "_Camera_Offset",
+        "_Main_Tile_X",
+        "_Main_Tile_Y",
+        "_Offset_X",
+        "_Offset_Y",
+        "_Main_Noise_Scroll_X",
+        "_Main_Noise_Scroll_Y",
+        "_Textur_Switch",
+        "_Simple_Noise",
+        "_Gradient_Noise",
+        "_Voronoi",
+        "_MAIN_Noise_Amount",
+        "_Main_Smoothstep_Switch",
+        "_Main_Edge1",
+        "_Main_Edge2",
+        "_Main_Thickness_white",
+        "_Main_Thickness_black",
+        "_Main_Texture",
+        "_Main_Texture_Channel_Select",
+        "_MASK_Texture",
+        "_Mask_Channel_Select",
+        "_MASK_Smoothstep_Switch",
+        "_Edge1",
+        "_Edge2",
+        "_MASK_Texture_Rotation",
+        "_ADD_Noise_Switch",
+        "_ADD_Simple_Noise",
+        "_ADD_Gradient_Noise",
+        "_ADD_Voronoi",
+        "_MASK_Add_Noise_Amount",
+        "_MASK_Add_Noise_Thickness_white",
+        "_MASK_Add_Noise_Thickness_black",
+        "_MASK_Add_Noise_Tile_X",
+        "_MASK_Add_Noise_Tile_Y",
+        "_MASK_Add_Noise_Scroll_X",
+        "_MASK_Add_Noise_Scroll_Y",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_MASK_Texture",
+        "_Main_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_bg_godray_001_0.mat",
+      "originalShader": "VFX_Shader/Mask/fxs_MASKNoiseScroll_TC_001_k",
+      "properties": [
+        "_Animation_Alpha",
+        "_Emissive",
+        "_Camera_Offset",
+        "_Main_Tile_X",
+        "_Main_Tile_Y",
+        "_Offset_X",
+        "_Offset_Y",
+        "_Main_Noise_Scroll_X",
+        "_Main_Noise_Scroll_Y",
+        "_Textur_Switch",
+        "_Simple_Noise",
+        "_Gradient_Noise",
+        "_Voronoi",
+        "_MAIN_Noise_Amount",
+        "_Main_Smoothstep_Switch",
+        "_Main_Edge1",
+        "_Main_Edge2",
+        "_Main_Thickness_white",
+        "_Main_Thickness_black",
+        "_Main_Texture",
+        "_Main_Texture_Channel_Select",
+        "_MASK_Texture",
+        "_Mask_Channel_Select",
+        "_MASK_Smoothstep_Switch",
+        "_Edge1",
+        "_Edge2",
+        "_MASK_Texture_Rotation",
+        "_ADD_Noise_Switch",
+        "_ADD_Simple_Noise",
+        "_ADD_Gradient_Noise",
+        "_ADD_Voronoi",
+        "_MASK_Add_Noise_Amount",
+        "_MASK_Add_Noise_Thickness_white",
+        "_MASK_Add_Noise_Thickness_black",
+        "_MASK_Add_Noise_Tile_X",
+        "_MASK_Add_Noise_Tile_Y",
+        "_MASK_Add_Noise_Scroll_X",
+        "_MASK_Add_Noise_Scroll_Y",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_MASK_Texture",
+        "_Main_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_BG_leafShadow_01.mat",
+      "originalShader": "fxs_BG_leafShadow_01",
+      "properties": [
+        "_Texture2D",
+        "_ShadowColor",
+        "_ShadowIntensity"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_BG_leafShadow_01_0.mat",
+      "originalShader": "fxs_BG_leafShadow_01",
+      "properties": [
+        "_Texture2D",
+        "_ShadowColor",
+        "_ShadowIntensity"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_BG_leafShadow_02.mat",
+      "originalShader": "Shader Graphs/fxs_BG_leafShadow_02",
+      "properties": [
+        "_Texture2D",
+        "_ShadowColor",
+        "_ShadowIntensity",
+        "_AddAlpha"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_BG_leafShadow_02_0.mat",
+      "originalShader": "Shader Graphs/fxs_BG_leafShadow_02",
+      "properties": [
+        "_Texture2D",
+        "_ShadowColor",
+        "_ShadowIntensity",
+        "_AddAlpha"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_bg_lef_001.mat",
+      "originalShader": "Ygom/Effect/C_ParticleBlend",
+      "properties": [
+        "_TintColor",
+        "_MainTex",
+        "_InvFade",
+        "_ZTest"
+      ],
+      "textures": [
+        "_MainTex"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_bg_lef_001_0.mat",
+      "originalShader": "Ygom/Effect/C_ParticleBlend",
+      "properties": [
+        "_TintColor",
+        "_MainTex",
+        "_InvFade",
+        "_ZTest"
+      ],
+      "textures": [
+        "_MainTex"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_bg_mud_001_b.mat",
+      "originalShader": "Universal Render Pipeline/Particles/Unlit",
+      "properties": [
+        "_BaseMap",
+        "_BaseColor",
+        "_Cutoff",
+        "_BumpMap",
+        "_EmissionColor",
+        "_EmissionMap",
+        "_SoftParticlesNearFadeDistance",
+        "_SoftParticlesFarFadeDistance",
+        "_CameraNearFadeDistance",
+        "_CameraFarFadeDistance",
+        "_DistortionBlend",
+        "_DistortionStrength",
+        "_Surface",
+        "_Blend",
+        "_AlphaClip",
+        "_BlendOp",
+        "_SrcBlend",
+        "_DstBlend",
+        "_ZWrite",
+        "_Cull",
+        "_ColorMode",
+        "_BaseColorAddSubDiff",
+        "_FlipbookBlending",
+        "_SoftParticlesEnabled",
+        "_CameraFadingEnabled",
+        "_SoftParticleFadeParams",
+        "_CameraFadeParams",
+        "_DistortionEnabled",
+        "_DistortionStrengthScaled",
+        "_QueueOffset",
+        "_FlipbookMode",
+        "_Mode",
+        "_Color"
+      ],
+      "textures": [
+        "_BaseMap"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_bg_mud_001_b_0.mat",
+      "originalShader": "Universal Render Pipeline/Particles/Unlit",
+      "properties": [
+        "_BaseMap",
+        "_BaseColor",
+        "_Cutoff",
+        "_BumpMap",
+        "_EmissionColor",
+        "_EmissionMap",
+        "_SoftParticlesNearFadeDistance",
+        "_SoftParticlesFarFadeDistance",
+        "_CameraNearFadeDistance",
+        "_CameraFarFadeDistance",
+        "_DistortionBlend",
+        "_DistortionStrength",
+        "_Surface",
+        "_Blend",
+        "_AlphaClip",
+        "_BlendOp",
+        "_SrcBlend",
+        "_DstBlend",
+        "_ZWrite",
+        "_Cull",
+        "_ColorMode",
+        "_BaseColorAddSubDiff",
+        "_FlipbookBlending",
+        "_SoftParticlesEnabled",
+        "_CameraFadingEnabled",
+        "_SoftParticleFadeParams",
+        "_CameraFadeParams",
+        "_DistortionEnabled",
+        "_DistortionStrengthScaled",
+        "_QueueOffset",
+        "_FlipbookMode",
+        "_Mode",
+        "_Color"
+      ],
+      "textures": [
+        "_BaseMap"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_bg_sand_001_b.mat",
+      "originalShader": "Universal Render Pipeline/Particles/Unlit",
+      "properties": [
+        "_BaseMap",
+        "_BaseColor",
+        "_Cutoff",
+        "_BumpMap",
+        "_EmissionColor",
+        "_EmissionMap",
+        "_SoftParticlesNearFadeDistance",
+        "_SoftParticlesFarFadeDistance",
+        "_CameraNearFadeDistance",
+        "_CameraFarFadeDistance",
+        "_DistortionBlend",
+        "_DistortionStrength",
+        "_Surface",
+        "_Blend",
+        "_AlphaClip",
+        "_BlendOp",
+        "_SrcBlend",
+        "_DstBlend",
+        "_ZWrite",
+        "_Cull",
+        "_ColorMode",
+        "_BaseColorAddSubDiff",
+        "_FlipbookBlending",
+        "_SoftParticlesEnabled",
+        "_CameraFadingEnabled",
+        "_SoftParticleFadeParams",
+        "_CameraFadeParams",
+        "_DistortionEnabled",
+        "_DistortionStrengthScaled",
+        "_QueueOffset",
+        "_FlipbookMode",
+        "_Mode",
+        "_Color"
+      ],
+      "textures": [
+        "_BaseMap"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_bg_sand_001_b_0.mat",
+      "originalShader": "Universal Render Pipeline/Particles/Unlit",
+      "properties": [
+        "_BaseMap",
+        "_BaseColor",
+        "_Cutoff",
+        "_BumpMap",
+        "_EmissionColor",
+        "_EmissionMap",
+        "_SoftParticlesNearFadeDistance",
+        "_SoftParticlesFarFadeDistance",
+        "_CameraNearFadeDistance",
+        "_CameraFarFadeDistance",
+        "_DistortionBlend",
+        "_DistortionStrength",
+        "_Surface",
+        "_Blend",
+        "_AlphaClip",
+        "_BlendOp",
+        "_SrcBlend",
+        "_DstBlend",
+        "_ZWrite",
+        "_Cull",
+        "_ColorMode",
+        "_BaseColorAddSubDiff",
+        "_FlipbookBlending",
+        "_SoftParticlesEnabled",
+        "_CameraFadingEnabled",
+        "_SoftParticleFadeParams",
+        "_CameraFadeParams",
+        "_DistortionEnabled",
+        "_DistortionStrengthScaled",
+        "_QueueOffset",
+        "_FlipbookMode",
+        "_Mode",
+        "_Color"
+      ],
+      "textures": [
+        "_BaseMap"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_bg_smoke_001_b.mat",
+      "originalShader": "Universal Render Pipeline/Particles/Unlit",
+      "properties": [
+        "_BaseMap",
+        "_BaseColor",
+        "_Cutoff",
+        "_BumpMap",
+        "_EmissionColor",
+        "_EmissionMap",
+        "_SoftParticlesNearFadeDistance",
+        "_SoftParticlesFarFadeDistance",
+        "_CameraNearFadeDistance",
+        "_CameraFarFadeDistance",
+        "_DistortionBlend",
+        "_DistortionStrength",
+        "_Surface",
+        "_Blend",
+        "_AlphaClip",
+        "_BlendOp",
+        "_SrcBlend",
+        "_DstBlend",
+        "_ZWrite",
+        "_Cull",
+        "_ColorMode",
+        "_BaseColorAddSubDiff",
+        "_FlipbookBlending",
+        "_SoftParticlesEnabled",
+        "_CameraFadingEnabled",
+        "_SoftParticleFadeParams",
+        "_CameraFadeParams",
+        "_DistortionEnabled",
+        "_DistortionStrengthScaled",
+        "_QueueOffset",
+        "_FlipbookMode",
+        "_Mode",
+        "_Color"
+      ],
+      "textures": [
+        "_BaseMap"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_bg_smoke_001_b_0.mat",
+      "originalShader": "Universal Render Pipeline/Particles/Unlit",
+      "properties": [
+        "_BaseMap",
+        "_BaseColor",
+        "_Cutoff",
+        "_BumpMap",
+        "_EmissionColor",
+        "_EmissionMap",
+        "_SoftParticlesNearFadeDistance",
+        "_SoftParticlesFarFadeDistance",
+        "_CameraNearFadeDistance",
+        "_CameraFarFadeDistance",
+        "_DistortionBlend",
+        "_DistortionStrength",
+        "_Surface",
+        "_Blend",
+        "_AlphaClip",
+        "_BlendOp",
+        "_SrcBlend",
+        "_DstBlend",
+        "_ZWrite",
+        "_Cull",
+        "_ColorMode",
+        "_BaseColorAddSubDiff",
+        "_FlipbookBlending",
+        "_SoftParticlesEnabled",
+        "_CameraFadingEnabled",
+        "_SoftParticleFadeParams",
+        "_CameraFadeParams",
+        "_DistortionEnabled",
+        "_DistortionStrengthScaled",
+        "_QueueOffset",
+        "_FlipbookMode",
+        "_Mode",
+        "_Color"
+      ],
+      "textures": [
+        "_BaseMap"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_bg_stone_001_b.mat",
+      "originalShader": "Shader Graphs/UnlitRecieveShadow_vc",
+      "properties": [
+        "_Texture2D"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_bg_stone_001_b_0.mat",
+      "originalShader": "Shader Graphs/UnlitRecieveShadow_vc",
+      "properties": [
+        "_Texture2D"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_aura_001_1.mat",
+      "originalShader": "VFX_Shader/Deform/fxs_UVDefTwistScroll_TC_002_b",
+      "properties": [
+        "_Animator_Alpha",
+        "_TEXCOORD_All_SmoothSte",
+        "_Twist",
+        "_Spherize",
+        "_Color_01",
+        "_Color_02",
+        "_Texture",
+        "_Texture_Select_Channel",
+        "_Smooth_Edge01",
+        "_Smooth_Edge02",
+        "_Scroll_Speed_X",
+        "_Scroll_Speed_Y",
+        "_Tiling_X",
+        "_Tiling_Y",
+        "_OUT_MASK_Scale",
+        "_OUT_MASK_Blur",
+        "_IN_SIDE_MASK_Scale",
+        "_IN_SIDE_MASK_Blur",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_aura_001_2.mat",
+      "originalShader": "VFX_Shader/Deform/fxs_UVDefTwistScroll_TC_002_b",
+      "properties": [
+        "_Animator_Alpha",
+        "_TEXCOORD_All_SmoothSte",
+        "_Twist",
+        "_Spherize",
+        "_Color_01",
+        "_Color_02",
+        "_Texture",
+        "_Texture_Select_Channel",
+        "_Smooth_Edge01",
+        "_Smooth_Edge02",
+        "_Scroll_Speed_X",
+        "_Scroll_Speed_Y",
+        "_Tiling_X",
+        "_Tiling_Y",
+        "_OUT_MASK_Scale",
+        "_OUT_MASK_Blur",
+        "_IN_SIDE_MASK_Scale",
+        "_IN_SIDE_MASK_Blur",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_aura_002_1.mat",
+      "originalShader": "VFX_Shader/Deform/fxs_UVDefTwistScroll_TC_002_b",
+      "properties": [
+        "_Animator_Alpha",
+        "_TEXCOORD_All_SmoothSte",
+        "_Twist",
+        "_Spherize",
+        "_Color_01",
+        "_Color_02",
+        "_Texture",
+        "_Texture_Select_Channel",
+        "_Smooth_Edge01",
+        "_Smooth_Edge02",
+        "_Scroll_Speed_X",
+        "_Scroll_Speed_Y",
+        "_Tiling_X",
+        "_Tiling_Y",
+        "_OUT_MASK_Scale",
+        "_OUT_MASK_Blur",
+        "_IN_SIDE_MASK_Scale",
+        "_IN_SIDE_MASK_Blur",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_aura_002_2.mat",
+      "originalShader": "VFX_Shader/Deform/fxs_UVDefTwistScroll_TC_002_b",
+      "properties": [
+        "_Animator_Alpha",
+        "_TEXCOORD_All_SmoothSte",
+        "_Twist",
+        "_Spherize",
+        "_Color_01",
+        "_Color_02",
+        "_Texture",
+        "_Texture_Select_Channel",
+        "_Smooth_Edge01",
+        "_Smooth_Edge02",
+        "_Scroll_Speed_X",
+        "_Scroll_Speed_Y",
+        "_Tiling_X",
+        "_Tiling_Y",
+        "_OUT_MASK_Scale",
+        "_OUT_MASK_Blur",
+        "_IN_SIDE_MASK_Scale",
+        "_IN_SIDE_MASK_Blur",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_aura_003_1.mat",
+      "originalShader": "VFX_Shader/Deform/fxs_UVDefTwistScroll_TC_002_b",
+      "properties": [
+        "_Animator_Alpha",
+        "_TEXCOORD_All_SmoothSte",
+        "_Twist",
+        "_Spherize",
+        "_Color_01",
+        "_Color_02",
+        "_Texture",
+        "_Texture_Select_Channel",
+        "_Smooth_Edge01",
+        "_Smooth_Edge02",
+        "_Scroll_Speed_X",
+        "_Scroll_Speed_Y",
+        "_Tiling_X",
+        "_Tiling_Y",
+        "_OUT_MASK_Scale",
+        "_OUT_MASK_Blur",
+        "_IN_SIDE_MASK_Scale",
+        "_IN_SIDE_MASK_Blur",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_aura_003_2.mat",
+      "originalShader": "VFX_Shader/Deform/fxs_UVDefTwistScroll_TC_002_b",
+      "properties": [
+        "_Animator_Alpha",
+        "_TEXCOORD_All_SmoothSte",
+        "_Twist",
+        "_Spherize",
+        "_Color_01",
+        "_Color_02",
+        "_Texture",
+        "_Texture_Select_Channel",
+        "_Smooth_Edge01",
+        "_Smooth_Edge02",
+        "_Scroll_Speed_X",
+        "_Scroll_Speed_Y",
+        "_Tiling_X",
+        "_Tiling_Y",
+        "_OUT_MASK_Scale",
+        "_OUT_MASK_Blur",
+        "_IN_SIDE_MASK_Scale",
+        "_IN_SIDE_MASK_Blur",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_base_001_1.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_ParticleRing_001_b",
+      "properties": [
+        "_Animator_Alpha",
+        "_Radial_Scale",
+        "_BaseBlur",
+        "_Alpha",
+        "_Alphapow",
+        "_Emission",
+        "_RING_ON",
+        "_RING_Radial",
+        "_RING_Blur",
+        "_Step",
+        "_Step_Minus",
+        "_Step_Slider",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far",
+        "_MainTex"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_base_001_2.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_ParticleRing_001_b",
+      "properties": [
+        "_Animator_Alpha",
+        "_Radial_Scale",
+        "_BaseBlur",
+        "_Alpha",
+        "_Alphapow",
+        "_Emission",
+        "_RING_ON",
+        "_RING_Radial",
+        "_RING_Blur",
+        "_Step",
+        "_Step_Minus",
+        "_Step_Slider",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far",
+        "_MainTex"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_base_brack_001_1.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_ParticleRing_001_b",
+      "properties": [
+        "_Animator_Alpha",
+        "_Radial_Scale",
+        "_BaseBlur",
+        "_Alpha",
+        "_Alphapow",
+        "_Emission",
+        "_RING_ON",
+        "_RING_Radial",
+        "_RING_Blur",
+        "_Step",
+        "_Step_Minus",
+        "_Step_Slider",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far",
+        "_MainTex"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_base_brack_001_2.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_ParticleRing_001_b",
+      "properties": [
+        "_Animator_Alpha",
+        "_Radial_Scale",
+        "_BaseBlur",
+        "_Alpha",
+        "_Alphapow",
+        "_Emission",
+        "_RING_ON",
+        "_RING_Radial",
+        "_RING_Blur",
+        "_Step",
+        "_Step_Minus",
+        "_Step_Slider",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far",
+        "_MainTex"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_base_light_001_1.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_ParticleRing_001_b",
+      "properties": [
+        "_Animator_Alpha",
+        "_Radial_Scale",
+        "_BaseBlur",
+        "_Alpha",
+        "_Alphapow",
+        "_Emission",
+        "_RING_ON",
+        "_RING_Radial",
+        "_RING_Blur",
+        "_Step",
+        "_Step_Minus",
+        "_Step_Slider",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far",
+        "_MainTex"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_base_light_001_2.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_ParticleRing_001_b",
+      "properties": [
+        "_Animator_Alpha",
+        "_Radial_Scale",
+        "_BaseBlur",
+        "_Alpha",
+        "_Alphapow",
+        "_Emission",
+        "_RING_ON",
+        "_RING_Radial",
+        "_RING_Blur",
+        "_Step",
+        "_Step_Minus",
+        "_Step_Slider",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far",
+        "_MainTex"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_mesh_001_b_test_1.mat",
+      "originalShader": "VFX_Shader/Mask/fxs_MASKNoiseScroll_TC_001_k",
+      "properties": [
+        "_Animation_Alpha",
+        "_Emissive",
+        "_Camera_Offset",
+        "_Main_Tile_X",
+        "_Main_Tile_Y",
+        "_Offset_X",
+        "_Offset_Y",
+        "_Main_Noise_Scroll_X",
+        "_Main_Noise_Scroll_Y",
+        "_Textur_Switch",
+        "_Simple_Noise",
+        "_Gradient_Noise",
+        "_Voronoi",
+        "_MAIN_Noise_Amount",
+        "_Main_Smoothstep_Switch",
+        "_Main_Edge1",
+        "_Main_Edge2",
+        "_Main_Thickness_white",
+        "_Main_Thickness_black",
+        "_Main_Texture",
+        "_Main_Texture_Channel_Select",
+        "_MASK_Texture",
+        "_Mask_Channel_Select",
+        "_MASK_Smoothstep_Switch",
+        "_Edge1",
+        "_Edge2",
+        "_MASK_Texture_Rotation",
+        "_ADD_Noise_Switch",
+        "_ADD_Simple_Noise",
+        "_ADD_Gradient_Noise",
+        "_ADD_Voronoi",
+        "_MASK_Add_Noise_Amount",
+        "_MASK_Add_Noise_Thickness_white",
+        "_MASK_Add_Noise_Thickness_black",
+        "_MASK_Add_Noise_Tile_X",
+        "_MASK_Add_Noise_Tile_Y",
+        "_MASK_Add_Noise_Scroll_X",
+        "_MASK_Add_Noise_Scroll_Y",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_MASK_Texture",
+        "_Main_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_mesh_001_b_test_2.mat",
+      "originalShader": "VFX_Shader/Mask/fxs_MASKNoiseScroll_TC_001_k",
+      "properties": [
+        "_Animation_Alpha",
+        "_Emissive",
+        "_Camera_Offset",
+        "_Main_Tile_X",
+        "_Main_Tile_Y",
+        "_Offset_X",
+        "_Offset_Y",
+        "_Main_Noise_Scroll_X",
+        "_Main_Noise_Scroll_Y",
+        "_Textur_Switch",
+        "_Simple_Noise",
+        "_Gradient_Noise",
+        "_Voronoi",
+        "_MAIN_Noise_Amount",
+        "_Main_Smoothstep_Switch",
+        "_Main_Edge1",
+        "_Main_Edge2",
+        "_Main_Thickness_white",
+        "_Main_Thickness_black",
+        "_Main_Texture",
+        "_Main_Texture_Channel_Select",
+        "_MASK_Texture",
+        "_Mask_Channel_Select",
+        "_MASK_Smoothstep_Switch",
+        "_Edge1",
+        "_Edge2",
+        "_MASK_Texture_Rotation",
+        "_ADD_Noise_Switch",
+        "_ADD_Simple_Noise",
+        "_ADD_Gradient_Noise",
+        "_ADD_Voronoi",
+        "_MASK_Add_Noise_Amount",
+        "_MASK_Add_Noise_Thickness_white",
+        "_MASK_Add_Noise_Thickness_black",
+        "_MASK_Add_Noise_Tile_X",
+        "_MASK_Add_Noise_Tile_Y",
+        "_MASK_Add_Noise_Scroll_X",
+        "_MASK_Add_Noise_Scroll_Y",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_MASK_Texture",
+        "_Main_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_mesh_001_k_test_1.mat",
+      "originalShader": "VFX_Shader/Mask/fxs_MASKNoiseScroll_TC_001_k",
+      "properties": [
+        "_Animation_Alpha",
+        "_Emissive",
+        "_Camera_Offset",
+        "_Main_Tile_X",
+        "_Main_Tile_Y",
+        "_Offset_X",
+        "_Offset_Y",
+        "_Main_Noise_Scroll_X",
+        "_Main_Noise_Scroll_Y",
+        "_Textur_Switch",
+        "_Simple_Noise",
+        "_Gradient_Noise",
+        "_Voronoi",
+        "_MAIN_Noise_Amount",
+        "_Main_Smoothstep_Switch",
+        "_Main_Edge1",
+        "_Main_Edge2",
+        "_Main_Thickness_white",
+        "_Main_Thickness_black",
+        "_Main_Texture",
+        "_Main_Texture_Channel_Select",
+        "_MASK_Texture",
+        "_Mask_Channel_Select",
+        "_MASK_Smoothstep_Switch",
+        "_Edge1",
+        "_Edge2",
+        "_MASK_Texture_Rotation",
+        "_ADD_Noise_Switch",
+        "_ADD_Simple_Noise",
+        "_ADD_Gradient_Noise",
+        "_ADD_Voronoi",
+        "_MASK_Add_Noise_Amount",
+        "_MASK_Add_Noise_Thickness_white",
+        "_MASK_Add_Noise_Thickness_black",
+        "_MASK_Add_Noise_Tile_X",
+        "_MASK_Add_Noise_Tile_Y",
+        "_MASK_Add_Noise_Scroll_X",
+        "_MASK_Add_Noise_Scroll_Y",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_MASK_Texture",
+        "_Main_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_mesh_001_k_test_2.mat",
+      "originalShader": "VFX_Shader/Mask/fxs_MASKNoiseScroll_TC_001_k",
+      "properties": [
+        "_Animation_Alpha",
+        "_Emissive",
+        "_Camera_Offset",
+        "_Main_Tile_X",
+        "_Main_Tile_Y",
+        "_Offset_X",
+        "_Offset_Y",
+        "_Main_Noise_Scroll_X",
+        "_Main_Noise_Scroll_Y",
+        "_Textur_Switch",
+        "_Simple_Noise",
+        "_Gradient_Noise",
+        "_Voronoi",
+        "_MAIN_Noise_Amount",
+        "_Main_Smoothstep_Switch",
+        "_Main_Edge1",
+        "_Main_Edge2",
+        "_Main_Thickness_white",
+        "_Main_Thickness_black",
+        "_Main_Texture",
+        "_Main_Texture_Channel_Select",
+        "_MASK_Texture",
+        "_Mask_Channel_Select",
+        "_MASK_Smoothstep_Switch",
+        "_Edge1",
+        "_Edge2",
+        "_MASK_Texture_Rotation",
+        "_ADD_Noise_Switch",
+        "_ADD_Simple_Noise",
+        "_ADD_Gradient_Noise",
+        "_ADD_Voronoi",
+        "_MASK_Add_Noise_Amount",
+        "_MASK_Add_Noise_Thickness_white",
+        "_MASK_Add_Noise_Thickness_black",
+        "_MASK_Add_Noise_Tile_X",
+        "_MASK_Add_Noise_Tile_Y",
+        "_MASK_Add_Noise_Scroll_X",
+        "_MASK_Add_Noise_Scroll_Y",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_MASK_Texture",
+        "_Main_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_mesh_002_1.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_002_b",
+      "properties": [
+        "_Color_01",
+        "_Color_02",
+        "_Scroll_Speed",
+        "_Tilling_X",
+        "_Tilling_Y",
+        "_Noise_Texture",
+        "_Noise_Smoothstep",
+        "_Noise_Smoothstep_Blur",
+        "_Noise_Channel_Select",
+        "_Texture",
+        "_Texture_Select_Channel",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_Noise_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_mesh_002_2.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_002_b",
+      "properties": [
+        "_Color_01",
+        "_Color_02",
+        "_Scroll_Speed",
+        "_Tilling_X",
+        "_Tilling_Y",
+        "_Noise_Texture",
+        "_Noise_Smoothstep",
+        "_Noise_Smoothstep_Blur",
+        "_Noise_Channel_Select",
+        "_Texture",
+        "_Texture_Select_Channel",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_Noise_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_soul_001_1.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_001_b",
+      "properties": [
+        "_Direction",
+        "_Color",
+        "_Noise_Amount",
+        "_Noise_Tiling_X",
+        "_Noise_Tiling_Y",
+        "_Noise_Speed",
+        "_Width",
+        "_Width_Squeeze",
+        "_Add_Texture_Switch",
+        "_Texture",
+        "_Texture_Select_channel",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_soul_001_2.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_001_b",
+      "properties": [
+        "_Direction",
+        "_Color",
+        "_Noise_Amount",
+        "_Noise_Tiling_X",
+        "_Noise_Tiling_Y",
+        "_Noise_Speed",
+        "_Width",
+        "_Width_Squeeze",
+        "_Add_Texture_Switch",
+        "_Texture",
+        "_Texture_Select_channel",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_soul_002_1.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_001_b",
+      "properties": [
+        "_Direction",
+        "_Color",
+        "_Noise_Amount",
+        "_Noise_Tiling_X",
+        "_Noise_Tiling_Y",
+        "_Noise_Speed",
+        "_Width",
+        "_Width_Squeeze",
+        "_Add_Texture_Switch",
+        "_Texture",
+        "_Texture_Select_channel",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_soul_002_2.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_001_b",
+      "properties": [
+        "_Direction",
+        "_Color",
+        "_Noise_Amount",
+        "_Noise_Tiling_X",
+        "_Noise_Tiling_Y",
+        "_Noise_Speed",
+        "_Width",
+        "_Width_Squeeze",
+        "_Add_Texture_Switch",
+        "_Texture",
+        "_Texture_Select_channel",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_soul_Brack_001_1.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_001_b",
+      "properties": [
+        "_Direction",
+        "_Color",
+        "_Noise_Amount",
+        "_Noise_Tiling_X",
+        "_Noise_Tiling_Y",
+        "_Noise_Speed",
+        "_Width",
+        "_Width_Squeeze",
+        "_Add_Texture_Switch",
+        "_Texture",
+        "_Texture_Select_channel",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_soul_Brack_001_2.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_001_b",
+      "properties": [
+        "_Direction",
+        "_Color",
+        "_Noise_Amount",
+        "_Noise_Tiling_X",
+        "_Noise_Tiling_Y",
+        "_Noise_Speed",
+        "_Width",
+        "_Width_Squeeze",
+        "_Add_Texture_Switch",
+        "_Texture",
+        "_Texture_Select_channel",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_soul_ple_001_1.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_ParticleRing_001_k",
+      "properties": [
+        "_Animator_Alpha",
+        "_Radial_Scale",
+        "_BaseBlur",
+        "_Alpha",
+        "_Alphapow",
+        "_Emission",
+        "_RING_ON",
+        "_RING_Radial",
+        "_RING_Blur",
+        "_Step",
+        "_Step_Minus",
+        "_Step_Slider",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_exclude_soul_ple_001_2.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_ParticleRing_001_k",
+      "properties": [
+        "_Animator_Alpha",
+        "_Radial_Scale",
+        "_BaseBlur",
+        "_Alpha",
+        "_Alphapow",
+        "_Emission",
+        "_RING_ON",
+        "_RING_Radial",
+        "_RING_Blur",
+        "_Step",
+        "_Step_Minus",
+        "_Step_Slider",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_excludeidl_base_001_1.mat",
+      "originalShader": "VFX_Shader/Deform/fxs_UVDefNoise_TC_001",
+      "properties": [
+        "_UV_Rotate",
+        "_Distortion_Rotate",
+        "_Distortion_Scale",
+        "_Distortion_Noise_Amount",
+        "_Distortion_Scroll_X",
+        "_Distortion_Scroll_Y",
+        "_Color_01",
+        "_Color_02",
+        "_Color_Value",
+        "_Color_Step",
+        "_Color_Noise_Amount",
+        "_Color_Noise_Scroll_X",
+        "_Color_Noise_Scroll_Y",
+        "_Voronoi_Amount",
+        "_Voronoi_Speed",
+        "_MASK_Level",
+        "_MASK_Level_Step",
+        "_ALL_MASK_Size",
+        "_ALL_MASK_Step",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_excludeidl_base_001_2.mat",
+      "originalShader": "VFX_Shader/Deform/fxs_UVDefNoise_TC_001",
+      "properties": [
+        "_UV_Rotate",
+        "_Distortion_Rotate",
+        "_Distortion_Scale",
+        "_Distortion_Noise_Amount",
+        "_Distortion_Scroll_X",
+        "_Distortion_Scroll_Y",
+        "_Color_01",
+        "_Color_02",
+        "_Color_Value",
+        "_Color_Step",
+        "_Color_Noise_Amount",
+        "_Color_Noise_Scroll_X",
+        "_Color_Noise_Scroll_Y",
+        "_Voronoi_Amount",
+        "_Voronoi_Speed",
+        "_MASK_Level",
+        "_MASK_Level_Step",
+        "_ALL_MASK_Size",
+        "_ALL_MASK_Step",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_excludeidl_base_002_1.mat",
+      "originalShader": "VFX_Shader/Deform/fxs_UVDefNoise_TC_001",
+      "properties": [
+        "_UV_Rotate",
+        "_Distortion_Rotate",
+        "_Distortion_Scale",
+        "_Distortion_Noise_Amount",
+        "_Distortion_Scroll_X",
+        "_Distortion_Scroll_Y",
+        "_Color_01",
+        "_Color_02",
+        "_Color_Value",
+        "_Color_Step",
+        "_Color_Noise_Amount",
+        "_Color_Noise_Scroll_X",
+        "_Color_Noise_Scroll_Y",
+        "_Voronoi_Amount",
+        "_Voronoi_Speed",
+        "_MASK_Level",
+        "_MASK_Level_Step",
+        "_ALL_MASK_Size",
+        "_ALL_MASK_Step",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_excludeidl_base_002_2.mat",
+      "originalShader": "VFX_Shader/Deform/fxs_UVDefNoise_TC_001",
+      "properties": [
+        "_UV_Rotate",
+        "_Distortion_Rotate",
+        "_Distortion_Scale",
+        "_Distortion_Noise_Amount",
+        "_Distortion_Scroll_X",
+        "_Distortion_Scroll_Y",
+        "_Color_01",
+        "_Color_02",
+        "_Color_Value",
+        "_Color_Step",
+        "_Color_Noise_Amount",
+        "_Color_Noise_Scroll_X",
+        "_Color_Noise_Scroll_Y",
+        "_Voronoi_Amount",
+        "_Voronoi_Speed",
+        "_MASK_Level",
+        "_MASK_Level_Step",
+        "_ALL_MASK_Size",
+        "_ALL_MASK_Step",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_excludeidl_ple_002_1.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_SimpleHDR_001_k",
+      "properties": [
+        "_Alpha",
+        "_Camera_Offset",
+        "_Color_01",
+        "_Color_02",
+        "_Color_Smoothstep",
+        "_Color_SmoothstepBlur",
+        "_Texture",
+        "_Rotation",
+        "_Channel_Selection",
+        "_Alpha_Smoothstep",
+        "_Alpha_SmoothstepBlur",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_excludeidl_ple_002_2.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_SimpleHDR_001_k",
+      "properties": [
+        "_Alpha",
+        "_Camera_Offset",
+        "_Color_01",
+        "_Color_02",
+        "_Color_Smoothstep",
+        "_Color_SmoothstepBlur",
+        "_Texture",
+        "_Rotation",
+        "_Channel_Selection",
+        "_Alpha_Smoothstep",
+        "_Alpha_SmoothstepBlur",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_excludeidl_soul_001_1.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_SinWaveTrail_TC_001_b",
+      "properties": [
+        "_Direction",
+        "_Color_01",
+        "_Color_02",
+        "_TC_Random",
+        "_Sine_Speed",
+        "_Sine_Amplitude",
+        "_Sien_Frequency",
+        "_Sine_Attenuation",
+        "_Noise_Amount",
+        "_Noise_Speed",
+        "_Noise_Tillng_X",
+        "_Noise_Tillng_Y",
+        "_MASK_Level",
+        "_MASK_Step",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_excludeidl_soul_001_2.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_SinWaveTrail_TC_001_b",
+      "properties": [
+        "_Direction",
+        "_Color_01",
+        "_Color_02",
+        "_TC_Random",
+        "_Sine_Speed",
+        "_Sine_Amplitude",
+        "_Sien_Frequency",
+        "_Sine_Attenuation",
+        "_Noise_Amount",
+        "_Noise_Speed",
+        "_Noise_Tillng_X",
+        "_Noise_Tillng_Y",
+        "_MASK_Level",
+        "_MASK_Step",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_flare_01.mat",
+      "originalShader": "VFX_Shader/Mask/fxs_MASKNoiseScroll_TC_001_b",
+      "properties": [
+        "_Animation_Alpha",
+        "_Emissive",
+        "_Camera_Offset",
+        "_Main_Tile_X",
+        "_Main_Tile_Y",
+        "_Offset_X",
+        "_Offset_Y",
+        "_Main_Noise_Scroll_X",
+        "_Main_Noise_Scroll_Y",
+        "_Textur_Switch",
+        "_Simple_Noise",
+        "_Gradient_Noise",
+        "_Voronoi",
+        "_MAIN_Noise_Amount",
+        "_Main_Smoothstep_Switch",
+        "_Main_Edge1",
+        "_Main_Edge2",
+        "_Main_Thickness_white",
+        "_Main_Thickness_black",
+        "_Main_Texture",
+        "_Main_Texture_Channel_Select",
+        "_MASK_Texture",
+        "_Mask_Channel_Select",
+        "_MASK_Smoothstep_Switch",
+        "_Edge1",
+        "_Edge2",
+        "_MASK_Texture_Rotation",
+        "_ADD_Noise_Switch",
+        "_ADD_Simple_Noise",
+        "_ADD_Gradient_Noise",
+        "_ADD_Voronoi",
+        "_MASK_Add_Noise_Amount",
+        "_MASK_Add_Noise_Thickness_white",
+        "_MASK_Add_Noise_Thickness_black",
+        "_MASK_Add_Noise_Tile_X",
+        "_MASK_Add_Noise_Tile_Y",
+        "_MASK_Add_Noise_Scroll_X",
+        "_MASK_Add_Noise_Scroll_Y",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_MASK_Texture",
+        "_Main_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_base_001_1.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_ParticleRing_001_b",
+      "properties": [
+        "_Animator_Alpha",
+        "_Radial_Scale",
+        "_BaseBlur",
+        "_Alpha",
+        "_Alphapow",
+        "_Emission",
+        "_RING_ON",
+        "_RING_Radial",
+        "_RING_Blur",
+        "_Step",
+        "_Step_Minus",
+        "_Step_Slider",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far",
+        "_MainTex"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_base_001_2.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_ParticleRing_001_b",
+      "properties": [
+        "_Animator_Alpha",
+        "_Radial_Scale",
+        "_BaseBlur",
+        "_Alpha",
+        "_Alphapow",
+        "_Emission",
+        "_RING_ON",
+        "_RING_Radial",
+        "_RING_Blur",
+        "_Step",
+        "_Step_Minus",
+        "_Step_Slider",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far",
+        "_MainTex"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_base_002_1.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_ParticleRing_001_k",
+      "properties": [
+        "_Animator_Alpha",
+        "_Radial_Scale",
+        "_BaseBlur",
+        "_Alpha",
+        "_Alphapow",
+        "_Emission",
+        "_RING_ON",
+        "_RING_Radial",
+        "_RING_Blur",
+        "_Step",
+        "_Step_Minus",
+        "_Step_Slider",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_base_002_2.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_ParticleRing_001_k",
+      "properties": [
+        "_Animator_Alpha",
+        "_Radial_Scale",
+        "_BaseBlur",
+        "_Alpha",
+        "_Alphapow",
+        "_Emission",
+        "_RING_ON",
+        "_RING_Radial",
+        "_RING_Blur",
+        "_Step",
+        "_Step_Minus",
+        "_Step_Slider",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_flare_003_1.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_ParticleRing_001_k",
+      "properties": [
+        "_Animator_Alpha",
+        "_Radial_Scale",
+        "_BaseBlur",
+        "_Alpha",
+        "_Alphapow",
+        "_Emission",
+        "_RING_ON",
+        "_RING_Radial",
+        "_RING_Blur",
+        "_Step",
+        "_Step_Minus",
+        "_Step_Slider",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_flare_003_2.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_ParticleRing_001_k",
+      "properties": [
+        "_Animator_Alpha",
+        "_Radial_Scale",
+        "_BaseBlur",
+        "_Alpha",
+        "_Alphapow",
+        "_Emission",
+        "_RING_ON",
+        "_RING_Radial",
+        "_RING_Blur",
+        "_Step",
+        "_Step_Minus",
+        "_Step_Slider",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_ghost_001_1.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_001_b",
+      "properties": [
+        "_Direction",
+        "_Color",
+        "_Noise_Amount",
+        "_Noise_Tiling_X",
+        "_Noise_Tiling_Y",
+        "_Noise_Speed",
+        "_Width",
+        "_Width_Squeeze",
+        "_Add_Texture_Switch",
+        "_Texture",
+        "_Texture_Select_channel",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_ghost_001_2.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_001_b",
+      "properties": [
+        "_Direction",
+        "_Color",
+        "_Noise_Amount",
+        "_Noise_Tiling_X",
+        "_Noise_Tiling_Y",
+        "_Noise_Speed",
+        "_Width",
+        "_Width_Squeeze",
+        "_Add_Texture_Switch",
+        "_Texture",
+        "_Texture_Select_channel",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_ghost_002_1.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_002_b",
+      "properties": [
+        "_Color_01",
+        "_Color_02",
+        "_Scroll_Speed",
+        "_Tilling_X",
+        "_Tilling_Y",
+        "_Noise_Texture",
+        "_Noise_Smoothstep",
+        "_Noise_Smoothstep_Blur",
+        "_Noise_Channel_Select",
+        "_Texture",
+        "_Texture_Select_Channel",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_Noise_Texture",
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_ghost_002_2.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_002_b",
+      "properties": [
+        "_Color_01",
+        "_Color_02",
+        "_Scroll_Speed",
+        "_Tilling_X",
+        "_Tilling_Y",
+        "_Noise_Texture",
+        "_Noise_Smoothstep",
+        "_Noise_Smoothstep_Blur",
+        "_Noise_Channel_Select",
+        "_Texture",
+        "_Texture_Select_Channel",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_Noise_Texture",
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_godray_001_k_1.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_003_k",
+      "properties": [
+        "_Direction",
+        "_Color",
+        "_Texture_Clamp_Switch",
+        "_Texture",
+        "_Texture_Select_channel",
+        "_ADD_Noise_Switch",
+        "_add_noise_Amount",
+        "_add_noise_Speed",
+        "_add_noise_Opacity",
+        "_add_noise_Tiling_X",
+        "_add_noise_Tiling_Y",
+        "_ADD_MASK_Switch",
+        "_MASK",
+        "_MASK_Rotate",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_MASK",
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_godray_001_k_2.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_003_k",
+      "properties": [
+        "_Direction",
+        "_Color",
+        "_Texture_Clamp_Switch",
+        "_Texture",
+        "_Texture_Select_channel",
+        "_ADD_Noise_Switch",
+        "_add_noise_Amount",
+        "_add_noise_Speed",
+        "_add_noise_Opacity",
+        "_add_noise_Tiling_X",
+        "_add_noise_Tiling_Y",
+        "_ADD_MASK_Switch",
+        "_MASK",
+        "_MASK_Rotate",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_MASK",
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_lightring_001_1.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_003_k",
+      "properties": [
+        "_Direction",
+        "_Color",
+        "_Texture_Clamp_Switch",
+        "_Texture",
+        "_Texture_Select_channel",
+        "_ADD_Noise_Switch",
+        "_add_noise_Amount",
+        "_add_noise_Speed",
+        "_add_noise_Opacity",
+        "_add_noise_Tiling_X",
+        "_add_noise_Tiling_Y",
+        "_ADD_MASK_Switch",
+        "_MASK",
+        "_MASK_Rotate",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_MASK",
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_lightring_001_2.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_003_k",
+      "properties": [
+        "_Direction",
+        "_Color",
+        "_Texture_Clamp_Switch",
+        "_Texture",
+        "_Texture_Select_channel",
+        "_ADD_Noise_Switch",
+        "_add_noise_Amount",
+        "_add_noise_Speed",
+        "_add_noise_Opacity",
+        "_add_noise_Tiling_X",
+        "_add_noise_Tiling_Y",
+        "_ADD_MASK_Switch",
+        "_MASK",
+        "_MASK_Rotate",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_MASK",
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_lightring_002_1.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_003_k",
+      "properties": [
+        "_Direction",
+        "_Color",
+        "_Texture_Clamp_Switch",
+        "_Texture",
+        "_Texture_Select_channel",
+        "_ADD_Noise_Switch",
+        "_add_noise_Amount",
+        "_add_noise_Speed",
+        "_add_noise_Opacity",
+        "_add_noise_Tiling_X",
+        "_add_noise_Tiling_Y",
+        "_ADD_MASK_Switch",
+        "_MASK",
+        "_MASK_Rotate",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_MASK",
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_lightring_002_2.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_003_k",
+      "properties": [
+        "_Direction",
+        "_Color",
+        "_Texture_Clamp_Switch",
+        "_Texture",
+        "_Texture_Select_channel",
+        "_ADD_Noise_Switch",
+        "_add_noise_Amount",
+        "_add_noise_Speed",
+        "_add_noise_Opacity",
+        "_add_noise_Tiling_X",
+        "_add_noise_Tiling_Y",
+        "_ADD_MASK_Switch",
+        "_MASK",
+        "_MASK_Rotate",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_MASK",
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_meshlight_001_k_test_1.mat",
+      "originalShader": "VFX_Shader/Mask/fxs_MASKNoiseScroll_TC_001_k",
+      "properties": [
+        "_Animation_Alpha",
+        "_Emissive",
+        "_Camera_Offset",
+        "_Main_Tile_X",
+        "_Main_Tile_Y",
+        "_Offset_X",
+        "_Offset_Y",
+        "_Main_Noise_Scroll_X",
+        "_Main_Noise_Scroll_Y",
+        "_Textur_Switch",
+        "_Simple_Noise",
+        "_Gradient_Noise",
+        "_Voronoi",
+        "_MAIN_Noise_Amount",
+        "_Main_Smoothstep_Switch",
+        "_Main_Edge1",
+        "_Main_Edge2",
+        "_Main_Thickness_white",
+        "_Main_Thickness_black",
+        "_Main_Texture",
+        "_Main_Texture_Channel_Select",
+        "_MASK_Texture",
+        "_Mask_Channel_Select",
+        "_MASK_Smoothstep_Switch",
+        "_Edge1",
+        "_Edge2",
+        "_MASK_Texture_Rotation",
+        "_ADD_Noise_Switch",
+        "_ADD_Simple_Noise",
+        "_ADD_Gradient_Noise",
+        "_ADD_Voronoi",
+        "_MASK_Add_Noise_Amount",
+        "_MASK_Add_Noise_Thickness_white",
+        "_MASK_Add_Noise_Thickness_black",
+        "_MASK_Add_Noise_Tile_X",
+        "_MASK_Add_Noise_Tile_Y",
+        "_MASK_Add_Noise_Scroll_X",
+        "_MASK_Add_Noise_Scroll_Y",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_MASK_Texture",
+        "_Main_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_meshlight_001_k_test_2.mat",
+      "originalShader": "VFX_Shader/Mask/fxs_MASKNoiseScroll_TC_001_k",
+      "properties": [
+        "_Animation_Alpha",
+        "_Emissive",
+        "_Camera_Offset",
+        "_Main_Tile_X",
+        "_Main_Tile_Y",
+        "_Offset_X",
+        "_Offset_Y",
+        "_Main_Noise_Scroll_X",
+        "_Main_Noise_Scroll_Y",
+        "_Textur_Switch",
+        "_Simple_Noise",
+        "_Gradient_Noise",
+        "_Voronoi",
+        "_MAIN_Noise_Amount",
+        "_Main_Smoothstep_Switch",
+        "_Main_Edge1",
+        "_Main_Edge2",
+        "_Main_Thickness_white",
+        "_Main_Thickness_black",
+        "_Main_Texture",
+        "_Main_Texture_Channel_Select",
+        "_MASK_Texture",
+        "_Mask_Channel_Select",
+        "_MASK_Smoothstep_Switch",
+        "_Edge1",
+        "_Edge2",
+        "_MASK_Texture_Rotation",
+        "_ADD_Noise_Switch",
+        "_ADD_Simple_Noise",
+        "_ADD_Gradient_Noise",
+        "_ADD_Voronoi",
+        "_MASK_Add_Noise_Amount",
+        "_MASK_Add_Noise_Thickness_white",
+        "_MASK_Add_Noise_Thickness_black",
+        "_MASK_Add_Noise_Tile_X",
+        "_MASK_Add_Noise_Tile_Y",
+        "_MASK_Add_Noise_Scroll_X",
+        "_MASK_Add_Noise_Scroll_Y",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_MASK_Texture",
+        "_Main_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_particle_001_1.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_ParticleRing_001_k",
+      "properties": [
+        "_Animator_Alpha",
+        "_Radial_Scale",
+        "_BaseBlur",
+        "_Alpha",
+        "_Alphapow",
+        "_Emission",
+        "_RING_ON",
+        "_RING_Radial",
+        "_RING_Blur",
+        "_Step",
+        "_Step_Minus",
+        "_Step_Slider",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_particle_001_2.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_ParticleRing_001_k",
+      "properties": [
+        "_Animator_Alpha",
+        "_Radial_Scale",
+        "_BaseBlur",
+        "_Alpha",
+        "_Alphapow",
+        "_Emission",
+        "_RING_ON",
+        "_RING_Radial",
+        "_RING_Blur",
+        "_Step",
+        "_Step_Minus",
+        "_Step_Slider",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_smoke_001_1.mat",
+      "originalShader": "Universal Render Pipeline/Particles/Unlit",
+      "properties": [
+        "_BaseMap",
+        "_BaseColor",
+        "_Cutoff",
+        "_BumpMap",
+        "_EmissionColor",
+        "_EmissionMap",
+        "_SoftParticlesNearFadeDistance",
+        "_SoftParticlesFarFadeDistance",
+        "_CameraNearFadeDistance",
+        "_CameraFarFadeDistance",
+        "_DistortionBlend",
+        "_DistortionStrength",
+        "_Surface",
+        "_Blend",
+        "_AlphaClip",
+        "_BlendOp",
+        "_SrcBlend",
+        "_DstBlend",
+        "_ZWrite",
+        "_Cull",
+        "_ColorMode",
+        "_BaseColorAddSubDiff",
+        "_FlipbookBlending",
+        "_SoftParticlesEnabled",
+        "_CameraFadingEnabled",
+        "_SoftParticleFadeParams",
+        "_CameraFadeParams",
+        "_DistortionEnabled",
+        "_DistortionStrengthScaled",
+        "_QueueOffset",
+        "_FlipbookMode",
+        "_Mode",
+        "_Color"
+      ],
+      "textures": [
+        "_BaseMap"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_smoke_001_2.mat",
+      "originalShader": "Universal Render Pipeline/Particles/Unlit",
+      "properties": [
+        "_BaseMap",
+        "_BaseColor",
+        "_Cutoff",
+        "_BumpMap",
+        "_EmissionColor",
+        "_EmissionMap",
+        "_SoftParticlesNearFadeDistance",
+        "_SoftParticlesFarFadeDistance",
+        "_CameraNearFadeDistance",
+        "_CameraFarFadeDistance",
+        "_DistortionBlend",
+        "_DistortionStrength",
+        "_Surface",
+        "_Blend",
+        "_AlphaClip",
+        "_BlendOp",
+        "_SrcBlend",
+        "_DstBlend",
+        "_ZWrite",
+        "_Cull",
+        "_ColorMode",
+        "_BaseColorAddSubDiff",
+        "_FlipbookBlending",
+        "_SoftParticlesEnabled",
+        "_CameraFadingEnabled",
+        "_SoftParticleFadeParams",
+        "_CameraFadeParams",
+        "_DistortionEnabled",
+        "_DistortionStrengthScaled",
+        "_QueueOffset",
+        "_FlipbookMode",
+        "_Mode",
+        "_Color"
+      ],
+      "textures": [
+        "_BaseMap"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_soul_001_1.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_001_b",
+      "properties": [
+        "_Direction",
+        "_Color",
+        "_Noise_Amount",
+        "_Noise_Tiling_X",
+        "_Noise_Tiling_Y",
+        "_Noise_Speed",
+        "_Width",
+        "_Width_Squeeze",
+        "_Add_Texture_Switch",
+        "_Texture",
+        "_Texture_Select_channel",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_soul_001_2.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_001_b",
+      "properties": [
+        "_Direction",
+        "_Color",
+        "_Noise_Amount",
+        "_Noise_Tiling_X",
+        "_Noise_Tiling_Y",
+        "_Noise_Speed",
+        "_Width",
+        "_Width_Squeeze",
+        "_Add_Texture_Switch",
+        "_Texture",
+        "_Texture_Select_channel",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_soul_002_1.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_001_b",
+      "properties": [
+        "_Direction",
+        "_Color",
+        "_Noise_Amount",
+        "_Noise_Tiling_X",
+        "_Noise_Tiling_Y",
+        "_Noise_Speed",
+        "_Width",
+        "_Width_Squeeze",
+        "_Add_Texture_Switch",
+        "_Texture",
+        "_Texture_Select_channel",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_grave_soul_002_2.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_GraveSoul_TC_001_b",
+      "properties": [
+        "_Direction",
+        "_Color",
+        "_Noise_Amount",
+        "_Noise_Tiling_X",
+        "_Noise_Tiling_Y",
+        "_Noise_Speed",
+        "_Width",
+        "_Width_Squeeze",
+        "_Add_Texture_Switch",
+        "_Texture",
+        "_Texture_Select_channel",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_graveidl_base_001_1.mat",
+      "originalShader": "VFX_Shader/Deform/fxs_UVDefNoise_TC_001",
+      "properties": [
+        "_UV_Rotate",
+        "_Distortion_Rotate",
+        "_Distortion_Scale",
+        "_Distortion_Noise_Amount",
+        "_Distortion_Scroll_X",
+        "_Distortion_Scroll_Y",
+        "_Color_01",
+        "_Color_02",
+        "_Color_Value",
+        "_Color_Step",
+        "_Color_Noise_Amount",
+        "_Color_Noise_Scroll_X",
+        "_Color_Noise_Scroll_Y",
+        "_Voronoi_Amount",
+        "_Voronoi_Speed",
+        "_MASK_Level",
+        "_MASK_Level_Step",
+        "_ALL_MASK_Size",
+        "_ALL_MASK_Step",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_graveidl_base_001_2.mat",
+      "originalShader": "VFX_Shader/Deform/fxs_UVDefNoise_TC_001",
+      "properties": [
+        "_UV_Rotate",
+        "_Distortion_Rotate",
+        "_Distortion_Scale",
+        "_Distortion_Noise_Amount",
+        "_Distortion_Scroll_X",
+        "_Distortion_Scroll_Y",
+        "_Color_01",
+        "_Color_02",
+        "_Color_Value",
+        "_Color_Step",
+        "_Color_Noise_Amount",
+        "_Color_Noise_Scroll_X",
+        "_Color_Noise_Scroll_Y",
+        "_Voronoi_Amount",
+        "_Voronoi_Speed",
+        "_MASK_Level",
+        "_MASK_Level_Step",
+        "_ALL_MASK_Size",
+        "_ALL_MASK_Step",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_graveidl_base_002_1.mat",
+      "originalShader": "VFX_Shader/Deform/fxs_UVDefNoise_TC_001",
+      "properties": [
+        "_UV_Rotate",
+        "_Distortion_Rotate",
+        "_Distortion_Scale",
+        "_Distortion_Noise_Amount",
+        "_Distortion_Scroll_X",
+        "_Distortion_Scroll_Y",
+        "_Color_01",
+        "_Color_02",
+        "_Color_Value",
+        "_Color_Step",
+        "_Color_Noise_Amount",
+        "_Color_Noise_Scroll_X",
+        "_Color_Noise_Scroll_Y",
+        "_Voronoi_Amount",
+        "_Voronoi_Speed",
+        "_MASK_Level",
+        "_MASK_Level_Step",
+        "_ALL_MASK_Size",
+        "_ALL_MASK_Step",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_graveidl_base_002_2.mat",
+      "originalShader": "VFX_Shader/Deform/fxs_UVDefNoise_TC_001",
+      "properties": [
+        "_UV_Rotate",
+        "_Distortion_Rotate",
+        "_Distortion_Scale",
+        "_Distortion_Noise_Amount",
+        "_Distortion_Scroll_X",
+        "_Distortion_Scroll_Y",
+        "_Color_01",
+        "_Color_02",
+        "_Color_Value",
+        "_Color_Step",
+        "_Color_Noise_Amount",
+        "_Color_Noise_Scroll_X",
+        "_Color_Noise_Scroll_Y",
+        "_Voronoi_Amount",
+        "_Voronoi_Speed",
+        "_MASK_Level",
+        "_MASK_Level_Step",
+        "_ALL_MASK_Size",
+        "_ALL_MASK_Step",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_graveidl_ple_002_1.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_SimpleHDR_001_k",
+      "properties": [
+        "_Alpha",
+        "_Camera_Offset",
+        "_Color_01",
+        "_Color_02",
+        "_Color_Smoothstep",
+        "_Color_SmoothstepBlur",
+        "_Texture",
+        "_Rotation",
+        "_Channel_Selection",
+        "_Alpha_Smoothstep",
+        "_Alpha_SmoothstepBlur",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_graveidl_ple_002_2.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_SimpleHDR_001_k",
+      "properties": [
+        "_Alpha",
+        "_Camera_Offset",
+        "_Color_01",
+        "_Color_02",
+        "_Color_Smoothstep",
+        "_Color_SmoothstepBlur",
+        "_Texture",
+        "_Rotation",
+        "_Channel_Selection",
+        "_Alpha_Smoothstep",
+        "_Alpha_SmoothstepBlur",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_graveidl_soul_001_1.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_SinWaveTrail_TC_001_b",
+      "properties": [
+        "_Direction",
+        "_Color_01",
+        "_Color_02",
+        "_TC_Random",
+        "_Sine_Speed",
+        "_Sine_Amplitude",
+        "_Sien_Frequency",
+        "_Sine_Attenuation",
+        "_Noise_Amount",
+        "_Noise_Speed",
+        "_Noise_Tillng_X",
+        "_Noise_Tillng_Y",
+        "_MASK_Level",
+        "_MASK_Step",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_graveidl_soul_001_2.mat",
+      "originalShader": "VFX_Shader/Grave/fxs_SinWaveTrail_TC_001_b",
+      "properties": [
+        "_Direction",
+        "_Color_01",
+        "_Color_02",
+        "_TC_Random",
+        "_Sine_Speed",
+        "_Sine_Amplitude",
+        "_Sien_Frequency",
+        "_Sine_Attenuation",
+        "_Noise_Amount",
+        "_Noise_Speed",
+        "_Noise_Tillng_X",
+        "_Noise_Tillng_Y",
+        "_MASK_Level",
+        "_MASK_Step",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_HL_som_grave_001_1.mat",
+      "originalShader": "VFX_Shader/Other/CardHighlight",
+      "properties": [
+        "_MainTex",
+        "_TintColor",
+        "_MaskTex",
+        "_Uanim",
+        "_Vanim"
+      ],
+      "textures": [
+        "_MainTex",
+        "_MaskTex"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_HL_som_grave_001_2.mat",
+      "originalShader": "VFX_Shader/Other/CardHighlight",
+      "properties": [
+        "_MainTex",
+        "_TintColor",
+        "_MaskTex",
+        "_Uanim",
+        "_Vanim"
+      ],
+      "textures": [
+        "_MainTex",
+        "_MaskTex"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_HL_som_grave_002_1.mat",
+      "originalShader": "Unavailable",
+      "properties": [],
+      "textures": [
+        "_MainTex"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_HL_som_grave_002_2.mat",
+      "originalShader": "Unavailable",
+      "properties": [],
+      "textures": [
+        "_MainTex"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_imp_circle_01.mat",
+      "originalShader": "VFX_Shader/Exclusive/fxs_TutorialUI_TC_001_b",
+      "properties": [
+        "_Emissive",
+        "_Texture_Channel_Select",
+        "_use_TEXCOORD",
+        "_Main_Texture",
+        "_use_SmoothStep",
+        "_SmoothStep",
+        "_SmoothStep_Bler"
+      ],
+      "textures": [
+        "_Main_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_star_circle_01.mat",
+      "originalShader": "VFX_Shader/Mask/fxs_MASKNoiseScroll_TC_001_b",
+      "properties": [
+        "_Animation_Alpha",
+        "_Emissive",
+        "_Camera_Offset",
+        "_Main_Tile_X",
+        "_Main_Tile_Y",
+        "_Offset_X",
+        "_Offset_Y",
+        "_Main_Noise_Scroll_X",
+        "_Main_Noise_Scroll_Y",
+        "_Textur_Switch",
+        "_Simple_Noise",
+        "_Gradient_Noise",
+        "_Voronoi",
+        "_MAIN_Noise_Amount",
+        "_Main_Smoothstep_Switch",
+        "_Main_Edge1",
+        "_Main_Edge2",
+        "_Main_Thickness_white",
+        "_Main_Thickness_black",
+        "_Main_Texture",
+        "_Main_Texture_Channel_Select",
+        "_MASK_Texture",
+        "_Mask_Channel_Select",
+        "_MASK_Smoothstep_Switch",
+        "_Edge1",
+        "_Edge2",
+        "_MASK_Texture_Rotation",
+        "_ADD_Noise_Switch",
+        "_ADD_Simple_Noise",
+        "_ADD_Gradient_Noise",
+        "_ADD_Voronoi",
+        "_MASK_Add_Noise_Amount",
+        "_MASK_Add_Noise_Thickness_white",
+        "_MASK_Add_Noise_Thickness_black",
+        "_MASK_Add_Noise_Tile_X",
+        "_MASK_Add_Noise_Tile_Y",
+        "_MASK_Add_Noise_Scroll_X",
+        "_MASK_Add_Noise_Scroll_Y",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_MASK_Texture",
+        "_Main_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_Timer_flare_01_k.mat",
+      "originalShader": "VFX_Shader/Mask/fxs_MASKNoiseScroll_TC_001_k",
+      "properties": [
+        "_Animation_Alpha",
+        "_Emissive",
+        "_Camera_Offset",
+        "_Main_Tile_X",
+        "_Main_Tile_Y",
+        "_Offset_X",
+        "_Offset_Y",
+        "_Main_Noise_Scroll_X",
+        "_Main_Noise_Scroll_Y",
+        "_Textur_Switch",
+        "_Simple_Noise",
+        "_Gradient_Noise",
+        "_Voronoi",
+        "_MAIN_Noise_Amount",
+        "_Main_Smoothstep_Switch",
+        "_Main_Edge1",
+        "_Main_Edge2",
+        "_Main_Thickness_white",
+        "_Main_Thickness_black",
+        "_Main_Texture",
+        "_Main_Texture_Channel_Select",
+        "_MASK_Texture",
+        "_Mask_Channel_Select",
+        "_MASK_Smoothstep_Switch",
+        "_Edge1",
+        "_Edge2",
+        "_MASK_Texture_Rotation",
+        "_ADD_Noise_Switch",
+        "_ADD_Simple_Noise",
+        "_ADD_Gradient_Noise",
+        "_ADD_Voronoi",
+        "_MASK_Add_Noise_Amount",
+        "_MASK_Add_Noise_Thickness_white",
+        "_MASK_Add_Noise_Thickness_black",
+        "_MASK_Add_Noise_Tile_X",
+        "_MASK_Add_Noise_Tile_Y",
+        "_MASK_Add_Noise_Scroll_X",
+        "_MASK_Add_Noise_Scroll_Y",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_MASK_Texture",
+        "_Main_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_Timer_flare_02_b.mat",
+      "originalShader": "VFX_Shader/fxs_FlareRing_001_b",
+      "properties": [
+        "_Emissive",
+        "_Rainbow_Scale",
+        "_Rainbow_Blur",
+        "_Rainbow_Add_Whit",
+        "_use_Rainbow",
+        "_rainbow_invert",
+        "_Color_01",
+        "_Color_02",
+        "_Color_Step",
+        "_Color_Step_Blur",
+        "_Flare_Rotation",
+        "_Flare_Scale",
+        "_Flare_Ray_Move",
+        "_Flare_Ray_Amount",
+        "_Flare_Ray_Amplitude",
+        "_Circle_Scale",
+        "_Circle_Scale_Blur",
+        "_Hole_Scale",
+        "_Hole_Scale_Blur",
+        "_Simple_Noise_Scale",
+        "_Gradient_Noise_Scale",
+        "_Voronoi_Scale",
+        "_Noise_Combine",
+        "_Alpha",
+        "_Alpha_Blur",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far",
+        "_Texture2DAsset_3e4e754e8e574f9bab9bd1c9a475f786_Out_0"
+      ],
+      "textures": [
+        "_Texture2DAsset_3e4e754e8e574f9bab9bd1c9a475f786_Out_0"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_Timer_line_01_k.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_ParticleRing_001_k",
+      "properties": [
+        "_Animator_Alpha",
+        "_Radial_Scale",
+        "_BaseBlur",
+        "_Alpha",
+        "_Alphapow",
+        "_Emission",
+        "_RING_ON",
+        "_RING_Radial",
+        "_RING_Blur",
+        "_Step",
+        "_Step_Minus",
+        "_Step_Slider",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_Timer_par_01_b.mat",
+      "originalShader": "VFX_Shader/Particle/fxs_ParticleRing_001_b",
+      "properties": [
+        "_Animator_Alpha",
+        "_Radial_Scale",
+        "_BaseBlur",
+        "_Alpha",
+        "_Alphapow",
+        "_Emission",
+        "_RING_ON",
+        "_RING_Radial",
+        "_RING_Blur",
+        "_Step",
+        "_Step_Minus",
+        "_Step_Slider",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far",
+        "_MainTex"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxm_Timer_star_01_k.mat",
+      "originalShader": "VFX_Shader/Mask/fxs_MASKNoiseScroll_TC_001_k",
+      "properties": [
+        "_Animation_Alpha",
+        "_Emissive",
+        "_Camera_Offset",
+        "_Main_Tile_X",
+        "_Main_Tile_Y",
+        "_Offset_X",
+        "_Offset_Y",
+        "_Main_Noise_Scroll_X",
+        "_Main_Noise_Scroll_Y",
+        "_Textur_Switch",
+        "_Simple_Noise",
+        "_Gradient_Noise",
+        "_Voronoi",
+        "_MAIN_Noise_Amount",
+        "_Main_Smoothstep_Switch",
+        "_Main_Edge1",
+        "_Main_Edge2",
+        "_Main_Thickness_white",
+        "_Main_Thickness_black",
+        "_Main_Texture",
+        "_Main_Texture_Channel_Select",
+        "_MASK_Texture",
+        "_Mask_Channel_Select",
+        "_MASK_Smoothstep_Switch",
+        "_Edge1",
+        "_Edge2",
+        "_MASK_Texture_Rotation",
+        "_ADD_Noise_Switch",
+        "_ADD_Simple_Noise",
+        "_ADD_Gradient_Noise",
+        "_ADD_Voronoi",
+        "_MASK_Add_Noise_Amount",
+        "_MASK_Add_Noise_Thickness_white",
+        "_MASK_Add_Noise_Thickness_black",
+        "_MASK_Add_Noise_Tile_X",
+        "_MASK_Add_Noise_Tile_Y",
+        "_MASK_Add_Noise_Scroll_X",
+        "_MASK_Add_Noise_Scroll_Y",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_MASK_Texture",
+        "_Main_Texture"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/fxp_target_arrow_001_b.mat",
+      "originalShader": "VFX_Shader/Exclusive/fxs_Target_arrow_001_b",
+      "properties": [
+        "_Rollover",
+        "_Selected_Color_01",
+        "_Selected_Color_02",
+        "_Default_Color_01",
+        "_Default_Color_2",
+        "_Tiling",
+        "_Texture2DAsset_b6d1fd99174c608f800b61fcd5471719_Out_0",
+        "_Texture2DAsset_46a0b6b632b7ad8a9a0dbeab8e0a7fa5_Out_0",
+        "_Texture2DAsset_4f4a26709ec6ff8d9e69ef02918507d2_Out_0",
+        "_Texture2DAsset_ba8237ebbd5d078c896d47d3e15b10dc_Out_0"
+      ],
+      "textures": [
+        "_Texture2DAsset_46a0b6b632b7ad8a9a0dbeab8e0a7fa5_Out_0",
+        "_Texture2DAsset_4f4a26709ec6ff8d9e69ef02918507d2_Out_0",
+        "_Texture2DAsset_b6d1fd99174c608f800b61fcd5471719_Out_0",
+        "_Texture2DAsset_ba8237ebbd5d078c896d47d3e15b10dc_Out_0"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/LinkMarkerMat.mat",
+      "originalShader": "Unavailable",
+      "properties": [],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/Lit.mat",
+      "originalShader": "Universal Render Pipeline/Lit",
+      "properties": [
+        "_WorkflowMode",
+        "_BaseMap",
+        "_BaseColor",
+        "_Cutoff",
+        "_Smoothness",
+        "_GlossMapScale",
+        "_SmoothnessTextureChannel",
+        "_Metallic",
+        "_MetallicGlossMap",
+        "_SpecColor",
+        "_SpecGlossMap",
+        "_SpecularHighlights",
+        "_EnvironmentReflections",
+        "_BumpScale",
+        "_BumpMap",
+        "_Parallax",
+        "_ParallaxMap",
+        "_OcclusionStrength",
+        "_OcclusionMap",
+        "_EmissionColor",
+        "_EmissionMap",
+        "_DetailMask",
+        "_DetailAlbedoMapScale",
+        "_DetailAlbedoMap",
+        "_DetailNormalMapScale",
+        "_DetailNormalMap",
+        "_ClearCoatMask",
+        "_ClearCoatSmoothness",
+        "_Surface",
+        "_Blend",
+        "_AlphaClip",
+        "_SrcBlend",
+        "_DstBlend",
+        "_ZWrite",
+        "_Cull",
+        "_ReceiveShadows",
+        "_QueueOffset",
+        "_MainTex",
+        "_Color",
+        "_GlossMapScale",
+        "_Glossiness",
+        "_GlossyReflections"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/Lit_0.mat",
+      "originalShader": "Universal Render Pipeline/Lit",
+      "properties": [
+        "_WorkflowMode",
+        "_BaseMap",
+        "_BaseColor",
+        "_Cutoff",
+        "_Smoothness",
+        "_GlossMapScale",
+        "_SmoothnessTextureChannel",
+        "_Metallic",
+        "_MetallicGlossMap",
+        "_SpecColor",
+        "_SpecGlossMap",
+        "_SpecularHighlights",
+        "_EnvironmentReflections",
+        "_BumpScale",
+        "_BumpMap",
+        "_Parallax",
+        "_ParallaxMap",
+        "_OcclusionStrength",
+        "_OcclusionMap",
+        "_EmissionColor",
+        "_EmissionMap",
+        "_DetailMask",
+        "_DetailAlbedoMapScale",
+        "_DetailAlbedoMap",
+        "_DetailNormalMapScale",
+        "_DetailNormalMap",
+        "_ClearCoatMask",
+        "_ClearCoatSmoothness",
+        "_Surface",
+        "_Blend",
+        "_AlphaClip",
+        "_SrcBlend",
+        "_DstBlend",
+        "_ZWrite",
+        "_Cull",
+        "_ReceiveShadows",
+        "_QueueOffset",
+        "_MainTex",
+        "_Color",
+        "_GlossMapScale",
+        "_Glossiness",
+        "_GlossyReflections"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_AvatarStand_002_01_far.mat",
+      "originalShader": "Shader Graphs/UnlitRecieveShadow",
+      "properties": [
+        "_Texture2D",
+        "_ShadowSoftDistance",
+        "_QueueOffset",
+        "_QueueControl"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_AvatarStand_002_01_near.mat",
+      "originalShader": "Shader Graphs/UnlitRecieveShadow",
+      "properties": [
+        "_Texture2D",
+        "_ShadowSoftDistance",
+        "_QueueOffset",
+        "_QueueControl"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_AvatarStand_002_02_far.mat",
+      "originalShader": "Shader Graphs/Unlit_simpleAlpha",
+      "properties": [
+        "_Texture2D",
+        "_QueueOffset",
+        "_QueueControl"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_AvatarStand_002_02_near.mat",
+      "originalShader": "Shader Graphs/Unlit_simpleAlpha",
+      "properties": [
+        "_Texture2D",
+        "_QueueOffset",
+        "_QueueControl"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_AvatarStand_002_03_far.mat",
+      "originalShader": "Shader Graphs/UnlitRecieveShadow_alpha",
+      "properties": [
+        "_Texture2D",
+        "_ShadowSoftDistance",
+        "_QueueOffset",
+        "_QueueControl"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_AvatarStand_002_03_near.mat",
+      "originalShader": "Shader Graphs/UnlitRecieveShadow_alpha",
+      "properties": [
+        "_Texture2D",
+        "_ShadowSoftDistance",
+        "_QueueOffset",
+        "_QueueControl"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Grave_002_01_far.mat",
+      "originalShader": "Shader Graphs/GraveCommon01",
+      "properties": [
+        "_Texture2D",
+        "_Texture2DLight",
+        "_GraveCardExist",
+        "_GraveMouseOver",
+        "_GravePressButton",
+        "_ExcludeCardExist",
+        "_ExcludeMouseOver",
+        "_ExcludePressButton",
+        "_IntensityGraveCardExist",
+        "_IntensityGraveMouseOver",
+        "_IntensityExcludeCardExist",
+        "_IntensityExcludeMouseOver"
+      ],
+      "textures": [
+        "_Texture2D",
+        "_Texture2DLight"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Grave_002_01_near.mat",
+      "originalShader": "Shader Graphs/GraveCommon01",
+      "properties": [
+        "_Texture2D",
+        "_Texture2DLight",
+        "_GraveCardExist",
+        "_GraveMouseOver",
+        "_GravePressButton",
+        "_ExcludeCardExist",
+        "_ExcludeMouseOver",
+        "_ExcludePressButton",
+        "_IntensityGraveCardExist",
+        "_IntensityGraveMouseOver",
+        "_IntensityExcludeCardExist",
+        "_IntensityExcludeMouseOver"
+      ],
+      "textures": [
+        "_Texture2D",
+        "_Texture2DLight"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Grave_002_02.mat",
+      "originalShader": "Shader Graphs/UnlitRecieveShadow_alpha",
+      "properties": [
+        "_Texture2D",
+        "_ShadowSoftDistance"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Grave_002_02_0.mat",
+      "originalShader": "Shader Graphs/UnlitRecieveShadow_alpha",
+      "properties": [
+        "_Texture2D",
+        "_ShadowSoftDistance"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_01_far.mat",
+      "originalShader": "Shader Graphs/UnlitRecieveShadow",
+      "properties": [
+        "_Texture2D",
+        "_ShadowSoftDistance"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_01_near.mat",
+      "originalShader": "Shader Graphs/UnlitRecieveShadow",
+      "properties": [
+        "_Texture2D",
+        "_ShadowSoftDistance"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_02_far.mat",
+      "originalShader": "Shader Graphs/UnlitRecieveShadow",
+      "properties": [
+        "_Texture2D",
+        "_ShadowSoftDistance"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_02_near.mat",
+      "originalShader": "Shader Graphs/UnlitRecieveShadow",
+      "properties": [
+        "_Texture2D",
+        "_ShadowSoftDistance"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_03_02_far.mat",
+      "originalShader": "Shader Graphs/fxs_ASu008_04_alpha",
+      "properties": [
+        "_Texture2D",
+        "_ShadowSoftDistance"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_03_02_near.mat",
+      "originalShader": "Shader Graphs/fxs_ASu008_04_alpha",
+      "properties": [
+        "_Texture2D",
+        "_ShadowSoftDistance"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_03_far.mat",
+      "originalShader": "Universal Render Pipeline/Unlit",
+      "properties": [
+        "_BaseMap",
+        "_BaseColor",
+        "_Cutoff",
+        "_Surface",
+        "_Blend",
+        "_AlphaClip",
+        "_SrcBlend",
+        "_DstBlend",
+        "_ZWrite",
+        "_Cull",
+        "_QueueOffset",
+        "_MainTex",
+        "_Color",
+        "_SampleGI"
+      ],
+      "textures": [
+        "_BaseMap",
+        "_MainTex"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_03_near.mat",
+      "originalShader": "Universal Render Pipeline/Unlit",
+      "properties": [
+        "_BaseMap",
+        "_BaseColor",
+        "_Cutoff",
+        "_Surface",
+        "_Blend",
+        "_AlphaClip",
+        "_SrcBlend",
+        "_DstBlend",
+        "_ZWrite",
+        "_Cull",
+        "_QueueOffset",
+        "_MainTex",
+        "_Color",
+        "_SampleGI"
+      ],
+      "textures": [
+        "_BaseMap",
+        "_MainTex"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_04_far.mat",
+      "originalShader": "Shader Graphs/UnlitRecieveShadow_alpha",
+      "properties": [
+        "_Texture2D",
+        "_ShadowSoftDistance"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_04_near.mat",
+      "originalShader": "Shader Graphs/UnlitRecieveShadow_alpha",
+      "properties": [
+        "_Texture2D",
+        "_ShadowSoftDistance"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_05_far.mat",
+      "originalShader": "Shader Graphs/UnlitRecieveShadow_alpha",
+      "properties": [
+        "_Texture2D",
+        "_ShadowSoftDistance"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Mat_002_05_near.mat",
+      "originalShader": "Shader Graphs/UnlitRecieveShadow_alpha",
+      "properties": [
+        "_Texture2D",
+        "_ShadowSoftDistance"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Timer_c001_01.mat",
+      "originalShader": "Shader Graphs/Timer_c001_01",
+      "properties": [
+        "_Texture2D",
+        "_SwitchTurn",
+        "_Active",
+        "_MouseOver",
+        "_PressButton",
+        "_ColorMouseOverNear",
+        "_ColorPlayNear",
+        "_InactiveIntensityNear",
+        "_ColorMouseOverFar",
+        "_ColorPlayFar",
+        "_InactiveIntensityFar",
+        "_SampleTexture2D_4791db607d671180b2a839392ec5ea21_Texture_1"
+      ],
+      "textures": [
+        "_SampleTexture2D_4791db607d671180b2a839392ec5ea21_Texture_1",
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Timer_c001_01_0.mat",
+      "originalShader": "Shader Graphs/Timer_c001_01",
+      "properties": [
+        "_Texture2D",
+        "_SwitchTurn",
+        "_Active",
+        "_MouseOver",
+        "_PressButton",
+        "_ColorMouseOverNear",
+        "_ColorPlayNear",
+        "_InactiveIntensityNear",
+        "_ColorMouseOverFar",
+        "_ColorPlayFar",
+        "_InactiveIntensityFar",
+        "_SampleTexture2D_4791db607d671180b2a839392ec5ea21_Texture_1"
+      ],
+      "textures": [
+        "_SampleTexture2D_4791db607d671180b2a839392ec5ea21_Texture_1",
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Timer_c001_02.mat",
+      "originalShader": "Shader Graphs/Timer_c001_02",
+      "properties": [
+        "_MaxTime",
+        "_AddTime",
+        "_Active",
+        "_MaxTimeColor01",
+        "_MaxTimeColor02",
+        "_AddTimeColorBar01",
+        "_AddTimeColor02",
+        "_SwitchAddToMax",
+        "_BarBaseColor",
+        "_BarTickness"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Timer_c001_03.mat",
+      "originalShader": "Shader Graphs/Timer_c001_03",
+      "properties": [
+        "_Texture2D",
+        "_SwitchTurn",
+        "_Active",
+        "_ColorP1",
+        "_InactiveIntensityNear",
+        "_ColorP2",
+        "_InactiveIntensityFar"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/MT_Timer_c001_03_0.mat",
+      "originalShader": "Shader Graphs/Timer_c001_03",
+      "properties": [
+        "_Texture2D",
+        "_SwitchTurn",
+        "_Active",
+        "_ColorP1",
+        "_InactiveIntensityNear",
+        "_ColorP2",
+        "_InactiveIntensityFar"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/ParticlesUnlit.mat",
+      "originalShader": "Universal Render Pipeline/Particles/Unlit",
+      "properties": [
+        "_BaseMap",
+        "_BaseColor",
+        "_Cutoff",
+        "_BumpMap",
+        "_EmissionColor",
+        "_EmissionMap",
+        "_SoftParticlesNearFadeDistance",
+        "_SoftParticlesFarFadeDistance",
+        "_CameraNearFadeDistance",
+        "_CameraFarFadeDistance",
+        "_DistortionBlend",
+        "_DistortionStrength",
+        "_Surface",
+        "_Blend",
+        "_AlphaClip",
+        "_BlendOp",
+        "_SrcBlend",
+        "_DstBlend",
+        "_ZWrite",
+        "_Cull",
+        "_ColorMode",
+        "_BaseColorAddSubDiff",
+        "_FlipbookBlending",
+        "_SoftParticlesEnabled",
+        "_CameraFadingEnabled",
+        "_SoftParticleFadeParams",
+        "_CameraFadeParams",
+        "_DistortionEnabled",
+        "_DistortionStrengthScaled",
+        "_QueueOffset",
+        "_FlipbookMode",
+        "_Mode",
+        "_Color"
+      ],
+      "textures": [
+        "_BaseMap"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/ParticlesUnlit_0.mat",
+      "originalShader": "Universal Render Pipeline/Particles/Unlit",
+      "properties": [
+        "_BaseMap",
+        "_BaseColor",
+        "_Cutoff",
+        "_BumpMap",
+        "_EmissionColor",
+        "_EmissionMap",
+        "_SoftParticlesNearFadeDistance",
+        "_SoftParticlesFarFadeDistance",
+        "_CameraNearFadeDistance",
+        "_CameraFarFadeDistance",
+        "_DistortionBlend",
+        "_DistortionStrength",
+        "_Surface",
+        "_Blend",
+        "_AlphaClip",
+        "_BlendOp",
+        "_SrcBlend",
+        "_DstBlend",
+        "_ZWrite",
+        "_Cull",
+        "_ColorMode",
+        "_BaseColorAddSubDiff",
+        "_FlipbookBlending",
+        "_SoftParticlesEnabled",
+        "_CameraFadingEnabled",
+        "_SoftParticleFadeParams",
+        "_CameraFadeParams",
+        "_DistortionEnabled",
+        "_DistortionStrengthScaled",
+        "_QueueOffset",
+        "_FlipbookMode",
+        "_Mode",
+        "_Color"
+      ],
+      "textures": [
+        "_BaseMap"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/Material/YGOMD-TestFont1 SDF Material.mat",
+      "originalShader": "TextMeshPro/Distance Field",
+      "properties": [
+        "_FaceTex",
+        "_FaceUVSpeedX",
+        "_FaceUVSpeedY",
+        "_FaceColor",
+        "_FaceDilate",
+        "_OutlineColor",
+        "_OutlineTex",
+        "_OutlineUVSpeedX",
+        "_OutlineUVSpeedY",
+        "_OutlineWidth",
+        "_OutlineSoftness",
+        "_Bevel",
+        "_BevelOffset",
+        "_BevelWidth",
+        "_BevelClamp",
+        "_BevelRoundness",
+        "_LightAngle",
+        "_SpecularColor",
+        "_SpecularPower",
+        "_Reflectivity",
+        "_Diffuse",
+        "_Ambient",
+        "_BumpMap",
+        "_BumpOutline",
+        "_BumpFace",
+        "_ReflectFaceColor",
+        "_ReflectOutlineColor",
+        "_Cube",
+        "_EnvMatrixRotation",
+        "_UnderlayColor",
+        "_UnderlayOffsetX",
+        "_UnderlayOffsetY",
+        "_UnderlayDilate",
+        "_UnderlaySoftness",
+        "_GlowColor",
+        "_GlowOffset",
+        "_GlowInner",
+        "_GlowOuter",
+        "_GlowPower",
+        "_WeightNormal",
+        "_WeightBold",
+        "_ShaderFlags",
+        "_ScaleRatioA",
+        "_ScaleRatioB",
+        "_ScaleRatioC",
+        "_MainTex",
+        "_TextureWidth",
+        "_TextureHeight",
+        "_GradientScale",
+        "_ScaleX",
+        "_ScaleY",
+        "_PerspectiveFilter",
+        "_Sharpness",
+        "_VertexOffsetX",
+        "_VertexOffsetY",
+        "_MaskCoord",
+        "_ClipRect",
+        "_MaskSoftnessX",
+        "_MaskSoftnessY",
+        "_StencilComp",
+        "_Stencil",
+        "_StencilOp",
+        "_StencilWriteMask",
+        "_StencilReadMask",
+        "_ColorMask"
+      ],
+      "textures": [
+        "_MainTex"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Material/MT_PlayableGuide_c001_ Luminous_far.mat",
+      "originalShader": "Shader Graphs/PlayableGuide_c001_Luminous",
+      "properties": [
+        "_ColorP1",
+        "_ColorP2",
+        "_Strength",
+        "_Swich",
+        "_QueueOffset",
+        "_QueueControl"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Material/MT_PlayableGuide_c001_ Luminous_near.mat",
+      "originalShader": "Shader Graphs/PlayableGuide_c001_Luminous",
+      "properties": [
+        "_ColorP1",
+        "_ColorP2",
+        "_Strength",
+        "_Swich",
+        "_QueueOffset",
+        "_QueueControl"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Material/MT_PlayableGuide_c001_change_far.mat",
+      "originalShader": "Shader Graphs/PlayableGuide_c001_change",
+      "properties": [
+        "_Opacity",
+        "_ColorP1",
+        "_ColorP2",
+        "_Texture2D",
+        "_Opacity02",
+        "_Move01",
+        "_Move02",
+        "_Scale",
+        "_Switch",
+        "_SampleTexture2D_72db3480b1bdea8583e6b7743c79a377_Texture_1_Texture2D",
+        "_SampleTexture2D_861272eb7bffee86adb165d5f444d6c7_Texture_1_Texture2D",
+        "_QueueOffset",
+        "_QueueControl"
+      ],
+      "textures": [
+        "_SampleTexture2D_72db3480b1bdea8583e6b7743c79a377_Texture_1_Texture2D",
+        "_SampleTexture2D_861272eb7bffee86adb165d5f444d6c7_Texture_1_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Material/MT_PlayableGuide_c001_change_near.mat",
+      "originalShader": "Shader Graphs/PlayableGuide_c001_change",
+      "properties": [
+        "_Opacity",
+        "_ColorP1",
+        "_ColorP2",
+        "_Texture2D",
+        "_Opacity02",
+        "_Move01",
+        "_Move02",
+        "_Scale",
+        "_Switch",
+        "_SampleTexture2D_72db3480b1bdea8583e6b7743c79a377_Texture_1_Texture2D",
+        "_SampleTexture2D_861272eb7bffee86adb165d5f444d6c7_Texture_1_Texture2D",
+        "_QueueOffset",
+        "_QueueControl"
+      ],
+      "textures": [
+        "_SampleTexture2D_72db3480b1bdea8583e6b7743c79a377_Texture_1_Texture2D",
+        "_SampleTexture2D_861272eb7bffee86adb165d5f444d6c7_Texture_1_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Material/MT_PlayableGuide_c001_far_mat13.mat",
+      "originalShader": "Shader Graphs/PlayableGuide_c001_chousei",
+      "properties": [
+        "_Opacity",
+        "_ColorP1",
+        "_ColorP2",
+        "_Texture2D",
+        "_Switch",
+        "_QueueOffset",
+        "_QueueControl"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/OriginalAdditions/Guide/Material/MT_PlayableGuide_c001_near_mat13.mat",
+      "originalShader": "Shader Graphs/PlayableGuide_c001_chousei",
+      "properties": [
+        "_Opacity",
+        "_ColorP1",
+        "_ColorP2",
+        "_Texture2D",
+        "_Switch",
+        "_QueueOffset",
+        "_QueueControl"
+      ],
+      "textures": [
+        "_Texture2D"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/CardModel_white1.mat",
+      "originalShader": "Universal Render Pipeline/Simple Lit",
+      "properties": [
+        "_BaseMap",
+        "_BaseColor",
+        "_Cutoff",
+        "_SpecColor",
+        "_SpecGlossMap",
+        "_SmoothnessSource",
+        "_SpecularHighlights",
+        "_BumpScale",
+        "_BumpMap",
+        "_EmissionColor",
+        "_EmissionMap",
+        "_Surface",
+        "_Blend",
+        "_AlphaClip",
+        "_SrcBlend",
+        "_DstBlend",
+        "_ZWrite",
+        "_Cull",
+        "_ReceiveShadows",
+        "_QueueOffset",
+        "_Smoothness",
+        "_MainTex",
+        "_Color",
+        "_Shininess",
+        "_GlossinessSource",
+        "_SpecSource"
+      ],
+      "textures": [
+        "_BumpMap"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/DeckWhite.mat",
+      "originalShader": "VFX_Shader/Other/C_ParticleAddScroll01",
+      "properties": [
+        "_MainTex",
+        "_Tilling_Offset",
+        "_TintColor",
+        "_UscrollSpeed",
+        "_VscrollSpeed"
+      ],
+      "textures": []
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/EfDrop.mat",
+      "originalShader": "Ygom/Effect/C_ParticleAdd",
+      "properties": [
+        "_TintColor",
+        "_MainTex",
+        "_InvFade",
+        "_ZTest"
+      ],
+      "textures": [
+        "_MainTex"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/EFF_flrcmn_01_MAT.mat",
+      "originalShader": "Ygom/Effect/C_ParticleAdd",
+      "properties": [
+        "_TintColor",
+        "_MainTex",
+        "_InvFade",
+        "_ZTest"
+      ],
+      "textures": [
+        "_MainTex"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/EFF_flrstr_03_TEX.mat",
+      "originalShader": "TimelineShader/InGame/Other/C_ParticleAdd_CamOffset",
+      "properties": [
+        "_Camera_Offset",
+        "_TintColor",
+        "_MainTex",
+        "_InvFade"
+      ],
+      "textures": [
+        "_MainTex"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/FlareSet.mat",
+      "originalShader": "VFX_Shader/Other/C_ParticleAddScroll01",
+      "properties": [
+        "_MainTex",
+        "_Tilling_Offset",
+        "_TintColor",
+        "_UscrollSpeed",
+        "_VscrollSpeed"
+      ],
+      "textures": [
+        "_MainTex"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/flashSphere.mat",
+      "originalShader": "Ygom/Effect/C_ParticleAdd",
+      "properties": [
+        "_TintColor",
+        "_MainTex",
+        "_InvFade",
+        "_ZTest"
+      ],
+      "textures": [
+        "_MainTex"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/flashSqure.mat",
+      "originalShader": "Ygom/Effect/C_ParticleAdd",
+      "properties": [
+        "_TintColor",
+        "_MainTex",
+        "_InvFade",
+        "_ZTest"
+      ],
+      "textures": [
+        "_MainTex"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/flashSqureBl.mat",
+      "originalShader": "Ygom/Effect/C_ParticleBlend",
+      "properties": [
+        "_TintColor",
+        "_MainTex",
+        "_InvFade",
+        "_ZTest"
+      ],
+      "textures": [
+        "_MainTex"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/mt_Particle_k.mat",
+      "originalShader": "Ygom/Effect/C_ParticleAdd",
+      "properties": [
+        "_TintColor",
+        "_MainTex",
+        "_InvFade",
+        "_ZTest"
+      ],
+      "textures": [
+        "_MainTex"
+      ]
+    },
+    {
+      "path": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/Material/mt_smoke_b.mat",
+      "originalShader": "VFX_Shader/Mask/fxs_MASKNoiseScroll_TC_001_b",
+      "properties": [
+        "_Animation_Alpha",
+        "_Emissive",
+        "_Camera_Offset",
+        "_Main_Tile_X",
+        "_Main_Tile_Y",
+        "_Offset_X",
+        "_Offset_Y",
+        "_Main_Noise_Scroll_X",
+        "_Main_Noise_Scroll_Y",
+        "_Textur_Switch",
+        "_Simple_Noise",
+        "_Gradient_Noise",
+        "_Voronoi",
+        "_MAIN_Noise_Amount",
+        "_Main_Smoothstep_Switch",
+        "_Main_Edge1",
+        "_Main_Edge2",
+        "_Main_Thickness_white",
+        "_Main_Thickness_black",
+        "_Main_Texture",
+        "_Main_Texture_Channel_Select",
+        "_MASK_Texture",
+        "_Mask_Channel_Select",
+        "_MASK_Smoothstep_Switch",
+        "_Edge1",
+        "_Edge2",
+        "_MASK_Texture_Rotation",
+        "_ADD_Noise_Switch",
+        "_ADD_Simple_Noise",
+        "_ADD_Gradient_Noise",
+        "_ADD_Voronoi",
+        "_MASK_Add_Noise_Amount",
+        "_MASK_Add_Noise_Thickness_white",
+        "_MASK_Add_Noise_Thickness_black",
+        "_MASK_Add_Noise_Tile_X",
+        "_MASK_Add_Noise_Tile_Y",
+        "_MASK_Add_Noise_Scroll_X",
+        "_MASK_Add_Noise_Scroll_Y",
+        "_Soft_Particle",
+        "_Soft_Particle_Near",
+        "_Soft_Particle_Far"
+      ],
+      "textures": [
+        "_MASK_Texture",
+        "_Main_Texture"
+      ]
+    }
+  ]
+}

@@ -27,3 +27,10 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: BattleScene
+    reference:
+      m_AssetGUID: 177f8ffe606759b42bfbe88c52dd55f6
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

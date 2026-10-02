@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e61f57c8661b94081f6053d169028b, type: 3}
+  m_Name: BattleUISetting
+  m_EditorClassIdentifier: HotUpdate::UISettings
+  templateUIPrefab: {fileID: 3994598880624442005, guid: e01fc2c0d9a8c8f4ea87250ba2a5a14c, type: 3}
+  screensToRegister:
+  - {fileID: 2845474381255314290, guid: c78a2d97e49e1d64aafd6768763526c5, type: 3}
+  - {fileID: 6006942369323550430, guid: 9d56594adfbeed94e8d15a4acf0e2203, type: 3}
+  - {fileID: 1873670201525903973, guid: ca2730a0215a6c54aaf781f93a4810af, type: 3}
+  - {fileID: 6020660721750545323, guid: f6bea0640fd9bc94aa7b61eaf79716f9, type: 3}
+  deactivateScreenGOs: 1

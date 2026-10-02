@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: fxm_anime_circle_01
+  m_Shader: {fileID: 4800000, guid: 54ecd6080c9a96c418e5e4ff351ef062, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - SHADOWCASTER
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MASK_Texture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Main_Texture:
+        m_Texture: {fileID: 2800000, guid: 475ca058410068a4d90849b1436b1bfa, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SourceTexture:
+        m_Texture: {fileID: 2800000, guid: 475ca058410068a4d90849b1436b1bfa, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ALL_MASK_Size: 1
+    - _ALL_MASK_Step: 0.8
+    - _Alpha: 1
+    - _AlphaClip: 0
+    - _Alphapow: 1
+    - _Animation_Alpha: 1
+    - _Animator_Alpha: 1
+    - _BaseBlur: 1
+    - _Blend: 2
+    - _BlendOp: 0
+    - _BumpScale: 1
+    - _CameraFadingEnabled: 0
+    - _CameraFarFadeDistance: 2
+    - _CameraNearFadeDistance: 1
+    - _ClearCoatMask: 0
+    - _ClearCoatSmoothness: 0
+    - _ColorMode: 0
+    - _Color_Noise_Amount: 5
+    - _Color_Value: 0
+    - _Cull: 2
+    - _Cutoff: 0.347
+    - _DetailAlbedoMapScale: 1
+    - _DetailNormalMapScale: 1
+    - _DistortionBlend: 0.5
+    - _DistortionEnabled: 0
+    - _DistortionStrength: 1
+    - _DistortionStrengthScaled: 0.1
+    - _DstBlend: 10
+    - _EnvironmentReflections: 1
+    - _Family: 0
+    - _FlipbookBlending: 0
+    - _FlipbookMode: 0
+    - _GlossMapScale: 0
+    - _Glossiness: 0
+    - _GlossyReflections: 0
+    - _Main_Noise_Scroll_X: 0
+    - _Main_Noise_Scroll_Y: 0
+    - _Main_Tile_X: 1
+    - _Main_Tile_Y: 1
+    - _Mask_Texture_Rotate: 0
+    - _Metallic: 0
+    - _Mode: 0
+    - _Noise_Amount: 5
+    - _Noise_Speed: 0.1
+    - _OcclusionStrength: 1
+    - _Offset_X: 0
+    - _Offset_Y: 0
+    - _Opacity: 1
+    - _Parallax: 0.005
+    - _QueueOffset: 0
+    - _RING_Blur: 5
+    - _RING_ON: 0
+    - _RING_Radial: 0
+    - _Radial_Scale: 1
+    - _ReceiveShadows: 1
+    - _SmoothStep: 0
+    - _SmoothStep_Bler: 1
+    - _Smoothness: 0.5
+    - _SmoothnessTextureChannel: 0
+    - _Smoothstep: 0.8
+    - _Smoothstep_Bler: 1
+    - _SoftParticlesEnabled: 0
+    - _SoftParticlesFarFadeDistance: 1
+    - _SoftParticlesNearFadeDistance: 0
+    - _Soft_Particle: 0
+    - _Soft_Particle_Far: 0
+    - _Soft_Particle_Near: 0
+    - _SourceHasTexture: 1
+    - _SpecularHighlights: 1
+    - _SrcBlend: 5
+    - _Surface: 1
+    - _Tiling_X: 1
+    - _Tiling_Y: 1
+    - _Width: 0
+    - _Width_Squeeze: 0
+    - _WorkflowMode: 1
+    - _ZWrite: 0
+    - _use_SmoothStep: 0
+    - _use_Smoothstep: 0
+    - _use_TEXCOORD: 1
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
+    - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color_01: {r: 1, g: 0, b: 0, a: 0}
+    - _Color_02: {r: 1, g: 0, b: 0, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Emissive: {r: 1, g: 1, b: 1, a: 0}
+    - _Main_Texture_Channel_Select: {r: 1, g: 0, b: 0, a: 0}
+    - _Mask_Channel_Select: {r: 1, g: 0, b: 0, a: 0}
+    - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
+    - _SourceTint: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _Texture_Channel_Select: {r: 1, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
