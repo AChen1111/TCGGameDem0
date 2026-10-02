@@ -1,3 +1,0 @@
-interface:
-  display_name: "TCG 界面工作流"
-  short_description: "按项目现有界面框架制作窗口、绑定引用，并验证布局及交互结果"

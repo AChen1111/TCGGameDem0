@@ -1,0 +1,4276 @@
+{
+  "timelines": [
+    {
+      "prefabName": "DuelBattlePhase_far",
+      "prefabPath": "Assets/Art/MDPro3Battle/GameObject/DuelBattlePhase_far.prefab",
+      "tracks": [
+        {
+          "path": "center",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/center.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 6.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "center/img_Phase_far",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/img_Phase.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextGroup_Battle.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 2.7,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup/Text",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/Text_Battle.anim",
+              "start": 0.0,
+              "duration": 0.9333333333333333,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 0.2,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.25,
+                      "value": 10.0,
+                      "inSlope": "7.6293945E-06",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.81666666,
+                      "value": 10.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.93333334,
+                      "value": 0.2,
+                      "inSlope": "5.849201E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 0.075,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.13333334,
+                      "value": 0.78,
+                      "inSlope": "7.8681893E-07",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.6166667,
+                      "value": 0.78,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.6333333,
+                      "value": 0.0,
+                      "inSlope": "-7.375819E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.93333334,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.93333334,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.93333334,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "TextGroup/TextFace",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFace.anim",
+              "start": 0.0,
+              "duration": 1.0,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.6166667,
+                      "value": 0.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.6333333,
+                      "value": 0.78,
+                      "inSlope": "6.599992",
+                      "outSlope": "6.6000013",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.75,
+                      "value": 1.0,
+                      "inSlope": "1.1573865E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 1.0,
+                      "value": 0.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "TextGroup/TextLine",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextLine.anim",
+              "start": 0.0,
+              "duration": 1.0,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.6166667,
+                      "value": 0.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.6333333,
+                      "value": 0.78,
+                      "inSlope": "7.375819E-06",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.75,
+                      "value": 0.78,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 1.0,
+                      "value": 0.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "duration": 1.0
+    },
+    {
+      "prefabName": "DuelBattlePhase_near",
+      "prefabPath": "Assets/Art/MDPro3Battle/GameObject/DuelBattlePhase_near.prefab",
+      "tracks": [
+        {
+          "path": "center",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/center.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 6.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "center/img_Phase_near",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/img_Phase.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextGroup_Battle.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 2.7,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup/Text",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/Text_Battle.anim",
+              "start": 0.0,
+              "duration": 0.9333333333333333,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 0.2,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.25,
+                      "value": 10.0,
+                      "inSlope": "7.6293945E-06",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.81666666,
+                      "value": 10.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.93333334,
+                      "value": 0.2,
+                      "inSlope": "5.849201E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 0.075,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.13333334,
+                      "value": 0.78,
+                      "inSlope": "7.8681893E-07",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.6166667,
+                      "value": 0.78,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.6333333,
+                      "value": 0.0,
+                      "inSlope": "-7.375819E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.93333334,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.93333334,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.93333334,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "TextGroup/TextFace",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFace.anim",
+              "start": 0.0,
+              "duration": 1.0,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.6166667,
+                      "value": 0.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.6333333,
+                      "value": 0.78,
+                      "inSlope": "6.599992",
+                      "outSlope": "6.6000013",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.75,
+                      "value": 1.0,
+                      "inSlope": "1.1573865E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 1.0,
+                      "value": 0.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "TextGroup/TextLine",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextLine.anim",
+              "start": 0.0,
+              "duration": 1.0,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.6166667,
+                      "value": 0.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.6333333,
+                      "value": 0.78,
+                      "inSlope": "7.375819E-06",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.75,
+                      "value": 0.78,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 1.0,
+                      "value": 0.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "duration": 1.0
+    },
+    {
+      "prefabName": "DuelDrawPhase_far",
+      "prefabPath": "Assets/Art/MDPro3Battle/GameObject/DuelDrawPhase_far.prefab",
+      "tracks": [
+        {
+          "path": "center",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/center.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 6.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "center/img_Phase_far",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/img_Phase.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextGroup.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup/Text",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/Text.anim",
+              "start": 0.0,
+              "duration": 1.0,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 0.2,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.25,
+                      "value": 10.0,
+                      "inSlope": "7.6293945E-06",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.81666666,
+                      "value": 10.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.93333334,
+                      "value": 0.2,
+                      "inSlope": "5.849201E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 0.075,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.13333334,
+                      "value": 0.78,
+                      "inSlope": "7.8681893E-07",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.6166667,
+                      "value": 0.78,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 0.0633,
+                      "inSlope": "1.3481252E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "duration": 1.0
+    },
+    {
+      "prefabName": "DuelDrawPhase_near",
+      "prefabPath": "Assets/Art/MDPro3Battle/GameObject/DuelDrawPhase_near.prefab",
+      "tracks": [
+        {
+          "path": "center",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/center.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 6.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "center/img_Phase_near",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/img_Phase.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextGroup.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup/Text",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/Text.anim",
+              "start": 0.0,
+              "duration": 1.0,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 0.2,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.25,
+                      "value": 10.0,
+                      "inSlope": "7.6293945E-06",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.81666666,
+                      "value": 10.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.93333334,
+                      "value": 0.2,
+                      "inSlope": "5.849201E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 0.075,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.13333334,
+                      "value": 0.78,
+                      "inSlope": "7.8681893E-07",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.6166667,
+                      "value": 0.78,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 0.0633,
+                      "inSlope": "1.3481252E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "duration": 1.0
+    },
+    {
+      "prefabName": "DuelEndPhase_far",
+      "prefabPath": "Assets/Art/MDPro3Battle/GameObject/DuelEndPhase_far.prefab",
+      "tracks": [
+        {
+          "path": "center",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/center.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 6.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "center/img_Phase_far",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/img_Phase.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextGroup.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup/Text",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/Text.anim",
+              "start": 0.0,
+              "duration": 1.0,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 0.2,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.25,
+                      "value": 10.0,
+                      "inSlope": "7.6293945E-06",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.81666666,
+                      "value": 10.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.93333334,
+                      "value": 0.2,
+                      "inSlope": "5.849201E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 0.075,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.13333334,
+                      "value": 0.78,
+                      "inSlope": "7.8681893E-07",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.6166667,
+                      "value": 0.78,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 0.0633,
+                      "inSlope": "1.3481252E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "duration": 1.0
+    },
+    {
+      "prefabName": "DuelEndPhase_near",
+      "prefabPath": "Assets/Art/MDPro3Battle/GameObject/DuelEndPhase_near.prefab",
+      "tracks": [
+        {
+          "path": "center",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/center.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 6.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "center/img_Phase_near",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/img_Phase.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextGroup.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup/Text",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/Text.anim",
+              "start": 0.0,
+              "duration": 1.0,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 0.2,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.25,
+                      "value": 10.0,
+                      "inSlope": "7.6293945E-06",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.81666666,
+                      "value": 10.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.93333334,
+                      "value": 0.2,
+                      "inSlope": "5.849201E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 0.075,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.13333334,
+                      "value": 0.78,
+                      "inSlope": "7.8681893E-07",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.6166667,
+                      "value": 0.78,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 0.0633,
+                      "inSlope": "1.3481252E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "duration": 1.0
+    },
+    {
+      "prefabName": "DuelMainPhase1_far",
+      "prefabPath": "Assets/Art/MDPro3Battle/GameObject/DuelMainPhase1_far.prefab",
+      "tracks": [
+        {
+          "path": "center",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/center.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 6.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "center/img_Phase_far",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/img_Phase.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextGroup.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup/Text",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/Text.anim",
+              "start": 0.0,
+              "duration": 1.0,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 0.2,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.25,
+                      "value": 10.0,
+                      "inSlope": "7.6293945E-06",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.81666666,
+                      "value": 10.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.93333334,
+                      "value": 0.2,
+                      "inSlope": "5.849201E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 0.075,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.13333334,
+                      "value": 0.78,
+                      "inSlope": "7.8681893E-07",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.6166667,
+                      "value": 0.78,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 0.0633,
+                      "inSlope": "1.3481252E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "duration": 1.0
+    },
+    {
+      "prefabName": "DuelMainPhase1_near",
+      "prefabPath": "Assets/Art/MDPro3Battle/GameObject/DuelMainPhase1_near.prefab",
+      "tracks": [
+        {
+          "path": "center",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/center.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 6.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "center/img_Phase_near",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/img_Phase.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextGroup.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup/Text",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/Text.anim",
+              "start": 0.0,
+              "duration": 1.0,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 0.2,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.25,
+                      "value": 10.0,
+                      "inSlope": "7.6293945E-06",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.81666666,
+                      "value": 10.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.93333334,
+                      "value": 0.2,
+                      "inSlope": "5.849201E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 0.075,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.13333334,
+                      "value": 0.78,
+                      "inSlope": "7.8681893E-07",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.6166667,
+                      "value": 0.78,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 0.0633,
+                      "inSlope": "1.3481252E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "duration": 1.0
+    },
+    {
+      "prefabName": "DuelMainPhase2_far",
+      "prefabPath": "Assets/Art/MDPro3Battle/GameObject/DuelMainPhase2_far.prefab",
+      "tracks": [
+        {
+          "path": "center",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/center.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 6.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "center/img_Phase_far",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/img_Phase.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextGroup.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup/Text",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/Text.anim",
+              "start": 0.0,
+              "duration": 1.0,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 0.2,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.25,
+                      "value": 10.0,
+                      "inSlope": "7.6293945E-06",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.81666666,
+                      "value": 10.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.93333334,
+                      "value": 0.2,
+                      "inSlope": "5.849201E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 0.075,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.13333334,
+                      "value": 0.78,
+                      "inSlope": "7.8681893E-07",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.6166667,
+                      "value": 0.78,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 0.0633,
+                      "inSlope": "1.3481252E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "duration": 1.0
+    },
+    {
+      "prefabName": "DuelMainPhase2_near",
+      "prefabPath": "Assets/Art/MDPro3Battle/GameObject/DuelMainPhase2_near.prefab",
+      "tracks": [
+        {
+          "path": "center",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/center.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 6.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "center/img_Phase_near",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/img_Phase.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextGroup.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup/Text",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/Text.anim",
+              "start": 0.0,
+              "duration": 1.0,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 0.2,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.25,
+                      "value": 10.0,
+                      "inSlope": "7.6293945E-06",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.81666666,
+                      "value": 10.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.93333334,
+                      "value": 0.2,
+                      "inSlope": "5.849201E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 0.075,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.13333334,
+                      "value": 0.78,
+                      "inSlope": "7.8681893E-07",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.6166667,
+                      "value": 0.78,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 0.0633,
+                      "inSlope": "1.3481252E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "duration": 1.0
+    },
+    {
+      "prefabName": "DuelStandbyPhase_far",
+      "prefabPath": "Assets/Art/MDPro3Battle/GameObject/DuelStandbyPhase_far.prefab",
+      "tracks": [
+        {
+          "path": "center",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/center.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 6.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "center/img_Phase_far",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/img_Phase.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextGroup.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup/Text",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/Text.anim",
+              "start": 0.0,
+              "duration": 1.0,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 0.2,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.25,
+                      "value": 10.0,
+                      "inSlope": "7.6293945E-06",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.81666666,
+                      "value": 10.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.93333334,
+                      "value": 0.2,
+                      "inSlope": "5.849201E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 0.075,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.13333334,
+                      "value": 0.78,
+                      "inSlope": "7.8681893E-07",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.6166667,
+                      "value": 0.78,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 0.0633,
+                      "inSlope": "1.3481252E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "duration": 1.0
+    },
+    {
+      "prefabName": "DuelStandbyPhase_near",
+      "prefabPath": "Assets/Art/MDPro3Battle/GameObject/DuelStandbyPhase_near.prefab",
+      "tracks": [
+        {
+          "path": "center",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/center.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 6.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "center/img_Phase_near",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/img_Phase.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextGroup.anim",
+              "start": 0.0,
+              "duration": 0.8666666666666667,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "TextGroup/Text",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/Text.anim",
+              "start": 0.0,
+              "duration": 1.0,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 0.2,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.25,
+                      "value": 10.0,
+                      "inSlope": "7.6293945E-06",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.81666666,
+                      "value": 10.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.93333334,
+                      "value": 0.2,
+                      "inSlope": "5.849201E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 0.075,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.13333334,
+                      "value": 0.78,
+                      "inSlope": "7.8681893E-07",
+                      "outSlope": "-Infinity",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.6166667,
+                      "value": 0.78,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 0.0633,
+                      "inSlope": "1.3481252E-06",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.96666664,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "duration": 1.0
+    },
+    {
+      "prefabName": "DuelTurnChange00",
+      "prefabPath": "Assets/Art/MDPro3Battle/GameObject/DuelTurnChange00.prefab",
+      "tracks": [
+        {
+          "path": "GameObject/img_TunChange_bg00",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/img_TunChange_bg00.anim",
+              "start": 0.0,
+              "duration": 1.95,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": false,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "GameObject",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/GameObject_near.anim",
+              "start": 0.0,
+              "duration": 1.949999976158142,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_T",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.6166666428248082,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_U",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.6166666428248082,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_R",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.6166666428248082,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_N",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.6166666428248082,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_C",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.6166666428248082,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_H",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.6166666428248078,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_A",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.6166666428248082,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_N",
+          "occurrence": 1,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.6166666428248082,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_G",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.6166666428248082,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_E",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.6166666428248082,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "duration": 1.95
+    },
+    {
+      "prefabName": "DuelTurnChange01",
+      "prefabPath": "Assets/Art/MDPro3Battle/GameObject/DuelTurnChange01.prefab",
+      "tracks": [
+        {
+          "path": "GameObject/img_TunChange_bg01",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/img_TunChange_bg01.anim",
+              "start": 0.0,
+              "duration": 1.616666666666668,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": false,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "GameObject",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/GameObject_far.anim",
+              "start": 0.0,
+              "duration": 1.616666666666668,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": []
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_T",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.2833333333333339,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_U",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.2833333333333339,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_R",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.2833333333333339,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_N",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.2833333333333339,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_C",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.2833333333333339,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_H",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.2833333333333334,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_A",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.2833333333333339,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_N",
+          "occurrence": 1,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.2833333333333339,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_G",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.2833333333333339,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "path": "GameObject/Text(TMP)/Text (TMP)_E",
+          "occurrence": 0,
+          "clips": [
+            {
+              "clipPath": "Assets/Art/MDPro3Battle/AnimationClip/TextFade.anim",
+              "start": 1.2833333333333339,
+              "duration": 0.33333333333333415,
+              "clipIn": 0.0,
+              "timeScale": 1.0,
+              "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "eulerAngles": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "removeStartOffset": true,
+              "textCurves": [
+                {
+                  "path": "",
+                  "property": "m_fontColor.a",
+                  "keys": [
+                    {
+                      "time": 0.0,
+                      "value": 1.0,
+                      "inSlope": "0",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    },
+                    {
+                      "time": 0.33333334,
+                      "value": 0.0,
+                      "inSlope": "5.364418E-07",
+                      "outSlope": "0",
+                      "inWeight": 0.33333334,
+                      "outWeight": 0.33333334,
+                      "weightedMode": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "duration": 1.616666666666668
+    },
+    {
+      "prefabName": "DuelDeckAppearance",
+      "prefabPath": "Assets/Art/MDPro3Battle/OriginalAdditions/Deck/resources/duel/timeline/duel/universal/dueldeckappearance/DuelDeckAppearance.prefab",
+      "tracks": [],
+      "duration": 0
+    }
+  ]
+}

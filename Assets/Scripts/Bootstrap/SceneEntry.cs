@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using AChen.Duel.Presentation;
 
 /// <summary>
 /// 业务场景入口: 加载该场景的 UISettings 创建 UIFrame, 并打开首个界面.
@@ -10,16 +11,18 @@ public sealed class SceneEntry : MonoBehaviour
     public enum Kind
     {
         Login,
-        Lobby
+        Lobby,
+        Battle
     }
 
     [SerializeField] Kind m_kind = Kind.Login;
+    [SerializeField] BattleSceneController m_battle;
 
     UIFrame m_uiFrame;
 
     async UniTaskVoid Start()
     {
-        string settingsAddress = m_kind == Kind.Lobby ? AddressKeys.UISettings.UISetting : AddressKeys.UISettings.LogInSetting;
+        string settingsAddress = m_kind == Kind.Battle ? AddressKeys.UISettings.BattleUISetting : m_kind == Kind.Lobby ? AddressKeys.UISettings.UISetting : AddressKeys.UISettings.LogInSetting;
         UISettings settings = await AddressableLoader.Instance.LoadUISettings(settingsAddress);
         if (settings == null)
         {
@@ -29,7 +32,11 @@ public sealed class SceneEntry : MonoBehaviour
         }
 
         m_uiFrame = settings.CreateUIInstance();
-        if (m_kind == Kind.Lobby)
+        if (m_kind == Kind.Battle)
+        {
+            await m_battle.InitializeAsync(m_uiFrame);
+        }
+        else if (m_kind == Kind.Lobby)
         {
             m_uiFrame.ShowPanel(AddressKeys.Prefab.PreGameUIPanel);
         }

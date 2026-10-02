@@ -8,6 +8,7 @@
         "Unity.Addressables",
         "Unity.ResourceManager",
         "Unity.InputSystem",
+        "Unity.RenderPipelines.Universal.Runtime",
         "Unity.TextMeshPro",
         "UnityEngine.UI",
         "AChen.Shared"

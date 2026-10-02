@@ -1,0 +1,852 @@
+[
+  {
+    "name": "DefaultProtector",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "Sprites\\CommonUI\\DefaultProtector.png"
+  },
+  {
+    "name": "GUI_PhaseCircle",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "Sprites\\CommonUI\\GUI_PhaseCircle.png"
+  },
+  {
+    "name": "GUI_PhaseBP",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "Sprites\\CommonUI\\GUI_PhaseBP.png"
+  },
+  {
+    "name": "GUI_PhaseDP",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "Sprites\\CommonUI\\GUI_PhaseDP.png"
+  },
+  {
+    "name": "GUI_PhaseEP",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "Sprites\\CommonUI\\GUI_PhaseEP.png"
+  },
+  {
+    "name": "GUI_PhaseMP1",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "Sprites\\CommonUI\\GUI_PhaseMP1.png"
+  },
+  {
+    "name": "GUI_PhaseMP2",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "Sprites\\CommonUI\\GUI_PhaseMP2.png"
+  },
+  {
+    "name": "GUI_PhaseSP",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "Sprites\\CommonUI\\GUI_PhaseSP.png"
+  },
+  {
+    "name": "GUI_CommonButtonL",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 34.0,
+      "y": 23.0,
+      "z": 23.0,
+      "w": 34.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "Sprites\\CommonUI\\GUI_CommonButtonL.png"
+  },
+  {
+    "name": "GUI_CardInfo_NameBase",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 3.0,
+      "y": 3.0,
+      "z": 3.0,
+      "w": 3.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "Sprites\\CommonUI\\GUI_CardInfo_NameBase.png"
+  },
+  {
+    "name": "FieldIcon1090001",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0,
+      "z": 0,
+      "y": 0,
+      "w": 0
+    },
+    "pixelsPerUnit": 100,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Textures\\Icon\\Field\\HD\\FieldIcon1090001.png"
+  },
+  {
+    "name": "FieldObjIcon1100001",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0,
+      "z": 0,
+      "y": 0,
+      "w": 0
+    },
+    "pixelsPerUnit": 100,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Textures\\Icon\\Grave\\HD\\FieldObjIcon1100001.png"
+  },
+  {
+    "name": "FieldAvatarBaseIcon1110001",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0,
+      "z": 0,
+      "y": 0,
+      "w": 0
+    },
+    "pixelsPerUnit": 100,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Textures\\Icon\\AvatarBase\\HD\\FieldAvatarBaseIcon1110001.png"
+  },
+  {
+    "name": "GUI_CommonSelectCursor_CornerAll",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0,
+      "z": 0,
+      "y": 0,
+      "w": 0
+    },
+    "pixelsPerUnit": 100,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_CommonSelectCursor_CornerAll.png"
+  },
+  {
+    "name": "GUI_LP_Blue",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_LP_Blue.png",
+    "sha256": "db122b0bd633a01923401b85a54a41973c5a622b4e990a37792874356b2caa50"
+  },
+  {
+    "name": "GUI_LP_Red",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_LP_Red.png",
+    "sha256": "2b702a6d242c72f29c22b5267b57e2a3abd47b2a85ace33e3e9566354c23bb2e"
+  },
+  {
+    "name": "GUI_PhaseButtonBase2",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_PhaseButtonBase2.png",
+    "sha256": "0fdbdc5972b01e38948f0c06343f1f977891133b6e35edcab20248a23e6cc0ba"
+  },
+  {
+    "name": "GUI_PhaseButtonCursor2",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_PhaseButtonCursor2.png",
+    "sha256": "ad2cbacfd12f15ed0cf3ba41c3666a2a56289480bfbebb62f62856b1c3cd7d88"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon04_1",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon04_1.png",
+    "sha256": "3f095634885b2c114821b81000d470cf4e6e9835c0f2cefc303635a956549da6"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon04_2",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon04_2.png",
+    "sha256": "5ab2b61bfcb857f537f91c6d7ddf58546ba78e5c66ce142a7f52374b0df713d4"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon04_3",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon04_3.png",
+    "sha256": "3dddbaac8b55d7689d431a1efcc91001d5fd1fce73f290777c98d01cad5728fc"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon04_4",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon04_4.png",
+    "sha256": "cda05a586ed4f6ae42b72a64f049364fba1a1d93bb26cfc7c98c80516322f7c4"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon05_1",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon05_1.png",
+    "sha256": "c774330909eb42310439ade1b5c412c78a0d212b18050847799e0c16200a63a9"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon05_2",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon05_2.png",
+    "sha256": "61d8827802c806f76320e1ce79f4a24f4db4a4e07bcd8570ce5f78b8fb3138f1"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon05_3",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon05_3.png",
+    "sha256": "58ce2aeca08937c6347e6744b8708e721cb7b590d1e84d371ac09068ca757335"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon05_4",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon05_4.png",
+    "sha256": "393391b2f0bbb3222151162afe37ebebfbc3cc93b8588c4804b2a603a90b75a5"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon06_1",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon06_1.png",
+    "sha256": "9dc0b8ad7a9488b111f48438124c6a85e25c4b31b6d8167cc60212743dc66982"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon06_2",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon06_2.png",
+    "sha256": "cb202350316f5659ca88974cd53b1371bc4cd730b6bb0e2c6069738393a79e53"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon06_3",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon06_3.png",
+    "sha256": "ce9297b7db058f0f36fcfea4142d0ea26860f2a57c1bb8116a6595cb65878e27"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon06_4",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon06_4.png",
+    "sha256": "c63133862b152d151d1ffd211e19c547f5f228ba6f1e9ad6d5d6dd2ae4d57db2"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon07_1",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon07_1.png",
+    "sha256": "ef425a4f36e1c752536874a8092e0e569fdc62edbc2969c3f28c47e17d5fc07f"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon07_2",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon07_2.png",
+    "sha256": "a5a6db41a8032d7c40c19987d637ceb0c6f957af08b67085783f538163a4120f"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon07_3",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon07_3.png",
+    "sha256": "8cbb0d2b5dea935ab2a92e47dde7494ff99996f7fbd63993bc58a25d69b2a25f"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon07_4",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon07_4.png",
+    "sha256": "569441310747681d953130bbffd5642c427caa4fa04ce92d446cbb8a57416a3e"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon08_1",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon08_1.png",
+    "sha256": "e4885e0a4c063c4f6c5c108e949767b73578481d168c531c02f845e9f04e4421"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon08_2",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon08_2.png",
+    "sha256": "dab58b2a2959890c34fc1537ce12a28700bdb9eef2df7e1141f91ccb3454faf2"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon08_3",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon08_3.png",
+    "sha256": "c18ecc3da13f196d7d2a1b6b3b007b4f50e779688a3352f4926971b05c68ceb9"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon08_4",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon08_4.png",
+    "sha256": "03a3d236159ea6b3fcfff631223b014b29d390d0b1714918d6f01fca962e4315"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon09_1",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon09_1.png",
+    "sha256": "ee58250adf194544c7a6d9102737b5ca7777de748a01df61fd0a7738a2ede6e9"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon09_2",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon09_2.png",
+    "sha256": "9d1be6b316a4315316a58c504038619e7c2e9fc948015e042e065ae451539fda"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon09_3",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon09_3.png",
+    "sha256": "2d21654f624024702ab17d595099c309fbcf0b2b7c8d51b734d6815248ad746c"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon09_4",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon09_4.png",
+    "sha256": "94184bf11a428681118efcc5d729b70147ccf33c54628f74ffb36ee1c42cf11a"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon11_1",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon11_1.png",
+    "sha256": "98f179c60b408e8589dc4b07d5ff017f3e09cd16a66be3d6f0e44c931988dc72"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon11_2",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon11_2.png",
+    "sha256": "f4408c96d5e5ffdcb72711d0e83b4cf76b93972895280b8245d77f8143c0fecf"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon11_3",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon11_3.png",
+    "sha256": "a64538436a239a8017d6a3334815f3c0a6494cae83196e62e6854c575ed6459f"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon11_4",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon11_4.png",
+    "sha256": "69bb695dfdd5897f64e023ed590a710d6aa4b6cf5456a525955120fb86dd59fb"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon13_1",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon13_1.png",
+    "sha256": "5a8fb00625c2818c0f977ef02b32bb29ada10c7fc5bb57734fb15084dcbd52fd"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon13_2",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon13_2.png",
+    "sha256": "e727e5bd2b05b7f9a460171839a440b28b1e2dad15b299e21cb215c9684346ad"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon13_3",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon13_3.png",
+    "sha256": "f95e451eb1596f5f46dc7794bfc6adc51bd4025a646a58f7813247256bdf3ac0"
+  },
+  {
+    "name": "GUI_T_DuelButtonActIcon13_4",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\GUI_T_DuelButtonActIcon13_4.png",
+    "sha256": "4de2088987f6207516f4b80a6df48228ee23e9a00b86795eb8edd0ba873825e0"
+  },
+  {
+    "name": "img_Phase_far",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\img_Phase_far.png",
+    "sha256": "b0d63aa3369040d0b6c005cf24f36952b67329fbba1ca5a15f36e40e356bf78d"
+  },
+  {
+    "name": "img_Phase_near",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\img_Phase_near.png",
+    "sha256": "e649be2b31ce8a4888c190a28c5025a0543107f18ee883256d78bbc34a535134"
+  },
+  {
+    "name": "img_TunChange_bg01",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\img_TunChange_bg01.png",
+    "sha256": "220cdfe12a834af170be8b4f7df3795f76e151e6a9074a6da2f9babc5a374f62"
+  },
+  {
+    "name": "img_TunChange_bg02",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "border": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.0
+    },
+    "pixelsPerUnit": 100.0,
+    "source": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI\\Sprites\\CommonUI\\img_TunChange_bg02.png",
+    "sha256": "65f59f00182e8ccab502d3873768a848f43a73882c289f829337ef65dbbad2c2"
+  }
+]

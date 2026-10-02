@@ -314,3 +314,38 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: BattleCardView
+    reference:
+      m_AssetGUID: 327bb9761257be04ebe66780b15f0cc7
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: BattleCardRow
+    reference:
+      m_AssetGUID: ff5970803847d4741a54184ef341be43
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: BattleHudPanel
+    reference:
+      m_AssetGUID: c78a2d97e49e1d64aafd6768763526c5
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: BattleChoiceWindow
+    reference:
+      m_AssetGUID: 9d56594adfbeed94e8d15a4acf0e2203
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: BattleZoneWindow
+    reference:
+      m_AssetGUID: ca2730a0215a6c54aaf781f93a4810af
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

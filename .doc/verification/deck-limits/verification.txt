@@ -1,9 +1,0 @@
-23434538: max=0; allowed copies pass, next copy at another rarity rejected without mutating draft.
-14558127: max=1; allowed copies pass, next copy at another rarity rejected without mutating draft.
-21143940: max=2; allowed copies pass, next copy at another rarity rejected without mutating draft.
-Owned forbidden card: real raycast click rejected, no draft change or flight.
-Limit-one card: first real click adds; repeated click is rejected. This account owns only one of this ID, so rule-specific cross-rarity cap is covered by the isolated state checks.
-Real inventory: two raycast clicks add two copies; flight starts and completes. Normal-card limit icon hidden.
-Pool and deck show all three limit badges correctly; unrestricted icons hidden; names hidden; numeric quantity format; main/extra grids and pool use eight columns.
-Overview uses a local display fixture containing a forbidden card to verify an old deck's icon. Not saved or sent to backend.
-Original editor state restored. No create/save/delete requests or inventory writes.
