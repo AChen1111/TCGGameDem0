@@ -97,8 +97,46 @@ ignore.conf
 # Unity Pipeline / local tooling caches (if any)
 *.pipeline.cache
 
-# Local Unity offline documentation
-/.doc/unity-official-6000.5.2f1/
+# Local agent instructions, skills and configuration
+.agents/
+.codex/
+.claude/
+.cursor/
+.windsurf/
+AGENTS.md
+AGENTS.override.md
+CLAUDE.md
+GEMINI.md
+.cursorrules
+.cursorignore
+.windsurfrules
+.mcp.json
+/.github/agents/
+/.github/instructions/
+/.github/copilot-instructions.md
+
+# Local project documentation and agent work records
+.doc/
+/doc/
+/docs/
+/Docs/
+/GameConfig/*.md
+/Tools/**/*.md
+/Unused~/*.md
+/映射表.md
+
+# Local agent scripts, authoring helpers and downloaded tooling
+/AgentScripts/
+/.tools/
+/Tools/DeckUI/
+/Tools/ProfileUI/
+/Tools/UrWorkshop/
+/Tools/CardConfig/
+/Tools/Localization/
+/Tools/Activities/*.cs
+/Tools/Activities/*.py
+/Tools/Activities/preview-*.png
+/Tools/UnityExcel2BytesCs/inspect_export.py
 
 # HybridCLR local il2cpp / generated dlls (machine-specific)
 /HybridCLRData/
