@@ -74,6 +74,8 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
     [SerializeField] TextMeshProUGUI m_replayPlayLabel;
     [SerializeField] TextMeshProUGUI m_operationHint;
     [SerializeField] RectTransform m_detailBounds;
+    [SerializeField] UnityEngine.UI.Button m_replaySpeed;
+    [SerializeField] TextMeshProUGUI m_replaySpeedLabel;
     readonly int[] m_avatarIds = { -1, -1 };
     readonly int[] m_frameIds = { -1, -1 };
     readonly MotionHandle[] m_lpMotions = new MotionHandle[2];
@@ -88,7 +90,7 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
     UnityEngine.UI.Button[] Buttons => new[] { m_BtnPlayer, m_BtnSource, m_BtnCard, m_BtnView, m_BtnDraw,
         m_BtnPlace, m_BtnGrave, m_BtnBanished, m_BtnHand, m_BtnDeck, m_BtnExtra, m_BtnPosition,
         m_BtnHighlight, m_BtnPile, m_BtnPhase, m_BtnTurn, m_BtnPause, m_BtnClock, m_BtnReset,
-        m_skipAnimation, m_cancelAction, m_surrender, m_return, m_replayPlay, m_replayView, m_replayExit };
+        m_skipAnimation, m_cancelAction, m_surrender, m_return, m_replayPlay, m_replayView, m_replayExit, m_replaySpeed };
     List<CardView> Candidates() => Scene.Source.Current.Cards.Where(x => x.Owner == m_player && x.Zone.Kind == SourceZone).ToList();
 
     protected override void OnOpen()
@@ -100,6 +102,7 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
         m_return.onClick.AddListener(()=>DuelClientSession.Instance.ReturnToLobbyAsync().Forget());
         m_replayPlay.onClick.AddListener(()=>{DuelClientSession.Instance.ToggleReplayPause();Refresh();});
         m_replayView.onClick.AddListener(()=>DuelClientSession.Instance.SwitchReplayView());
+        m_replaySpeed.onClick.AddListener(()=>{DuelClientSession.Instance.CycleReplayPlaybackSpeed();Refresh();});
         m_replayExit.onClick.AddListener(()=>DuelClientSession.Instance.ExitReplayAsync().Forget());
         m_BtnReset.onClick.AddListener(()=>Scene.Source.Submit(new ResetDuel()));
         m_cancelAction.onClick.AddListener(Scene.CancelAction);
@@ -127,6 +130,7 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
     void HideDetail() => m_detail.gameObject.SetActive(false);
     void Update()
     {
+        foreach(var motion in m_lpMotions)if(motion.IsActive())motion.PlaybackSpeed=Scene.PlaybackSpeed;
         if(!m_detail.IsShowing || m_UIFrame.IsWindowBusy || m_cutin.Playing)return;
         foreach(var device in InputSystem.devices)
         {
@@ -166,6 +170,8 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
         m_surrender.gameObject.SetActive(Scene.Source.Mode == DuelSessionMode.Online && !view.Finished);
         m_return.gameObject.SetActive(Scene.Source.Mode == DuelSessionMode.Online && view.Finished);
         m_replayPlay.gameObject.SetActive(replay); m_replayView.gameObject.SetActive(replay); m_replayExit.gameObject.SetActive(replay);
+        m_replaySpeed.gameObject.SetActive(replay);
+        if(replay)m_replaySpeedLabel.text = DuelClientSession.Instance.ReplayPlaybackSpeed + "×";
         m_replayPlayLabel.text = DuelClientSession.Instance.ReplayPaused ? "播放" : "暂停";
         m_targetHint.SetActive(view.HasPendingAction);
         m_cancelAction.interactable=view.HasPendingAction;
@@ -192,6 +198,7 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
         m_lpMotions[player]=LMotion.Create(m_displayLP[player],(float)target,.45f)
             .WithEase(Ease.OutCubic).WithScheduler(MotionScheduler.UpdateIgnoreTimeScale)
             .Bind(value=>{m_displayLP[player]=value;m_playerLPs[player].text=Mathf.RoundToInt(value).ToString();}).AddTo(this);
+        m_lpMotions[player].PlaybackSpeed=Scene.PlaybackSpeed;
     }
     protected override void OnClose()
     {

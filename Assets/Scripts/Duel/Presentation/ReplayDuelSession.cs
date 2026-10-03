@@ -27,6 +27,14 @@ namespace AChen.Duel.Presentation
         bool m_animating, m_completed, m_started;
         float m_delay;
         public bool Paused { get; private set; }
+        static readonly float[] s_playbackSpeeds = { 1f, 2f, 4f, 8f };
+        int m_speedIndex;
+        public float PlaybackSpeed => s_playbackSpeeds[m_speedIndex];
+        public void CyclePlaybackSpeed()
+        {
+            m_speedIndex = (m_speedIndex + 1) % s_playbackSpeeds.Length;
+            Notify(DuelChangeKind.Timer);
+        }
         public DuelView Current { get; private set; }
         public DuelSessionMode Mode => DuelSessionMode.Replay;
         public string OperationHint
@@ -109,7 +117,7 @@ namespace AChen.Duel.Presentation
         public void Tick(float delta)
         {
             if (!m_started || Paused || !m_completed || m_cursor >= m_tracks[m_viewer].Length - 1) return;
-            m_delay -= delta;
+            m_delay -= delta * PlaybackSpeed;
             if (m_delay <= 0) Advance();
         }
         public void FinishPresentation()

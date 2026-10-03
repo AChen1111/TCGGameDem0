@@ -45,6 +45,7 @@ namespace AChen.Duel.Client
         public DuelSessionMode Mode { get; private set; } = DuelSessionMode.Offline;
         public bool IsLocalReady => Room != null && Room.Players.Single(p => p.Seat == Room.LocalSeat).Ready;
         public bool ReplayPaused => m_replay != null && m_replay.Paused;
+        public float ReplayPlaybackSpeed => m_replay.PlaybackSpeed;
         public IDuelPresentationSource PresentationSource => Mode == DuelSessionMode.Replay ? (IDuelPresentationSource)m_replay : m_live;
         public event Action Changed = delegate { };
 
@@ -292,6 +293,7 @@ namespace AChen.Duel.Client
             finally { m_returning = false; }
         }
         public void ToggleReplayPause() { m_replay.TogglePause(); Changed(); }
+        public void CycleReplayPlaybackSpeed() { m_replay.CyclePlaybackSpeed(); Changed(); }
         public void SwitchReplayView() { m_replay.SwitchView(); Changed(); }
         public async UniTask ExitReplayAsync(CancellationToken token = default)
         {

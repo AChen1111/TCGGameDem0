@@ -9,6 +9,18 @@ using UnityEngine;
 
 public static partial class BattleSceneBuilder
 {
+    public static void ConfigureReplaySpeed(GameObject root)
+    {
+        var hud = EditorUtility.CollectDependencies(new UnityEngine.Object[] { root }).OfType<BattleHudPanel>().Single();
+        var so = new SerializedObject(hud);
+        var play = (UnityEngine.UI.Button)so.FindProperty("m_replayPlay").objectReferenceValue;
+        var speed = UnityEngine.Object.Instantiate(play, play.transform.parent);
+        speed.name = "ReplaySpeedButton";
+        ((RectTransform)speed.transform).anchoredPosition = new Vector2(540, 0);
+        var label = EditorUtility.CollectDependencies(new UnityEngine.Object[] { speed.gameObject }).OfType<TextMeshProUGUI>().Single();
+        label.name = "ReplaySpeedLabel"; label.text = "1×";
+        Ref(hud, "m_replaySpeed", speed); Ref(hud, "m_replaySpeedLabel", label);
+    }
     public static string UpgradeNetworkBattleUI()
     {
         // 使用已有 HUD 的字体，不重建其他显示资源。
@@ -60,6 +72,7 @@ public static partial class BattleSceneBuilder
         Ref(hudScreen, "m_replayPlayLabel", Root<TextMeshProUGUI>(playback.transform.GetChild(0).gameObject));
         Ref(hudScreen, "m_replayView", Button("ReplayView", toolbar, 220, 0, 150, 50, "切换视角"));
         Ref(hudScreen, "m_replayExit", Button("ReplayExit", toolbar, 380, 0, 150, 50, "退出回放"));
+        ConfigureReplaySpeed(hud);
         var cutinRoot = Rect("SummonCutin", hud.transform, 0, 0, 1706, 960); Stretch(cutinRoot);
         var blocker = cutinRoot.gameObject.AddComponent<UnityEngine.UI.Image>(); blocker.color = new Color(0, 0, 0, .5f); blocker.raycastTarget = true;
         var cutin = cutinRoot.gameObject.AddComponent<BattleCutinView>(); var graphicRect = Rect("Skeleton", cutinRoot, 0, 0, 1706, 960);

@@ -28,6 +28,9 @@ namespace AChen.Duel.Presentation
         public void Initialize(Transform canvasRoot) { m_originalParent = transform.parent; transform.SetParent(canvasRoot, false); }
         public void RestoreParent() => transform.SetParent(m_originalParent, false);
         public bool Playing { get; private set; }
+        float m_playbackSpeed = 1f;
+        public void SetPlaybackSpeed(float speed)
+        { m_playbackSpeed = speed; if(Playing)m_graphic.timeScale = speed; }
         public bool Contains(string id) => m_entries.Any(e => e.CardId == id);
         public async UniTask PlayOnceAsync(string id, CancellationToken cancellationToken)
         {
@@ -37,7 +40,7 @@ namespace AChen.Duel.Presentation
             try
             {
                 m_graphic.skeletonDataAsset = entry.SkeletonData;
-                m_graphic.Initialize(true); m_graphic.timeScale = 1; m_graphic.UnscaledTime = true;
+                m_graphic.Initialize(true); m_graphic.timeScale = m_playbackSpeed; m_graphic.UnscaledTime = true;
                 m_graphic.Update(0); m_graphic.UpdateMesh();
                 float meshScale = m_graphic.MeshScale;
                 float scale = Mathf.Min(m_viewport.rect.width / (entry.Size.x * meshScale), m_viewport.rect.height / (entry.Size.y * meshScale));

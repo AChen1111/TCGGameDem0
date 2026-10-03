@@ -10,6 +10,13 @@ namespace AChen.Duel.Presentation
         [SerializeField] PlayableDirector[] m_directors;
         [SerializeField] ParticleSystem[] m_particles;
         GameObject m_current;
+        public void SetPlaybackSpeed(float speed)
+        {
+            foreach(var director in m_directors.Where(x=>x.gameObject.activeInHierarchy && x.state==PlayState.Playing))
+                for(int i=0;i<director.playableGraph.GetRootPlayableCount();i++)director.playableGraph.GetRootPlayable(i).SetSpeed(speed);
+            foreach(var particle in m_particles.Where(x=>x.gameObject.activeInHierarchy))
+            { var main=particle.main;main.simulationSpeed=speed; }
+        }
         public float Begin(DuelViewChange change)
         {
             Stop();

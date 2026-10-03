@@ -56,6 +56,7 @@ namespace AChen.Duel.Presentation
         TouchControl m_touch;
         Vector2 m_pointerStart,m_selectedAnchor;
         public IDuelPresentationSource Source=>m_session;
+        public float PlaybackSpeed=>m_session is ReplayDuelSession replay ? replay.PlaybackSpeed : 1f;
         public int SelectedCardId=>m_selected;
         public Camera BattleCamera=>m_camera;
         public Camera BattleUICamera=>m_frame.UICamera;
@@ -110,6 +111,9 @@ namespace AChen.Duel.Presentation
         {
             if(!m_ready)return;
             m_session.Tick(Time.unscaledDeltaTime);
+            if(m_motion.IsActive())m_motion.PlaybackSpeed=PlaybackSpeed;
+            m_cutin.SetPlaybackSpeed(PlaybackSpeed);
+            m_phaseEffects.SetPlaybackSpeed(PlaybackSpeed);
             foreach(var device in InputSystem.devices)
                 if(device is Keyboard keyboard&&keyboard.escapeKey.wasPressedThisFrame)
                 {if(m_session.Current.Choice.Active)CancelAction();else if(m_frame.IsWindowBusy)m_frame.CloseCurrentWindow();else CancelAction();}
@@ -437,6 +441,7 @@ namespace AChen.Duel.Presentation
             m_motion=LMotion.Create(0f,1f,duration).WithEase(ease).WithOnComplete(()=>
             {if(generation!=m_animationGeneration)return;m_finish();m_finish=delegate{};m_session.FinishPresentation();})
                 .Bind(sample).AddTo(this);
+            m_motion.PlaybackSpeed=PlaybackSpeed;
         }
         public void SkipAnimation()
         {
