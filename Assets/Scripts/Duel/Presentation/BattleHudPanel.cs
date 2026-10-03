@@ -79,90 +79,33 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
 
     protected override void OnOpen()
     {
-        m_BtnPlayer.onClick.AddListener(() => { m_player = 1 - m_player; SelectFirst(); });
-        m_BtnSource.onClick.AddListener(() => { m_sourceIndex = (m_sourceIndex + 1) % m_sources.Length; SelectFirst(); });
-        m_BtnCard.onClick.AddListener(NextCard);
-        m_BtnView.onClick.AddListener(() => Scene.OpenZone(new ZoneRef(SourceZone, m_player)));
-        m_BtnDraw.onClick.AddListener(Draw);
-        m_BtnPlace.onClick.AddListener(() => Act(card => Scene.PrepareSelectedPlacement()));
-        m_BtnGrave.onClick.AddListener(() => Move(DuelZone.Graveyard));
-        m_BtnBanished.onClick.AddListener(() => Move(DuelZone.Banished));
-        m_BtnHand.onClick.AddListener(() => Move(DuelZone.Hand));
-        m_BtnDeck.onClick.AddListener(() => Move(DuelZone.MainDeck));
-        m_BtnExtra.onClick.AddListener(() => Move(DuelZone.ExtraDeck));
-        m_BtnPosition.onClick.AddListener(() => Act(card => Scene.OpenPosition()));
-        m_BtnHighlight.onClick.AddListener(() => Act(card => Scene.Source.Submit(new SetCardEffectAvailable(card.InstanceId, !card.EffectAvailable))));
-        m_BtnPile.onClick.AddListener(() =>
-        {
-            var zone = new ZoneRef(SourceZone, m_player);
-            Scene.Source.Submit(new SetPileEffectAvailable(zone, !Scene.Source.Current.AvailablePiles.Contains(zone)));
-        });
-        m_BtnPhase.onClick.AddListener(Scene.OpenPhases);
-        m_BtnTurn.onClick.AddListener(() => Scene.Source.Submit(new EndTurn()));
-        m_BtnPause.onClick.AddListener(() => Scene.Source.Submit(new PauseTimer(!Scene.Source.Current.TimerPaused)));
-        m_BtnClock.onClick.AddListener(() => Scene.Source.Submit(new ResetTimer()));
-        m_BtnReset.onClick.AddListener(() => Scene.Source.Submit(new ResetDuel()));
+        foreach(var button in Buttons)button.gameObject.SetActive(false);
+        m_BtnReset.gameObject.SetActive(true);m_cancelAction.gameObject.SetActive(true);
+        m_BtnReset.onClick.AddListener(()=>Scene.Source.Submit(new ResetDuel()));
         m_cancelAction.onClick.AddListener(Scene.CancelAction);
-        m_skipAnimation.onClick.AddListener(Scene.SkipAnimation);
-        Scene.Source.Changed += OnChanged; Scene.SelectionChanged += OnSelection; Scene.Notice += OnNotice;
-        m_actions.Initialize(Scene, m_UIFrame.MainCanvas);
-        m_detail.SetCallbacks(HideDetail, delegate { }, OpenZoom);
-        m_avatarIds[0] = m_avatarIds[1] = -1;
-        m_detail.gameObject.SetActive(false);
-        Refresh();
-    }
-
-    void SelectFirst()
-    {
-        var cards = Candidates();
-        if (cards.Count > 0) Scene.SelectCard(cards[0].InstanceId);
-        Refresh();
-    }
-    void NextCard()
-    {
-        var cards = Candidates();
-        if (cards.Count == 0) { OnNotice("该区域没有卡牌"); return; }
-        int index = cards.FindIndex(x => x.InstanceId == Scene.SelectedCardId);
-        Scene.ShowCardActions(cards[(index + 1) % cards.Count].InstanceId);
-    }
-    void Act(Action<CardView> action)
-    {
-        var cards = Candidates();
-        if (cards.Count == 0) { OnNotice("该区域没有卡牌"); return; }
-        if (!cards.Any(x => x.InstanceId == Scene.SelectedCardId)) Scene.SelectCard(cards[0].InstanceId);
-        action(Scene.Source.Current.Card(Scene.SelectedCardId));
-    }
-    void Move(DuelZone destination) => Act(card => Scene.Source.Submit(new MoveCard(card.InstanceId, new ZoneRef(destination, card.Owner))));
-    void Draw()
-    {
-        var deck = Scene.Source.Current.InZone(new ZoneRef(DuelZone.MainDeck, m_player));
-        if (deck.Count == 0) { OnNotice("主卡组已空"); return; }
-        Scene.SelectCard(deck[0].InstanceId);
-        Scene.Source.Submit(new MoveCard(deck[0].InstanceId, new ZoneRef(DuelZone.Hand, m_player)));
-        m_sourceIndex = 0;
+        Scene.Source.Changed+=OnChanged;Scene.SelectionChanged+=OnSelection;Scene.Notice+=OnNotice;
+        Scene.ChoiceInspectionRequested+=OnChoiceInspection;
+        m_actions.Initialize(Scene,m_UIFrame.MainCanvas);
+        m_detail.SetCallbacks(HideDetail,delegate{},OpenZoom);
+        m_avatarIds[0]=m_avatarIds[1]=-1;m_detail.gameObject.SetActive(false);Refresh();
     }
     void OnChanged(DuelViewChange change)
     {
-        if (change.Kind == DuelChangeKind.Rejected) OnNotice(change.Message);
-        if (change.Kind is DuelChangeKind.Move or DuelChangeKind.Reset)
-        {
-            var card = Scene.Source.Current.Card(Scene.SelectedCardId);
-            m_player = card.Owner; m_sourceIndex = Array.IndexOf(m_sources, card.Zone.Kind);
-        }
-        if (change.Kind is DuelChangeKind.CancelAction or DuelChangeKind.Move or DuelChangeKind.Reset or DuelChangeKind.Phase or DuelChangeKind.Turn or DuelChangeKind.AnimationCompleted)
-            m_TxtHint.text = "";
-        if (change.Kind == DuelChangeKind.Reset) HideDetail();
+        if(change.Kind==DuelChangeKind.Rejected)m_TxtHint.text=change.Message;
+        if(change.Kind!=DuelChangeKind.Timer && !change.View.CanInteract)HideDetail();
+        if(change.Kind==DuelChangeKind.Reset)HideDetail();
         Refresh();
     }
     void OnSelection(int id)
     {
-        var card = Scene.Source.Current.Card(id);
-        m_player = card.Owner; m_sourceIndex = Array.IndexOf(m_sources, card.Zone.Kind);
-        m_TxtHint.text = "";
-        m_detail.Show(new[] { new CardDetailEntry(card.Definition.CardId, card.Definition.SourcePool, Scene.CardObject(id).Art) }, 0);
+        var card=Scene.Source.Current.Card(id);
+        if(!Scene.CanInspect(card))return;
+        m_detail.Show(new[]{new CardDetailEntry(card.Definition.CardId,card.Definition.SourcePool,Scene.CardObject(id).Art)},0);
         Refresh();
     }
     void HideDetail() => m_detail.gameObject.SetActive(false);
+    void OnChoiceInspection(string id)
+    { var definition=Scene.ChoiceDefinition(id);m_detail.Show(new[]{new CardDetailEntry(id,definition.SourcePool,Scene.TextureForDefinition(id))},0); }
     void OpenZoom(Texture texture, int rarity)
     {
         m_actions.Hide();
@@ -171,32 +114,25 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
     void OnNotice(string notice) => m_TxtHint.text = notice;
     void Refresh()
     {
-        var view = Scene.Source.Current; var cards = Candidates();
-        m_TxtPlayer.text = m_player == 0 ? "操作我方" : "操作对方";
-        m_TxtSource.text = BattleLabels.Zone(SourceZone);
-        m_TxtTurn.text = $"回合 {view.Turn}  ·  {(view.ActivePlayer == 0 ? "我方" : "对方")}  ·  {BattleLabels.Phase(view.Phase)}";
-        m_TxtSelection.text = cards.Count == 0 ? "区域为空" : LocalizationService.GetText("card." + view.Card(Scene.SelectedCardId).Definition.CardId + ".name");
-        foreach (var button in Buttons) button.interactable = view.CanInteract;
-        m_BtnReset.interactable = m_BtnPause.interactable = m_BtnClock.interactable = true;
-        m_skipAnimation.interactable = view.Animating;
-        m_cancelAction.interactable = view.HasPendingAction;
-        m_targetHint.SetActive(view.HasPendingAction && !view.PendingAction.NeedsPosition);
-        if (view.HasPendingAction)
-            m_TxtHint.text = view.PendingAction.NeedsPosition ? "请选择表示形式" : "请选择黄色边框标示的位置";
-        m_BtnPosition.interactable = view.CanInteract && cards.Count > 0 && view.Card(Scene.SelectedCardId).AvailablePositions.Count > 0;
-        m_TxtPause.text = view.TimerPaused ? "继续计时" : "暂停计时";
-        for (int i = 0; i < view.Players.Count; i++)
+        var view=Scene.Source.Current;
+        m_TxtTurn.text="回合 "+view.Turn+" · "+view.Players[view.ActivePlayer].Name+" · "+BattleLabels.Phase(view.Phase);
+        m_BtnReset.interactable=true;
+        m_targetHint.SetActive(view.HasPendingAction);
+        m_cancelAction.interactable=view.HasPendingAction;
+        if(view.HasPendingAction)m_TxtHint.text="请选择黄色边框标示的位置";
+        else if(view.Finished)m_TxtHint.text=view.Outcome;
+        else if(!view.Animating)m_TxtHint.text="";
+        for(int i=0;i<view.Players.Count;i++)
         {
-            m_playerNames[i].text = view.Players[i].Name;
-            m_playerLPs[i].text = view.Players[i].LP.ToString();
-            if (m_avatarIds[i] == view.Players[i].AvatarId) continue;
-            m_avatarIds[i] = view.Players[i].AvatarId;
-            m_portraits[i].SetPortrait(m_avatarIds[i], 1030001);
+            m_playerNames[i].text=view.Players[i].Name;m_playerLPs[i].text=view.Players[i].LP.ToString();
+            if(m_avatarIds[i]==view.Players[i].AvatarId)continue;
+            m_avatarIds[i]=view.Players[i].AvatarId;m_portraits[i].SetPortrait(m_avatarIds[i],1030001);
         }
     }
     protected override void OnClose()
     {
         Scene.Source.Changed -= OnChanged; Scene.SelectionChanged -= OnSelection; Scene.Notice -= OnNotice;
+        Scene.ChoiceInspectionRequested -= OnChoiceInspection;
         m_actions.Dispose(); HideDetail();
         m_detail.SetCallbacks(delegate { }, delegate { }, delegate { });
         foreach (var button in Buttons) button.onClick.RemoveAllListeners();

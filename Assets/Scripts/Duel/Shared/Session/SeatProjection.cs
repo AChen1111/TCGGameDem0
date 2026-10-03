@@ -19,11 +19,12 @@ namespace AChen.Duel.Core
 
     public sealed class ProjectedDecisionOption
     {
+        internal CardRef CardReference { get; }
         public string OptionToken { get; }
         public string Label { get; }
         public string DefinitionId { get; }
-        internal ProjectedDecisionOption(string token, string label, string definition)
-        { OptionToken = token; Label = label; DefinitionId = definition; }
+        internal ProjectedDecisionOption(string token, string label, string definition, CardRef card)
+        { OptionToken = token; Label = label; DefinitionId = definition; CardReference = card; }
     }
 
     public sealed class ProjectedAction
@@ -270,7 +271,7 @@ namespace AChen.Duel.Core
                     definition = known ? card.DefinitionId : "";
                     if (!known) label = "未知卡牌";
                 }
-                options.Add(new ProjectedDecisionOption(token, label, definition));
+                options.Add(new ProjectedDecisionOption(token, label, definition, option.HasCard ? option.Card : default));
             }
             m_decision = new ProjectedDecision(decision, options.OrderBy(x => x.DefinitionId, StringComparer.Ordinal)
                 .ThenBy(x => x.Label, StringComparer.Ordinal).ThenBy(x => x.OptionToken, StringComparer.Ordinal));
@@ -362,5 +363,6 @@ namespace AChen.Duel.Core
                 m_cardHandles.Add(key, handle = Guid.NewGuid().ToString("N"));
             return handle;
         }
+        internal string CardHandle(DuelCardState card) => Handle(card);
     }
 }

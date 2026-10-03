@@ -15,15 +15,15 @@ namespace AChen.Duel.Presentation
 
         public void Refresh(DuelView view)
         {
-            float seconds = view.Seconds[view.ActivePlayer];
+            float seconds = view.Seconds[0];
             m_seconds.text = seconds > 0 ? Mathf.CeilToInt(seconds).ToString() : "时间结束";
             foreach (Renderer renderer in m_renderers)
             {
                 renderer.GetPropertyBlock(m_properties);
                 m_properties.SetFloat("_MaxTime", seconds / 180f);
                 m_properties.SetFloat("_AddTime", 0f);
-                m_properties.SetFloat("_SwitchTurn", view.ActivePlayer);
-                m_properties.SetFloat("_Active", view.TimerPaused || seconds <= 0 ? 0f : 1f);
+                m_properties.SetFloat("_SwitchTurn", 0);
+                m_properties.SetFloat("_Active", view.Finished || view.TimerPaused || seconds <= 0 ? 0f : 1f);
                 m_properties.SetColor("_ColorP1", m_playerOneColor);
                 m_properties.SetColor("_ColorP2", m_playerTwoColor);
                 renderer.SetPropertyBlock(m_properties);

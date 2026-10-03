@@ -56,7 +56,7 @@ namespace AChen.Duel.Core
                 var card = context.Card(link.Values["chosen-card"]);
                 if (link.Answers[0] == "hand") { context.Move(card, DuelZone.Hand); context.Reveal(card); context.ShuffleDeck(); link.Step = 4; return; }
                 link.Step = 3;
-                context.OpenDecision(link, DecisionKind.ChooseZone, FreeSlots(context).Select(slot => new DecisionOption {
+                context.OpenDecision(link, DecisionKind.ChooseZone, FreeSlots(context).Select(slot => new DecisionOption { DestinationZone = DuelZone.SpellTrap,
                     Id = slot.ToString(), Value = slot.ToString(), Label = "区域 " + slot }), "选择盖放区域"); return;
             }
             if (link.Step == 3)

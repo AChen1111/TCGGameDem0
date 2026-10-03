@@ -72,6 +72,7 @@ namespace AChen.Duel.Core
 
     public sealed class DecisionOption
     {
+        public DuelZone DestinationZone = DuelZone.Monster;
         public string Id = "";
         public string Label = "";
         public CardRef Card;
@@ -190,6 +191,7 @@ namespace AChen.Duel.Core
 
     public sealed class DuelEvent
     {
+        public int TurnAtEvent;
         public long Id;
         public DuelPhase PhaseAtEvent;
         public long ChainId;
@@ -287,6 +289,9 @@ namespace AChen.Duel.Core
 
     public sealed class CardLastKnown
     {
+        public bool Negated;
+        public int HostInstanceId;
+        public int MaterialCount;
         public CardRef Ref;
         public string DefinitionId = "";
         public int Owner;

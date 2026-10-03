@@ -76,7 +76,7 @@ namespace AChen.Duel.Core
             DuelZone from = DuelZone.Deck, int amount = 0, string detail = "", MoveCause cause = MoveCause.Rule,
             CardRef effectSource = default, int effectPlayer = -1, CardLastKnown before = null, CardLastKnown after = null)
         {
-            var fact = new DuelEvent { Id = State.NextEventId++, Kind = kind, Player = player,
+            var fact = new DuelEvent { Id = State.NextEventId++, Kind = kind, Player = player, TurnAtEvent = State.Turn,
                 PhaseAtEvent = State.Phase, ChainId = State.Chain.Count == 0 ? 0 : State.CurrentChainId,
                 HasCard = card != null, Card = card == null ? default : card.Ref,
                 DefinitionId = card == null ? "" : card.DefinitionId, VisibleToMask = mask,

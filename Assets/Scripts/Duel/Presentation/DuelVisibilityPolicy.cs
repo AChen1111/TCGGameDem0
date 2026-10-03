@@ -1,5 +1,11 @@
 namespace AChen.Duel.Presentation
 {
+    public sealed class BattleVisibilityPolicy : IDuelVisibilityPolicy
+    {
+        public bool CanInspect(int viewer, CardView card) => card.Known;
+        public bool IsFaceVisible(int viewer, CardView card) => card.Zone.Kind == DuelZone.Hand
+            ? card.Owner == viewer : card.Position is CardPosition.FaceUp or CardPosition.FaceUpAttack or CardPosition.FaceUpDefense;
+    }
     public interface IDuelVisibilityPolicy
     {
         bool CanInspect(int viewer, CardView card);

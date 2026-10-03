@@ -33,7 +33,7 @@ namespace AChen.Duel.Core
                     {
                         var slots = FreeSlots(context).ToArray(); link.Step = 1;
                         if (slots.Length == 0) { link.Step = 2; return; }
-                        context.OpenDecision(link, DecisionKind.ChooseZone, slots.Select(slot => new DecisionOption {
+                        context.OpenDecision(link, DecisionKind.ChooseZone, slots.Select(slot => new DecisionOption { DestinationZone = DuelZone.SpellTrap,
                             Id = slot.ToString(), Value = slot.ToString(), Label = "装备区域 " + slot }), "选择装备区域"); return;
                     }
                     if (context.Engine.TryMove(target, DuelZone.SpellTrap, context.Player,

@@ -53,7 +53,7 @@ namespace AChen.Duel.Presentation
                     pressedSprite = m_kindSprites[sprite + 2],
                     disabledSprite = m_kindSprites[sprite + 3]
                 };
-                m_labels[i].text = Caption(action.Kind);
+                m_labels[i].text = action.Label.Length > 0 ? action.Label : Caption(action.Kind);
                 m_buttons[i].interactable = m_scene.Source.Current.CanInteract;
                 ((RectTransform)m_buttons[i].transform).anchoredPosition = new Vector2(i * 128f, 0);
             }
@@ -70,6 +70,7 @@ namespace AChen.Duel.Presentation
             DuelActionKind.Pendulum => "灵摆放置",
             DuelActionKind.ChangePosition => "表示变更",
             DuelActionKind.DebugPlacement => "入场",
+            DuelActionKind.Attack => "攻击",
             _ => ""
         };
 

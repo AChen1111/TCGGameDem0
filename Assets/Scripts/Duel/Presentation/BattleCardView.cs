@@ -30,12 +30,13 @@ namespace AChen.Duel.Presentation
         {
             IsFaceDown = !faceVisible;
             m_surface.SetTexture(m_art); m_backSurface.SetTexture(m_back);
+            m_surface.SetNegated(card.Negated && faceVisible && card.Zone.IsSlot);
             SetEffectAvailable(card.EffectAvailable);
             bool monsterZone = card.Zone.Kind is DuelZone.Monster or DuelZone.ExtraMonster;
             m_stats.gameObject.SetActive(monsterZone && card.Definition.Kind==CardKind.Monster && faceVisible);
-            CardCatalog.TryGet(card.Definition.CardId,out var row);
-            string level = card.Definition.Frame==CardFrame.Link ? "LINK " + row.Level : "★" + row.Level;
-            m_stats.text=level+"\n"+(card.Definition.Frame==CardFrame.Link?CardCatalog.FormatStat(row.Atk):CardCatalog.FormatStat(row.Atk)+" / "+CardCatalog.FormatStat(row.Def));
+            string level = card.Definition.Frame==CardFrame.Link ? "LINK " + card.Level : "★" + card.Level;
+            m_stats.text=level+"\n"+(card.Definition.Frame==CardFrame.Link?CardCatalog.FormatStat(card.Attack):CardCatalog.FormatStat(card.Attack)+" / "+(card.Defense.HasValue ? CardCatalog.FormatStat(card.Defense.Value) : "—"))
+                +(card.MaterialCount > 0 ? "\n素材 " + card.MaterialCount : "");
             m_stats.transform.position = transform.position + new Vector3(0,.35f,card.Owner==0?-5.3f:5.3f);
         }
         void LateUpdate() => m_stats.transform.rotation=Quaternion.Euler(70,0,0);

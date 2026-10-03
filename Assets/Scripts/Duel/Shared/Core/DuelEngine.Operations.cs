@@ -75,6 +75,7 @@ namespace AChen.Duel.Core
         internal CardLastKnown Snapshot(DuelCardState card) => new CardLastKnown
         {
             Ref = card.Ref, DefinitionId = card.DefinitionId, Owner = card.Owner, Controller = card.Controller,
+            Negated = card.Negated, HostInstanceId = card.HostInstanceId, MaterialCount = card.Materials.Count,
             Zone = card.Zone, Slot = card.Slot, Position = card.Position, Attack = card.CurrentAtk,
             Defense = card.CurrentDef, Level = card.CurrentLevel, Race = card.CurrentRace,
             Attribute = card.CurrentAttribute, NameId = card.CurrentNameId,

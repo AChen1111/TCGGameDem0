@@ -13,6 +13,7 @@ namespace AChen.Duel.Presentation
         public void SetTexture(Texture texture) { m_properties.SetTexture("_BaseMap", texture); Apply(); }
         public void SetEffectAvailable(bool available) { m_effect=available; m_properties.SetFloat("_EffectAvailable", available ? 1 : 0); Apply(); }
         public void SetSelected(bool selected) { m_selected=selected; m_properties.SetFloat("_Selected", selected ? 1 : 0); Apply(); }
+        public void SetNegated(bool negated) { m_properties.SetFloat("_Negated", negated ? 1 : 0); Apply(); }
         public void SetTargetHint(bool visible) { m_hint=visible; m_properties.SetFloat("_Hint", visible ? 1 : 0); Apply(); }
         void Apply() { m_surface.SetPropertyBlock(m_properties); m_surface.enabled=!m_hideInactive || m_effect || m_selected || m_hint; }
     }

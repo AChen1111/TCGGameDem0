@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace AChen.Duel.Presentation
 {
-    public enum DuelZone { MainDeck, ExtraDeck, Hand, Monster, SpellTrap, Field, Graveyard, Banished, ExtraMonster }
+    public enum DuelZone { MainDeck, ExtraDeck, Hand, Monster, SpellTrap, Field, Graveyard, Banished, ExtraMonster, Material }
     public enum CardPosition { FaceUpAttack, FaceUpDefense, FaceDownDefense, FaceUp, FaceDown }
     public enum DuelPhase { Draw, Standby, Main1, Battle, Main2, End }
-    public enum DuelChangeKind { Reset, Move, Position, Highlight, Phase, Turn, Placement, CancelPlacement, Timer, AnimationCompleted, Rejected, Action, CancelAction, Effect }
-    public enum DuelActionKind { NormalSummon, SetMonster, SpecialSummon, Activate, SetSpellTrap, Pendulum, ChangePosition, DebugPlacement }
+    public enum DuelChangeKind { Reset, Move, Position, Highlight, Phase, Turn, Placement, CancelPlacement, Timer, AnimationCompleted, Rejected, Action, CancelAction, Effect, Attack, ChainResolved, State }
+    public enum DuelActionKind { NormalSummon, SetMonster, SpecialSummon, Activate, SetSpellTrap, Pendulum, ChangePosition, DebugPlacement, Attack }
 
     public sealed class DuelTargetSlots
     {
@@ -44,6 +44,7 @@ namespace AChen.Duel.Presentation
 
     public sealed class DuelActionView
     {
+        public string Label { get; internal set; } = "";
         public string Id { get; }
         public DuelActionKind Kind { get; }
         public bool HasTarget { get; }
@@ -118,6 +119,14 @@ namespace AChen.Duel.Presentation
 
     public sealed class CardView
     {
+        public bool Known { get; internal set; } = true;
+        public bool Negated { get; internal set; }
+        public int Attack { get; internal set; }
+        public int? Defense { get; internal set; }
+        public int Level { get; internal set; }
+        public int HostInstanceId { get; internal set; }
+        public int MaterialCount { get; internal set; }
+        public int Generation { get; internal set; }
         public int InstanceId { get; }
         public int Owner { get; }
         public DuelCardSpec Definition { get; }
@@ -157,7 +166,11 @@ namespace AChen.Duel.Presentation
         public bool Animating { get; }
         public bool HasPlacement => Placement.InstanceId != 0;
         public bool HasPendingAction => PendingAction.InstanceId != 0;
-        public bool CanInteract => !Animating && !HasPlacement && !HasPendingAction;
+        public bool CanInteract => !Animating && !HasPlacement && !HasPendingAction && !Choice.Active && !Finished;
+        public DuelSelectionView Choice { get; internal set; } = DuelSelectionView.Empty;
+        public int ViewingSeat { get; internal set; }
+        public bool Finished { get; internal set; }
+        public string Outcome { get; internal set; } = "";
         public PendingActionView PendingAction { get; }
         public IReadOnlyList<DuelPlayerView> Players { get; }
         public PlacementView Placement { get; }
@@ -181,6 +194,13 @@ namespace AChen.Duel.Presentation
 
     public sealed class DuelViewChange
     {
+        public IReadOnlyList<int> ImpactLifePoints { get; internal set; } = Array.Empty<int>();
+        public long ChainId { get; internal set; }
+        public int LinkNumber { get; internal set; }
+        public int AttackerId { get; internal set; }
+        public int TargetId { get; internal set; }
+        public ZoneRef Origin { get; internal set; }
+        public bool IsNegated { get; internal set; }
         public DuelChangeKind Kind { get; }
         public DuelView View { get; }
         public int InstanceId { get; }
@@ -226,4 +246,42 @@ namespace AChen.Duel.Presentation
     { public bool Paused { get; } public PauseTimer(bool paused) { Paused = paused; } }
     public sealed class ResetTimer : DuelInputCommand { }
     public sealed class ResetDuel : DuelInputCommand { }
+    public sealed class ConfirmDuelSelection : DuelInputCommand
+    {
+        public long ChoiceId { get; }
+        public string[] Keys { get; }
+        public ConfirmDuelSelection(long id, IEnumerable<string> keys) { ChoiceId = id; Keys = keys.ToArray(); }
+    }
+    public sealed class PreviewDuelTarget : DuelInputCommand
+    { public int CardId { get; } public PreviewDuelTarget(int id) { CardId = id; } }
+    public sealed class PassDuelResponse : DuelInputCommand { }
+    public sealed class SurrenderDuel : DuelInputCommand { }
+
+    public sealed class DuelSelectionOption
+    {
+        public string Key { get; }
+        public string Label { get; }
+        public string DefinitionId { get; }
+        public int CardId { get; }
+        public DuelSelectionOption(string key, string label, string definitionId = "", int cardId = 0)
+        { Key = key; Label = label; DefinitionId = definitionId; CardId = cardId; }
+    }
+    public sealed class DuelSelectionView
+    {
+        public long Id { get; }
+        public string Prompt { get; }
+        public int Min { get; }
+        public int Max { get; }
+        public bool CanCancel { get; }
+        public bool Ordered { get; }
+        public bool Searchable { get; }
+        public bool PreviewAttack { get; }
+        public IReadOnlyList<DuelSelectionOption> Options { get; }
+        public bool Active => Id != 0;
+        public DuelSelectionView(long id, string prompt, int min, int max, bool cancel,
+            IEnumerable<DuelSelectionOption> options, bool ordered = false, bool searchable = false, bool previewAttack = false)
+        { Id = id; Prompt = prompt; Min = min; Max = max; CanCancel = cancel; Ordered = ordered;
+          Searchable = searchable; PreviewAttack = previewAttack; Options = Array.AsReadOnly(options.ToArray()); }
+        public static DuelSelectionView Empty => new DuelSelectionView(0, "", 0, 0, false, Array.Empty<DuelSelectionOption>());
+    }
 }

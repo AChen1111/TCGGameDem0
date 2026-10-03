@@ -5,6 +5,7 @@ Shader "TCG/Battle/CardSurface"
         _BaseMap("Card / pile texture", 2D) = "white" {}
         _Tint("Tint", Color) = (1,1,1,1)
         _EffectAvailable("Effect available", Float) = 0
+        _Negated("Effect negated", Float) = 0
         _Selected("Selected", Float) = 0
         _Hint("Placement target", Float) = 0
         _GlowColor("Effect glow", Color) = (1,0.72,0.12,1)
@@ -25,7 +26,7 @@ Shader "TCG/Battle/CardSurface"
             TEXTURE2D(_BaseMap); SAMPLER(sampler_BaseMap);
             CBUFFER_START(UnityPerMaterial)
             float4 _BaseMap_ST, _Tint, _GlowColor;
-            float _EffectAvailable, _Selected, _Hint;
+            float _EffectAvailable, _Selected, _Hint, _Negated;
             CBUFFER_END
             Varyings Vert(Attributes v)
             { Varyings o; o.positionCS = TransformObjectToHClip(v.positionOS.xyz); o.uv = v.uv; return o; }
@@ -40,6 +41,7 @@ Shader "TCG/Battle/CardSurface"
                     return half4(float3(1,0.87,0.05) * (1.1+0.2*sin(_Time.y*4)),1);
                 }
                 clip(c.a - 0.04);
+                c.rgb = lerp(c.rgb, dot(c.rgb, float3(0.2126,0.7152,0.0722)).xxx, _Negated);
                 float border = 1 - smoothstep(0.025, 0.065, edge);
                 float pulse = 0.65 + 0.35 * sin(_Time.y * 4);
                 c.rgb += _GlowColor.rgb * border * _EffectAvailable * pulse * 1.8;

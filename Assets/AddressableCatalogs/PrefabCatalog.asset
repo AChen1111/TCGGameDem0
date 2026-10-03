@@ -349,3 +349,24 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: BattleSelectionPanel
+    reference:
+      m_AssetGUID: f5ce2906c8cf0c3429f57486734b24ab
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: BattleSelectionItem
+    reference:
+      m_AssetGUID: 7fa9dbffc549d0a44872cdedeb5591f0
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: BattleChainBadge
+    reference:
+      m_AssetGUID: 062e7a4b0390b684b8890ba30a7f846a
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

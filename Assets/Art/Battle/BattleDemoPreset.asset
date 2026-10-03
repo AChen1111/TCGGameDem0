@@ -110,6 +110,104 @@ MonoBehaviour:
   - CardId: 40908371
     SourcePool: Card01
     Count: 1
+  m_opponentMain:
+  - CardId: 89943723
+    SourcePool: Card02
+    Count: 1
+  - CardId: 08240199
+    SourcePool: Card01
+    Count: 1
+  - CardId: 00213326
+    SourcePool: Card02
+    Count: 1
+  - CardId: 49299410
+    SourcePool: Card03
+    Count: 1
+  - CardId: 89631139
+    SourcePool: Card01
+    Count: 3
+  - CardId: 20357457
+    SourcePool: Card03
+    Count: 3
+  - CardId: 71039903
+    SourcePool: Card01
+    Count: 3
+  - CardId: 79814787
+    SourcePool: Card01
+    Count: 3
+  - CardId: 94145021
+    SourcePool: Card02
+    Count: 3
+  - CardId: 97268402
+    SourcePool: Card01
+    Count: 3
+  - CardId: 14558127
+    SourcePool: Card01
+    Count: 1
+  - CardId: 17955766
+    SourcePool: Card02
+    Count: 3
+  - CardId: 73642296
+    SourcePool: Card02
+    Count: 3
+  - CardId: 26077389
+    SourcePool: Card03
+    Count: 3
+  - CardId: 27780618
+    SourcePool: Card02
+    Count: 3
+  - CardId: 37351133
+    SourcePool: Card03
+    Count: 3
+  - CardId: 40044918
+    SourcePool: Card02
+    Count: 2
+  m_opponentExtra:
+  - CardId: 58481572
+    SourcePool: Card02
+    Count: 1
+  - CardId: 33698022
+    SourcePool: Card01
+    Count: 1
+  - CardId: 66011101
+    SourcePool: Card02
+    Count: 1
+  - CardId: 08491308
+    SourcePool: Card03
+    Count: 1
+  - CardId: 22908820
+    SourcePool: Card02
+    Count: 1
+  - CardId: 55171412
+    SourcePool: Card02
+    Count: 1
+  - CardId: 56733747
+    SourcePool: Card02
+    Count: 1
+  - CardId: 60461804
+    SourcePool: Card02
+    Count: 1
+  - CardId: 93347961
+    SourcePool: Card02
+    Count: 1
+  - CardId: 23204029
+    SourcePool: Card02
+    Count: 1
+  - CardId: 02129638
+    SourcePool: Card01
+    Count: 1
+  - CardId: 32828466
+    SourcePool: Card02
+    Count: 1
+  - CardId: 50954680
+    SourcePool: Card01
+    Count: 1
+  - CardId: 83994433
+    SourcePool: Card01
+    Count: 1
+  - CardId: 40908371
+    SourcePool: Card01
+    Count: 1
   m_players:
   - Name: "\u6F14\u793A\u73A9\u5BB6"
     AvatarId: 1010001

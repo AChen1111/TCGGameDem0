@@ -28,6 +28,8 @@ public sealed class BattleChoiceWindow : AWindowController<BattleChoicePropertie
     [SerializeField] TextMeshProUGUI m_TxtCancel;
     [SerializeField] Button m_BtnReset;
     [SerializeField] TextMeshProUGUI m_TxtReset;
+    [SerializeField] Button m_BtnSurrender;
+    [SerializeField] TextMeshProUGUI m_TxtSurrender;
     // --tag_end: 自动生成--
     [SerializeField] UnityEngine.UI.Button[] m_options;
     [SerializeField] TextMeshProUGUI[] m_labels;
@@ -35,6 +37,7 @@ public sealed class BattleChoiceWindow : AWindowController<BattleChoicePropertie
     [SerializeField] UnityEngine.UI.Image[] m_phaseCursors;
     [SerializeField] GameObject m_positionGroup;
     [SerializeField] GameObject m_phaseGroup;
+    [SerializeField] UnityEngine.UI.Button m_surrender;
     readonly List<DuelInputCommand> m_commands = new List<DuelInputCommand>();
     bool m_choiceConfirmed;
     protected override void OnOpen()
@@ -43,6 +46,8 @@ public sealed class BattleChoiceWindow : AWindowController<BattleChoicePropertie
         var scene = Properties.Scene; var view = scene.Source.Current;
         bool choosingPhase = Properties.Kind == BattleChoiceKind.Phase;
         m_phaseGroup.SetActive(choosingPhase); m_positionGroup.SetActive(!choosingPhase);
+        m_surrender.gameObject.SetActive(choosingPhase);
+        m_surrender.onClick.AddListener(() => Submit(new SurrenderDuel()));
         m_commands.Clear();
         if (choosingPhase)
         {
@@ -54,7 +59,7 @@ public sealed class BattleChoiceWindow : AWindowController<BattleChoicePropertie
                 m_phaseCursors[i].gameObject.SetActive(view.Phase == phase);
                 m_phaseOptions[i].onClick.AddListener(() => Submit(new ChangePhase(phase)));
             }
-            m_phaseOptions[6].interactable = view.CanInteract && view.Phase is not DuelPhase.Draw and not DuelPhase.Standby;
+            m_phaseOptions[6].interactable = view.CanInteract && view.AvailablePhases.Contains(DuelPhase.End);
             m_phaseOptions[6].onClick.AddListener(() => Submit(new EndTurn()));
         }
         else
@@ -93,6 +98,7 @@ public sealed class BattleChoiceWindow : AWindowController<BattleChoicePropertie
         foreach (var option in m_options) option.onClick.RemoveAllListeners();
         foreach (var option in m_phaseOptions) option.onClick.RemoveAllListeners();
         m_BtnCancel.onClick.RemoveAllListeners(); m_BtnReset.onClick.RemoveAllListeners();
+        m_surrender.onClick.RemoveAllListeners();
         if (!m_choiceConfirmed && Properties.Kind == BattleChoiceKind.ActionPosition && Properties.Scene.Source.Current.HasPendingAction)
             Properties.Scene.CancelAction();
     }

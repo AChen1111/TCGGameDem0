@@ -15,8 +15,11 @@ public static class AddressKeys
         public static readonly string AvatarShopItemRowPrefab = "AvatarShopItemRowPrefab";
         public static readonly string BattleCardRow = "BattleCardRow";
         public static readonly string BattleCardView = "BattleCardView";
+        public static readonly string BattleChainBadge = "BattleChainBadge";
         public static readonly string BattleChoiceWindow = "BattleChoiceWindow";
         public static readonly string BattleHudPanel = "BattleHudPanel";
+        public static readonly string BattleSelectionItem = "BattleSelectionItem";
+        public static readonly string BattleSelectionPanel = "BattleSelectionPanel";
         public static readonly string BattleZoneWindow = "BattleZoneWindow";
         public static readonly string CardDetailOverlay = "CardDetailOverlay";
         public static readonly string CardOverflowBadge = "CardOverflowBadge";

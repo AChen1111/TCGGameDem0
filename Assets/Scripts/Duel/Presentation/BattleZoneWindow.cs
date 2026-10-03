@@ -39,7 +39,7 @@ public sealed class BattleZoneWindow : APanelController<BattleZoneProperties>
             Properties.Scene.CloseZone();
             return;
         }
-        if (change.Kind is DuelChangeKind.Move or DuelChangeKind.Reset or DuelChangeKind.Position or DuelChangeKind.AnimationCompleted)
+            if (change.Kind is DuelChangeKind.Move or DuelChangeKind.Reset or DuelChangeKind.Position or DuelChangeKind.AnimationCompleted or DuelChangeKind.State)
             Refresh();
     }
     void Refresh()
@@ -48,6 +48,7 @@ public sealed class BattleZoneWindow : APanelController<BattleZoneProperties>
         var cards = Properties.Zone.IsSlot
             ? scene.Source.Current.Cards.Where(c => c.Zone.Kind == Properties.Zone.Kind && (Properties.Zone.Player == -1 || c.Owner == Properties.Zone.Player)).ToArray()
             : scene.Source.Current.InZone(Properties.Zone).ToArray();
+        cards = cards.Where(scene.CanInspect).ToArray();
         m_TxtTitle.text = (Properties.Zone.Player == -1 ? "共享 · " : Properties.Zone.Player == 0 ? "我方 · " : "对方 · ") + BattleLabels.Zone(Properties.Zone.Kind) + "  " + cards.Length;
         m_TxtEmpty.gameObject.SetActive(cards.Length == 0);
         var data = cards.Select(card => new BattleCardRowData(card, scene.CardObject(card.InstanceId).Art, scene)).ToList();

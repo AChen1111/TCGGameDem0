@@ -29,7 +29,7 @@ namespace AChen.Duel.Core
                     {
                         var slots = FreeSlots(context).ToArray(); link.Step = 1;
                         if (slots.Length == 0) { link.Step = 2; return; }
-                        context.OpenDecision(link, DecisionKind.ChooseZone, slots.Select(slot => new DecisionOption {
+                        context.OpenDecision(link, DecisionKind.ChooseZone, slots.Select(slot => new DecisionOption { DestinationZone = DuelZone.SpellTrap,
                             Id = slot.ToString(), Value = slot.ToString(), Label = "区域 " + slot }), "选择盖放区域"); return;
                     }
                     if (link.Step == 1)

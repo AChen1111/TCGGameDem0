@@ -100,7 +100,7 @@ namespace AChen.Duel.Core
             var reserved = Enumerable.Range(0, index).Select(i => link.Values["set-zone." + i]).ToArray();
             var slots = context.Catalog.Get(card.DefinitionId).SpellTrapType == RuleSpellTrapType.Field
                 ? new[] { 5 } : Enumerable.Range(0, 5).Where(slot => context.Engine.FreeSpellSlot(context.Player, slot) && !reserved.Contains(slot));
-            context.OpenDecision(link, DecisionKind.ChooseZone, slots.Select(slot => new DecisionOption {
+            context.OpenDecision(link, DecisionKind.ChooseZone, slots.Select(slot => new DecisionOption { DestinationZone = slot == 5 ? DuelZone.Field : DuelZone.SpellTrap,
                 Id = slot.ToString(System.Globalization.CultureInfo.InvariantCulture), Value = slot.ToString(System.Globalization.CultureInfo.InvariantCulture),
                 Label = slot == 5 ? "场地区域" : "魔法陷阱区域 " + (slot + 1) }), "选择盖放区域");
         }

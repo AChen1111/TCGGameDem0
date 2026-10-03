@@ -31,6 +31,7 @@ Material:
     m_Floats:
     - _EffectAvailable: 0
     - _Hint: 0
+    - _Negated: 0
     - _Selected: 0
     m_Colors:
     - _GlowColor: {r: 1, g: 0.72, b: 0.11999995, a: 1}
