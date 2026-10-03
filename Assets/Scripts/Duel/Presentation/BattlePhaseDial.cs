@@ -16,8 +16,9 @@ namespace AChen.Duel.Presentation
         {
             m_above.text="TURN "+view.Turn;
             m_main.text=view.Phase switch {DuelPhase.Draw=>"Draw",DuelPhase.Standby=>"Standby",DuelPhase.Main1=>"Main1",DuelPhase.Battle=>"Battle",DuelPhase.Main2=>"Main2",_=>"End"};
+            m_main.fontSize=view.Phase==DuelPhase.Standby?16:21;
             m_below.text="";
-            m_playerPart.SetActive(view.ActivePlayer==0);m_opponentPart.SetActive(view.ActivePlayer==1);
+            m_playerPart.SetActive(true);m_opponentPart.SetActive(false);
             foreach(var renderer in m_renderers)
             {renderer.GetPropertyBlock(m_properties);m_properties.SetFloat("_SwitchTurn",view.ActivePlayer);renderer.SetPropertyBlock(m_properties);}
         }

@@ -353,7 +353,7 @@ MonoBehaviour:
   m_text: TURN 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 73b89bc48688f7046a3f1ed9c393e5ea, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: ae12a27be56fe8045867b5aad5e1abdf, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 9846eaa09c22c6d4f8320bc104e49b82, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2570,7 +2570,7 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 73b89bc48688f7046a3f1ed9c393e5ea, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: ae12a27be56fe8045867b5aad5e1abdf, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 9846eaa09c22c6d4f8320bc104e49b82, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -20172,15 +20172,15 @@ PrefabInstance:
     - target: {fileID: 23017697238300914, guid: b7a85a2e5bf240b44b1c9154118c395c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: ae12a27be56fe8045867b5aad5e1abdf, type: 2}
+      objectReference: {fileID: 2100000, guid: 9846eaa09c22c6d4f8320bc104e49b82, type: 2}
     - target: {fileID: 23875609422105747, guid: b7a85a2e5bf240b44b1c9154118c395c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: ae12a27be56fe8045867b5aad5e1abdf, type: 2}
+      objectReference: {fileID: 2100000, guid: 9846eaa09c22c6d4f8320bc104e49b82, type: 2}
     - target: {fileID: 23946936116752871, guid: b7a85a2e5bf240b44b1c9154118c395c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: ae12a27be56fe8045867b5aad5e1abdf, type: 2}
+      objectReference: {fileID: 2100000, guid: 9846eaa09c22c6d4f8320bc104e49b82, type: 2}
     - target: {fileID: 224320256170494724, guid: b7a85a2e5bf240b44b1c9154118c395c, type: 3}
       propertyPath: m_LocalPosition.z
       value: 1.6600001
@@ -23887,7 +23887,7 @@ MonoBehaviour:
   m_text: Main1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 73b89bc48688f7046a3f1ed9c393e5ea, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: ae12a27be56fe8045867b5aad5e1abdf, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 9846eaa09c22c6d4f8320bc104e49b82, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

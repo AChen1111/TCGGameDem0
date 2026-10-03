@@ -45,12 +45,16 @@ public static partial class BattleSceneBuilder
     {
         var references=new SerializedObject(dial);
         var main=(TMP_Text)references.FindProperty("m_main").objectReferenceValue;
+        var phaseMaterial=Store(new Material(AssetDatabase.LoadAssetAtPath<Material>(Art+"BattleWorldText.mat"))
+            {shader=Shader.Find("TextMeshPro/Distance Field Overlay"),renderQueue=3100},Art+"BattlePhaseText.mat");
         foreach(string field in new[]{"m_main","m_above","m_below"})
         {
             var label=(TMP_Text)references.FindProperty(field).objectReferenceValue;
             var position=label.transform.position;position.y=2.13f;
             if(field=="m_above")position.z=main.transform.position.z+1.7f;
             label.transform.position=position;
+            label.fontSharedMaterial=phaseMaterial;
+            PrefabUtility.RecordPrefabInstancePropertyModifications(label);
             PrefabUtility.RecordPrefabInstancePropertyModifications(label.transform);
         }
     }
