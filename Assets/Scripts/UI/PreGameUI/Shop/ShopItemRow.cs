@@ -19,6 +19,7 @@ public static class ShopItemRow
         {
             TItem item = items[i];
             if (item == null) continue;
+            item.transform.SetSiblingIndex(i);
             int realIndex = rowIndex * count + i;
             bool hasData = allData != null && realIndex < allData.Count;
             item.gameObject.SetActive(hasData);

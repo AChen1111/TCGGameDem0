@@ -10,6 +10,7 @@ public sealed class ProfileCosmeticRow : MonoBehaviour, IRowItem<ProfileCosmetic
     {
         for (int i = 0; i < m_Items.Length; i++)
         {
+            m_Items[i].transform.SetSiblingIndex(i);
             int index = rowIndex * m_Items.Length + i;
             m_Items[i].gameObject.SetActive(index < allData.Count);
             if (index < allData.Count) m_Items[i].Bind(allData[index], index, index == selectedIndex, onSelected);
