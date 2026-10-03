@@ -75,6 +75,7 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
     readonly DuelZone[] m_sources = { DuelZone.Hand, DuelZone.MainDeck, DuelZone.ExtraDeck, DuelZone.Monster,
         DuelZone.SpellTrap, DuelZone.Field, DuelZone.Graveyard, DuelZone.Banished, DuelZone.ExtraMonster };
     int m_player, m_sourceIndex;
+    CardDetailEntry m_inspectedCard;
     BattleSceneController Scene => Properties.Scene;
     DuelZone SourceZone => m_sources[m_sourceIndex];
     UnityEngine.UI.Button[] Buttons => new[] { m_BtnPlayer, m_BtnSource, m_BtnCard, m_BtnView, m_BtnDraw,
@@ -98,7 +99,7 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
         Scene.Source.Changed+=OnChanged;Scene.SelectionChanged+=OnSelection;Scene.Notice+=OnNotice;
         Scene.ChoiceInspectionRequested+=OnChoiceInspection;
         m_actions.Initialize(Scene,m_UIFrame.MainCanvas);
-        m_detail.SetCallbacks(HideDetail,delegate{},OpenZoom);
+        m_detail.SetCallbacks(HideDetail,delegate{},OpenLargeDetail);
         m_avatarIds[0]=m_avatarIds[1]=m_frameIds[0]=m_frameIds[1]=-1;m_detail.gameObject.SetActive(false);Refresh();
         Scene.CompleteHudInitialization();
     }
@@ -113,16 +114,18 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
     {
         var card=Scene.Source.Current.Card(id);
         if(!Scene.CanInspect(card))return;
-        m_detail.Show(new[]{new CardDetailEntry(card.Definition.CardId,card.Definition.SourcePool,Scene.CardObject(id).Art)},0);
+        ShowDetail(new CardDetailEntry(card.Definition.CardId,card.Definition.SourcePool,Scene.CardObject(id).Art));
         Refresh();
     }
     void HideDetail() => m_detail.gameObject.SetActive(false);
     void OnChoiceInspection(string id)
-    { var definition=Scene.ChoiceDefinition(id);m_detail.Show(new[]{new CardDetailEntry(id,definition.SourcePool,Scene.ArtworkForDefinition(id))},0); }
-    void OpenZoom(CardArtwork artwork, int rarity)
+    { var definition=Scene.ChoiceDefinition(id);ShowDetail(new CardDetailEntry(id,definition.SourcePool,Scene.ArtworkForDefinition(id))); }
+    void ShowDetail(CardDetailEntry card)
+    { m_inspectedCard=card;m_detail.Show(new[]{card},0); }
+    void OpenLargeDetail(CardArtwork artwork, int rarity)
     {
         m_actions.Hide();
-        RequestOpenWindow(AddressKeys.Prefab.CardZoomWindow, new CardZoomWindowProperty(artwork, rarity));
+        RequestOpenWindow(AddressKeys.Prefab.CardDetailOverlay, new CardDetailWindowProperty(new[]{m_inspectedCard},0));
     }
     public void ConfirmSurrender()
     {

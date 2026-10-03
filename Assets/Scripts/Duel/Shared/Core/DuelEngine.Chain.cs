@@ -138,6 +138,10 @@ namespace AChen.Duel.Core
             }
             else if (OnField(source) && (source.Position == CardPosition.FaceDown || source.Position == CardPosition.FaceDownDefense))
             { source.Position = CardPosition.FaceUp; Emit(DuelEventKind.Revealed, command.Player, source); }
+            // 手牌中的发动来源已经公开，双方投影都需要该卡的句柄来显示连锁。
+            // 不公开其他手牌；来源离开当前区域时 Move 会清除公开标记。
+            if (source.Zone == DuelZone.Hand && (source.RevealedToMask & 3) != 3)
+            { source.RevealedToMask |= 3; Emit(DuelEventKind.Revealed, command.Player, source); }
             var link = new DuelChainLink { Number = State.Chain.Count + 1, Player = command.Player,
                 Source = source.Ref, DefinitionId = source.DefinitionId, AbilityId = ability.AbilityId, Speed = ability.Speed,
                 ActivationKind = definition.Kind == RuleCardKind.Monster && source.Zone == DuelZone.SpellTrap ? RuleCardKind.Spell : definition.Kind,
