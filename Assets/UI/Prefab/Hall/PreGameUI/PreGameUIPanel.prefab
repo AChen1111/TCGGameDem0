@@ -1464,6 +1464,9 @@ MonoBehaviour:
   m_className: PreGameUIPanel
   m_folderPath: Assets/Scripts/UI/PreGameUI
   m_uiBinds:
+  - fieldName: m_BtnAvatar
+    target: {fileID: 2686348139518015370}
+    component: {fileID: 3101438045887416945}
   - fieldName: m_BtnPlay
     target: {fileID: 8143045042590613182}
     component: {fileID: 2543257582590959485}
@@ -1479,6 +1482,9 @@ MonoBehaviour:
   - fieldName: m_BtnExit
     target: {fileID: 4823836979842674309}
     component: {fileID: 1205602635459268422}
+  - fieldName: m_Txtgold
+    target: {fileID: 5008494425745611206}
+    component: {fileID: 8162719898511607164}
   - fieldName: m_BtnGift
     target: {fileID: 6149241926413369203}
     component: {fileID: 3576045245727898140}
@@ -1491,9 +1497,6 @@ MonoBehaviour:
   - fieldName: m_BtnSetting
     target: {fileID: 1831089770997646741}
     component: {fileID: 9052097494262071546}
-  - fieldName: m_BtnAvatar
-    target: {fileID: 2686348139518015370}
-    component: {fileID: 3101438045887416945}
 --- !u!114 &8234930916011492848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1508,16 +1511,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: HotUpdate::PreGameUIPanel
   m_destroyOnClose: 0
   priority: 0
+  m_BtnAvatar: {fileID: 3101438045887416945}
   m_BtnPlay: {fileID: 2543257582590959485}
   m_BtnDeck: {fileID: 2792585963343384360}
   m_BtnShop: {fileID: 407436875829803923}
   m_BtnExit: {fileID: 1205602635459268422}
+  m_Txtgold: {fileID: 8162719898511607164}
   m_BtnGift: {fileID: 3576045245727898140}
   m_BtnWatch: {fileID: 4053759542317793462}
   m_BtnFriend: {fileID: 5498003090649876658}
   m_BtnMail: {fileID: 6538059966803960290}
   m_BtnSetting: {fileID: 9052097494262071546}
-  m_BtnAvatar: {fileID: 3101438045887416945}
   m_BtnChangeName: {fileID: 722098231998896598}
   m_BtnChangeWallpaper: {fileID: 6781169144371973377}
   m_LeftLayOut: {fileID: 5001685258247830197}
@@ -3441,6 +3445,22 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7933825615715367219, guid: 320948fe5f518554d870bd94514821af, type: 3}
   m_PrefabInstance: {fileID: 6150887913941121169}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5008494425745611206 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1215383509970149719, guid: 320948fe5f518554d870bd94514821af, type: 3}
+  m_PrefabInstance: {fileID: 6150887913941121169}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8162719898511607164 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2601842018669313517, guid: 320948fe5f518554d870bd94514821af, type: 3}
+  m_PrefabInstance: {fileID: 6150887913941121169}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5008494425745611206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &6169199038188070869
 PrefabInstance:
   m_ObjectHideFlags: 0

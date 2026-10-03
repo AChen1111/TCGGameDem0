@@ -7,21 +7,23 @@ using Cysharp.Threading.Tasks;
 using LitMotion;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 /// <summary>大厅主面板: 导航按钮、入场动画, 壁纸展示交给 LobbyWallpaperView.</summary>
 public class PreGameUIPanel : APanelController
 {
     // --tag_start: 自动生成--
+    [SerializeField] Button m_BtnAvatar;
     [SerializeField] Button m_BtnPlay;
     [SerializeField] Button m_BtnDeck;
     [SerializeField] Button m_BtnShop;
     [SerializeField] Button m_BtnExit;
+    [SerializeField] TextMeshProUGUI m_Txtgold;
     [SerializeField] Button m_BtnGift;
     [SerializeField] Button m_BtnWatch;
     [SerializeField] Button m_BtnFriend;
     [SerializeField] Button m_BtnMail;
     [SerializeField] Button m_BtnSetting;
-    [SerializeField] Button m_BtnAvatar;
     // --tag_end: 自动生成--
     [SerializeField] Button m_BtnChangeName;
     [SerializeField] Button m_BtnChangeWallpaper;

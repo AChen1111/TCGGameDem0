@@ -1256,8 +1256,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadDll
   backendUrl: http://127.0.0.1:5080
-  channel: development
-  useRemoteContentInEditor: 0
 --- !u!4 &1550207491
 Transform:
   m_ObjectHideFlags: 0
