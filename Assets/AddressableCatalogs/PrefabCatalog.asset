@@ -370,3 +370,24 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: DuelRoomWindow
+    reference:
+      m_AssetGUID: 09794a95ae3b25048afbbe784ca00395
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: DuelReplayWindow
+    reference:
+      m_AssetGUID: 0b82bf0e386b45449911d34f0ea99f63
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - assetName: DuelLobbyRow
+    reference:
+      m_AssetGUID: 2c7ccbf6158d5614782d6969d5a25715
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

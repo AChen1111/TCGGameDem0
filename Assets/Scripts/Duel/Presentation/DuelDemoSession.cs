@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 
 namespace AChen.Duel.Presentation
 {
@@ -85,8 +87,37 @@ namespace AChen.Duel.Presentation
         PendingActionView m_pendingAction = PendingActionView.Empty;
         DuelActionView m_selectedAction = new DuelActionView("", default, false, Array.Empty<DuelActionPositionView>());
         readonly IReadOnlyList<DuelPlayerView> m_players;
+        readonly int[] m_life = new int[2];
+        public DuelSessionMode Mode => DuelSessionMode.Offline;
+        public IEnumerable<DuelCardSpec> Definitions => m_main.Concat(m_extra).GroupBy(c => c.CardId).Select(g => g.First());
+        // 固定动作演示源没有攻击规则或攻击预览。
+        public bool HasAttackPreview => false;
+        public int AttackPreviewSource => 0;
+        public int AttackPreviewTarget => 0;
+        public int DeclaredAttacker => 0;
+        public int DeclaredTarget => 0;
         public DuelView Current { get; private set; }
         public event Action<DuelViewChange> Changed = delegate { };
+        public DuelCardSpec DefinitionForInstance(int id) => m_cards.First(c => c.Id == id).Spec;
+        public void Start() => Publish(DuelChangeKind.State);
+        public void FinishPresentation() => Submit(new AnimationCompleted());
+        public void PresentImpact(IReadOnlyList<int> life)
+        {
+            for (int i = 0; i < m_life.Length; i++) m_life[i] = life[i];
+            Publish(DuelChangeKind.State);
+        }
+        public UniTask<ZonePreviewCard[]> PreviewZoneAsync(ZoneRef zone, CancellationToken token)
+        {
+            token.ThrowIfCancellationRequested();
+            IEnumerable<CardState> cards = m_cards.Where(c => c.Zone.Equals(zone));
+            if (zone.Kind == DuelZone.MainDeck) cards = cards.OrderBy(c => c.Spec.CardId, StringComparer.Ordinal);
+            return UniTask.FromResult(cards.Select(c =>
+            {
+                bool known = c.Owner == 0 || c.Zone.Kind is not DuelZone.MainDeck and not DuelZone.ExtraDeck
+                    && c.Position is CardPosition.FaceUp or CardPosition.FaceUpAttack or CardPosition.FaceUpDefense;
+                return new ZonePreviewCard(zone.Kind == DuelZone.MainDeck ? 0 : c.Id, known ? c.Spec.CardId : "", known);
+            }).ToArray());
+        }
         public DuelDemoSession(IReadOnlyList<DuelCardSpec> main, IReadOnlyList<DuelCardSpec> extra, int openingHand = 5, float seconds = 180)
             : this(main, extra, openingHand, seconds, new[] { new DuelPlayerView("玩家", 1010001), new DuelPlayerView("对手", 1010002) }) { }
         public DuelDemoSession(IReadOnlyList<DuelCardSpec> main, IReadOnlyList<DuelCardSpec> extra, int openingHand,
@@ -100,6 +131,7 @@ namespace AChen.Duel.Presentation
             m_animating = false; m_paused = false; m_placement = PlacementView.Empty;
             m_pendingAction = PendingActionView.Empty;
             m_seconds[0] = m_seconds[1] = m_duration;
+            for (int i = 0; i < m_life.Length; i++) m_life[i] = m_players[i].LP;
             for (int player = 0; player < 2; player++)
             {
                 for (int i = 0; i < m_main.Count; i++) Add(m_main[i], player, i < m_openingHand ? DuelZone.Hand : DuelZone.MainDeck);
@@ -163,7 +195,8 @@ namespace AChen.Duel.Presentation
         }
         void Refresh() => Current = new DuelView(m_cards.Select(c => new CardView(c.Id, c.Owner, c.Spec,
             c.Zone, c.Position, c.Available, Targets(c), AvailablePositions(c.Id), Actions(c))), m_availablePiles, m_active, m_turn, m_phase,
-            m_animating, m_placement, m_seconds, m_paused, AvailablePhases, m_pendingAction, m_players);
+            m_animating, m_placement, m_seconds, m_paused, AvailablePhases, m_pendingAction,
+            m_players.Select((p, i) => new DuelPlayerView(p.Name, p.AvatarId, m_life[i], p.AvatarFrameId)));
         void Publish(DuelChangeKind kind, int id = 0, string message = "")
         { Refresh(); Changed(new DuelViewChange(kind, Current, id, message)); }
         void Move(CardState card, ZoneRef zone, CardPosition position)

@@ -1,0 +1,15 @@
+55171412.png
+size:4096,4096
+filter:Linear,Linear
+pma:false
+scale:0.8
+右手
+bounds:1691,1004,1293,1545
+右鳍
+bounds:2986,968,483,1581
+左手
+bounds:1691,2551,1903,1221
+左鳍
+bounds:3471,1175,510,1374
+躯干
+bounds:2,2,1687,3770

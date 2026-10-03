@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
+  m_Name: 93347961_SkeletonData
+  m_EditorClassIdentifier: HotUpdate::Spine.Unity.SkeletonDataAsset
+  atlasAssets:
+  - {fileID: 11400000, guid: 0a290f5049c777244a0517159b591647, type: 2}
+  scale: 0.01
+  skeletonJSON: {fileID: 4900000, guid: 8ae906fc1a57c874a9d661b9d82a7a66, type: 3}
+  isUpgradingBlendModeMaterials: 0
+  blendModeMaterials:
+    requiresBlendModeMaterials: 1
+    applyAdditiveMaterial: 0
+    additiveMaterials: []
+    multiplyMaterials: []
+    screenMaterials:
+    - pageName: 93347961.png
+      material: {fileID: 2100000, guid: a5a288ba201d9244cb01df5eea37b5ab, type: 2}
+  skeletonDataModifiers: []
+  fromAnimation: []
+  toAnimation: []
+  duration: []
+  defaultMix: 0.2
+  controller: {fileID: 0}

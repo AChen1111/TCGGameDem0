@@ -1145,3 +1145,13 @@ err.request_id_conflict,本次请求与原操作不一致，请刷新后重新�
 err.activity_schema_changed,活动协议已更新，请重新启动游戏,Activity data has changed. Restart the game.
 ui.activities.retry,重试上次操作,Retry previous request
 gift.gold_100.name,100 金币礼包,100 gold gift
+ui.duel.surrender_confirm,确定投降并结束这场对局？,Surrender and end this duel?
+err.duel.rooms,读取房间失败，请重试。,Could not load duel rooms. Please try again.
+err.duel.replays,读取回放失败，请重试。,Could not load replays. Please try again.
+err.duel.watch,打开回放失败，请重试。,Could not open the replay. Please try again.
+err.duel.deck,选择牌组失败，请重试。,Could not select the deck. Please try again.
+err.duel.ready,修改准备状态失败，请重试。,Could not change ready status. Please try again.
+err.duel.leave,退出房间失败，请重试。,Could not leave the room. Please try again.
+err.duel.create,创建房间失败，请重试。,Could not create the room. Please try again.
+err.duel.join,加入房间失败，请重试。,Could not join the room. Please try again.
+ui.lobby.watch,回放,watch

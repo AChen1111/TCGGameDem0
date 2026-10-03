@@ -1,0 +1,15 @@
+89943723.png
+size:2048,2048
+filter:Linear,Linear
+pma:false
+scale:0.7
+右手
+bounds:736,1180,384,678
+左手
+bounds:9,1670,188,547
+rotate:90
+左肩膀
+bounds:1067,1609,244,249
+rotate:180
+躯干
+bounds:2,2,788,1856

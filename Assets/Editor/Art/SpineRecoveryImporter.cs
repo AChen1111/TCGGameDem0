@@ -147,7 +147,7 @@ public static class SpineRecoveryImporter
         return outputs;
     }
 
-    static string ImportOne(string sourceFolder, string destAssetDir)
+    internal static string ImportOne(string sourceFolder, string destAssetDir)
     {
         sourceFolder = Path.GetFullPath(sourceFolder);
         destAssetDir = NormalizeAssetPath(destAssetDir);

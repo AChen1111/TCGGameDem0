@@ -1,0 +1,13 @@
+40044918.png
+size:4096,4096
+filter:Linear,Linear
+pma:false
+主体
+bounds:2,865,1593,2422
+右翅膀
+bounds:1597,1670,1617,903
+rotate:90
+左手
+bounds:2,2783,504,504
+左翅膀
+bounds:2502,2441,785,846

@@ -1,13 +1,26 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 
 namespace AChen.Duel.Presentation
 {
     public enum DuelZone { MainDeck, ExtraDeck, Hand, Monster, SpellTrap, Field, Graveyard, Banished, ExtraMonster, Material }
     public enum CardPosition { FaceUpAttack, FaceUpDefense, FaceDownDefense, FaceUp, FaceDown }
     public enum DuelPhase { Draw, Standby, Main1, Battle, Main2, End }
-    public enum DuelChangeKind { Reset, Move, Position, Highlight, Phase, Turn, Placement, CancelPlacement, Timer, AnimationCompleted, Rejected, Action, CancelAction, Effect, Attack, ChainResolved, State }
+    public enum DuelChangeKind { Reset, Move, Position, Highlight, Phase, Turn, Placement, CancelPlacement, Timer, AnimationCompleted, Rejected, Action, CancelAction, Effect, Attack, ChainResolved, State, Summoned }
+    public enum DuelSessionMode { Offline, Online, Replay }
+
+    public sealed class ZonePreviewCard
+    {
+        public int CardId { get; }
+        public string DefinitionId { get; }
+        public bool Known { get; }
+        public int Count { get; }
+        public ZonePreviewCard(int cardId, string definitionId, bool known, int count = 1)
+        { CardId = cardId; DefinitionId = definitionId; Known = known; Count = count; }
+    }
     public enum DuelActionKind { NormalSummon, SetMonster, SpecialSummon, Activate, SetSpellTrap, Pendulum, ChangePosition, DebugPlacement, Attack }
 
     public sealed class DuelTargetSlots
@@ -78,8 +91,10 @@ namespace AChen.Duel.Presentation
     {
         public string Name { get; }
         public int AvatarId { get; }
+        public int AvatarFrameId { get; }
         public int LP { get; }
-        public DuelPlayerView(string name, int avatarId, int lp = 8000) { Name = name; AvatarId = avatarId; LP = lp; }
+        public DuelPlayerView(string name, int avatarId, int lp = 8000, int avatarFrameId = 1030001)
+        { Name = name; AvatarId = avatarId; LP = lp; AvatarFrameId = avatarFrameId; }
     }
 
     public readonly struct ZoneRef : IEquatable<ZoneRef>
@@ -166,8 +181,9 @@ namespace AChen.Duel.Presentation
         public bool Animating { get; }
         public bool HasPlacement => Placement.InstanceId != 0;
         public bool HasPendingAction => PendingAction.InstanceId != 0;
-        public bool CanInteract => !Animating && !HasPlacement && !HasPendingAction && !Choice.Active && !Finished;
-        public bool CanBrowseCards => !Animating && !HasPlacement && !HasPendingAction && !Finished && (!Choice.Active || Choice.IsResponse);
+        public bool ReadOnly { get; internal set; }
+        public bool CanInteract => !ReadOnly && !Animating && !HasPlacement && !HasPendingAction && !Choice.Active && !Finished;
+        public bool CanBrowseCards => !Animating && !HasPlacement && !HasPendingAction && (!Finished || ReadOnly) && !Choice.Active;
         public DuelSelectionView Choice { get; internal set; } = DuelSelectionView.Empty;
         public int ViewingSeat { get; internal set; }
         public bool Finished { get; internal set; }
@@ -195,6 +211,7 @@ namespace AChen.Duel.Presentation
 
     public sealed class DuelViewChange
     {
+        public string DefinitionId { get; internal set; } = "";
         public IReadOnlyList<int> ImpactLifePoints { get; internal set; } = Array.Empty<int>();
         public long ChainId { get; internal set; }
         public int LinkNumber { get; internal set; }
@@ -212,8 +229,21 @@ namespace AChen.Duel.Presentation
 
     public interface IDuelPresentationSource
     {
+        DuelSessionMode Mode { get; }
+        IEnumerable<DuelCardSpec> Definitions { get; }
         DuelView Current { get; }
+        bool HasAttackPreview { get; }
+        int AttackPreviewSource { get; }
+        int AttackPreviewTarget { get; }
+        int DeclaredAttacker { get; }
+        int DeclaredTarget { get; }
         event Action<DuelViewChange> Changed;
+        DuelCardSpec DefinitionForInstance(int id);
+        void Start();
+        void Tick(float delta);
+        void PresentImpact(IReadOnlyList<int> life);
+        void FinishPresentation();
+        UniTask<ZonePreviewCard[]> PreviewZoneAsync(ZoneRef zone, CancellationToken token);
         void Submit(DuelInputCommand command);
     }
     public abstract class DuelInputCommand { }

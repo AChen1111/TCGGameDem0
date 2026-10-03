@@ -20,6 +20,9 @@ namespace AChen.Duel.Core
     public sealed class ProjectedDecisionOption
     {
         internal CardRef CardReference { get; }
+        public DuelZone DestinationZone { get; internal set; }
+        public int Slot { get; internal set; } = -1;
+        public string ViewCardId { get; internal set; } = "";
         public string OptionToken { get; }
         public string Label { get; }
         public string DefinitionId { get; }
@@ -62,6 +65,19 @@ namespace AChen.Duel.Core
 
     public sealed class ProjectedDuelEvent
     {
+        public MoveCause Cause { get; }
+        public int Turn { get; }
+        public DuelPhase Phase { get; }
+        public long ChainId { get; }
+        public int LinkNumber { get; set; }
+        public string PreviousViewCardId { get; set; } = "";
+        public string AttackerViewCardId { get; set; } = "";
+        public string TargetViewCardId { get; set; } = "";
+        public ProjectedCard Origin { get; set; }
+        public int[] ImpactLifePoints { get; set; } = Array.Empty<int>();
+        public bool ActivationNegated { get; set; }
+        public bool IsCardActivation { get; set; }
+        public RuleCardKind ActivationKind { get; set; }
         public long EventId { get; }
         public DuelEventKind Kind { get; }
         public int Player { get; }
@@ -75,6 +91,9 @@ namespace AChen.Duel.Core
         public string DeclaredNameId { get; }
         internal ProjectedDuelEvent(DuelEvent fact, bool visible, string viewId)
         {
+            Cause = fact.Cause; Turn = fact.TurnAtEvent; Phase = fact.PhaseAtEvent; ChainId = fact.ChainId;
+            LinkNumber = fact.LinkNumber; ActivationNegated = fact.ActivationNegated;
+            IsCardActivation = fact.IsCardActivation; ActivationKind = fact.ActivationKind;
             EventId = fact.Id; Kind = fact.Kind; Player = fact.Player; From = fact.From; To = fact.To;
             Amount = fact.Amount; ViewCardId = visible ? viewId : "";
             DefinitionId = visible ? fact.DefinitionId : "";
@@ -116,6 +135,10 @@ namespace AChen.Duel.Core
 
     public sealed class ProjectedCard
     {
+        public bool Negated { get; }
+        public int Level { get; }
+        public string HostViewCardId { get; set; } = "";
+        public int MaterialCount { get; set; }
         public string ViewCardId { get; }
         public string DefinitionId { get; }
         public int Owner { get; }
@@ -127,6 +150,7 @@ namespace AChen.Duel.Core
         public int? Defense { get; }
         internal ProjectedCard(string viewId, DuelCardState card, bool known)
         {
+            Negated = known && card.Negated; Level = known ? card.CurrentLevel : 0;
             ViewCardId = viewId; DefinitionId = known ? card.DefinitionId : "";
             Owner = card.Owner; Controller = card.Controller; Zone = card.Zone;
             Slot = card.Slot; Position = card.Position; Attack = known ? card.CurrentAtk : (int?)null;
@@ -147,6 +171,7 @@ namespace AChen.Duel.Core
         public int Winner { get; }
         public string EndReason { get; }
         public IReadOnlyList<DuelPlayerSnapshot> Players { get; }
+        public IReadOnlyList<string> MainDeckDefinitions { get; }
         public IReadOnlyList<ProjectedCard> Cards { get; }
         public IReadOnlyList<ProjectedChainLink> Chain { get; }
         public ProjectedDecision Decision { get; }
@@ -158,6 +183,8 @@ namespace AChen.Duel.Core
             Turn = state.Turn; TurnPlayer = state.TurnPlayer; Phase = state.Phase; Window = state.Window;
             WaitingSeat = state.WaitingSeat; Finished = state.Finished; Winner = state.Winner; EndReason = state.EndReason;
             Players = Array.AsReadOnly(new[] { new DuelPlayerSnapshot(state, 0), new DuelPlayerSnapshot(state, 1) });
+            MainDeckDefinitions = Array.AsReadOnly(state.Cards.Where(c => c.Owner == seat && c.Zone == DuelZone.Deck)
+                .Select(c => c.DefinitionId).OrderBy(id => id, StringComparer.Ordinal).ToArray());
             Cards = Array.AsReadOnly(cards.ToArray());
             Decision = decision;
             Actions = Array.AsReadOnly(actions.ToArray());
@@ -171,7 +198,7 @@ namespace AChen.Duel.Core
         public int Player { get; }
         public string DefinitionId { get; }
         public string AbilityId { get; }
-        public bool ActivationNegated { get; }
+        public bool ActivationNegated { get; set; }
         public bool EffectNegated { get; }
         internal ProjectedChainLink(DuelChainLink link)
         {
@@ -207,11 +234,35 @@ namespace AChen.Duel.Core
                 bool visible = (fact.VisibleToMask & (1 << m_seat)) != 0;
                 string handle = "";
                 if (visible && fact.HasCard)
-                    foreach (var card in m_cardHandles)
-                        if (card.Key.Item1.Equals(fact.Card)) { handle = card.Value; break; }
-                result.Add(new ProjectedDuelEvent(fact, visible, handle));
+                    handle = ExistingHandle(fact.Card);
+                var projected = new ProjectedDuelEvent(fact, visible, handle);
+                if (fact.Before != null && (fact.Before.VisibleToMask & (1 << m_seat)) != 0)
+                    projected.PreviousViewCardId = ExistingHandle(fact.Before.Ref);
+                projected.AttackerViewCardId = ExistingHandle(fact.BattleAttacker);
+                projected.TargetViewCardId = ExistingHandle(fact.BattleTarget);
+                if (visible && fact.After != null)
+                    projected.Origin = new ProjectedCard(handle, new DuelCardState {
+                        DefinitionId = fact.After.DefinitionId, Owner = fact.After.Owner, Controller = fact.After.Controller,
+                        Zone = fact.After.Zone, Slot = fact.After.Slot, Position = fact.After.Position,
+                        CurrentAtk = fact.After.Attack, CurrentDef = fact.After.Defense, CurrentLevel = fact.After.Level,
+                        Negated = fact.After.Negated }, true) { MaterialCount = fact.After.MaterialCount };
+                result.Add(projected);
             }
             return result.AsReadOnly();
+        }
+        ProjectedCard PresentationCard(DuelState state, DuelCardState card)
+        {
+            var result = new ProjectedCard(Handle(card), card, Known(card));
+            result.MaterialCount = state.Cards.Count(c => c.Zone == DuelZone.Material && c.HostInstanceId == card.InstanceId);
+            var host = state.Cards.FirstOrDefault(c => c.InstanceId == card.HostInstanceId);
+            if (host != null && VisibleObject(host)) result.HostViewCardId = Handle(host);
+            return result;
+        }
+        string ExistingHandle(CardRef reference) => m_cardHandles.Where(x => x.Key.Item1.Equals(reference)).OrderByDescending(x => x.Key.Item2).Select(x => x.Value).FirstOrDefault() ?? "";
+        public DuelSeatSnapshot ProjectPresentation(DuelState state)
+        {
+            var cards = state.Cards.Where(VisibleObject).Select(c => PresentationCard(state, c)).ToArray();
+            return new DuelSeatSnapshot(m_seat, state, cards, null, Array.Empty<ProjectedAction>());
         }
         public DuelSeatSnapshot Project(DuelState state, IReadOnlyList<DuelAction> legalActions)
         {
@@ -223,7 +274,7 @@ namespace AChen.Duel.Core
             foreach (var card in cards) m_cardByHandle.Add(Handle(card), (card.Ref, card.TrackingEpoch));
             var actions = ProjectActions(state, legalActions);
             return new DuelSeatSnapshot(m_seat, state, cards
-                .Select(c => new ProjectedCard(Handle(c), c, Known(c)))
+                .Select(c => PresentationCard(state, c))
                 .OrderBy(c => c.Controller).ThenBy(c => c.Zone).ThenBy(c => c.Slot).ThenBy(c => c.ViewCardId, StringComparer.Ordinal), m_decision, actions);
         }
         IEnumerable<ProjectedAction> ProjectActions(DuelState state, IReadOnlyList<DuelAction> legalActions)
@@ -262,7 +313,7 @@ namespace AChen.Duel.Core
             {
                 string token = Guid.NewGuid().ToString("N");
                 m_options.Add(token, new DecisionOption { Id = option.Id, Label = option.Label, Card = option.Card,
-                    HasCard = option.HasCard, Value = option.Value });
+                    HasCard = option.HasCard, Value = option.Value, DestinationZone = option.DestinationZone });
                 string definition = "", label = option.Label;
                 if (option.HasCard)
                 {
@@ -271,7 +322,14 @@ namespace AChen.Duel.Core
                     definition = known ? card.DefinitionId : "";
                     if (!known) label = "未知卡牌";
                 }
-                options.Add(new ProjectedDecisionOption(token, label, definition, option.HasCard ? option.Card : default));
+                var projected = new ProjectedDecisionOption(token, label, definition, option.HasCard ? option.Card : default);
+                if (decision.Kind == DecisionKind.ChooseZone)
+                {
+                    projected.DestinationZone = option.DestinationZone;
+                    projected.Slot = int.Parse(option.Value, System.Globalization.CultureInfo.InvariantCulture);
+                }
+                if (option.HasCard) projected.ViewCardId = Handle(state.Cards.Single(c => c.Ref.Equals(option.Card)));
+                options.Add(projected);
             }
             m_decision = new ProjectedDecision(decision, options.OrderBy(x => x.DefinitionId, StringComparer.Ordinal)
                 .ThenBy(x => x.Label, StringComparer.Ordinal).ThenBy(x => x.OptionToken, StringComparer.Ordinal));
@@ -363,6 +421,7 @@ namespace AChen.Duel.Core
                 m_cardHandles.Add(key, handle = Guid.NewGuid().ToString("N"));
             return handle;
         }
+        public string PreviewHandle(DuelCardState card) => Handle(card);
         internal string CardHandle(DuelCardState card) => Handle(card);
     }
 }

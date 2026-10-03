@@ -1,0 +1,133 @@
+
+ForUnity.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+pma:false
+repeat: none
+Body
+  rotate: true
+  xy: 1493, 459
+  size: 602, 545
+  orig: 602, 545
+  offset: 0, 0
+  index: -1
+Head
+  rotate: true
+  xy: 2, 1157
+  size: 401, 497
+  orig: 401, 497
+  offset: 0, 0
+  index: -1
+HeadChin
+  rotate: true
+  xy: 664, 1883
+  size: 155, 284
+  orig: 155, 284
+  offset: 0, 0
+  index: -1
+LeftArm
+  rotate: true
+  xy: 669, 630
+  size: 431, 822
+  orig: 431, 822
+  offset: 0, 0
+  index: -1
+LeftLeg
+  rotate: true
+  xy: 2, 1607
+  size: 302, 345
+  orig: 302, 345
+  offset: 0, 0
+  index: -1
+LeftShoulder
+  rotate: false
+  xy: 631, 106
+  size: 678, 522
+  orig: 678, 522
+  offset: 0, 0
+  index: -1
+LeftThigh
+  rotate: true
+  xy: 501, 1070
+  size: 395, 744
+  orig: 395, 744
+  offset: 0, 0
+  index: -1
+LeftWing01
+  rotate: false
+  xy: 950, 1831
+  size: 926, 207
+  orig: 926, 207
+  offset: 0, 0
+  index: -1
+LeftWing02
+  rotate: false
+  xy: 702, 1467
+  size: 717, 362
+  orig: 717, 362
+  offset: 0, 0
+  index: -1
+Neck
+  rotate: false
+  xy: 349, 1560
+  size: 351, 321
+  orig: 351, 321
+  offset: 0, 0
+  index: -1
+RightArm
+  rotate: true
+  xy: 1247, 1063
+  size: 401, 442
+  orig: 401, 442
+  offset: 0, 0
+  index: -1
+RightShoulder
+  rotate: true
+  xy: 1421, 1466
+  size: 363, 491
+  orig: 363, 491
+  offset: 0, 0
+  index: -1
+RightThigh
+  rotate: false
+  xy: 2, 120
+  size: 627, 536
+  orig: 627, 536
+  offset: 0, 0
+  index: -1
+RightWing01
+  rotate: true
+  xy: 2, 658
+  size: 410, 665
+  orig: 410, 665
+  offset: 0, 0
+  index: -1
+RightWing02
+  rotate: true
+  xy: 2, 1911
+  size: 127, 660
+  orig: 127, 660
+  offset: 0, 0
+  index: -1
+
+ForUnity2.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+pma:false
+repeat: none
+BodyBack
+  rotate: true
+  xy: 2, 2
+  size: 544, 708
+  orig: 544, 708
+  offset: 0, 0
+  index: -1
+RightLeg
+  rotate: false
+  xy: 2, 548
+  size: 707, 789
+  orig: 707, 789
+  offset: 0, 0
+  index: -1

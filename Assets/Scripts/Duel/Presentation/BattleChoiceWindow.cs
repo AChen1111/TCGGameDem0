@@ -46,7 +46,8 @@ public sealed class BattleChoiceWindow : AWindowController<BattleChoicePropertie
         var scene = Properties.Scene; var view = scene.Source.Current;
         bool choosingPhase = Properties.Kind == BattleChoiceKind.Phase;
         m_phaseGroup.SetActive(choosingPhase); m_positionGroup.SetActive(!choosingPhase);
-        m_surrender.gameObject.SetActive(choosingPhase);
+        m_surrender.gameObject.SetActive(false);
+        m_BtnReset.gameObject.SetActive(false);
         m_surrender.onClick.AddListener(() => Submit(new SurrenderDuel()));
         m_commands.Clear();
         if (choosingPhase)

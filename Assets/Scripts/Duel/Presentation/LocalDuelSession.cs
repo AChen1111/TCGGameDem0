@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using Core = AChen.Duel.Core;
 
 namespace AChen.Duel.Presentation
@@ -31,6 +33,7 @@ namespace AChen.Duel.Presentation
         bool m_animating;
         readonly Dictionary<ZoneRef, string> m_zoneAnswers = new Dictionary<ZoneRef, string>();
         public DuelView Current { get; private set; }
+        public DuelSessionMode Mode => DuelSessionMode.Offline;
         public event Action<DuelViewChange> Changed = delegate { };
         public IEnumerable<DuelCardSpec> Definitions => m_specs.Values;
         public int AttackPreviewSource { get; private set; }
@@ -38,6 +41,17 @@ namespace AChen.Duel.Presentation
         public bool HasAttackPreview { get; private set; }
         public int DeclaredAttacker => m_engine.State.Attacker.InstanceId;
         public int DeclaredTarget => m_engine.State.AttackTarget.InstanceId;
+        public void FinishPresentation() => Submit(new AnimationCompleted());
+        public UniTask<ZonePreviewCard[]> PreviewZoneAsync(ZoneRef zone, CancellationToken token)
+        {
+            token.ThrowIfCancellationRequested();
+            int seat = zone.Player == 0 ? m_viewer : 1 - m_viewer;
+            var cards = m_engine.State.Cards.Where(c => MapZone(c.Zone) == zone.Kind && c.Controller == seat);
+            if (zone.Kind == DuelZone.MainDeck) cards = cards.OrderBy(c => c.DefinitionId, StringComparer.Ordinal);
+            return UniTask.FromResult(cards.Select(c => new ZonePreviewCard(zone.Kind == DuelZone.MainDeck ? 0 : c.Ref.InstanceId,
+                seat == m_viewer || Core.DuelEngine.IsPublic(c) ? c.DefinitionId : "",
+                seat == m_viewer || Core.DuelEngine.IsPublic(c))).ToArray());
+        }
         public LocalDuelSession(Func<Core.DuelStartRecord> start, IEnumerable<DuelCardSpec> specs, IEnumerable<DuelPlayerView> players)
         {
             m_start = start; m_specs = specs.GroupBy(x => x.CardId).ToDictionary(g => g.Key, g => g.First());
@@ -339,6 +353,7 @@ namespace AChen.Duel.Presentation
                 {
                     Core.DuelEventKind.Moved => DuelChangeKind.Move, Core.DuelEventKind.Revealed => DuelChangeKind.Position,
                     Core.DuelEventKind.PositionChanged => DuelChangeKind.Position, Core.DuelEventKind.Activated => DuelChangeKind.Effect,
+                    Core.DuelEventKind.Summoned => DuelChangeKind.Summoned,
                     Core.DuelEventKind.Resolved => DuelChangeKind.ChainResolved, Core.DuelEventKind.Negated => DuelChangeKind.ChainResolved,
                     Core.DuelEventKind.PhaseChanged => DuelChangeKind.Phase, Core.DuelEventKind.TurnChanged => DuelChangeKind.Turn,
                     _ => DuelChangeKind.State
@@ -360,7 +375,7 @@ namespace AChen.Duel.Presentation
                 if (fact.Kind == Core.DuelEventKind.Recovered) life[fact.Player] += fact.Amount;
                 var view = View(fact.PresentCards, life, fact.PhaseAtEvent, fact.TurnAtEvent);
                 m_presentations.Enqueue(new DuelViewChange(kind, view, fact.HasCard ? fact.Card.InstanceId : 0)
-                { ChainId = fact.ChainId, LinkNumber = fact.LinkNumber,
+                { DefinitionId = fact.DefinitionId, ChainId = fact.ChainId, LinkNumber = fact.LinkNumber,
                     AttackerId = fact.BattleAttacker.InstanceId, TargetId = fact.BattleTarget.InstanceId,
                     Origin = fact.HasCard ? Zone(fact.After) : default, IsNegated = fact.Kind == Core.DuelEventKind.Negated });
             }

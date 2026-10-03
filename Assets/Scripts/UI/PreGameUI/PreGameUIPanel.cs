@@ -17,6 +17,7 @@ public class PreGameUIPanel : APanelController
     [SerializeField] Button m_BtnShop;
     [SerializeField] Button m_BtnExit;
     [SerializeField] Button m_BtnGift;
+    [SerializeField] Button m_BtnWatch;
     [SerializeField] Button m_BtnFriend;
     [SerializeField] Button m_BtnMail;
     [SerializeField] Button m_BtnSetting;
@@ -60,6 +61,8 @@ public class PreGameUIPanel : APanelController
     protected override void AddListeners()
     {
         m_BtnExit.onClick.AddListener(OnExitClick);
+        m_BtnPlay.onClick.AddListener(OnDuelClick);
+        m_BtnWatch.onClick.AddListener(OnReplayClick);
         m_BtnShop.onClick.AddListener(OnShopClick);
         m_BtnChangeName.onClick.AddListener(OnChangeNameClick);
         m_BtnAvatar.onClick.AddListener(OnAvatarClick);
@@ -75,6 +78,8 @@ public class PreGameUIPanel : APanelController
     {
         EventCenter.RemoveListener(GameEvent.PlayerBackgroundChanged, OnBackgroundChanged);
         m_BtnExit.onClick.RemoveListener(OnExitClick);
+        m_BtnPlay.onClick.RemoveListener(OnDuelClick);
+        m_BtnWatch.onClick.RemoveListener(OnReplayClick);
         m_BtnShop.onClick.RemoveListener(OnShopClick);
         m_BtnChangeName.onClick.RemoveListener(OnChangeNameClick);
         m_BtnAvatar.onClick.RemoveListener(OnAvatarClick);
@@ -126,6 +131,8 @@ public class PreGameUIPanel : APanelController
     }
 
     void OnDeckClick() => RequestOpenWindow(AddressKeys.Prefab.DeckListWindow);
+    void OnDuelClick() => RequestOpenWindow(AddressKeys.Prefab.DuelRoomWindow);
+    void OnReplayClick() => RequestOpenWindow(AddressKeys.Prefab.DuelReplayWindow);
 
     void OnExitClick() => EventCenter.Dispatch(GameEvent.GameExitRequested);
 

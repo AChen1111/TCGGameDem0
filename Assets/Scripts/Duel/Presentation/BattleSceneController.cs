@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AChen.Duel.Client;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using UnityEngine;
@@ -38,7 +39,14 @@ namespace AChen.Duel.Presentation
         [SerializeField] float m_retreatDuration=.15f, m_chargeDuration=.18f, m_returnDuration=.22f;
         [SerializeField] float m_retreatDistance=2.5f, m_targetClearance=5f;
         [SerializeField] Ease m_retreatEase=Ease.OutQuad, m_chargeEase=Ease.InQuad, m_returnEase=Ease.OutCubic;
-        LocalDuelSession m_session;
+        IDuelPresentationSource m_session;
+        BattleCutinView m_cutin;
+        readonly UniTaskCompletionSource m_hudReady = new UniTaskCompletionSource();
+        readonly BattleHandOrder m_handOrder = new BattleHandOrder();
+        int m_viewingSeat;
+        bool m_subscribed;
+        bool m_browsing;
+        int m_previewVersion;
         UIFrame m_frame;
         MotionHandle m_motion;
         Action m_finish=delegate { };
@@ -61,6 +69,8 @@ namespace AChen.Duel.Presentation
         public event Action<int,Vector2> CardActionsRequested=delegate { };
         public event Action<string> ChoiceInspectionRequested=delegate { };
         public void InspectChoice(string definitionId)=>ChoiceInspectionRequested(definitionId);
+        public void BindCutin(BattleCutinView cutin)=>m_cutin=cutin;
+        public void CompleteHudInitialization() => m_hudReady.TrySetResult();
         public DuelCardSpec ChoiceDefinition(string id)=>m_session.Definitions.First(d=>d.CardId==id);
         public Vector2 CardScreenAnchor(int id)
         {
@@ -70,7 +80,7 @@ namespace AChen.Duel.Presentation
         }
         public async UniTask InitializeAsync(UIFrame frame)
         {
-            m_frame=frame;m_mainCameraData.cameraStack.Add(frame.UICamera);m_session=m_preset.CreateLocalSession();
+            m_frame=frame;m_mainCameraData.cameraStack.Add(frame.UICamera);m_session=DuelClientSession.Instance.Mode==DuelSessionMode.Offline ? m_preset.CreateLocalSession() : DuelClientSession.Instance.PresentationSource;
             var textures=new Dictionary<string,Texture>();
             foreach(var definition in m_session.Definitions)
             {
@@ -81,17 +91,19 @@ namespace AChen.Duel.Presentation
             foreach(var card in m_session.Current.Cards)
             {
                 var obj=Instantiate(m_cardPrefab,m_cardRoot); obj.name="Card_"+card.InstanceId;
-                obj.Bind(card.InstanceId,textures[m_session.DefinitionForInstance(card.InstanceId).CardId]);
+                obj.Bind(card.InstanceId,card.Known ? textures[card.Definition.CardId] : TextureForDefinition(m_session.Definitions.First().CardId));
                 m_cards.Add(card.InstanceId,obj); m_cardHits.Add(obj.Hitbox,card.InstanceId);
             }
             foreach(var zone in m_zones)m_zoneHits.Add(zone.Hitbox,zone);
-            m_session.Changed+=OnChanged; m_ready=true; m_selected=m_session.Current.Cards[0].InstanceId;
+            m_viewingSeat=m_session.Current.ViewingSeat; m_handOrder.Update(m_session.Current.Cards);
+            m_session.Changed+=OnChanged; m_subscribed=true; m_selected=m_session.Current.Cards.Count>0?m_session.Current.Cards[0].InstanceId:0;
             m_width=Screen.width; m_height=Screen.height;
             m_layoutFieldOfView=m_camera.fieldOfView;
             Rebuild(false,0); RefreshWorld(m_session.Current);
             m_phaseEffects.Stop();
             frame.ShowPanel(AddressKeys.Prefab.BattleHudPanel,new BattleHudProperties(this));
-            SceneTransitionOverlay.Hide();m_session.Start();
+            await m_hudReady.Task.AttachExternalCancellation(this.GetCancellationTokenOnDestroy());
+            m_session.Start(); m_ready=true; SceneTransitionOverlay.Hide();
         }
         void Update()
         {
@@ -119,7 +131,7 @@ namespace AChen.Duel.Presentation
         public void InputPointer(Vector2 point,bool down,bool held,bool up)
         {
             var state=m_session.Current;
-            bool blocked=m_frame.IsWindowBusy||state.Animating||(state.Choice.Active&&!state.Choice.IsResponse)||OverUI(point);
+            bool blocked=m_cutin.Playing||m_frame.IsWindowBusy||state.Animating||(state.Choice.Active&&!state.Choice.IsResponse)||OverUI(point);
             if(down)
             {
                 if(blocked){ClearPointer();return;}
@@ -192,9 +204,22 @@ namespace AChen.Duel.Presentation
         public void ShowCardActions(int id,Vector2 anchor)
         {if(!m_session.Current.CanBrowseCards||!CanInspect(m_session.Current.Card(id)))return;m_selectedAnchor=anchor;SelectCard(id);CardActionsRequested(id,anchor);}
         public void OpenDetail(int id)=>SelectCard(id);
-        public void OpenZone(ZoneRef zone)
-        {if(m_session.Current.CanBrowseCards){ClearPointer();m_frame.ShowPanel(AddressKeys.Prefab.BattleZoneWindow,new BattleZoneProperties(this,zone));}}
-        public void CloseZone()=>m_frame.HidePanel(AddressKeys.Prefab.BattleZoneWindow);
+        public void OpenZone(ZoneRef zone) => OpenZoneAsync(zone).Forget();
+        async UniTask OpenZoneAsync(ZoneRef zone)
+        {
+            if(m_cutin.Playing||m_session.Current.Choice.Active||m_session.Current.Animating)return;
+            ClearPointer(); int version=++m_previewVersion;
+            var cards=await m_session.PreviewZoneAsync(zone,this.GetCancellationTokenOnDestroy());
+            if(version!=m_previewVersion||m_session.Current.Choice.Active)return;
+            m_browsing=true;
+            m_frame.ShowPanel(AddressKeys.Prefab.BattleSelectionPanel,new BattleSelectionProperties(this,zone,cards));
+        }
+        public void CloseZone()
+        {
+            m_previewVersion++;
+            if(!m_browsing)return;
+            m_browsing=false;m_frame.HidePanel(AddressKeys.Prefab.BattleSelectionPanel);
+        }
         public void BeginAction(int id,string actionId)
         {
             CloseZone();ClearPointer();m_session.Submit(new BeginCardAction(id,actionId));
@@ -212,7 +237,7 @@ namespace AChen.Duel.Presentation
         }
         public void CancelAction()
         {
-            if(m_session.Current.Animating)return;
+            if(m_cutin.Playing||m_session.Current.Animating)return;
             m_session.Submit(new CancelCardAction());ClearPointer();
             foreach(var card in m_cards.Values)card.SetSelected(false);
         }
@@ -220,10 +245,13 @@ namespace AChen.Duel.Presentation
         {
             if(change.Kind==DuelChangeKind.Rejected){Notice(change.Message);return;}
             if(change.Kind==DuelChangeKind.Timer){RefreshWorld(change.View);return;}
-            ClearPointer();
+            var previousHands=m_handOrder.Capture();
+            if(change.Kind==DuelChangeKind.Reset && (change.View.ViewingSeat!=m_viewingSeat || m_session.Mode==DuelSessionMode.Offline))m_handOrder.Clear();
+            m_viewingSeat=change.View.ViewingSeat; m_handOrder.Update(change.View.Cards);
+            EnsureCards(change,previousHands);ClearPointer();
             if(change.Kind==DuelChangeKind.Reset)
             {CancelAnimations();m_chainView.Clear();m_attackArrow.Hide();CloseZone();m_hovered=0;foreach(var card in m_cards.Values)card.SetSelected(false);}
-            if(!change.View.Choice.Active && m_frame.IsPanelOpen(AddressKeys.Prefab.BattleSelectionPanel))m_frame.HidePanel(AddressKeys.Prefab.BattleSelectionPanel);
+            if(!m_browsing && !change.View.Choice.Active && m_frame.IsPanelOpen(AddressKeys.Prefab.BattleSelectionPanel))m_frame.HidePanel(AddressKeys.Prefab.BattleSelectionPanel);
             if(change.Kind==DuelChangeKind.Effect && change.LinkNumber>0)m_chainView.Add(change);
             if(change.Kind==DuelChangeKind.ChainResolved && change.LinkNumber>0)
             {
@@ -232,19 +260,56 @@ namespace AChen.Duel.Presentation
             }
             if(change.Kind is DuelChangeKind.Move or DuelChangeKind.Position)
             {Rebuild(true,change.InstanceId);RefreshWorld(change.View);return;}
+            if(change.Kind==DuelChangeKind.Summoned){Rebuild(false,0);RefreshWorld(change.View);PlaySummonAsync(change).Forget();return;}
             if(change.Kind==DuelChangeKind.Attack){PlayAttack(change);return;}
             if(change.Kind==DuelChangeKind.Effect){Rebuild(false,0);RefreshWorld(change.View);PlayEffect(change.InstanceId);return;}
             if(change.Kind is DuelChangeKind.Phase or DuelChangeKind.Turn)
             {Rebuild(false,0);RefreshWorld(change.View);float duration=m_phaseEffects.Begin(change);StartAnimation(duration,_=>{},m_phaseEffects.Stop);return;}
             Rebuild(false,0);RefreshWorld(change.View);
+            if(change.View.Choice.Active && m_browsing)CloseZone();
             if(change.View.Choice.Active && !m_frame.IsPanelOpen(AddressKeys.Prefab.BattleSelectionPanel))
                 m_frame.ShowPanel(AddressKeys.Prefab.BattleSelectionPanel,new BattleSelectionProperties(this));
-            if(change.View.Animating){m_session.Submit(new AnimationCompleted());return;}
+            if(change.View.Animating){m_session.FinishPresentation();return;}
             int attacker=m_session.HasAttackPreview?m_session.AttackPreviewSource:m_session.DeclaredAttacker;
             int target=m_session.HasAttackPreview?m_session.AttackPreviewTarget:m_session.DeclaredTarget;
             if(attacker!=0 && change.View.Card(attacker).Zone.IsSlot && change.View.Card(attacker).Position==CardPosition.FaceUpAttack && change.View.Card(attacker).Owner==change.View.ActivePlayer)
                 m_attackArrow.Show(m_cards[attacker].ActionWorldAnchor,AttackDestination(target,attacker));else m_attackArrow.Hide();
             if(change.View.Finished)Notice(change.View.Outcome);
+        }
+        void EnsureCards(DuelViewChange change,int[][] previousHands)
+        {
+            var view=change.View;
+            foreach(var card in view.Cards)
+            {
+                bool created=false;
+                if(!m_cards.TryGetValue(card.InstanceId,out var obj))
+                {
+                    obj=Instantiate(m_cardPrefab,m_cardRoot);obj.name="Card_"+card.InstanceId;
+                    m_cards.Add(card.InstanceId,obj);m_cardHits.Add(obj.Hitbox,card.InstanceId);
+                    created=true;
+                }
+                obj.Bind(card.InstanceId,card.Known?TextureForDefinition(card.Definition.CardId):TextureForDefinition(m_session.Definitions.First().CardId));
+                if(created)
+                {
+                    var origin=change.Kind==DuelChangeKind.Move && card.InstanceId==change.InstanceId ? change.Origin : card.Zone;
+                    var startingCard=new CardView(card.InstanceId,card.Owner,card.Definition,origin,
+                        origin.Kind==DuelZone.MainDeck?CardPosition.FaceDown:card.Position,false,Array.Empty<ZoneRef>(),Array.Empty<CardPosition>())
+                        {Known=card.Known,HostInstanceId=card.HostInstanceId};
+                    if(origin.Kind==DuelZone.Hand)
+                    {
+                        var previousHand=previousHands[card.Owner]; int index=Array.IndexOf(previousHand,card.InstanceId);
+                        // 首次公开的对方手牌没有可关联的私有实体，只从原手牌最后一个匿名显示位置移出。
+                        obj.SetPose(PoseFor(startingCard,view,index>=0?index:previousHand.Length-1,previousHand.Length));
+                    }
+                    else obj.SetPose(PoseFor(startingCard,view));
+                }
+            }
+            foreach(var pair in m_cards)if(!view.Cards.Any(c=>c.InstanceId==pair.Key))pair.Value.gameObject.SetActive(false);
+        }
+        async UniTask PlaySummonAsync(DuelViewChange change)
+        {
+            if(m_cutin.Contains(change.DefinitionId))await m_cutin.PlayOnceAsync(change.DefinitionId,this.GetCancellationTokenOnDestroy());
+            m_session.FinishPresentation();
         }
         Vector3 AttackDestination(int target,int attacker)=>target==0?m_directAttackAnchors[1-m_session.Current.Card(attacker).Owner].position:m_cards[target].ActionWorldAnchor;
         void PlayAttack(DuelViewChange change)
@@ -267,15 +332,15 @@ namespace AChen.Duel.Presentation
                 obj.SetPose(new BattleCardPose(position,pose.Rotation,pose.PlaneRotation,pose.PivotPosition,pose.Scale,pose.OffsetPosition,pose.OffsetRotation,pose.TurnRotation,pose.Hand));
             },()=>obj.SetPose(pose),Ease.Linear);
         }
-        BattleCardPose PoseFor(CardView card,DuelView view)
+        BattleCardPose PoseFor(CardView card,DuelView view) => PoseFor(card,view,m_handOrder.IndexOf(card.Owner,card.InstanceId),m_handOrder.Count(card.Owner));
+        BattleCardPose PoseFor(CardView card,DuelView view,int handIndex,int handCount)
         {
             float yaw=card.Owner==0?0:180;
             bool hand=card.Zone.Kind==DuelZone.Hand;
             Vector3 position,pivot=Vector3.zero;Quaternion plane=Quaternion.identity,offset=Quaternion.identity;
             if(hand)
             {
-                var cards=view.InZone(card.Zone);int index=cards.ToList().FindIndex(x=>x.InstanceId==card.InstanceId);
-                float spacing=card.Owner==0?Mathf.Min(4,42f/Mathf.Max(1,cards.Count)):Mathf.Min(2.2f,26f/Mathf.Max(1,cards.Count));float x=(index-(cards.Count-1)*.5f)*spacing;
+                float spacing=card.Owner==0?Mathf.Min(4,42f/Mathf.Max(1,handCount)):Mathf.Min(2.2f,26f/Mathf.Max(1,handCount));float x=(handIndex-(handCount-1)*.5f)*spacing;
                 float z=card.Owner==0?-28+(30-m_camera.fieldOfView)*.7f:23-(30-m_camera.fieldOfView)*.7f;
                 position=new Vector3(card.Owner==0?x:-x,card.Owner==0?15:5,z);
                 plane=Quaternion.Euler(card.Owner==0?-20:20,0,0);
@@ -285,7 +350,7 @@ namespace AChen.Duel.Presentation
                 {
                     var ray=m_camera.ViewportPointToRay(new Vector3(.5f,.92f,0));
                     float distance=(5-ray.origin.y)/ray.direction.y;
-                    position=new Vector3(-x,5,ray.GetPoint(distance).z);
+                    position=new Vector3(x,5,ray.GetPoint(distance).z);
                     plane=Quaternion.identity;pivot=Vector3.zero;offset=Quaternion.identity;
                 }
             }
@@ -296,7 +361,7 @@ namespace AChen.Duel.Presentation
                 {position+=Vector3.up*Mathf.Max(0,view.InZone(card.Zone).Count-1)*.1f;yaw+=card.Zone.Kind==DuelZone.MainDeck?-19.5f:19.5f;}
                 if(card.Position is CardPosition.FaceUpDefense or CardPosition.FaceDownDefense)yaw+=90;
             }
-            bool face=m_visibility.IsFaceVisible(0,card);
+            bool face=card.Known&&m_visibility.IsFaceVisible(0,card);
             float scale=hand&&card.Owner==1?.58f:(card.Zone.Kind is DuelZone.SpellTrap or DuelZone.Field) ? .8f : 1;
             return new BattleCardPose(position,Quaternion.Euler(0,yaw,0),plane,pivot,Vector3.one*scale,
                 Vector3.zero,offset,Quaternion.Euler(0,0,face?0:180),hand);
@@ -311,7 +376,7 @@ namespace AChen.Duel.Presentation
                 var end=PoseFor(card,view);ends.Add(card.InstanceId,end);obj.SetRestPose(end);
                 bool visible=card.Zone.IsSlot||card.Zone.Kind==DuelZone.Hand;
                 obj.gameObject.SetActive(visible||(animate&&card.InstanceId==changingCard));obj.Hitbox.enabled=visible&&!animate;
-                obj.Apply(card,m_visibility.IsFaceVisible(0,card));
+                obj.Apply(card,card.Known&&m_visibility.IsFaceVisible(0,card));
             }
             FitFarHand(view,ends);
             foreach(var card in view.Cards)m_cards[card.InstanceId].SetRestPose(ends[card.InstanceId]);
@@ -323,7 +388,7 @@ namespace AChen.Duel.Presentation
                 foreach(var card in view.Cards)
                 {
                     var obj=m_cards[card.InstanceId];bool visible=card.Zone.IsSlot||card.Zone.Kind==DuelZone.Hand;
-                    obj.gameObject.SetActive(visible);obj.Hitbox.enabled=visible;obj.Apply(card,m_visibility.IsFaceVisible(0,card));
+                    obj.gameObject.SetActive(visible);obj.Hitbox.enabled=visible;obj.Apply(card,card.Known&&m_visibility.IsFaceVisible(0,card));
                 }
             }
             if(animate)StartAnimation(.55f,Sample,Finish);else Finish();
@@ -363,20 +428,20 @@ namespace AChen.Duel.Presentation
             Notice("发动效果 · "+LocalizationService.GetText("card."+card.Definition.CardId+".name"));
             StartAnimation(.6f,t=>obj.SetPose(new BattleCardPose(pose.Position+Vector3.up*Mathf.Sin(t*Mathf.PI)*3,pose.Rotation,
                 pose.PlaneRotation,pose.PivotPosition,pose.Scale,pose.OffsetPosition,pose.OffsetRotation,pose.TurnRotation,pose.Hand)),
-                ()=>{obj.SetPose(pose);obj.Apply(card,m_visibility.IsFaceVisible(0,card));obj.gameObject.SetActive(visible);});
+                ()=>{obj.SetPose(pose);obj.Apply(card,card.Known&&m_visibility.IsFaceVisible(0,card));obj.gameObject.SetActive(visible);});
         }
         void StartAnimation(float duration,Action<float> sample,Action finish,Ease ease=Ease.InOutCubic)
         {
             int generation=++m_animationGeneration;m_finish=finish;
             m_motion=LMotion.Create(0f,1f,duration).WithEase(ease).WithOnComplete(()=>
-            {if(generation!=m_animationGeneration)return;m_finish();m_finish=delegate{};m_session.Submit(new AnimationCompleted());})
+            {if(generation!=m_animationGeneration)return;m_finish();m_finish=delegate{};m_session.FinishPresentation();})
                 .Bind(sample).AddTo(this);
         }
         public void SkipAnimation()
         {
-            if(!m_session.Current.Animating)return;
+            if(m_cutin.Playing||!m_session.Current.Animating)return;
             m_animationGeneration++;m_motion.TryCancel();m_finish();m_finish=delegate{};
-            foreach(var card in m_cards.Values)card.StopMotion();m_phaseEffects.Stop();m_session.Submit(new AnimationCompleted());
+            foreach(var card in m_cards.Values)card.StopMotion();m_phaseEffects.Stop();m_session.FinishPresentation();
         }
         void CancelAnimations()
         {m_animationGeneration++;m_motion.TryCancel();m_finish=delegate{};foreach(var card in m_cards.Values)card.StopMotion();m_phaseEffects.Stop();}
@@ -391,6 +456,6 @@ namespace AChen.Duel.Presentation
         }
         void LateUpdate(){if(m_ready)m_chainView.Refresh(this,m_session.Current);}
         void OnDestroy()
-        {if(!m_ready)return;CancelAnimations();m_chainView.Clear();m_attackArrow.Hide();m_session.Changed-=OnChanged;}
+        {if(!m_subscribed)return;CancelAnimations();m_chainView.Clear();m_attackArrow.Hide();m_session.Changed-=OnChanged;}
     }
 }

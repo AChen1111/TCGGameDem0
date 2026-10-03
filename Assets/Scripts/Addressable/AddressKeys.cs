@@ -41,6 +41,9 @@ public static class AddressKeys
         public static readonly string DeckNameWindow = "DeckNameWindow";
         public static readonly string DeckPlacedCardCell = "DeckPlacedCardCell";
         public static readonly string DeckUnsavedWindow = "DeckUnsavedWindow";
+        public static readonly string DuelLobbyRow = "DuelLobbyRow";
+        public static readonly string DuelReplayWindow = "DuelReplayWindow";
+        public static readonly string DuelRoomWindow = "DuelRoomWindow";
         public static readonly string FriendApplyRowPrefab = "FriendApplyRowPrefab";
         public static readonly string FriendRowPrefab = "FriendRowPrefab";
         public static readonly string FriendWindow = "FriendWindow";

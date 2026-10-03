@@ -25,6 +25,7 @@ public static class GameFlow
         EventCenter.AddListener(GameEvent.GameExitRequested, OnExitRequested);
         EventCenter.AddListener(GameEvent.LogoutRequested, OnLogoutRequested);
         SceneTransitionOverlay.Initialize();
+        AChen.Duel.Client.DuelClientSession.Initialize();
     }
 
     [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.SubsystemRegistration)]

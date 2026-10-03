@@ -39,10 +39,14 @@ public sealed class SceneEntry : MonoBehaviour
         else if (m_kind == Kind.Lobby)
         {
             m_uiFrame.ShowPanel(AddressKeys.Prefab.PreGameUIPanel);
+            AChen.Duel.Client.DuelClientSession.Instance.OnLobbyReady(m_uiFrame);
         }
         else
         {
             m_uiFrame.OpenWindow(AddressKeys.Prefab.LogInWindow);
         }
+#if (DEVELOPMENT_BUILD && UNITY_STANDALONE) || UNITY_EDITOR
+        AChen.Duel.ClientTesting.DuelDevelopmentDriver.Attach(m_uiFrame);
+#endif
     }
 }

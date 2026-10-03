@@ -7,6 +7,7 @@ namespace AChen.Duel.Core
     public sealed partial class DuelEngine
     {
         public DuelState State { get; private set; }
+        public event Action<DuelEvent> EventEmitted;
         readonly DuelCardCatalog m_catalog;
         readonly DuelAbilityRegistry m_abilities;
         readonly CardRuleCatalog m_rules;
@@ -88,6 +89,7 @@ namespace AChen.Duel.Core
             m_events.Add(fact);
             State.PendingFacts.Add(fact);
             State.TurnFacts.Add(fact);
+            EventEmitted?.Invoke(fact);
         }
 
         internal void Finish(int winner, string reason)

@@ -133,6 +133,13 @@ MonoBehaviour:
     - GameConfig
     - GameConfigGenerated
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6b7c3be17686494ab2dcde148502a59
+    m_Address: GameConfig/card-name-catalog
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameConfig
+    - GameConfigGenerated
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ef3f7379198a63d4ab80b0a54182d2b5
     m_Address: GameConfig/card-special-materials
     m_ReadOnly: 0
