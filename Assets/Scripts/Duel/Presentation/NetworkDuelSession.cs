@@ -41,6 +41,27 @@ namespace AChen.Duel.Presentation
         bool m_recoveringInput;
         public DuelView Current { get; private set; }
         public DuelSessionMode Mode => DuelSessionMode.Online;
+        public string OperationHint
+        {
+            get
+            {
+                if (Current.Finished) return Current.Outcome;
+                if (m_recoveringInput) return "正在恢复已提交的操作";
+                if (m_authority.Paused) return "连接中断，等待双方恢复连接";
+                if (m_animating) return m_display.Chain.Length > 0 ? "正在播放连锁与效果处理" : "正在播放对局表现";
+                if (m_sent) return "等待服务器处理操作";
+                var waiting = m_authority.Duel.WaitingSeat;
+                if (waiting >= 0 && waiting != m_projection.Seat)
+                    return m_authority.Duel.Window == Core.TimingWindow.ChainResponse ? "等待对手选择是否连锁"
+                        : m_authority.Duel.Window == Core.TimingWindow.Decision ? "对手正在处理效果或选择卡牌" : "对手正在操作";
+                if (m_choice.Active) return m_choice.Prompt;
+                if (m_pending.InstanceId != 0)
+                    return m_stage == Stage.Decision ? m_room.Duel.Decision.Prompt
+                        : m_pending.NeedsPosition ? "请选择卡牌的表示形式" : "请选择合法的目标或放置区域";
+                if (m_loadingNames) return "正在读取可宣言的卡名";
+                return m_authority.Duel.Chain.Length > 0 ? "请选择连锁响应" : "请选择本方操作";
+            }
+        }
         public IEnumerable<DuelCardSpec> Definitions => m_projection.Definitions;
         public bool HasAttackPreview { get; private set; }
         public int AttackPreviewSource { get; private set; }

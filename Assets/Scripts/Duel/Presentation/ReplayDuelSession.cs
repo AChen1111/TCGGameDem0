@@ -29,6 +29,18 @@ namespace AChen.Duel.Presentation
         public bool Paused { get; private set; }
         public DuelView Current { get; private set; }
         public DuelSessionMode Mode => DuelSessionMode.Replay;
+        public string OperationHint
+        {
+            get
+            {
+                if (Current.Finished) return Current.Outcome;
+                if (Paused) return "回放已暂停";
+                if (m_animating) return m_display.Chain.Length > 0 ? "回放：正在播放连锁与效果处理" : "回放：正在播放对局表现";
+                if (m_display.WaitingSeat != m_viewer) return "回放：对手正在操作";
+                if (m_display.Decision != null) return "回放：" + m_display.Decision.Prompt;
+                return "回放：本方正在操作";
+            }
+        }
         public IEnumerable<DuelCardSpec> Definitions => m_projection.Definitions;
         public bool HasAttackPreview => false;
         public int AttackPreviewSource => 0;

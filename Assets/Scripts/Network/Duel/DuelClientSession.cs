@@ -132,7 +132,7 @@ namespace AChen.Duel.Client
             if (IsLocalReady) throw new InvalidOperationException("请先取消准备，再观看回放");
             var replay = await Request<DuelReplayDto>("GET", $"/api/duel/replays/{replayId}", null, ct);
             m_replay = new ReplayDuelSession(replay); Mode = DuelSessionMode.Replay;
-            SceneTransitionOverlay.Show(); await SceneLoader.LoadScene(AddressKeys.Scene.BattleScene);
+            await SceneLoader.LoadScene(AddressKeys.Scene.BattleScene);
         }, token);
         public UniTask<DuelPreviewDto> PreviewAsync(int seat, Core.DuelZone zone, CancellationToken token) =>
             Request<DuelPreviewDto>("GET", $"/api/duel/rooms/{Room.Id}/preview?seat={seat}&zone={(int)zone}", null, token);
@@ -266,7 +266,7 @@ namespace AChen.Duel.Client
         async UniTaskVoid EnterBattleAsync()
         {
             m_enteringBattle = true; Mode = DuelSessionMode.Online;
-            try { SceneTransitionOverlay.Show(); await SceneLoader.LoadScene(AddressKeys.Scene.BattleScene); }
+            try { await SceneLoader.LoadScene(AddressKeys.Scene.BattleScene); }
             finally { m_enteringBattle = false; }
         }
         void StopConnection()
@@ -282,15 +282,28 @@ namespace AChen.Duel.Client
         {
             if (m_returning) return;
             m_returning = true;
-            try { await LeaveRoomAsync(token); Mode = DuelSessionMode.Offline; SceneTransitionOverlay.Show(); await SceneLoader.LoadScene(AddressKeys.Scene.GameScene); }
+            try
+            {
+                await SceneTransitionOverlay.ShowAsync(token);
+                await LeaveRoomAsync(token); Mode = DuelSessionMode.Offline;
+                await SceneLoader.LoadScene(AddressKeys.Scene.GameScene);
+            }
+            catch { SceneTransitionOverlay.Hide(); throw; }
             finally { m_returning = false; }
         }
         public void ToggleReplayPause() { m_replay.TogglePause(); Changed(); }
         public void SwitchReplayView() { m_replay.SwitchView(); Changed(); }
         public async UniTask ExitReplayAsync(CancellationToken token = default)
         {
-            m_replay = null; Mode = DuelSessionMode.Offline; m_openReplayAfterLobby = true;
-            SceneTransitionOverlay.Show(); await SceneLoader.LoadScene(AddressKeys.Scene.GameScene);
+            if (m_returning) return;
+            m_returning = true;
+            try
+            {
+                await SceneTransitionOverlay.ShowAsync(token);
+                m_replay = null; Mode = DuelSessionMode.Offline; m_openReplayAfterLobby = true;
+                await SceneLoader.LoadScene(AddressKeys.Scene.GameScene);
+            }
+            finally { m_returning = false; }
         }
         public void OnLobbyReady(UIFrame frame)
         {

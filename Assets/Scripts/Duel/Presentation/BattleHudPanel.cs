@@ -8,6 +8,7 @@ using AChen.Duel.Client;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using LitMotion;
+using UnityEngine.InputSystem;
 
 public sealed class BattleHudProperties : IPanelProperties
 {
@@ -71,6 +72,8 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
     [SerializeField] BattleCutinView m_cutin;
     [SerializeField] UnityEngine.UI.Button m_surrender, m_return, m_replayPlay, m_replayView, m_replayExit;
     [SerializeField] TextMeshProUGUI m_replayPlayLabel;
+    [SerializeField] TextMeshProUGUI m_operationHint;
+    [SerializeField] RectTransform m_detailBounds;
     readonly int[] m_avatarIds = { -1, -1 };
     readonly int[] m_frameIds = { -1, -1 };
     readonly MotionHandle[] m_lpMotions = new MotionHandle[2];
@@ -122,6 +125,21 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
         Refresh();
     }
     void HideDetail() => m_detail.gameObject.SetActive(false);
+    void Update()
+    {
+        if(!m_detail.IsShowing || m_UIFrame.IsWindowBusy || m_cutin.Playing)return;
+        foreach(var device in InputSystem.devices)
+        {
+            if(device is Mouse mouse && mouse.leftButton.wasPressedThisFrame)
+                HideDetailOutside(mouse.position.ReadValue());
+            else if(device is Touchscreen screen && screen.primaryTouch.press.wasPressedThisFrame)
+                HideDetailOutside(screen.primaryTouch.position.ReadValue());
+        }
+    }
+    void HideDetailOutside(Vector2 position)
+    {
+        if(!RectTransformUtility.RectangleContainsScreenPoint(m_detailBounds,position,m_UIFrame.UICamera))HideDetail();
+    }
     void OnChoiceInspection(string id)
     { var definition=Scene.ChoiceDefinition(id);ShowDetail(new CardDetailEntry(id,definition.SourcePool,Scene.ArtworkForDefinition(id))); }
     void ShowDetail(CardDetailEntry card)
@@ -142,6 +160,7 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
     void Refresh(bool immediateLifePoints=false)
     {
         var view=Scene.Source.Current;
+        m_operationHint.text=Scene.Source.OperationHint;
         m_TxtTurn.text="回合 "+view.Turn+" · "+view.Players[view.ActivePlayer].Name+" · "+BattleLabels.Phase(view.Phase);
         bool replay = Scene.Source.Mode == DuelSessionMode.Replay;
         m_surrender.gameObject.SetActive(Scene.Source.Mode == DuelSessionMode.Online && !view.Finished);

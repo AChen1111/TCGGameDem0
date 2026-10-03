@@ -89,6 +89,20 @@ namespace AChen.Duel.Presentation
         readonly IReadOnlyList<DuelPlayerView> m_players;
         readonly int[] m_life = new int[2];
         public DuelSessionMode Mode => DuelSessionMode.Offline;
+        public string OperationHint
+        {
+            get
+            {
+                if (Current.Finished) return Current.Outcome;
+                if (m_animating) return "正在播放对局表现";
+                if (m_active != 0) return "对手正在操作";
+                if (Current.Choice.Active) return Current.Choice.Prompt;
+                if (m_pendingAction.InstanceId != 0)
+                    return m_pendingAction.NeedsPosition ? "请选择卡牌的表示形式" : "请选择合法的目标或放置区域";
+                if (Current.HasPlacement) return "请选择卡牌放置区域";
+                return "请选择本方操作";
+            }
+        }
         public IEnumerable<DuelCardSpec> Definitions => m_main.Concat(m_extra).GroupBy(c => c.CardId).Select(g => g.First());
         // 固定动作演示源没有攻击规则或攻击预览。
         public bool HasAttackPreview => false;

@@ -213,7 +213,7 @@ public class PreGameUIPanel : APanelController
 
         m_WallpaperView.AppendReveal(seq, m_Duration);
 
-        m_intro = seq.Run().AddTo(this);
+        m_intro = seq.Run(builder => builder.WithScheduler(MotionScheduler.UpdateIgnoreTimeScale)).AddTo(this);
         await m_intro.ToUniTask(CancelBehavior.Complete, cancellationToken);
         cancellationToken.ThrowIfCancellationRequested();
         if (version != m_introVersion) return;

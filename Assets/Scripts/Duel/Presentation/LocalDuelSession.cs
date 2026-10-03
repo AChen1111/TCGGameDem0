@@ -34,6 +34,20 @@ namespace AChen.Duel.Presentation
         readonly Dictionary<ZoneRef, string> m_zoneAnswers = new Dictionary<ZoneRef, string>();
         public DuelView Current { get; private set; }
         public DuelSessionMode Mode => DuelSessionMode.Offline;
+        public string OperationHint
+        {
+            get
+            {
+                if (Current.Finished) return Current.Outcome;
+                if (m_animating) return m_engine.State.Chain.Count > 0 ? "正在播放连锁与效果处理" : "正在播放对局表现";
+                if (m_engine.State.WaitingSeat >= 0 && m_engine.State.WaitingSeat != m_viewer) return "对手正在操作";
+                if (m_choice.Active) return m_choice.Prompt;
+                if (m_pending.InstanceId != 0)
+                    return m_stage == Stage.Decision ? m_snapshot.Decision.Prompt
+                        : m_pending.NeedsPosition ? "请选择卡牌的表示形式" : "请选择合法的目标或放置区域";
+                return m_engine.State.Chain.Count > 0 ? "请选择连锁响应" : "请选择本方操作";
+            }
+        }
         public event Action<DuelViewChange> Changed = delegate { };
         public IEnumerable<DuelCardSpec> Definitions => m_specs.Values;
         public int AttackPreviewSource { get; private set; }

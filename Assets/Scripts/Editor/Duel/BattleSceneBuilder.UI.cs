@@ -109,7 +109,7 @@ public static partial class BattleSceneBuilder
         }
         content.sizeDelta = new Vector2(x + 8, 62);
         BuildDetailSidebar(safe, screen); BuildCardActions(root);
-        Generate(root.gameObject, "BattleHudPanel", false); Save(root.gameObject, "BattleHudPanel");
+        Generate(root.gameObject, "BattleHudPanel", false); ConfigureOperationHint(root.gameObject); Save(root.gameObject, "BattleHudPanel");
     }
     static void BuildDetailSidebar(Transform parent, BattleHudPanel screen)
     {
@@ -145,12 +145,33 @@ public static partial class BattleSceneBuilder
         var navigation = Rect("NavigationHidden", safe, 0, 0, 1, 1);
         safe.Find("Btn_Prev").SetParent(navigation, false); safe.Find("Btn_Next").SetParent(navigation, false); navigation.gameObject.SetActive(false);
         var close = Button("SidebarClose", safe, 337, 5, 43, 37, "×"); close.name = "SidebarCloseButton";
+        close.gameObject.SetActive(false);
         Ref(view, "m_BtnDim", close); UnityEngine.Object.DestroyImmediate(detail.transform.Find("Img_Dim").gameObject);
         Ref(screen, "m_detail", view);
+        Ref(screen, "m_detailBounds", detailRect);
         string[] detailPrefixes = { "Btn_", "Txt_", "Img_", "Raw_", "Go_", "Tog_", "Sld_", "Inp_", "Scr_", "Drop_" };
         foreach (var child in SceneComponents<Transform>(detail.transform))
             if (detailPrefixes.Any(prefix => child.name.StartsWith(prefix, StringComparison.Ordinal))) child.name = "Detail" + child.name;
         detail.SetActive(false);
+    }
+    public static void ConfigureOperationHint(GameObject root)
+    {
+        var components = EditorUtility.CollectDependencies(new UnityEngine.Object[] { root });
+        var hud = components.OfType<BattleHudPanel>().Single();
+        var serialized = new SerializedObject(hud);
+        var detail = (CardDetailView)serialized.FindProperty("m_detail").objectReferenceValue;
+        Ref(hud, "m_detailBounds", detail.transform);
+        var detailSerialized = new SerializedObject(detail);
+        ((UnityEngine.UI.Button)detailSerialized.FindProperty("m_BtnDim").objectReferenceValue).gameObject.SetActive(false);
+        s_font = ((TextMeshProUGUI)serialized.FindProperty("m_TxtHint").objectReferenceValue).font;
+        var panel = Image("OperationHintFrame", root.transform.Find("SafeArea"), 0, 0, 940, 132,
+            new Color(.025f, .065f, .085f, .88f), "GUI_CardInfo_NameBase");
+        panel.rectTransform.anchorMin = panel.rectTransform.anchorMax = panel.rectTransform.pivot = new Vector2(.5f, 1);
+        panel.rectTransform.anchoredPosition = new Vector2(0, -48);
+        var label = Text("OperationHintText", panel.transform, 20, 12, 900, 108, "等待战斗开始", 25);
+        label.alignment = TextAlignmentOptions.Center;
+        label.enableAutoSizing = true; label.fontSizeMin = 18; label.fontSizeMax = 25;
+        Ref(hud, "m_operationHint", label);
     }
     static void BuildCardActions(RectTransform hud)
     {

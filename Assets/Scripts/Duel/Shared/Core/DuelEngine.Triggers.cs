@@ -68,7 +68,7 @@ namespace AChen.Duel.Core
                 else
                 {
                     var options = group.Select(t => new DecisionOption { Id = TriggerKey(t), Value = TriggerKey(t),
-                        Label = m_catalog.Get(Card(t.Source.InstanceId).DefinitionId).Name + " " + t.AbilityId }).ToList();
+                        Label = TriggerDescription(t) }).ToList();
                     if (!first.Mandatory) options.Add(new DecisionOption { Id = "skip", Value = "skip", Label = "不发动这些效果" });
                     SetTriggerDecision(first, "trigger.order", DecisionKind.ChooseMode, options);
                 }
@@ -90,10 +90,20 @@ namespace AChen.Duel.Core
 
         static string TriggerKey(PendingTrigger trigger) => trigger.Source + ":" + trigger.AbilityId + ":" + trigger.EventId;
 
+        string TriggerDescription(PendingTrigger trigger)
+        {
+            var definition = m_catalog.Get(Card(trigger.Source.InstanceId).DefinitionId);
+            return "「" + definition.Name + "」\n" + definition.Abilities.Single(a => a.Id == trigger.AbilityId).Text;
+        }
+
         void SetTriggerDecision(PendingTrigger trigger, string continuation, DecisionKind kind, IEnumerable<DecisionOption> options, int min = 1, int max = 1)
         {
             State.PendingDecision = new DuelDecision { Id = State.NextDecisionId++, Player = trigger.Player, Kind = kind,
-                Prompt = "处理诱发效果", Min = min, Max = max, SourceId = trigger.Source.InstanceId,
+                Prompt = continuation == "trigger.order" ? "请选择本方诱发效果的发动顺序"
+                    : TriggerDescription(trigger) + "\n" + (continuation == "trigger.offer" ? "是否发动该诱发效果？"
+                        : continuation == "trigger.mode" ? "请选择效果模式"
+                        : continuation == "trigger.cost" ? "请选择发动代价" : "请选择效果目标"),
+                Min = min, Max = max, SourceId = trigger.Source.InstanceId,
                 Continuation = continuation, Options = options.ToList() };
             State.Window = TimingWindow.Decision; State.WaitingSeat = trigger.Player;
             Emit(DuelEventKind.DecisionOpened, trigger.Player, mask: 1 << trigger.Player);

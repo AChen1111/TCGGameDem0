@@ -22,6 +22,8 @@ public static class SceneLoader
         s_isLoading = true;
         try
         {
+            if (loadMode == LoadSceneMode.Single && sceneName == AddressKeys.Scene.BattleScene)
+                await SceneTransitionOverlay.ShowAsync();
             EventCenter.Dispatch(GameEvent.SceneLoadStarted, sceneName, loadMode);
             return await AddressableLoader.Instance.LoadScene(sceneName, loadMode);
         }
@@ -47,6 +49,8 @@ public static class SceneLoader
         s_isLoading = true;
         try
         {
+            if (sceneName == AddressKeys.Scene.BattleScene)
+                await SceneTransitionOverlay.ShowAsync();
             EventCenter.Dispatch(GameEvent.SceneLoadStarted, sceneName, LoadSceneMode.Single);
             SceneInstance scene = await AddressableLoader.Instance.ReloadScene(sceneName);
             ALog.Log($"业务场景重装完成. Scene={sceneName}", ALogCategories.UI);

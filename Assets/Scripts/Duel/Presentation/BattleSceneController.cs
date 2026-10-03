@@ -103,7 +103,8 @@ namespace AChen.Duel.Presentation
             m_phaseEffects.Stop();
             frame.ShowPanel(AddressKeys.Prefab.BattleHudPanel,new BattleHudProperties(this));
             await m_hudReady.Task.AttachExternalCancellation(this.GetCancellationTokenOnDestroy());
-            m_session.Start(); m_ready=true; SceneTransitionOverlay.Hide();
+            m_session.Start(); m_ready=true;
+            await SceneTransitionOverlay.FadeOutAsync(this.GetCancellationTokenOnDestroy());
         }
         void Update()
         {

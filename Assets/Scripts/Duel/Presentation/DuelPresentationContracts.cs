@@ -230,6 +230,7 @@ namespace AChen.Duel.Presentation
     public interface IDuelPresentationSource
     {
         DuelSessionMode Mode { get; }
+        string OperationHint { get; }
         IEnumerable<DuelCardSpec> Definitions { get; }
         DuelView Current { get; }
         bool HasAttackPreview { get; }

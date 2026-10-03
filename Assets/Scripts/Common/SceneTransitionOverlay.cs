@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 using Cysharp.Threading.Tasks;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using System.Threading;
+using LitMotion.Extensions;
 
 /// <summary>
 /// 跨场景加载界面.切场景前显示 LoadIN,目标界面就绪后淡出并隐藏。
@@ -14,11 +16,15 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public static class SceneTransitionOverlay
 {
     public const string Address = "UI/LoadIN";
+    public const float DuelTransitionDuration = .35f;
 
     static GameObject s_root;
     static CanvasGroup s_canvasGroup;
     static SceneTransitionOverlayView s_view;
     static bool s_activityGate, s_wasVisible, s_hideRequested;
+    static MotionHandle s_opacityMotion;
+    static int s_opacityVersion;
+    static bool s_fadingIn;
     public static bool IsActivityBlocking => s_activityGate;
     public static void Bind(SceneTransitionOverlayView view) { s_view = view; s_canvasGroup = view.Group; }
     public static void ActivityProgress(string text, float value)
@@ -37,6 +43,7 @@ public static class SceneTransitionOverlay
 
     public static void ResetState()
     {
+        StopOpacityMotion();
         if (s_root != null) UnityEngine.Object.Destroy(s_root);
         s_root = null;
         s_canvasGroup = null; s_view = null; s_activityGate = false;
@@ -85,6 +92,9 @@ public static class SceneTransitionOverlay
     public static void Show()
     {
         Ensure();
+        // SceneLoadStarted会再次请求Show，不打断已开始的渐入。
+        if (s_fadingIn && !s_activityGate) return;
+        StopOpacityMotion();
         s_canvasGroup.alpha = 1f;
         s_canvasGroup.blocksRaycasts = true;
         bool alreadyVisible = s_root.activeSelf;
@@ -92,6 +102,48 @@ public static class SceneTransitionOverlay
         if (!alreadyVisible)
         {
             ALog.Log("打开跨场景 LoadIN 加载界面.", ALogCategories.UI);
+        }
+    }
+
+    public static async UniTask ShowAsync(CancellationToken token = default)
+    {
+        token.ThrowIfCancellationRequested();
+        Ensure();
+        if (s_fadingIn)
+        {
+            await s_opacityMotion.ToUniTask(CancelBehavior.Complete, token);
+            return;
+        }
+        float from = IsVisible ? s_canvasGroup.alpha : 0f;
+        StopOpacityMotion();
+        s_root.SetActive(true);
+        s_canvasGroup.alpha = from;
+        s_canvasGroup.blocksRaycasts = true;
+        if (s_activityGate || from >= 1f) { s_canvasGroup.alpha = 1f; return; }
+        int version = s_opacityVersion;
+        s_fadingIn = true;
+        s_opacityMotion = Fade(from, 1f, DuelTransitionDuration);
+        try { await s_opacityMotion.ToUniTask(CancelBehavior.Complete, token); }
+        finally { if (version == s_opacityVersion) s_fadingIn = false; }
+    }
+
+    public static async UniTask FadeOutAsync(CancellationToken token = default)
+    {
+        while (true)
+        {
+            // 活动加载期间维持不透明，直到原活动门禁正常结束。
+            await UniTask.WaitUntil(() => !s_activityGate, cancellationToken: token);
+            if (!TryFadeOut(DuelTransitionDuration, out MotionHandle handle)) return;
+            s_canvasGroup.blocksRaycasts = true;
+            int version = s_opacityVersion;
+            await handle.ToUniTask(CancelBehavior.Complete, token);
+            if (version != s_opacityVersion)
+            {
+                if (s_activityGate) continue;
+                return;
+            }
+            Hide();
+            return;
         }
     }
 
@@ -103,6 +155,7 @@ public static class SceneTransitionOverlay
             return;
         }
 
+        StopOpacityMotion();
         s_root.SetActive(false);
         ALog.Log("关闭跨场景 LoadIN 加载界面.", ALogCategories.UI);
     }
@@ -115,9 +168,23 @@ public static class SceneTransitionOverlay
             return false;
         }
 
+        float from = s_canvasGroup.alpha;
+        StopOpacityMotion();
+        s_canvasGroup.alpha = from;
         s_canvasGroup.blocksRaycasts = false;
-        handle = UITween.DoFadeAnim(1f, 0f, duration, s_canvasGroup);
+        handle = s_opacityMotion = Fade(from, 0f, duration);
         return true;
+    }
+
+    static MotionHandle Fade(float from, float to, float duration) => LMotion.Create(from, to, duration)
+        .WithEase(Ease.OutCubic).WithScheduler(MotionScheduler.UpdateIgnoreTimeScale).BindToAlpha(s_canvasGroup);
+
+    static void StopOpacityMotion()
+    {
+        ++s_opacityVersion;
+        var previous = s_opacityMotion;
+        s_opacityMotion = default; s_fadingIn = false;
+        previous.TryComplete();
     }
 
     static void Ensure()
