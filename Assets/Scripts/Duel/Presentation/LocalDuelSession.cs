@@ -115,7 +115,7 @@ namespace AChen.Duel.Presentation
                 var spec = known ? m_specs[c.DefinitionId] : new DuelCardSpec("", "", CardKind.Monster, CardFrame.Normal,
                     CardSpellTrapType.None, CardFlags.None, Array.Empty<DuelActionProfile>());
                 return new CardView(c.Ref.InstanceId, DisplaySeat(c.Controller), spec, Zone(c), MapPosition(c.Position),
-                    actions.Any(a => a.Kind == DuelActionKind.Activate), Array.Empty<ZoneRef>(),
+                    actions.Any(a => a.Kind == DuelActionKind.Activate || a.Kind==DuelActionKind.SpecialSummon), Array.Empty<ZoneRef>(),
                     actions.Where(a => a.Kind == DuelActionKind.ChangePosition).SelectMany(a => a.Positions), actions)
                 { Known = known, Negated = known && c.Negated, Attack = known ? c.Attack : 0, Defense = known ? c.Defense : null,
                   Level = known ? m_catalog.Get(c.DefinitionId).MonsterType == Core.RuleMonsterType.Link ? m_catalog.Get(c.DefinitionId).LinkRating
@@ -225,7 +225,8 @@ namespace AChen.Duel.Presentation
         void Choice(Stage stage, string prompt, int min, int max, bool cancel, IEnumerable<DuelSelectionOption> options,
             bool ordered = false, bool search = false, bool preview = false)
         {
-            m_stage = stage; m_choice = new DuelSelectionView(++m_choiceId, prompt, min, max, cancel, options, ordered, search, preview);
+            m_stage = stage; m_choice = new DuelSelectionView(++m_choiceId, prompt, min, max, cancel, options, ordered, search, preview)
+                {IsResponse=stage==Stage.Response};
             Refresh(); Notify(DuelChangeKind.Action);
         }
         void NextStage()
@@ -257,7 +258,10 @@ namespace AChen.Duel.Presentation
                     var definition = m_catalog.Get(source.DefinitionId);
                     var zone = raw.Kind == Core.DuelCommandKind.SetSpellTrap || raw.Kind == Core.DuelCommandKind.Activate
                         ? definition.SpellTrapType == Core.RuleSpellTrapType.Field ? DuelZone.Field : DuelZone.SpellTrap : DuelZone.Monster;
-                    var zones = raw.Slots.Select(slot => slot >= 5 ? new ZoneRef(DuelZone.ExtraMonster, -1,
+                    var slots = raw.Kind==Core.DuelCommandKind.SpecialSummon && raw.AbilityId.Length==0
+                        ? m_engine.GetExtraSummonDestinations(source,m_viewer,m_engine.State.Cards.Where(c=>m_input.SelectionViewCardIds.Any(h=>m_handles[h]==c.InstanceId)).ToArray())
+                        : (IReadOnlyList<int>)raw.Slots;
+                    var zones = slots.Select(slot => slot >= 5 ? new ZoneRef(DuelZone.ExtraMonster, -1,
                         m_viewer == 1 ? 6 - slot : slot - 5) : new ZoneRef(zone, 0, slot)).ToArray();
                     m_stage = stage;
                     m_pending = new PendingActionView(source.InstanceId, m_action.ActionToken, ActionKind(raw.Kind), false, true,
@@ -290,7 +294,16 @@ namespace AChen.Duel.Presentation
                         a.Label.Length > 0 ? a.Label : "效果 " + (index + 1), DefinitionForInstance(id).CardId, id)));
                     return;
                 case Stage.Ability: Begin(selection.Keys[0]); return;
-                case Stage.Selection: m_input.SelectionViewCardIds = selection.Keys; break;
+                case Stage.Selection:
+                    var action=m_actions[m_action.ActionToken];
+                    if(action.Kind==Core.DuelCommandKind.SpecialSummon && action.AbilityId.Length==0)
+                    {
+                        var source=m_engine.State.Cards.Single(c=>c.InstanceId==action.Card.InstanceId);
+                        var selectedIds=selection.Keys.Select(h=>m_handles[h]).ToArray();
+                        if(!m_engine.GetExtraSummonMaterialGroups(source,m_viewer).Any(group=>group.Length==selectedIds.Length && group.All(c=>selectedIds.Contains(c.InstanceId))))
+                        {Reject("这些卡不符合该卡的召唤素材要求，请重新选择素材");return;}
+                    }
+                    m_input.SelectionViewCardIds = selection.Keys; break;
                 case Stage.Target: m_input.TargetViewCardId = selection.Keys[0] == "direct" ? "" : selection.Keys[0]; break;
                 case Stage.Position: m_input.Position = (Core.CardPosition)Enum.Parse(typeof(Core.CardPosition), selection.Keys[0]); break;
                 case Stage.Name: m_input.NameId = selection.Keys[0]; break;

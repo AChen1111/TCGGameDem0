@@ -167,7 +167,7 @@ public static partial class BattleSceneBuilder
         }
         var kindIcons = new[] { "05", "11", "06", "04", "07", "13", "08", "06" }
             .SelectMany(id => Enumerable.Range(1, 4).Select(state => Sprite("GUI_T_DuelButtonActIcon" + id + "_" + state))).ToArray();
-        Ref(actions, "m_menu", menu); Refs(actions, "m_buttons", buttons); Refs(actions, "m_icons", icons); Refs(actions, "m_labels", labels); Refs(actions, "m_kindSprites", kindIcons);
+        Ref(actions, "m_menu", menu); Ref(actions,"m_hudRoot",hud); Refs(actions, "m_buttons", buttons); Refs(actions, "m_icons", icons); Refs(actions, "m_labels", labels); Refs(actions, "m_kindSprites", kindIcons);
         Ref(Root<BattleHudPanel>(hud.gameObject), "m_actions", actions);
     }
     static void BuildChoices()

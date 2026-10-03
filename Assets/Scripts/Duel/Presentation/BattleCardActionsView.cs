@@ -7,6 +7,8 @@ namespace AChen.Duel.Presentation
     public sealed class BattleCardActionsView : MonoBehaviour
     {
         [SerializeField] RectTransform m_menu;
+        [SerializeField] RectTransform m_hudRoot;
+        Transform m_originalParent;
         [SerializeField] UnityEngine.UI.Button[] m_buttons;
         [SerializeField] UnityEngine.UI.Image[] m_icons;
         [SerializeField] TextMeshProUGUI[] m_labels;
@@ -21,6 +23,7 @@ namespace AChen.Duel.Presentation
         public void Initialize(BattleSceneController scene, Canvas canvas)
         {
             m_scene = scene; m_canvas = canvas;
+            m_originalParent=m_menu.parent;m_menu.SetParent(m_hudRoot.parent,false);
             m_scene.CardActionsRequested += Show;
             m_scene.Source.Changed += Changed;
             for (int i = 0; i < m_buttons.Length; i++)
@@ -37,6 +40,7 @@ namespace AChen.Duel.Presentation
             m_actions = m_scene.Source.Current.Card(id).Actions;
             m_visible = m_actions.Count > 0;
             m_menu.gameObject.SetActive(m_visible);
+            m_menu.SetAsLastSibling();
             float width = m_actions.Count * 128f;
             m_menu.sizeDelta = new Vector2(width, 145f);
             for (int i = 0; i < m_buttons.Length; i++)
@@ -54,7 +58,7 @@ namespace AChen.Duel.Presentation
                     disabledSprite = m_kindSprites[sprite + 3]
                 };
                 m_labels[i].text = action.Label.Length > 0 ? action.Label : Caption(action.Kind);
-                m_buttons[i].interactable = m_scene.Source.Current.CanInteract;
+                m_buttons[i].interactable = m_scene.Source.Current.CanBrowseCards;
                 ((RectTransform)m_buttons[i].transform).anchoredPosition = new Vector2(i * 128f, 0);
             }
             Position();
@@ -93,7 +97,7 @@ namespace AChen.Duel.Presentation
             var card = m_scene.Source.Current.Card(m_card);
             bool modelVisible = card.Zone.IsSlot || card.Zone.Kind == DuelZone.Hand;
             Vector2 screen = modelVisible ? m_scene.CardScreenAnchor(m_card) : m_anchor;
-            RectTransform canvas = (RectTransform)m_canvas.transform;
+            RectTransform canvas = (RectTransform)m_hudRoot.parent;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, screen, m_canvas.worldCamera, out Vector2 point);
             point.y += card.Zone.Kind == DuelZone.Hand ? 172f : 112f;
             float halfWidth = m_menu.sizeDelta.x * .5f;
@@ -106,9 +110,9 @@ namespace AChen.Duel.Presentation
         public void Hide() { m_visible = false; m_menu.gameObject.SetActive(false); }
         public void Dispose()
         {
+            Hide();m_menu.SetParent(m_originalParent,false);
             m_scene.CardActionsRequested -= Show; m_scene.Source.Changed -= Changed;
             foreach (var button in m_buttons) button.onClick.RemoveAllListeners();
-            Hide();
         }
     }
 }

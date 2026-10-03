@@ -7,10 +7,11 @@ using Core = AChen.Duel.Core;
 
 public sealed class LocalDuelSessionTests
 {
-    static LocalDuelSession Create(string[] first, string[] second, int hand = 1)
+    static LocalDuelSession Create(string[] first, string[] second, int hand = 1, string[] extra = null)
     {
         var catalog = Core.DuelCardCatalog.CreateDefault();
-        var specs = first.Concat(second).Distinct().Select(id =>
+        var extraCards=extra??Array.Empty<string>();
+        var specs = first.Concat(second).Concat(extraCards).Distinct().Select(id =>
         {
             var card = catalog.Get(id);
             return new DuelCardSpec(id, "Card01", card.Kind == Core.RuleCardKind.Monster ? CardKind.Monster
@@ -18,7 +19,7 @@ public sealed class LocalDuelSessionTests
                 card.IsNormal ? CardFrame.Normal : CardFrame.Effect, CardSpellTrapType.None, CardFlags.None, Array.Empty<DuelActionProfile>());
         });
         var session = new LocalDuelSession(() => new Core.DuelStartRecord { MainDecks = new[] { first, second },
-            OpeningHand = hand, Shuffle = false, FirstPlayer = 0 }, specs,
+            ExtraDecks=new[]{extraCards,Array.Empty<string>()},OpeningHand = hand, Shuffle = false, FirstPlayer = 0 }, specs,
             new[] { new DuelPlayerView("玩家一", 1010001), new DuelPlayerView("玩家二", 1010002) });
         session.Start(); Drain(session); return session;
     }
@@ -159,6 +160,32 @@ public sealed class LocalDuelSessionTests
         var seats=new List<int>();session.Changed+=change=>seats.Add(change.View.ViewingSeat);
         session.Submit(new ResetDuel());Drain(session);
         Assert.That(seats.All(seat=>seat==0),Is.True);
+    }
+    [Test]
+    public void LinkSummonOffersExtraDeckActionAndConsumesLegalMaterial()
+    {
+        var session=Create(new[]{"26077389","89631139","89631139"},new[]{"89631139","89631139","89631139"},extra:new[]{"08491308"});
+        var raye=session.Current.Cards.Single(c=>c.Known&&c.Definition.CardId=="26077389");
+        session.Submit(new BeginCardAction(raye.InstanceId,raye.Actions.Single(a=>a.Kind==DuelActionKind.NormalSummon).Id));
+        session.Submit(new ConfirmActionTarget(session.Current.PendingAction.Targets[0]));Drain(session);
+        if(session.Current.Choice.IsResponse){session.Submit(new CancelCardAction());Drain(session);}
+        var link=session.Current.Cards.Single(c=>c.Known&&c.Definition.CardId=="08491308");
+        Assert.That(link.Zone.Kind,Is.EqualTo(DuelZone.ExtraDeck));
+        session.Submit(new BeginCardAction(link.InstanceId,link.Actions.Single(a=>a.Kind==DuelActionKind.SpecialSummon).Id));
+        var material=session.Current.Choice;
+        session.Submit(new ConfirmDuelSelection(material.Id,new[]{material.Options.Single(o=>o.CardId==raye.InstanceId).Key}));
+        Assert.That(session.Current.PendingAction.Targets.All(z=>z.Kind==DuelZone.ExtraMonster),Is.True);
+        session.Submit(new ConfirmActionTarget(session.Current.PendingAction.Targets[0]));Drain(session);
+        Assert.That(session.Current.Card(link.InstanceId).Zone.Kind,Is.EqualTo(DuelZone.ExtraMonster));
+        Assert.That(session.Current.Card(raye.InstanceId).Zone.Kind,Is.EqualTo(DuelZone.Graveyard));
+    }
+    [Test]
+    public void ResponseAllowsBrowsingCardsButMandatorySelectionKeepsInputLocked()
+    {
+        var session=Create(new[]{"70368879","08240199","89631139"},new[]{"14558127","08240199"});
+        Activate(session,"70368879");
+        Assert.That(session.Current.Choice.IsResponse,Is.True);Assert.That(session.Current.CanBrowseCards,Is.True);
+        Assert.That(session.Current.CanInteract,Is.False);
     }
     [Test]
     public void TimeoutEndsDuelAndResetRestoresClockAndOpening()

@@ -2577,6 +2577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: HotUpdate::AChen.Duel.Presentation.BattleCardActionsView
   m_menu: {fileID: 3516570285501108438}
+  m_hudRoot: {fileID: 1888815432134047899}
   m_buttons:
   - {fileID: 2486574465112451726}
   - {fileID: 2266983359421514824}

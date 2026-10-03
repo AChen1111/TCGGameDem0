@@ -34,7 +34,7 @@ public sealed class BattleZoneWindow : APanelController<BattleZoneProperties>
     }
     void OnChanged(DuelViewChange change)
     {
-        if (change.Kind == DuelChangeKind.Action && change.View.HasPendingAction)
+        if (change.Kind == DuelChangeKind.Action && (change.View.HasPendingAction || change.View.Choice.Active && !change.View.Choice.IsResponse))
         {
             Properties.Scene.CloseZone();
             return;

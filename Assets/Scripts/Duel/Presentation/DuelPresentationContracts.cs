@@ -167,6 +167,7 @@ namespace AChen.Duel.Presentation
         public bool HasPlacement => Placement.InstanceId != 0;
         public bool HasPendingAction => PendingAction.InstanceId != 0;
         public bool CanInteract => !Animating && !HasPlacement && !HasPendingAction && !Choice.Active && !Finished;
+        public bool CanBrowseCards => !Animating && !HasPlacement && !HasPendingAction && !Finished && (!Choice.Active || Choice.IsResponse);
         public DuelSelectionView Choice { get; internal set; } = DuelSelectionView.Empty;
         public int ViewingSeat { get; internal set; }
         public bool Finished { get; internal set; }
@@ -268,6 +269,7 @@ namespace AChen.Duel.Presentation
     }
     public sealed class DuelSelectionView
     {
+        public bool IsResponse { get; internal set; }
         public long Id { get; }
         public string Prompt { get; }
         public int Min { get; }

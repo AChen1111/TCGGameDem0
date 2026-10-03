@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -28,7 +29,7 @@ namespace AChen.Duel.Presentation
         void Awake() => m_button.onClick.AddListener(Select);
         void Select()
         {
-            if (!m_data.Scene.Source.Current.CanInteract) return;
+            if (!m_data.Scene.Source.Current.CanBrowseCards) return;
             m_selected(m_index);
             Vector2 anchor = RectTransformUtility.WorldToScreenPoint(m_data.Scene.BattleUICamera, m_root.TransformPoint(m_root.rect.center));
             m_data.Scene.ShowCardActions(m_data.Card.InstanceId, anchor);
@@ -37,8 +38,10 @@ namespace AChen.Duel.Presentation
         {
             m_index = rowIndex; m_selected = onSelected; m_data = allData[rowIndex]; m_art.texture = m_data.Texture;
             m_name.text = LocalizationService.GetText("card." + m_data.Card.Definition.CardId + ".name");
-            m_info.text = BattleLabels.Position(m_data.Card.Position);
-            m_button.interactable = m_data.Scene.Source.Current.CanInteract;
+            m_info.text = m_data.Card.Zone.Kind==DuelZone.ExtraDeck
+                ? m_data.Card.Actions.Any(a=>a.Kind==DuelActionKind.SpecialSummon)?"可特殊召唤":"当前没有可用的召唤动作"
+                : m_data.Card.Actions.Any(a=>a.Kind==DuelActionKind.Activate)?"可发动效果":BattleLabels.Position(m_data.Card.Position);
+            m_button.interactable = m_data.Scene.Source.Current.CanBrowseCards;
             m_background.color = rowIndex == selectedIndex ? new Color(.19f, .3f, .38f, 1) : new Color(.035f, .065f, .08f, .98f);
         }
     }

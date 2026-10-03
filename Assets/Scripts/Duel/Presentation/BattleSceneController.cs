@@ -119,7 +119,7 @@ namespace AChen.Duel.Presentation
         public void InputPointer(Vector2 point,bool down,bool held,bool up)
         {
             var state=m_session.Current;
-            bool blocked=m_frame.IsWindowBusy||state.Animating||state.Choice.Active||OverUI(point);
+            bool blocked=m_frame.IsWindowBusy||state.Animating||(state.Choice.Active&&!state.Choice.IsResponse)||OverUI(point);
             if(down)
             {
                 if(blocked){ClearPointer();return;}
@@ -142,18 +142,18 @@ namespace AChen.Duel.Presentation
                     else CancelAction();
                     return;
                 }
-                if(!state.CanInteract)return;
+                if(!state.CanBrowseCards)return;
                 if(pressed!=0&&HitCard(point)==pressed){ShowCardActions(pressed,point);return;}
                 if(Physics.Raycast(m_camera.ScreenPointToRay(point),out var hit,300))
                 {
                     if(hit.collider==m_dial.Hitbox){OpenPhases();return;}
                     if(m_zoneHits.TryGetValue(hit.collider,out var zone)&&!zone.Zone.IsSlot){OpenZone(zone.Zone);return;}
                 }
-                CancelAction();CloseZone();
+                if(!state.Choice.Active)CancelAction();CloseZone();
             }
             if(!held&&!m_pointerHeld)
             {
-                int hovered=blocked||!state.CanInteract?0:HitCard(point);
+                int hovered=blocked||!state.CanBrowseCards?0:HitCard(point);
                 if(hovered!=m_hovered)
                 {
                     if(m_hovered!=0)m_cards[m_hovered].Hover(false);
@@ -184,16 +184,16 @@ namespace AChen.Duel.Presentation
         void ClearPointer(){m_pointerHeld=false;m_pressedCard=0;}
         public void SelectCard(int id)
         {
-            if(!m_session.Current.CanInteract)return;
+            if(!m_session.Current.CanBrowseCards)return;
             if(m_selected!=0){m_cards[m_selected].StopMotion();m_cards[m_selected].SetSelected(false);}
             m_selected=id;m_cards[id].SetSelected(true);SelectionChanged(id);
         }
         public void ShowCardActions(int id)=>ShowCardActions(id,m_camera.WorldToScreenPoint(m_cards[id].ActionWorldAnchor));
         public void ShowCardActions(int id,Vector2 anchor)
-        {if(!m_session.Current.CanInteract||!CanInspect(m_session.Current.Card(id)))return;m_selectedAnchor=anchor;SelectCard(id);CardActionsRequested(id,anchor);}
+        {if(!m_session.Current.CanBrowseCards||!CanInspect(m_session.Current.Card(id)))return;m_selectedAnchor=anchor;SelectCard(id);CardActionsRequested(id,anchor);}
         public void OpenDetail(int id)=>SelectCard(id);
         public void OpenZone(ZoneRef zone)
-        {if(m_session.Current.CanInteract){ClearPointer();m_frame.ShowPanel(AddressKeys.Prefab.BattleZoneWindow,new BattleZoneProperties(this,zone));}}
+        {if(m_session.Current.CanBrowseCards){ClearPointer();m_frame.ShowPanel(AddressKeys.Prefab.BattleZoneWindow,new BattleZoneProperties(this,zone));}}
         public void CloseZone()=>m_frame.HidePanel(AddressKeys.Prefab.BattleZoneWindow);
         public void BeginAction(int id,string actionId)
         {
@@ -275,12 +275,19 @@ namespace AChen.Duel.Presentation
             if(hand)
             {
                 var cards=view.InZone(card.Zone);int index=cards.ToList().FindIndex(x=>x.InstanceId==card.InstanceId);
-                float spacing=Mathf.Min(4,42f/Mathf.Max(1,cards.Count));float x=(index-(cards.Count-1)*.5f)*spacing;
+                float spacing=card.Owner==0?Mathf.Min(4,42f/Mathf.Max(1,cards.Count)):Mathf.Min(2.2f,26f/Mathf.Max(1,cards.Count));float x=(index-(cards.Count-1)*.5f)*spacing;
                 float z=card.Owner==0?-28+(30-m_camera.fieldOfView)*.7f:23-(30-m_camera.fieldOfView)*.7f;
                 position=new Vector3(card.Owner==0?x:-x,card.Owner==0?15:5,z);
                 plane=Quaternion.Euler(card.Owner==0?-20:20,0,0);
                 float abs=Mathf.Abs(x);pivot=new Vector3(0,0,-abs*(abs*.0055f+.08f));
                 offset=Quaternion.Euler(0,x*(1.2f-.006f*abs)*(card.Owner==0?1:-1),-10);
+                if(card.Owner==1)
+                {
+                    var ray=m_camera.ViewportPointToRay(new Vector3(.5f,.92f,0));
+                    float distance=(5-ray.origin.y)/ray.direction.y;
+                    position=new Vector3(-x,5,ray.GetPoint(distance).z);
+                    plane=Quaternion.identity;pivot=Vector3.zero;offset=Quaternion.identity;
+                }
             }
             else
             {
@@ -290,7 +297,7 @@ namespace AChen.Duel.Presentation
                 if(card.Position is CardPosition.FaceUpDefense or CardPosition.FaceDownDefense)yaw+=90;
             }
             bool face=m_visibility.IsFaceVisible(0,card);
-            float scale=(card.Zone.Kind is DuelZone.SpellTrap or DuelZone.Field) ? .8f : 1;
+            float scale=hand&&card.Owner==1?.58f:(card.Zone.Kind is DuelZone.SpellTrap or DuelZone.Field) ? .8f : 1;
             return new BattleCardPose(position,Quaternion.Euler(0,yaw,0),plane,pivot,Vector3.one*scale,
                 Vector3.zero,offset,Quaternion.Euler(0,0,face?0:180),hand);
         }
