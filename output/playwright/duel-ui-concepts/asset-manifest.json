@@ -1,0 +1,943 @@
+{
+  "source_directory": "C:\\Users\\ldc20\\OneDrive\\Desktop\\UI",
+  "usage": "静态视觉提案中的原始素材拼装",
+  "assets": [
+    {
+      "name": "background",
+      "file": "assets/background.png",
+      "source": "Textures/CommonUI/TexSoloTransitionBG.png",
+      "sha256": "6439f1fb89999f929ec4f7b8d8298944ab330d3cbe324f8036636e985ced5ed1",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "name": "back",
+      "file": "assets/back.png",
+      "source": "Sprites/CommonUI/GUI_CommonButtonBack.png",
+      "sha256": "36dc1740e28026435fed8e1457bfe1606d525ae95bc7c6ba3da50903a336d031",
+      "size": [
+        58,
+        58
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "button-large",
+      "file": "assets/button-large.png",
+      "source": "Sprites/CommonUI/GUI_CommonButtonL.png",
+      "sha256": "267c952011e91c6bb47c494c218c8586efcc61b60486e80c13743479c2ec191d",
+      "size": [
+        58,
+        58
+      ],
+      "border": {
+        "x": 34.0,
+        "y": 23.0,
+        "z": 23.0,
+        "w": 34.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "button",
+      "file": "assets/button.png",
+      "source": "Sprites/CommonUI/GUI_CommonButtonM.png",
+      "sha256": "adf17f644112be0d8b90bb5270a0aaf959dc4934119516d7dc9932967a56e69a",
+      "size": [
+        46,
+        46
+      ],
+      "border": {
+        "x": 22.0,
+        "y": 22.0,
+        "z": 22.0,
+        "w": 22.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "button-active",
+      "file": "assets/button-active.png",
+      "source": "Sprites/CommonUI/GUI_CommonButtonM_On.png",
+      "sha256": "897f4c051442d58128d2210895bb001c6e38b6504d4f7b2511eaa01d36811aa1",
+      "size": [
+        62,
+        62
+      ],
+      "border": {
+        "x": 30.0,
+        "y": 30.0,
+        "z": 30.0,
+        "w": 30.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "tab-active",
+      "file": "assets/tab-active.png",
+      "source": "Sprites/CommonUI/GUI_CommonButtonTab_On.png",
+      "sha256": "30cd2df3a2262ae93a4e640eaf3a786161973886732fdcc1ce4dadc3e654ee6c",
+      "size": [
+        48,
+        48
+      ],
+      "border": {
+        "x": 24.0,
+        "y": 10.0,
+        "z": 24.0,
+        "w": 20.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "row-active",
+      "file": "assets/row-active.png",
+      "source": "Sprites/CommonUI/GUI_CommonButtonList_On.png",
+      "sha256": "6d91f1bd6ba077209a6b7327c7d56ee1444767ef60fcbc43ed2d853ed3fd2f5e",
+      "size": [
+        32,
+        32
+      ],
+      "border": {
+        "x": 15.0,
+        "y": 15.0,
+        "z": 15.0,
+        "w": 15.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "row",
+      "file": "assets/row.png",
+      "source": "Sprites/CommonUI/GUI_CommonButtonList.png",
+      "sha256": "05575519b4b6869669b2a69c8d9791ccc8b1b025d81f38e37a788f3ed906fd63",
+      "size": [
+        10,
+        10
+      ],
+      "border": {
+        "x": 7.0,
+        "y": 6.0,
+        "z": 3.0,
+        "w": 4.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "input",
+      "file": "assets/input.png",
+      "source": "Sprites/CommonUI/GUI_CommonInputField_Base.png",
+      "sha256": "3c71364533e7f0e16835d50e991e0feeb648212611da01fe16dc4d16eeb1c89e",
+      "size": [
+        14,
+        58
+      ],
+      "border": {
+        "x": 7.0,
+        "y": 5.0,
+        "z": 7.0,
+        "w": 6.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "search",
+      "file": "assets/search.png",
+      "source": "Sprites/CommonUI/GUI_IconSearch.png",
+      "sha256": "3ebdd5b6649826262e7a534a151f4c809cc78d5b7fd9138d5c6ff7a9bbeccc20",
+      "size": [
+        39,
+        40
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "filter",
+      "file": "assets/filter.png",
+      "source": "Sprites/CommonUI/GUI_DeckEdit_Icon_DeckEdit_Filter.png",
+      "sha256": "4a597b8df1263f98c704619514d4b7fe56e0a33c56198fc4125681927e85c1ad",
+      "size": [
+        36,
+        35
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "star",
+      "file": "assets/star.png",
+      "source": "Sprites/CommonUI/GUI_DeckEdit_CardActionMenu_IconFavorite.png",
+      "sha256": "b5560e4f1b93ab8b33ced898940a1b1ffcbac4f3c74b89b83f1cc5377dcf8ea3",
+      "size": [
+        68,
+        72
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "lock",
+      "file": "assets/lock.png",
+      "source": "Sprites/CommonUI/GUI_SoloMode_LockIconL.png",
+      "sha256": "68218f26ff509283a1f8e74258b7a579eb73425e8134c1e714453fb97017b027",
+      "size": [
+        54,
+        79
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "play",
+      "file": "assets/play.png",
+      "source": "Sprites/CommonUI/GUI_T_ReplayPlay_1.png",
+      "sha256": "98b5f2e34947b82e5af8f1f80c86ee265e6c3b57e1ac2e50c87084df36294b3d",
+      "size": [
+        118,
+        119
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "play-active",
+      "file": "assets/play-active.png",
+      "source": "Sprites/CommonUI/GUI_T_ReplayPlay_2.png",
+      "sha256": "40f5b3016ee4db84bf45a848fa3d4f183ba918491125ca131b23993653608ec3",
+      "size": [
+        118,
+        119
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "pause",
+      "file": "assets/pause.png",
+      "source": "Sprites/CommonUI/GUI_T_ReplayPause_1.png",
+      "sha256": "f642423dac18c0b82346c6698cc825ff5abd452758f3b4021c0c2b025be894ae",
+      "size": [
+        118,
+        119
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "forward",
+      "file": "assets/forward.png",
+      "source": "Sprites/CommonUI/GUI_T_ReplayFF_1.png",
+      "sha256": "c4cd2501171d0a948d7aaafcb79919bae862d1580e939aa34c888b690687473c",
+      "size": [
+        118,
+        119
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "deck",
+      "file": "assets/deck.png",
+      "source": "Sprites/CommonUI/GUI_DeckEdit_Icon_Deck1.png",
+      "sha256": "fb240498f130d8d2217c719849411556489aeecc90fd36e7f2691246dbf0aa6d",
+      "size": [
+        20,
+        28
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "log",
+      "file": "assets/log.png",
+      "source": "Sprites/CommonUI/GUI_T_DuelButtonLog_Off_1.png",
+      "sha256": "998c663280b3ad171cb2c8a6de9bcf864c3ffc3f149106c85055e91685757b5e",
+      "size": [
+        81,
+        82
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "summon",
+      "file": "assets/summon.png",
+      "source": "Sprites/CommonUI/GUI_Log_Summon.png",
+      "sha256": "d795955d20785cf4c1b90c08722e09621bf5884f3daa8a31106ab91fc0339305",
+      "size": [
+        46,
+        46
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "special-summon",
+      "file": "assets/special-summon.png",
+      "source": "Sprites/CommonUI/GUI_Log_SPSummon.png",
+      "sha256": "f8de5465e9f05dbfc4efa018b723e91d6b955a50762cc6b7f5e863b96c408cb9",
+      "size": [
+        46,
+        46
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "card-frame",
+      "file": "assets/card-frame.png",
+      "source": "Textures/CommonUI/RD_Frame_Effect.png",
+      "sha256": "2f70c7e5ad68d699bc7d112e9a8f240063cde5ebd300ccebf8a5fe0c04b10883",
+      "size": [
+        704,
+        1024
+      ]
+    },
+    {
+      "name": "avatar-2",
+      "file": "assets/avatar-2.png",
+      "source": "Sprites/Icon/ProfileIcon/HD/ProfileIcon1010002_L.png",
+      "sha256": "690f9744e496e88f500147380a69b8d6ee1a66cb7eb89115e7fb917c59b12b01",
+      "size": [
+        512,
+        512
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "avatar-4",
+      "file": "assets/avatar-4.png",
+      "source": "Sprites/Icon/ProfileIcon/HD/ProfileIcon1010004_L.png",
+      "sha256": "c790abc03d2e746793e25945d87b6b313e18f214e76bf1d586e0da45d2c32db9",
+      "size": [
+        512,
+        512
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "avatar-8",
+      "file": "assets/avatar-8.png",
+      "source": "Sprites/Icon/ProfileIcon/HD/ProfileIcon1010008_L.png",
+      "sha256": "a16e704cc0e8427a468a8d9a4362fb0db46876532a05e879e3b5586d12c37f06",
+      "size": [
+        512,
+        512
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "avatar-10",
+      "file": "assets/avatar-10.png",
+      "source": "Sprites/Icon/ProfileIcon/HD/ProfileIcon1010010_L.png",
+      "sha256": "07e0b0cf9294d21113f7944bcd05c8d2324462b1e8c5510dc892dbf9deb8aef4",
+      "size": [
+        512,
+        512
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "avatar-11",
+      "file": "assets/avatar-11.png",
+      "source": "Sprites/Icon/ProfileIcon/HD/ProfileIcon1010011_L.png",
+      "sha256": "03c18c621946869d32b8c40bcd2ed70724a3c6a63f39d4caf1ef07869c76970c",
+      "size": [
+        512,
+        512
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "avatar-12",
+      "file": "assets/avatar-12.png",
+      "source": "Sprites/Icon/ProfileIcon/HD/ProfileIcon1010012_L.png",
+      "sha256": "b8f8a4e2d2c094104ee148e729e16b3238aa7e4683105e6ded0f61bd053deb7a",
+      "size": [
+        512,
+        512
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "avatar-17",
+      "file": "assets/avatar-17.png",
+      "source": "Sprites/Icon/ProfileIcon/HD/ProfileIcon1010017_L.png",
+      "sha256": "57abac2746671f9c8a990a66b8a43d4e704105499ea7497a3d6a0d3c11aa8305",
+      "size": [
+        512,
+        512
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "avatar-18",
+      "file": "assets/avatar-18.png",
+      "source": "Sprites/Icon/ProfileIcon/HD/ProfileIcon1010018_L.png",
+      "sha256": "8f8338bc107226ab1a9090cab62ea06f84c66f52c38c32b1063ca203240d5d55",
+      "size": [
+        512,
+        512
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "avatar-21",
+      "file": "assets/avatar-21.png",
+      "source": "Sprites/Icon/ProfileIcon/HD/ProfileIcon1010021_L.png",
+      "sha256": "05a802e0ebace771058616b8b230a8c496141b4b6d02e0e715cd4f0a66343d9e",
+      "size": [
+        512,
+        512
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "avatar-22",
+      "file": "assets/avatar-22.png",
+      "source": "Sprites/Icon/ProfileIcon/HD/ProfileIcon1010022_L.png",
+      "sha256": "95bdeb8620031fdf656fe1abbf03c2253b1acd4caf89ae665dc079df35dfc1aa",
+      "size": [
+        512,
+        512
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "avatar-23",
+      "file": "assets/avatar-23.png",
+      "source": "Sprites/Icon/ProfileIcon/HD/ProfileIcon1010023_L.png",
+      "sha256": "ce59398e4509d0b6b64dd0bfa5ad86c8a75ef6d348152d7193d514765fbee46d",
+      "size": [
+        512,
+        512
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "avatar-24",
+      "file": "assets/avatar-24.png",
+      "source": "Sprites/Icon/ProfileIcon/HD/ProfileIcon1010024_L.png",
+      "sha256": "713b3c7e34bf313c0a32b3692aabf34060cf31b9afed54f6053dac4a49dad115",
+      "size": [
+        512,
+        512
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "field-1",
+      "file": "assets/field-1.png",
+      "source": "Sprites/Icon/Field/HD/FieldIcon1090001.png",
+      "sha256": "613caa5dbaf43b878173648f296696655b96850e3d3d421c12a427b1010fd861",
+      "size": [
+        505,
+        325
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "field-2",
+      "file": "assets/field-2.png",
+      "source": "Sprites/Icon/Field/HD/FieldIcon1090002.png",
+      "sha256": "aaba3a64a7270fbb47aaa33ce7a2f64ec354d52517821ade4030d5a7d9d2a007",
+      "size": [
+        457,
+        294
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "field-3",
+      "file": "assets/field-3.png",
+      "source": "Sprites/Icon/Field/HD/FieldIcon1090003.png",
+      "sha256": "3a96956346e220aaac6b273ce8ae96f86d1b99a3a28c3a3cba19447a444f9260",
+      "size": [
+        437,
+        377
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "field-5",
+      "file": "assets/field-5.png",
+      "source": "Sprites/Icon/Field/HD/FieldIcon1090005.png",
+      "sha256": "7623f0806fabc9909732e4288061e9b126380dc6eb0c4f22b2d274ac54871c6e",
+      "size": [
+        489,
+        351
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "field-6",
+      "file": "assets/field-6.png",
+      "source": "Sprites/Icon/Field/HD/FieldIcon1090006.png",
+      "sha256": "7040dcbba5be5c223d396fc49aa86be9161e32f9ae4ba38590252d1ae9623c04",
+      "size": [
+        468,
+        309
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "field-8",
+      "file": "assets/field-8.png",
+      "source": "Sprites/Icon/Field/HD/FieldIcon1090008.png",
+      "sha256": "db2f5c9d35fe1e13d83814fe3f8ea0ec76e14321c1fd7739152871112d9a8ea6",
+      "size": [
+        485,
+        345
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "art-1",
+      "file": "assets/art-1.png",
+      "source": "Sprites/Icon/Wallpaper/WallPaperIcon1130001.png",
+      "sha256": "901de2801f707407f1648417a5f9d51cfc4829ffd45e36412add309ca657e40f",
+      "size": [
+        226,
+        254
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "art-2",
+      "file": "assets/art-2.png",
+      "source": "Sprites/Icon/Wallpaper/WallPaperIcon1130002.png",
+      "sha256": "d8e550ab035c2e324276daa20ae719f5598cf8f2edcc21145effdce3009ae5f4",
+      "size": [
+        218,
+        237
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "art-5",
+      "file": "assets/art-5.png",
+      "source": "Sprites/Icon/Wallpaper/WallPaperIcon1130005.png",
+      "sha256": "1b80f25b8ff22e64a205af0685c5aa72052120c1936d68b168deb50996410c86",
+      "size": [
+        214,
+        256
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "art-7",
+      "file": "assets/art-7.png",
+      "source": "Sprites/Icon/Wallpaper/WallPaperIcon1130007.png",
+      "sha256": "3981a95b2b9efb53be45ffc8bac8a526970dc6f2e0e7ad36a1830920cabde65b",
+      "size": [
+        219,
+        225
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "art-11",
+      "file": "assets/art-11.png",
+      "source": "Sprites/Icon/Wallpaper/WallPaperIcon1130011.png",
+      "sha256": "14cac3002e4daac07d987ac2542f241a857e463fa79b58fb42199b047bded49d",
+      "size": [
+        256,
+        251
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "art-12",
+      "file": "assets/art-12.png",
+      "source": "Sprites/Icon/Wallpaper/WallPaperIcon1130012.png",
+      "sha256": "e876ed5a010ea73f66308e960d1b79fb9083d38697f9a29fae1bd353a1d45075",
+      "size": [
+        256,
+        235
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "art-17",
+      "file": "assets/art-17.png",
+      "source": "Sprites/Icon/Wallpaper/WallPaperIcon1130017.png",
+      "sha256": "a46a8f2e3dc26b528fbf24e59328658f8edda0467a80c0309be81ae9f6d34230",
+      "size": [
+        243,
+        256
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "art-19",
+      "file": "assets/art-19.png",
+      "source": "Sprites/Icon/Wallpaper/WallPaperIcon1130019.png",
+      "sha256": "3553fa370b503f95c0fd60461748a9346d3562ef00f83a034b609f6e14d4d816",
+      "size": [
+        256,
+        256
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "art-24",
+      "file": "assets/art-24.png",
+      "source": "Sprites/Icon/Wallpaper/WallPaperIcon1130024.png",
+      "sha256": "58f674f9a4f5ffd87cc2405df5d225d63983f5106d03e20c4d3f6c00edef4ec0",
+      "size": [
+        248,
+        243
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "art-25",
+      "file": "assets/art-25.png",
+      "source": "Sprites/Icon/Wallpaper/WallPaperIcon1130025.png",
+      "sha256": "5210e8135abb674b60973cea10b24df8187aa886148556e3ad6ddd41cdaba771",
+      "size": [
+        222,
+        248
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "art-32",
+      "file": "assets/art-32.png",
+      "source": "Sprites/Icon/Wallpaper/WallPaperIcon1130032.png",
+      "sha256": "13ad7f20254e153619735a0d9bff9b32e2da71fc3797f300e3d308f3b5499ffd",
+      "size": [
+        256,
+        253
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "art-38",
+      "file": "assets/art-38.png",
+      "source": "Sprites/Icon/Wallpaper/WallPaperIcon1130038.png",
+      "sha256": "c9e3c6e4c035df5550377943cbbc3fb1c586377ba3dddc9f0900c63ed1dde0d2",
+      "size": [
+        254,
+        224
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "art-42",
+      "file": "assets/art-42.png",
+      "source": "Sprites/Icon/Wallpaper/WallPaperIcon1130042.png",
+      "sha256": "eaa7fe04dc6bfb8ee3ec1ff518bb575b3fbc3b39f811269493710add322f0b94",
+      "size": [
+        210,
+        250
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "art-45",
+      "file": "assets/art-45.png",
+      "source": "Sprites/Icon/Wallpaper/WallPaperIcon1130045.png",
+      "sha256": "52c3b52bb1b873b86d1536c9ab271631855bb32f736ef154fa34f75b8afae36e",
+      "size": [
+        226,
+        237
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "art-53",
+      "file": "assets/art-53.png",
+      "source": "Sprites/Icon/Wallpaper/WallPaperIcon1130053.png",
+      "sha256": "210c4f7c16f8e65f4457e77b97aa8f53e81fc42c6880b7544fcd229756143ad1",
+      "size": [
+        256,
+        250
+      ],
+      "border": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "pixels_per_unit": 100.0
+    },
+    {
+      "name": "font-cn",
+      "file": "assets/font-cn.otf",
+      "source": "Fonts/SourceHanSansSC-Medium.otf",
+      "sha256": "c43383a8ac94024203f062537b5b3a0d0a5bf056172eff78673636ea8fb3c039",
+      "processing": "仅保留静态效果图使用的字形，未改变字形设计",
+      "output_sha256": "f70022b94b5a6a1fcc46f0660a2f71648be8f9336b382e2a7f9b2d958c1e5d17"
+    },
+    {
+      "name": "font-display",
+      "file": "assets/font-display.otf",
+      "source": "Fonts/FOT-KafuTechnoStd-H.otf",
+      "sha256": "72f9b503c1fac88d3c456f769347e12d973a0c26c415f8a34c876502e6eed748",
+      "processing": "仅保留静态效果图使用的字形，未改变字形设计",
+      "output_sha256": "d1dcdd4f2a1ffeeae571bf0520718ab5dd9e796c097f42d5a7b19012cf7556e5"
+    }
+  ]
+}

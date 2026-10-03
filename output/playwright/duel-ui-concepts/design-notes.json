@@ -1,0 +1,17 @@
+{
+  "title": "Duel 房间选择与回放查看视觉提案",
+  "created": "2026-10-03",
+  "type": "静态效果图，未接入 Unity 游戏功能",
+  "resolution": [1920, 1080],
+  "content": "房间、账号、人数、状态、时间和战绩均为排版示意数据",
+  "variants": [
+    {"id": "a", "name": "经典列表", "room": "列表选择配合右侧房间详情", "replay": "对局记录列表配合右侧回放详情"},
+    {"id": "b", "name": "视觉展厅", "room": "四列角色插图展示房间", "replay": "大幅对局预览配合牌组详情与最近回放"},
+    {"id": "c", "name": "紧凑大厅", "room": "固定侧栏配合紧凑房间列表与决斗桌", "replay": "固定侧栏配合记录列表、场地预览与播放控件"}
+  ],
+  "visual_thesis": "沿用原素材的深色背景、荧光黄绿选中态、切角按钮和角色插图，通过三种信息布局形成可比较的游戏界面。",
+  "content_plan": "标题与导航、房间或回放选择区、选中详情、主操作。",
+  "interaction_thesis": "效果图保持静态；选图页面支持方案切换、页面切换和打开原图。后续进入游戏实现时再考虑列表选中、详情切换和页面入场动效。",
+  "material_policy": "PNG 素材直接复制，图像裁切与缩放仅由 CSS 排版实现；字体仅做字形子集化。",
+  "source_files": ["screen.html", "screen.css", "screen.js", "index.html", "board.html", "asset-manifest.json"]
+}
