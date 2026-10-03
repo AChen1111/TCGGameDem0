@@ -494,6 +494,13 @@ public static class AddressKeys
         public static readonly string PreGameSceneUI = "PreGameSceneUI";
         public static readonly string UISetting = "UISetting";
     }
+    public static class Atlas
+    {
+        public static readonly string Avatars = "Avatars";
+        public static readonly string Cards_CN = "Cards_CN";
+        public static readonly string Cards_EN = "Cards_EN";
+        public static readonly string UI = "UI";
+    }
 //--tag:auto-generated-end
     public static string GetAvatarAddress(int avatarId)
     {

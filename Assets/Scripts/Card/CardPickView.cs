@@ -26,7 +26,7 @@ public struct CardPickViewData
     public string cardId;
     public string artId;
     public CardShaderType cardShaderType;
-    public Texture cardTexture;
+    public CardArtwork cardTexture;
     public long overflowUr;
 }
 
@@ -145,7 +145,10 @@ public class CardPickView : MonoBehaviour
         BindEdgeMaterial();
         if (cardPickViewData.cardTexture != null)
         {
-            _matFront.SetTexture(BaseMapId, cardPickViewData.cardTexture);
+            var artwork = cardPickViewData.cardTexture;
+            _matFront.SetTexture(BaseMapId, artwork.Texture);
+            _matFront.SetTextureScale("_BaseMap", artwork.UvRect.size);
+            _matFront.SetTextureOffset("_BaseMap", artwork.UvRect.position);
         }
 
         ApplyEffect(_cardShaderType);

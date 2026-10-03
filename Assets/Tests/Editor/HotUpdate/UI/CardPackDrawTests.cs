@@ -89,7 +89,7 @@ public sealed class CardPackDrawTests
                 {
                     cardId = "14558127",
                     cardShaderType = CardPickController.ToShaderType(1),
-                    cardTexture = texture
+                    cardTexture = CardArtwork.FromTexture(texture)
                 }
             };
 
@@ -97,7 +97,7 @@ public sealed class CardPackDrawTests
             Assert.AreEqual(1, property.Cards.Count);
             Assert.AreEqual("14558127", property.Cards[0].cardId);
             Assert.AreEqual(CardShaderType.Colorful, property.Cards[0].cardShaderType);
-            Assert.AreSame(texture, property.Cards[0].cardTexture);
+            Assert.AreSame(texture, property.Cards[0].cardTexture.Texture);
             Assert.AreEqual(0, new CardPickWindowProperty(null).Cards.Count);
             Assert.AreEqual(CardShaderType.None, CardPickController.ToShaderType(-1));
             Assert.AreEqual(CardShaderType.Outline, CardPickController.ToShaderType(3));

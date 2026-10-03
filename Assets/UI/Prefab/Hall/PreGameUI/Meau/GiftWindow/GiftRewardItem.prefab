@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 277270295939733826}
   - component: {fileID: 1110362466951912747}
   - component: {fileID: 1545868006273177191}
+  - component: {fileID: 2117297872477213152}
   m_Layer: 0
   m_Name: Img_card
   m_TagString: Untagged
@@ -209,6 +210,19 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &2117297872477213152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4014973125508210976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cede75bb939783048b61ee2ad155423d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HotUpdate::CardAtlasUvEffect
+  m_image: {fileID: 1545868006273177191}
 --- !u!1 &6090949488356556132
 GameObject:
   m_ObjectHideFlags: 0

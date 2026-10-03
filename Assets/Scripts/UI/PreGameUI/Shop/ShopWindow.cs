@@ -431,7 +431,7 @@ public class ShopWindow : AWindowController
     static async UniTask<CardPickViewData> LoadDrawCardAsync(string requestPoolKey, CardDrawResult result)
     {
         string poolKey = string.IsNullOrEmpty(result.SourcePool) ? requestPoolKey : result.SourcePool;
-        Texture texture = await CardPoolAddress.LoadCardTextureAsync(poolKey, result.ArtId);
+        CardArtwork texture = await CardPoolAddress.LoadCardArtworkAsync(poolKey, result.ArtId);
         return new CardPickViewData
         {
             cardId = result.CardId,

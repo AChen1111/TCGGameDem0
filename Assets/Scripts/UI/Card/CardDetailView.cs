@@ -8,11 +8,11 @@ public readonly struct CardDetailEntry
 {
     public string CardId { get; }
     public string SourcePool { get; }
-    public Texture Texture { get; }
+    public CardArtwork Texture { get; }
     public int Rarity { get; }
     public string ArtId { get; }
 
-    public CardDetailEntry(string cardId, string sourcePool, Texture texture, int rarity = 0, string artId = null)
+    public CardDetailEntry(string cardId, string sourcePool, CardArtwork texture, int rarity = 0, string artId = null)
     {
         CardId = cardId ?? string.Empty;
         SourcePool = sourcePool ?? string.Empty;
@@ -75,7 +75,7 @@ public class CardDetailView : MonoBehaviour
     int m_Index = -1;
     Action m_OnClosed;
     Action<bool> m_OnVisibleChanged;
-    Action<Texture, int> m_OnCardClicked;
+    Action<CardArtwork, int> m_OnCardClicked;
 
     public bool IsShowing => gameObject.activeSelf;
 
@@ -92,7 +92,7 @@ public class CardDetailView : MonoBehaviour
         }
     }
 
-    public void SetCallbacks(Action onClosed, Action<bool> onVisibleChanged, Action<Texture, int> onCardClicked = null)
+    public void SetCallbacks(Action onClosed, Action<bool> onVisibleChanged, Action<CardArtwork, int> onCardClicked = null)
     {
         m_OnClosed = onClosed;
         m_OnVisibleChanged = onVisibleChanged;
@@ -215,7 +215,7 @@ public class CardDetailView : MonoBehaviour
 
     void OnCardClicked()
     {
-        Texture texture = m_RawCard != null ? m_RawCard.texture : null;
+        CardArtwork texture = m_Cards[m_Index].Texture;
         if (texture == null)
         {
             return;
@@ -246,7 +246,8 @@ public class CardDetailView : MonoBehaviour
         bool hasTexture = entry.Texture != null;
         if (m_RawCard != null)
         {
-            m_RawCard.texture = entry.Texture;
+            if (hasTexture) entry.Texture.ApplyTo(m_RawCard);
+            else m_RawCard.texture = null;
             m_RawCard.material = m_Versions[entry.Rarity];
             m_RawCard.enabled = hasTexture;
             m_RawCard.color = Color.white;

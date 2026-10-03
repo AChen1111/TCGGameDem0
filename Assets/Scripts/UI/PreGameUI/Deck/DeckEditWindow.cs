@@ -281,7 +281,7 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
             cells.RemoveAt(index);
         }
     }
-    public void AddCardFromClick(DeckCardData data, Texture texture, Vector3 worldCenter)
+    public void AddCardFromClick(DeckCardData data, CardArtwork texture, Vector3 worldCenter)
     {
         var start = m_CanvasRect.InverseTransformPoint(worldCenter);
         if (!Change(data, 1, true)) return;
@@ -392,7 +392,7 @@ public class DeckEditWindow : AWindowController<DeckEditWindowProperties>
         LocalGameConfiguration.DeckRules.TryGetSection(cardId, out var section);
         return section == DeckSection.Main ? m_MainScroll : m_ExtraScroll;
     }
-    public void BeginCardDrag(DeckCardData data, Texture texture, Vector2 pointer)
+    public void BeginCardDrag(DeckCardData data, CardArtwork texture, Vector2 pointer)
     {
         if (m_busy) return;
         StopCardMoves();

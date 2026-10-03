@@ -1,0 +1,1023 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Remote_Atlas_UI
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Remote_Atlas_UI
+  m_GUID: 9f2e9532f8f0aba45af4fd56edd80000
+  m_SerializeEntries:
+  - m_GUID: 001b6a620c2b2234c823fd78accb99a2
+    m_Address: Assets/UI/Sprite/Duel/GUI_Icon_XyzMaterial.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0068e9d4a162b15f8ade78111a821acd
+    m_Address: Assets/UI/Sprite/Card/GUI_CardType_Quick.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 02d384dffdb82184fa0c3c42df94a05c
+    m_Address: Assets/UI/Sprite/Colosseum/GUI_ColosseumInfo_DuelTrial_RewardButton_NoItem_Recieved.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 037caf28b839c6446923f2d52e5ab136
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon05_4.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0b48853b38e8b22448166a567ae56486
+    m_Address: Assets/UI/Sprite/Battle/img_Phase_near.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0bc991df1ba4e68438a113a9ee19b1a5
+    m_Address: Assets/UI/Sprite/LoginBonus/GUI_LBMap_Anniversary_BG.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0bf45ef95ba8e4743bef7f07a03ef089
+    m_Address: Assets/UI/Sprite/Common/GUI_CommonCardGrad.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0cc1767d9da5ebb47a408c10f6fa217a
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon11_4.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0e48a3efcd6ba014eb9cab0f8ecc5e55
+    m_Address: Assets/UI/Sprite/Duel/GUI_PhaseButtonCursor2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0fe46806b7e6f4f4b9ef2623249f15e1
+    m_Address: Assets/UI/Card/Wallpaper/00/w_00_Sprite.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ff284e4e7d80824e8517e057f13ee1a
+    m_Address: Assets/UI/Sprite/Battle/ChainNumSet_6.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 10994e138b0a4ff40a774fd59daf55d4
+    m_Address: Assets/UI/Sprite/Card/GUI_CardAttr_Dark.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 110eacad4e88d0147bc51f893795dab4
+    m_Address: Assets/UI/Sprite/Home/GUI_HeaderMenuIcon4.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 12f501f7880405e4597cbb3130a02766
+    m_Address: Assets/UI/Sprite/Colosseum/GUI_ColosseumInfo_Free_MainImage.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 14a253ae5920a68438bcda01c6cbeccd
+    m_Address: Assets/UI/Sprite/Duel/GUI_Icon_Link.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 157e7405227b0d4449ca9026b7959971
+    m_Address: Assets/UI/Card/Wallpaper/03/w_03_Down.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 165335c972f25134bafe135a4f9616e9
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon01_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 16a30a304009ddd439f32958f199a8c8
+    m_Address: Assets/UI/Card/CardShopItem/00/c_00.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 16e8e5ebfa2193b49a6adb0da02bdaf7
+    m_Address: Assets/UI/Card/CardShopItem/04/c_04.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1852daa43df97ca42a430814ae7d90ed
+    m_Address: Assets/UI/Sprite/Battle/img_TunChange_bg01.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 187b867f0a5ab994e9d6ec0f30096957
+    m_Address: Assets/UI/Sprite/Battle/GUI_LP_Blue.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1af07aeeb4b2d8dd674fca5b7b18ae34
+    m_Address: Assets/UI/Sprite/Card/GUI_CardType_Spell.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1b9bafca93597f645a4a6b8f772e4505
+    m_Address: Assets/UI/Sprite/Solo/GUI_SoloMode_CompleteLabel.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c3ccd8790c352847ab6fbfc4da69063
+    m_Address: Assets/UI/Sprite/Battle/GUI_PhaseSP.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c7453d4716ef524d883b48d083de8dc
+    m_Address: Assets/UI/Sprite/Common/GUI_CommonButtonL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e70f7c1ede797c48bbbfad42e9b19c9
+    m_Address: Assets/UI/Sprite/Battle/GUI_Global_Window_Frame_NoCorner.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ed1e7af0e94b9f438c2e4afbcf31543
+    m_Address: Assets/UI/Sprite/Duel/GUI_T_Icon1_Other_Level.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ed4f07c1c529d94da32b0aac91069d1
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon07_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f0c1a968b1ad62438b65d31541e4e8c
+    m_Address: Atlas/UI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 223a9ac48e6831341b4c27ff0e63ac2d
+    m_Address: Assets/UI/Sprite/Common/GUI_CommonSelectCursor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 253358150543a9342a36d9a7445eefbf
+    m_Address: Assets/UI/Sprite/Common/GUI_CommonButtonM_On.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 25753dd61da7b33684716a871b5d2abf
+    m_Address: Assets/UI/Sprite/Card/GUI_CardType_Ritual.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 26f639d018d19a447a62296607080bd5
+    m_Address: Assets/UI/Card/Wallpaper/03/w_03_Sprite.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2779fbcbf12a6834a98be2b2a7dfff15
+    m_Address: Assets/UI/Sprite/Common/GUI_CommonSelectCursor_Corner.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a0b25df878ceba438cb4abfb127b09e
+    m_Address: Assets/UI/Sprite/Activities/activity_topic_hover.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a353888a622a4345b676cff093aeecf
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon04_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a400d360fc96e84298b31eef8849a47
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon06_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2acd94fdcd1749a47808af3737dfa9ff
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon05_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e10a6760ddc6ab44a400d8d74f9289d
+    m_Address: Assets/UI/Card/CardShopItem/03/c_03.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f2edecb6ff6147603c65e40f701cd95
+    m_Address: Assets/UI/Sprite/Card/GUI_CardAttr_Light.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f5031d638a193e4eac49eb0191f2451
+    m_Address: Assets/UI/Card/CardShopItem/05/c_05.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 30aa2c10b1f9b0a4298b64274880e844
+    m_Address: Assets/UI/Sprite/Shop/GUI_GemShopIcon03.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 327daf655dbdb6d4597c8da85b37c0c5
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon06_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 333e4d93019748e41bed687db819c990
+    m_Address: Assets/UI/Sprite/Home/GUI_HeaderMenuIcon2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3384b67f664fbd048a99edb91a90fb84
+    m_Address: Assets/UI/Sprite/Battle/img_Phase_far.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 389f9ed5438edc54d9d519dde43c9027
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon07_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 394713d14a5f0db4b9ddec48dd2bb201
+    m_Address: Assets/UI/Card/Wallpaper/08/w_08_Down.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 39847787e1ad7b6448f882033b3cb941
+    m_Address: Assets/UI/Sprite/Battle/GUI_CommonSelectCursor_CornerAll.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a621899d1592084d8698f18903fab92
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon01_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a7a2a92962d1b645ac8497b648d0caa
+    m_Address: Assets/UI/Card/Wallpaper/01/w_01_Sprite.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c7ce71ccd2eb8b48abda87a50cf164e
+    m_Address: Assets/UI/Sprite/Common/GUI_Global_Window_Frame.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3d2c641503b0db847ac1bcbaf7223f7b
+    m_Address: Assets/UI/Sprite/Battle/ChainNumSet_5.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3d9f7e6c2c6a0bd46adda71693c53adf
+    m_Address: Assets/UI/Sprite/Common/GUI_CommonButtonShop_Over.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3dda1238e777c8a459c0c85e8d525848
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon11_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f2dc09f809292b4d9e978bd881a727f
+    m_Address: Assets/UI/Sprite/Battle/GUI_CommonButtonL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 41e9f109c95388240946985ac3629da9
+    m_Address: Assets/UI/Sprite/Battle/GUI_PhaseMP1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44728397cec9f2d9b8f1e7ae4d62014f
+    m_Address: Assets/UI/Sprite/Card/GUI_CardType_Effect.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 462119ae5f800ba48bf536b97777e65a
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon04_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 463ab994616311e6d8d86f5f04cd8278
+    m_Address: Assets/UI/Sprite/Card/GUI_CardType_Trap.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 465b307edce0dfe44b31c69de43ae79b
+    m_Address: Assets/UI/Sprite/Duel/GUI_PhaseMP2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4809313ad0b4df841aeb3580a98e3b42
+    m_Address: Assets/UI/Sprite/LoginBonus/board_slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4986607546851bf4181cf36ed68c3a05
+    m_Address: Assets/UI/Sprite/Battle/ChainNumSet_7.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4a333ba9ec1f41046b996e2a0487918c
+    m_Address: Assets/UI/Sprite/Wcs/WallPaperTopicsthumb1130086_#454.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4aa6d5b2422399741a6bab6e32b5d725
+    m_Address: Assets/UI/Card/Wallpaper/06/w_06_Sprite.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4cec2e7327313804aa90300e3bce4507
+    m_Address: Assets/UI/Sprite/Activities/activity_item_frame.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4f0a42e7541a9164da5c2db071a89fa5
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon05_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 507af69cc16f76048b7828e527eb6f00
+    m_Address: Assets/UI/Sprite/Activities/activity_topic_frame.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 523605ad624972e4592bd15c9128d970
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon13_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 52557a50c47ca6f4489f198d5b0136c4
+    m_Address: Assets/UI/Sprite/Activities/activity_item_hover.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 528c97c990fd13d4cae1d3834517ae3d
+    m_Address: Assets/UI/Card/Wallpaper/02/w_02_Sprite.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 555bf2ae8001bdb24f001c7318c5e00b
+    m_Address: Assets/UI/Sprite/Card/GUI_CardType_Synchro.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 580f858aed17351166e5fae37d5755cc
+    m_Address: Assets/UI/Sprite/Card/GUI_CardType_Field.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5cfc9162b18451c4aa146c1446f0ecc1
+    m_Address: Assets/UI/Card/Wallpaper/06/w_06_Down.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d930ea84e7355e4896ec18295649755
+    m_Address: Assets/UI/Sprite/Profile/GUI_ProfileData_RankIconBase.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e8939f6c6e16d94996a9d8c9b3ce505
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon05_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5fc8596035b03b94faa0081cf34a2484
+    m_Address: Assets/UI/Sprite/LoginBonus/button_reject.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5fd1d909f7e934d4eb3bec9d278616a2
+    m_Address: Assets/UI/Card/Wallpaper/02/w_02_Down.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 60da9380ababc7f418b00107ee894e03
+    m_Address: Assets/UI/Card/Wallpaper/04/w_04_Sprite.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 64c746760c1ce7042a5570169d2d5c4c
+    m_Address: Assets/UI/Sprite/Duel/GUI_T_Icon1_Other_Rank.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6524b0a82a6b72e506cea45b23fe9c9a
+    m_Address: Assets/UI/Sprite/Card/GUI_CardAttr_Divine.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6865998bf94202a429ed2cdf1b3f4e35
+    m_Address: Assets/UI/Sprite/Profile/GUI_PlayerBaseEdit.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6b6cb3ed9a439524780eca103c1ccd49
+    m_Address: Assets/UI/Sprite/Activities/activity_button_hover.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6bd37bad19f45314c9b9c9a5c822865e
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon01_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c5f09e9a4689d1418546b97d35b27a9
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon08_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6d9b26b9f09b3b74497cb5ff658cf292
+    m_Address: Assets/UI/Sprite/Common/GUI_alpha_PagingWindow_Arrow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ded9e36fcc6f2346be855b0e04d0f8f
+    m_Address: Assets/UI/Card/CardShopItem/02/c_02.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ee38067d4899c04fb7e09ed7b40fb4c
+    m_Address: Assets/UI/Sprite/Battle/GUI_PhaseEP.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ff819ae831996548a492ef5ab5585ac
+    m_Address: Assets/UI/Sprite/Duel/GUI_PhaseEP.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72b8b16af501eac4db7ce6a0e7a13855
+    m_Address: Assets/UI/Sprite/Battle/ChainNumSet_4.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 73ead13b55f384342bdde1334ec6d66a
+    m_Address: Assets/UI/Sprite/Home/button_large.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76638fd42db6bc745bacf15fd1c0ae03
+    m_Address: Assets/UI/Sprite/Battle/GUI_PhaseButtonCursor2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7781847d2ed6bb345b2cebb23fc42ea8
+    m_Address: Assets/UI/Card/Wallpaper/00/w_00_Down.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 77ca93cdb873d86459ea3f44b870de2d
+    m_Address: Assets/UI/Sprite/DeckEditor/GUI_T_Icon1_Limit02.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 77d21145bbc909546be0e07aec2bfea7
+    m_Address: Assets/UI/Sprite/Battle/GUI_Attack_Arrow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78ebe65b533ad6147bbe0307e6cc1f8d
+    m_Address: Assets/UI/Sprite/Common/GUI_CommonButtonShop.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 799213602d5e0154b8c7044c3867c183
+    m_Address: Assets/UI/Card/Wallpaper/10/w_10_Sprite.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79bf457863106a34c8a33e99b96a533b
+    m_Address: Assets/UI/Sprite/Duel/GUI_PhaseMP1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b1856a8068705e4dae74ddf4ea43be0
+    m_Address: Assets/UI/Sprite/LoginBonus/button_accept.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b884e960fd8d794e8477bfc6deaf5d4
+    m_Address: Assets/UI/Card/Wallpaper/07/w_07_Down.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e4d3b666a8de7e4ab0b8e1200128718
+    m_Address: Assets/UI/Sprite/DeckEditor/DeckCase2004_L.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7f4658121dfc1bc4393ea95b718f44bc
+    m_Address: Assets/UI/Card/Wallpaper/01/w_01_Down.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7fa7be80fec647b4b99fb7579606a916
+    m_Address: Assets/UI/Sprite/DeckEditor/GUI_T_Icon1_Limit00.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 804843f8de02a3a469e222b3b648d60d
+    m_Address: Assets/UI/Sprite/Common/GUI_CommonButtonM.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 810179368b8485146b68346cf611e5a7
+    m_Address: Assets/UI/Card/Wallpaper/09/w_09_Sprite.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 811fbeb90eb4e9d418c687c42571b120
+    m_Address: Assets/UI/Sprite/Activities/activity_topic_base.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 814137936f43b364eaa6752a4ab60914
+    m_Address: Assets/UI/Card/Wallpaper/08/w_08_Sprite.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84fe8fc397e568349857c2d0134e6656
+    m_Address: Assets/UI/Sprite/Battle/GUI_CardInfo_NameBase.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 850a2102d075e7042b955da2a1dc9500
+    m_Address: Assets/UI/Sprite/Duel/GUI_Icon_Atk.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8789eac44e8c43742b599025ccb2ab44
+    m_Address: Assets/UI/Sprite/Battle/ChainNumSet_9.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8953749e86332bc47a1a8e1772361339
+    m_Address: Assets/UI/Sprite/Battle/ChainNumSet_8.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8bc681e0375d47f4786d2ec254a8b00e
+    m_Address: Assets/UI/Sprite/DeckEditor/GUI_CommonButtonM.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8df449e370adfbe4488fb68f5f144d31
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon04_4.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8fa23d14468dd74428b06f33ce35b709
+    m_Address: Assets/UI/Sprite/Wcs/GUI_WcsTopMenu_ButtonExhibition.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 91c11f6fb7a2dec48b0263fd5a1af3cb
+    m_Address: Assets/UI/Sprite/DeckEditor/GUI_CommonButtonM_Over.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 92ba46f705b2ba74ca636bf98134a9d3
+    m_Address: Assets/UI/Sprite/Duel/GUI_LP_Red.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97af20b6f08e64242bb04b6d35d9586b
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon01_4.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97c6259b663169c4f81a911b17901dd6
+    m_Address: Assets/UI/Sprite/Battle/ChainNumSet_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99c10f75e3aaf3741b2596e82451d80e
+    m_Address: Assets/UI/Sprite/Activities/activity_window.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a85565862e6fdc4dab2534f066ceec0
+    m_Address: Assets/UI/Sprite/Battle/GUI_PhaseBP.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c037a7d2cfb31048b20041b9f94e595
+    m_Address: Assets/UI/Sprite/Activities/activity_checked.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e89bffdf08be294ab6fe563d429b3f6
+    m_Address: Assets/UI/Card/Wallpaper/05/w_05_Sprite.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f15eca71ea8f22478a93b23d56d1123
+    m_Address: Assets/UI/Sprite/Activities/activity_item_base.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a090947c3c56e644f9976629499cf7f2
+    m_Address: Assets/UI/Sprite/Common/GUI_CommonGaugeS_Base.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a0fdcc45889a3b441928772f65374ce5
+    m_Address: Assets/UI/Sprite/Activities/activity_close.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a16f4bfa32a074db086d5e6213386074
+    m_Address: Assets/UI/Sprite/Card/GUI_CardType_Continuous.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3346867e6465b3418d77205b5c8f680
+    m_Address: Assets/UI/Sprite/Common/GUI_CommonSelectCursor_CornerAll.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3ad265c836e3524ebc494b716c8ea09
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon13_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3fde281a30943f41bcfb5274ad5e7cb
+    m_Address: Assets/UI/Card/CardShopItem/10/c_10.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a5c50e3334b30014b8729377492fd422
+    m_Address: Assets/UI/Sprite/DeckEditor/GUI_CommonButtonBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a743139ab0aa99347a1e4bf7ca5c6152
+    m_Address: Assets/UI/Sprite/Common/GUI_CommonButtonShop_Sliced.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a76ec14bc65191d45b48ea91d3fa1724
+    m_Address: Assets/UI/Sprite/Battle/ChainNumSet_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a798ee6b166db3a45b8c87e2b639ccc2
+    m_Address: Assets/UI/Sprite/Home/GUI_HeaderMenuIcon3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a98d4996370033b41b89165b092cd813
+    m_Address: Assets/UI/Sprite/Activities/activity_tab.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9f2c2d053f37f64fb74270d880b50db
+    m_Address: Assets/UI/Card/Wallpaper/09/w_09_Down.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aab785f3694ec844eacd79380faa0031
+    m_Address: Assets/UI/Card/Wallpaper/05/w_05_Down.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aaff918a757dd1f44a5788b18fb7ba2d
+    m_Address: Assets/UI/Sprite/Battle/GUI_CommonWindowS.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: afb61ca187252dd4bb3790bebf779d20
+    m_Address: Assets/UI/Card/Wallpaper/10/w_10_Down.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b0483042edf74c5ccd4a517e317dc47a
+    m_Address: Assets/UI/Sprite/Card/GUI_CardAttr_Fire.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1e91fb9158520247984091011d80b33
+    m_Address: Assets/UI/Sprite/Home/GUI_HeaderMenuIcon0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b3802ec152d495e4090da69807e55c83
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon11_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6681a10b3dbe024b89c37eb35689c00
+    m_Address: Assets/UI/Sprite/Common/GUI_Global_Window_Frame_NoCorner.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6abc7ef60bd777499d7813ff6d8df2e
+    m_Address: Assets/UI/Sprite/LoginBonus/input_field.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6bb3da1bc53dcc49905c62e4435e8ec
+    m_Address: Assets/UI/Sprite/Activities/activity_gift.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b8f8f306f64b77646a2ebc0135c8ff7e
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon08_4.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba0a637cf3892334bacd5fd989ac0a06
+    m_Address: Assets/UI/Card/CardShopItem/06/c_06.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba620626d34f96d438b82d0810f18455
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon08_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb48723f16bd8b944bf0cd01676c9416
+    m_Address: Assets/UI/Sprite/Duel/GUI_PhaseBP.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc1c08a5a70f70f4eaf5c3c102eb8dba
+    m_Address: Assets/UI/Sprite/Common/GUI_CommonButtonList.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c13712578a0cfed4bb561cd6275f59a5
+    m_Address: Assets/UI/Card/CardShopItem/09/c_09.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c28068f3129a28d478ebb6c60f1a11ef
+    m_Address: Assets/UI/Sprite/DeckEditor/GUI_CommonButtonBack_Over.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c3ffe7cf63445994e88941abe8551e36
+    m_Address: Assets/UI/Sprite/Battle/ChainNumSet_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c5515ddbd9bb46d41a2e415d09f086c5
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon06_4.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c551e6d3fb48aea4c949029a8fd7e40c
+    m_Address: Assets/UI/Sprite/Duel/GUI_Icon_Tuner.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c751803be544e5bf20ec73f394a73ece
+    m_Address: Assets/UI/Sprite/Card/GUI_CardAttr_Wind.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8beb4d26b400accd036bbf616800c96
+    m_Address: Assets/UI/Sprite/Card/GUI_CardType_Counter.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cad2e7c95c71a994f9c75597b88e13c8
+    m_Address: Assets/UI/Sprite/Battle/DefaultProtector.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce1d3925ac695304d9c84570cdfdafaf
+    m_Address: Assets/UI/Sprite/DeckEditor/GUI_T_Icon1_Limit01.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce791a81a737ba64baad56dada23e0e9
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon07_4.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf37ff873f593c949a3bffe6773ac429
+    m_Address: Assets/UI/Card/Wallpaper/04/w_04_Down.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0d494a7afc40ce41b439f7c0134ac64
+    m_Address: Assets/UI/Sprite/Colosseum/GUI_ColosseumInfo_ItemFrameBox_Rank7.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d13beca006c9b29409aa3250b3fcd61d
+    m_Address: Assets/UI/Sprite/DeckEditor/GUI_CommonInputField_Base.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d25778b8e0c9c774b8feb103f066d0d9
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon07_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d2ce0a693ef3a4f47b90f5823cc232fb
+    m_Address: Assets/UI/Sprite/Card/GUI_CardInfo_NameBase.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d35d96108ef50a84faaedff206d39c86
+    m_Address: Assets/UI/Sprite/Duel/GUI_T_Icon1_Other_link.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d370887fbfd01fe4db760e0c8c01377f
+    m_Address: Assets/UI/Card/CardShopItem/07/c_07.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d4f9b18000d2d0f4595d8a46c2981626
+    m_Address: Assets/UI/Sprite/Duel/GUI_Attack_Arrow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d5050b41662b0b04187e566de5fc788a
+    m_Address: Assets/UI/Sprite/Battle/GUI_LP_Red.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d5518e9cd02479c4f959104fdaf3bb75
+    m_Address: Assets/UI/Sprite/Battle/GUI_PhaseButtonBase2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d5a5a36dd4cd44a46a38421fefd4eec6
+    m_Address: Assets/UI/Sprite/DeckEditor/GUI_Global_Window_Frame.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d5ea21d47a070e94e93c9d238c50618c
+    m_Address: Assets/UI/Sprite/Badge/progress_blue_border.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d650846c087456143847554af2726771
+    m_Address: Assets/UI/Sprite/Common/GUI_CommonWindowS.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d93f7179570a13842bbef68d5d0f4e34
+    m_Address: Assets/UI/Sprite/Activities/activity_notice.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d9b1684c0d2db61489c8ece28c3807e6
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon13_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db431b61ca7888940ab8bca64360b6cb
+    m_Address: Assets/UI/Sprite/Battle/GUI_PhaseDP.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db942d3f579eb5147a351826133ab8e4
+    m_Address: Assets/UI/Sprite/LoginBonus/GUI_LBMap_Common_BG.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc906072e7dea4848954cec7835b50ed
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon04_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc9adff1290585746b1edb172cc8ca25
+    m_Address: Assets/UI/Card/CardShopItem/01/c_01.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ddc2cea4311f7c94e8f93ca7d427982c
+    m_Address: Assets/UI/Sprite/Battle/img_TunChange_bg02.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df3d4d8bf2244874c9ca697de60da2bd
+    m_Address: Assets/UI/Card/CardShopItem/08/c_08.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e376ae9a0fc8a8c4ca414452ee648f70
+    m_Address: Assets/UI/Sprite/Duel/GUI_PhaseSP.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e4242e2c243437040b354ae66024a799
+    m_Address: Assets/UI/Sprite/Activities/activity_button.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e86f0ec2654661d41a2dddad9b27d02a
+    m_Address: Assets/UI/Sprite/Common/GUI_CommonInputField_Base.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e97b9d2ef5aa84ae315e208ea0c34314
+    m_Address: Assets/UI/Sprite/Card/GUI_CardType_Equip.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea3fc766265d22e44bcb4948e07eaf72
+    m_Address: Assets/UI/Sprite/Duel/GUI_PhaseDP.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea9ad494399fa574ebc961448ed4e191
+    m_Address: Assets/UI/Sprite/Battle/GUI_PhaseMP2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ecae28858d6185a301c07a94d14d3ec8
+    m_Address: Assets/UI/Sprite/Card/GUI_CardAttr_Earth.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed641873cdf0ff94999791dee106ba8e
+    m_Address: Assets/UI/Sprite/Duel/GUI_LP_Blue.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed9211c613589b24a89a027a30425138
+    m_Address: Assets/UI/Sprite/Battle/_images_chain_01.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ee391177b82db0a4298e1422fd8e5666
+    m_Address: Assets/UI/Sprite/Battle/ChainNumSet_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ee89cc3bb3a58e4488c188cbfaafa4ac
+    m_Address: Assets/UI/Sprite/Activities/activity_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: efe7fa8ce4c0e2b448acea22f863b0f0
+    m_Address: Assets/UI/Sprite/Duel/GUI_PhaseButtonBase2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f021a448e21950b47ac0d01f6eaa6a46
+    m_Address: Assets/UI/Sprite/CardWorkshop/Icon_Rarity_UR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f2a96ce0bb7ebfde6c2c017736c4a8cd
+    m_Address: Assets/UI/Sprite/Card/GUI_CardAttr_Water.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f416d3524f2106743b9debc84b6bc505
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon08_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6858a14c874f3949a02a7c94ebec10b
+    m_Address: Assets/UI/Card/Wallpaper/07/w_07_Sprite.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6d5deb916d9704e93e74c927f0a185d
+    m_Address: Assets/UI/Sprite/Card/GUI_CardType_Fusion.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8a093da1cd08414a99fcedfb29f5cb7
+    m_Address: Assets/UI/Sprite/Duel/GUI_Icon_Def.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9e84ac6c5d3e944e97b034b85e698a3
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon11_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb55a11e2c530a942b2c399bc909c05c
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon13_4.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fcf7a7b6ad2677741a7bc028a7acc06e
+    m_Address: Assets/UI/Sprite/Battle/GUI_T_DuelButtonActIcon06_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3bb9cee06e4ec4b4e8f8af1c47ad2e29, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 9516a5938242c7d4fa69b95dbbfe14f9, type: 2}
+    - {fileID: 11400000, guid: 0df326abef761e34b86708e3d8509eca, type: 2}

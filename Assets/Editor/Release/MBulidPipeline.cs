@@ -120,6 +120,7 @@ public static class MBulidPipeline
     {
         Package.BeginResources(target.ToString(), version);
         PublishedConfigBuilder.Prepare();
+        UiAtlasPrebuild.Prepare();
         var settings = AddressableAssetSettingsDefaultObject.Settings ?? throw new InvalidOperationException("缺少 Addressables 设置");
         var sharedGroup = settings.GetSharedBundleGroup();
         var sharedSchema = sharedGroup != null ? sharedGroup.GetSchema<BundledAssetGroupSchema>() : null;

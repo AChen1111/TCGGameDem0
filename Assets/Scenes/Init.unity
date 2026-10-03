@@ -262,6 +262,12 @@ MonoBehaviour:
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
+  m_atlasCatalogRef:
+    m_AssetGUID: ed8b70f4c4b7a7943a91810f6d110df9
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
 --- !u!1 &87990013
 GameObject:
   m_ObjectHideFlags: 0

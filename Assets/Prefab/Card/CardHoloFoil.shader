@@ -74,6 +74,7 @@ Shader "Card/CardEffect"
 
             CBUFFER_START(UnityPerMaterial)
                 float4 _BaseMap_ST;
+                float4 _BaseMap_TexelSize;
                 float4 _GoldNoiseMap_ST;
                 half4 _BaseColor;
                 half _HoloStrength;
@@ -119,7 +120,7 @@ Shader "Card/CardEffect"
             {
                 Varyings output;
                 output.positionCS = TransformObjectToHClip(input.positionOS.xyz);
-                output.uv = TRANSFORM_TEX(input.uv, _BaseMap);
+                output.uv = input.uv;
                 output.positionOS = input.positionOS.xyz;
                 return output;
             }
@@ -148,7 +149,10 @@ Shader "Card/CardEffect"
 
             half4 SampleArt(float2 uv)
             {
-                return SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv) * _BaseColor;
+                // 特效始终使用单张卡0..1坐标；仅采样时缩放偏移，避免镜碎采到邻卡。
+                float2 inset = 0.5 * _BaseMap_TexelSize.xy / _BaseMap_ST.xy;
+                float2 atlasUv = clamp(uv, inset, 1.0 - inset) * _BaseMap_ST.xy + _BaseMap_ST.zw;
+                return SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, atlasUv) * _BaseColor;
             }
 
             half4 SampleGoldNoise(float2 uv)

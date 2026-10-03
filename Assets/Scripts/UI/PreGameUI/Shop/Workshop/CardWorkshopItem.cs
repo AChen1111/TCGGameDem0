@@ -56,8 +56,8 @@ public sealed class CardWorkshopItem : MonoBehaviour
     async UniTask Load(WorkshopCardData card, int version, CancellationToken ct)
     {
         m_Card.texture = null;
-        var texture = await CardPoolAddress.LoadCardTextureAsync(card.SourcePool, card.CardId);
+        var texture = await CardPoolAddress.LoadCardArtworkAsync(card.SourcePool, card.CardId);
         if (ct.IsCancellationRequested || version != m_version) return;
-        m_Card.texture = texture;
+        texture.ApplyTo(m_Card);
     }
 }

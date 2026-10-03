@@ -9,19 +9,22 @@ public sealed class DeckCardView : MonoBehaviour
     [SerializeField] RawImage m_Art;
     [SerializeField] Material[] m_Versions;
     int m_version;
-    public Texture Texture => m_Art.texture;
+    CardArtwork m_artwork;
+    public CardArtwork Texture => m_artwork;
     public RectTransform ArtRect => m_Art.rectTransform;
     public void SetArtVisible(bool visible) => m_Art.enabled = visible;
-    public void SetTexture(Texture texture, int rarity)
-    { ++m_version; m_Art.texture = texture; m_Art.material = m_Versions[rarity]; }
+    public void SetTexture(CardArtwork texture, int rarity)
+    { ++m_version; m_artwork = texture; texture.ApplyTo(m_Art); m_Art.material = m_Versions[rarity]; }
     public async UniTask BindAsync(string pool, string id, int rarity, CancellationToken ct)
     {
         int version = ++m_version;
+        m_artwork = null;
         m_Art.texture = null;
         m_Art.material = m_Versions[rarity];
-        var texture = await CardPoolAddress.LoadCardTextureAsync(pool, id).AttachExternalCancellation(ct);
+        var texture = await CardPoolAddress.LoadCardArtworkAsync(pool, id).AttachExternalCancellation(ct);
         if (ct.IsCancellationRequested || version != m_version) return;
-        m_Art.texture = texture;
+        m_artwork = texture;
+        texture.ApplyTo(m_Art);
     }
     void OnDisable() => ++m_version;
 }

@@ -6,10 +6,10 @@ public sealed class CardInUIData
 {
     public string CardId { get; }
     public string SourcePool { get; }
-    public Texture Texture { get; }
+    public CardArtwork Texture { get; }
     public int Index { get; }
 
-    public CardInUIData(string cardId, string sourcePool, Texture texture, int index)
+    public CardInUIData(string cardId, string sourcePool, CardArtwork texture, int index)
     {
         CardId = cardId ?? string.Empty;
         SourcePool = sourcePool ?? string.Empty;
@@ -31,7 +31,8 @@ public class CardInUI : MonoBehaviour
         m_Data = data;
         m_OnSelected = onSelected;
         bool hasTexture = data != null && data.Texture != null;
-        m_RawCard.texture = hasTexture ? data.Texture : null;
+        if (hasTexture) data.Texture.ApplyTo(m_RawCard);
+        else m_RawCard.texture = null;
         m_RawCard.enabled = hasTexture;
     }
 

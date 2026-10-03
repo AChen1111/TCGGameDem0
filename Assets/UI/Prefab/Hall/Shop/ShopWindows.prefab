@@ -3140,8 +3140,22 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1919790730385645702, guid: 7d567e6a71521714290b237da1147b2e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2485950710465742542}
   m_SourcePrefab: {fileID: 100100000, guid: 7d567e6a71521714290b237da1147b2e, type: 3}
+--- !u!114 &248992827612953672 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5313897137642000087, guid: 7d567e6a71521714290b237da1147b2e, type: 3}
+  m_PrefabInstance: {fileID: 5389217634193552031}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5795622125601149465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
 --- !u!114 &3989429376370754624 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9049723979550881503, guid: 7d567e6a71521714290b237da1147b2e, type: 3}
@@ -3153,6 +3167,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd965b30d58614c4aab1d2c6acd12f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: HotUpdate::CardWorkshopPanel
+--- !u!1 &5795622125601149465 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1919790730385645702, guid: 7d567e6a71521714290b237da1147b2e, type: 3}
+  m_PrefabInstance: {fileID: 5389217634193552031}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2485950710465742542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5795622125601149465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cede75bb939783048b61ee2ad155423d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HotUpdate::CardAtlasUvEffect
+  m_image: {fileID: 248992827612953672}
 --- !u!224 &8690506405490982793 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3625601567617142038, guid: 7d567e6a71521714290b237da1147b2e, type: 3}

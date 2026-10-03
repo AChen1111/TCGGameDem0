@@ -118,11 +118,11 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
     }
     void HideDetail() => m_detail.gameObject.SetActive(false);
     void OnChoiceInspection(string id)
-    { var definition=Scene.ChoiceDefinition(id);m_detail.Show(new[]{new CardDetailEntry(id,definition.SourcePool,Scene.TextureForDefinition(id))},0); }
-    void OpenZoom(Texture texture, int rarity)
+    { var definition=Scene.ChoiceDefinition(id);m_detail.Show(new[]{new CardDetailEntry(id,definition.SourcePool,Scene.ArtworkForDefinition(id))},0); }
+    void OpenZoom(CardArtwork artwork, int rarity)
     {
         m_actions.Hide();
-        RequestOpenWindow(AddressKeys.Prefab.CardZoomWindow, new CardZoomWindowProperty(texture, rarity));
+        RequestOpenWindow(AddressKeys.Prefab.CardZoomWindow, new CardZoomWindowProperty(artwork, rarity));
     }
     public void ConfirmSurrender()
     {

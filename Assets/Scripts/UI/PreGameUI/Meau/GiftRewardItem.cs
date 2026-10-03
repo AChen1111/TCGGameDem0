@@ -39,7 +39,7 @@ public class GiftRewardItem : MonoBehaviour
     {
         try
         {
-            Texture texture = await CardPoolAddress.LoadCardTextureAsync(ResolvePool(cardId), cardId);
+            CardArtwork texture = await CardPoolAddress.LoadCardArtworkAsync(ResolvePool(cardId), cardId);
             if (this == null || version != m_Bind || m_ImgCard == null)
             {
                 return;
@@ -47,7 +47,7 @@ public class GiftRewardItem : MonoBehaviour
 
             if (texture != null)
             {
-                m_ImgCard.texture = texture;
+                texture.ApplyTo(m_ImgCard);
                 ApplyNativeSize(m_ImgCard);
             }
         }

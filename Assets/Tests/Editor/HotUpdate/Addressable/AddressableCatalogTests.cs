@@ -127,10 +127,10 @@ public class AddressableCatalogTests
     [Test]
     public void UiGroupForPath_RoutesFolders()
     {
-        Assert.AreEqual(AddressableCatalogSetup.RemoteUiEventGroup,
+        Assert.AreEqual(AddressableCatalogSetup.RemoteUiHallGroup,
             AddressableCatalogSetup.UiGroupForPath("Assets/UI/Prefab/Event/LoginBonus/Foo.asset"));
-        Assert.AreEqual(AddressableCatalogSetup.RemoteCardGroup,
-            AddressableCatalogSetup.UiGroupForPath("Assets/Art/Card01/sprite.png"));
+        Assert.AreEqual(AddressableCatalogSetup.RemoteUiAtlasGroup,
+            AddressableCatalogSetup.UiGroupForPath("Assets/UI/Sprite/Card/sprite.png"));
         Assert.AreEqual(AddressableCatalogSetup.RemoteSharedGroup,
             AddressableCatalogSetup.UiGroupForPath("Assets/UI/Prefab/BaseUI/UIFrame.prefab"));
         Assert.AreEqual(AddressableCatalogSetup.RemoteUiHallGroup,
@@ -139,12 +139,14 @@ public class AddressableCatalogTests
             AddressableCatalogSetup.UiGroupForPath(AddressableCatalogSetup.FontsFolder));
         Assert.AreEqual(AddressableCatalogSetup.RemoteSharedGroup,
             AddressableCatalogSetup.UiGroupForPath(AddressableCatalogSetup.ShaderFolder + "/CardPackFoilCrimp.shader"));
-        Assert.AreEqual(AddressableCatalogSetup.RemoteCardGroup,
+        Assert.AreEqual(AddressableCatalogSetup.RemoteUiAtlasGroup,
             AddressableCatalogSetup.UiGroupForPath(AddressableCatalogSetup.CardFolder + "/CardShopItem"));
-        Assert.AreEqual(AddressableCatalogSetup.RemoteUiHallGroup,
+        Assert.AreEqual(AddressableCatalogSetup.RemoteUiAtlasGroup,
             AddressableCatalogSetup.UiGroupForPath(AddressableCatalogSetup.SpriteFolder + "/Home"));
-        Assert.AreEqual(AddressableCatalogSetup.RemoteUiEventGroup,
+        Assert.AreEqual(AddressableCatalogSetup.RemoteUiAtlasGroup,
             AddressableCatalogSetup.UiGroupForPath(AddressableCatalogSetup.SpriteFolder + "/Event/LoginBonus"));
+        Assert.AreEqual(AddressableCatalogSetup.RemoteAvatarAtlasGroup,
+            AddressableCatalogSetup.UiGroupForPath(AddressableCatalogSetup.SpriteFolder + "/ProfileCustomization"));
     }
 
     [Test]
@@ -157,16 +159,16 @@ public class AddressableCatalogTests
         AddressableAssetGroup catalog = settings.FindGroup(AddressableCatalogSetup.RemoteCatalogGroup);
         AddressableAssetGroup shared = settings.FindGroup(AddressableCatalogSetup.RemoteSharedGroup);
         AddressableAssetGroup hall = settings.FindGroup(AddressableCatalogSetup.RemoteUiHallGroup);
-        AddressableAssetGroup eventUi = settings.FindGroup(AddressableCatalogSetup.RemoteUiEventGroup);
-        AddressableAssetGroup card = settings.FindGroup(AddressableCatalogSetup.RemoteCardGroup);
+        AddressableAssetGroup avatars = settings.FindGroup(AddressableCatalogSetup.RemoteAvatarAtlasGroup);
+        AddressableAssetGroup uiAtlas = settings.FindGroup(AddressableCatalogSetup.RemoteUiAtlasGroup);
         AddressableAssetGroup scene = settings.FindGroup(AddressableCatalogSetup.RemoteSceneGroup);
 
         Assert.IsNull(boot, "Only PreInit belongs to the player; Init loads after the hot-update DLL.");
         Assert.IsNotNull(catalog);
         Assert.IsNotNull(shared);
         Assert.IsNotNull(hall);
-        Assert.IsNotNull(eventUi);
-        Assert.IsNotNull(card);
+        Assert.IsNotNull(avatars);
+        Assert.IsNotNull(uiAtlas);
         Assert.IsNotNull(scene);
         Assert.AreEqual(BundledAssetGroupSchema.BundlePackingMode.PackTogether,
             catalog.GetSchema<BundledAssetGroupSchema>().BundleMode);

@@ -13,6 +13,8 @@ public class AddressableLoader : PersistentMonoSingleton<AddressableLoader>
     [SerializeField] AssetReferenceT<PrefabAddressableCatalog> m_prefabCatalogRef;
     [SerializeField] AssetReferenceT<SceneAddressableCatalog> m_sceneCatalogRef;
     [SerializeField] AssetReferenceT<UISettingsAddressableCatalog> m_uiSettingsCatalogRef;
+    [SerializeField] AssetReferenceT<AtlasAddressableCatalog> m_atlasCatalogRef;
+    SpriteAtlasBinding m_atlases;
 
     SpriteAddressableCatalog m_spriteCatalog;
     PrefabAddressableCatalog m_prefabCatalog;
@@ -31,6 +33,7 @@ public class AddressableLoader : PersistentMonoSingleton<AddressableLoader>
 
     protected override void OnInit()
     {
+        m_atlases = new SpriteAtlasBinding(m_atlasCatalogRef);
         LoadCatalogsAsync().Forget();
     }
 
@@ -44,6 +47,7 @@ public class AddressableLoader : PersistentMonoSingleton<AddressableLoader>
         m_prefabCatalog = await m_prefabCatalogHandle.Task;
         m_sceneCatalog = await m_sceneCatalogHandle.Task;
         m_uiSettingsCatalog = await m_uiSettingsCatalogHandle.Task;
+        await m_atlases.ReadyAsync();
         m_spriteCatalog.BuildMap();
         m_prefabCatalog.BuildMap();
         m_sceneCatalog.BuildMap();
@@ -55,6 +59,8 @@ public class AddressableLoader : PersistentMonoSingleton<AddressableLoader>
     {
         return LoadAsset(m_spriteCatalog, m_spriteHandles, assetName);
     }
+
+    public UniTask<UnityEngine.U2D.SpriteAtlas> LoadAtlas(string tag) => m_atlases.LoadAsync(tag);
 
     public UniTask<GameObject> LoadPrefab(string assetName)
     {
@@ -184,6 +190,7 @@ public class AddressableLoader : PersistentMonoSingleton<AddressableLoader>
 
     protected override void OnRelease()
     {
+        m_atlases.Dispose();
         ReleaseAll(m_spriteHandles);
         ReleaseAll(m_prefabHandles);
         ReleaseAll(m_uiSettingsHandles);

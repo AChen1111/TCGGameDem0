@@ -26,12 +26,13 @@ public sealed class CardWorkshopDetail : MonoBehaviour
     [SerializeField] GameObject m_VersionControls;
     public int Rarity { get; private set; }
     public int Quantity { get; private set; } = 1;
-    public CardDetailEntry Inspection => new CardDetailEntry(m_cardId, m_pool, m_Card.texture, Rarity);
+    public CardDetailEntry Inspection => new CardDetailEntry(m_cardId, m_pool, m_artwork, Rarity);
     public event Action Changed;
     public event Action Submitted;
     public event Action Inspected;
     int m_available;
     string m_cardId, m_pool;
+    CardArtwork m_artwork;
     void Awake()
     {
         for (int i = 0; i < m_Versions.Length; i++)
@@ -48,9 +49,11 @@ public sealed class CardWorkshopDetail : MonoBehaviour
         m_pool = card.SourcePool;
         m_Title.SetKey("card." + card.CardId + ".name");
         m_Card.texture = null;
-        var texture = await CardPoolAddress.LoadCardTextureAsync(card.SourcePool, card.CardId);
+        m_artwork = null;
+        var texture = await CardPoolAddress.LoadCardArtworkAsync(card.SourcePool, card.CardId);
         ct.ThrowIfCancellationRequested();
-        m_Card.texture = texture;
+        m_artwork = texture;
+        texture.ApplyTo(m_Card);
     }
     public void Display(bool dismantle, int[] owned, long amount, bool busy)
     {

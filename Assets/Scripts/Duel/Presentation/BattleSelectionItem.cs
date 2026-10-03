@@ -14,6 +14,8 @@ namespace AChen.Duel.Presentation
         [SerializeField] GameObject m_selected;
         Vector2 m_pointerStart;
         bool m_click;
+        CardArtwork m_backArtwork;
+        void Awake() => m_backArtwork = CardArtwork.FromTexture(m_back);
         public Vector2 ScreenAnchor(Camera camera) => RectTransformUtility.WorldToScreenPoint(camera, transform.position);
         public void OnPointerDown(PointerEventData eventData) { m_pointerStart = eventData.position; m_click = true; }
         public void OnPointerUp(PointerEventData eventData) { m_click = Vector2.Distance(m_pointerStart, eventData.position) <= 8; }
@@ -21,7 +23,8 @@ namespace AChen.Duel.Presentation
         {
             bool card = option.DefinitionId.Length > 0 || option.CardId != 0 || option.Label == "隐藏卡牌";
             m_art.gameObject.SetActive(card);
-            m_art.texture = option.DefinitionId.Length > 0 ? scene.TextureForDefinition(option.DefinitionId) : m_back;
+            var artwork = option.DefinitionId.Length > 0 ? scene.ArtworkForDefinition(option.DefinitionId) : m_backArtwork;
+            artwork.ApplyTo(m_art);
             if (!card) { m_label.rectTransform.anchoredPosition = new Vector2(6, -70); m_label.rectTransform.sizeDelta = new Vector2(148, 150); }
             m_label.text = option.Label; m_label.gameObject.SetActive(!card);
             m_button.onClick.RemoveAllListeners(); m_button.onClick.AddListener(() => { if (m_click) select(); });

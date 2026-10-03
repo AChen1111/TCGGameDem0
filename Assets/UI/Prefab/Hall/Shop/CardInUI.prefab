@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 1084966205790933535}
   - component: {fileID: 3933089787344105072}
   - component: {fileID: 5166082097946183311}
+  - component: {fileID: 5056495756916679326}
   m_Layer: 5
   m_Name: Raw_Card
   m_TagString: Untagged
@@ -244,3 +245,16 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &5056495756916679326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9167109233835652927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cede75bb939783048b61ee2ad155423d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: HotUpdate::CardAtlasUvEffect
+  m_image: {fileID: 5166082097946183311}

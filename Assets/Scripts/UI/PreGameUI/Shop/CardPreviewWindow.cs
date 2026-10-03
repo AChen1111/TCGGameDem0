@@ -220,7 +220,7 @@ public class CardPreviewWindow : AWindowController<CardPreviewWindowProperty>
 
     static async UniTask<CardInUIData> LoadCardImageAsync(GachaPoolCard card, int index)
     {
-        Texture texture = await CardPoolAddress.LoadCardTextureAsync(card.SourcePool, card.CardId);
+        CardArtwork texture = await CardPoolAddress.LoadCardArtworkAsync(card.SourcePool, card.CardId);
         if (texture == null)
         {
             ALog.LogWarning($"卡包预览卡图缺失. CardId={card.CardId}; SourcePool={card.SourcePool}", ALogCategories.UI);

@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public sealed class CardZoomWindowProperty : IWindowProperties
 {
-    public Texture Texture { get; }
+    public CardArtwork Texture { get; }
     public int Rarity { get; }
 
-    public CardZoomWindowProperty(Texture texture, int rarity = 0)
+    public CardZoomWindowProperty(CardArtwork texture, int rarity = 0)
     {
         Texture = texture;
         Rarity = rarity;
@@ -160,7 +160,7 @@ public class CardZoomWindow : AWindowController<CardZoomWindowProperty>
             return false;
         }
 
-        Texture texture = Properties != null ? Properties.Texture : null;
+        CardArtwork texture = Properties != null ? Properties.Texture : null;
         if (texture == null)
         {
             ALog.LogWarning("卡图放大打开失败. 原因=贴图缺失", ALogCategories.UI);

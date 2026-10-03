@@ -13,16 +13,18 @@ namespace AChen.Duel.Presentation
         [SerializeField] Transform m_cardPlane, m_pivot, m_offset, m_turn;
         [SerializeField] Texture m_back;
         [SerializeField] TextMeshPro m_stats;
-        Texture m_art;
+        CardArtwork m_art;
+        CardArtwork m_backArtwork;
         MotionHandle m_hoverMotion;
         BattleCardPose m_restPose;
         bool m_hand, m_selected;
+        void Awake() => m_backArtwork = CardArtwork.FromTexture(m_back);
         public int InstanceId { get; private set; }
-        public Texture Art => m_art;
+        public CardArtwork Art => m_art;
         public bool IsFaceDown { get; private set; }
         public BoxCollider Hitbox => m_hitbox;
         public Bounds WorldBounds => m_surface.WorldBounds;
-        public void Bind(int instanceId, Texture art) { InstanceId = instanceId; m_art = art; }
+        public void Bind(int instanceId, CardArtwork art) { InstanceId = instanceId; m_art = art; }
         public Vector3 ActionWorldAnchor => m_offset.position;
         public BattleCardPose CapturePose() => new BattleCardPose(transform.position, transform.rotation,
             m_cardPlane.localRotation, m_pivot.localPosition, m_pivot.localScale,
@@ -30,7 +32,7 @@ namespace AChen.Duel.Presentation
         public void Apply(CardView card, bool faceVisible)
         {
             IsFaceDown = !faceVisible;
-            m_surface.SetTexture(m_art); m_backSurface.SetTexture(m_back);
+            m_surface.SetArtwork(m_art); m_backSurface.SetArtwork(m_backArtwork);
             m_surface.SetNegated(card.Negated && faceVisible && card.Zone.IsSlot);
             SetEffectAvailable(card.EffectAvailable);
             bool monsterZone = card.Zone.Kind is DuelZone.Monster or DuelZone.ExtraMonster;

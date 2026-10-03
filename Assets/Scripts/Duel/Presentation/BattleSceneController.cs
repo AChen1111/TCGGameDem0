@@ -32,7 +32,7 @@ namespace AChen.Duel.Presentation
         readonly Dictionary<Collider,BattleZoneView> m_zoneHits=new Dictionary<Collider,BattleZoneView>();
         readonly List<RaycastResult> m_uiHits=new List<RaycastResult>();
         readonly IDuelVisibilityPolicy m_visibility=new BattleVisibilityPolicy();
-        readonly Dictionary<string,Texture> m_textures = new Dictionary<string,Texture>();
+        readonly Dictionary<string,CardArtwork> m_artworks = new Dictionary<string,CardArtwork>();
         [SerializeField] BattleAttackArrow m_attackArrow;
         [SerializeField] BattleChainView m_chainView;
         [SerializeField] Transform[] m_directAttackAnchors;
@@ -62,7 +62,7 @@ namespace AChen.Duel.Presentation
         public Camera CameraForCard(int id)=>m_camera;
         public BattleCardView CardObject(int id)=>m_cards[id];
         public bool CanInspect(CardView card)=>m_visibility.CanInspect(0,card);
-        public Texture TextureForDefinition(string id)=>m_textures[id];
+        public CardArtwork ArtworkForDefinition(string id)=>m_artworks[id];
         public Vector3 RegionAnchor(ZoneRef zone)=>zone.Kind==DuelZone.Hand?new Vector3(0,8,zone.Player==0?-28:23):zone.Kind==DuelZone.Material?Vector3.zero:m_zones.First(z=>z.Zone.Equals(zone)).Anchor.position;
         public event Action<int> SelectionChanged=delegate { };
         public event Action<string> Notice=delegate { };
@@ -81,17 +81,17 @@ namespace AChen.Duel.Presentation
         public async UniTask InitializeAsync(UIFrame frame)
         {
             m_frame=frame;m_mainCameraData.cameraStack.Add(frame.UICamera);m_session=DuelClientSession.Instance.Mode==DuelSessionMode.Offline ? m_preset.CreateLocalSession() : DuelClientSession.Instance.PresentationSource;
-            var textures=new Dictionary<string,Texture>();
+            var textures=new Dictionary<string,CardArtwork>();
             foreach(var definition in m_session.Definitions)
             {
-                var texture=await CardPoolAddress.LoadCardTextureAsync(definition.SourcePool,definition.CardId)
+                var texture=await CardPoolAddress.LoadCardArtworkAsync(definition.SourcePool,definition.CardId)
                     .AttachExternalCancellation(this.GetCancellationTokenOnDestroy());
-                textures.Add(definition.CardId,texture);m_textures.Add(definition.CardId,texture);
+                textures.Add(definition.CardId,texture);m_artworks.Add(definition.CardId,texture);
             }
             foreach(var card in m_session.Current.Cards)
             {
                 var obj=Instantiate(m_cardPrefab,m_cardRoot); obj.name="Card_"+card.InstanceId;
-                obj.Bind(card.InstanceId,card.Known ? textures[card.Definition.CardId] : TextureForDefinition(m_session.Definitions.First().CardId));
+                obj.Bind(card.InstanceId,card.Known ? textures[card.Definition.CardId] : ArtworkForDefinition(m_session.Definitions.First().CardId));
                 m_cards.Add(card.InstanceId,obj); m_cardHits.Add(obj.Hitbox,card.InstanceId);
             }
             foreach(var zone in m_zones)m_zoneHits.Add(zone.Hitbox,zone);
@@ -288,7 +288,7 @@ namespace AChen.Duel.Presentation
                     m_cards.Add(card.InstanceId,obj);m_cardHits.Add(obj.Hitbox,card.InstanceId);
                     created=true;
                 }
-                obj.Bind(card.InstanceId,card.Known?TextureForDefinition(card.Definition.CardId):TextureForDefinition(m_session.Definitions.First().CardId));
+                obj.Bind(card.InstanceId,card.Known?ArtworkForDefinition(card.Definition.CardId):ArtworkForDefinition(m_session.Definitions.First().CardId));
                 if(created)
                 {
                     var origin=change.Kind==DuelChangeKind.Move && card.InstanceId==change.InstanceId ? change.Origin : card.Zone;

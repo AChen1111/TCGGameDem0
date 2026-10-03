@@ -9,10 +9,10 @@ namespace AChen.Duel.Presentation
     public sealed class BattleCardRowData
     {
         public CardView Card { get; }
-        public Texture Texture { get; }
+        public CardArtwork Artwork { get; }
         public BattleSceneController Scene { get; }
-        public BattleCardRowData(CardView card, Texture texture, BattleSceneController scene)
-        { Card = card; Texture = texture; Scene = scene; }
+        public BattleCardRowData(CardView card, CardArtwork artwork, BattleSceneController scene)
+        { Card = card; Artwork = artwork; Scene = scene; }
     }
     public sealed class BattleCardRow : MonoBehaviour, IRowItem<BattleCardRowData>
     {
@@ -36,7 +36,7 @@ namespace AChen.Duel.Presentation
         }
         public void SetRowData(int rowIndex, List<BattleCardRowData> allData, int selectedIndex, Action<int> onSelected)
         {
-            m_index = rowIndex; m_selected = onSelected; m_data = allData[rowIndex]; m_art.texture = m_data.Texture;
+            m_index = rowIndex; m_selected = onSelected; m_data = allData[rowIndex]; m_data.Artwork.ApplyTo(m_art);
             m_name.text = LocalizationService.GetText("card." + m_data.Card.Definition.CardId + ".name");
             m_info.text = m_data.Card.Zone.Kind==DuelZone.ExtraDeck
                 ? m_data.Card.Actions.Any(a=>a.Kind==DuelActionKind.SpecialSummon)?"可特殊召唤":"当前没有可用的召唤动作"
