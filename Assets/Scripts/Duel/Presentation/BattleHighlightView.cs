@@ -19,9 +19,17 @@ namespace AChen.Duel.Presentation
             m_textured = m_template.HasProperty("_BaseMap");
             if (m_textured)
             {
-                m_page = m_texture; m_surface.sharedMaterial = BattleArtworkMaterials.Acquire(m_template, m_page);
+                var artwork = CardArtwork.FromTexture(m_texture);
+                if(m_surface is SpriteRenderer spriteRenderer)
+                {
+                    var sprite=spriteRenderer.sprite; artwork=new CardArtwork(sprite);
+                    m_properties.SetFloat("_SpriteAtlasUV",1);
+                }
+                m_page = artwork.Texture; m_surface.sharedMaterial = BattleArtworkMaterials.Acquire(m_template, m_page);
+                var uv=artwork.UvRect;
+                m_properties.SetVector("_CardUvRect", new Vector4(uv.x, uv.y, uv.width, uv.height));
             }
-            m_properties.SetVector("_CardUvRect", new Vector4(0, 0, 1, 1)); Apply();
+            Apply();
         }
         public void SetTexture(Texture texture) => SetArtwork(CardArtwork.FromTexture(texture));
         public void SetArtwork(CardArtwork artwork)

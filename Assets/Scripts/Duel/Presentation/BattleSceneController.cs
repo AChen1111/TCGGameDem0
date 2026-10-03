@@ -270,8 +270,8 @@ namespace AChen.Duel.Presentation
             if(change.View.Choice.Active && !m_frame.IsPanelOpen(AddressKeys.Prefab.BattleSelectionPanel))
                 m_frame.ShowPanel(AddressKeys.Prefab.BattleSelectionPanel,new BattleSelectionProperties(this));
             if(change.View.Animating){m_session.FinishPresentation();return;}
-            int attacker=m_session.HasAttackPreview?m_session.AttackPreviewSource:m_session.DeclaredAttacker;
-            int target=m_session.HasAttackPreview?m_session.AttackPreviewTarget:m_session.DeclaredTarget;
+            int attacker=m_session.HasAttackPreview?m_session.AttackPreviewSource:0;
+            int target=m_session.HasAttackPreview?m_session.AttackPreviewTarget:0;
             if(attacker!=0 && change.View.Card(attacker).Zone.IsSlot && change.View.Card(attacker).Position==CardPosition.FaceUpAttack && change.View.Card(attacker).Owner==change.View.ActivePlayer)
                 m_attackArrow.Show(m_cards[attacker].ActionWorldAnchor,AttackDestination(target,attacker));else m_attackArrow.Hide();
             if(change.View.Finished)Notice(change.View.Outcome);
@@ -330,7 +330,7 @@ namespace AChen.Duel.Presentation
                 else if(elapsed<m_retreatDuration+m_chargeDuration)position=Vector3.Lerp(retreat,impact,EaseUtility.Evaluate((elapsed-m_retreatDuration)/m_chargeDuration,m_chargeEase));
                 else position=Vector3.Lerp(impact,pose.Position,EaseUtility.Evaluate((elapsed-m_retreatDuration-m_chargeDuration)/m_returnDuration,m_returnEase));
                 obj.SetPose(new BattleCardPose(position,pose.Rotation,pose.PlaneRotation,pose.PivotPosition,pose.Scale,pose.OffsetPosition,pose.OffsetRotation,pose.TurnRotation,pose.Hand));
-            },()=>obj.SetPose(pose),Ease.Linear);
+            },()=>{obj.SetPose(pose);m_attackArrow.Hide();},Ease.Linear);
         }
         BattleCardPose PoseFor(CardView card,DuelView view) => PoseFor(card,view,m_handOrder.IndexOf(card.Owner,card.InstanceId),m_handOrder.Count(card.Owner));
         BattleCardPose PoseFor(CardView card,DuelView view,int handIndex,int handCount)

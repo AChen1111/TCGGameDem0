@@ -9,6 +9,10 @@ namespace AChen.Duel.Core
         bool ActivationWindow(IAbilityHandler ability, DuelCardState source, int player)
         {
             var definition = m_catalog.Get(source.DefinitionId);
+            // 同一魔陷实体的本次卡发动尚在连锁中，不能再次发动同一个发动效果。
+            // 按来源世代与效果匹配，保留不同副本及连续魔陷其他效果的合法连锁。
+            if (definition.Kind != RuleCardKind.Monster && State.Chain.Any(link => link.IsCardActivation
+                && link.Source.Equals(source.Ref) && link.AbilityId == ability.AbilityId)) return false;
             var context = new EffectContext(this, player, source.InstanceId);
             bool queuedTrigger = State.ActiveTrigger != null && State.ActiveTrigger.Source.Equals(source.Ref)
                 && State.ActiveTrigger.AbilityId == ability.AbilityId

@@ -4,6 +4,7 @@ Shader "TCG/Battle/CardSurface"
     {
         _BaseMap("Card / pile texture", 2D) = "white" {}
         _CardUvRect("Card atlas UV", Vector) = (0,0,1,1)
+        _SpriteAtlasUV("Sprite atlas UV input", Float) = 0
         _Tint("Tint", Color) = (1,1,1,1)
         _EffectAvailable("Effect available", Float) = 0
         _Negated("Effect negated", Float) = 0
@@ -31,13 +32,23 @@ Shader "TCG/Battle/CardSurface"
             CBUFFER_END
             UNITY_INSTANCING_BUFFER_START(CardProperties)
                 UNITY_DEFINE_INSTANCED_PROP(float4, _CardUvRect)
+                UNITY_DEFINE_INSTANCED_PROP(float, _SpriteAtlasUV)
                 UNITY_DEFINE_INSTANCED_PROP(float, _EffectAvailable)
                 UNITY_DEFINE_INSTANCED_PROP(float, _Selected)
                 UNITY_DEFINE_INSTANCED_PROP(float, _Hint)
                 UNITY_DEFINE_INSTANCED_PROP(float, _Negated)
             UNITY_INSTANCING_BUFFER_END(CardProperties)
             Varyings Vert(Attributes v)
-            { Varyings o; UNITY_SETUP_INSTANCE_ID(v); UNITY_TRANSFER_INSTANCE_ID(v, o); o.positionCS = TransformObjectToHClip(v.positionOS.xyz); o.uv = v.uv; return o; }
+            {
+                Varyings o; UNITY_SETUP_INSTANCE_ID(v); UNITY_TRANSFER_INSTANCE_ID(v, o);
+                o.positionCS = TransformObjectToHClip(v.positionOS.xyz); o.uv = v.uv;
+                if(UNITY_ACCESS_INSTANCED_PROP(CardProperties, _SpriteAtlasUV)>0.5)
+                {
+                    float4 rect=UNITY_ACCESS_INSTANCED_PROP(CardProperties, _CardUvRect);
+                    o.uv=(v.uv-rect.xy)/rect.zw;
+                }
+                return o;
+            }
             half4 Frag(Varyings i) : SV_Target
             {
                 UNITY_SETUP_INSTANCE_ID(i);

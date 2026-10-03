@@ -127,6 +127,7 @@ public static partial class BattleSceneBuilder
         var opaque = Image("SidebarBackdrop", detail.transform, 0, 0, 388, 674, new Color(.015f, .025f, .04f, 1));
         Stretch(opaque.rectTransform); opaque.rectTransform.SetAsFirstSibling(); opaque.raycastTarget = true;
         var info = (RectTransform)safe.Find("Go_Info"); Stretch(info); info.offsetMin = new Vector2(12, 12); info.offsetMax = new Vector2(-12, -8);
+        Root<UnityEngine.UI.Image>(info.gameObject).raycastTarget = false;
         Place((RectTransform)safe.Find("Raw_Card"), 16, 62, 145, 211);
         Ref(view, "m_BtnCard", Root<UnityEngine.UI.Button>(safe.Find("Raw_Card").gameObject));
         Place((RectTransform)info.Find("Img_NameBase"), 0, 0, 322, 44);

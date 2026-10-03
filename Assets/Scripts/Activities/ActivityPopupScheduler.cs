@@ -5,15 +5,21 @@ using System.Threading;
 using AChen.Configuration;
 using AChen.Player;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace AChen.Activities
 {
     public sealed class ActivityPopupScheduler
     {
+        // 实际自动展示过的活动，在同一次游戏进程内不再弹出；不随账号或大厅重建清除。
+        static readonly HashSet<string> s_shownActivityIds = new HashSet<string>(StringComparer.Ordinal);
+        static ActivityPopupScheduler() => Application.quitting += ResetShownActivities;
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetShownActivities() => s_shownActivityIds.Clear();
         readonly ActivityManager m_manager;
         readonly UIFrame m_frame;
         readonly CancellationToken m_token;
-        // 每次大厅入场创建新调度器，关闭过的弹窗仅在本次入场内去重。
+        // 保留当前调度器的频率/策略键，与服务器展示回执使用相同规则。
         readonly HashSet<string> m_shownKeys = new HashSet<string>();
         string m_active;
         string m_navigation;
@@ -57,12 +63,13 @@ namespace AChen.Activities
             state.Definition.Id + "/" + state.Definition.Popup.PolicyVersion + "/" + Period(state);
         bool IsCandidate(ActivitySnapshot state) => m_manager.IsReady && !m_manager.IsStale && !m_manager.IsBusy &&
             m_manager.Clock.Now < m_manager.Snapshot.NextResetAt && !ContentSession.RestartRequired && state.Definition.Popup.ShouldShow && m_manager.Running(state) &&
-            !m_shownKeys.Contains(Key(state));
+            !s_shownActivityIds.Contains(state.Definition.Id) && !m_shownKeys.Contains(Key(state));
         public bool IsValid(ActivityPopupProperties context) => !m_token.IsCancellationRequested && context.SessionVersion == PlayerSession.Instance.SessionVersion &&
             m_manager.TryGet(context.ActivityId, out var state) && state.Definition.Popup.PolicyVersion == context.PolicyVersion && Period(state) == context.PeriodKey && IsCandidate(state);
         public void Visible(ActivityPopupProperties context)
         {
             m_manager.TryGet(context.ActivityId, out var state);
+            if (!s_shownActivityIds.Add(context.ActivityId)) return;
             if (!m_shownKeys.Add(Key(state))) return;
             Report(context).Forget();
         }
