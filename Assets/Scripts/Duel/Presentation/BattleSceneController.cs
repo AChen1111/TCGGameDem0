@@ -44,6 +44,7 @@ namespace AChen.Duel.Presentation
         Action m_finish=delegate { };
         bool m_ready,m_pointerHeld,m_touchCaptured;
         int m_pressedCard,m_hovered,m_selected,m_animationGeneration,m_width,m_height;
+        float m_layoutFieldOfView;
         TouchControl m_touch;
         Vector2 m_pointerStart,m_selectedAnchor;
         public IDuelPresentationSource Source=>m_session;
@@ -86,6 +87,7 @@ namespace AChen.Duel.Presentation
             foreach(var zone in m_zones)m_zoneHits.Add(zone.Hitbox,zone);
             m_session.Changed+=OnChanged; m_ready=true; m_selected=m_session.Current.Cards[0].InstanceId;
             m_width=Screen.width; m_height=Screen.height;
+            m_layoutFieldOfView=m_camera.fieldOfView;
             Rebuild(false,0); RefreshWorld(m_session.Current);
             m_phaseEffects.Stop();
             frame.ShowPanel(AddressKeys.Prefab.BattleHudPanel,new BattleHudProperties(this));
@@ -98,8 +100,8 @@ namespace AChen.Duel.Presentation
             foreach(var device in InputSystem.devices)
                 if(device is Keyboard keyboard&&keyboard.escapeKey.wasPressedThisFrame)
                 {if(m_session.Current.Choice.Active)CancelAction();else if(m_frame.IsWindowBusy)m_frame.CloseCurrentWindow();else CancelAction();}
-            if((m_width!=Screen.width||m_height!=Screen.height)&&!m_session.Current.Animating)
-            {m_width=Screen.width;m_height=Screen.height;Rebuild(false,0);}
+            if((m_width!=Screen.width||m_height!=Screen.height||!Mathf.Approximately(m_layoutFieldOfView,m_camera.fieldOfView))&&!m_session.Current.Animating)
+            {m_width=Screen.width;m_height=Screen.height;m_layoutFieldOfView=m_camera.fieldOfView;Rebuild(false,0);}
             foreach(var device in InputSystem.devices)
             {
                 if(device is not Touchscreen screen)continue;
@@ -304,6 +306,8 @@ namespace AChen.Duel.Presentation
                 obj.gameObject.SetActive(visible||(animate&&card.InstanceId==changingCard));obj.Hitbox.enabled=visible&&!animate;
                 obj.Apply(card,m_visibility.IsFaceVisible(0,card));
             }
+            FitFarHand(view,ends);
+            foreach(var card in view.Cards)m_cards[card.InstanceId].SetRestPose(ends[card.InstanceId]);
             void Sample(float t)
             {foreach(var card in view.Cards)m_cards[card.InstanceId].SetPose(BattleCardPose.Lerp(starts[card.InstanceId],ends[card.InstanceId],t,animate&&card.InstanceId==changingCard?5:0));}
             void Finish()
@@ -316,6 +320,33 @@ namespace AChen.Duel.Presentation
                 }
             }
             if(animate)StartAnimation(.55f,Sample,Finish);else Finish();
+        }
+        void FitFarHand(DuelView view,Dictionary<int,BattleCardPose> poses)
+        {
+            var hand=view.Cards.Where(card=>card.Zone.Kind==DuelZone.Hand && card.Owner==1).ToArray();
+            if(hand.Length==0)return;
+            var previous=new Dictionary<int,BattleCardPose>();
+            float top=float.NegativeInfinity;Vector3 topPoint=Vector3.zero;
+            foreach(var card in hand)
+            {
+                var obj=m_cards[card.InstanceId];previous.Add(card.InstanceId,obj.CapturePose());obj.SetPose(poses[card.InstanceId]);
+                var bounds=obj.WorldBounds;
+                for(int i=0;i<8;i++)
+                {
+                    var point=bounds.center+Vector3.Scale(bounds.extents,new Vector3((i&1)==0?-1:1,(i&2)==0?-1:1,(i&4)==0?-1:1));
+                    float y=m_camera.WorldToViewportPoint(point).y;
+                    if(y>top){top=y;topPoint=point;}
+                }
+            }
+            if(top>.97f)
+            {
+                var viewport=m_camera.WorldToViewportPoint(topPoint);viewport.y=.97f;
+                var ray=m_camera.ViewportPointToRay(viewport);
+                float distance=(topPoint.y-ray.origin.y)/ray.direction.y;
+                float shift=ray.GetPoint(distance).z-topPoint.z;
+                foreach(var card in hand)poses[card.InstanceId]=poses[card.InstanceId].WithPosition(poses[card.InstanceId].Position+Vector3.forward*shift);
+            }
+            foreach(var card in hand)m_cards[card.InstanceId].SetPose(previous[card.InstanceId]);
         }
         void PlayEffect(int id)
         {

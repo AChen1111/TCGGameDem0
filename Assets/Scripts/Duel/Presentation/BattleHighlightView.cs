@@ -9,6 +9,7 @@ namespace AChen.Duel.Presentation
         [SerializeField] bool m_hideInactive;
         MaterialPropertyBlock m_properties;
         bool m_effect, m_selected, m_hint;
+        public Bounds WorldBounds => m_surface.bounds;
         void Awake() { m_properties = new MaterialPropertyBlock(); m_properties.SetTexture("_BaseMap", m_texture); Apply(); }
         public void SetTexture(Texture texture) { m_properties.SetTexture("_BaseMap", texture); Apply(); }
         public void SetEffectAvailable(bool available) { m_effect=available; m_properties.SetFloat("_EffectAvailable", available ? 1 : 0); Apply(); }

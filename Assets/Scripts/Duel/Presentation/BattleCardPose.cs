@@ -20,6 +20,8 @@ namespace AChen.Duel.Presentation
         public BattleCardPose WithAppeal(bool selected) => new BattleCardPose(Position,Rotation,PlaneRotation,
             PivotPosition+(selected?new Vector3(0,2,3):Vector3.zero),Scale,Vector3.zero,
             selected?Quaternion.identity:OffsetRotation,TurnRotation,Hand);
+        public BattleCardPose WithPosition(Vector3 position) => new BattleCardPose(position,Rotation,PlaneRotation,
+            PivotPosition,Scale,OffsetPosition,OffsetRotation,TurnRotation,Hand);
         public static BattleCardPose Lerp(BattleCardPose a,BattleCardPose b,float t,float arc=0)
             => new BattleCardPose(Vector3.Lerp(a.Position,b.Position,t)+Vector3.up*Mathf.Sin(t*Mathf.PI)*arc,
                 Quaternion.Slerp(a.Rotation,b.Rotation,t),Quaternion.Slerp(a.PlaneRotation,b.PlaneRotation,t),

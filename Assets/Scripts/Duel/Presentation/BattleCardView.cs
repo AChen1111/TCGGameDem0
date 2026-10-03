@@ -21,6 +21,7 @@ namespace AChen.Duel.Presentation
         public Texture Art => m_art;
         public bool IsFaceDown { get; private set; }
         public BoxCollider Hitbox => m_hitbox;
+        public Bounds WorldBounds => m_surface.WorldBounds;
         public void Bind(int instanceId, Texture art) { InstanceId = instanceId; m_art = art; }
         public Vector3 ActionWorldAnchor => m_offset.position;
         public BattleCardPose CapturePose() => new BattleCardPose(transform.position, transform.rotation,
