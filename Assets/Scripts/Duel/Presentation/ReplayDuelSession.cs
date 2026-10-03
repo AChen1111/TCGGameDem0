@@ -27,7 +27,7 @@ namespace AChen.Duel.Presentation
         bool m_animating, m_completed, m_started;
         float m_delay;
         public bool Paused { get; private set; }
-        static readonly float[] s_playbackSpeeds = { 1f, 2f, 4f, 8f };
+        static readonly float[] s_playbackSpeeds = { 1f, 2f, 4f, 8f, 16f, 32f };
         int m_speedIndex;
         public float PlaybackSpeed => s_playbackSpeeds[m_speedIndex];
         public void CyclePlaybackSpeed()
