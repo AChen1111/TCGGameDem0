@@ -7,6 +7,7 @@ using AChen.Duel.Presentation;
 using AChen.Duel.Client;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
+using LitMotion;
 
 public sealed class BattleHudProperties : IPanelProperties
 {
@@ -72,6 +73,9 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
     [SerializeField] TextMeshProUGUI m_replayPlayLabel;
     readonly int[] m_avatarIds = { -1, -1 };
     readonly int[] m_frameIds = { -1, -1 };
+    readonly MotionHandle[] m_lpMotions = new MotionHandle[2];
+    readonly float[] m_displayLP = new float[2];
+    readonly int[] m_targetLP = new int[2];
     readonly DuelZone[] m_sources = { DuelZone.Hand, DuelZone.MainDeck, DuelZone.ExtraDeck, DuelZone.Monster,
         DuelZone.SpellTrap, DuelZone.Field, DuelZone.Graveyard, DuelZone.Banished, DuelZone.ExtraMonster };
     int m_player, m_sourceIndex;
@@ -100,7 +104,7 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
         Scene.ChoiceInspectionRequested+=OnChoiceInspection;
         m_actions.Initialize(Scene,m_UIFrame.MainCanvas);
         m_detail.SetCallbacks(HideDetail,delegate{},OpenLargeDetail);
-        m_avatarIds[0]=m_avatarIds[1]=m_frameIds[0]=m_frameIds[1]=-1;m_detail.gameObject.SetActive(false);Refresh();
+        m_avatarIds[0]=m_avatarIds[1]=m_frameIds[0]=m_frameIds[1]=-1;m_detail.gameObject.SetActive(false);Refresh(true);
         Scene.CompleteHudInitialization();
     }
     void OnChanged(DuelViewChange change)
@@ -108,7 +112,7 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
         if(change.Kind==DuelChangeKind.Rejected)m_TxtHint.text=change.Message;
         if(change.Kind!=DuelChangeKind.Timer && !change.View.CanInteract)HideDetail();
         if(change.Kind==DuelChangeKind.Reset)HideDetail();
-        Refresh();
+        Refresh(change.Kind==DuelChangeKind.Reset);
     }
     void OnSelection(int id)
     {
@@ -134,7 +138,8 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
             () => DuelClientSession.Instance.SurrenderAsync().Forget(), delegate { }));
     }
     void OnNotice(string notice) => m_TxtHint.text = notice;
-    void Refresh()
+    protected override void OnResume() => Refresh(true);
+    void Refresh(bool immediateLifePoints=false)
     {
         var view=Scene.Source.Current;
         m_TxtTurn.text="回合 "+view.Turn+" · "+view.Players[view.ActivePlayer].Name+" · "+BattleLabels.Phase(view.Phase);
@@ -150,14 +155,28 @@ public sealed class BattleHudPanel : APanelController<BattleHudProperties>
         else if(!view.Animating)m_TxtHint.text="";
         for(int i=0;i<view.Players.Count;i++)
         {
-            m_playerNames[i].text=view.Players[i].Name;m_playerLPs[i].text=view.Players[i].LP.ToString();
+            m_playerNames[i].text=view.Players[i].Name;RefreshLifePoints(i,view.Players[i].LP,immediateLifePoints);
             if(m_avatarIds[i]==view.Players[i].AvatarId && m_frameIds[i]==view.Players[i].AvatarFrameId)continue;
             m_avatarIds[i]=view.Players[i].AvatarId;m_frameIds[i]=view.Players[i].AvatarFrameId;
             m_portraits[i].SetPortrait(m_avatarIds[i],m_frameIds[i]);
         }
     }
+    void RefreshLifePoints(int player,int target,bool immediate)
+    {
+        if(immediate)
+        {
+            m_lpMotions[player].TryCancel();m_targetLP[player]=target;m_displayLP[player]=target;
+            m_playerLPs[player].text=target.ToString();return;
+        }
+        if(m_targetLP[player]==target)return;
+        m_targetLP[player]=target;m_lpMotions[player].TryCancel();
+        m_lpMotions[player]=LMotion.Create(m_displayLP[player],(float)target,.45f)
+            .WithEase(Ease.OutCubic).WithScheduler(MotionScheduler.UpdateIgnoreTimeScale)
+            .Bind(value=>{m_displayLP[player]=value;m_playerLPs[player].text=Mathf.RoundToInt(value).ToString();}).AddTo(this);
+    }
     protected override void OnClose()
     {
+        foreach(var motion in m_lpMotions)motion.TryCancel();
         Scene.Source.Changed -= OnChanged; Scene.SelectionChanged -= OnSelection; Scene.Notice -= OnNotice;
         Scene.ChoiceInspectionRequested -= OnChoiceInspection;
         m_actions.Dispose(); HideDetail(); m_cutin.RestoreParent();

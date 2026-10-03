@@ -171,7 +171,13 @@ public static class DuelLobbyPrefabBuilder
         var toggle = item.gameObject.AddComponent<UnityEngine.UI.Toggle>(); toggle.targetGraphic = itemBg; toggle.graphic = check;
         drop.itemText = Text("ItemLabel", item, 20, 0, 540, 48, "牌组", 23);
         scroll.viewport = viewport; scroll.content = content; drop.template = template;
+        SetUILayer(bg.transform);
         template.gameObject.SetActive(false); drop.ClearOptions(); return drop;
+    }
+    static void SetUILayer(Transform node)
+    {
+        node.gameObject.layer = LayerMask.NameToLayer("UI");
+        foreach (Transform child in node) SetUILayer(child);
     }
     static void BuildRoom()
     {
