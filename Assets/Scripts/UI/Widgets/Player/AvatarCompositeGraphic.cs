@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Sprites;
 
 /// <summary>列表头像在同一张图集、同一个共享材质中合成，不创建独立 Stencil 遮罩。</summary>
+[RequireComponent(typeof(CanvasRenderer))]
 public sealed class AvatarCompositeGraphic : MaskableGraphic
 {
     Texture m_texture;

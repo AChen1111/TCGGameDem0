@@ -142,6 +142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2902763467834202380}
   - component: {fileID: 8914742320898632421}
+  - component: {fileID: 9169898904596706451}
   m_Layer: 5
   m_Name: PortraitComposite
   m_TagString: Untagged
@@ -188,6 +189,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!222 &9169898904596706451
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413534467247310748}
+  m_CullTransparentMesh: 1
 --- !u!1 &486820913538367351
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,6 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2879128582706658918}
   - component: {fileID: 1757579137174715477}
+  - component: {fileID: 1496956202837980}
   m_Layer: 5
   m_Name: PortraitComposite
   m_TagString: Untagged
@@ -244,6 +254,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!222 &1496956202837980
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486820913538367351}
+  m_CullTransparentMesh: 1
 --- !u!1 &571415777121820671
 GameObject:
   m_ObjectHideFlags: 0
@@ -2333,6 +2351,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9060474967075373727}
   - component: {fileID: 3856994259752488013}
+  - component: {fileID: 258608964740991240}
   m_Layer: 5
   m_Name: PortraitComposite
   m_TagString: Untagged
@@ -2379,6 +2398,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!222 &258608964740991240
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4061466581364811538}
+  m_CullTransparentMesh: 1
 --- !u!1 &4201682568468232397
 GameObject:
   m_ObjectHideFlags: 0
@@ -2521,6 +2548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5915389617333274815}
   - component: {fileID: 609260714633843894}
+  - component: {fileID: 427671738232509080}
   m_Layer: 5
   m_Name: PortraitComposite
   m_TagString: Untagged
@@ -2567,6 +2595,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!222 &427671738232509080
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4862558502506578172}
+  m_CullTransparentMesh: 1
 --- !u!1 &4996921535607730986
 GameObject:
   m_ObjectHideFlags: 0
@@ -2577,6 +2613,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6151804029999024833}
   - component: {fileID: 8015610724112038162}
+  - component: {fileID: 6222040274262749652}
   m_Layer: 5
   m_Name: PortraitComposite
   m_TagString: Untagged
@@ -2623,6 +2660,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!222 &6222040274262749652
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4996921535607730986}
+  m_CullTransparentMesh: 1
 --- !u!1 &5125670504856058549
 GameObject:
   m_ObjectHideFlags: 0

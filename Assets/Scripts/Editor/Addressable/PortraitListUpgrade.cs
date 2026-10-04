@@ -20,9 +20,15 @@ public static class PortraitListUpgrade
                 foreach(var portrait in portraits)
                 {
                     var so=new SerializedObject(portrait);
-                    if(so.FindProperty("m_listThumbnail").boolValue)continue;
+                    if(so.FindProperty("m_listThumbnail").boolValue)
+                    {
+                        var existing=(AvatarCompositeGraphic)so.FindProperty("m_composite").objectReferenceValue;
+                        if(!EditorUtility.CollectDependencies(new Object[]{root}).OfType<CanvasRenderer>().Any(r=>r.transform==existing.transform))
+                            existing.gameObject.AddComponent<CanvasRenderer>();
+                        continue;
+                    }
                     foreach(Transform child in portrait.transform)child.gameObject.SetActive(false);
-                    var rect=(RectTransform)new GameObject("PortraitComposite",typeof(RectTransform)).transform;
+                    var rect=(RectTransform)new GameObject("PortraitComposite",typeof(RectTransform),typeof(CanvasRenderer)).transform;
                     rect.gameObject.layer=5;rect.SetParent(portrait.transform,false);
                     rect.anchorMin=Vector2.zero;rect.anchorMax=Vector2.one;rect.offsetMin=rect.offsetMax=Vector2.zero;
                     var graphic=rect.gameObject.AddComponent<AvatarCompositeGraphic>();graphic.material=material;graphic.raycastTarget=false;

@@ -1665,6 +1665,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3005061487905021488}
   - component: {fileID: 6203792149700686716}
+  - component: {fileID: 6134273884694172940}
   m_Layer: 5
   m_Name: PortraitComposite
   m_TagString: Untagged
@@ -1711,3 +1712,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!222 &6134273884694172940
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8969782698335924376}
+  m_CullTransparentMesh: 1
