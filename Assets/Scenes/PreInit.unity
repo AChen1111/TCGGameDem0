@@ -1255,7 +1255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2ae0b72e9a5da458d61cadcf0b292c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadDll
-  backendUrl: http://39.97.56.180:5080
+  backendUrl: http://39.97.56.180
 --- !u!4 &1550207491
 Transform:
   m_ObjectHideFlags: 0

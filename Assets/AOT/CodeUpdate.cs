@@ -10,7 +10,7 @@ using UnityEngine.Networking;
 
 public static class CodeUpdate
 {
-    public const string DefaultBackendUrl = "http://39.97.56.180:5080";
+    public const string DefaultBackendUrl = "http://39.97.56.180";
     public const string DefaultChannel = "development";
     public const string EditorLocalReleaseId = "editor-local";
     public static bool IsComplete { get; private set; }
