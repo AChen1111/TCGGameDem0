@@ -13,6 +13,7 @@ public sealed class CardPackDrawTests
         Assert.IsTrue(CardPoolAddress.IsKnownDrawPool("Card01"));
         Assert.IsTrue(CardPoolAddress.IsKnownDrawPool("Card02"));
         Assert.IsTrue(CardPoolAddress.IsKnownDrawPool("Card03"));
+        Assert.IsTrue(CardPoolAddress.IsKnownDrawPool("Card04"));
         Assert.IsTrue(CardPoolAddress.IsKnownDrawPool("CardGeneric"));
         Assert.IsTrue(CardPoolAddress.IsKnownDrawPool("CardAll"));
         Assert.IsFalse(CardPoolAddress.IsKnownDrawPool(null));
@@ -23,6 +24,8 @@ public sealed class CardPackDrawTests
         Assert.AreEqual(CardPoolAddress.Card01, card01);
         Assert.IsTrue(CardPoolAddress.TryGetBagFolder("Card03", out string card03));
         Assert.AreEqual(CardPoolAddress.Card03, card03);
+        Assert.IsTrue(CardPoolAddress.TryGetBagFolder("Card04", out string card04));
+        Assert.AreEqual(CardPoolAddress.Card04, card04);
         Assert.IsFalse(CardPoolAddress.TryGetBagFolder("CardAll", out _));
     }
 

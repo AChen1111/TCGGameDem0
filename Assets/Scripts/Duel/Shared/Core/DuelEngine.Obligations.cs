@@ -76,6 +76,14 @@ namespace AChen.Duel.Core
                 else Move(target, DuelZone.Monster, record.Player, slots.Contains(target.Slot) ? target.Slot : slots[0],
                     target.Position, MoveCause.Rule);
             }
+            foreach (var record in State.Effects.Where(e => e.Kind == EffectRecordKind.EndReturnToHand
+                && e.ExpiresPhase == DuelPhase.End && (e.ExpiresTurn == 0 || e.ExpiresTurn <= State.Turn)).OrderBy(e => e.Id).ToArray())
+            {
+                State.Effects.Remove(record);
+                var target = State.Cards.FirstOrDefault(c => c.Ref.Equals(record.Target) && OnField(c));
+                if (target != null) Move(target, DuelZone.Hand, target.Owner, cause: MoveCause.Effect,
+                    effectSource: record.Source, effectPlayer: record.ActivationPlayer);
+            }
             RefreshCharacteristics();
         }
         internal bool ConsumePhaseSkip(DuelPhase phase)

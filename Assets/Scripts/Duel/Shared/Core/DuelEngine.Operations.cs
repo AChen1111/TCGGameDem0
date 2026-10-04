@@ -117,6 +117,8 @@ namespace AChen.Duel.Core
                     && !definition.BelongsTo(e.Value))
                 || ApplicableEffects().Any(e => e.Kind == EffectRecordKind.OnlySummonMethod && (e.Player < 0 || e.Player == player)
                     && e.Value != (int)method)
+                || ApplicableEffects().Any(e => e.Kind == EffectRecordKind.OnlySummonRace && (e.Player < 0 || e.Player == player)
+                    && definition.Race != e.Value)
                 || card.Zone == DuelZone.ExtraDeck && ApplicableEffects().Any(e => e.Kind == EffectRecordKind.OnlyExtraDeckRace
                     && (e.Player < 0 || e.Player == player) && e.Value != definition.Race)
                 || card.Zone == DuelZone.ExtraDeck && ApplicableEffects().Any(e => e.Kind == EffectRecordKind.OnlyExtraDeckSet

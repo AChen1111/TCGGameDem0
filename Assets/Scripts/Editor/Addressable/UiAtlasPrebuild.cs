@@ -56,7 +56,8 @@ public sealed class UiAtlasPrebuild : IPreprocessBuildWithReport
     static void ConfigureCard(string path)
     {
         var importer = (TextureImporter)AssetImporter.GetAtPath(path);
-        string pool = path.Contains("CardBag01_") ? "Card01" : path.Contains("CardBag02_") ? "Card02" : "Card03";
+        string pool = path.Contains("CardBag01_") ? "Card01" : path.Contains("CardBag02_") ? "Card02"
+            : path.Contains("CardBag04_") ? "Card04" : "Card03";
         string name = pool + "_" + Path.GetFileNameWithoutExtension(path);
         var existing = AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().ToArray();
         if (existing.Length == 1 && existing[0].name == name && importer.spriteImportMode == SpriteImportMode.Multiple) return;

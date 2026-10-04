@@ -113,9 +113,9 @@ public static partial class BattleSceneBuilder
         var cards=Table.CardRow.LoadBytes(File.ReadAllBytes("Assets/GameConfiguration/Cards.bytes"));
         var rules=DeckRulesConfiguration.Create(cards.Select(c=>c.CardId),BinaryTable.Decode(File.ReadAllBytes("Assets/GameConfiguration/card-deck-sections.bytes")),
             BinaryTable.Decode(File.ReadAllBytes("Assets/GameConfiguration/card-banlist.bytes")));
-        string Pool(string id)=>new[]{("Card01",CardPoolAddress.Card01),("Card02",CardPoolAddress.Card02),("Card03",CardPoolAddress.Card03)}
+        string Pool(string id)=>new[]{("Card01",CardPoolAddress.Card01),("Card02",CardPoolAddress.Card02),("Card03",CardPoolAddress.Card03),("Card04",CardPoolAddress.Card04)}
             .First(pair=>File.Exists("Assets/UI/Card/"+pair.Item2+"/"+id+".jpg")).Item1;
-        var candidates=cards.Where(c=>rules.GetMaxCopies(c.CardId)>0 && new[]{CardPoolAddress.Card01,CardPoolAddress.Card02,CardPoolAddress.Card03}
+        var candidates=cards.Where(c=>rules.GetMaxCopies(c.CardId)>0 && new[]{CardPoolAddress.Card01,CardPoolAddress.Card02,CardPoolAddress.Card03,CardPoolAddress.Card04}
             .Any(folder=>File.Exists("Assets/UI/Card/"+folder+"/"+c.CardId+".jpg"))).ToArray();
         DuelDemoCardEntry[] Recipe(bool extra,int total)
         {

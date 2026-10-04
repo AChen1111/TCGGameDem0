@@ -112,5 +112,33 @@ SpriteAtlasAsset:
     - {fileID: -2134053601, guid: 470ebb10a5f4cc144b50b402adc6f13f, type: 3}
     - {fileID: -515226445, guid: 5f8b7451e35694143a994b719d3f9ece, type: 3}
     - {fileID: -1503780093, guid: b954d9d485d56dd419e87c2ba126306d, type: 3}
+    - {fileID: 2042773077, guid: 0dfb0abdebba5234ebcd463cff4fd1ef, type: 3}
+    - {fileID: 527978302, guid: 55c0f9fdb6bee1c428a9aeba26b6e831, type: 3}
+    - {fileID: 995669136, guid: 290453777d996fc458f32a1fc83b3fba, type: 3}
+    - {fileID: -425104758, guid: 261b38b0c76d6d8448dc6ebd567af2fd, type: 3}
+    - {fileID: -986725408, guid: 41bf2c30df615004dbd20276bce9f561, type: 3}
+    - {fileID: 1208111585, guid: ca14fc367a52ecc4f8f91e03ee1785d5, type: 3}
+    - {fileID: 1714881404, guid: a266cc648301d7645876b719c9141324, type: 3}
+    - {fileID: 1102387593, guid: 8622988b9394fc44e8336f3a6cfc98bf, type: 3}
+    - {fileID: 1272703989, guid: 141830512639c234b83e7157497fbf23, type: 3}
+    - {fileID: -2065370577, guid: fa76c7f6accb9914a98ae27aa9d02feb, type: 3}
+    - {fileID: -256149279, guid: f6ebc0e11cc26564280a6fad23591f4e, type: 3}
+    - {fileID: -1153122817, guid: 717dd7a2e9e720c47b63e695ea4bd5b4, type: 3}
+    - {fileID: -196146712, guid: ad460850adbc1404ab4538de5f98188a, type: 3}
+    - {fileID: 1858765948, guid: 0454921f9940d474a9f4006ef6741b03, type: 3}
+    - {fileID: -2061349005, guid: 03e75ecca24e7094b865b5087530cff6, type: 3}
+    - {fileID: -330410091, guid: 86cac9ef43cf23f469d68961b2f39109, type: 3}
+    - {fileID: -521633820, guid: 477b50c67874b2c459a6fddc853e50ed, type: 3}
+    - {fileID: 977100985, guid: 74194f5e830532f4f9c51d15a1ce6bf4, type: 3}
+    - {fileID: -1748901372, guid: 2fb40b090cac4184ba27cde72cfca947, type: 3}
+    - {fileID: 1652395888, guid: 648a67fae36cf2b4b9db02e5546d72f7, type: 3}
+    - {fileID: 1465646882, guid: d60c0be20241a8444b2486e996060c4b, type: 3}
+    - {fileID: 169627212, guid: 52225e49e2231dc4da096454fd275b6d, type: 3}
+    - {fileID: 600695466, guid: 7f14a348c39206e4cad5d3072edf5fcb, type: 3}
+    - {fileID: 169283181, guid: 39ca80b1bdebc324d9cb1bd37b3dcc14, type: 3}
+    - {fileID: -61077169, guid: d0c410b634788374989a671a36cb54b5, type: 3}
+    - {fileID: 378035186, guid: 031a7284735521542aef029f612e86eb, type: 3}
+    - {fileID: 1679239704, guid: ebdbbfff7686b8f42af96056be0b5a77, type: 3}
+    - {fileID: -1736901248, guid: a5d8238c6b7f2c14bb391ad7b23613df, type: 3}
   m_IsVariant: 0
   m_ScriptablePacker: {fileID: 0}

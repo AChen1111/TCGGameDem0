@@ -7,10 +7,11 @@ public static class CardPoolAddress
     public const string Card01 = "CardBag01_BlueEyes";
     public const string Card02 = "CardBag02_Hero";
     public const string Card03 = "CardBag03_SkyStriker";
+    public const string Card04 = "CardBag04_Dragonmaid";
 
     public static bool IsKnownDrawPool(string poolKey)
     {
-        return poolKey is "Card01" or "Card02" or "Card03" or "CardGeneric" or "CardAll";
+        return poolKey is "Card01" or "Card02" or "Card03" or "Card04" or "CardGeneric" or "CardAll";
     }
 
     public static bool TryGetBagFolder(string poolKey, out string folder)
@@ -25,6 +26,9 @@ public static class CardPoolAddress
                 return true;
             case "Card03":
                 folder = Card03;
+                return true;
+            case "Card04":
+                folder = Card04;
                 return true;
             default:
                 folder = null;

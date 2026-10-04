@@ -1,13 +1,13 @@
 {
   "schemaVersion": 2,
-  "fingerprint": "3a443f141d5320d6fd5131074afd2641f6ee2ad200799aaac8c00d5382161e39",
-  "sourceFingerprint": "6d802df48e51f2bd29e57e0a07dfdfe50986620bc20fd102c30a26a9abaea4dd",
+  "fingerprint": "ff13218ff2e03a508a2de6f7f4aea1b9341ca02f2949367d88ace87792728dbf",
+  "sourceFingerprint": "a3999e1f9078ce25be93cb6283781a35cdd91fe8430730ca90388ddad89058f3",
   "nameFingerprint": "26bb4a10c96e7a449be91fecac0be2fdc27d45b5200243c2512103b13036b10c",
   "generatedOutputHashes": {
-    "Assets/Scripts/Duel/Shared/Cards/CardCatalogData.Generated.cs": "4733ef85760163693dd2824e72debc024a1ea4241ce8291811d6bc99c7723070",
+    "Assets/Scripts/Duel/Shared/Cards/CardCatalogData.Generated.cs": "cd02241583c0c13ede5730f32376df0e836935a92bfe26a2b87e87ef39747a6b",
     "Assets/Scripts/Duel/Shared/Cards/CardNameCatalogData.Generated.cs": "1f7cf0f2742f82972e440cc4c63d56f5ac56a8fef2692f95ab8a43aa77704807"
   },
-  "ruleCardCount": 91,
+  "ruleCardCount": 118,
   "declarableNameCount": 13382,
   "sourceHashes": {
     "ja-JP": "f63dc29f4f49057bc689dfe122b506e2ac38ff3bdc13a54a5068bd47d0e36146",
@@ -15,10 +15,10 @@
     "en-US": "d8e0281df43713870074b9d25db6d026854d4a272aa755adaec886e672fde87d"
   },
   "projectSourceHashes": {
-    "Cards.csv": "e7762f56905c370827ef02f4b3e83f5b442d247ae6dcd5074fc4776815fe27c8",
-    "Translations.csv": "034e84a40a04c06c3cb334f3da6258ab1589a56b97f8f6dd4b5b8f6db147153e",
+    "Cards.csv": "6a5decee551b6ffccae4a7227874cbd6ea2defc0373a4be6a00e7d7db882b195",
+    "Translations.csv": "879a1f293388ad21073488582a9bcb14e8581dfe9d1b8f665139dc929877683c",
     "card-banlist.csv": "7b31c5ce5e2eb3c42102a639d3d8ed81199ead4cdac6fe153f08f08e92c4ca22",
-    "card-art-variants.csv": "a25bb7c1c1d9a47abd0987e46b909f433009e89c2a74c4a0810531b5e5346de3"
+    "card-art-variants.csv": "f125f8cae51c37233c95f27acbccdbb757d7ab40b149136e2a78ca4d44e613f4"
   },
   "sources": [
     {
@@ -49,6 +49,12 @@
       "cardId": "02530830",
       "japaneseName": "銀河眼の光波刃竜",
       "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E9%8A%80%E6%B2%B3%E7%9C%BC%E3%81%AE%E5%85%89%E6%B3%A2%E5%88%83%E7%AB%9C",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
+      "cardId": "06637331",
+      "japaneseName": "深淵の獣ドルイドヴルム",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E6%B7%B1%E6%B7%B5%E3%81%AE%E7%8D%A3%E3%83%89%E3%83%AB%E3%82%A4%E3%83%89%E3%83%B4%E3%83%AB%E3%83%A0",
       "reviewStatus": "Official ruling review required"
     },
     {
@@ -100,6 +106,12 @@
       "reviewStatus": "Official ruling review required"
     },
     {
+      "cardId": "12163590",
+      "japaneseName": "ドラゴンメイド・シュテルン",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%83%A1%E3%82%A4%E3%83%89%E3%83%BB%E3%82%B7%E3%83%A5%E3%83%86%E3%83%AB%E3%83%B3",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
       "cardId": "12421694",
       "japaneseName": "閃刀姫－カイナ",
       "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E9%96%83%E5%88%80%E5%A7%AB%EF%BC%8D%E3%82%AB%E3%82%A4%E3%83%8A",
@@ -109,6 +121,18 @@
       "cardId": "14558127",
       "japaneseName": "灰流うらら",
       "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E7%81%B0%E6%B5%81%E3%81%86%E3%82%89%E3%82%89",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
+      "cardId": "15848542",
+      "japaneseName": "ドラゴンメイド・ルフト",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%83%A1%E3%82%A4%E3%83%89%E3%83%BB%E3%83%AB%E3%83%95%E3%83%88",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
+      "cardId": "16960120",
+      "japaneseName": "ドラゴンメイド・ティルル",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%83%A1%E3%82%A4%E3%83%89%E3%83%BB%E3%83%86%E3%82%A3%E3%83%AB%E3%83%AB",
       "reviewStatus": "Official ruling review required"
     },
     {
@@ -124,6 +148,12 @@
       "reviewStatus": "Official ruling review required"
     },
     {
+      "cardId": "18144507",
+      "japaneseName": "ハーピィの羽根帚",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E3%83%8F%E3%83%BC%E3%83%94%E3%82%A3%E3%81%AE%E7%BE%BD%E6%A0%B9%E5%B8%9A",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
       "cardId": "18963306",
       "japaneseName": "銀河眼の光波竜",
       "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E9%8A%80%E6%B2%B3%E7%9C%BC%E3%81%AE%E5%85%89%E6%B3%A2%E7%AB%9C",
@@ -133,6 +163,12 @@
       "cardId": "19324993",
       "japaneseName": "Ｘ・ＨＥＲＯ ヘル・デバイサー",
       "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%EF%BC%B8%E3%83%BB%EF%BC%A8%EF%BC%A5%EF%BC%B2%EF%BC%AF%20%E3%83%98%E3%83%AB%E3%83%BB%E3%83%87%E3%83%90%E3%82%A4%E3%82%B5%E3%83%BC",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
+      "cardId": "19652159",
+      "japaneseName": "光と闇の竜王",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E5%85%89%E3%81%A8%E9%97%87%E3%81%AE%E7%AB%9C%E7%8E%8B",
       "reviewStatus": "Official ruling review required"
     },
     {
@@ -190,6 +226,18 @@
       "reviewStatus": "Official ruling review required"
     },
     {
+      "cardId": "24361622",
+      "japaneseName": "天球の聖刻印",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E5%A4%A9%E7%90%83%E3%81%AE%E8%81%96%E5%88%BB%E5%8D%B0",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
+      "cardId": "24799107",
+      "japaneseName": "ドラゴンメイド・シュトラール",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%83%A1%E3%82%A4%E3%83%89%E3%83%BB%E3%82%B7%E3%83%A5%E3%83%88%E3%83%A9%E3%83%BC%E3%83%AB",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
       "cardId": "25072579",
       "japaneseName": "試号閃刀姫－アマツ",
       "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/faq_search.action?cid=21600&ope=4&request_locale=ja",
@@ -208,9 +256,27 @@
       "reviewStatus": "Official ruling review required"
     },
     {
+      "cardId": "27204311",
+      "japaneseName": "原始生命態ニビル",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E5%8E%9F%E5%A7%8B%E7%94%9F%E5%91%BD%E6%85%8B%E3%83%8B%E3%83%93%E3%83%AB",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
       "cardId": "27780618",
       "japaneseName": "Ｖ・ＨＥＲＯ ヴァイオン",
       "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%EF%BC%B6%E3%83%BB%EF%BC%A8%EF%BC%A5%EF%BC%B2%EF%BC%AF%20%E3%83%B4%E3%82%A1%E3%82%A4%E3%82%AA%E3%83%B3",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
+      "cardId": "29301450",
+      "japaneseName": "Ｓ：Ｐリトルナイト",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%EF%BC%B3%EF%BC%9A%EF%BC%B0%E3%83%AA%E3%83%88%E3%83%AB%E3%83%8A%E3%82%A4%E3%83%88",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
+      "cardId": "32600024",
+      "japaneseName": "ドラゴンメイド・チェイム",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%83%A1%E3%82%A4%E3%83%89%E3%83%BB%E3%83%81%E3%82%A7%E3%82%A4%E3%83%A0",
       "reviewStatus": "Official ruling review required"
     },
     {
@@ -229,6 +295,12 @@
       "cardId": "33698022",
       "japaneseName": "月華竜 ブラック・ローズ",
       "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E6%9C%88%E8%8F%AF%E7%AB%9C%20%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF%E3%83%BB%E3%83%AD%E3%83%BC%E3%82%BA",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
+      "cardId": "33854624",
+      "japaneseName": "深淵の獣マグナムート",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E6%B7%B1%E6%B7%B5%E3%81%AE%E7%8D%A3%E3%83%9E%E3%82%B0%E3%83%8A%E3%83%A0%E3%83%BC%E3%83%88",
       "reviewStatus": "Official ruling review required"
     },
     {
@@ -286,15 +358,39 @@
       "reviewStatus": "Official ruling review required"
     },
     {
+      "cardId": "40110009",
+      "japaneseName": "ドラゴンメイドのお召し替え",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%83%A1%E3%82%A4%E3%83%89%E3%81%AE%E3%81%8A%E5%8F%AC%E3%81%97%E6%9B%BF%E3%81%88",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
       "cardId": "40908371",
       "japaneseName": "蒼眼の銀龍",
       "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E8%92%BC%E7%9C%BC%E3%81%AE%E9%8A%80%E9%BE%8D",
       "reviewStatus": "Official ruling review required"
     },
     {
+      "cardId": "41232647",
+      "japaneseName": "ドラゴンメイド・ハスキー",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%83%A1%E3%82%A4%E3%83%89%E3%83%BB%E3%83%8F%E3%82%B9%E3%82%AD%E3%83%BC",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
+      "cardId": "41420027",
+      "japaneseName": "神の宣告",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E7%A5%9E%E3%81%AE%E5%AE%A3%E5%91%8A",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
       "cardId": "41620959",
       "japaneseName": "竜の霊廟",
       "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E7%AB%9C%E3%81%AE%E9%9C%8A%E5%BB%9F",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
+      "cardId": "42055234",
+      "japaneseName": "ドラゴンメイド・フランメ",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%83%A1%E3%82%A4%E3%83%89%E3%83%BB%E3%83%95%E3%83%A9%E3%83%B3%E3%83%A1",
       "reviewStatus": "Official ruling review required"
     },
     {
@@ -313,6 +409,12 @@
       "cardId": "45906428",
       "japaneseName": "ミラクル・フュージョン",
       "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E3%83%9F%E3%83%A9%E3%82%AF%E3%83%AB%E3%83%BB%E3%83%95%E3%83%A5%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
+      "cardId": "48658295",
+      "japaneseName": "ドラゴンメイド・ラティス",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%83%A1%E3%82%A4%E3%83%89%E3%83%BB%E3%83%A9%E3%83%86%E3%82%A3%E3%82%B9",
       "reviewStatus": "Official ruling review required"
     },
     {
@@ -352,6 +454,12 @@
       "reviewStatus": "Official ruling review required"
     },
     {
+      "cardId": "55144522",
+      "japaneseName": "強欲な壺",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E5%BC%B7%E6%AC%B2%E3%81%AA%E5%A3%BA",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
       "cardId": "55171412",
       "japaneseName": "Ｅ・ＨＥＲＯ アクア・ネオス",
       "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%EF%BC%A5%E3%83%BB%EF%BC%A8%EF%BC%A5%EF%BC%B2%EF%BC%AF%20%E3%82%A2%E3%82%AF%E3%82%A2%E3%83%BB%E3%83%8D%E3%82%AA%E3%82%B9",
@@ -367,6 +475,12 @@
       "cardId": "56741506",
       "japaneseName": "閃刀姫－アザレア・テンペランス",
       "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E9%96%83%E5%88%80%E5%A7%AB%EF%BC%8D%E3%82%A2%E3%82%B6%E3%83%AC%E3%82%A2%E3%83%BB%E3%83%86%E3%83%B3%E3%83%9A%E3%83%A9%E3%83%B3%E3%82%B9",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
+      "cardId": "57416183",
+      "japaneseName": "ドラゴンメイドのお片付け",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%83%A1%E3%82%A4%E3%83%89%E3%81%AE%E3%81%8A%E7%89%87%E4%BB%98%E3%81%91",
       "reviewStatus": "Official ruling review required"
     },
     {
@@ -391,6 +505,12 @@
       "cardId": "60461804",
       "japaneseName": "Ｄ－ＨＥＲＯ デストロイフェニックスガイ",
       "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%EF%BC%A4%EF%BC%8D%EF%BC%A8%EF%BC%A5%EF%BC%B2%EF%BC%AF%20%E3%83%87%E3%82%B9%E3%83%88%E3%83%AD%E3%82%A4%E3%83%95%E3%82%A7%E3%83%8B%E3%83%83%E3%82%AF%E3%82%B9%E3%82%AC%E3%82%A4",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
+      "cardId": "62002838",
+      "japaneseName": "闇と消滅の竜",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E9%97%87%E3%81%A8%E6%B6%88%E6%BB%85%E3%81%AE%E7%AB%9C",
       "reviewStatus": "Official ruling review required"
     },
     {
@@ -448,9 +568,21 @@
       "reviewStatus": "Official ruling review required"
     },
     {
+      "cardId": "69946549",
+      "japaneseName": "捕食植物ドラゴスタペリア",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E6%8D%95%E9%A3%9F%E6%A4%8D%E7%89%A9%E3%83%89%E3%83%A9%E3%82%B4%E3%82%B9%E3%82%BF%E3%83%9A%E3%83%AA%E3%82%A2",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
       "cardId": "70368879",
       "japaneseName": "成金ゴブリン",
       "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E6%88%90%E9%87%91%E3%82%B4%E3%83%96%E3%83%AA%E3%83%B3",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
+      "cardId": "70538272",
+      "japaneseName": "妖竜の禁姫",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E5%A6%96%E7%AB%9C%E3%81%AE%E7%A6%81%E5%A7%AB",
       "reviewStatus": "Official ruling review required"
     },
     {
@@ -463,6 +595,12 @@
       "cardId": "71587526",
       "japaneseName": "因果切断",
       "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E5%9B%A0%E6%9E%9C%E5%88%87%E6%96%AD",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
+      "cardId": "73539069",
+      "japaneseName": "ストライカー・ドラゴン",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E3%82%B9%E3%83%88%E3%83%A9%E3%82%A4%E3%82%AB%E3%83%BC%E3%83%BB%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3",
       "reviewStatus": "Official ruling review required"
     },
     {
@@ -496,6 +634,12 @@
       "reviewStatus": "Official ruling review required"
     },
     {
+      "cardId": "78231356",
+      "japaneseName": "ドラゴンメイドのお心づくし",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%83%A1%E3%82%A4%E3%83%89%E3%81%AE%E3%81%8A%E5%BF%83%E3%81%A5%E3%81%8F%E3%81%97",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
       "cardId": "79814787",
       "japaneseName": "伝説の白石",
       "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E4%BC%9D%E8%AA%AC%E3%81%AE%E7%99%BD%E7%9F%B3",
@@ -520,6 +664,12 @@
       "reviewStatus": "Official ruling review required"
     },
     {
+      "cardId": "88453933",
+      "japaneseName": "ドラゴンメイド・パルラ",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%83%A1%E3%82%A4%E3%83%89%E3%83%BB%E3%83%91%E3%83%AB%E3%83%A9",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
       "cardId": "89631139",
       "japaneseName": "青眼の白龍",
       "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E9%9D%92%E7%9C%BC%E3%81%AE%E7%99%BD%E9%BE%8D",
@@ -535,6 +685,18 @@
       "cardId": "90673289",
       "japaneseName": "閃刀姫－シズク",
       "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E9%96%83%E5%88%80%E5%A7%AB%EF%BC%8D%E3%82%B7%E3%82%BA%E3%82%AF",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
+      "cardId": "92892239",
+      "japaneseName": "ヴァレルロード・Ｆ・ドラゴン",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E3%83%B4%E3%82%A1%E3%83%AC%E3%83%AB%E3%83%AD%E3%83%BC%E3%83%89%E3%83%BB%EF%BC%A6%E3%83%BB%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3",
+      "reviewStatus": "Official ruling review required"
+    },
+    {
+      "cardId": "93039339",
+      "japaneseName": "厄災の星ティ・フォン",
+      "officialSourceUrl": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=1&stype=1&request_locale=ja&keyword=%E5%8E%84%E7%81%BD%E3%81%AE%E6%98%9F%E3%83%86%E3%82%A3%E3%83%BB%E3%83%95%E3%82%A9%E3%83%B3",
       "reviewStatus": "Official ruling review required"
     },
     {

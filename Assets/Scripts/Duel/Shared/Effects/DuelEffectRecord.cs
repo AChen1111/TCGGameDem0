@@ -10,7 +10,7 @@ namespace AChen.Duel.Core
         CannotSpecialSummon, OnlySpecialSummonSet, CannotActivateName, CannotSummonName,
         ReturnControl, DelayedSummon, DelayedDestroy, SkipPhase, Piercing, ExtraAttacks,
         PreventResponses, SummonGroupLimit, SpellResponsesBlocked, EndShuffleHand,
-        DestroyReplacement, CannotUseAsXyzMaterial, CannotUseAsLinkMaterial, DirectAttack, ExtraMonsterAttacks, TreatAsNormal, OnlySummonMethod, RecoverOnSpellActivated, OnlyExtraDeckRace, CannotReturnToExtra, EachMonsterOnce, CannotDirectAttack, DelayedReturn, CannotActivateCard, OnlyExtraDeckSet, BanishWhenLeavesField
+        DestroyReplacement, CannotUseAsXyzMaterial, CannotUseAsLinkMaterial, DirectAttack, ExtraMonsterAttacks, TreatAsNormal, OnlySummonMethod, RecoverOnSpellActivated, OnlyExtraDeckRace, CannotReturnToExtra, EachMonsterOnce, CannotDirectAttack, DelayedReturn, CannotActivateCard, OnlyExtraDeckSet, BanishWhenLeavesField, OnlySummonRace, EndReturnToHand
     }
 
     /// <summary>确定性适用记录；保存原始引用和期限，不持有委托、连接或动画。</summary>

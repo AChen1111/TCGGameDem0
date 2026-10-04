@@ -23,7 +23,7 @@ public sealed class DeckPackagedConfigTests
             files.Add(name, File.ReadAllBytes("Assets/GameConfiguration/" + name + ".bytes"));
         }
         var rules = DeckRulesConfiguration.Load(files);
-        Assert.AreEqual(91, rules.CardCount);
+        Assert.AreEqual(118, rules.CardCount);
         Assert.IsTrue(rules.TryGetSection("01639384", out var section));
         Assert.AreEqual(DeckSection.Extra, section);
         Assert.AreEqual(3, rules.GetMaxCopies("01639384"));
@@ -35,15 +35,19 @@ public sealed class DeckPackagedConfigTests
         var files = Directory.GetFiles("Assets/GameConfiguration", "*.bytes")
             .ToDictionary(path => Path.GetFileNameWithoutExtension(path), File.ReadAllBytes);
         var data = GameConfigTables.Assemble(files);
-        CollectionAssert.AreEquivalent(new[] { "Card01", "Card02", "Card03", "CardGeneric" },
+        CollectionAssert.AreEquivalent(new[] { "Card01", "Card02", "Card03", "Card04", "CardGeneric" },
             data.PoolEntries.Select(x => x.PoolKey).Distinct());
         CollectionAssert.AreEquivalent(data.AllCards.Select(x => x.CardId), data.PoolEntries.Select(x => x.CardId));
         Assert.AreEqual(data.AllCards.Length, data.PoolEntries.Select(x => x.CardId).Distinct().Count());
         Assert.AreEqual("青眼白龙到来", data.Catalog.CardPacks.Single(x => x.CoverResourceKey == "c_01").Title);
+        Assert.AreEqual("龙女仆", data.Catalog.CardPacks.Single(x => x.CoverResourceKey == "c_04").Title);
+        Assert.AreEqual("Card04", data.Catalog.CardPacks.Single(x => x.CoverResourceKey == "c_04").PoolKey);
         Assert.AreEqual("Card03", data.Catalog.CardPacks.Single(x => x.CoverResourceKey == "c_05").PoolKey);
         Assert.AreEqual("Card02", data.Catalog.CardPacks.Single(x => x.CoverResourceKey == "c_10").PoolKey);
-        Assert.IsTrue(data.Catalog.CardPacks.Where(x => x.CoverResourceKey != "c_01" && x.CoverResourceKey != "c_05" && x.CoverResourceKey != "c_10")
+        Assert.IsTrue(data.Catalog.CardPacks.Where(x => x.CoverResourceKey != "c_01" && x.CoverResourceKey != "c_04"
+            && x.CoverResourceKey != "c_05" && x.CoverResourceKey != "c_10")
             .All(x => x.Title == "泛用卡池" && x.PoolKey == "CardGeneric"));
+        Assert.AreEqual("41232647", data.ResolveCardId("41232648"));
         Assert.AreEqual("14558127", data.ResolveCardId("14558128"));
         Assert.AreEqual("94145021", data.ResolveCardId("94145022"));
         Assert.AreEqual(8, data.SpecialMaterials.Length);

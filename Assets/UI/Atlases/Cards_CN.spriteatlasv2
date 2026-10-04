@@ -108,5 +108,33 @@ SpriteAtlasAsset:
     - {fileID: -1603858116, guid: 0b5da560985dd5749aa05dc3191bd31d, type: 3}
     - {fileID: 244067099, guid: 2e3742b518c095245a7587d9e8979506, type: 3}
     - {fileID: -1500896486, guid: 66b513cd86f98e5408f5e854c2fc103d, type: 3}
+    - {fileID: 167497832, guid: 058b511981f90f44ca0998cc42af6320, type: 3}
+    - {fileID: 2017444080, guid: a9bc06430ab85994c96ddb1e3ad7a081, type: 3}
+    - {fileID: -129694424, guid: 99dadec5c6096634480ab210a70d510a, type: 3}
+    - {fileID: 1682482770, guid: aeeec2f46a06d03419106d85cb6cf8ef, type: 3}
+    - {fileID: 1124725308, guid: 1d4db8eb7fec4f7448c7907e4cbc1124, type: 3}
+    - {fileID: 1312427077, guid: 99cb841de987a0b47b8735488e1dfa83, type: 3}
+    - {fileID: 828164443, guid: dbf0467f19fd6e740b8575b81af2cb1e, type: 3}
+    - {fileID: -1612725407, guid: c26c19e805824a649b1ddd0e5fc9a3b7, type: 3}
+    - {fileID: 596529364, guid: 3e8cd5db64b34dc4a97bfa78ca1e1ccf, type: 3}
+    - {fileID: 1413152229, guid: 1932f8d84d3af92488126ea11201f00f, type: 3}
+    - {fileID: 1414067489, guid: a047474151616de42bcdca46650de5ee, type: 3}
+    - {fileID: -37998631, guid: 3a586b1fbe0dc3042a36fa7c727c7c53, type: 3}
+    - {fileID: -699186837, guid: 0f7a01977a20d3446b0b15a794e0ab5f, type: 3}
+    - {fileID: -923872276, guid: 0e2fcea2d38ba174eb3956641e69383c, type: 3}
+    - {fileID: 530079256, guid: 590257957ebc876499ebe4e6283252d0, type: 3}
+    - {fileID: 108427132, guid: d262bc8b42c43d44e90e69ecad9f0972, type: 3}
+    - {fileID: 692244327, guid: 8c6b603f006b9bc40bab9331701953dc, type: 3}
+    - {fileID: 1820625439, guid: 69320595946837f4daf840c4155935db, type: 3}
+    - {fileID: 1102314994, guid: d193eb2b89ae13541ae3cc9277b66dbd, type: 3}
+    - {fileID: 1122808414, guid: 2f2dcd42945758245a7496e1357a78bb, type: 3}
+    - {fileID: 532214742, guid: 8dc1901a167f7a642a31beb1fee0f041, type: 3}
+    - {fileID: 1038819576, guid: 29e1724d2ee026a40b06f4bdef936ca4, type: 3}
+    - {fileID: 727442868, guid: e41ef40be7386564f881155d2b946202, type: 3}
+    - {fileID: -700888597, guid: c7ec2e09f47badb429dcc3ac4eb0eb46, type: 3}
+    - {fileID: -1369496581, guid: ba87fcebec3ae6c4f874d25848b11ce6, type: 3}
+    - {fileID: -868569360, guid: f523116252cef9d438515c38038373a3, type: 3}
+    - {fileID: -1553223212, guid: 9749403cf5e9dd14d8bafb29968a6dba, type: 3}
+    - {fileID: 482655076, guid: 1a78afa1074dd6e469a291bd23a3a44e, type: 3}
   m_IsVariant: 0
   m_ScriptablePacker: {fileID: 0}
