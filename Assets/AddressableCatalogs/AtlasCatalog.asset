@@ -41,10 +41,3 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
-  - assetName: PortraitThumbnails
-    reference:
-      m_AssetGUID: e32f01fd3421a5a43aecacfbd78b1a3b
-      m_SubObjectName: 
-      m_SubObjectType: 
-      m_SubObjectGUID: 
-      m_EditorAssetChanged: 0

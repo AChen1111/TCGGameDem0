@@ -15,7 +15,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.U2D;
 
-/// <summary>主包与 mBulid 内容共用 UI、头像、列表缩略图及中英文卡图规则。</summary>
+/// <summary>主包与 mBulid 内容共用四类图集规则；源卡图不再作为独立远程纹理。</summary>
 public sealed class UiAtlasPrebuild : IPreprocessBuildWithReport
 {
     public const string Folder = "Assets/UI/Atlases";
@@ -39,7 +39,6 @@ public sealed class UiAtlasPrebuild : IPreprocessBuildWithReport
         var entries = new List<AddressableEntry<AssetReferenceT<SpriteAtlas>>>();
         Generate("Avatars", avatar, false, entries);
         Generate("UI", ui, false, entries);
-        Generate("PortraitThumbnails", PortraitThumbnailBuilder.Build(), false, entries);
         Generate("Cards_CN", cards.Where(p => !p.Contains("/en/")).SelectMany(AssetDatabase.LoadAllAssetsAtPath).OfType<Sprite>().ToArray(), true, entries);
         Generate("Cards_EN", cards.Where(p => p.Contains("/en/")).SelectMany(AssetDatabase.LoadAllAssetsAtPath).OfType<Sprite>().ToArray(), true, entries);
         var catalog = AssetDatabase.LoadAssetAtPath<AtlasAddressableCatalog>(CatalogPath);
@@ -79,16 +78,6 @@ public sealed class UiAtlasPrebuild : IPreprocessBuildWithReport
             rect = new Rect(0, 0, width, height), alignment = SpriteAlignment.Center, pivot = new Vector2(.5f, .5f) } });
         provider.GetDataProvider<ISpriteNameFileIdDataProvider>().SetNameFileIdPairs(new[] { new SpriteNameFileIdPair(name, id) });
         provider.Apply(); importer.SaveAndReimport();
-    }
-
-    public static void PreparePortraitThumbnails()
-    {
-        EditorSettings.spritePackerMode=SpritePackerMode.SpriteAtlasV2;
-        Directory.CreateDirectory(Folder);
-        var catalog=AssetDatabase.LoadAssetAtPath<AtlasAddressableCatalog>(CatalogPath);
-        var entries=catalog.Entries.Where(e=>e.assetName!="PortraitThumbnails").ToList();
-        Generate("PortraitThumbnails",PortraitThumbnailBuilder.Build(),false,entries);
-        catalog.EditorSetEntries(entries);EditorUtility.SetDirty(catalog);AssetDatabase.SaveAssets();
     }
 
     static void Generate(string name, Sprite[] sprites, bool opaque, List<AddressableEntry<AssetReferenceT<SpriteAtlas>>> entries)

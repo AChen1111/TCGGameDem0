@@ -12,7 +12,6 @@ public sealed class SpriteAtlasBinding : IDisposable
 {
     readonly AsyncOperationHandle<AtlasAddressableCatalog> m_catalog;
     readonly Dictionary<string, AsyncOperationHandle<SpriteAtlas>> m_atlases = new();
-    readonly Dictionary<string, UnityEngine.Sprite> m_sprites = new();
     readonly CancellationTokenSource m_lifetime = new();
     public SpriteAtlasBinding(AssetReferenceT<AtlasAddressableCatalog> reference)
     {
@@ -31,21 +30,11 @@ public sealed class SpriteAtlasBinding : IDisposable
         return await handle.Task.AsUniTask().AttachExternalCancellation(m_lifetime.Token);
     }
     void OnRequested(string tag, Action<SpriteAtlas> register) => RegisterAsync(tag, register).Forget();
-    public async UniTask<UnityEngine.Sprite> LoadSpriteAsync(string tag,string name)
-    {
-        var atlas=await LoadAsync(tag);
-        string key=tag+"/"+name;
-        if(!m_sprites.TryGetValue(key,out var sprite))
-        {sprite=atlas.GetSprite(name);m_sprites.Add(key,sprite);}
-        return sprite;
-    }
     async UniTaskVoid RegisterAsync(string tag, Action<SpriteAtlas> register) => register(await LoadAsync(tag));
     public void Dispose()
     {
         SpriteAtlasManager.atlasRequested -= OnRequested;
         m_lifetime.Cancel(); m_lifetime.Dispose();
-        foreach(var sprite in m_sprites.Values)UnityEngine.Object.Destroy(sprite);
-        m_sprites.Clear();
         foreach (var handle in m_atlases.Values) Addressables.Release(handle);
         m_atlases.Clear(); Addressables.Release(m_catalog);
     }

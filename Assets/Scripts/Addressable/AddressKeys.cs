@@ -499,7 +499,6 @@ public static class AddressKeys
         public static readonly string Avatars = "Avatars";
         public static readonly string Cards_CN = "Cards_CN";
         public static readonly string Cards_EN = "Cards_EN";
-        public static readonly string PortraitThumbnails = "PortraitThumbnails";
         public static readonly string UI = "UI";
     }
 //--tag:auto-generated-end

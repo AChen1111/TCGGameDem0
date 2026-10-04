@@ -61,7 +61,6 @@ public class AddressableLoader : PersistentMonoSingleton<AddressableLoader>
     }
 
     public UniTask<UnityEngine.U2D.SpriteAtlas> LoadAtlas(string tag) => m_atlases.LoadAsync(tag);
-    public UniTask<Sprite> LoadAtlasSprite(string tag,string name) => m_atlases.LoadSpriteAsync(tag,name);
 
     public UniTask<GameObject> LoadPrefab(string assetName)
     {
