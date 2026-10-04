@@ -178,6 +178,11 @@ namespace AChen.Duel.Core
             if (method == SummonMethod.Fusion || method == SummonMethod.Procedure || method == SummonMethod.Synchro
                 || method == SummonMethod.Xyz || method == SummonMethod.Link || method == SummonMethod.MaskChange
                 || method == SummonMethod.Contact) card.ProperlySummoned = true;
+            if (State.Window != TimingWindow.Resolving)
+            {
+                HoldSummon(card, before);
+                return true;
+            }
             Emit(DuelEventKind.Summoned, actor, card, from: before.Zone, cause: MoveCause.Effect,
                 effectSource: source, effectPlayer: actor, before: before, after: Snapshot(card));
             return true;

@@ -30,6 +30,7 @@ namespace AChen.Duel.Core
                 if (top.IsCardActivation && top.ActivationKind == RuleCardKind.Spell
                     && HasEffect(EffectRecordKind.SpellResponsesBlocked, player)) return false;
             }
+            if (State.PendingSummonId != 0 && State.Chain.Count == 0 && !(ability is ISummonNegation)) return false;
             if (!queuedTrigger && State.BattleStep != BattleStep.None && State.BattleStep != BattleStep.Declaration
                 && !(ability is IDamageStepAbility damage && damage.AllowsDamageStep(State.BattleStep))) return false;
             if (ability.Speed == 1 && !queuedTrigger && !phaseAbility && !MainOpen(player)) return false;

@@ -138,7 +138,8 @@ namespace AChen.Duel.Core
             {
                 Rules.Get(source.DefinitionId).CreateSummonProcedures().Single(p => p.Id == command.AbilityId)
                     .Execute(new EffectContext(this, command.Player, source.InstanceId), command);
-                OpenResponse(); return;
+                if (State.PendingSummonId == 0 && openResponse) OpenResponse();
+                return;
             }
             var definition = m_catalog.Get(source.DefinitionId);
             var method = ProcedureMethod(definition);
@@ -166,10 +167,10 @@ namespace AChen.Duel.Core
                 command.Player, command.Slot >= 5 ? command.Slot - 5 : command.Slot, command.Position);
             source.SummonedTurn = State.Turn; source.ProperlySummoned = true;
             source.SummonMethod = method; source.SummonMaterialDefinitions = history;
-            Emit(DuelEventKind.Summoned, command.Player, source, from: before.Zone,
+            if (openResponse) HoldSummon(source, before);
+            else Emit(DuelEventKind.Summoned, command.Player, source, from: before.Zone,
                 effectSource: effectSource, effectPlayer: effectSource.InstanceId == 0 ? -1 : command.Player,
                 before: before, after: Snapshot(source));
-            if (openResponse) OpenResponse();
         }
 
         public IReadOnlyList<DuelCardState[]> GetExtraSummonMaterialGroups(DuelCardState source, int player)

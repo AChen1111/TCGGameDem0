@@ -34,6 +34,7 @@ namespace AChen.Duel.Core
             Text(w, "achen-duel-state-v1");
             w.Write(s.Revision); w.Write(s.Turn); w.Write(s.TurnPlayer); w.Write((int)s.Phase);
             w.Write((int)s.Window); w.Write(s.WaitingSeat); w.Write(s.ConsecutivePasses); w.Write(s.PendingPhase);
+            w.Write(s.PendingSummonId); w.Write((int)s.PendingSummonFrom); LastKnown(w, s.PendingSummonBefore);
             w.Write((int)s.BattleStep); Ref(w, s.Attacker); Ref(w, s.AttackTarget);
             List(w, s.BattleDestroyed, Ref); List(w, s.AttackTargetsAtDeclaration, (b, x) => b.Write(x));
             List(w, s.AttackTargetRefsAtDeclaration, Ref);

@@ -144,6 +144,9 @@ namespace AChen.Duel.Core
         public int WaitingSeat;
         public int ConsecutivePasses;
         public int PendingPhase = -1;
+        public int PendingSummonId;
+        public DuelZone PendingSummonFrom;
+        public CardLastKnown PendingSummonBefore;
         public BattleStep BattleStep;
         public CardRef Attacker;
         public CardRef AttackTarget;

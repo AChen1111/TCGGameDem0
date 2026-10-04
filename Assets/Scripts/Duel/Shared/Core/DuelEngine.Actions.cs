@@ -37,9 +37,8 @@ namespace AChen.Duel.Core
             card.SummonedTurn = State.Turn; card.SetTurn = command.Kind == DuelCommandKind.SetMonster ? State.Turn : 0;
             card.ProperlySummoned = true; card.SummonMethod = SummonMethod.Normal;
             State.Players[command.Player].NormalSummonsThisTurn++;
-            if (command.Kind != DuelCommandKind.SetMonster)
-                Emit(DuelEventKind.Summoned, command.Player, card, from: before.Zone, before: before, after: Snapshot(card));
-            OpenResponse();
+            if (command.Kind == DuelCommandKind.SetMonster) OpenResponse();
+            else HoldSummon(card, before);
         }
 
         internal IEnumerable<DuelAction> MainActions(int player)
@@ -136,9 +135,36 @@ namespace AChen.Duel.Core
             {
                 card.SummonMethod = SummonMethod.Flip;
                 Emit(DuelEventKind.Revealed, command.Player, card);
-                Emit(DuelEventKind.Summoned, command.Player, card, from: before.Zone, detail: "flip", before: before, after: Snapshot(card));
+                Emit(DuelEventKind.PositionChanged, command.Player, card);
+                HoldSummon(card, before);
+                return;
             }
             Emit(DuelEventKind.PositionChanged, command.Player, card);
+            OpenResponse();
+        }
+
+        void HoldSummon(DuelCardState card, CardLastKnown before)
+        {
+            State.PendingSummonId = card.InstanceId;
+            State.PendingSummonFrom = before.Zone;
+            State.PendingSummonBefore = before;
+            State.Window = TimingWindow.FastResponse;
+            State.WaitingSeat = 1 - card.Controller;
+            State.ConsecutivePasses = 0;
+        }
+
+        void ConfirmPendingSummon()
+        {
+            var card = State.Cards.FirstOrDefault(item => item.InstanceId == State.PendingSummonId);
+            var from = State.PendingSummonFrom;
+            var before = State.PendingSummonBefore;
+            State.PendingSummonId = 0;
+            State.PendingSummonBefore = null;
+            if (card != null && OnField(card))
+            {
+                Emit(DuelEventKind.Summoned, card.Controller, card, from: from, before: before, after: Snapshot(card));
+                Rules.Get(card.DefinitionId).AfterSummonConfirmed(new EffectContext(this, card.Controller, card.InstanceId));
+            }
             OpenResponse();
         }
 

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace AChen.Duel.Core
 {
-    public sealed class TyphonSkyCrisisCard : CardRules
+    public sealed partial class TyphonSkyCrisisCard : CardRules
     {
         public override string CardId => "93039339";
         public override bool HasSummonRecipe => true;
@@ -48,8 +48,8 @@ namespace AChen.Duel.Core
     sealed class TyphonOverlayProcedure : ICardSummonProcedure
     {
         public string Id => "93039339.overlay";
-        static bool OpponentExtra(EffectContext context) => context.State.TurnFacts.Count(fact =>
-            fact.Kind == DuelEventKind.Summoned && fact.Player != context.Player && fact.From == DuelZone.ExtraDeck) >= 2;
+        static bool OpponentExtra(EffectContext context) =>
+            context.Engine.HasEffect(EffectRecordKind.OpponentExtraSummonWindow, context.Player);
         static IEnumerable<DuelCardState> Highest(EffectContext context)
         {
             var monsters = DragonmaidFlow.FieldMonsters(context, context.Player).Where(card =>
@@ -92,8 +92,18 @@ namespace AChen.Duel.Core
             context.Engine.Move(material, DuelZone.Material, material.Owner, cause: MoveCause.SummonMaterial, wasSummonMaterial: true, materialMethod: SummonMethod.Xyz);
             material.HostInstanceId = context.Source.InstanceId;
             context.Source.Materials.Add(material.InstanceId);
+            context.Source.Counters["typhon-overlay"] = 1;
             context.SpecialSummon(context.Source, context.Player, command.Slot, command.Position, method: SummonMethod.Xyz);
             context.Source.SummonMaterialDefinitions = names;
+        }
+    }
+
+    public sealed partial class TyphonSkyCrisisCard
+    {
+        public override void AfterSummonConfirmed(EffectContext context)
+        {
+            if (context.Source.SummonMethod != SummonMethod.Xyz || !context.Source.Counters.ContainsKey("typhon-overlay")) return;
+            context.Source.Counters.Remove("typhon-overlay");
             context.State.Players[context.Player].NormalSummonsThisTurn = 1;
             context.AddEffect(new DuelEffectRecord { Kind = EffectRecordKind.CannotSpecialSummon, Player = context.Player, ExpiresTurn = context.State.Turn });
         }

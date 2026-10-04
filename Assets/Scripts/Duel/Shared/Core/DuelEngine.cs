@@ -89,6 +89,19 @@ namespace AChen.Duel.Core
             m_events.Add(fact);
             State.PendingFacts.Add(fact);
             State.TurnFacts.Add(fact);
+            if (kind == DuelEventKind.Summoned && from == DuelZone.ExtraDeck && detail != "flip")
+            {
+                int extras = State.TurnFacts.Count(item => item.Kind == DuelEventKind.Summoned && item.Player == player
+                    && item.From == DuelZone.ExtraDeck && item.Detail != "flip");
+                if (extras >= 2)
+                {
+                    int seat = 1 - player;
+                    int until = State.Turn + 1;
+                    var window = State.Effects.FirstOrDefault(record => record.Kind == EffectRecordKind.OpponentExtraSummonWindow && record.Player == seat);
+                    if (window == null) AddEffect(new DuelEffectRecord { Kind = EffectRecordKind.OpponentExtraSummonWindow, Player = seat, ExpiresTurn = until });
+                    else if (window.ExpiresTurn < until) window.ExpiresTurn = until;
+                }
+            }
             EventEmitted?.Invoke(fact);
         }
 
@@ -184,6 +197,7 @@ namespace AChen.Duel.Core
             if (++State.ConsecutivePasses < 2) { State.WaitingSeat = 1 - State.WaitingSeat; return; }
             State.ConsecutivePasses = 0;
             if (State.Chain.Count > 0) { ResolveChain(); return; }
+            if (State.PendingSummonId != 0) { ConfirmPendingSummon(); return; }
             State.PendingTriggers.RemoveAll(t => !t.Public);
             State.PrivateTriggerPlayers.Clear();
             if (State.BattleStep != BattleStep.None) { AdvanceBattle(); return; }

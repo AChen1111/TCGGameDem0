@@ -9,22 +9,40 @@ namespace AChen.Duel.Core
         public override CardRuleSupport Support => new CardRuleSupport(
             CardRuleRequirement.Done("41420027.1", CardRuleKind.ActivatedAbility),
             CardRuleRequirement.Done("41420027.restrictions", CardRuleKind.Restriction));
-        public override IEnumerable<IAbilityHandler> CreateAbilities()
+        public override IEnumerable<IAbilityHandler> CreateAbilities() { yield return new SolemnJudgmentAbility(); }
+    }
+
+    sealed class SolemnJudgmentAbility : IAbilityHandler, ISummonNegation, IActivationSourcePolicy
+    {
+        public string CardId => "41420027";
+        public string AbilityId => CardId + ".1";
+        public int Speed => 3;
+        public bool AllowsSource(EffectContext context) => context.Source.Zone == DuelZone.SpellTrap
+            && (context.Source.Position == CardPosition.FaceDown || context.Source.Position == CardPosition.FaceUp);
+        public bool CanActivate(EffectContext context) => context.Source.SetTurn < context.State.Turn
+            && context.State.Players[context.Player].LifePoints >= 2 && (SpellTrap(context) || Summon(context));
+        public string ValidateActivation(EffectContext context, DuelCommand command) =>
+            command.Cards.Length == 0 && command.TargetId == 0 ? "" : "NO_ACTIVATION_TARGET";
+        public void PayCost(EffectContext context, DuelCommand command, DuelChainLink link)
         {
-            yield return new ProgramAbility(CardId, 1, 3, new[] { DuelZone.SpellTrap },
-                c => c.Source.SetTurn < c.State.Turn && c.State.Players[c.Player].LifePoints >= 2 && c.State.Chain.Count > 0
-                    && c.State.Chain.Last().IsCardActivation
-                    && (c.State.Chain.Last().ActivationKind == RuleCardKind.Spell || c.State.Chain.Last().ActivationKind == RuleCardKind.Trap),
-                (c, link) =>
-                {
-                    if (link.Step != 0) return;
-                    c.State.Chain.Single(item => item.Number == link.Values["solemn-link"]).ActivationNegated = true;
-                    link.Step = 1;
-                }).Pay((c, command, link) =>
-                {
-                    link.Values["solemn-link"] = c.State.Chain.Last().Number;
-                    c.State.Players[c.Player].LifePoints /= 2;
-                });
+            link.Values["solemn-summon"] = Summon(context) ? 1 : 0;
+            if (link.Values["solemn-summon"] == 0) link.Values["solemn-link"] = context.State.Chain.Last().Number;
+            context.State.Players[context.Player].LifePoints /= 2;
         }
+        public void Resolve(EffectContext context, DuelChainLink link)
+        {
+            if (link.Step != 0) return;
+            if (link.Values["solemn-summon"] == 1)
+            {
+                var monster = context.State.Cards.FirstOrDefault(card => card.InstanceId == context.State.PendingSummonId && DuelEngine.OnField(card));
+                if (monster != null && context.IsAffected(monster)) context.Move(monster, DuelZone.Graveyard);
+            }
+            else context.State.Chain.Single(item => item.Number == link.Values["solemn-link"]).ActivationNegated = true;
+            link.Step = 1;
+        }
+        static bool SpellTrap(EffectContext context) => context.State.Chain.Count > 0 && context.State.Chain.Last().IsCardActivation
+            && (context.State.Chain.Last().ActivationKind == RuleCardKind.Spell || context.State.Chain.Last().ActivationKind == RuleCardKind.Trap);
+        static bool Summon(EffectContext context) => context.State.PendingSummonId != 0 && context.State.Chain.Count == 0
+            && context.State.Cards.Any(card => card.InstanceId == context.State.PendingSummonId && DuelEngine.OnField(card));
     }
 }

@@ -27,6 +27,9 @@ namespace AChen.Duel.Core
         public virtual void ResolveReplacement(EffectContext context, DuelChainLink link, string program) =>
             throw new System.InvalidOperationException("Unknown replacement program for " + CardId + ": " + program);
 
+        /// <summary>召唤应对结束后，这张卡仍在场上时调用。</summary>
+        public virtual void AfterSummonConfirmed(EffectContext context) { }
+
         /// <summary>此卡是否使用自定义融合素材配方，而不是通用素材数量规则。</summary>
         public virtual bool HasSummonRecipe => false;
 
