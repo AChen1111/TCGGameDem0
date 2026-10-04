@@ -1,14 +1,14 @@
 {
   "SchemaVersion": 2,
   "ReleaseId": "",
-  "SourceHash": "656a347ef399c00e13f6c6f3d4ee97ad813312ce18df2539c4ae84f015117d58",
+  "SourceHash": "025f3d70a712555cf7d7c595f7984d4de04de4a0d30d9192b2139880a5297d6c",
   "ExpectedRevision": 0,
   "Files": [
     {
       "Table": "activities",
-      "Sha256": "75d1f8c3f676160e12b959478bc226a951251c0a2e04e46af592352c9e74c752",
+      "Sha256": "85f42696d80be34735cf454e7139170324625f2827719b56d8e4a032a0968a08",
       "Url": "",
-      "Size": 1604
+      "Size": 1859
     },
     {
       "Table": "daily_card_exchange",
@@ -27,6 +27,12 @@
       "Sha256": "205a6ed3457052b013efe4e88cd2486e1fe74bb4184b533c8aacee6a7f0a7826",
       "Url": "",
       "Size": 327
+    },
+    {
+      "Table": "login_all_cards_2026",
+      "Sha256": "be334690b30a5da0f5b5a52456d4df52bc56b739095df052a17442d85294a813",
+      "Url": "",
+      "Size": 2577
     },
     {
       "Table": "login_three_days_2026",

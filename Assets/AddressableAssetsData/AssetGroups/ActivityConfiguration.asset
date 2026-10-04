@@ -36,6 +36,13 @@ MonoBehaviour:
     - ActivityConfig
     - ActivityConfig.Generated
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 596fd6c2e6b958e4d9eb73ead1349207
+    m_Address: ActivityConfig/login_all_cards_2026
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ActivityConfig
+    - ActivityConfig.Generated
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5a2ff8740e53352438c7a740a9b1eda5
     m_Address: ActivityConfig/draw_ten_reward_2026
     m_ReadOnly: 0

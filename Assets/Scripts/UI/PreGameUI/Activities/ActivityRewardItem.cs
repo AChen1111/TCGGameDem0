@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using AChen.Activities;
 using AChen.Configuration;
 using TMPro;
@@ -31,9 +32,17 @@ public sealed class ActivityRewardItem : MonoBehaviour
         else if (state.Definition.Type == ActivityType.Milestone) m_Label.SetKey("ui.activities.milestone", new Dictionary<string, object> { ["count"] = entry.Threshold });
         else m_Label.SetKey(entry.NameKey);
         var descriptions = new List<string>();
+        var cardRewards = entry.Rewards.Where(reward => reward.RewardType == ActivityRewardType.Card).ToArray();
+        bool summarizeCards = cardRewards.Length >= 10 && cardRewards.All(reward => reward.CardVariant == 0 && reward.Amount == cardRewards[0].Amount);
+        if (summarizeCards)
+            descriptions.Add(LocalizationService.GetText("ui.activities.reward_all_cards", new Dictionary<string, object>
+            { ["count"] = cardRewards.Length, ["copies"] = cardRewards[0].Amount }));
         foreach (var reward in entry.Rewards)
+        {
+            if (summarizeCards && reward.RewardType == ActivityRewardType.Card) continue;
             descriptions.Add(LocalizationService.GetText(reward.RewardType == ActivityRewardType.Gold ? "ui.activities.reward_gold" : "ui.activities.reward_card",
                 new Dictionary<string, object> { ["amount"] = reward.Amount, ["id"] = reward.RewardId, ["variant"] = reward.CardVariant }));
+        }
         m_Amount.SetKey("ui.activities.reward_summary", new Dictionary<string, object> { ["rewards"] = string.Join("\n", descriptions) });
         m_Icon.sprite = entry.Rewards[0].RewardType == ActivityRewardType.Gold ? m_GoldIcon : m_CardIcon;
         m_Description.text = entry.Description;

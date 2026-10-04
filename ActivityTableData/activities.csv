@@ -5,4 +5,5 @@ daily_gold,1,daily_gold,True,0,,,activity.daily_gold.name,,,0,0,,True,False,lobb
 login_three_days_2026,2,login_three_days_2026,True,1,2026-10-01T00:00:00+08:00,2026-10-08T00:00:00+08:00,activity.login_three_days_2026.name,,,0,2,,True,False,lobbyReady,oncePerLogin,80,2,False,[],[],[],[]
 daily_card_exchange,3,daily_card_exchange,True,0,,,activity.daily_card_exchange.name,,,0,0,,True,False,lobbyReady,oncePerLogin,0,2,False,[],[],[],[]
 draw_ten_reward_2026,4,draw_ten_reward_2026,True,1,2026-10-01T00:00:00+08:00,2026-10-08T00:00:00+08:00,activity.draw_ten_reward_2026.name,,,0,0,,True,False,lobbyReady,oncePerLogin,0,2,False,[],[],[],[]
+login_all_cards_2026,1,login_all_cards_2026,True,1,2026-10-01T00:00:00+08:00,2026-10-08T00:00:00+08:00,activity.login_all_cards_2026.name,,activity.login_all_cards_2026.description,1,2,,True,True,rewardClaimable,oncePerActivity,95,1,True,[],[],[],[]
 notice_national_day_2026,0,notice_national_day_2026,True,1,2026-10-01T00:00:00+08:00,2026-10-08T00:00:00+08:00,activity.notice_national_day_2026.name,,,0,1,,True,False,lobbyReady,oncePerLogin,100,2,False,[],[],[],[]
