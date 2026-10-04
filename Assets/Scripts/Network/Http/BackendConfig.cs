@@ -4,7 +4,7 @@ namespace AChen.Networking
 {
     public sealed class BackendConfig
     {
-        public const string LocalDevelopmentUrl = "http://127.0.0.1:5080";
+        public const string LocalDevelopmentUrl = "http://39.97.56.180:5080";
 
         public string BaseUrl { get; }
         public int TimeoutSeconds { get; }
