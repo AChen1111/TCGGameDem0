@@ -7,6 +7,7 @@
     <type fullname="LocalizedMessage" preserve="all" />
   </assembly>
   <assembly fullname="LitMotion">
+    <type fullname="LitMotion.Adapters.DoubleMotionAdapter" preserve="all" />
     <type fullname="LitMotion.Adapters.FloatMotionAdapter" preserve="all" />
     <type fullname="LitMotion.Adapters.Vector2MotionAdapter" preserve="all" />
     <type fullname="LitMotion.Adapters.Vector3MotionAdapter" preserve="all" />
@@ -49,6 +50,7 @@
     <type fullname="System.ComponentModel.EditorBrowsableAttribute" preserve="all" />
     <type fullname="System.ComponentModel.EditorBrowsableState" preserve="all" />
     <type fullname="System.Diagnostics.Stopwatch" preserve="all" />
+    <type fullname="System.IO.InvalidDataException" preserve="all" />
     <type fullname="System.Net.WebSockets.ClientWebSocket" preserve="all" />
     <type fullname="System.Net.WebSockets.ClientWebSocketOptions" preserve="all" />
     <type fullname="System.Net.WebSockets.WebSocket" preserve="all" />
@@ -201,6 +203,10 @@
     <type fullname="UnityEngine.MotionVectorGenerationMode" preserve="all" />
     <type fullname="UnityEngine.Object" preserve="all" />
     <type fullname="UnityEngine.Plane" preserve="all" />
+    <type fullname="UnityEngine.Playables.PlayState" preserve="all" />
+    <type fullname="UnityEngine.Playables.Playable" preserve="all" />
+    <type fullname="UnityEngine.Playables.PlayableExtensions" preserve="all" />
+    <type fullname="UnityEngine.Playables.PlayableGraph" preserve="all" />
     <type fullname="UnityEngine.PlayerPrefs" preserve="all" />
     <type fullname="UnityEngine.Pool.CollectionPool`2" preserve="all" />
     <type fullname="UnityEngine.PropertyAttribute" preserve="all" />
@@ -248,6 +254,7 @@
     <type fullname="UnityEngine.TooltipAttribute" preserve="all" />
     <type fullname="UnityEngine.Transform" preserve="all" />
     <type fullname="UnityEngine.U2D.SpriteAtlas" preserve="all" />
+    <type fullname="UnityEngine.U2D.SpriteAtlasManager" preserve="all" />
     <type fullname="UnityEngine.Vector2" preserve="all" />
     <type fullname="UnityEngine.Vector3" preserve="all" />
     <type fullname="UnityEngine.Vector4" preserve="all" />
@@ -258,6 +265,7 @@
   </assembly>
   <assembly fullname="UnityEngine.ParticleSystemModule">
     <type fullname="UnityEngine.ParticleSystem" preserve="all" />
+    <type fullname="UnityEngine.ParticleSystem/MainModule" preserve="all" />
     <type fullname="UnityEngine.ParticleSystemStopBehavior" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.Physics2DModule">
@@ -277,6 +285,9 @@
     <type fullname="UnityEngine.RaycastHit" preserve="all" />
     <type fullname="UnityEngine.Rigidbody" preserve="all" />
   </assembly>
+  <assembly fullname="UnityEngine.TextRenderingModule">
+    <type fullname="UnityEngine.UIVertex" preserve="all" />
+  </assembly>
   <assembly fullname="UnityEngine.UI">
     <type fullname="UnityEngine.EventSystems.AbstractEventData" preserve="all" />
     <type fullname="UnityEngine.EventSystems.EventSystem" preserve="all" />
@@ -295,6 +306,7 @@
     <type fullname="UnityEngine.EventSystems.RaycastResult" preserve="all" />
     <type fullname="UnityEngine.EventSystems.UIBehaviour" preserve="all" />
     <type fullname="UnityEngine.UI.AspectRatioFitter" preserve="all" />
+    <type fullname="UnityEngine.UI.BaseMeshEffect" preserve="all" />
     <type fullname="UnityEngine.UI.Button" preserve="all" />
     <type fullname="UnityEngine.UI.Button/ButtonClickedEvent" preserve="all" />
     <type fullname="UnityEngine.UI.CanvasScaler" preserve="all" />
@@ -305,7 +317,6 @@
     <type fullname="UnityEngine.UI.Image" preserve="all" />
     <type fullname="UnityEngine.UI.Image/FillMethod" preserve="all" />
     <type fullname="UnityEngine.UI.Image/Type" preserve="all" />
-    <type fullname="UnityEngine.UI.LayoutGroup" preserve="all" />
     <type fullname="UnityEngine.UI.LayoutRebuilder" preserve="all" />
     <type fullname="UnityEngine.UI.MaskableGraphic" preserve="all" />
     <type fullname="UnityEngine.UI.MaskableGraphic/CullStateChangedEvent" preserve="all" />

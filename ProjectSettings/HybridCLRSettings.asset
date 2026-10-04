@@ -33,7 +33,6 @@ MonoBehaviour:
   - Unity.Addressables.dll
   - Unity.InputSystem.dll
   - Unity.ResourceManager.dll
-  - UnityEngine.AndroidJNIModule.dll
   - UnityEngine.CoreModule.dll
   - mscorlib.dll
   outputLinkFile: HybridCLRGenerate/link.xml
