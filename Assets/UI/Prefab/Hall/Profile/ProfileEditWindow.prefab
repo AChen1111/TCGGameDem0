@@ -2365,6 +2365,8 @@ MonoBehaviour:
   m_ImgMask: {fileID: 2551936099039259282}
   m_ImgFrame: {fileID: 3573829763725226693}
   m_AvatarAspect: {fileID: 5620121538206254614}
+  m_listThumbnail: 0
+  m_composite: {fileID: 0}
 --- !u!1 &6252910223714870505
 GameObject:
   m_ObjectHideFlags: 0
