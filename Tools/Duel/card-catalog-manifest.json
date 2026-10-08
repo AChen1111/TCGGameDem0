@@ -1,10 +1,10 @@
 {
   "schemaVersion": 2,
-  "fingerprint": "ff13218ff2e03a508a2de6f7f4aea1b9341ca02f2949367d88ace87792728dbf",
-  "sourceFingerprint": "a3999e1f9078ce25be93cb6283781a35cdd91fe8430730ca90388ddad89058f3",
+  "fingerprint": "a574dcd3f3294ad4e0ef48f858c68a31eceff4b6313d9458aeb5019de3f1bfdc",
+  "sourceFingerprint": "8b8b64fc9c27068334ddbb993a783c82bc0ed0674eca80b2e1d05b13f607c66f",
   "nameFingerprint": "26bb4a10c96e7a449be91fecac0be2fdc27d45b5200243c2512103b13036b10c",
   "generatedOutputHashes": {
-    "Assets/Scripts/Duel/Shared/Cards/CardCatalogData.Generated.cs": "cd02241583c0c13ede5730f32376df0e836935a92bfe26a2b87e87ef39747a6b",
+    "Assets/Scripts/Duel/Shared/Cards/CardCatalogData.Generated.cs": "ea0c44dae53a1d0e0edf86f67484af291783865cda8e43b3d231e7caf3c70c21",
     "Assets/Scripts/Duel/Shared/Cards/CardNameCatalogData.Generated.cs": "1f7cf0f2742f82972e440cc4c63d56f5ac56a8fef2692f95ab8a43aa77704807"
   },
   "ruleCardCount": 118,
@@ -17,7 +17,7 @@
   "projectSourceHashes": {
     "Cards.csv": "6a5decee551b6ffccae4a7227874cbd6ea2defc0373a4be6a00e7d7db882b195",
     "Translations.csv": "879a1f293388ad21073488582a9bcb14e8581dfe9d1b8f665139dc929877683c",
-    "card-banlist.csv": "7b31c5ce5e2eb3c42102a639d3d8ed81199ead4cdac6fe153f08f08e92c4ca22",
+    "card-banlist.csv": "167ac324c42e2d25e2f5adcf15e5a594c04622864b3f5741db38c168c4090b37",
     "card-art-variants.csv": "f125f8cae51c37233c95f27acbccdbb757d7ab40b149136e2a78ca4d44e613f4"
   },
   "sources": [
