@@ -11,6 +11,8 @@ public sealed class AvatarPortraitView : MonoBehaviour
     [SerializeField] Image m_ImgMask;
     [SerializeField] Image m_ImgFrame;
     [SerializeField] AspectRatioFitter m_AvatarAspect;
+    [Tooltip("列表等小尺寸场景使用 AvatarThumbs 图集中的缩略图")]
+    [SerializeField] bool m_UseThumbnail;
     int m_version;
 
     public void SetPortrait(int avatarId, int frameId) => LoadAsync(avatarId, frameId, ++m_version).Forget();
@@ -23,8 +25,9 @@ public sealed class AvatarPortraitView : MonoBehaviour
         {
             var store = GameConfigManager.Instance.Store;
             var frame = store.AvatarFrames[frameId];
+            string avatarKey = store.Avatars[avatarId].ResourceKey;
             var sprites = await UniTask.WhenAll(new[] {
-                AddressableLoader.Instance.LoadSprite(store.Avatars[avatarId].ResourceKey),
+                AddressableLoader.Instance.LoadSprite(m_UseThumbnail ? avatarKey + "_S" : avatarKey),
                 AddressableLoader.Instance.LoadSprite(frame.ResourceKey),
                 AddressableLoader.Instance.LoadSprite(frame.MaskResourceKey) });
             if (version != m_version || lifetime.IsCancellationRequested) return;

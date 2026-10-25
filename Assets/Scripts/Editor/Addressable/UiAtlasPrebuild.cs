@@ -33,11 +33,13 @@ public sealed class UiAtlasPrebuild : IPreprocessBuildWithReport
         foreach (string path in cards) ConfigureCard(path);
         var sprites = paths.Where(p => !p.Contains("/CardBag")).SelectMany(AssetDatabase.LoadAllAssetsAtPath)
             .OfType<Sprite>().ToArray();
-        var avatar = sprites.Where(s => AssetDatabase.GetAssetPath(s).Contains("/ProfileCustomization/")
+        var thumbs = sprites.Where(s => AssetDatabase.GetAssetPath(s).StartsWith(AvatarThumbnailBuilder.ThumbFolder + "/", StringComparison.Ordinal)).ToArray();
+        var avatar = sprites.Except(thumbs).Where(s => AssetDatabase.GetAssetPath(s).Contains("/ProfileCustomization/")
             || s.name.StartsWith("a_", StringComparison.Ordinal) || s.name.StartsWith("af_", StringComparison.Ordinal)).ToArray();
-        var ui = sprites.Except(avatar).ToArray();
+        var ui = sprites.Except(avatar).Except(thumbs).ToArray();
         var entries = new List<AddressableEntry<AssetReferenceT<SpriteAtlas>>>();
         Generate("Avatars", avatar, false, entries);
+        if (thumbs.Length > 0) Generate("AvatarThumbs", thumbs, false, entries);
         Generate("UI", ui, false, entries);
         Generate("Cards_CN", cards.Where(p => !p.Contains("/en/")).SelectMany(AssetDatabase.LoadAllAssetsAtPath).OfType<Sprite>().ToArray(), true, entries);
         Generate("Cards_EN", cards.Where(p => p.Contains("/en/")).SelectMany(AssetDatabase.LoadAllAssetsAtPath).OfType<Sprite>().ToArray(), true, entries);
@@ -49,7 +51,7 @@ public sealed class UiAtlasPrebuild : IPreprocessBuildWithReport
         }
         catalog.EditorSetEntries(entries); EditorUtility.SetDirty(catalog);
         AddressableCatalogSetup.MarkInGroup(AddressableCatalogSetup.RemoteCatalogGroup, CatalogPath, "AtlasCatalog");
-        NormalizeSources(cards, avatar, ui);
+        NormalizeSources(cards, avatar, ui, thumbs);
         AssetDatabase.SaveAssets();
     }
 
@@ -120,14 +122,14 @@ public sealed class UiAtlasPrebuild : IPreprocessBuildWithReport
         return group;
     }
 
-    static void NormalizeSources(string[] cards, Sprite[] avatars, Sprite[] ui)
+    static void NormalizeSources(string[] cards, Sprite[] avatars, Sprite[] ui, Sprite[] thumbs)
     {
         var settings = AddressableAssetSettingsDefaultObject.Settings;
         foreach (var group in settings.groups.Where(g => g != null).ToArray())
             foreach (var entry in group.entries.ToArray())
                 if (entry.AssetPath.StartsWith("Assets/UI/Sprite/", StringComparison.Ordinal)
                     || entry.AssetPath.StartsWith("Assets/UI/Card/", StringComparison.Ordinal)) settings.RemoveAssetEntry(entry.guid);
-        foreach (var pair in new[] { ("Avatars", avatars), ("UI", ui) })
+        foreach (var pair in new[] { ("Avatars", avatars), ("UI", ui), ("AvatarThumbs", thumbs) })
         {
             var group = Group(settings, "Remote_Atlas_" + pair.Item1);
             foreach (string path in pair.Item2.Select(AssetDatabase.GetAssetPath).Distinct())

@@ -20,6 +20,13 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - assetName: AvatarThumbs
+    reference:
+      m_AssetGUID: e08812843d8283049aa7baed4c24ba9c
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
   - assetName: UI
     reference:
       m_AssetGUID: 1f0c1a968b1ad62438b65d31541e4e8c

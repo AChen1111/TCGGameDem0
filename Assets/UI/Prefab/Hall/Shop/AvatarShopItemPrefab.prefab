@@ -54,6 +54,7 @@ MonoBehaviour:
   m_ImgMask: {fileID: 3825061517697722832}
   m_ImgFrame: {fileID: 6908777147217956942}
   m_AvatarAspect: {fileID: 3046235976323475775}
+  m_UseThumbnail: 1
 --- !u!1 &414851970608884152
 GameObject:
   m_ObjectHideFlags: 0
